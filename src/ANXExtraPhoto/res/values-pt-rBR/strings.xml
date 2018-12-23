@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Desfoque</string>
+    <string name="refocus_type_static">Nível de desfoque</string>
+    <string name="refocus_type_video">Rastros de luz</string>
+    <string name="refocus_type_relighting">Iluminação de estúdio</string>
+    <string name="refocus_type_relighting_no_face">Não foi possível encontrar o rosto</string>
+    <string name="refocus_type_relighting_small_face">A iluminação de estúdio funciona nas fotos onde o rosto ocupar mais espaço do que aqui.</string>
+    <string name="refocus_saving">Salvando…</string>
+    <string name="refocus_save_to_photo">Salvar como imagem</string>
+    <string name="refocus_save_to_video">Salvar como vídeo</string>
+    <string name="refocus_save_cancel">Cancelar</string>
+    <string name="refocus_save_title">Selecionar formato</string>
+    <string name="refocus_photo_not_support">Não é possível aplicar o desfoque nesta foto</string>
+    <string name="refocus_relighting_toast">Mova o círculo para ajustar o ângulo de iluminação</string>
+    <string name="refocus_discard_confirm_message">Salvar alterações?</string>
+    <string name="refocus_discard_positive_btn">Salvar</string>
+    <string name="refocus_discard_negative_btn">Descartar</string>
+</resources>

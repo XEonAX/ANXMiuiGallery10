@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Bulanık</string>
+    <string name="refocus_type_static">Bulanıklık seviyesi</string>
+    <string name="refocus_type_video">Bulanıklık yolları</string>
+    <string name="refocus_type_relighting">Stüdyo ışıklandırması</string>
+    <string name="refocus_type_relighting_no_face">Yüz bulunamadı</string>
+    <string name="refocus_type_relighting_small_face">Stüdyo ışıklandırma, buradan daha fazla yer kaplayan yüzler bulunan fotoğraflarda çalışır.</string>
+    <string name="refocus_saving">Kaydediliyor…</string>
+    <string name="refocus_save_to_photo">Resim olarak kaydet</string>
+    <string name="refocus_save_to_video">Video olarak kaydet</string>
+    <string name="refocus_save_cancel">İptal</string>
+    <string name="refocus_save_title">Biçim seçin</string>
+    <string name="refocus_photo_not_support">Fotoğrafa bulanıklık uygulanamıyor</string>
+    <string name="refocus_relighting_toast">Işıklandırma açısını ayarlamak için daireyi hareket ettirin</string>
+    <string name="refocus_discard_confirm_message">Değişiklikler kaydedilsin mi?</string>
+    <string name="refocus_discard_positive_btn">Kaydet</string>
+    <string name="refocus_discard_negative_btn">Yoksay</string>
+</resources>

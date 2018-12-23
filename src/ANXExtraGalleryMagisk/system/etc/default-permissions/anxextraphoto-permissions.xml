@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<exceptions>
+    <exception package="com.miui.extraphoto">
+        <permission name="android.permission.READ_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="android.permission.WRITE_MEDIA_STORAGE" fixed="false"/>
+        <permission name="android.permission.ACCESS_ALL_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="com.xiaomi.gallery.permission.CLOUD" fixed="false"/>
+    </exception>
+</exceptions>

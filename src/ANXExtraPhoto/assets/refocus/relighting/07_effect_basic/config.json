@@ -1,0 +1,8 @@
+{
+  "name": "树叶光",
+  "type": "RELIGHTING",
+  "icon": "icon.png",
+  "iconColor": "#8db2fc",
+  "relightingType": "0x14",
+  "cameraDefinedType": 7
+}

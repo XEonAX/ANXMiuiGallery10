@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">טשטוש</string>
+    <string name="refocus_type_static">רמת טשטוש</string>
+    <string name="refocus_type_video">שבילי אור</string>
+    <string name="refocus_type_relighting">תאורת סטודיו</string>
+    <string name="refocus_type_relighting_no_face">לא ניתן לאתר את הפנים</string>
+    <string name="refocus_type_relighting_small_face">תאורת סטודיו מיועדת לתמונות שבהן הפנים שבתמונה גדולות יותר.</string>
+    <string name="refocus_saving">שומר…</string>
+    <string name="refocus_save_to_photo">שמירה כתמונה</string>
+    <string name="refocus_save_to_video">שמירה כסרטון</string>
+    <string name="refocus_save_cancel">ביטול</string>
+    <string name="refocus_save_title">בחירת פורמט</string>
+    <string name="refocus_photo_not_support">לא ניתן להחיל טשטוש עבור תמונה זו</string>
+    <string name="refocus_relighting_toast">הזז את העיגול כדי לשנות את זווית התאורה</string>
+    <string name="refocus_discard_confirm_message">לשמור את השינויים?</string>
+    <string name="refocus_discard_positive_btn">שמירה</string>
+    <string name="refocus_discard_negative_btn">דחיה</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Orbana</string>
+    <string name="refocus_type_static">Orban maila</string>
+    <string name="refocus_type_video">Argi arrastoak</string>
+    <string name="refocus_type_relighting">Estudio argiztapena</string>
+    <string name="refocus_type_relighting_no_face">Ezin izan da aurpegia aurkitu</string>
+    <string name="refocus_type_relighting_small_face">Estudio argiztapena aurpegiak leku gehiaho betetzen duten argazkietan erabiltzen da.</string>
+    <string name="refocus_saving">Gordetzen…</string>
+    <string name="refocus_save_to_photo">Irudia bezala gorde</string>
+    <string name="refocus_save_to_video">Bideoa bezala gorde</string>
+    <string name="refocus_save_cancel">Ezeztatu</string>
+    <string name="refocus_save_title">Formatua aukeratu</string>
+    <string name="refocus_photo_not_support">Ezin da orbana argazki honetan gehitu</string>
+    <string name="refocus_relighting_toast">Borobila mugitu argiztapen angulua adosteko</string>
+    <string name="refocus_discard_confirm_message">Aldaketak gorde?</string>
+    <string name="refocus_discard_positive_btn">Gorde</string>
+    <string name="refocus_discard_negative_btn">Baztertu</string>
+</resources>

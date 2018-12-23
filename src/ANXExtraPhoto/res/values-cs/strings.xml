@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Rozmazání</string>
+    <string name="refocus_type_static">Stupeň rozmazání</string>
+    <string name="refocus_type_video">Dynamické světelné stopy</string>
+    <string name="refocus_type_relighting">Studiové osvětlení</string>
+    <string name="refocus_type_relighting_no_face">Nelze rozeznat obličej</string>
+    <string name="refocus_type_relighting_small_face">Studiové osvětlení funguje u fotografií, na kterých obličej zabírá více místa než zde.</string>
+    <string name="refocus_saving">Ukládání…</string>
+    <string name="refocus_save_to_photo">Uložit jako obrázek</string>
+    <string name="refocus_save_to_video">Uložit jako video</string>
+    <string name="refocus_save_cancel">Zrušit</string>
+    <string name="refocus_save_title">Vyberte formát</string>
+    <string name="refocus_photo_not_support">Rozmazání nelze na tuto fotografii použít</string>
+    <string name="refocus_relighting_toast">Pohybujte prstem po kruhu pro úpravu úhlu osvětlení</string>
+    <string name="refocus_discard_confirm_message">Uložit změny?</string>
+    <string name="refocus_discard_positive_btn">Uložit</string>
+    <string name="refocus_discard_negative_btn">Zahodit</string>
+</resources>

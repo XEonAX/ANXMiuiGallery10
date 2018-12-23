@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Rozmazanie</string>
+    <string name="refocus_type_static">Úroveň rozmazania</string>
+    <string name="refocus_type_video">Svetelná stopa</string>
+    <string name="refocus_type_relighting">Štúdiové osvetlenie</string>
+    <string name="refocus_type_relighting_no_face">Tvár sa nenašla</string>
+    <string name="refocus_type_relighting_small_face">Štúdiové osvetlenie funguje na fotografiách, kde tváre zaberajú viac miesta ako tu.</string>
+    <string name="refocus_saving">Ukladanie…</string>
+    <string name="refocus_save_to_photo">Uložiť ako obrázok</string>
+    <string name="refocus_save_to_video">Uložiť ako video</string>
+    <string name="refocus_save_cancel">Zrušiť</string>
+    <string name="refocus_save_title">Vybrať formát</string>
+    <string name="refocus_photo_not_support">Nie je možné pridať rozmazanie pre túto fotografiu</string>
+    <string name="refocus_relighting_toast">Premiestnite kruh pre upravenie uhla osvetlenia</string>
+    <string name="refocus_discard_confirm_message">Uložiť úpravy?</string>
+    <string name="refocus_discard_positive_btn">Uložiť</string>
+    <string name="refocus_discard_negative_btn">Zahodiť</string>
+</resources>

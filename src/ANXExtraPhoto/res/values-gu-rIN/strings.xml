@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">બ્લર</string>
+    <string name="refocus_type_static">બ્લરનું સ્તર</string>
+    <string name="refocus_type_video">પ્રકાશિત રસ્તાઓ</string>
+    <string name="refocus_type_relighting">સ્ટુડિયો લાઇટિંગ</string>
+    <string name="refocus_type_relighting_no_face">ચહેરો મળ્યો નહીં</string>
+    <string name="refocus_type_relighting_small_face">સ્ટુડિયો લાઈટિંગ ફોટા પર પણ કામ કરે છે જ્યાં ચહેરા વધુ જગ્યા લે છે.</string>
+    <string name="refocus_saving">સાચવી રહ્યું છે…</string>
+    <string name="refocus_save_to_photo">છબી તરીકે સાચવો</string>
+    <string name="refocus_save_to_video">વિડિઓ તરીકે સાચવો</string>
+    <string name="refocus_save_cancel">રદ કરો</string>
+    <string name="refocus_save_title">ફોર્મેટ પસંદ કરો</string>
+    <string name="refocus_photo_not_support">આ ફોટોમાં બ્લર લાગુ કરી શકતાં નથી</string>
+    <string name="refocus_relighting_toast">લાઇટિંગ એંગલ એડજસ્ટ કરવા માટે વર્તુળ ખસેડો</string>
+    <string name="refocus_discard_confirm_message">ફેરફારો સાચવીએ?</string>
+    <string name="refocus_discard_positive_btn">સાચવો</string>
+    <string name="refocus_discard_negative_btn">કાઢી નાખો</string>
+</resources>

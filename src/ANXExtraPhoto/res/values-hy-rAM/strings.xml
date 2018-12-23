@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Ֆոն</string>
+    <string name="refocus_type_static">Ֆոնի մակարդակ</string>
+    <string name="refocus_type_video">Լուսային հետքեր</string>
+    <string name="refocus_type_relighting">Ստուդիայի լուսավորություն</string>
+    <string name="refocus_type_relighting_no_face">Չհաջողվեց գտնել դեմքը</string>
+    <string name="refocus_type_relighting_small_face">Ստուդիայի լուսավորությունն աշխատում է այն լուսանկարների դեպքում, որտեղ դեմքերն ավելի մեծ տեղ են զբաղեցնում, քան այստեղ:</string>
+    <string name="refocus_saving">Պահպանում…</string>
+    <string name="refocus_save_to_photo">Պահպանել որպես նկար</string>
+    <string name="refocus_save_to_video">Պահպանել որպես տեսանյութ</string>
+    <string name="refocus_save_cancel">Չեղարկել</string>
+    <string name="refocus_save_title">Ընտրել ձևաչափը</string>
+    <string name="refocus_photo_not_support">Չի հաջողվում այս նկարի հետ ֆոն օգտագործել</string>
+    <string name="refocus_relighting_toast">Շարժե՛ք շրջանը լուսային անկյունը կարգավորելու համար</string>
+    <string name="refocus_discard_confirm_message">Պահպանե՞լ փոփոխությունները։</string>
+    <string name="refocus_discard_positive_btn">Պահպանել</string>
+    <string name="refocus_discard_negative_btn">Բաց թողնել</string>
+</resources>

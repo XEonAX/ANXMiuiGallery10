@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Rozmycie</string>
+    <string name="refocus_type_static">Poziom rozmycia</string>
+    <string name="refocus_type_video">Ślady światła</string>
+    <string name="refocus_type_relighting">Studio oświetlenia</string>
+    <string name="refocus_type_relighting_no_face">Nie udało się znaleźć twarzy</string>
+    <string name="refocus_type_relighting_small_face">Studio oświetlenia działa poprawnie na zdjęciach, gdzie twarz zajmuje więcej miejsca niż tutaj.</string>
+    <string name="refocus_saving">Zapisywanie…</string>
+    <string name="refocus_save_to_photo">Zapisz jako obraz</string>
+    <string name="refocus_save_to_video">Zapisz jako wideo</string>
+    <string name="refocus_save_cancel">Anuluj</string>
+    <string name="refocus_save_title">Wybierz format</string>
+    <string name="refocus_photo_not_support">Nie można zastosować rozmycia dla tego obrazu</string>
+    <string name="refocus_relighting_toast">Przesuń okrąg, aby dostosować kąt padania światła</string>
+    <string name="refocus_discard_confirm_message">Zapisać zmiany?</string>
+    <string name="refocus_discard_positive_btn">Zapisz</string>
+    <string name="refocus_discard_negative_btn">Odrzuć</string>
+</resources>

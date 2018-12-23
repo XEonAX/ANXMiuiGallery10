@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="refocus_seekbar_thumb_reset_state" />
+    <item type="id" name="refocus_seekbar_thumb_active_state" />
+    <item type="id" name="item_touch_helper_previous_elevation" />
+    <item type="id" name="whole_view">false</item>
+    <item type="id" name="menu_group">false</item>
+    <item type="id" name="operation_group">false</item>
+    <item type="id" name="type_static">false</item>
+    <item type="id" name="type_video">false</item>
+    <item type="id" name="type_relighting">false</item>
+    <item type="id" name="list_wrapper">false</item>
+    <item type="id" name="seek_bar">false</item>
+    <item type="id" name="recycler">false</item>
+    <item type="id" name="exit">false</item>
+    <item type="id" name="save">false</item>
+    <item type="id" name="target">false</item>
+    <item type="id" name="display_wrapper">false</item>
+    <item type="id" name="img">false</item>
+    <item type="id" name="refocus_save_text">false</item>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Мутно</string>
+    <string name="refocus_type_static">Ниво мутноће</string>
+    <string name="refocus_type_video">Трагови светла</string>
+    <string name="refocus_type_relighting">Студијско осветљење</string>
+    <string name="refocus_type_relighting_no_face">Не може се пронаћи лице</string>
+    <string name="refocus_type_relighting_small_face">Студијско осветљење ради на фотографијама где лица заузимају више простора него овде.</string>
+    <string name="refocus_saving">Чување…</string>
+    <string name="refocus_save_to_photo">Сачувај као слику</string>
+    <string name="refocus_save_to_video">Сачувај као видео</string>
+    <string name="refocus_save_cancel">Откажи</string>
+    <string name="refocus_save_title">Изаберите формат</string>
+    <string name="refocus_photo_not_support">Фотографија се не може замутити</string>
+    <string name="refocus_relighting_toast">Померајте круг за подешавање угла осветљења</string>
+    <string name="refocus_discard_confirm_message">Сачувати измене?</string>
+    <string name="refocus_discard_positive_btn">Сачувај</string>
+    <string name="refocus_discard_negative_btn">Одбаци</string>
+</resources>

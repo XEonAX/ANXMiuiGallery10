@@ -1,0 +1,8 @@
+{
+  "name": "舞台光",
+  "type": "RELIGHTING",
+  "icon": "icon.png",
+  "iconColor": "#a3a9f7",
+  "relightingType": "0x16",
+  "cameraDefinedType": 2
+}

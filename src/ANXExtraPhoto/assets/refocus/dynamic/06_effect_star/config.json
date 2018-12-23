@@ -1,0 +1,8 @@
+{
+  "name": "blinking_star",
+  "type": "STAR",
+  "icon": "icon.png",
+  "totalSecond": 3000,
+  "mask":"mask.png",
+  "iconColor": "#86b4f3"
+}

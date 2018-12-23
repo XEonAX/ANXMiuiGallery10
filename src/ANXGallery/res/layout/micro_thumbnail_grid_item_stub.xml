@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/mask" android:background="@color/black_30_transparent" android:visibility="gone" android:duplicateParentState="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:contentDescription="@null" />
+    <TextView android:textAppearance="@style/Gallery.TextAppearance.PickingNumber" android:gravity="center" android:id="@id/pick_num_indicator" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <FrameLayout android:layout_gravity="start|center|top" android:id="@id/top_indicator_container" android:background="@drawable/top_indicator_container_bg" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <ImageView android:layout_gravity="end|center|top" android:id="@id/sync_indicator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/horizontal_spacing_secondary" android:contentDescription="@null" android:layout_marginEnd="@dimen/horizontal_spacing_secondary" />
+    </FrameLayout>
+    <ImageView android:layout_gravity="start|center|top" android:id="@id/similar_best_mark" android:background="@drawable/similar_best_mark_small" android:visibility="gone" android:layout_width="@dimen/micro_similar_best_mark_size" android:layout_height="@dimen/micro_similar_best_mark_size" />
+    <FrameLayout android:layout_gravity="start|bottom|center" android:id="@id/bottom_indicator_container" android:background="@drawable/bottom_indicator_container_bg" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textAppearance="@style/Gallery.TextAppearance.Small.Inverse" android:layout_gravity="start|bottom|center" android:id="@id/type_indicator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/horizontal_spacing_secondary" android:drawablePadding="@dimen/horizontal_spacing_secondary" android:layout_marginStart="@dimen/horizontal_spacing_primary" />
+        <ImageView android:layout_gravity="end|bottom|center" android:id="@id/favorites_indicator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="6.0dip" android:src="@drawable/type_indicator_favorites" android:contentDescription="@string/added_to_favorites" android:layout_marginEnd="6.0dip" />
+    </FrameLayout>
+    <FrameLayout android:layout_gravity="end|bottom|center" android:id="@id/checkbox_container" android:paddingTop="@dimen/vertical_spacing_big" android:paddingBottom="@dimen/horizontal_spacing_tiny" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingStart="@dimen/vertical_spacing_big" android:paddingEnd="@dimen/horizontal_spacing_tiny">
+        <CheckBox android:id="@android:id/checkbox" android:focusable="false" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@drawable/grid_item_checkbox" />
+    </FrameLayout>
+</FrameLayout>

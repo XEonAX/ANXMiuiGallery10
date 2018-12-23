@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Zamagliti</string>
+    <string name="refocus_type_static">Nivo zamagljenja</string>
+    <string name="refocus_type_video">Svjetlosne staze</string>
+    <string name="refocus_type_relighting">Studio osvjetljenje</string>
+    <string name="refocus_type_relighting_no_face">Ne mogu pronaći lice</string>
+    <string name="refocus_type_relighting_small_face">Studio rasvjeta radi na fotografijama gdje lica zauzimaju više prostora nego ovdje.</string>
+    <string name="refocus_saving">Spremanje…</string>
+    <string name="refocus_save_to_photo">Spremi kao sliku</string>
+    <string name="refocus_save_to_video">Spremi kao videozapis</string>
+    <string name="refocus_save_cancel">Odustani</string>
+    <string name="refocus_save_title">Odaberite format</string>
+    <string name="refocus_photo_not_support">Nije moguće primijeniti zamućenost ovoj fotografiji</string>
+    <string name="refocus_relighting_toast">Pomaknite krug da podesite kut osvjetljenja</string>
+    <string name="refocus_discard_confirm_message">Spremiti promjene?</string>
+    <string name="refocus_discard_positive_btn">Spremi</string>
+    <string name="refocus_discard_negative_btn">Odbaci</string>
+</resources>

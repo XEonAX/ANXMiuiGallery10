@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Розмитий</string>
+    <string name="refocus_type_static">Рівень розмиття</string>
+    <string name="refocus_type_video">Сліди світла</string>
+    <string name="refocus_type_relighting">Студійне освітлення</string>
+    <string name="refocus_type_relighting_no_face">Не вдалося знайти обличчя</string>
+    <string name="refocus_type_relighting_small_face">Студійне освітлення працює на тих фото, де обличчя займають більше місця.</string>
+    <string name="refocus_saving">Збереження…</string>
+    <string name="refocus_save_to_photo">Зберегти як зображення</string>
+    <string name="refocus_save_to_video">Зберегти як відео</string>
+    <string name="refocus_save_cancel">Скасувати</string>
+    <string name="refocus_save_title">Виберіть формат</string>
+    <string name="refocus_photo_not_support">Неможливо застосувати ефект розмиття</string>
+    <string name="refocus_relighting_toast">Переміщуйте коло, щоб змінити кут освітлення</string>
+    <string name="refocus_discard_confirm_message">Зберегти зміни?</string>
+    <string name="refocus_discard_positive_btn">Зберегти</string>
+    <string name="refocus_discard_negative_btn">Скасувати</string>
+</resources>

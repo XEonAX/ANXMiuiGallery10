@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">ब्लर</string>
+    <string name="refocus_type_static">ब्लर स्तर</string>
+    <string name="refocus_type_video">हल्का ट्रेल्स</string>
+    <string name="refocus_type_relighting">स्टुडियो प्रकाश</string>
+    <string name="refocus_type_relighting_no_face">अनुहार फेला परेन</string>
+    <string name="refocus_type_relighting_small_face">स्टुडियो प्रकाशकले फोटोहरूमा काम गर्दछ जहाँ चेताहरू यहाँ भन्दा बढी ठाँउ लिन्छ।</string>
+    <string name="refocus_saving">बचत गर्दैछ…</string>
+    <string name="refocus_save_to_photo">छविमा बचत गर्नुहोस्</string>
+    <string name="refocus_save_to_video">भिडियोमा बचत गर्नुहोस्</string>
+    <string name="refocus_save_cancel">रद्द गर्नुहोस</string>
+    <string name="refocus_save_title">फर्म्याट चयन गर्नुहोस्</string>
+    <string name="refocus_photo_not_support">तपाइको फोटोमा ब्लर लागू गर्न सकेन</string>
+    <string name="refocus_relighting_toast">प्रकाश कोण समायोजन गर्न सर्कल सार्नुहोस्</string>
+    <string name="refocus_discard_confirm_message">परिवर्तनहरू बचत गर्ने?</string>
+    <string name="refocus_discard_positive_btn">बचत गर्नुहोस्</string>
+    <string name="refocus_discard_negative_btn">खारेज गर्नुहोस्</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Zamegljeno</string>
+    <string name="refocus_type_static">Stopnja zameglitve</string>
+    <string name="refocus_type_video">Svetlobne poti</string>
+    <string name="refocus_type_relighting">Studio osvetlitev</string>
+    <string name="refocus_type_relighting_no_face">Ne morem najti obraza</string>
+    <string name="refocus_type_relighting_small_face">Studio osvetlitev deluje na fotografijah, kjer obraz zavzame več prostora kot tukaj.</string>
+    <string name="refocus_saving">Shranjujem…</string>
+    <string name="refocus_save_to_photo">Shrani kot sliko</string>
+    <string name="refocus_save_to_video">Shrani kot video</string>
+    <string name="refocus_save_cancel">Prekliči</string>
+    <string name="refocus_save_title">Izberite format</string>
+    <string name="refocus_photo_not_support">Ne morem potrditi zameglitve na tej fotografiji</string>
+    <string name="refocus_relighting_toast">Premaknite krog za prilagoditev kota osvetlitve</string>
+    <string name="refocus_discard_confirm_message">Shranim spremembe?</string>
+    <string name="refocus_discard_positive_btn">Shrani</string>
+    <string name="refocus_discard_negative_btn">Zavrzi</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:background="@color/refocus_color_save_option_sep" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <TextView android:textSize="@dimen/refocus_save_item_text_size" android:textColor="@color/refocus_title_color" android:gravity="center_vertical" android:id="@id/refocus_save_text" android:background="@drawable/refocus_save_item_selector" android:layout_width="fill_parent" android:layout_height="@dimen/refocus_save_item_height" android:paddingStart="@dimen/refocus_save_item_padding_start" />
+</LinearLayout>

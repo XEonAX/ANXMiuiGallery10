@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">ਧੁੰਦਲਾ</string>
+    <string name="refocus_type_static">ਧੁੰਦਲਾ ਪੱਧਰ</string>
+    <string name="refocus_type_video">ਲਾਈਟ ਪਰਖਾਂ</string>
+    <string name="refocus_type_relighting">ਸਟੂਡੀਓ ਲਾਈਟਿੰਗ</string>
+    <string name="refocus_type_relighting_no_face">ਚਿਹਰਾ ਨਹੀਂ ਲੱਭਿਆ ਜਾ ਸਕਿਆ</string>
+    <string name="refocus_type_relighting_small_face">ਸਟੂਡੀਓ ਲਾਈਟਿੰਗ ਫ਼ੋਟੋਆਂ ਉੱਤੇ ਵੀ ਕੰਮ ਕਰਦਾ ਹੈ ਜਿੱਥੇ ਚਿਹਰੇ ਜ਼ਿਆਦਾ ਥਾਂ ਲੈਂਦੇ ਹਨ।</string>
+    <string name="refocus_saving">ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…</string>
+    <string name="refocus_save_to_photo">ਇੱਕ ਚਿੱਤਰ ਸੁਰੱਖਿਅਤ ਕਰੋ</string>
+    <string name="refocus_save_to_video">ਵੀਡੀਓ ਵਜੋਂ ਸੁਰੱਖਿਅਤ ਕਰੋ</string>
+    <string name="refocus_save_cancel">ਰੱਦ ਕਰੋ</string>
+    <string name="refocus_save_title">ਫ਼ਾਰਮੈਟ ਚੁਣੋ</string>
+    <string name="refocus_photo_not_support">"ਇਸ ਫ਼ੋਟੋ 'ਤੇ ਧੁੰਦਲਾ ਲਾਗੂ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ"</string>
+    <string name="refocus_relighting_toast">ਪ੍ਰਕਾਸ਼ ਕੋਣ ਅਨੁਕੂਲ ਕਰਨ ਲਈ ਚੱਕਰ ਹਿਲਾਓ</string>
+    <string name="refocus_discard_confirm_message">ਬਦਲਾਅ ਸੁਰੱਖਿਅਤ ਕਰਨੇ ਹਨ?</string>
+    <string name="refocus_discard_positive_btn">ਸੁਰੱਖਿਅਤ ਕਰੋ</string>
+    <string name="refocus_discard_negative_btn">ਖ਼ਾਰਜ ਕਰੋ</string>
+</resources>

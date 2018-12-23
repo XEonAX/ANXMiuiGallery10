@@ -1,0 +1,8 @@
+{
+  "name": "电影光",
+  "type": "RELIGHTING",
+  "icon": "icon.png",
+  "iconColor": "#b6abec",
+  "relightingType": "0x17",
+  "cameraDefinedType": 3
+}

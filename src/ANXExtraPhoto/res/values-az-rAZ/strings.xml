@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Bulanıq</string>
+    <string name="refocus_type_static">Bulanıqlıq səviyyəsi</string>
+    <string name="refocus_type_video">Əngəlli yollar</string>
+    <string name="refocus_type_relighting">Studiya işıqlandırması</string>
+    <string name="refocus_type_relighting_no_face">Üz tapıla bilmədi</string>
+    <string name="refocus_type_relighting_small_face">Studiya işıqlandırma, buradan daha çox sahə tutan üzlər tapılan şəkillər üzərində işləyir.</string>
+    <string name="refocus_saving">Saxlanılır…</string>
+    <string name="refocus_save_to_photo">Şəkili olaraq saxla</string>
+    <string name="refocus_save_to_video">Video olaraq saxla</string>
+    <string name="refocus_save_cancel">Ləğv et</string>
+    <string name="refocus_save_title">Format seçin</string>
+    <string name="refocus_photo_not_support">Bu şəkilə bulanıqlıq tətbiq edilə bilmir</string>
+    <string name="refocus_relighting_toast">İşıqlandırma bucağını tənzimləmək üçün dairəni hərəkət etdirin</string>
+    <string name="refocus_discard_confirm_message">Dəyişikliklər yaddaşda saxlanılsın?</string>
+    <string name="refocus_discard_positive_btn">Yaddaşda saxla</string>
+    <string name="refocus_discard_negative_btn">İmtina et</string>
+</resources>

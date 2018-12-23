@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Көмескі</string>
+    <string name="refocus_type_static">Көмескі деңгейі</string>
+    <string name="refocus_type_video">Жарық іздері</string>
+    <string name="refocus_type_relighting">Студиа жарығы</string>
+    <string name="refocus_type_relighting_no_face">Бет табылмады</string>
+    <string name="refocus_type_relighting_small_face">Студиялық жарықтандыру бет әлдеқайда көбірек орын алатын фотосуреттерде жұмыс істейді.</string>
+    <string name="refocus_saving">Сақтауда…</string>
+    <string name="refocus_save_to_photo">Сурет болып сақтау</string>
+    <string name="refocus_save_to_video">Бейне болып сақтау</string>
+    <string name="refocus_save_cancel">Болдырмау</string>
+    <string name="refocus_save_title">Пішім таңдау</string>
+    <string name="refocus_photo_not_support">Осы фотосуретке көмескілік қолдана алынмайды</string>
+    <string name="refocus_relighting_toast">Жарықтандыру бұрышын реттеу үшін шеңберді жылжытыңыз</string>
+    <string name="refocus_discard_confirm_message">Өзгерістерді сақтау керек пе?</string>
+    <string name="refocus_discard_positive_btn">Сақтау</string>
+    <string name="refocus_discard_negative_btn">Болдырмау</string>
+</resources>

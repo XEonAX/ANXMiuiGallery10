@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="refocus_title_height">57.454987dip</dimen>
+    <dimen name="refocus_title_width">61.090973dip</dimen>
+    <dimen name="refocus_title_size">14.0sp</dimen>
+    <dimen name="refocus_list_height">73.32999dip</dimen>
+    <dimen name="refocus_operation_height">56.727997dip</dimen>
+    <dimen name="refocus_operation_text_size">12.599976dip</dimen>
+    <dimen name="refocus_operation_button_padding">15.0dip</dimen>
+    <dimen name="refocus_operation_margin">7.2729797dip</dimen>
+    <dimen name="refocus_seek_bar_width">264.0dip</dimen>
+    <dimen name="refocus_preview_margin_horizontal">12.666992dip</dimen>
+    <dimen name="refocus_preview_margin_top">32.72699dip</dimen>
+    <dimen name="refocus_preview_margin_bottom">21.0dip</dimen>
+    <dimen name="refocus_menu_image_size">50.333984dip</dimen>
+    <dimen name="refocus_menu_image_padding">2.6669922dip</dimen>
+    <dimen name="refocus_menu_item_margin">17.0dip</dimen>
+    <dimen name="refocus_scroll_control_item_min_scroll_distance">5.0dip</dimen>
+    <dimen name="refocus_seekbar_min_height">44.0dip</dimen>
+    <dimen name="refocus_seekbar_max_height">46.0dip</dimen>
+    <dimen name="refocus_seekbar_thumb_offset">8.0dip</dimen>
+    <dimen name="refocus_seekbar_padding_top">20.0dip</dimen>
+    <dimen name="refocus_seekbar_padding_start">35.0dip</dimen>
+    <dimen name="refocus_save_item_height">52.0dip</dimen>
+    <dimen name="refocus_save_item_padding_start">27.908997dip</dimen>
+    <dimen name="refocus_save_item_text_size">13.0sp</dimen>
+    <dimen name="refocus_gesture_size">73.69998dip</dimen>
+    <dimen name="refocus_menu_offset">56.0dip</dimen>
+    <dimen name="relighting_adjust_radius">30.0dip</dimen>
+    <dimen name="relighting_adjust_sphere_radius">510.0dip</dimen>
+    <dimen name="relighting_loading_progress_size">38.0dip</dimen>
+    <dimen name="relighting_loading_progress_size_padding">5.0dip</dimen>
+    <item type="dimen" name="dualcamera_watermark_size_ratio">57.29443</item>
+    <item type="dimen" name="dualcamera_watermark_padding_x_ratio">46.551723</item>
+    <item type="dimen" name="dualcamera_watermark_padding_y_ratio">46.551723</item>
+    <dimen name="item_touch_helper_max_drag_scroll_per_frame">20.0dip</dimen>
+</resources>

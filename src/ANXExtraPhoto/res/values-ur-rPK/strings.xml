@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">دھندلا</string>
+    <string name="refocus_type_static">دھندلی سطح</string>
+    <string name="refocus_type_video">ہلکی لکیریں</string>
+    <string name="refocus_type_relighting">اسٹوڈیو لائٹنگ</string>
+    <string name="refocus_type_relighting_no_face">چہرہ تلاش نہیں کر سکا</string>
+    <string name="refocus_type_relighting_small_face">اسٹوڈیو روشنی ان تصاویر پر کام کرتی ہے جہاں چہرے زیادہ جگہ لیتے ہیں۔</string>
+    <string name="refocus_saving">محفوظ ہورہا ہے…</string>
+    <string name="refocus_save_to_photo">تصویر کے طور پر محفوظ کریں</string>
+    <string name="refocus_save_to_video">ویڈیو کے طور پر محفوظ کریں</string>
+    <string name="refocus_save_cancel">منسوخ کریں</string>
+    <string name="refocus_save_title">فارمیٹ منتخب کریں</string>
+    <string name="refocus_photo_not_support">اس فوٹو پر دھندلا پن لاگو نہیں کر سکتے</string>
+    <string name="refocus_relighting_toast">روشنی کا زاویہ ایڈجسٹ کرنے کے لیے دائرہ کو حرکت دیں</string>
+    <string name="refocus_discard_confirm_message">تبدیلیاں محفوظ کریں؟</string>
+    <string name="refocus_discard_positive_btn">محفوظ کریں</string>
+    <string name="refocus_discard_negative_btn">مسترد کریں</string>
+</resources>

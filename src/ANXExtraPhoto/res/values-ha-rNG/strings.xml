@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Duhu</string>
+    <string name="refocus_type_static">Matakin duhu</string>
+    <string name="refocus_type_video">Bandin Fitila</string>
+    <string name="refocus_type_relighting">Haskawar studiyo</string>
+    <string name="refocus_type_relighting_no_face">"Ba'a iya samun fuska"</string>
+    <string name="refocus_type_relighting_small_face">Haskawar sutudiyo na aiki akan hotuna a inda fuskoki ke da fadi fiye da nan.</string>
+    <string name="refocus_saving">Ajiyewa…</string>
+    <string name="refocus_save_to_photo">Ajiye a matsayin hoto</string>
+    <string name="refocus_save_to_video">Ajiye a matsayin bidiyo</string>
+    <string name="refocus_save_cancel">Soke</string>
+    <string name="refocus_save_title">Zabi tsari</string>
+    <string name="refocus_photo_not_support">"Ba'a iya sanya duhu ma wannan hoto"</string>
+    <string name="refocus_relighting_toast">"Matsa da da'irar ka daidaita kwana haskawa"</string>
+    <string name="refocus_discard_confirm_message">A adana canji?</string>
+    <string name="refocus_discard_positive_btn">Ajiye</string>
+    <string name="refocus_discard_negative_btn">Kawar</string>
+</resources>

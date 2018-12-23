@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Difuminat</string>
+    <string name="refocus_type_static">Nivell de difuminació</string>
+    <string name="refocus_type_video">Traçades fines</string>
+    <string name="refocus_type_relighting">"Il·luminació d'estudi"</string>
+    <string name="refocus_type_relighting_no_face">"No s'ha pogut trobar la cara"</string>
+    <string name="refocus_type_relighting_small_face">"La il·luminació d'estudi funciona en fotografies on les cares ocupen més espai que aquí."</string>
+    <string name="refocus_saving">"S'està desant…"</string>
+    <string name="refocus_save_to_photo">Desa com imatge</string>
+    <string name="refocus_save_to_video">Desa com vídeo</string>
+    <string name="refocus_save_cancel">Cancel·la</string>
+    <string name="refocus_save_title">Selecciona format</string>
+    <string name="refocus_photo_not_support">No es pot aplicar difuminat a aquesta foto</string>
+    <string name="refocus_relighting_toast">"Mogueu el cercle per ajustar l'angle de llum"</string>
+    <string name="refocus_discard_confirm_message">Voleu desar els canvis?</string>
+    <string name="refocus_discard_positive_btn">Desa</string>
+    <string name="refocus_discard_negative_btn">Descarta</string>
+</resources>

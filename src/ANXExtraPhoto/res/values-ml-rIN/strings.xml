@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">മങ്ങിയത്</string>
+    <string name="refocus_type_static">മങ്ങിയ നില</string>
+    <string name="refocus_type_video">ലൈറ്റ് ട്രെയ്ൽസ്</string>
+    <string name="refocus_type_relighting">സ്റ്റുഡിയോ ലൈറ്റിംഗ്</string>
+    <string name="refocus_type_relighting_no_face">മുഖം കണ്ടെത്താനായില്ല</string>
+    <string name="refocus_type_relighting_small_face">ഫോട്ടോകളിൽ സ്റ്റുഡിയോ ലൈറ്റിംഗ് പ്രവർത്തിക്കുന്നു, അവിടെ ഇവിടുത്തേക്കാൾ മുഖങ്ങൾ കൂടുതൽ ഇടം എടുക്കുന്നു.</string>
+    <string name="refocus_saving">സംരക്ഷിക്കുന്നു…</string>
+    <string name="refocus_save_to_photo">ഇമേജായി സംരക്ഷിക്കുക</string>
+    <string name="refocus_save_to_video">വീഡിയോയായി സംരക്ഷിക്കുക</string>
+    <string name="refocus_save_cancel">റദ്ദാക്കുക</string>
+    <string name="refocus_save_title">ഫോർമാറ്റ് തിരഞ്ഞെടുക്കുക</string>
+    <string name="refocus_photo_not_support">ഈ ഫോട്ടോ മങ്ങിക്കരുത്</string>
+    <string name="refocus_relighting_toast">ലൈറ്റിംഗ് ആംഗിൾ ക്രമീകരിക്കാൻ വൃത്തം നീക്കുക</string>
+    <string name="refocus_discard_confirm_message">മാറ്റങ്ങൾ സംരക്ഷിക്കണോ?</string>
+    <string name="refocus_discard_positive_btn">സംരക്ഷിക്കുക</string>
+    <string name="refocus_discard_negative_btn">ഒഴിവാക്കുക</string>
+</resources>

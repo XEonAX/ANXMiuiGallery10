@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Xira</string>
+    <string name="refocus_type_static">Xira darajasi</string>
+    <string name="refocus_type_video">Engil yo‘llar</string>
+    <string name="refocus_type_relighting">Studiya yoritgichi</string>
+    <string name="refocus_type_relighting_no_face">Yuzni aniqlab bo‘lmadi</string>
+    <string name="refocus_type_relighting_small_face">Studio yoritish bu yerdan ko‘proq joy egallagan suratlarda ishlaydi.</string>
+    <string name="refocus_saving">Saqlanmoqda…</string>
+    <string name="refocus_save_to_photo">Surat sifatida saqlash</string>
+    <string name="refocus_save_to_video">Video sifatida saqlash</string>
+    <string name="refocus_save_cancel">Bekor qilish</string>
+    <string name="refocus_save_title">Formatni tanlang</string>
+    <string name="refocus_photo_not_support">Ushbu rasmni xira qilib bo‘lmaydi</string>
+    <string name="refocus_relighting_toast">Yoritish burchagini sozlash uchun aylanani ko‘chiring</string>
+    <string name="refocus_discard_confirm_message">O‘zgarishlar saqlansinmi?</string>
+    <string name="refocus_discard_positive_btn">Saqlash</string>
+    <string name="refocus_discard_negative_btn">Bekor qilish</string>
+</resources>

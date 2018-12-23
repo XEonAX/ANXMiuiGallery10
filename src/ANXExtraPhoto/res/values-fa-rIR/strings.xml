@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">تار</string>
+    <string name="refocus_type_static">میزان تاری</string>
+    <string name="refocus_type_video">دنباله نور</string>
+    <string name="refocus_type_relighting">نورپردازی استودیویی</string>
+    <string name="refocus_type_relighting_no_face">چهره یافت نشد</string>
+    <string name="refocus_type_relighting_small_face">نورپردازی استودیویی روی عکس‌هایی که چهره‌ها فضای بیشتری نسبت به اینجا می‌گیرند کار می‌کند.</string>
+    <string name="refocus_saving">در حال ذخیره کردن…</string>
+    <string name="refocus_save_to_photo">ذخیره به عنوان تصویر</string>
+    <string name="refocus_save_to_video">ذخیره به عنوان ویدئو</string>
+    <string name="refocus_save_cancel">لغو</string>
+    <string name="refocus_save_title">انتخاب قالب</string>
+    <string name="refocus_photo_not_support">تار کردن در این عکس به‌کار برده نمی‌شود</string>
+    <string name="refocus_relighting_toast">دایره را جابجا کرده تا زاویه نورپردازی تنظیم شود</string>
+    <string name="refocus_discard_confirm_message">تغییرات ذخیره شوند؟</string>
+    <string name="refocus_discard_positive_btn">ذخیره</string>
+    <string name="refocus_discard_negative_btn">صرف‌نظر</string>
+</resources>

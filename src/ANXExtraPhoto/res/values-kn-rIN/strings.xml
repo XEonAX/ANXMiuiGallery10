@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">ಮಸುಕು</string>
+    <string name="refocus_type_static">ಮುಸುಕಿನ ಮಟ್ಟ</string>
+    <string name="refocus_type_video">ಹಗುರ ಮಳೆ</string>
+    <string name="refocus_type_relighting">ಸ್ಟುಡಿಯೊ ಬೆಳಕಿನ</string>
+    <string name="refocus_type_relighting_no_face">ಮುಖ ಹುಡುಕಲಾಗಲಿಲ್ಲ</string>
+    <string name="refocus_type_relighting_small_face">ಮುಖಗಳಿಗಿಂತ ಹೆಚ್ಚು ಜಾಗವನ್ನು ತೆಗೆದುಕೊಳ್ಳುವ ಫೋಟೋಗಳಲ್ಲಿ ಸ್ಟುಡಿಯೋ ಲೈಟಿಂಗ್ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ.</string>
+    <string name="refocus_saving">ಉಳಿಸುತ್ತಿದೆ…</string>
+    <string name="refocus_save_to_photo">ಚಿತ್ರವಾಗಿ ಉಳಿಸಿ</string>
+    <string name="refocus_save_to_video">ವೀಡಿಯೊ ಆಗಿ ಉಳಿಸಿ</string>
+    <string name="refocus_save_cancel">ರದ್ದುಗೊಳಿಸಿ</string>
+    <string name="refocus_save_title">ಫಾರ್ಮ್ಯಾಟ್‌ ಆಯ್ಕೆ ಮಾಡಿ</string>
+    <string name="refocus_photo_not_support">ಈ ಫೋಟೋಗೆ ಮುಸುಕನ್ನು ಅನ್ವಯಿಸಲಾಗುವುದಿಲ್ಲ</string>
+    <string name="refocus_relighting_toast">ಬೆಳಕಿನ ಕೋನವನ್ನು ಸರಿಹೊಂದಿಸಲು ವಲಯವನ್ನು ಸರಿಸಿ</string>
+    <string name="refocus_discard_confirm_message">ಬದಲಾವಣೆ ಉಳಿಸುವುದೇ?</string>
+    <string name="refocus_discard_positive_btn">ಉಳಿಸಿ</string>
+    <string name="refocus_discard_negative_btn">ತ್ಯಜಿಸಿ</string>
+</resources>

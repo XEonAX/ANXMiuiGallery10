@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">ბუნდოვანი</string>
+    <string name="refocus_type_static">ბუნდოვანების დონე</string>
+    <string name="refocus_type_video">სინათლის კვალი</string>
+    <string name="refocus_type_relighting">სტუდიის განათება</string>
+    <string name="refocus_type_relighting_no_face">სახის მოიძებნა ვერ მოხერხდა</string>
+    <string name="refocus_type_relighting_small_face">სტუდიის განათება მუშაობს იმ ფოტოებზე, სადაც სახეები იკავებენ უფრო მეტ სივჩეს, ვიდრე აქ.</string>
+    <string name="refocus_saving">ვინახავ…</string>
+    <string name="refocus_save_to_photo">სურათად შენახვა</string>
+    <string name="refocus_save_to_video">ვიდეოდ შენახვა</string>
+    <string name="refocus_save_cancel">გაუქმება</string>
+    <string name="refocus_save_title">ფორმატის არჩევა</string>
+    <string name="refocus_photo_not_support">ამ ფოტოზე ბუნდვანების ეფექტს ვერ გამოვიყენებ</string>
+    <string name="refocus_relighting_toast">გადაიტანეთ რგოლი განათების კუთხის მოსარგემლად</string>
+    <string name="refocus_discard_confirm_message">შევინახოთ ცვლილებები?</string>
+    <string name="refocus_discard_positive_btn">შენახვა</string>
+    <string name="refocus_discard_negative_btn">უარყოფა</string>
+</resources>

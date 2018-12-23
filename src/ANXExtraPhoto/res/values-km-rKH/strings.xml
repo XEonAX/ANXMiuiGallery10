@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">ព្រិល</string>
+    <string name="refocus_type_static">កម្រិតព្រិល</string>
+    <string name="refocus_type_video">ផ្លូវពន្លឺ</string>
+    <string name="refocus_type_relighting">ភ្លើងស្ទូឌីយ៉ូ</string>
+    <string name="refocus_type_relighting_no_face">មិនអាចរកមុខបានទេ</string>
+    <string name="refocus_type_relighting_small_face">ភ្លើងបំភ្លឺធ្វើការនៅលើរូបថតដែលផ្ទៃមុខយកកន្លែងទំនេរច្រើនជាងនៅទីនេះ។</string>
+    <string name="refocus_saving">កំពុងរក្សាទុក…</string>
+    <string name="refocus_save_to_photo">រក្សាទុក​រូបភាព</string>
+    <string name="refocus_save_to_video">រក្សាទុកជាវីដេអូ</string>
+    <string name="refocus_save_cancel">បោះបង់</string>
+    <string name="refocus_save_title">ជ្រើសរើស​ទ្រង់ទ្រាយ</string>
+    <string name="refocus_photo_not_support">មិនអាចអនុវត្តព្រិលដល់រូបថតនេះ</string>
+    <string name="refocus_relighting_toast">ផ្លាស់ទីរង្វង់ដើម្បីលៃតម្រូវមុំពន្លឺ</string>
+    <string name="refocus_discard_confirm_message">រក្សាទុក​កំណែ?</string>
+    <string name="refocus_discard_positive_btn">រក្សាទុក</string>
+    <string name="refocus_discard_negative_btn">បោះបង់</string>
+</resources>

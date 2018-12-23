@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Oskärpa</string>
+    <string name="refocus_type_static">Nivå för oskärpa</string>
+    <string name="refocus_type_video">Ljusspår</string>
+    <string name="refocus_type_relighting">Studioljus</string>
+    <string name="refocus_type_relighting_no_face">Det gick inte att hitta ansikte</string>
+    <string name="refocus_type_relighting_small_face">Studioljus fungerar på foton där ansiktet tar större plats än här.</string>
+    <string name="refocus_saving">Sparar…</string>
+    <string name="refocus_save_to_photo">Spara som bild</string>
+    <string name="refocus_save_to_video">Spara som video</string>
+    <string name="refocus_save_cancel">Avbryt</string>
+    <string name="refocus_save_title">Välj format</string>
+    <string name="refocus_photo_not_support">Kan inte göra göra bilden oskarp</string>
+    <string name="refocus_relighting_toast">Flytta cirkeln för att justera ljusvinkel</string>
+    <string name="refocus_discard_confirm_message">Spara ändringar?</string>
+    <string name="refocus_discard_positive_btn">Spara</string>
+    <string name="refocus_discard_negative_btn">Ta bort</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Pudar</string>
+    <string name="refocus_type_static">Level pudar</string>
+    <string name="refocus_type_video">Jejak cahaya</string>
+    <string name="refocus_type_relighting">Pencahayaan Studio</string>
+    <string name="refocus_type_relighting_no_face">Tidak dapat menemukan wajah</string>
+    <string name="refocus_type_relighting_small_face">Pencahayaan Studio bekerja pada foto dengan gambar wajah yang lebih mendominasi daripada di sini.</string>
+    <string name="refocus_saving">Menyimpan…</string>
+    <string name="refocus_save_to_photo">Simpan sebagai gambar</string>
+    <string name="refocus_save_to_video">Simpan sebagai video</string>
+    <string name="refocus_save_cancel">Batal</string>
+    <string name="refocus_save_title">Pilih format</string>
+    <string name="refocus_photo_not_support">Tdk dapat terapkan pudar ke foto ini</string>
+    <string name="refocus_relighting_toast">Pindahkan lingkaran untuk sesuaikan sudut pencahayaan</string>
+    <string name="refocus_discard_confirm_message">Simpan perubahan?</string>
+    <string name="refocus_discard_positive_btn">Simpan</string>
+    <string name="refocus_discard_negative_btn">Buang</string>
+</resources>

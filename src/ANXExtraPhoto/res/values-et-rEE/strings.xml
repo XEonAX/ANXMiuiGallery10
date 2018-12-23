@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Hägune</string>
+    <string name="refocus_type_static">Hägususe aste</string>
+    <string name="refocus_type_video">Heledad rajad</string>
+    <string name="refocus_type_relighting">Stuudiovalgustus</string>
+    <string name="refocus_type_relighting_no_face">Nägu ei leitud</string>
+    <string name="refocus_type_relighting_small_face">Stuudiovalgustus sobib fotodele, millel näod võtavad siinsest rohkem ruumi.</string>
+    <string name="refocus_saving">Salvestamine…</string>
+    <string name="refocus_save_to_photo">Salvesta pildina</string>
+    <string name="refocus_save_to_video">Salvesta videona</string>
+    <string name="refocus_save_cancel">Tühista</string>
+    <string name="refocus_save_title">Vali kontakt</string>
+    <string name="refocus_photo_not_support">Seda fotot ei saa hägustada</string>
+    <string name="refocus_relighting_toast">Liiguta sõõri valgustusnurga reguleerimiseks</string>
+    <string name="refocus_discard_confirm_message">Salvesta muudatused?</string>
+    <string name="refocus_discard_positive_btn">Salvesta</string>
+    <string name="refocus_discard_negative_btn">Loobu</string>
+</resources>

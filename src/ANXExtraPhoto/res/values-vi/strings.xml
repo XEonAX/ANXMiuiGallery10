@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Nhòe</string>
+    <string name="refocus_type_static">Mức độ nhòe</string>
+    <string name="refocus_type_video">Vệt sáng</string>
+    <string name="refocus_type_relighting">Đèn studio</string>
+    <string name="refocus_type_relighting_no_face">Không tìm thấy khuôn mặt</string>
+    <string name="refocus_type_relighting_small_face">Đèn studio chỉ có hiệu quả trên ảnh có khuôn mặt lớn hơn.</string>
+    <string name="refocus_saving">Đang lưu…</string>
+    <string name="refocus_save_to_photo">Lưu là ảnh</string>
+    <string name="refocus_save_to_video">Lưu là video</string>
+    <string name="refocus_save_cancel">Hủy</string>
+    <string name="refocus_save_title">Chọn định dạng</string>
+    <string name="refocus_photo_not_support">Không thể áp dụng nhòe cho ảnh này</string>
+    <string name="refocus_relighting_toast">Di chuyển vòng tròn để điều chỉnh góc ánh sáng</string>
+    <string name="refocus_discard_confirm_message">Lưu thay đổi?</string>
+    <string name="refocus_discard_positive_btn">Lưu</string>
+    <string name="refocus_discard_negative_btn">Hủy</string>
+</resources>

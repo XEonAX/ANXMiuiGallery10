@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">অস্পষ্ট</string>
+    <string name="refocus_type_static">ব্লার লেভেল</string>
+    <string name="refocus_type_video">লাইট ট্রেল</string>
+    <string name="refocus_type_relighting">স্টুডিও লাইটনিং</string>
+    <string name="refocus_type_relighting_no_face">ফেস খুঁজে পাওয়া নি</string>
+    <string name="refocus_type_relighting_small_face">স্টুডিও লাইটিং এমন ফটোতে কাজ করে যেগুলোতে যতটা জায়গা আছে তার চেয়ে অনেক বেশি জায়গা আছে।</string>
+    <string name="refocus_saving">সংরক্ষণ করা হচ্ছে…</string>
+    <string name="refocus_save_to_photo">ছবি হিসেবে সংক্ষণ করুন</string>
+    <string name="refocus_save_to_video">ভিডিও হিসেবে সংক্ষণ করুন</string>
+    <string name="refocus_save_cancel">বাতিল করুন</string>
+    <string name="refocus_save_title">ফর্ম্যাট নির্বাচন করুন</string>
+    <string name="refocus_photo_not_support">এই ফটোতে ব্লার প্রয়োগ করা যাবে না</string>
+    <string name="refocus_relighting_toast">বৃত্তকে সরিয়ে লাইটনিং অ্যাঙ্গেল ঠিক করুন</string>
+    <string name="refocus_discard_confirm_message">পরিবর্তনগুলি সংরক্ষণ করবেন?</string>
+    <string name="refocus_discard_positive_btn">সংরক্ষণ</string>
+    <string name="refocus_discard_negative_btn">বাতিল করুন</string>
+</resources>

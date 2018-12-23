@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Desenfoque</string>
+    <string name="refocus_type_static">Nivel de desenfoque</string>
+    <string name="refocus_type_video">Trazos finos</string>
+    <string name="refocus_type_relighting">Iluminación do estudio</string>
+    <string name="refocus_type_relighting_no_face">Non se puido atopar unha cara</string>
+    <string name="refocus_type_relighting_small_face">A iluminación de estudio funciona en fotos onde as caras collen máis espazo que aquí.</string>
+    <string name="refocus_saving">Gardando…</string>
+    <string name="refocus_save_to_photo">Gardar como imaxe</string>
+    <string name="refocus_save_to_video">Gardar como vídeo</string>
+    <string name="refocus_save_cancel">Cancelar</string>
+    <string name="refocus_save_title">Seleccionar formato</string>
+    <string name="refocus_photo_not_support">Non é posíbel aplicar desenfoque a esta foto</string>
+    <string name="refocus_relighting_toast">Mova o círculo para axustar o ángulo de luz</string>
+    <string name="refocus_discard_confirm_message">Gardar trocos?</string>
+    <string name="refocus_discard_positive_btn">Gardar</string>
+    <string name="refocus_discard_negative_btn">Desbotar</string>
+</resources>

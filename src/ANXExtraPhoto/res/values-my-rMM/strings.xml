@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">မှုန်ဝါး</string>
+    <string name="refocus_type_static">မှုန်ဝါးမှု အဆင့်</string>
+    <string name="refocus_type_video">အလင်းရောင် အစက်အပြောက်</string>
+    <string name="refocus_type_relighting">စတူဒီယို အလင်း</string>
+    <string name="refocus_type_relighting_no_face">မျက်နှာ ရှာမတွေ့ပါ</string>
+    <string name="refocus_type_relighting_small_face">မျက်နှာသေးလွန်းသောကြောင့် စတူဒီယိုအလင်းအား အသုံးချ၍မရပါ။</string>
+    <string name="refocus_saving">သိမ်းဆည်းနေသည်…</string>
+    <string name="refocus_save_to_photo">ရုပ်ပုံအဖြစ် သိမ်းဆည်းပါ</string>
+    <string name="refocus_save_to_video">ဗီဒီယိုအဖြစ် သိမ်းဆည်းပါ</string>
+    <string name="refocus_save_cancel">ပယ်ဖျက်မည်</string>
+    <string name="refocus_save_title">ဖောမတ် ရွေးပါ</string>
+    <string name="refocus_photo_not_support">ဤဓာတ်ပုံအား မှုန်ဝါးအောင် လုပ်၍မရပါ</string>
+    <string name="refocus_relighting_toast">စက်ဝိုင်းအား ရွှေ့၍ အလင်းရှုထောင့်အား ချိန်ညှိနိုင်သည်</string>
+    <string name="refocus_discard_confirm_message">ပြောင်းလဲခြင်းများကို သိမ်းထားမလား?</string>
+    <string name="refocus_discard_positive_btn">သိမ်းဆည်းမည်</string>
+    <string name="refocus_discard_negative_btn">စွန့်ပစ်မည်</string>
+</resources>

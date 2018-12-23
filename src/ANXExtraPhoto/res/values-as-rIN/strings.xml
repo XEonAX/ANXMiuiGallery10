@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">অস্পষ্ট</string>
+    <string name="refocus_type_static">অস্পষ্টতাৰ স্তৰ</string>
+    <string name="refocus_type_video">পোহৰৰ গমনপথ</string>
+    <string name="refocus_type_relighting">"ষ্টুডিঅ' লাইটিং"</string>
+    <string name="refocus_type_relighting_no_face">"চেহেৰা বিচাৰি পোৱা নগ'ল"</string>
+    <string name="refocus_type_relighting_small_face">"চেহেৰাই ইয়াতকৈ অধিক স্থান অধিকাৰ কৰি থকা ফটোত ষ্টুডিঅ' লাইটিঙে কাম কৰে।"</string>
+    <string name="refocus_saving">সংৰক্ষণ হৈ আছে…</string>
+    <string name="refocus_save_to_photo">প্ৰতিচ্ছবি ৰূপে সংৰক্ষণ কৰক</string>
+    <string name="refocus_save_to_video">"ভিডিঅ' ৰূপে সংৰক্ষণ কৰক"</string>
+    <string name="refocus_save_cancel">বাতিল</string>
+    <string name="refocus_save_title">ফৰ্মেট চয়ন কৰক</string>
+    <string name="refocus_photo_not_support">এই ফটোলৈ অস্পষ্টতা প্ৰয়োগ কৰিব নোৱাৰি</string>
+    <string name="refocus_relighting_toast">পোহৰৰ কোণ মিলাবলৈ বৃত্তটো লৰচৰ কৰক</string>
+    <string name="refocus_discard_confirm_message">পৰিৱৰ্তন সংৰক্ষণ কৰিবনে?</string>
+    <string name="refocus_discard_positive_btn">সংৰক্ষণ</string>
+    <string name="refocus_discard_negative_btn">অগ্ৰাহ্য</string>
+</resources>

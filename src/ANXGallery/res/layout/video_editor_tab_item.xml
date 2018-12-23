@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:textSize="@dimen/video_editor_common_item_text" android:textColor="@color/video_editor_tab_text_color" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="@dimen/video_editor_tab_min_width" android:drawablePadding="@dimen/video_editor_tab_text_margin_top"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

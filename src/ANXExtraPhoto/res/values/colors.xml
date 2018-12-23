@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="refocus_title_color">#cc000000</color>
+    <color name="refocus_table_text_color_normal">#cc000000</color>
+    <color name="refocus_table_text_color_checked">#ff00a1ff</color>
+    <color name="refocus_transparent">#00000000</color>
+    <color name="refocus_color_white">#ffffffff</color>
+    <color name="refocus_color_menu_blue">#ff1aa1ff</color>
+    <color name="refocus_color_save_option_p">#ffe9e9e9</color>
+    <color name="refocus_color_save_option_sep">#ffc1c1c1</color>
+    <color name="relighting_adjust_stroke">#99ffffff</color>
+    <color name="relighting_adjust_solid">#33ffffff</color>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Unschärfe</string>
+    <string name="refocus_type_static">Unschärfe-Level</string>
+    <string name="refocus_type_video">Lichtspuren</string>
+    <string name="refocus_type_relighting">Studiobeleuchtung</string>
+    <string name="refocus_type_relighting_no_face">Gesicht nicht gefunden</string>
+    <string name="refocus_type_relighting_small_face">Studiobeleuchtung funktioniert auf Fotos, bei denen Gesichter mehr Platz brauchen als hier.</string>
+    <string name="refocus_saving">Speichern…</string>
+    <string name="refocus_save_to_photo">Als Bild speichern</string>
+    <string name="refocus_save_to_video">Als Video speichern</string>
+    <string name="refocus_save_cancel">Abbrechen</string>
+    <string name="refocus_save_title">Format auswählen</string>
+    <string name="refocus_photo_not_support">Unschärfe kann nicht auf dieses Foto angewendet werden</string>
+    <string name="refocus_relighting_toast">Kreis bewegen, um den Beleuchtungswinkel einzustellen</string>
+    <string name="refocus_discard_confirm_message">Änderungen speichern?</string>
+    <string name="refocus_discard_positive_btn">Speichern</string>
+    <string name="refocus_discard_negative_btn">Verwerfen</string>
+</resources>

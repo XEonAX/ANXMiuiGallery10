@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Sumennos</string>
+    <string name="refocus_type_static">Sumennoksen taso</string>
+    <string name="refocus_type_video">Valojuovat</string>
+    <string name="refocus_type_relighting">Studiovalaistus</string>
+    <string name="refocus_type_relighting_no_face">Kasvoja ei löytynyt</string>
+    <string name="refocus_type_relighting_small_face">Studiovalaistus toimii valokuvissa joissa kasvoilla on enemmän kuva-alaa kuin tässä.</string>
+    <string name="refocus_saving">Tallennetaan…</string>
+    <string name="refocus_save_to_photo">Tallenna kuvana</string>
+    <string name="refocus_save_to_video">Tallenna videona</string>
+    <string name="refocus_save_cancel">Peruuta</string>
+    <string name="refocus_save_title">Valitse formaatti</string>
+    <string name="refocus_photo_not_support">Sumennoksen lisääminen tähän kuvaan ei onnistunut</string>
+    <string name="refocus_relighting_toast">Siirrä kehää säätääksesi valaistuksen kulmaa</string>
+    <string name="refocus_discard_confirm_message">Tallenna muutokset?</string>
+    <string name="refocus_discard_positive_btn">Tallenna</string>
+    <string name="refocus_discard_negative_btn">Hylkää</string>
+</resources>

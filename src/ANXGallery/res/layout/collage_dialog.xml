@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:background="@drawable/collage_icon_edit_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/replace" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/collage_icon_replace" android:scaleType="fitCenter" android:contentDescription="@string/collage_choose" android:paddingStart="@dimen/collage_dialog_item_padding" android:paddingEnd="@dimen/collage_dialog_item_padding" android:layout_marginStart="@dimen/collage_dialog_margin_start" />
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/rotate" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/collage_icon_rotate" android:scaleType="fitCenter" android:contentDescription="@string/collage_rotate" android:paddingStart="@dimen/collage_dialog_item_padding" android:paddingEnd="@dimen/collage_dialog_item_padding" />
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/mirror" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/collage_icon_mirror" android:scaleType="fitCenter" android:contentDescription="@string/collage_mirror" android:paddingStart="@dimen/collage_dialog_item_padding" android:paddingEnd="@dimen/collage_dialog_item_padding" />
+</LinearLayout>

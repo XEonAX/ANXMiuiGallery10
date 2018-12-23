@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">ବ୍ଲର୍‍</string>
+    <string name="refocus_type_static">ବ୍ଲର୍‍ ସ୍ତର</string>
+    <string name="refocus_type_video">ଲାଇଟ୍ ଟ୍ରେଲ୍</string>
+    <string name="refocus_type_relighting">ଷ୍ଟୁଡିଓ ଲାଇଟିଂ</string>
+    <string name="refocus_type_relighting_no_face">ଚେହେରା ମିଳିପାରିଲା ନାହିଁ</string>
+    <string name="refocus_type_relighting_small_face">ଷ୍ଟୁଡିଓ ଲାଇଟିଂ ସେଇ ଫଟୋଗୁଡ଼ିକରେ କାମ କରେ ଯେଉଁଠି ଚେହେରାଗୁଡ଼ିକ ଏହା ଅପେକ୍ଷା ଅଧିକ ସ୍ଥାନ ନିଏ</string>
+    <string name="refocus_saving">ସଞ୍ଚୟ ହେଉଛି…</string>
+    <string name="refocus_save_to_photo">ଚିତ୍ର ଭାବେ ସଞ୍ଚୟ କରନ୍ତୁ</string>
+    <string name="refocus_save_to_video">ଭିଡିଓ ଭାବେ ସଞ୍ଚୟ କରନ୍ତୁ</string>
+    <string name="refocus_save_cancel">ବାତିଲ</string>
+    <string name="refocus_save_title">ଫର୍ମାଟ୍‍ ଚୟନ କରନ୍ତୁ</string>
+    <string name="refocus_photo_not_support">ଏହି ଫଟୋରେ ବ୍ଲର୍ ପ୍ରୟୋଗ କରିପାରିବ ନାହିଁ</string>
+    <string name="refocus_relighting_toast">ଲାଇଟିଂ କୋଣ ଆଡଜଷ୍ଟ କରିବାକୁ ସାରକିଲକୁ ମୁଭ୍ କରନ୍ତୁ</string>
+    <string name="refocus_discard_confirm_message">ପରିବର୍ତ୍ତନ ସଞ୍ଚୟ କରିବେ କି?</string>
+    <string name="refocus_discard_positive_btn">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+    <string name="refocus_discard_negative_btn">ପ୍ରତ୍ୟାଖ୍ୟାନ</string>
+</resources>

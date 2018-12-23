@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<exceptions>
+    <exception package="com.miui.gallery">
+        <permission name="com.miui.gallery.permission.SCAN" fixed="false"/>
+        <permission name="android.permission.INTERNET" fixed="false"/>
+        <permission name="android.permission.READ_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="com.xiaomi.gallery.permission.CLOUD" fixed="false"/>
+        <permission name="com.xiaomi.permission.CLOUD_MANAGER" fixed="false"/>
+        <permission name="android.permission.USE_CREDENTIALS" fixed="false"/>
+        <permission name="android.permission.AUTHENTICATE_ACCOUNTS" fixed="false"/>
+        <permission name="android.permission.ACCESS_NETWORK_STATE" fixed="false"/>
+        <permission name="android.permission.GET_ACCOUNTS" fixed="false"/>
+        <permission name="android.permission.MANAGE_ACCOUNTS" fixed="false"/>
+        <permission name="android.permission.READ_SYNC_SETTINGS" fixed="false"/>
+        <permission name="android.permission.WRITE_SYNC_SETTINGS" fixed="false"/>
+        <permission name="android.permission.READ_SYNC_STATS" fixed="false"/>
+        <permission name="android.permission.READ_CONTACTS" fixed="false"/>
+        <permission name="com.xiaomi.permission.SYNC_TAG_DATA" fixed="false"/>
+        <permission name="android.permission.WAKE_LOCK" fixed="false"/>
+        <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="android.permission.WRITE_MEDIA_STORAGE" fixed="false"/>
+        <permission name="android.permission.ACCESS_ALL_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="android.permission.DEVICE_POWER" fixed="false"/>
+        <permission name="android.permission.ACCESS_WIFI_STATE" fixed="false"/>
+        <permission name="android.permission.WRITE_SETTINGS" fixed="false"/>
+        <permission name="com.android.launcher.permission.INSTALL_SHORTCUT" fixed="false"/>
+        <permission name="com.miui.home.launcher.permission.UNINSTALL_SHORTCUT" fixed="false"/>
+        <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+        <permission name="android.permission.INTERACT_ACROSS_USERS" fixed="false"/>
+        <permission name="android.permission.NFC" fixed="false"/>
+        <permission name="android.permission.WRITE_SECURE_SETTINGS" fixed="false"/>
+        <permission name="miui.permission.USE_INTERNAL_GENERAL_API" fixed="false"/>
+        <permission name="com.xiaomi.permission.MICLOUD" fixed="false"/>
+        <permission name="com.miui.extraphoto.permission.VIEW" fixed="false"/>
+        <permission name="com.miui.extraphoto.permission.EXTRA_PHOTO" fixed="false"/>
+        <permission name="miui.permission.EXTRA_NETWORK" fixed="false"/>
+        <permission name="com.miui.gallery.permission.MIPUSH_RECEIVE" fixed="false"/>
+        <permission name="android.permission.GET_TASKS" fixed="false"/>
+        <permission name="android.permission.VIBRATE" fixed="false"/>
+    </exception>
+</exceptions>

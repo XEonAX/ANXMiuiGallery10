@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">ब्लर</string>
+    <string name="refocus_type_static">ब्लर पातळी</string>
+    <string name="refocus_type_video">लाईट ट्रेल्स</string>
+    <string name="refocus_type_relighting">स्टुडिओ लायटिंग</string>
+    <string name="refocus_type_relighting_no_face">चेहरा शोधणे शक्य झाले नाही</string>
+    <string name="refocus_type_relighting_small_face">स्टुडिओ लायटिंग त्या फोटोंवर कार्य करते जिथे चेहरे इथल्यापेक्षा अधिक जागा घेतात.</string>
+    <string name="refocus_saving">सेव्ह करत आहे…</string>
+    <string name="refocus_save_to_photo">चित्र म्हणून सेव्ह करा</string>
+    <string name="refocus_save_to_video">व्हिडिओ म्हणून सेव्ह करा</string>
+    <string name="refocus_save_cancel">रद्द</string>
+    <string name="refocus_save_title">स्वरूप निवडा</string>
+    <string name="refocus_photo_not_support">या व्हिडीओसाठी ब्लर लागू करता येत नाही</string>
+    <string name="refocus_relighting_toast">प्रकाश कोन अॅडजस्ट करण्यासाठी वर्तुळ हलवा</string>
+    <string name="refocus_discard_confirm_message">बदल सेव्ह करायचे?</string>
+    <string name="refocus_discard_positive_btn">सेव्ह</string>
+    <string name="refocus_discard_negative_btn">रद्द</string>
+</resources>

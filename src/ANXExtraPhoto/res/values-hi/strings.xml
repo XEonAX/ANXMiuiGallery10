@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">धुंधला</string>
+    <string name="refocus_type_static">धुंधला लेवल</string>
+    <string name="refocus_type_video">लाइट ट्रेल्स</string>
+    <string name="refocus_type_relighting">स्टूडियो लाइटिंग</string>
+    <string name="refocus_type_relighting_no_face">चेहरा नहीं मिला</string>
+    <string name="refocus_type_relighting_small_face">स्टुडियो लाइटिंग फ़ोटो पर भी काम करता है जहां चेहरे अधिक स्थान लेते हैं.</string>
+    <string name="refocus_saving">सहेज रहा है…</string>
+    <string name="refocus_save_to_photo">छवि के रूप में सहेजें</string>
+    <string name="refocus_save_to_video">वीडियो के रूप में सहेजें</string>
+    <string name="refocus_save_cancel">रद्द करें</string>
+    <string name="refocus_save_title">फॉर्मेट चुनें</string>
+    <string name="refocus_photo_not_support">इस फ़ोटो में धुंधला लागू नहीं किया जा सकता</string>
+    <string name="refocus_relighting_toast">लाइटिंग कोण एडजस्ट करने के लिए सर्कल को मूव करें</string>
+    <string name="refocus_discard_confirm_message">बदलाव सहेजें?</string>
+    <string name="refocus_discard_positive_btn">सहेजें</string>
+    <string name="refocus_discard_negative_btn">ख़ारिज करें</string>
+</resources>

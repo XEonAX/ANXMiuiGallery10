@@ -1,0 +1,8 @@
+{
+  "name": "波点光",
+  "type": "RELIGHTING",
+  "icon": "icon.png",
+  "iconColor": "#b6abec",
+  "relightingType": "0x12",
+  "cameraDefinedType": 6
+}

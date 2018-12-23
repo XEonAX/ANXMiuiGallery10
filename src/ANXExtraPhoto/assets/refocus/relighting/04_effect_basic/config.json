@@ -1,0 +1,8 @@
+{
+  "name": "彩虹光",
+  "type": "RELIGHTING",
+  "icon": "icon.png",
+  "iconColor": "#8db2fc",
+  "relightingType": "0x15",
+  "cameraDefinedType": 4
+}

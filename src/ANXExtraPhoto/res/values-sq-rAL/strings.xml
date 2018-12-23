@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Turbullt</string>
+    <string name="refocus_type_static">Niveli i turbullirës</string>
+    <string name="refocus_type_video">Shtigjet e dritës</string>
+    <string name="refocus_type_relighting">Ndriçim studioje</string>
+    <string name="refocus_type_relighting_no_face">Nuk u gjet fytyra</string>
+    <string name="refocus_type_relighting_small_face">Ndriçimi studio funksionon në foto ku fytyra zë më shumë hapësirë se këtu.</string>
+    <string name="refocus_saving">Duke ruajtur…</string>
+    <string name="refocus_save_to_photo">Ruaje si imazh</string>
+    <string name="refocus_save_to_video">Ruaje si video</string>
+    <string name="refocus_save_cancel">Anulo</string>
+    <string name="refocus_save_title">Përzgjidh formatin</string>
+    <string name="refocus_photo_not_support">Nuk mundësohet aplikimi i mjegullsirës në këtë foto</string>
+    <string name="refocus_relighting_toast">Lëviz rrethin për të rregulluar këndin e ndriçimit</string>
+    <string name="refocus_discard_confirm_message">Ruaj ndryshimet?</string>
+    <string name="refocus_discard_positive_btn">Ruaj</string>
+    <string name="refocus_discard_negative_btn">Braktis</string>
+</resources>

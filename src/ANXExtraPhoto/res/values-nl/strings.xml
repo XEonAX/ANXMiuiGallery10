@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Vervaging</string>
+    <string name="refocus_type_static">Mate van vervaging</string>
+    <string name="refocus_type_video">Lichtsporen</string>
+    <string name="refocus_type_relighting">Studio verlichting</string>
+    <string name="refocus_type_relighting_no_face">Kon gezicht niet vinden</string>
+    <string name="refocus_type_relighting_small_face">"3D-verlichting werkt op foto's waar gezichten meer ruimte innemen dan hier"</string>
+    <string name="refocus_saving">Opslaan…</string>
+    <string name="refocus_save_to_photo">Opslaan als afbeelding</string>
+    <string name="refocus_save_to_video">Opslaan als video</string>
+    <string name="refocus_save_cancel">Annuleren</string>
+    <string name="refocus_save_title">Secteer formaat</string>
+    <string name="refocus_photo_not_support">Kan geen vervaging toepasssen op deze foto</string>
+    <string name="refocus_relighting_toast">Verplaats de cirkel om de lichtinvalshoek aan te passen</string>
+    <string name="refocus_discard_confirm_message">Wijzigingen opslaan?</string>
+    <string name="refocus_discard_positive_btn">Opslaan</string>
+    <string name="refocus_discard_negative_btn">Ontdoen</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Estompare</string>
+    <string name="refocus_type_static">Nivel estompare</string>
+    <string name="refocus_type_video">Benzi de lumină</string>
+    <string name="refocus_type_relighting">Lumină studio</string>
+    <string name="refocus_type_relighting_no_face">Nu s-a putut găsi faţa</string>
+    <string name="refocus_type_relighting_small_face">Iluminarea de studio funcționează pe fotografiile în care fețele necesită mai mult spațiu decât aici.</string>
+    <string name="refocus_saving">Se salvează…</string>
+    <string name="refocus_save_to_photo">Salvați ca imagine</string>
+    <string name="refocus_save_to_video">Salvați ca și video</string>
+    <string name="refocus_save_cancel">Anulează</string>
+    <string name="refocus_save_title">Selectați formatul</string>
+    <string name="refocus_photo_not_support">Nu se poate aplica estompare pe această fotografie</string>
+    <string name="refocus_relighting_toast">Deplasați cercul pentru a regla unghiul de iluminare</string>
+    <string name="refocus_discard_confirm_message">Salvaţi schimbările?</string>
+    <string name="refocus_discard_positive_btn">Salvează</string>
+    <string name="refocus_discard_negative_btn">Renunţă</string>
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="GalleryTheme.Dark.ActionBar.Fullscreen" parent="@style/GalleryTheme.Dark.ActionBar.Fullscreen_Base">
+        <item name="android:navigationBarColor">@android:color/black</item>
+    </style>
+    <style name="GalleryTheme.Dark.ActionBar.NoTitle" parent="@miui:style/Theme.Dark.ActionBar.NoTitle">
+        <item name="android:navigationBarColor">@android:color/black</item>
+    </style>
+    <style name="GalleryTheme.Dark.ActionBar.NoTitle.Transparent" parent="@style/GalleryTheme.Dark.ActionBar.NoTitle">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+    </style>
+    <style name="GalleryTheme.Dark.NoTitle.Fullscreen" parent="@style/GalleryTheme.Dark.NoTitle">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+    </style>
+    <style name="GalleryTheme.ExternalPhotoPageActivity" parent="@style/GalleryTheme.Light.NoTitle">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+    </style>
+    <style name="GalleryTheme.HomePage" parent="@style/GalleryTheme.Tab">
+        <item name="android:fastScrollThumbDrawable">@drawable/fast_scroll_thumb</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+    </style>
+    <style name="GalleryTheme.InternalPhotoPageActivity" parent="@style/GalleryTheme.Light.NoTitle.Transparent">
+        <item name="android:windowActivityTransitions">true</item>
+    </style>
+    <style name="GalleryTheme.SearchActivity" parent="@style/GalleryTheme">
+        <item name="android:windowBackground">@color/search_page_bg</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+    </style>
+</resources>

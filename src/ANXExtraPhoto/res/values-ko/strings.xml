@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">블러</string>
+    <string name="refocus_type_static">블러 레벨</string>
+    <string name="refocus_type_video">라이트 트레일</string>
+    <string name="refocus_type_relighting">스튜디오 조명</string>
+    <string name="refocus_type_relighting_no_face">얼굴을 찾을 수 없음</string>
+    <string name="refocus_type_relighting_small_face">사진 속 얼굴이 차지하는 면적이 너무 적어서 스튜디오 라이팅을 사용할 수 없습니다.</string>
+    <string name="refocus_saving">저장 중…</string>
+    <string name="refocus_save_to_photo">이미지 저장</string>
+    <string name="refocus_save_to_video">동영상 저장</string>
+    <string name="refocus_save_cancel">취소</string>
+    <string name="refocus_save_title">포멧 선택</string>
+    <string name="refocus_photo_not_support">이 사진에 블러 적용 실패</string>
+    <string name="refocus_relighting_toast">원을 이동하여 조명 각도 조절</string>
+    <string name="refocus_discard_confirm_message">변경 사항을 저장하시겠습니까?</string>
+    <string name="refocus_discard_positive_btn">저장</string>
+    <string name="refocus_discard_negative_btn">변경 취소</string>
+</resources>

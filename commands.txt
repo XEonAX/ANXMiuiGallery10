@@ -1,0 +1,60 @@
+MIUI Frameworks
+java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\framework-res.apk
+
+java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\miui.apk
+
+java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\framework-ext-res.apk
+
+java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\miuisystem.apk
+
+
+Resurrection Remix Frameworks
+java  -jar .\tools\apktool.jar if -p .\tools\RROFrameworks .\orig\RROFrameworks\framework-res.apk
+
+java  -jar .\tools\apktool.jar if -p .\tools\RROFrameworks .\orig\RROFrameworks\org.lineageos.platform-res.apk
+
+
+Decompile
+java  -jar .\tools\apktool.jar d -p .\tools\MiuiFrameworks -f -o .\src\ANXGallery .\orig\MiuiGallery.apk
+java  -jar .\tools\apktool.jar d -p .\tools\MiuiFrameworks -f -o .\src\ANXExtraPhoto .\orig\MiuiExtraPhoto.apk
+
+
+Recompile
+java  -jar .\tools\apktool.jar b -p .\tools\MiuiFrameworks -o .\out\ANXGallery-Unsigned.apk .\src\ANXGallery
+java  -jar .\tools\apktool.jar b -p .\tools\MiuiFrameworks -o .\out\ANXExtraPhoto-Unsigned.apk .\src\ANXExtraPhoto
+
+
+Sign
+java  -jar .\tools\SignApk.jar .\tools\testkey.x509.pem .\tools\testkey.pk8 .\out\ANXGallery-Unsigned.apk .\out\ANXGallery.apk
+java  -jar .\tools\SignApk.jar .\tools\testkey.x509.pem .\tools\testkey.pk8 .\out\ANXExtraPhoto-Unsigned.apk .\out\ANXExtraPhoto.apk
+
+
+Jadx
+.\tools\jadx\bin\jadx -d .\src\ANXGallery -r .\out\ANXGallery.apk
+.\tools\jadx\bin\jadx -d .\src\ANXExtraPhoto -r .\out\ANXExtraPhoto.apk
+
+
+Install
+adb install -g .\out\ANXGallery.apk
+adb shell pm grant com.miui.gallery android.permission.PACKAGE_USAGE_STATS
+adb install -g .\out\ANXExtraPhoto.apk
+adb shell pm grant com.miui.extraphoto android.permission.PACKAGE_USAGE_STATS
+
+Reinstall
+adb uninstall com.miui.gallery
+adb install -g .\out\ANXGallery.apk
+adb shell pm grant com.miui.gallery android.permission.PACKAGE_USAGE_STATS
+adb uninstall com.miui.extraphoto
+adb install -g .\out\ANXExtraPhoto.apk
+adb shell pm grant com.miui.extraphoto android.permission.PACKAGE_USAGE_STATS
+
+Logcat
+adb logcat -s System.err
+
+Copy apk 
+xcopy /s .\out\ANXGallery.apk .\src\ANXExtraGalleryMagisk\system\priv-app\ANXGallery
+xcopy /s .\out\ANXExtraPhoto.apk .\src\ANXExtraGalleryMagisk\system\priv-app\ANXExtraPhoto
+
+Magisk
+& "C:\Program Files\7-Zip\7z.exe" a -tzip .\out\ANXExtraGalleryMagisk.zip .\src\ANXExtraGalleryMagisk\*
+adb push .\out\ANXExtraGalleryMagisk.zip  /sdcard/zips

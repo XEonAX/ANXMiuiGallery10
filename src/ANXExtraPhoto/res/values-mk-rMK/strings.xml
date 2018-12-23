@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Заматување</string>
+    <string name="refocus_type_static">Ниво на заматување</string>
+    <string name="refocus_type_video">Траги од светлина</string>
+    <string name="refocus_type_relighting">Студио осветување</string>
+    <string name="refocus_type_relighting_no_face">Не може да се пронајде лицето</string>
+    <string name="refocus_type_relighting_small_face">Студиското осветлување функционира подобро на фотографии каде лицата заземаат повеќе простор од овде.</string>
+    <string name="refocus_saving">Зачувување…</string>
+    <string name="refocus_save_to_photo">Зачувај како слика</string>
+    <string name="refocus_save_to_video">Зачувај како видео</string>
+    <string name="refocus_save_cancel">Откажи</string>
+    <string name="refocus_save_title">Изберете формат</string>
+    <string name="refocus_photo_not_support">Не може да се замати фотографијата</string>
+    <string name="refocus_relighting_toast">Поместете го кругот за да го нагодите аголот на осветлување</string>
+    <string name="refocus_discard_confirm_message">Да се зачуваат промените?</string>
+    <string name="refocus_discard_positive_btn">Зачувај</string>
+    <string name="refocus_discard_negative_btn">Отфрли</string>
+</resources>

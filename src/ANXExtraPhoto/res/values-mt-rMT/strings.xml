@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Żelleġ</string>
+    <string name="refocus_type_static">"Livell ta' tiżliġ"</string>
+    <string name="refocus_type_video">"Traċċi ta' dawl"</string>
+    <string name="refocus_type_relighting">Dawl tal-istudjos</string>
+    <string name="refocus_type_relighting_no_face">Ma setax isib il-wiċċ</string>
+    <string name="refocus_type_relighting_small_face">Id-dawl tal-istudjos jaħdem fuq ritratti fejn il-wiċċ jieħu iktar spazju milli qed jieħu hawn.</string>
+    <string name="refocus_saving">Qed jissejvja…</string>
+    <string name="refocus_save_to_photo">"Erfa' bħala stampa"</string>
+    <string name="refocus_save_to_video">"Erfa' bħala vidjo"</string>
+    <string name="refocus_save_cancel">Ħassar</string>
+    <string name="refocus_save_title">Agħżel tip</string>
+    <string name="refocus_photo_not_support">Ma jistax iżelleġ dar-ritratt</string>
+    <string name="refocus_relighting_toast">Mexxi ċ-ċirku biex tirranġa l-angolu tad-dawl</string>
+    <string name="refocus_discard_confirm_message">Trid iżżomm il-bidliet?</string>
+    <string name="refocus_discard_positive_btn">Issejvja</string>
+    <string name="refocus_discard_negative_btn">Neħħi</string>
+</resources>

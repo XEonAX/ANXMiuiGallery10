@@ -1,0 +1,179 @@
+Signature-Version: 1.0
+X-Android-APK-Signed: 2
+SHA-256-Digest-Manifest: RMPYAWjfjs7in71WeTKuJy8D/ULqqXAQv99qnPAilr8=
+Created-By: 1.0 (Android SignApk)
+
+Name: assets/refocus/static/mask.png
+SHA-256-Digest: vqsXLmyF2zo0TgDrVF7xflYKnjM8CPk7d02AmzSviOI=
+
+Name: res/drawable-xxhdpi-v4/refocus_menu_button_discard_p.png
+SHA-256-Digest: l4Km/3HWvyBuH7G3pA/uBAlYP2cPp4GrLx4KBh0tvxE=
+
+Name: assets/refocus/relighting/00_effect_basic/icon.png
+SHA-256-Digest: jBQRm7LVd91ERZyZ6/gcltWrEhfcQEz9k85sfnJ1kgQ=
+
+Name: assets/refocus/relighting/05_effect_basic/config.json
+SHA-256-Digest: ohN2R+IZiUlrrp1KpayM8Z+vX1Eu8M7ukCL36SFw7zQ=
+
+Name: assets/refocus/dynamic/05_effect_heart/icon.png
+SHA-256-Digest: ktw3G4qJv1HzxHecmbSJ6i8O3HINP0ZYfldTWP839q8=
+
+Name: res/drawable-xxhdpi-v4/refocus_seekbar_background.9.png
+SHA-256-Digest: IuDsVCtqkP1qOd4IQ8LXznZjPnG2qMhm9kIwjMTMmoU=
+
+Name: assets/refocus/dynamic/01_motion_ring/icon.png
+SHA-256-Digest: eFfMAKAnBruH9NOdAFe1lFOU8LwT1w3utJ1EGNwKHJg=
+
+Name: assets/refocus/relighting/07_effect_basic/icon.png
+SHA-256-Digest: maRmKlw2etkH+xlI8nK/0MwORf8tAB9HzMdMWTpteQE=
+
+Name: assets/refocus/relighting/01_effect_basic/icon.png
+SHA-256-Digest: z+Vm/u4ZLnYT031rtRcBkSPXspkYqLoMwHTqb3j35Rc=
+
+Name: assets/refocus/relighting/01_effect_basic/config.json
+SHA-256-Digest: 1ViWsbuMAEL/9DCbLoHQNUcAPpUmO7WkCuDcxnIKG/Q=
+
+Name: assets/refocus/relighting/03_effect_basic/config.json
+SHA-256-Digest: 3Ie2W6+7D50ezBopQ2Hka/wfypeAy/0sCfCXleoOagY=
+
+Name: res/drawable-xxhdpi-v4/refocus_seekbar_thumb_active.png
+SHA-256-Digest: Akc59daY/5o5wQrHvsMvq6usZMsgkYnVVFLk0jLrCX8=
+
+Name: assets/refocus/dynamic/02_motion_degree/icon.png
+SHA-256-Digest: O8BRazMA1d+NoCx058Hl4fRYo8fmKtMHM/6FMgQGSAw=
+
+Name: res/drawable-xxhdpi-v4/refocus_menu_button_save_n.png
+SHA-256-Digest: Ot6vq50A8yTnroenlSn9yfnUnb1NN7grnNToKIT27mY=
+
+Name: assets/refocus/dynamic/06_effect_star/mask.png
+SHA-256-Digest: VqHZqF3fH9wIcJAApwokMwMUtyZkcAioA0Wf4C8rQt8=
+
+Name: assets/refocus/dynamic/06_effect_star/icon.png
+SHA-256-Digest: vvzVoZxigcEgkkFYvA3BFrCIyGMOcFzVaLvOGT4CuIA=
+
+Name: res/drawable-xxhdpi-v4/refocus_seekbar_background_progress.9.png
+SHA-256-Digest: DOC8nOFUDpyTiW6RAX/OfnySsGTxjgFUJkbZjFVykZc=
+
+Name: assets/refocus/relighting/00_effect_basic/config.json
+SHA-256-Digest: JAc0yW2Z58Dwv5oh9sBh43Ne45yipc3L5tHmkaTWnzA=
+
+Name: res/drawable-xxhdpi-v4/refocus_loading_progress.png
+SHA-256-Digest: 8vR7Cn35FVAP52yQFTYjt4Va0E0smHqtHW+yydVNQ6U=
+
+Name: assets/refocus/dynamic/04_effect_basic/mask.png
+SHA-256-Digest: Bp1iDQUEJpYcvCl5pybBVgR13MngQyrvW51MJj2/np0=
+
+Name: res/color/refocus_tab_text_color.xml
+SHA-256-Digest: YtPHpzS2/9i06UJdfqsaErp2cowTAp+hkUIr+L9lfYo=
+
+Name: assets/refocus/static/config.json
+SHA-256-Digest: rE1i1ZsPpPzgBksBXe5yeqL+wjCJs9oGzfADTgdqakE=
+
+Name: resources.arsc
+SHA-256-Digest: VUkzQ/W2erhWUzR5HTQ/zEtVhbOmvWDemjFkSttowkQ=
+
+Name: assets/refocus/dynamic/05_effect_heart/mask.png
+SHA-256-Digest: 4inTx3qhRmIJlYY3c+WKWsQNDNaKvsYxqCzdCVop1VU=
+
+Name: AndroidManifest.xml
+SHA-256-Digest: +KFzTmP0JAUY1Wqpg0icttOmEw5UkF0Nfm621JhsXGE=
+
+Name: assets/refocus/relighting/04_effect_basic/icon.png
+SHA-256-Digest: L7BO6Us5hJGI6HTN4WK8ODKxgo4ugs5qNTJg6jcXxgo=
+
+Name: assets/refocus/dynamic/00_effect_none/config.json
+SHA-256-Digest: +fN2qbIU07yMRZ/4RHRJwSphpA2btvfIbVqkaecwbfI=
+
+Name: res/drawable/refocus_menu_button_discard.xml
+SHA-256-Digest: qrhH6PU1s07apPEJ3M9D7IrbNW98J0p+Y4hqkyQPOh4=
+
+Name: assets/refocus/dynamic/06_effect_star/config.json
+SHA-256-Digest: 0qhGT/lydxYUO3bQYUtGMiRu3g6/6pdrFoV+avcIQF8=
+
+Name: assets/refocus/relighting/03_effect_basic/icon.png
+SHA-256-Digest: W1S+Td6jHiLvvEP1EhHIfk4oBbDFj3FkLHJqbuwmJC8=
+
+Name: res/drawable/refocus_selector_menu_item.xml
+SHA-256-Digest: hH13NtrWk07+pcY+/7vd2pphf2PL6rJc+jxGORlJKJU=
+
+Name: assets/refocus/dynamic/02_motion_degree/config.json
+SHA-256-Digest: +on69wmxTrrB4QqCJxykXuUS2GBPsa11jVbNnd3lgDI=
+
+Name: assets/refocus/dynamic/03_motion_ring/config.json
+SHA-256-Digest: Z+iFkjIQvyRDPgJSPxov1pjD4WMVqeB1w8KgBVpmFMM=
+
+Name: assets/refocus/relighting/04_effect_basic/config.json
+SHA-256-Digest: BgO9cIOV2/XmPk+tP6WJRh9ULf0ZmTEoC2Fd7+2r5uY=
+
+Name: res/drawable/refocus_save_item_selector.xml
+SHA-256-Digest: 2cAcivPojwuyPOzJgtoLszJHB7AvsCVlhAswiqb5+M8=
+
+Name: assets/refocus/dynamic/03_motion_ring/icon.png
+SHA-256-Digest: y+L1wHAOZ9s6uR7A8D401I3+U3zT0+hu+PNUvjDhQDs=
+
+Name: res/drawable-xxhdpi-v4/refocus_seekbar_thumb_reset.png
+SHA-256-Digest: NQcMfsrIy3WewMCHpecHBd9bTOj0aesm320FAkfk8Vw=
+
+Name: assets/refocus/dynamic/00_effect_none/icon.png
+SHA-256-Digest: zCEnai+xZy28iUFe5YysXbGdbjIXOIQ0Tp/qYCaEY9o=
+
+Name: res/drawable/refocus_seekbar_progress.xml
+SHA-256-Digest: qmWx57H0VK3w2f4eihjUXu6l/EPSq2RtqarC3YJlFUg=
+
+Name: assets/refocus/dynamic/04_effect_basic/icon.png
+SHA-256-Digest: eM/Dkqu1b0tyDVQbAtyvWEficFNjrX9k7fw2EGG+lMo=
+
+Name: assets/refocus/relighting/02_effect_basic/icon.png
+SHA-256-Digest: 7mgWSxw9UmsnhZ/sRwE9hNLN33p7cj/lXkt2U/pWW48=
+
+Name: res/drawable/refocus_menu_button_save.xml
+SHA-256-Digest: iYAKTwQjb2BeoAcbnzSZjfomiSHFG1nphFKVu/O1W28=
+
+Name: assets/refocus/relighting/02_effect_basic/config.json
+SHA-256-Digest: RCNEdrdUSg4NIGSxcmIzBariqXTerY/EBZUBE5VF8RU=
+
+Name: res/layout/refocus_layout_activity.xml
+SHA-256-Digest: Mh4z9Qjk0KWTTTvsu6GiSgHF6rhGaVJSTxohYoDSo9I=
+
+Name: assets/refocus/dynamic/01_motion_ring/config.json
+SHA-256-Digest: 3DAlOMqzAMsrGUs7+3X+majOybABhq4XD2EgKkUmWeU=
+
+Name: assets/refocus/relighting/06_effect_basic/icon.png
+SHA-256-Digest: 9Fp6kTPNJqYRby0dmCGz5u1j6dQAJ/RqWjzqtS12z/s=
+
+Name: res/drawable-xxhdpi-v4/refocus_menu_button_discard_n.png
+SHA-256-Digest: zV8vf1CxY7nQX7yKjjRu+ffifWgQVzMcbzsPhoagdxw=
+
+Name: res/layout/refocus_layout_item_holder.xml
+SHA-256-Digest: cAwdPM6EvWxKC6bqaU0qc4jiHkxNtilHYCpb9jCavZY=
+
+Name: res/drawable/refocus_shape_menu.xml
+SHA-256-Digest: 0L8XvB4bWcWRFQ/b66m6ar0euizQ2Sng4KvL3i6ya+o=
+
+Name: assets/refocus/dynamic/04_effect_basic/config.json
+SHA-256-Digest: RBJOF0DKMBvkHSRktsNDx1XHLukjclP90M/HyTvpF/U=
+
+Name: res/layout/refocus_save_dialog_item.xml
+SHA-256-Digest: OXGb3/4+IyWAjX5XE1Q5pyVV/EQEa6gSj9QM9AU9zns=
+
+Name: assets/refocus/relighting/05_effect_basic/icon.png
+SHA-256-Digest: rFEyp438Bq889iEPNLIsKAqFLUK8No78sT2AD7K9He0=
+
+Name: res/drawable-xxhdpi-v4/refocus_menu_button_save_p.png
+SHA-256-Digest: SJr+P8C0BxMQ3qI3GJoa4Bd7aQ7FA3iIhjIZcNYExQw=
+
+Name: assets/refocus/relighting/07_effect_basic/config.json
+SHA-256-Digest: L0TEh2rM0vVSfg+eiQkwCJnE0kdazFNtEKZ2yK4fDBE=
+
+Name: assets/refocus/relighting/06_effect_basic/config.json
+SHA-256-Digest: PdUjiIzMQeOzyvCo+ofLxT/C4rcldHw9LMnxU4ocNb0=
+
+Name: res/drawable/refocus_seekbar_thumb.xml
+SHA-256-Digest: AupKmwNWfDGIuGw4LWHWhBKbOZZ5L/Oxh9AiTOlXr3I=
+
+Name: assets/refocus/dynamic/05_effect_heart/config.json
+SHA-256-Digest: t11bNDDRBn5q9aq5+60lX8wz77hi47vJqOPT1505sW4=
+
+Name: classes.dex
+SHA-256-Digest: WiSTbJG3v/K+MtaxcDOi9Ox92a8QC3BVhyV7GsXQS/0=
+

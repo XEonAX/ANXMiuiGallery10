@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">అస్పష్టత</string>
+    <string name="refocus_type_static">అస్పష్టత స్థాయి</string>
+    <string name="refocus_type_video">కాంతి ఆనవాళ్లు</string>
+    <string name="refocus_type_relighting">స్టూడియో లైటింగ్</string>
+    <string name="refocus_type_relighting_no_face">ముఖాన్ని గుర్తించలేకపోయాము</string>
+    <string name="refocus_type_relighting_small_face">ఇక్కడి కంటే ముఖాలు ఎక్కువ ప్రదేశాన్ని ఆక్రమించే ఫోటోల్లో స్టూడియో లైటింగ్ పని చేస్తుంది.</string>
+    <string name="refocus_saving">సేవ్ చేస్తోంది…</string>
+    <string name="refocus_save_to_photo">ఇమేజ్‌గా సేవ్ చేయి</string>
+    <string name="refocus_save_to_video">వీడియోగా సేవ్ చేయి</string>
+    <string name="refocus_save_cancel">రద్దు చేయి</string>
+    <string name="refocus_save_title">ఆకృతిని ఎంచుకోండి</string>
+    <string name="refocus_photo_not_support">ఈ ఫోటోకి అస్పష్టతని జోడించలేము</string>
+    <string name="refocus_relighting_toast">కాంతి కోణాన్ని సర్దుబాటు చేయడానికి వృత్తాన్ని జరపండి</string>
+    <string name="refocus_discard_confirm_message">మార్పులను సేవ్ చేయాలా?</string>
+    <string name="refocus_discard_positive_btn">సేవ్ చేయి</string>
+    <string name="refocus_discard_negative_btn">విస్మరించు</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="start|center" android:orientation="horizontal" android:background="@color/album_page_local_view_title_background" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textAppearance="@style/Gallery.TextAppearance.List.Secondary.Custom" android:layout_gravity="center" android:id="@id/group_tip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/vertical_spacing_secondary" android:layout_marginBottom="@dimen/vertical_spacing_secondary" android:text="@string/other_album" android:singleLine="true" android:layout_marginStart="@dimen/horizontal_spacing_big" />
+</LinearLayout>

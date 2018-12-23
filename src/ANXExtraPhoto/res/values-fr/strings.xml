@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Flou</string>
+    <string name="refocus_type_static">Niveau de flou</string>
+    <string name="refocus_type_video">Bande de lumière</string>
+    <string name="refocus_type_relighting">Éclairage studio</string>
+    <string name="refocus_type_relighting_no_face">Impossible de trouver le visage</string>
+    <string name="refocus_type_relighting_small_face">"L'éclairage sutdio fonctionne sur les photos où les visages prennent plus de place qu'ici."</string>
+    <string name="refocus_saving">Enregistrement…</string>
+    <string name="refocus_save_to_photo">"Enregistrer en tant qu'image"</string>
+    <string name="refocus_save_to_video">Enregistrer en tant que vidéo</string>
+    <string name="refocus_save_cancel">Annuler</string>
+    <string name="refocus_save_title">Sélectionner un format</string>
+    <string name="refocus_photo_not_support">Ne peut pas appliquer effet flou sur cette photo</string>
+    <string name="refocus_relighting_toast">"Déplacez le cercle pour ajuster l'angle d'éclairage"</string>
+    <string name="refocus_discard_confirm_message">Enregistrer les modifications ?</string>
+    <string name="refocus_discard_positive_btn">Enregistrer</string>
+    <string name="refocus_discard_negative_btn">Abandonner</string>
+</resources>

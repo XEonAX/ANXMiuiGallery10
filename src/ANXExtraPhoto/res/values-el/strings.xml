@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Θολό</string>
+    <string name="refocus_type_static">Επίπεδο θολότητας</string>
+    <string name="refocus_type_video">Ίχνη φωτός</string>
+    <string name="refocus_type_relighting">Φωτισμός στούντιο</string>
+    <string name="refocus_type_relighting_no_face">Αδυναμία εύρεσης προσώπου</string>
+    <string name="refocus_type_relighting_small_face">Ο φωτισμός στούντιο λειτουργεί σε φωτογραφίες στις οποίες τα πρόσωπα καλύπτουν περισσότερο χώρο από ότι εδώ.</string>
+    <string name="refocus_saving">Γίνεται αποθήκευση…</string>
+    <string name="refocus_save_to_photo">Αποθήκευση ως εικόνα</string>
+    <string name="refocus_save_to_video">Αποθήκευση ως βίντεο</string>
+    <string name="refocus_save_cancel">Ακύρωση</string>
+    <string name="refocus_save_title">Επιλογή μορφής</string>
+    <string name="refocus_photo_not_support">Αδυναμία εφαρμογής θολότητας στην φωτογραφία αυτή</string>
+    <string name="refocus_relighting_toast">Μετακινήστε τον κύκλο για προσαρμογή της γωνίας φωτισμού</string>
+    <string name="refocus_discard_confirm_message">Αποθήκευση αλλαγών;</string>
+    <string name="refocus_discard_positive_btn">Αποθήκευση</string>
+    <string name="refocus_discard_negative_btn">Διαγραφή</string>
+</resources>

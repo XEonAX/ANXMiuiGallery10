@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Размыццё</string>
+    <string name="refocus_type_static">Ступень размыцця</string>
+    <string name="refocus_type_video">Сляды святла</string>
+    <string name="refocus_type_relighting">Студыйнае асвятленне</string>
+    <string name="refocus_type_relighting_no_face">Файл не знойдзены</string>
+    <string name="refocus_type_relighting_small_face">Студыйнае асвятленне працуе на фота, дзе твары займаюць больш месца.</string>
+    <string name="refocus_saving">Захаванне…</string>
+    <string name="refocus_save_to_photo">Захаваць як выяву</string>
+    <string name="refocus_save_to_video">Захаваць як відэа</string>
+    <string name="refocus_save_cancel">Скасаваць</string>
+    <string name="refocus_save_title">Выбраць фармат</string>
+    <string name="refocus_photo_not_support">Немагчыма ўжыць размыццё да гэтага фота</string>
+    <string name="refocus_relighting_toast">Перамяшчайце круг, каб змяніць вугал асвятлення</string>
+    <string name="refocus_discard_confirm_message">Захаваць змены?</string>
+    <string name="refocus_discard_positive_btn">Захаваць</string>
+    <string name="refocus_discard_negative_btn">Адмяніць</string>
+</resources>

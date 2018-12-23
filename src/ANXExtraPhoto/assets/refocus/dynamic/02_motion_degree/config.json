@@ -1,0 +1,8 @@
+{
+  "name": "motion_line",
+  "type": "MOTION",
+  "icon": "icon.png",
+  "totalSecond": 3000,
+  "degree": 30,
+  "iconColor": "#5fc4da"
+}

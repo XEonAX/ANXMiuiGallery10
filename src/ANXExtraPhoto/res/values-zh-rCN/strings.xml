@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">虚化</string>
+    <string name="refocus_type_static">虚化强度</string>
+    <string name="refocus_type_video">动态光斑</string>
+    <string name="refocus_type_relighting">影棚光效</string>
+    <string name="refocus_type_relighting_no_face">没有检测到人脸</string>
+    <string name="refocus_type_relighting_small_face">人脸过小，无法应用影棚光效</string>
+    <string name="refocus_saving">正在保存…</string>
+    <string name="refocus_save_to_photo">保存为图片</string>
+    <string name="refocus_save_to_video">保存为视频</string>
+    <string name="refocus_save_cancel">取消</string>
+    <string name="refocus_save_title">请选择存储格式</string>
+    <string name="refocus_photo_not_support">该照片不支持虚化调节</string>
+    <string name="refocus_relighting_toast">移动圆圈可调整光效角度</string>
+    <string name="refocus_discard_confirm_message">是否保存当前操作？</string>
+    <string name="refocus_discard_positive_btn">保存</string>
+    <string name="refocus_discard_negative_btn">不保存</string>
+</resources>

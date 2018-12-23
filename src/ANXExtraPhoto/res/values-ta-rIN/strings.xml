@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">மங்குதல்</string>
+    <string name="refocus_type_static">மங்குதல் அளவு</string>
+    <string name="refocus_type_video">லேசான தடங்கள்</string>
+    <string name="refocus_type_relighting">ஸ்டுடியோ லைட்டிங்</string>
+    <string name="refocus_type_relighting_no_face">முகத்தை கண்டுபிடிக்க முடியவில்லை</string>
+    <string name="refocus_type_relighting_small_face">ஸ்டுடியோ வெளிச்சம் என்பது, இங்கே இருப்பதை விட அதிக இடத்தை எடுக்கும் முகங்கள் உள்ள படங்களில் சிறப்பாக செயல்படும்.</string>
+    <string name="refocus_saving">சேமிக்கிறது…</string>
+    <string name="refocus_save_to_photo">படமாகச் சேமி</string>
+    <string name="refocus_save_to_video">வீடியோவாகச் சேமி</string>
+    <string name="refocus_save_cancel">ரத்துசெய்</string>
+    <string name="refocus_save_title">வடிவமைப்பைத் தேர்ந்தெடு</string>
+    <string name="refocus_photo_not_support">இந்தப் படத்தில் மங்குதலைப் பயன்படுத்த முடியாது</string>
+    <string name="refocus_relighting_toast">ஒளியின் கோணத்தைச் சரிசெய்ய வட்டத்தை நகர்த்தவும்</string>
+    <string name="refocus_discard_confirm_message">மாற்றங்களை சேமிக்கவா?</string>
+    <string name="refocus_discard_positive_btn">சேமி</string>
+    <string name="refocus_discard_negative_btn">புறக்கணி</string>
+</resources>

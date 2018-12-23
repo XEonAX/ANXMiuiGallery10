@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Izplūdis</string>
+    <string name="refocus_type_static">Izplūšanas līmenis</string>
+    <string name="refocus_type_video">Gaismas pēdas</string>
+    <string name="refocus_type_relighting">Studijas apgaismojums</string>
+    <string name="refocus_type_relighting_no_face">Neizdevās atrast seju</string>
+    <string name="refocus_type_relighting_small_face">Studijas apgaismojums darbojas fotoattēlos, kuros seja aizņem vairāk vietas.</string>
+    <string name="refocus_saving">Saglabā…</string>
+    <string name="refocus_save_to_photo">Saglabāt kā attēlu</string>
+    <string name="refocus_save_to_video">Saglabāt kā video</string>
+    <string name="refocus_save_cancel">Atcelt</string>
+    <string name="refocus_save_title">Izvēlēties formātu</string>
+    <string name="refocus_photo_not_support">Nevar piemērot izplūšanu šim attēlam</string>
+    <string name="refocus_relighting_toast">Pārvietojiet apli, lai pielāgotu apgaismojuma leņķi</string>
+    <string name="refocus_discard_confirm_message">Saglabāt izmaiņas?</string>
+    <string name="refocus_discard_positive_btn">Saglabāt</string>
+    <string name="refocus_discard_negative_btn">Atmest</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Размытие</string>
+    <string name="refocus_type_static">Степень размытия</string>
+    <string name="refocus_type_video">Световые следы</string>
+    <string name="refocus_type_relighting">Студийный свет</string>
+    <string name="refocus_type_relighting_no_face">Лицо не обнаружено</string>
+    <string name="refocus_type_relighting_small_face">Студийный свет работает на фото, где лица занимают больше места</string>
+    <string name="refocus_saving">Сохранение…</string>
+    <string name="refocus_save_to_photo">Сохранить как фото</string>
+    <string name="refocus_save_to_video">Сохранить как видео</string>
+    <string name="refocus_save_cancel">Отмена</string>
+    <string name="refocus_save_title">Выберите формат</string>
+    <string name="refocus_photo_not_support">Невозможно применить размытие к этому фото</string>
+    <string name="refocus_relighting_toast">Перемещайте круг для изменения угла освещения</string>
+    <string name="refocus_discard_confirm_message">Сохранить изменения?</string>
+    <string name="refocus_discard_positive_btn">Сохранить</string>
+    <string name="refocus_discard_negative_btn">Не сохранять</string>
+</resources>

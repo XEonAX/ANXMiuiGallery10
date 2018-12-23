@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refocus_title">Sulieti</string>
+    <string name="refocus_type_static">Suliejimo lygis</string>
+    <string name="refocus_type_video">Šviesos takai</string>
+    <string name="refocus_type_relighting">Studijų apšvietimas</string>
+    <string name="refocus_type_relighting_no_face">Nepavyko aptikti veido</string>
+    <string name="refocus_type_relighting_small_face">Studijų apšvietimas yra tinkamas nuotraukoms, kuriose atstumas tarp veidų yra didesnis nei čia.</string>
+    <string name="refocus_saving">Išsaugoma…</string>
+    <string name="refocus_save_to_photo">Išsaugoti kaip vaizdą</string>
+    <string name="refocus_save_to_video">Išsaugoti kaip vaizdo įrašą</string>
+    <string name="refocus_save_cancel">Atšaukti</string>
+    <string name="refocus_save_title">Pasirinkti formatą</string>
+    <string name="refocus_photo_not_support">Šios nuotraukos negalima sulieti</string>
+    <string name="refocus_relighting_toast">Judinkite apskritimą, norėdami koreguoti apšvietimo kampą</string>
+    <string name="refocus_discard_confirm_message">Išsaugoti pakeitimus?</string>
+    <string name="refocus_discard_positive_btn">Išsaugoti</string>
+    <string name="refocus_discard_negative_btn">Neįrašyti</string>
+</resources>

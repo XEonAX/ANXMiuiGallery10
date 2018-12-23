@@ -1,0 +1,73 @@
+PS J:\ROOT\GitHub\ANXMiuiGallery10> java  -jar .\tools\apktool.jar b -p .\tools\MiuiFrameworks -o .\out\ANXGallery-Unsigned.apk .\src\ANXGallery
+I: Using Apktool 2.3.4
+I: Checking whether sources has changed...
+I: Smaling smali folder into classes.dex...
+I: Checking whether resources has changed...
+I: Building resources...
+W: W/ResourceType(17452): DynamicRefTable(0x10): No mapping for build-time package ID 0x10.
+W: W/ResourceType(17452): e[0x01] -> 0x01
+W: W/ResourceType(17452): e[0x7f] -> 0x7f
+W: E/ResourceType(17452): Failed resolving ResTable_map name at 3396 with ident 0x100b0010
+W: warning: string 'backup_file_over_size_desc' has no default translation.
+W: warning: string 'collage_ratio_text' has no default translation.
+W: warning: string 'collage_title_stitching' has no default translation.
+W: warning: string 'photomovie_audio_custom' has no default translation.
+W: warning: string 'photomovie_audio_default' has no default translation.
+W: warning: string 'photomovie_audio_kawaii' has no default translation.
+W: warning: string 'photomovie_audio_light' has no default translation.
+W: warning: string 'photomovie_audio_linear' has no default translation.
+W: warning: string 'photomovie_audio_none' has no default translation.
+W: warning: string 'photomovie_audio_soft' has no default translation.
+W: warning: string 'photomovie_audio_sport' has no default translation.
+W: warning: string 'photomovie_cancel_download' has no default translation.
+W: warning: string 'photomovie_delete_disable' has no default translation.
+W: warning: string 'photomovie_download' has no default translation.
+W: warning: string 'photomovie_download_failed' has no default translation.
+W: warning: string 'photomovie_download_failed_for_notwork' has no default translation.
+W: warning: string 'photomovie_download_without_wifi_msg' has no default translation.
+W: warning: string 'photomovie_download_without_wifi_title' has no default translation.
+W: warning: string 'photomovie_exit_cancel' has no default translation.
+W: warning: string 'photomovie_exit_confirm' has no default translation.
+W: warning: string 'photomovie_exit_content' has no default translation.
+W: warning: string 'photomovie_exit_title' has no default translation.
+W: warning: string 'photomovie_item_name' has no default translation.
+W: warning: string 'photomovie_return' has no default translation.
+W: warning: string 'photomovie_save' has no default translation.
+W: warning: string 'photomovie_save_failed' has no default translation.
+W: warning: string 'photomovie_save_successfully' has no default translation.
+W: warning: string 'photomovie_saving' has no default translation.
+W: warning: string 'photomovie_tab_edit' has no default translation.
+W: warning: string 'photomovie_tab_music' has no default translation.
+W: warning: string 'photomovie_tab_template' has no default translation.
+W: warning: string 'photomovie_template_default' has no default translation.
+W: warning: string 'photomovie_template_kawaii' has no default translation.
+W: warning: string 'photomovie_template_light' has no default translation.
+W: warning: string 'photomovie_template_linear' has no default translation.
+W: warning: string 'photomovie_template_soft' has no default translation.
+W: warning: string 'photomovie_template_sport' has no default translation.
+W: warning: string 'refocus_discard_confirm_message' has no default translation.
+W: warning: string 'refocus_discard_negative_btn' has no default translation.
+W: warning: string 'refocus_discard_positive_btn' has no default translation.
+W: warning: string 'refocus_photo_not_support' has no default translation.
+W: warning: string 'refocus_save_cancel' has no default translation.
+W: warning: string 'refocus_save_title' has no default translation.
+W: warning: string 'refocus_save_to_photo' has no default translation.
+W: warning: string 'refocus_save_to_video' has no default translation.
+W: warning: string 'refocus_saving' has no default translation.
+W: warning: string 'refocus_title' has no default translation.
+W: warning: string 'refocus_type_static' has no default translation.
+W: warning: string 'refocus_type_video' has no default translation.
+W: warning: Package not found for resource #1001004f
+I: Building apk file...
+I: Copying unknown files/dir...
+I: Built apk...
+PS J:\ROOT\GitHub\ANXMiuiGallery10> java  -jar .\tools\apktool.jar b -p .\tools\MiuiFrameworks -o .\out\ANXExtraPhoto-Unsigned.apk .\src\ANXExtraPhoto
+I: Using Apktool 2.3.4
+I: Checking whether sources has changed...
+I: Smaling smali folder into classes.dex...
+I: Checking whether resources has changed...
+I: Building resources...
+I: Building apk file...
+I: Copying unknown files/dir...
+I: Built apk...
+PS J:\ROOT\GitHub\ANXMiuiGallery10>
