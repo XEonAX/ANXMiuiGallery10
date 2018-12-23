@@ -1,3 +1,7 @@
-src/ANXCamera/build/
-out/ANXCamera-Unsigned.apk
+src/ANXGallery/build/
+out/ANXGallery-Unsigned.apk
+src/ANXExtraPhoto/build/
+out/ANXExtraPhoto-Unsigned.apk
+src/ANXExtraGalleryMagisk/system/priv-app/ANXGallery/ANXGallery.apk
+src/ANXExtraGalleryMagisk/system/priv-app/ANXExtraPhoto/ANXExtraPhoto.apk
 .idea
