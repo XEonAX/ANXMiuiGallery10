@@ -159,7 +159,7 @@ public class CropperActivity extends BaseActivity {
         L_0x0031:
             r9 = r12.mOut;
             r9 = r9.getPath();
-            r2 = com.miui.gallery.util.FileUtils.getExtension(r9);
+            r2 = miui.os.FileUtils.getExtension(r9);
             r3 = com.miui.gallery.util.GalleryUtils.convertExtensionToCompressFormat(r2);
         L_0x003f:
             r4 = 0;

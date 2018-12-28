@@ -172,7 +172,7 @@ public class FileUtils extends miui.os.FileUtils {
         String path;
         if (file.mkdir()) {
             path = file.getPath();
-            Log.i("FileUtils", "path %s, chmod %s, chown %s", path, Boolean.valueOf(chmod(path, mode)), Boolean.valueOf(chown(path, uid, gid)));
+            Log.i("FileUtils", "path %s, chmod %s, chown %s", path, Boolean.valueOf(miui.os.FileUtils.chmod(path, mode)), Boolean.valueOf(miui.os.FileUtils.chown(path, uid, gid)));
             return true;
         } else if (!DocumentProviderUtils.needUseDocumentProvider(file.getAbsolutePath())) {
             return false;
@@ -182,7 +182,7 @@ public class FileUtils extends miui.os.FileUtils {
                 return false;
             }
             path = file.getPath();
-            Log.i("FileUtils", "path %s, chmod %s, chown %s", path, Boolean.valueOf(chmod(path, mode)), Boolean.valueOf(chown(path, uid, gid)));
+            Log.i("FileUtils", "path %s, chmod %s, chown %s", path, Boolean.valueOf(miui.os.FileUtils.chmod(path, mode)), Boolean.valueOf(miui.os.FileUtils.chown(path, uid, gid)));
             return true;
         }
     }
@@ -481,7 +481,7 @@ public class FileUtils extends miui.os.FileUtils {
             Log.i("FileUtils", "delete [%s]'s file, result %s", file.getAbsolutePath(), Boolean.valueOf(result));
             return result;
         } else if (file.isDirectory()) {
-            result = rm(file.getAbsolutePath());
+            result = miui.os.FileUtils.rm(file.getAbsolutePath());
             Log.i("FileUtils", "delete folder [%s]'s files, result %s", file.getAbsolutePath(), Boolean.valueOf(result));
             return result;
         } else {

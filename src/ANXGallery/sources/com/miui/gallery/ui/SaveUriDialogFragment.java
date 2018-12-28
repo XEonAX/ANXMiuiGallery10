@@ -139,7 +139,7 @@ public class SaveUriDialogFragment extends GalleryDialogFragment {
     L_0x005b:
         r5 = new java.io.FileInputStream;	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
         r5.<init>(r3);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r11 = com.miui.gallery.util.FileUtils.copyToFile(r5, r8);	 Catch:{ FileNotFoundException -> 0x00cb, Exception -> 0x00c8, all -> 0x00c5 }
+        r11 = miui.os.FileUtils.copyToFile(r5, r8);	 Catch:{ FileNotFoundException -> 0x00cb, Exception -> 0x00c8, all -> 0x00c5 }
         if (r11 != 0) goto L_0x006f;
     L_0x0066:
         com.miui.gallery.util.MiscUtil.closeSilently(r7);

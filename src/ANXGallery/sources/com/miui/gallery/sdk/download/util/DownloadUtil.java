@@ -174,7 +174,7 @@ public class DownloadUtil {
         if ((!isThumbnail(downloadType) && !isOrigin(downloadType)) || !new File(filePath).exists() || isOriginalFileValid(filePath, dbImage) || isThumbnailFileValid(filePath, dbImage)) {
             return filePath;
         }
-        fileName = String.format("%s_%s.%s", new Object[]{FileUtils.getFileNameWithoutExtension(fileName), Long.valueOf(System.currentTimeMillis()), FileUtils.getExtension(fileName)});
+        fileName = String.format("%s_%s.%s", new Object[]{FileUtils.getFileNameWithoutExtension(fileName), Long.valueOf(System.currentTimeMillis()), miui.os.FileUtils.getExtension(fileName)});
         filePath = FileUtils.concat(getDownloadFolderPath(dbImage, downloadType), fileName);
         Log.d("DownloadUtil", "There exist a file with same name that doesn't belong to image [%s], so we rename current to %s", dbImage, fileName);
         return filePath;

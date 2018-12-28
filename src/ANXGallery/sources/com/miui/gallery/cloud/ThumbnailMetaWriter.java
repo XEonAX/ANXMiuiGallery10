@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import com.miui.gallery.data.DBImage;
 import com.miui.gallery.util.ExifUtil;
 import com.miui.gallery.util.ExifUtil.UserCommentData;
-import com.miui.gallery.util.FileUtils;
 import com.miui.gallery.util.GallerySamplingStatHelper;
 import com.miui.gallery.util.GalleryTimeUtils;
 import com.miui.gallery.util.Log;
@@ -16,6 +15,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import miui.os.FileUtils;
 
 public class ThumbnailMetaWriter {
     private final String mDateTime;
