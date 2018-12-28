@@ -1,5 +1,5 @@
 .class public abstract Lcom/miui/gallery/app/BottomMenuFragment;
-.super Lmiui/app/Fragment;
+.super Landroid/app/Fragment;
 .source "BottomMenuFragment.java"
 
 # interfaces
@@ -22,7 +22,7 @@
     const/4 v0, 0x1
 
     .line 10
-    invoke-direct {p0}, Lmiui/app/Fragment;-><init>()V
+    invoke-direct {p0}, Landroid/app/Fragment;-><init>()V
 
     .line 12
     iput-boolean v0, p0, Lcom/miui/gallery/app/BottomMenuFragment;->mHasMenu:Z
@@ -35,18 +35,18 @@
 
 
 # virtual methods
-.method public getActionBar()Lmiui/app/ActionBar;
+.method public getActionBar()Landroid/app/ActionBar;
     .locals 2
 
     .prologue
     .line 32
     iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragment;->mDelegate:Lcom/miui/gallery/app/BottomMenuFragmentDelegate;
 
-    invoke-super {p0}, Lmiui/app/Fragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-super {p0}, Landroid/app/Fragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v1
 
-    invoke-virtual {v0, v1}, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->wrapActionBar(Lmiui/app/ActionBar;)Lmiui/app/ActionBar;
+    invoke-virtual {v0, v1}, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->wrapActionBar(Landroid/app/ActionBar;)Landroid/app/ActionBar;
 
     move-result-object v0
 
@@ -93,7 +93,7 @@
 
     .prologue
     .line 64
-    invoke-super {p0}, Lmiui/app/Fragment;->invalidateOptionsMenu()V
+    invoke-super {p0}, Landroid/app/Fragment;->invalidateOptionsMenu()V
 
     .line 65
     iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragment;->mDelegate:Lcom/miui/gallery/app/BottomMenuFragmentDelegate;
@@ -182,18 +182,18 @@
     const/4 v0, 0x0
 
     .line 17
-    invoke-super {p0, p1}, Lmiui/app/Fragment;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Landroid/app/Fragment;->onCreate(Landroid/os/Bundle;)V
 
     .line 18
-    invoke-super {p0, v0}, Lmiui/app/Fragment;->setHasOptionsMenu(Z)V
+    invoke-super {p0, v0}, Landroid/app/Fragment;->setHasOptionsMenu(Z)V
 
     .line 19
-    invoke-super {p0, v0}, Lmiui/app/Fragment;->setMenuVisibility(Z)V
+    invoke-super {p0, v0}, Landroid/app/Fragment;->setMenuVisibility(Z)V
 
     .line 20
     new-instance v0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;
 
-    invoke-direct {v0, p0}, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;-><init>(Lmiui/app/Fragment;)V
+    invoke-direct {v0, p0}, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;-><init>(Landroid/app/Fragment;)V
 
     iput-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragment;->mDelegate:Lcom/miui/gallery/app/BottomMenuFragmentDelegate;
 
@@ -213,7 +213,7 @@
 
     .prologue
     .line 26
-    invoke-super {p0, p1, p2}, Lmiui/app/Fragment;->onViewCreated(Landroid/view/View;Landroid/os/Bundle;)V
+    invoke-super {p0, p1, p2}, Landroid/app/Fragment;->onViewCreated(Landroid/view/View;Landroid/os/Bundle;)V
 
     .line 27
     iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragment;->mDelegate:Lcom/miui/gallery/app/BottomMenuFragmentDelegate;
@@ -326,7 +326,7 @@
 
     .prologue
     .line 75
-    invoke-super {p0, p1}, Lmiui/app/Fragment;->setThemeRes(I)V
+    invoke-super {p0, p1}, Landroid/app/Fragment;->setThemeRes(I)V
 
     .line 76
     iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragment;->mDelegate:Lcom/miui/gallery/app/BottomMenuFragmentDelegate;

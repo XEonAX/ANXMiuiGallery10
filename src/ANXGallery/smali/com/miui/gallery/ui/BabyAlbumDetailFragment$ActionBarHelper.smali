@@ -209,22 +209,22 @@
 
     iget-object v3, v3, Lcom/miui/gallery/ui/BabyAlbumDetailFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v3}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v3}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v3
 
-    invoke-virtual {v3, v7, v7}, Lmiui/app/ActionBar;->setDisplayOptions(II)V
+    invoke-virtual {v3, v7, v7}, Landroid/app/ActionBar;->setDisplayOptions(II)V
 
     .line 118
     iget-object v3, p0, Lcom/miui/gallery/ui/BabyAlbumDetailFragment$ActionBarHelper;->this$0:Lcom/miui/gallery/ui/BabyAlbumDetailFragment;
 
     iget-object v3, v3, Lcom/miui/gallery/ui/BabyAlbumDetailFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v3}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v3}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v3
 
-    invoke-virtual {v3, v2}, Lmiui/app/ActionBar;->setCustomView(Landroid/view/View;)V
+    invoke-virtual {v3, v2}, Landroid/app/ActionBar;->setCustomView(Landroid/view/View;)V
 
     .line 119
     return-object v2
@@ -323,7 +323,7 @@
 
     iget-object v0, v0, Lcom/miui/gallery/ui/BabyAlbumDetailFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
@@ -333,7 +333,7 @@
     move-result-object v1
 
     .line 125
-    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
 
     .line 127
     return-void

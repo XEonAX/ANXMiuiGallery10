@@ -6,7 +6,7 @@
 # instance fields
 .field private mExtraThemeRes:I
 
-.field private mFragment:Lmiui/app/Fragment;
+.field private mFragment:Landroid/app/Fragment;
 
 .field private mInvalidateMenuFlags:B
 
@@ -18,13 +18,13 @@
 
 
 # direct methods
-.method public constructor <init>(Lmiui/app/Fragment;)V
+.method public constructor <init>(Landroid/app/Fragment;)V
     .locals 1
-    .param p1, "fragment"    # Lmiui/app/Fragment;
+    .param p1, "fragment"    # Landroid/app/Fragment;
 
     .prologue
     .line 61
-    invoke-virtual {p1}, Lmiui/app/Fragment;->getActivity()Landroid/app/Activity;
+    invoke-virtual {p1}, Landroid/app/Fragment;->getActivity()Landroid/app/Activity;
 
     move-result-object v0
 
@@ -38,7 +38,7 @@
     iput-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mInvalidateMenuRunnable:Ljava/lang/Runnable;
 
     .line 62
-    iput-object p1, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Lmiui/app/Fragment;
+    iput-object p1, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Landroid/app/Fragment;
 
     .line 63
     return-void
@@ -141,9 +141,9 @@
     if-nez v3, :cond_1
 
     .line 71
-    iget-object v3, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Lmiui/app/Fragment;
+    iget-object v3, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v3}, Lmiui/app/Fragment;->getView()Landroid/view/View;
+    invoke-virtual {v3}, Landroid/app/Fragment;->getView()Landroid/view/View;
 
     move-result-object v2
 
@@ -276,9 +276,9 @@
     iput-byte v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mInvalidateMenuFlags:B
 
     .line 131
-    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v0}, Lmiui/app/Fragment;->getActivity()Landroid/app/Activity;
+    invoke-virtual {v0}, Landroid/app/Fragment;->getActivity()Landroid/app/Activity;
 
     move-result-object v0
 
@@ -311,7 +311,7 @@
     if-nez p1, :cond_1
 
     .line 97
-    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Landroid/app/Fragment;
 
     check-cast v0, Lcom/miui/gallery/app/IBottomMenu;
 
@@ -321,9 +321,9 @@
 
     if-eqz v0, :cond_0
 
-    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v0, p2}, Lmiui/app/Fragment;->onCreateOptionsMenu(Landroid/view/Menu;)Z
+    invoke-virtual {v0, p2}, Landroid/app/Fragment;->onCreateOptionsMenu(Landroid/view/Menu;)Z
 
     move-result v0
 
@@ -358,9 +358,9 @@
     if-nez p1, :cond_0
 
     .line 106
-    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v0, p2}, Lmiui/app/Fragment;->onOptionsItemSelected(Landroid/view/MenuItem;)Z
+    invoke-virtual {v0, p2}, Landroid/app/Fragment;->onOptionsItemSelected(Landroid/view/MenuItem;)Z
 
     move-result v0
 
@@ -401,7 +401,7 @@
     if-nez p1, :cond_1
 
     .line 114
-    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Landroid/app/Fragment;
 
     check-cast v0, Lcom/miui/gallery/app/IBottomMenu;
 
@@ -412,9 +412,9 @@
     if-eqz v0, :cond_0
 
     .line 115
-    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuFragmentDelegate;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v0, p3}, Lmiui/app/Fragment;->onPrepareOptionsMenu(Landroid/view/Menu;)V
+    invoke-virtual {v0, p3}, Landroid/app/Fragment;->onPrepareOptionsMenu(Landroid/view/Menu;)V
 
     .line 117
     :cond_0

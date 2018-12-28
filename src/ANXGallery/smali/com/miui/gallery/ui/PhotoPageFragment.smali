@@ -1097,7 +1097,7 @@
 
     .line 555
     .local v2, "lp":Landroid/app/ActionBar$LayoutParams;
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v3
 
@@ -1107,7 +1107,7 @@
 
     move-result-object v4
 
-    invoke-virtual {v3, v4, v2}, Lmiui/app/ActionBar;->setCustomView(Landroid/view/View;Landroid/app/ActionBar$LayoutParams;)V
+    invoke-virtual {v3, v4, v2}, Landroid/app/ActionBar;->setCustomView(Landroid/view/View;Landroid/app/ActionBar$LayoutParams;)V
 
     .line 556
     return-void
@@ -1991,11 +1991,11 @@
 
     .prologue
     .line 1030
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v2
 
-    invoke-virtual {v2}, Lmiui/app/ActionBar;->getHeight()I
+    invoke-virtual {v2}, Landroid/app/ActionBar;->getHeight()I
 
     move-result v0
 
@@ -2159,17 +2159,17 @@
 
     .prologue
     .line 790
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
     if-eqz v0, :cond_0
 
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lmiui/app/ActionBar;->isShowing()Z
+    invoke-virtual {v0}, Landroid/app/ActionBar;->isShowing()Z
 
     move-result v0
 
@@ -2729,21 +2729,21 @@
     if-eqz v1, :cond_0
 
     .line 578
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v1
 
     invoke-static {v1, v3}, Lcom/miui/gallery/compat/app/ActionBarCompat;->setShowHideAnimationEnabled(Landroid/app/ActionBar;Z)V
 
     .line 579
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v1
 
-    invoke-virtual {v1}, Lmiui/app/ActionBar;->hide()V
+    invoke-virtual {v1}, Landroid/app/ActionBar;->hide()V
 
     .line 580
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v1
 
@@ -2758,7 +2758,7 @@
 
     .line 583
     :cond_0
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v1
 
@@ -2768,7 +2768,7 @@
     invoke-direct {p0, v3}, Lcom/miui/gallery/ui/PhotoPageFragment;->setActionBarVisible(Z)V
 
     .line 585
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v1
 
@@ -3104,11 +3104,11 @@
     if-nez v0, :cond_0
 
     .line 804
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lmiui/app/ActionBar;->show()V
+    invoke-virtual {v0}, Landroid/app/ActionBar;->show()V
 
     .line 811
     :goto_1
@@ -3125,11 +3125,11 @@
     if-nez v0, :cond_0
 
     .line 809
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lmiui/app/ActionBar;->hide()V
+    invoke-virtual {v0}, Landroid/app/ActionBar;->hide()V
 
     goto :goto_1
 .end method
@@ -4308,11 +4308,11 @@
     if-eqz v0, :cond_0
 
     .line 509
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
-    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
+    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
 
     .line 511
     :cond_0

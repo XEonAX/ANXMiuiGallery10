@@ -557,7 +557,7 @@
 
     const-string v5, "from_home_page"
 
-    invoke-direct {v3, p0, v4, v5}, Lcom/miui/gallery/ui/TopSearchBarController;-><init>(Lmiui/app/Fragment;Lcom/miui/gallery/search/widget/BannerSearchBar;Ljava/lang/String;)V
+    invoke-direct {v3, p0, v4, v5}, Lcom/miui/gallery/ui/TopSearchBarController;-><init>(Landroid/app/Fragment;Lcom/miui/gallery/search/widget/BannerSearchBar;Ljava/lang/String;)V
 
     iput-object v3, p0, Lcom/miui/gallery/ui/HomePageFragment;->mSearchBarController:Lcom/miui/gallery/ui/TopSearchBarController;
 

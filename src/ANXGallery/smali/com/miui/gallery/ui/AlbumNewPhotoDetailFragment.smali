@@ -329,13 +329,13 @@
     .line 40
     iget-object v2, p0, Lcom/miui/gallery/ui/AlbumNewPhotoDetailFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v2}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v2}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v2
 
     iget-object v3, p0, Lcom/miui/gallery/ui/AlbumNewPhotoDetailFragment;->mAlbumName:Ljava/lang/String;
 
-    invoke-virtual {v2, v3}, Lmiui/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
+    invoke-virtual {v2, v3}, Landroid/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
 
     .line 42
     :cond_0

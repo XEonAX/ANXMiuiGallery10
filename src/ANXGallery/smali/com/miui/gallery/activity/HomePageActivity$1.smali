@@ -45,7 +45,7 @@
     .line 150
     iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity$1;->this$0:Lcom/miui/gallery/activity/HomePageActivity;
 
-    iget-object v2, v2, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v2, v2, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
 
     iget-object v3, p0, Lcom/miui/gallery/activity/HomePageActivity$1;->this$0:Lcom/miui/gallery/activity/HomePageActivity;
 
@@ -53,7 +53,7 @@
 
     move-result v3
 
-    invoke-virtual {v2, v3}, Lmiui/app/ActionBar;->getFragmentAt(I)Landroid/app/Fragment;
+    invoke-virtual {v2, v3}, Landroid/app/ActionBar;->getFragmentAt(I)Landroid/app/Fragment;
 
     move-result-object v0
 

@@ -32,36 +32,36 @@
     const/4 v3, 0x0
 
     .line 48
-    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v2, v4}, Lmiui/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
+    invoke-virtual {v2, v4}, Landroid/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
 
     .line 49
-    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v2, v3}, Lmiui/app/ActionBar;->setDisplayShowHomeEnabled(Z)V
+    invoke-virtual {v2, v3}, Landroid/app/ActionBar;->setDisplayShowHomeEnabled(Z)V
 
     .line 50
-    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v2, v3}, Lmiui/app/ActionBar;->setDisplayShowTitleEnabled(Z)V
+    invoke-virtual {v2, v3}, Landroid/app/ActionBar;->setDisplayShowTitleEnabled(Z)V
 
     .line 51
-    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v2, v4}, Lmiui/app/ActionBar;->setHomeButtonEnabled(Z)V
+    invoke-virtual {v2, v4}, Landroid/app/ActionBar;->setHomeButtonEnabled(Z)V
 
     .line 52
-    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Landroid/app/ActionBar;
 
     const v3, 0x7f04008a
 
-    invoke-virtual {v2, v3}, Lmiui/app/ActionBar;->setCustomView(I)V
+    invoke-virtual {v2, v3}, Landroid/app/ActionBar;->setCustomView(I)V
 
     .line 53
-    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/hybrid/GalleryHybridActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v2}, Lmiui/app/ActionBar;->getCustomView()Landroid/view/View;
+    invoke-virtual {v2}, Landroid/app/ActionBar;->getCustomView()Landroid/view/View;
 
     move-result-object v1
 

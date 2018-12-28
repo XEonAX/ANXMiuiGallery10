@@ -248,36 +248,36 @@
     const/4 v4, 0x0
 
     .line 134
-    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v3, v5}, Lmiui/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
+    invoke-virtual {v3, v5}, Landroid/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
 
     .line 135
-    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v3, v4}, Lmiui/app/ActionBar;->setDisplayShowHomeEnabled(Z)V
+    invoke-virtual {v3, v4}, Landroid/app/ActionBar;->setDisplayShowHomeEnabled(Z)V
 
     .line 136
-    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v3, v4}, Lmiui/app/ActionBar;->setDisplayShowTitleEnabled(Z)V
+    invoke-virtual {v3, v4}, Landroid/app/ActionBar;->setDisplayShowTitleEnabled(Z)V
 
     .line 137
-    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v3, v5}, Lmiui/app/ActionBar;->setHomeButtonEnabled(Z)V
+    invoke-virtual {v3, v5}, Landroid/app/ActionBar;->setHomeButtonEnabled(Z)V
 
     .line 138
-    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Landroid/app/ActionBar;
 
     const v4, 0x7f0400b7
 
-    invoke-virtual {v3, v4}, Lmiui/app/ActionBar;->setCustomView(I)V
+    invoke-virtual {v3, v4}, Landroid/app/ActionBar;->setCustomView(I)V
 
     .line 139
-    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v3}, Lmiui/app/ActionBar;->getCustomView()Landroid/view/View;
+    invoke-virtual {v3}, Landroid/app/ActionBar;->getCustomView()Landroid/view/View;
 
     move-result-object v0
 
@@ -311,9 +311,9 @@
     invoke-virtual {v1, v3}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     .line 144
-    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v3, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v3}, Lmiui/app/ActionBar;->hide()V
+    invoke-virtual {v3}, Landroid/app/ActionBar;->hide()V
 
     .line 145
     return-void
@@ -1544,9 +1544,9 @@
     invoke-static {v0}, Lcom/miui/gallery/util/SystemUiUtil;->showSystemBars(Landroid/view/View;)V
 
     .line 369
-    iget-object v0, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v0}, Lmiui/app/ActionBar;->show()V
+    invoke-virtual {v0}, Landroid/app/ActionBar;->show()V
 
     .line 374
     :goto_0
@@ -1565,9 +1565,9 @@
     invoke-static {v0}, Lcom/miui/gallery/util/SystemUiUtil;->hideSystemBars(Landroid/view/View;)V
 
     .line 372
-    iget-object v0, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/movie/ui/activity/MovieActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v0}, Lmiui/app/ActionBar;->hide()V
+    invoke-virtual {v0}, Landroid/app/ActionBar;->hide()V
 
     goto :goto_0
 .end method

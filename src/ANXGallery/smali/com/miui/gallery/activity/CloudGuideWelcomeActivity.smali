@@ -1,5 +1,5 @@
 .class public Lcom/miui/gallery/activity/CloudGuideWelcomeActivity;
-.super Lmiui/app/Activity;
+.super Landroid/app/Activity;
 .source "CloudGuideWelcomeActivity.java"
 
 
@@ -9,7 +9,7 @@
 
     .prologue
     .line 9
-    invoke-direct {p0}, Lmiui/app/Activity;-><init>()V
+    invoke-direct {p0}, Landroid/app/Activity;-><init>()V
 
     return-void
 .end method
@@ -22,7 +22,7 @@
 
     .prologue
     .line 14
-    invoke-super {p0, p1}, Lmiui/app/Activity;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
     .line 15
     const v0, 0x7f04004e

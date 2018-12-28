@@ -3,7 +3,7 @@
 .source "HomePageActivity.java"
 
 # interfaces
-.implements Lmiui/app/ActionBar$FragmentViewPagerChangeListener;
+.implements Landroid/app/ActionBar$FragmentViewPagerChangeListener;
 
 
 # annotations

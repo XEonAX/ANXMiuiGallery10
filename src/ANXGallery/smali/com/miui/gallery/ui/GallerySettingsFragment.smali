@@ -1029,11 +1029,11 @@
     invoke-virtual {v1, v0}, Landroid/widget/TextView;->setHeight(I)V
 
     .line 263
-    invoke-virtual {p0}, Lcom/miui/gallery/ui/GallerySettingsFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/ui/GallerySettingsFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v2
 
-    invoke-virtual {v2, v1}, Lmiui/app/ActionBar;->setEndView(Landroid/view/View;)V
+    invoke-virtual {v2, v1}, Landroid/app/ActionBar;->setEndView(Landroid/view/View;)V
 
     .line 264
     iget-object v2, p0, Lcom/miui/gallery/ui/GallerySettingsFragment;->mDebugClickListener:Lcom/miui/gallery/widget/MultiClickListener;

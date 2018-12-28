@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/miui/gallery/ui/SearchFeedbackTaskController;-><init>(Lmiui/app/Fragment;Landroid/view/View;)V
+    value = Lcom/miui/gallery/ui/SearchFeedbackTaskController;-><init>(Landroid/app/Fragment;Landroid/view/View;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;

@@ -1291,20 +1291,20 @@
     .line 155
     iget-object v4, p0, Lcom/miui/gallery/ui/renameface/InputFaceNameFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v4}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v4}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v4
 
-    invoke-virtual {v4, v8, v8}, Lmiui/app/ActionBar;->setDisplayOptions(II)V
+    invoke-virtual {v4, v8, v8}, Landroid/app/ActionBar;->setDisplayOptions(II)V
 
     .line 157
     iget-object v4, p0, Lcom/miui/gallery/ui/renameface/InputFaceNameFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v4}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v4}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v4
 
-    invoke-virtual {v4, v3}, Lmiui/app/ActionBar;->setCustomView(Landroid/view/View;)V
+    invoke-virtual {v4, v3}, Landroid/app/ActionBar;->setCustomView(Landroid/view/View;)V
 
     .line 159
     const v4, 0x7f12018c

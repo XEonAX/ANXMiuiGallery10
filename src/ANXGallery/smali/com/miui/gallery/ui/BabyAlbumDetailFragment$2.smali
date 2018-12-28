@@ -52,11 +52,11 @@
 
     iget-object v1, v1, Lcom/miui/gallery/ui/BabyAlbumDetailFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v1}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v1}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v1
 
-    invoke-virtual {v1}, Lmiui/app/ActionBar;->getHeight()I
+    invoke-virtual {v1}, Landroid/app/ActionBar;->getHeight()I
 
     move-result v1
 

@@ -12,7 +12,7 @@
 
 
 # instance fields
-.field private mFragment:Lmiui/app/Fragment;
+.field private mFragment:Landroid/app/Fragment;
 
 .field private mIndicator:Landroid/view/View;
 
@@ -24,9 +24,9 @@
 
 
 # direct methods
-.method public constructor <init>(Lmiui/app/Fragment;Landroid/view/View;)V
+.method public constructor <init>(Landroid/app/Fragment;Landroid/view/View;)V
     .locals 2
-    .param p1, "fragment"    # Lmiui/app/Fragment;
+    .param p1, "fragment"    # Landroid/app/Fragment;
     .param p2, "indicator"    # Landroid/view/View;
 
     .prologue
@@ -39,7 +39,7 @@
     iput v0, p0, Lcom/miui/gallery/ui/SearchFeedbackTaskController;->mTaskStatus:I
 
     .line 36
-    iput-object p1, p0, Lcom/miui/gallery/ui/SearchFeedbackTaskController;->mFragment:Lmiui/app/Fragment;
+    iput-object p1, p0, Lcom/miui/gallery/ui/SearchFeedbackTaskController;->mFragment:Landroid/app/Fragment;
 
     .line 37
     iput-object p2, p0, Lcom/miui/gallery/ui/SearchFeedbackTaskController;->mIndicator:Landroid/view/View;
@@ -236,11 +236,11 @@
     :pswitch_1
     iget-object v0, p0, Lcom/miui/gallery/ui/SearchFeedbackTaskController;->mProgress:Landroid/widget/TextView;
 
-    iget-object v1, p0, Lcom/miui/gallery/ui/SearchFeedbackTaskController;->mFragment:Lmiui/app/Fragment;
+    iget-object v1, p0, Lcom/miui/gallery/ui/SearchFeedbackTaskController;->mFragment:Landroid/app/Fragment;
 
     const v2, 0x7f0e0415
 
-    invoke-virtual {v1, v2}, Lmiui/app/Fragment;->getString(I)Ljava/lang/String;
+    invoke-virtual {v1, v2}, Landroid/app/Fragment;->getString(I)Ljava/lang/String;
 
     move-result-object v1
 

@@ -1,5 +1,5 @@
 .class public Lcom/miui/security/CrossUserCompatActivity;
-.super Lmiui/app/Activity;
+.super Landroid/app/Activity;
 .source "CrossUserCompatActivity.java"
 
 
@@ -25,7 +25,7 @@
 
     .prologue
     .line 16
-    invoke-direct {p0}, Lmiui/app/Activity;-><init>()V
+    invoke-direct {p0}, Landroid/app/Activity;-><init>()V
 
     .line 20
     new-instance v0, Ljava/lang/Object;
@@ -161,7 +161,7 @@
     new-instance v0, Lcom/miui/security/CrossUserCompatActivity$CrossUserContextWrapper;
 
     .line 49
-    invoke-super {p0}, Lmiui/app/Activity;->getApplicationContext()Landroid/content/Context;
+    invoke-super {p0}, Landroid/app/Activity;->getApplicationContext()Landroid/content/Context;
 
     move-result-object v2
 
@@ -214,7 +214,7 @@
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 57
-    invoke-super {p0}, Lmiui/app/Activity;->getApplicationContext()Landroid/content/Context;
+    invoke-super {p0}, Landroid/app/Activity;->getApplicationContext()Landroid/content/Context;
 
     move-result-object v0
 
@@ -300,7 +300,7 @@
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 38
-    invoke-super {p0}, Lmiui/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
+    invoke-super {p0}, Landroid/app/Activity;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
 
@@ -364,7 +364,7 @@
 
     .line 65
     :cond_0
-    invoke-super {p0, p1}, Lmiui/app/Activity;->startActivity(Landroid/content/Intent;)V
+    invoke-super {p0, p1}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
 
     .line 66
     return-void
@@ -394,7 +394,7 @@
 
     .line 73
     :cond_0
-    invoke-super {p0, p1, p2}, Lmiui/app/Activity;->startActivity(Landroid/content/Intent;Landroid/os/Bundle;)V
+    invoke-super {p0, p1, p2}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;Landroid/os/Bundle;)V
 
     .line 74
     return-void
@@ -424,7 +424,7 @@
 
     .line 81
     :cond_0
-    invoke-super {p0, p1, p2}, Lmiui/app/Activity;->startActivityForResult(Landroid/content/Intent;I)V
+    invoke-super {p0, p1, p2}, Landroid/app/Activity;->startActivityForResult(Landroid/content/Intent;I)V
 
     .line 82
     return-void
@@ -455,7 +455,7 @@
 
     .line 89
     :cond_0
-    invoke-super {p0, p1, p2, p3}, Lmiui/app/Activity;->startActivityForResult(Landroid/content/Intent;ILandroid/os/Bundle;)V
+    invoke-super {p0, p1, p2, p3}, Landroid/app/Activity;->startActivityForResult(Landroid/content/Intent;ILandroid/os/Bundle;)V
 
     .line 90
     return-void
@@ -487,7 +487,7 @@
 
     .line 98
     :cond_0
-    invoke-super {p0, p1, p2, p3, p4}, Lmiui/app/Activity;->startActivityFromFragment(Landroid/app/Fragment;Landroid/content/Intent;ILandroid/os/Bundle;)V
+    invoke-super {p0, p1, p2, p3, p4}, Landroid/app/Activity;->startActivityFromFragment(Landroid/app/Fragment;Landroid/content/Intent;ILandroid/os/Bundle;)V
 
     .line 99
     return-void

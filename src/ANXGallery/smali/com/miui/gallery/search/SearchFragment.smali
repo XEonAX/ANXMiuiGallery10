@@ -46,7 +46,7 @@
     .line 57
     new-instance v0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;
 
-    invoke-direct {v0, p0, p0}, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;-><init>(Lmiui/app/Fragment;Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;)V
+    invoke-direct {v0, p0, p0}, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;-><init>(Landroid/app/Fragment;Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;)V
 
     iput-object v0, p0, Lcom/miui/gallery/search/SearchFragment;->mTransitionHelper:Lcom/miui/gallery/search/transitions/SearchTransitionHelper;
 
@@ -478,35 +478,35 @@
     .line 154
     iget-object v0, p0, Lcom/miui/gallery/search/SearchFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
     const/4 v1, 0x1
 
-    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
+    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
 
     .line 155
     iget-object v0, p0, Lcom/miui/gallery/search/SearchFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
     iget-object v1, p0, Lcom/miui/gallery/search/SearchFragment;->mSearchView:Lcom/miui/gallery/search/widget/SearchView;
 
-    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->setCustomView(Landroid/view/View;)V
+    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setCustomView(Landroid/view/View;)V
 
     .line 156
     iget-object v0, p0, Lcom/miui/gallery/search/SearchFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
     const/4 v1, 0x0
 
-    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->setDisplayShowTitleEnabled(Z)V
+    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setDisplayShowTitleEnabled(Z)V
 
     .line 157
     return-void

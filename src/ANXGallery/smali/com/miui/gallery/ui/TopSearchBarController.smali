@@ -27,7 +27,7 @@
 
 .field private mDefaultHints:[Lcom/miui/gallery/search/hint/SearchBarHintItem;
 
-.field private mFragment:Lmiui/app/Fragment;
+.field private mFragment:Landroid/app/Fragment;
 
 .field private mHintAdapter:Lcom/miui/gallery/search/hint/SearchBarHintAdapter;
 
@@ -39,9 +39,9 @@
 
 
 # direct methods
-.method public constructor <init>(Lmiui/app/Fragment;Lcom/miui/gallery/search/widget/BannerSearchBar;Ljava/lang/String;)V
+.method public constructor <init>(Landroid/app/Fragment;Lcom/miui/gallery/search/widget/BannerSearchBar;Ljava/lang/String;)V
     .locals 3
-    .param p1, "fragment"    # Lmiui/app/Fragment;
+    .param p1, "fragment"    # Landroid/app/Fragment;
     .param p2, "bannerSearchBar"    # Lcom/miui/gallery/search/widget/BannerSearchBar;
     .param p3, "from"    # Ljava/lang/String;
 
@@ -65,7 +65,7 @@
     iput-object v1, p0, Lcom/miui/gallery/ui/TopSearchBarController;->mActionBundle:Landroid/os/Bundle;
 
     .line 57
-    iput-object p1, p0, Lcom/miui/gallery/ui/TopSearchBarController;->mFragment:Lmiui/app/Fragment;
+    iput-object p1, p0, Lcom/miui/gallery/ui/TopSearchBarController;->mFragment:Landroid/app/Fragment;
 
     .line 58
     iput-object p2, p0, Lcom/miui/gallery/ui/TopSearchBarController;->mSearchBar:Lcom/miui/gallery/search/widget/BannerSearchBar;
@@ -658,9 +658,9 @@
 
     .prologue
     .line 101
-    iget-object v0, p0, Lcom/miui/gallery/ui/TopSearchBarController;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/ui/TopSearchBarController;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v0}, Lmiui/app/Fragment;->getActivity()Landroid/app/Activity;
+    invoke-virtual {v0}, Landroid/app/Fragment;->getActivity()Landroid/app/Activity;
 
     move-result-object v0
 
@@ -672,9 +672,9 @@
 
     .prologue
     .line 97
-    iget-object v0, p0, Lcom/miui/gallery/ui/TopSearchBarController;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/ui/TopSearchBarController;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v0}, Lmiui/app/Fragment;->getLoaderManager()Landroid/app/LoaderManager;
+    invoke-virtual {v0}, Landroid/app/Fragment;->getLoaderManager()Landroid/app/LoaderManager;
 
     move-result-object v0
 

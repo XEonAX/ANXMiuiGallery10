@@ -138,18 +138,18 @@
     invoke-direct {p0, v0}, Lcom/miui/gallery/activity/CleanerPhotoPickActivity;->startFragmentByType(I)V
 
     .line 21
-    iget-object v1, p0, Lcom/miui/gallery/activity/CleanerPhotoPickActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v1, p0, Lcom/miui/gallery/activity/CleanerPhotoPickActivity;->mActionBar:Landroid/app/ActionBar;
 
     const v2, 0x7f040048
 
-    invoke-virtual {v1, v2}, Lmiui/app/ActionBar;->setCustomView(I)V
+    invoke-virtual {v1, v2}, Landroid/app/ActionBar;->setCustomView(I)V
 
     .line 22
-    iget-object v1, p0, Lcom/miui/gallery/activity/CleanerPhotoPickActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v1, p0, Lcom/miui/gallery/activity/CleanerPhotoPickActivity;->mActionBar:Landroid/app/ActionBar;
 
     const/4 v2, 0x1
 
-    invoke-virtual {v1, v2}, Lmiui/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
+    invoke-virtual {v1, v2}, Landroid/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
 
     .line 23
     return-void

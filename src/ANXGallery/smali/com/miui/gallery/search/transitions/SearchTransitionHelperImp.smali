@@ -8,14 +8,14 @@
 
 
 # direct methods
-.method public constructor <init>(Lmiui/app/Fragment;Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;)V
+.method public constructor <init>(Landroid/app/Fragment;Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;)V
     .locals 1
-    .param p1, "fragment"    # Lmiui/app/Fragment;
+    .param p1, "fragment"    # Landroid/app/Fragment;
     .param p2, "enterTransitionListener"    # Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;
 
     .prologue
     .line 22
-    invoke-direct {p0, p1, p2}, Lcom/miui/gallery/search/transitions/SearchTransitionHelper;-><init>(Lmiui/app/Fragment;Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;)V
+    invoke-direct {p0, p1, p2}, Lcom/miui/gallery/search/transitions/SearchTransitionHelper;-><init>(Landroid/app/Fragment;Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;)V
 
     .line 30
     invoke-static {}, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->supportSharedElementTransition()Z
@@ -57,31 +57,31 @@
     if-eqz v7, :cond_1
 
     .line 56
-    iget-object v7, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Lmiui/app/Fragment;
+    iget-object v7, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Landroid/app/Fragment;
 
     const v8, 0x7f0e0438
 
-    invoke-virtual {v7, v8}, Lmiui/app/Fragment;->getString(I)Ljava/lang/String;
+    invoke-virtual {v7, v8}, Landroid/app/Fragment;->getString(I)Ljava/lang/String;
 
     move-result-object v5
 
     .line 57
     .local v5, "inputName":Ljava/lang/String;
-    iget-object v7, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Lmiui/app/Fragment;
+    iget-object v7, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Landroid/app/Fragment;
 
     const v8, 0x7f0e0437
 
-    invoke-virtual {v7, v8}, Lmiui/app/Fragment;->getString(I)Ljava/lang/String;
+    invoke-virtual {v7, v8}, Landroid/app/Fragment;->getString(I)Ljava/lang/String;
 
     move-result-object v3
 
     .line 58
     .local v3, "iconName":Ljava/lang/String;
-    iget-object v7, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Lmiui/app/Fragment;
+    iget-object v7, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Landroid/app/Fragment;
 
     const v8, 0x7f0e0439
 
-    invoke-virtual {v7, v8}, Lmiui/app/Fragment;->getString(I)Ljava/lang/String;
+    invoke-virtual {v7, v8}, Landroid/app/Fragment;->getString(I)Ljava/lang/String;
 
     move-result-object v4
 
@@ -93,9 +93,9 @@
 
     .line 61
     .local v6, "transition":Landroid/transition/TransitionSet;
-    iget-object v7, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Lmiui/app/Fragment;
+    iget-object v7, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v7}, Lmiui/app/Fragment;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {v7}, Landroid/app/Fragment;->getResources()Landroid/content/res/Resources;
 
     move-result-object v7
 
@@ -242,9 +242,9 @@
     if-eqz v0, :cond_0
 
     .line 48
-    iget-object v0, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v0}, Lmiui/app/Fragment;->getActivity()Landroid/app/Activity;
+    invoke-virtual {v0}, Landroid/app/Fragment;->getActivity()Landroid/app/Activity;
 
     move-result-object v0
 
@@ -261,9 +261,9 @@
     invoke-virtual {v0, v1}, Landroid/view/Window;->setSharedElementEnterTransition(Landroid/transition/Transition;)V
 
     .line 49
-    iget-object v0, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelperImp;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v0}, Lmiui/app/Fragment;->getActivity()Landroid/app/Activity;
+    invoke-virtual {v0}, Landroid/app/Fragment;->getActivity()Landroid/app/Activity;
 
     move-result-object v0
 

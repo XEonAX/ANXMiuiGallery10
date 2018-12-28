@@ -980,11 +980,11 @@
     :goto_1
     iget-object v5, p0, Lcom/miui/gallery/ui/PeoplePageFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v5}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v5}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v5
 
-    invoke-virtual {v5, v3}, Lmiui/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
+    invoke-virtual {v5, v3}, Landroid/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
 
     .line 581
     .end local v2    # "markRelation":Ljava/lang/String;

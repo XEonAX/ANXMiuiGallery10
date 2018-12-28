@@ -317,7 +317,7 @@
     .line 54
     iget-object v3, p0, Lcom/miui/gallery/ui/AlbumLocalPageFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v3}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v3}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v3
 
@@ -329,7 +329,7 @@
 
     move-result-object v4
 
-    invoke-virtual {v3, v4}, Lmiui/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
+    invoke-virtual {v3, v4}, Landroid/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
 
     .line 55
     return-object v2

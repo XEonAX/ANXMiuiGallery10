@@ -1641,14 +1641,14 @@
     const/4 v5, 0x0
 
     .line 194
-    iget-object v0, p0, Lcom/miui/gallery/picker/PickGalleryActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/picker/PickGalleryActivity;->mActionBar:Landroid/app/ActionBar;
 
     const-string v1, "PickHomePageFragment"
 
-    iget-object v2, p0, Lcom/miui/gallery/picker/PickGalleryActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/picker/PickGalleryActivity;->mActionBar:Landroid/app/ActionBar;
 
     .line 195
-    invoke-virtual {v2}, Lmiui/app/ActionBar;->newTab()Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2}, Landroid/app/ActionBar;->newTab()Landroid/app/ActionBar$Tab;
 
     move-result-object v2
 
@@ -1661,17 +1661,17 @@
     const-class v3, Lcom/miui/gallery/picker/PickHomePageFragment;
 
     .line 194
-    invoke-virtual/range {v0 .. v5}, Lmiui/app/ActionBar;->addFragmentTab(Ljava/lang/String;Landroid/app/ActionBar$Tab;Ljava/lang/Class;Landroid/os/Bundle;Z)I
+    invoke-virtual/range {v0 .. v5}, Landroid/app/ActionBar;->addFragmentTab(Ljava/lang/String;Landroid/app/ActionBar$Tab;Ljava/lang/Class;Landroid/os/Bundle;Z)I
 
     .line 197
-    iget-object v0, p0, Lcom/miui/gallery/picker/PickGalleryActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/picker/PickGalleryActivity;->mActionBar:Landroid/app/ActionBar;
 
     const-string v1, "PickAlbumPageFragment"
 
-    iget-object v2, p0, Lcom/miui/gallery/picker/PickGalleryActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/picker/PickGalleryActivity;->mActionBar:Landroid/app/ActionBar;
 
     .line 198
-    invoke-virtual {v2}, Lmiui/app/ActionBar;->newTab()Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2}, Landroid/app/ActionBar;->newTab()Landroid/app/ActionBar$Tab;
 
     move-result-object v2
 
@@ -1684,16 +1684,16 @@
     const-class v3, Lcom/miui/gallery/picker/PickAlbumPageFragment;
 
     .line 197
-    invoke-virtual/range {v0 .. v5}, Lmiui/app/ActionBar;->addFragmentTab(Ljava/lang/String;Landroid/app/ActionBar$Tab;Ljava/lang/Class;Landroid/os/Bundle;Z)I
+    invoke-virtual/range {v0 .. v5}, Landroid/app/ActionBar;->addFragmentTab(Ljava/lang/String;Landroid/app/ActionBar$Tab;Ljava/lang/Class;Landroid/os/Bundle;Z)I
 
     .line 201
-    iget-object v0, p0, Lcom/miui/gallery/picker/PickGalleryActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/picker/PickGalleryActivity;->mActionBar:Landroid/app/ActionBar;
 
     new-instance v1, Lcom/miui/gallery/picker/PickGalleryActivity$2;
 
     invoke-direct {v1, p0}, Lcom/miui/gallery/picker/PickGalleryActivity$2;-><init>(Lcom/miui/gallery/picker/PickGalleryActivity;)V
 
-    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->addOnFragmentViewPagerChangeListener(Lmiui/app/ActionBar$FragmentViewPagerChangeListener;)V
+    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->addOnFragmentViewPagerChangeListener(Landroid/app/ActionBar$FragmentViewPagerChangeListener;)V
 
     .line 223
     return-void
@@ -1982,17 +1982,17 @@
     invoke-direct {p0}, Lcom/miui/gallery/picker/PickGalleryActivity;->sendStatistics()V
 
     .line 90
-    invoke-virtual {p0}, Lcom/miui/gallery/picker/PickGalleryActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/picker/PickGalleryActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
     .line 91
-    .local v0, "actionBar":Lmiui/app/ActionBar;
+    .local v0, "actionBar":Landroid/app/ActionBar;
     invoke-virtual {p0}, Lcom/miui/gallery/picker/PickGalleryActivity;->getFragmentManager()Landroid/app/FragmentManager;
 
     move-result-object v5
 
-    invoke-virtual {v0, p0, v5}, Lmiui/app/ActionBar;->setFragmentViewPagerMode(Landroid/content/Context;Landroid/app/FragmentManager;)V
+    invoke-virtual {v0, p0, v5}, Landroid/app/ActionBar;->setFragmentViewPagerMode(Landroid/content/Context;Landroid/app/FragmentManager;)V
 
     .line 92
     invoke-direct {p0}, Lcom/miui/gallery/picker/PickGalleryActivity;->setupTabFragments()V

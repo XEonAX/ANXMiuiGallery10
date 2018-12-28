@@ -5,7 +5,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/miui/gallery/app/BottomMenuDelegateImpl;->wrapActionBar(Lmiui/app/ActionBar;)Lmiui/app/ActionBar;
+    value = Lcom/miui/gallery/app/BottomMenuDelegateImpl;->wrapActionBar(Landroid/app/ActionBar;)Landroid/app/ActionBar;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,16 +19,16 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/miui/gallery/app/BottomMenuDelegateImpl;Lmiui/app/ActionBar;)V
+.method constructor <init>(Lcom/miui/gallery/app/BottomMenuDelegateImpl;Landroid/app/ActionBar;)V
     .locals 0
     .param p1, "this$0"    # Lcom/miui/gallery/app/BottomMenuDelegateImpl;
-    .param p2, "wrapped"    # Lmiui/app/ActionBar;
+    .param p2, "wrapped"    # Landroid/app/ActionBar;
 
     .prologue
     .line 107
     iput-object p1, p0, Lcom/miui/gallery/app/BottomMenuDelegateImpl$1;->this$0:Lcom/miui/gallery/app/BottomMenuDelegateImpl;
 
-    invoke-direct {p0, p2}, Lcom/miui/gallery/view/ActionBarWrapper;-><init>(Lmiui/app/ActionBar;)V
+    invoke-direct {p0, p2}, Lcom/miui/gallery/view/ActionBarWrapper;-><init>(Landroid/app/ActionBar;)V
 
     return-void
 .end method

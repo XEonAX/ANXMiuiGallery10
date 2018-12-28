@@ -52,7 +52,7 @@
 
     iget-object v0, p0, Lcom/miui/gallery/ui/PhotoPageFragment$1;->this$0:Lcom/miui/gallery/ui/PhotoPageFragment;
 
-    invoke-virtual {v0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
@@ -61,11 +61,11 @@
     .line 382
     iget-object v0, p0, Lcom/miui/gallery/ui/PhotoPageFragment$1;->this$0:Lcom/miui/gallery/ui/PhotoPageFragment;
 
-    invoke-virtual {v0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v0}, Lcom/miui/gallery/ui/PhotoPageFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lmiui/app/ActionBar;->getHeight()I
+    invoke-virtual {v0}, Landroid/app/ActionBar;->getHeight()I
 
     move-result v0
 

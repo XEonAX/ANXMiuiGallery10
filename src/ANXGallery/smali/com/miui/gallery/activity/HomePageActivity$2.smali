@@ -45,9 +45,9 @@
     .line 189
     iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity$2;->this$0:Lcom/miui/gallery/activity/HomePageActivity;
 
-    iget-object v2, v2, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v2, v2, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v2}, Lmiui/app/ActionBar;->getCustomView()Landroid/view/View;
+    invoke-virtual {v2}, Landroid/app/ActionBar;->getCustomView()Landroid/view/View;
 
     move-result-object v0
 

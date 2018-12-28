@@ -390,9 +390,9 @@
     goto :goto_0
 .end method
 
-.method protected wrapActionBar(Lmiui/app/ActionBar;)Lmiui/app/ActionBar;
+.method protected wrapActionBar(Landroid/app/ActionBar;)Landroid/app/ActionBar;
     .locals 1
-    .param p1, "actionBar"    # Lmiui/app/ActionBar;
+    .param p1, "actionBar"    # Landroid/app/ActionBar;
 
     .prologue
     .line 103
@@ -413,7 +413,7 @@
 
     iget-object v0, p0, Lcom/miui/gallery/app/BottomMenuDelegateImpl;->mActionBarWrapper:Lcom/miui/gallery/view/ActionBarWrapper;
 
-    invoke-virtual {v0}, Lcom/miui/gallery/view/ActionBarWrapper;->getWrapped()Lmiui/app/ActionBar;
+    invoke-virtual {v0}, Lcom/miui/gallery/view/ActionBarWrapper;->getWrapped()Landroid/app/ActionBar;
 
     move-result-object v0
 
@@ -423,7 +423,7 @@
     :cond_1
     new-instance v0, Lcom/miui/gallery/app/BottomMenuDelegateImpl$1;
 
-    invoke-direct {v0, p0, p1}, Lcom/miui/gallery/app/BottomMenuDelegateImpl$1;-><init>(Lcom/miui/gallery/app/BottomMenuDelegateImpl;Lmiui/app/ActionBar;)V
+    invoke-direct {v0, p0, p1}, Lcom/miui/gallery/app/BottomMenuDelegateImpl$1;-><init>(Lcom/miui/gallery/app/BottomMenuDelegateImpl;Landroid/app/ActionBar;)V
 
     iput-object v0, p0, Lcom/miui/gallery/app/BottomMenuDelegateImpl;->mActionBarWrapper:Lcom/miui/gallery/view/ActionBarWrapper;
 

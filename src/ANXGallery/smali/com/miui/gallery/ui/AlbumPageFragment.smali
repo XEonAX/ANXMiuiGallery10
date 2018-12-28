@@ -1266,7 +1266,7 @@
 
     const-string v7, "from_album_page"
 
-    invoke-direct {v5, p0, v6, v7}, Lcom/miui/gallery/ui/TopSearchBarController;-><init>(Lmiui/app/Fragment;Lcom/miui/gallery/search/widget/BannerSearchBar;Ljava/lang/String;)V
+    invoke-direct {v5, p0, v6, v7}, Lcom/miui/gallery/ui/TopSearchBarController;-><init>(Landroid/app/Fragment;Lcom/miui/gallery/search/widget/BannerSearchBar;Ljava/lang/String;)V
 
     iput-object v5, p0, Lcom/miui/gallery/ui/AlbumPageFragment;->mSearchBarController:Lcom/miui/gallery/ui/TopSearchBarController;
 
@@ -1451,7 +1451,7 @@
 
     const-string v3, "from_album_page"
 
-    invoke-direct {v1, p0, v2, v3}, Lcom/miui/gallery/ui/TopSearchBarController;-><init>(Lmiui/app/Fragment;Lcom/miui/gallery/search/widget/BannerSearchBar;Ljava/lang/String;)V
+    invoke-direct {v1, p0, v2, v3}, Lcom/miui/gallery/ui/TopSearchBarController;-><init>(Landroid/app/Fragment;Lcom/miui/gallery/search/widget/BannerSearchBar;Ljava/lang/String;)V
 
     iput-object v1, p0, Lcom/miui/gallery/ui/AlbumPageFragment;->mSearchBarController:Lcom/miui/gallery/ui/TopSearchBarController;
 

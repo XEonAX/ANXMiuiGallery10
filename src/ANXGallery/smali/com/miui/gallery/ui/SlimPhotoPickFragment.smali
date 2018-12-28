@@ -524,13 +524,13 @@
     .line 52
     iget-object v2, p0, Lcom/miui/gallery/ui/SlimPhotoPickFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v2}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v2}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v2
 
     const v3, 0x7f0e00e0
 
-    invoke-virtual {v2, v3}, Lmiui/app/ActionBar;->setTitle(I)V
+    invoke-virtual {v2, v3}, Landroid/app/ActionBar;->setTitle(I)V
 
     .line 53
     invoke-super {p0, p1, p2, p3}, Lcom/miui/gallery/ui/PhotoListFragmentBase;->onInflateView(Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Landroid/os/Bundle;)Landroid/view/View;
@@ -559,11 +559,11 @@
     .line 56
     iget-object v2, p0, Lcom/miui/gallery/ui/SlimPhotoPickFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v2}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v2}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v2
 
-    invoke-virtual {v2}, Lmiui/app/ActionBar;->getCustomView()Landroid/view/View;
+    invoke-virtual {v2}, Landroid/app/ActionBar;->getCustomView()Landroid/view/View;
 
     move-result-object v2
 

@@ -4,7 +4,7 @@
 
 
 # instance fields
-.field private mFragment:Lmiui/app/Fragment;
+.field private mFragment:Landroid/app/Fragment;
 
 
 # direct methods
@@ -38,9 +38,9 @@
 
     .prologue
     .line 106
-    iget-object v0, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Lmiui/app/Fragment;
+    iget-object v0, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Landroid/app/Fragment;
 
-    invoke-virtual {v0, p1, p2, p3}, Lmiui/app/Fragment;->onActivityResult(IILandroid/content/Intent;)V
+    invoke-virtual {v0, p1, p2, p3}, Landroid/app/Fragment;->onActivityResult(IILandroid/content/Intent;)V
 
     .line 107
     return-void
@@ -314,12 +314,12 @@
 
     move-result-object v6
 
-    check-cast v6, Lmiui/app/Fragment;
+    check-cast v6, Landroid/app/Fragment;
 
-    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Lmiui/app/Fragment;
+    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Landroid/app/Fragment;
 
     .line 82
-    iget-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Lmiui/app/Fragment;
+    iget-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Landroid/app/Fragment;
 
     if-nez v6, :cond_0
 
@@ -361,11 +361,11 @@
 
     invoke-direct {v6}, Lcom/miui/gallery/search/resultpage/SearchImageResultFragment;-><init>()V
 
-    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Lmiui/app/Fragment;
+    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Landroid/app/Fragment;
 
     .line 100
     :goto_3
-    iget-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Lmiui/app/Fragment;
+    iget-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Landroid/app/Fragment;
 
     const-string v7, "RootFragment"
 
@@ -388,7 +388,7 @@
 
     invoke-direct {v6}, Lcom/miui/gallery/search/resultpage/LocationListFragment;-><init>()V
 
-    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Lmiui/app/Fragment;
+    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Landroid/app/Fragment;
 
     goto :goto_3
 
@@ -407,7 +407,7 @@
 
     invoke-direct {v6}, Lcom/miui/gallery/search/resultpage/TagListFragment;-><init>()V
 
-    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Lmiui/app/Fragment;
+    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Landroid/app/Fragment;
 
     goto :goto_3
 
@@ -426,7 +426,7 @@
 
     invoke-direct {v6}, Lcom/miui/gallery/search/resultpage/SearchFeedbackLikelyResultFragment;-><init>()V
 
-    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Lmiui/app/Fragment;
+    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Landroid/app/Fragment;
 
     goto :goto_3
 
@@ -436,7 +436,7 @@
 
     invoke-direct {v6}, Lcom/miui/gallery/search/resultpage/SearchResultFragment;-><init>()V
 
-    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Lmiui/app/Fragment;
+    iput-object v6, p0, Lcom/miui/gallery/search/resultpage/SearchResultActivity;->mFragment:Landroid/app/Fragment;
 
     goto :goto_3
 .end method

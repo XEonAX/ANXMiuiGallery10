@@ -1,5 +1,5 @@
 .class public abstract Lcom/miui/gallery/picker/PickerCompatFragment;
-.super Lmiui/app/Fragment;
+.super Landroid/app/Fragment;
 .source "PickerCompatFragment.java"
 
 
@@ -31,7 +31,7 @@
 
     .prologue
     .line 13
-    invoke-direct {p0}, Lmiui/app/Fragment;-><init>()V
+    invoke-direct {p0}, Landroid/app/Fragment;-><init>()V
 
     .line 16
     const/4 v0, 0x0
@@ -62,7 +62,7 @@
 
     .prologue
     .line 20
-    invoke-super {p0, p1}, Lmiui/app/Fragment;->onAttach(Landroid/app/Activity;)V
+    invoke-super {p0, p1}, Landroid/app/Fragment;->onAttach(Landroid/app/Activity;)V
 
     .line 21
     iput-object p1, p0, Lcom/miui/gallery/picker/PickerCompatFragment;->mActivity:Landroid/app/Activity;
@@ -77,7 +77,7 @@
 
     .prologue
     .line 31
-    invoke-super {p0, p1}, Lmiui/app/Fragment;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Landroid/app/Fragment;->onCreate(Landroid/os/Bundle;)V
 
     .line 32
     invoke-virtual {p0}, Lcom/miui/gallery/picker/PickerCompatFragment;->getThemeRes()I
@@ -101,7 +101,7 @@
 
     .prologue
     .line 26
-    invoke-super {p0}, Lmiui/app/Fragment;->onDetach()V
+    invoke-super {p0}, Landroid/app/Fragment;->onDetach()V
 
     .line 27
     const/4 v0, 0x0
@@ -117,7 +117,7 @@
 
     .prologue
     .line 55
-    invoke-super {p0}, Lmiui/app/Fragment;->onPause()V
+    invoke-super {p0}, Landroid/app/Fragment;->onPause()V
 
     .line 56
     invoke-virtual {p0}, Lcom/miui/gallery/picker/PickerCompatFragment;->useImageLoader()Z
@@ -177,7 +177,7 @@
 
     .prologue
     .line 71
-    invoke-super {p0}, Lmiui/app/Fragment;->onResume()V
+    invoke-super {p0}, Landroid/app/Fragment;->onResume()V
 
     .line 72
     invoke-virtual {p0}, Lcom/miui/gallery/picker/PickerCompatFragment;->useImageLoader()Z
@@ -246,7 +246,7 @@
 
     .prologue
     .line 84
-    invoke-super {p0, p1}, Lmiui/app/Fragment;->setUserVisibleHint(Z)V
+    invoke-super {p0, p1}, Landroid/app/Fragment;->setUserVisibleHint(Z)V
 
     .line 85
     invoke-virtual {p0}, Lcom/miui/gallery/picker/PickerCompatFragment;->getUserVisibleHint()Z

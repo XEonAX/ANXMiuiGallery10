@@ -346,11 +346,11 @@
 
     move-result-object v3
 
-    invoke-virtual {v3}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v3}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v3
 
-    invoke-virtual {v3, v7, v7}, Lmiui/app/ActionBar;->setDisplayOptions(II)V
+    invoke-virtual {v3, v7, v7}, Landroid/app/ActionBar;->setDisplayOptions(II)V
 
     .line 759
     iget-object v3, p0, Lcom/miui/gallery/card/ui/detail/StoryAlbumFragment$ActionBarHelper;->this$0:Lcom/miui/gallery/card/ui/detail/StoryAlbumFragment;
@@ -359,11 +359,11 @@
 
     move-result-object v3
 
-    invoke-virtual {v3}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v3}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v3
 
-    invoke-virtual {v3, v1}, Lmiui/app/ActionBar;->setCustomView(Landroid/view/View;)V
+    invoke-virtual {v3, v1}, Landroid/app/ActionBar;->setCustomView(Landroid/view/View;)V
 
     .line 760
     iget-object v3, p0, Lcom/miui/gallery/card/ui/detail/StoryAlbumFragment$ActionBarHelper;->this$0:Lcom/miui/gallery/card/ui/detail/StoryAlbumFragment;
@@ -415,7 +415,7 @@
 
     move-result-object v0
 
-    check-cast v0, Lmiui/app/Activity;
+    check-cast v0, Landroid/app/Activity;
 
     iget-object v2, p0, Lcom/miui/gallery/card/ui/detail/StoryAlbumFragment$ActionBarHelper;->this$0:Lcom/miui/gallery/card/ui/detail/StoryAlbumFragment;
 
@@ -426,7 +426,7 @@
     if-eqz v2, :cond_1
 
     :goto_1
-    invoke-virtual {v0, v1}, Lmiui/app/Activity;->setTranslucentStatus(I)V
+    invoke-virtual {v0, v1}, Landroid/app/Activity;->setTranslucentStatus(I)V
 
     .line 866
     iget-object v0, p0, Lcom/miui/gallery/card/ui/detail/StoryAlbumFragment$ActionBarHelper;->mBackView:Landroid/widget/ImageView;
@@ -470,13 +470,13 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
     const/4 v1, 0x0
 
-    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
 
     goto :goto_0
 
@@ -494,9 +494,9 @@
 
     move-result-object v0
 
-    check-cast v0, Lmiui/app/Activity;
+    check-cast v0, Landroid/app/Activity;
 
-    invoke-virtual {v0, v1}, Lmiui/app/Activity;->setTranslucentStatus(I)V
+    invoke-virtual {v0, v1}, Landroid/app/Activity;->setTranslucentStatus(I)V
 
     .line 874
     iget-object v0, p0, Lcom/miui/gallery/card/ui/detail/StoryAlbumFragment$ActionBarHelper;->mBackView:Landroid/widget/ImageView;
@@ -540,13 +540,13 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
     iget-object v1, p0, Lcom/miui/gallery/card/ui/detail/StoryAlbumFragment$ActionBarHelper;->mDefaultActionBarBg:Landroid/graphics/drawable/Drawable;
 
-    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
 
     goto/16 :goto_0
 .end method
@@ -698,11 +698,11 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lmiui/app/ActionBar;->getCustomView()Landroid/view/View;
+    invoke-virtual {v0}, Landroid/app/ActionBar;->getCustomView()Landroid/view/View;
 
     move-result-object v0
 

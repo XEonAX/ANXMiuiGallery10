@@ -1,5 +1,5 @@
 .class public abstract Lcom/miui/gallery/ui/BaseFragment;
-.super Lmiui/app/Fragment;
+.super Landroid/app/Fragment;
 .source "BaseFragment.java"
 
 
@@ -15,7 +15,7 @@
 
     .prologue
     .line 12
-    invoke-direct {p0}, Lmiui/app/Fragment;-><init>()V
+    invoke-direct {p0}, Landroid/app/Fragment;-><init>()V
 
     .line 16
     const/4 v0, 0x0
@@ -85,7 +85,7 @@
 
     .prologue
     .line 38
-    invoke-super {p0, p1}, Lmiui/app/Fragment;->onAttach(Landroid/app/Activity;)V
+    invoke-super {p0, p1}, Landroid/app/Fragment;->onAttach(Landroid/app/Activity;)V
 
     .line 39
     check-cast p1, Lcom/miui/gallery/activity/BaseActivity;
@@ -103,7 +103,7 @@
 
     .prologue
     .line 19
-    invoke-super {p0, p1}, Lmiui/app/Fragment;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Landroid/app/Fragment;->onCreate(Landroid/os/Bundle;)V
 
     .line 20
     invoke-virtual {p0}, Lcom/miui/gallery/ui/BaseFragment;->getThemeRes()I
@@ -127,7 +127,7 @@
 
     .prologue
     .line 44
-    invoke-super {p0}, Lmiui/app/Fragment;->onDetach()V
+    invoke-super {p0}, Landroid/app/Fragment;->onDetach()V
 
     .line 45
     const/4 v0, 0x0
@@ -143,7 +143,7 @@
 
     .prologue
     .line 54
-    invoke-super {p0}, Lmiui/app/Fragment;->onPause()V
+    invoke-super {p0}, Landroid/app/Fragment;->onPause()V
 
     .line 55
     invoke-virtual {p0}, Lcom/miui/gallery/ui/BaseFragment;->useImageLoader()Z
@@ -186,7 +186,7 @@
 
     .prologue
     .line 66
-    invoke-super {p0}, Lmiui/app/Fragment;->onResume()V
+    invoke-super {p0}, Landroid/app/Fragment;->onResume()V
 
     .line 67
     invoke-virtual {p0}, Lcom/miui/gallery/ui/BaseFragment;->useImageLoader()Z
@@ -248,7 +248,7 @@
 
     .prologue
     .line 78
-    invoke-super {p0, p1}, Lmiui/app/Fragment;->setUserVisibleHint(Z)V
+    invoke-super {p0, p1}, Landroid/app/Fragment;->setUserVisibleHint(Z)V
 
     .line 79
     invoke-virtual {p0}, Lcom/miui/gallery/ui/BaseFragment;->getUserVisibleHint()Z

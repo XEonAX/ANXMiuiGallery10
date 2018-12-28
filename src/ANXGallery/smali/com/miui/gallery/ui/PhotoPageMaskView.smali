@@ -356,7 +356,7 @@
 
     iget-object v1, p0, Lcom/miui/gallery/ui/PhotoPageMaskView;->mHost:Lcom/miui/gallery/app/BottomMenuFragment;
 
-    invoke-virtual {v1}, Lcom/miui/gallery/app/BottomMenuFragment;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v1}, Lcom/miui/gallery/app/BottomMenuFragment;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v1
 

@@ -321,7 +321,7 @@
     move-result-object v3
 
     .line 2118
-    invoke-static {v1, v2, v3}, Lcom/miui/gallery/ui/ProjectSlideFragment;->showProjectSlideFragment(Lcom/miui/gallery/activity/BaseActivity;Lmiui/app/Fragment;Ljava/lang/String;)V
+    invoke-static {v1, v2, v3}, Lcom/miui/gallery/ui/ProjectSlideFragment;->showProjectSlideFragment(Lcom/miui/gallery/activity/BaseActivity;Landroid/app/Fragment;Ljava/lang/String;)V
 
     goto :goto_0
 .end method

@@ -14,13 +14,13 @@
 # instance fields
 .field protected mEnterTransitionListener:Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;
 
-.field protected mFragment:Lmiui/app/Fragment;
+.field protected mFragment:Landroid/app/Fragment;
 
 
 # direct methods
-.method public constructor <init>(Lmiui/app/Fragment;Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;)V
+.method public constructor <init>(Landroid/app/Fragment;Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;)V
     .locals 0
-    .param p1, "fragment"    # Lmiui/app/Fragment;
+    .param p1, "fragment"    # Landroid/app/Fragment;
     .param p2, "enterTransitionListener"    # Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;
 
     .prologue
@@ -28,7 +28,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 17
-    iput-object p1, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelper;->mFragment:Lmiui/app/Fragment;
+    iput-object p1, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelper;->mFragment:Landroid/app/Fragment;
 
     .line 18
     iput-object p2, p0, Lcom/miui/gallery/search/transitions/SearchTransitionHelper;->mEnterTransitionListener:Lcom/miui/gallery/search/transitions/SearchTransitionHelper$SearchTransitionListener;

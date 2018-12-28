@@ -62,10 +62,10 @@
     return-void
 .end method
 
-.method public static showProjectSlideFragment(Lcom/miui/gallery/activity/BaseActivity;Lmiui/app/Fragment;Ljava/lang/String;)V
+.method public static showProjectSlideFragment(Lcom/miui/gallery/activity/BaseActivity;Landroid/app/Fragment;Ljava/lang/String;)V
     .locals 4
     .param p0, "activity"    # Lcom/miui/gallery/activity/BaseActivity;
-    .param p1, "targetFragment"    # Lmiui/app/Fragment;
+    .param p1, "targetFragment"    # Landroid/app/Fragment;
     .param p2, "connectedDevice"    # Ljava/lang/String;
 
     .prologue

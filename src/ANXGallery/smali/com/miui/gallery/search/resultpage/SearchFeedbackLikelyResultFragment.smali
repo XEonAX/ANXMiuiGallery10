@@ -257,13 +257,13 @@
     .line 69
     iget-object v5, p0, Lcom/miui/gallery/search/resultpage/SearchFeedbackLikelyResultFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v5}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v5}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v5
 
     const/16 v6, 0x10
 
-    invoke-virtual {v5, v6}, Lmiui/app/ActionBar;->setDisplayOptions(I)V
+    invoke-virtual {v5, v6}, Landroid/app/ActionBar;->setDisplayOptions(I)V
 
     .line 70
     new-instance v2, Landroid/app/ActionBar$LayoutParams;
@@ -276,11 +276,11 @@
     .local v2, "lp":Landroid/app/ActionBar$LayoutParams;
     iget-object v5, p0, Lcom/miui/gallery/search/resultpage/SearchFeedbackLikelyResultFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v5}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v5}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v5
 
-    invoke-virtual {v5, v1, v2}, Lmiui/app/ActionBar;->setCustomView(Landroid/view/View;Landroid/app/ActionBar$LayoutParams;)V
+    invoke-virtual {v5, v1, v2}, Landroid/app/ActionBar;->setCustomView(Landroid/view/View;Landroid/app/ActionBar$LayoutParams;)V
 
     .line 74
     return-void

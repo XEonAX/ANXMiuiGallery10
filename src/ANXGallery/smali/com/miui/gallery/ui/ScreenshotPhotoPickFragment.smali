@@ -464,13 +464,13 @@
     .local v0, "view":Landroid/view/View;
     iget-object v1, p0, Lcom/miui/gallery/ui/ScreenshotPhotoPickFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v1}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v1}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v1
 
     const v2, 0x7f0e00dc
 
-    invoke-virtual {v1, v2}, Lmiui/app/ActionBar;->setTitle(I)V
+    invoke-virtual {v1, v2}, Landroid/app/ActionBar;->setTitle(I)V
 
     .line 52
     new-instance v1, Lcom/miui/gallery/adapter/AlbumDetailTimeLineAdapter;
@@ -567,11 +567,11 @@
     .line 67
     iget-object v1, p0, Lcom/miui/gallery/ui/ScreenshotPhotoPickFragment;->mActivity:Lcom/miui/gallery/activity/BaseActivity;
 
-    invoke-virtual {v1}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v1}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v1
 
-    invoke-virtual {v1}, Lmiui/app/ActionBar;->getCustomView()Landroid/view/View;
+    invoke-virtual {v1}, Landroid/app/ActionBar;->getCustomView()Landroid/view/View;
 
     move-result-object v1
 

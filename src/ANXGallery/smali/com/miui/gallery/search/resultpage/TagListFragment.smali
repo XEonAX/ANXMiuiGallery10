@@ -195,7 +195,7 @@
 
     iget-object v2, p0, Lcom/miui/gallery/search/resultpage/TagListFragment;->mSearchFeedbackTaskIndicator:Landroid/view/View;
 
-    invoke-direct {v1, p0, v2}, Lcom/miui/gallery/ui/SearchFeedbackTaskController;-><init>(Lmiui/app/Fragment;Landroid/view/View;)V
+    invoke-direct {v1, p0, v2}, Lcom/miui/gallery/ui/SearchFeedbackTaskController;-><init>(Landroid/app/Fragment;Landroid/view/View;)V
 
     iput-object v1, p0, Lcom/miui/gallery/search/resultpage/TagListFragment;->mSearchFeedbackTaskController:Lcom/miui/gallery/ui/SearchFeedbackTaskController;
 

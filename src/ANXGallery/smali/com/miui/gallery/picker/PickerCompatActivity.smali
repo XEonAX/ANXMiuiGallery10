@@ -8,7 +8,7 @@
 
 
 # instance fields
-.field protected mActionBar:Lmiui/app/ActionBar;
+.field protected mActionBar:Landroid/app/ActionBar;
 
 .field private mCtaNoticeDialog:Lcom/miui/gallery/ui/CtaNoticeFragment;
 
@@ -127,11 +127,11 @@
 
     .prologue
     .line 92
-    invoke-virtual {p0}, Lcom/miui/gallery/picker/PickerCompatActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/picker/PickerCompatActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/miui/gallery/picker/PickerCompatActivity;->mActionBar:Lmiui/app/ActionBar;
+    iput-object v0, p0, Lcom/miui/gallery/picker/PickerCompatActivity;->mActionBar:Landroid/app/ActionBar;
 
     .line 93
     return-void
@@ -423,14 +423,14 @@
 
     .prologue
     .line 97
-    iget-object v0, p0, Lcom/miui/gallery/picker/PickerCompatActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/picker/PickerCompatActivity;->mActionBar:Landroid/app/ActionBar;
 
     if-eqz v0, :cond_0
 
     .line 98
-    iget-object v0, p0, Lcom/miui/gallery/picker/PickerCompatActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/picker/PickerCompatActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v0, p1}, Lmiui/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
+    invoke-virtual {v0, p1}, Landroid/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
 
     .line 100
     :cond_0

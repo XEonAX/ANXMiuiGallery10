@@ -64,24 +64,24 @@
     .line 283
     iget-object v3, p0, Lcom/miui/gallery/picker/PickerActivity$Decor$Multiple;->mActivity:Lcom/miui/gallery/picker/PickerActivity;
 
-    invoke-virtual {v3}, Lcom/miui/gallery/picker/PickerActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {v3}, Lcom/miui/gallery/picker/PickerActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
     .line 284
-    .local v0, "actionBar":Lmiui/app/ActionBar;
-    invoke-virtual {v0, v4}, Lmiui/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
+    .local v0, "actionBar":Landroid/app/ActionBar;
+    invoke-virtual {v0, v4}, Landroid/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
 
     .line 285
-    invoke-virtual {v0, v5}, Lmiui/app/ActionBar;->setTabsMode(Z)V
+    invoke-virtual {v0, v5}, Landroid/app/ActionBar;->setTabsMode(Z)V
 
     .line 286
     const v3, 0x7f0400ef
 
-    invoke-virtual {v0, v3}, Lmiui/app/ActionBar;->setCustomView(I)V
+    invoke-virtual {v0, v3}, Landroid/app/ActionBar;->setCustomView(I)V
 
     .line 287
-    invoke-virtual {v0}, Lmiui/app/ActionBar;->getCustomView()Landroid/view/View;
+    invoke-virtual {v0}, Landroid/app/ActionBar;->getCustomView()Landroid/view/View;
 
     move-result-object v2
 
