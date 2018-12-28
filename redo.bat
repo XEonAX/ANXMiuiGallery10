@@ -1,5 +1,5 @@
 call .\recompile.bat
 call .\sign.bat
+call .\reinstall.bat
 call .\jadx.bat
-REM call .\reinstall.bat
-call .\remagisk.bat
+REM call .\remagisk.bat
