@@ -5,9 +5,9 @@
     <uses-permission android:name="android.permission.ACCESS_ALL_EXTERNAL_STORAGE"/>
     <uses-permission android:name="com.xiaomi.gallery.permission.CLOUD"/>
     <application android:largeHeap="true" android:name="com.miui.extraphoto.refocus.ExtraPhotoApp" android:supportsRtl="true">
-        <uses-library android:name="android-support-v13.jar"/>
-        <uses-library android:name="android-support-v7-recyclerview.jar"/>
-        <uses-library android:name="gson.jar"/>
+        <uses-library android:name="android-support-v13.jar" android:required="false"/>
+        <uses-library android:name="android-support-v7-recyclerview.jar" android:required="false"/>
+        <uses-library android:name="gson.jar" android:required="false"/>
         <meta-data android:name="notch.config" android:value="portrait"/>
         <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name=".refocus.RefocusActivity" android:screenOrientation="portrait" android:theme="@style/Theme.Dark.NoTitle">
             <intent-filter>
