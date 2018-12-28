@@ -1878,13 +1878,13 @@ public class CloudManager {
         r4 = r7.isEmpty();
         if (r4 != 0) goto L_0x0056;
     L_0x00a3:
-        if (r71 == 0) goto L_0x04f9;
+        if (r71 == 0) goto L_0x04fa;
     L_0x00a5:
         r4 = "should_operate_sync";
         r5 = 0;
         r0 = r71;
         r4 = r0.getBoolean(r4, r5);
-        if (r4 == 0) goto L_0x04f9;
+        if (r4 == 0) goto L_0x04fa;
     L_0x00b1:
         r4 = 1;
     L_0x00b2:
@@ -2166,8 +2166,8 @@ public class CloudManager {
         r4 = "set_album_attributes";
         r0 = r69;
         r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x0319;
-    L_0x02da:
+        if (r4 == 0) goto L_0x031a;
+    L_0x02db:
         r4 = "album_id";
         r0 = r71;
         r33 = r0.getLongArray(r4);
@@ -2186,7 +2186,7 @@ public class CloudManager {
         r4 = 1;
         r4 = (r34 > r4 ? 1 : (r34 == r4 ? 0 : -1));
         if (r4 != 0) goto L_0x009d;
-    L_0x0307:
+    L_0x0308:
         r4 = "should_request_sync";
         r5 = "set";
         r0 = r71;
@@ -2194,12 +2194,12 @@ public class CloudManager {
         r0 = r60;
         r0.putBoolean(r4, r5);
         goto L_0x009d;
-    L_0x0319:
+    L_0x031a:
         r4 = "force_top";
         r0 = r69;
         r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x0338;
-    L_0x0323:
+        if (r4 == 0) goto L_0x0339;
+    L_0x0324:
         r4 = "album_id";
         r0 = r71;
         r33 = r0.getLongArray(r4);
@@ -2209,12 +2209,12 @@ public class CloudManager {
         r3 = r33;
         forceTop(r0, r1, r2, r3);
         goto L_0x009d;
-    L_0x0338:
+    L_0x0339:
         r4 = "unforce_top";
         r0 = r69;
         r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x0358;
-    L_0x0343:
+        if (r4 == 0) goto L_0x0359;
+    L_0x0344:
         r4 = "album_id";
         r0 = r71;
         r33 = r0.getLongArray(r4);
@@ -2224,38 +2224,38 @@ public class CloudManager {
         r3 = r33;
         unforceTop(r0, r1, r2, r3);
         goto L_0x009d;
-    L_0x0358:
+    L_0x0359:
         r4 = "add_remove_secret";
         r0 = r69;
         r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x0446;
-    L_0x0362:
+        if (r4 == 0) goto L_0x0447;
+    L_0x0363:
         r4 = "operation_type";
         r0 = r71;
         r44 = r0.getInt(r4);
         r4 = 1;
         r0 = r44;
-        if (r0 != r4) goto L_0x03fe;
-    L_0x036f:
+        if (r0 != r4) goto L_0x03ff;
+    L_0x0370:
         r4 = "extra_src_media_ids";
         r0 = r71;
         r33 = r0.getLongArray(r4);
-        if (r33 != 0) goto L_0x03d5;
-    L_0x0379:
+        if (r33 != 0) goto L_0x03d6;
+    L_0x037a:
         r4 = "extra_src_uris";
         r0 = r71;
         r65 = r0.getParcelableArrayList(r4);
-        if (r65 == 0) goto L_0x03b7;
-    L_0x0383:
+        if (r65 == 0) goto L_0x03b8;
+    L_0x0384:
         r4 = r65.size();
         r0 = new long[r4];
         r33 = r0;
         r56 = 0;
-    L_0x038d:
+    L_0x038e:
         r4 = r65.size();
         r0 = r56;
-        if (r0 >= r4) goto L_0x03ae;
-    L_0x0395:
+        if (r0 >= r4) goto L_0x03af;
+    L_0x0396:
         r0 = r65;
         r1 = r56;
         r4 = r0.get(r1);
@@ -2266,40 +2266,40 @@ public class CloudManager {
         r4 = addToSecret(r0, r1, r2, r7, r4);
         r33[r56] = r4;
         r56 = r56 + 1;
-        goto L_0x038d;
-    L_0x03ae:
+        goto L_0x038e;
+    L_0x03af:
         r4 = "ids";
         r0 = r60;
         r1 = r33;
         r0.putLongArray(r4, r1);
-    L_0x03b7:
+    L_0x03b8:
         r63 = 0;
         r0 = r33;
         r5 = r0.length;
         r4 = 0;
-    L_0x03bd:
-        if (r4 >= r5) goto L_0x03c9;
-    L_0x03bf:
+    L_0x03be:
+        if (r4 >= r5) goto L_0x03ca;
+    L_0x03c0:
         r18 = r33[r4];
         r12 = 0;
         r6 = (r18 > r12 ? 1 : (r18 == r12 ? 0 : -1));
-        if (r6 <= 0) goto L_0x03fb;
-    L_0x03c7:
+        if (r6 <= 0) goto L_0x03fc;
+    L_0x03c8:
         r63 = 1;
-    L_0x03c9:
+    L_0x03ca:
         r4 = "should_request_sync";
         r0 = r60;
         r1 = r63;
         r0.putBoolean(r4, r1);
         goto L_0x009d;
-    L_0x03d5:
+    L_0x03d6:
         r56 = 0;
-    L_0x03d7:
+    L_0x03d8:
         r0 = r33;
         r4 = r0.length;
         r0 = r56;
-        if (r0 >= r4) goto L_0x03f1;
-    L_0x03de:
+        if (r0 >= r4) goto L_0x03f2;
+    L_0x03df:
         r44 = r33[r56];
         r40 = r66;
         r41 = r67;
@@ -2308,21 +2308,21 @@ public class CloudManager {
         r4 = addToSecret(r40, r41, r42, r43, r44);
         r33[r56] = r4;
         r56 = r56 + 1;
-        goto L_0x03d7;
-    L_0x03f1:
+        goto L_0x03d8;
+    L_0x03f2:
         r4 = "ids";
         r0 = r60;
         r1 = r33;
         r0.putLongArray(r4, r1);
-        goto L_0x03b7;
-    L_0x03fb:
+        goto L_0x03b8;
+    L_0x03fc:
         r4 = r4 + 1;
-        goto L_0x03bd;
-    L_0x03fe:
+        goto L_0x03be;
+    L_0x03ff:
         r4 = 2;
         r0 = r44;
         if (r0 != r4) goto L_0x009d;
-    L_0x0403:
+    L_0x0404:
         r4 = -1;
         r4 = java.lang.Long.valueOf(r4);
         r0 = r70;
@@ -2332,14 +2332,14 @@ public class CloudManager {
         r0 = r71;
         r33 = r0.getLongArray(r4);
         if (r33 == 0) goto L_0x009d;
-    L_0x041d:
+    L_0x041e:
         r56 = 0;
-    L_0x041f:
+    L_0x0420:
         r0 = r33;
         r4 = r0.length;
         r0 = r56;
-        if (r0 >= r4) goto L_0x043b;
-    L_0x0426:
+        if (r0 >= r4) goto L_0x043c;
+    L_0x0427:
         r46 = r33[r56];
         r40 = r66;
         r41 = r67;
@@ -2349,19 +2349,19 @@ public class CloudManager {
         r4 = removeFromSecret(r40, r41, r42, r43, r44, r46);
         r33[r56] = r4;
         r56 = r56 + 1;
-        goto L_0x041f;
-    L_0x043b:
+        goto L_0x0420;
+    L_0x043c:
         r4 = "ids";
         r0 = r60;
         r1 = r33;
         r0.putLongArray(r4, r1);
         goto L_0x009d;
-    L_0x0446:
+    L_0x0447:
         r4 = "add_remove_favorite";
         r0 = r69;
         r4 = r4.equals(r0);
         if (r4 == 0) goto L_0x009d;
-    L_0x0450:
+    L_0x0451:
         r4 = "add_remove_by";
         r0 = r71;
         r53 = r0.getInt(r4);
@@ -2370,34 +2370,34 @@ public class CloudManager {
         r44 = r0.getInt(r4);
         r61 = 0;
         switch(r53) {
-            case 1: goto L_0x04ca;
-            case 2: goto L_0x0470;
-            case 3: goto L_0x049d;
-            default: goto L_0x0465;
+            case 1: goto L_0x04cb;
+            case 2: goto L_0x0471;
+            case 3: goto L_0x049e;
+            default: goto L_0x0466;
         };
-    L_0x0465:
+    L_0x0466:
         r4 = "ids";
         r0 = r60;
         r1 = r61;
         r0.putLongArray(r4, r1);
         goto L_0x009d;
-    L_0x0470:
+    L_0x0471:
         r4 = "extra_src_sha1";
         r0 = r71;
         r62 = r0.getStringArray(r4);
-        if (r62 == 0) goto L_0x0465;
-    L_0x047a:
+        if (r62 == 0) goto L_0x0466;
+    L_0x047b:
         r0 = r62;
         r4 = r0.length;
         r0 = new long[r4];
         r61 = r0;
         r56 = 0;
-    L_0x0483:
+    L_0x0484:
         r0 = r62;
         r4 = r0.length;
         r0 = r56;
-        if (r0 >= r4) goto L_0x0465;
-    L_0x048a:
+        if (r0 >= r4) goto L_0x0466;
+    L_0x048b:
         r43 = r62[r56];
         r39 = r66;
         r40 = r67;
@@ -2406,24 +2406,24 @@ public class CloudManager {
         r4 = addRemoveFavoritesSha1(r39, r40, r41, r42, r43, r44);
         r61[r56] = r4;
         r56 = r56 + 1;
-        goto L_0x0483;
-    L_0x049d:
+        goto L_0x0484;
+    L_0x049e:
         r4 = "extra_src_paths";
         r0 = r71;
         r38 = r0.getStringArray(r4);
-        if (r38 == 0) goto L_0x04ca;
-    L_0x04a7:
+        if (r38 == 0) goto L_0x04cb;
+    L_0x04a8:
         r0 = r38;
         r4 = r0.length;
         r0 = new long[r4];
         r61 = r0;
         r56 = 0;
-    L_0x04b0:
+    L_0x04b1:
         r0 = r38;
         r4 = r0.length;
         r0 = r56;
-        if (r0 >= r4) goto L_0x04ca;
-    L_0x04b7:
+        if (r0 >= r4) goto L_0x04cb;
+    L_0x04b8:
         r43 = r38[r56];
         r39 = r66;
         r40 = r67;
@@ -2432,24 +2432,24 @@ public class CloudManager {
         r4 = addRemoveFavoritesByPath(r39, r40, r41, r42, r43, r44);
         r61[r56] = r4;
         r56 = r56 + 1;
-        goto L_0x04b0;
-    L_0x04ca:
+        goto L_0x04b1;
+    L_0x04cb:
         r4 = "extra_src_media_ids";
         r0 = r71;
         r33 = r0.getLongArray(r4);
-        if (r33 == 0) goto L_0x0465;
-    L_0x04d4:
+        if (r33 == 0) goto L_0x0466;
+    L_0x04d5:
         r0 = r33;
         r4 = r0.length;
         r0 = new long[r4];
         r61 = r0;
         r56 = 0;
-    L_0x04dd:
+    L_0x04de:
         r0 = r33;
         r4 = r0.length;
         r0 = r56;
-        if (r0 >= r4) goto L_0x0465;
-    L_0x04e4:
+        if (r0 >= r4) goto L_0x0466;
+    L_0x04e5:
         r50 = r33[r56];
         r46 = r66;
         r47 = r67;
@@ -2459,8 +2459,8 @@ public class CloudManager {
         r4 = addRemoveFavoritesById(r46, r47, r48, r49, r50, r52);
         r61[r56] = r4;
         r56 = r56 + 1;
-        goto L_0x04dd;
-    L_0x04f9:
+        goto L_0x04de;
+    L_0x04fa:
         r4 = 0;
         goto L_0x00b2;
         */

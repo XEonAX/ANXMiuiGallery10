@@ -277,20 +277,20 @@ public final class NexImageLoader {
         return null;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:205:0x087b  */
-    /* JADX WARNING: Removed duplicated region for block: B:199:0x0868  */
-    /* JADX WARNING: Removed duplicated region for block: B:218:0x08db  */
-    /* JADX WARNING: Removed duplicated region for block: B:211:0x08a2  */
-    /* JADX WARNING: Missing block: B:233:0x094b, code:
-            if (r4 <= r19) goto L_0x094f;
+    /* JADX WARNING: Removed duplicated region for block: B:205:0x087f  */
+    /* JADX WARNING: Removed duplicated region for block: B:199:0x086c  */
+    /* JADX WARNING: Removed duplicated region for block: B:218:0x08df  */
+    /* JADX WARNING: Removed duplicated region for block: B:211:0x08a6  */
+    /* JADX WARNING: Missing block: B:233:0x094f, code:
+            if (r4 <= r19) goto L_0x0953;
      */
-    /* JADX WARNING: Missing block: B:234:0x094d, code:
+    /* JADX WARNING: Missing block: B:234:0x0951, code:
             r4 = r19;
      */
-    /* JADX WARNING: Missing block: B:235:0x094f, code:
-            if (r5 <= r14) goto L_0x0dad;
+    /* JADX WARNING: Missing block: B:235:0x0953, code:
+            if (r5 <= r14) goto L_0x0db1;
      */
-    /* JADX WARNING: Missing block: B:236:0x0951, code:
+    /* JADX WARNING: Missing block: B:236:0x0955, code:
             r5 = r4;
             r4 = r14;
      */
@@ -327,7 +327,7 @@ public final class NexImageLoader {
         r2 = "[Text]";
         r0 = r46;
         r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x0a76;
+        if (r2 == 0) goto L_0x0a7a;
     L_0x0037:
         r2 = "[Text]";
         r2 = r2.length();
@@ -341,7 +341,7 @@ public final class NexImageLoader {
         r4 = 27;
         r5 = r3.indexOf(r4);
         r4 = -1;
-        if (r5 <= r4) goto L_0x0dc2;
+        if (r5 <= r4) goto L_0x0dc6;
     L_0x0059:
         r0 = r45;
         r4 = r0.m_effectResourceLoader;
@@ -561,51 +561,51 @@ public final class NexImageLoader {
         r37 = r6 & 15;
         r2 = 0;
         r16 = r2;
-    L_0x025d:
+    L_0x0261:
         r2 = 3;
         r0 = r16;
-        if (r0 >= r2) goto L_0x055c;
-    L_0x0262:
+        if (r0 >= r2) goto L_0x0560;
+    L_0x0266:
         r0 = r19;
         r2 = r0.length;
         r0 = r16;
-        if (r0 >= r2) goto L_0x04b8;
-    L_0x0269:
+        if (r0 >= r2) goto L_0x04bc;
+    L_0x026d:
         r12 = r19[r16];
         r14 = r12.length();
         r11 = "";
         r2 = 0;
         r6 = 0;
         r8 = r14;
-    L_0x0274:
-        if (r6 >= r14) goto L_0x028e;
-    L_0x0276:
+    L_0x0278:
+        if (r6 >= r14) goto L_0x0292;
+    L_0x027a:
         r7 = r12.charAt(r6);
         r38 = 32;
         r0 = r38;
-        if (r7 != r0) goto L_0x0dbf;
-    L_0x0280:
+        if (r7 != r0) goto L_0x0dc3;
+    L_0x0284:
         r7 = r14 / 2;
         r7 = r7 - r6;
         r7 = java.lang.Math.abs(r7);
-        if (r7 >= r8) goto L_0x0dbf;
-    L_0x0289:
+        if (r7 >= r8) goto L_0x0dc3;
+    L_0x028d:
         r2 = r6;
-    L_0x028a:
+    L_0x028e:
         r6 = r6 + 1;
         r8 = r7;
-        goto L_0x0274;
-    L_0x028e:
-        if (r2 <= 0) goto L_0x0dbb;
-    L_0x0290:
-        r6 = r2 + 1;
-        if (r6 >= r14) goto L_0x0dbb;
+        goto L_0x0278;
+    L_0x0292:
+        if (r2 <= 0) goto L_0x0dbf;
     L_0x0294:
+        r6 = r2 + 1;
+        if (r6 >= r14) goto L_0x0dbf;
+    L_0x0298:
         r6 = 0;
         r6 = r12.substring(r6, r2);
         r2 = r2 + 1;
         r2 = r12.substring(r2);
-    L_0x029f:
+    L_0x02a3:
         r7 = new java.lang.StringBuilder;
         r7.<init>();
         r8 = "%";
@@ -632,8 +632,8 @@ public final class NexImageLoader {
         r2 = r3.replace(r6, r2);
         r3 = r12.length();
         r6 = 1;
-        if (r3 != r6) goto L_0x0383;
-    L_0x02f1:
+        if (r3 != r6) goto L_0x0387;
+    L_0x02f5:
         r3 = new java.lang.StringBuilder;
         r3.<init>();
         r6 = "%s";
@@ -681,16 +681,16 @@ public final class NexImageLoader {
         r3 = r3.toString();
         r6 = "";
         r2 = r2.replace(r3, r6);
-    L_0x037c:
+    L_0x0380:
         r3 = r16 + 1;
         r16 = r3;
         r3 = r2;
-        goto L_0x025d;
-    L_0x0383:
+        goto L_0x0261;
+    L_0x0387:
         r3 = r12.length();
         r6 = 1;
-        if (r3 >= r6) goto L_0x0413;
-    L_0x038a:
+        if (r3 >= r6) goto L_0x0417;
+    L_0x038e:
         r3 = new java.lang.StringBuilder;
         r3.<init>();
         r6 = "%s";
@@ -736,12 +736,12 @@ public final class NexImageLoader {
         r3 = r3.toString();
         r6 = "";
         r2 = r2.replace(r3, r6);
-        goto L_0x037c;
-    L_0x0413:
+        goto L_0x0380;
+    L_0x0417:
         r3 = r12.length();
         r6 = 1;
-        if (r3 <= r6) goto L_0x037c;
-    L_0x041a:
+        if (r3 <= r6) goto L_0x0380;
+    L_0x041e:
         r3 = new java.lang.StringBuilder;
         r3.<init>();
         r6 = "%s";
@@ -795,8 +795,8 @@ public final class NexImageLoader {
         r7 = r14 + -1;
         r6 = r12.substring(r6, r7);
         r2 = r2.replace(r3, r6);
-        goto L_0x037c;
-    L_0x04b8:
+        goto L_0x0380;
+    L_0x04bc:
         r2 = new java.lang.StringBuilder;
         r2.<init>();
         r6 = "%";
@@ -851,16 +851,16 @@ public final class NexImageLoader {
         r3 = r3.toString();
         r6 = "";
         r2 = r2.replace(r3, r6);
-        goto L_0x037c;
-    L_0x055c:
+        goto L_0x0380;
+    L_0x0560:
         r2 = 0;
         r6 = ".*[[\\u0400-\\u052F][\\u2DE0-\\u2DFF][\\uA640-\\uA69F]].*";
         r6 = r3.matches(r6);
-        if (r6 == 0) goto L_0x0db8;
-    L_0x0565:
+        if (r6 == 0) goto L_0x0dbc;
+    L_0x0569:
         r2 = 1;
         r7 = r2;
-    L_0x0567:
+    L_0x056b:
         r6 = new android.text.TextPaint;
         r6.<init>();
         r2 = 1;
@@ -869,102 +869,102 @@ public final class NexImageLoader {
         r0 = r20;
         r2 = r0.get(r2);
         r2 = (java.lang.String) r2;
-        if (r5 == 0) goto L_0x077b;
-    L_0x057d:
+        if (r5 == 0) goto L_0x077f;
+    L_0x0581:
         r6.setTypeface(r5);
-    L_0x0580:
-        r2 = r13 & 16;
-        if (r2 == 0) goto L_0x0588;
     L_0x0584:
+        r2 = r13 & 16;
+        if (r2 == 0) goto L_0x058c;
+    L_0x0588:
         r2 = 1;
         r6.setUnderlineText(r2);
-    L_0x0588:
-        r2 = r13 & 32;
-        if (r2 == 0) goto L_0x0590;
     L_0x058c:
+        r2 = r13 & 32;
+        if (r2 == 0) goto L_0x0594;
+    L_0x0590:
         r2 = 1;
         r6.setStrikeThruText(r2);
-    L_0x0590:
-        r2 = r13 & 128;
-        if (r2 == 0) goto L_0x0598;
     L_0x0594:
+        r2 = r13 & 128;
+        if (r2 == 0) goto L_0x059c;
+    L_0x0598:
         r2 = 1;
         r6.setSubpixelText(r2);
-    L_0x0598:
-        r2 = r13 & 512;
-        if (r2 == 0) goto L_0x05a0;
     L_0x059c:
+        r2 = r13 & 512;
+        if (r2 == 0) goto L_0x05a4;
+    L_0x05a0:
         r2 = 1;
         r6.setLinearText(r2);
-    L_0x05a0:
-        r2 = r13 & 256;
-        if (r2 == 0) goto L_0x05a4;
     L_0x05a4:
+        r2 = r13 & 256;
+        if (r2 == 0) goto L_0x05a8;
+    L_0x05a8:
         r0 = r28;
         r4 = (double) r0;
         r38 = 0;
         r2 = (r4 > r38 ? 1 : (r4 == r38 ? 0 : -1));
-        if (r2 <= 0) goto L_0x05b2;
-    L_0x05ad:
+        if (r2 <= 0) goto L_0x05b6;
+    L_0x05b1:
         r0 = r28;
         r6.setTextScaleX(r0);
-    L_0x05b2:
+    L_0x05b6:
         r0 = r27;
         r4 = (double) r0;
         r38 = 0;
         r2 = (r4 > r38 ? 1 : (r4 == r38 ? 0 : -1));
-        if (r2 <= 0) goto L_0x05c0;
-    L_0x05bb:
+        if (r2 <= 0) goto L_0x05c4;
+    L_0x05bf:
         r0 = r27;
         r6.setTextSkewX(r0);
-    L_0x05c0:
+    L_0x05c4:
         r0 = r17;
         r4 = (double) r0;
         r38 = 0;
         r2 = (r4 > r38 ? 1 : (r4 == r38 ? 0 : -1));
-        if (r2 <= 0) goto L_0x08f5;
-    L_0x05c9:
+        if (r2 <= 0) goto L_0x08f9;
+    L_0x05cd:
         r0 = r17;
         r6.setTextSize(r0);
-    L_0x05ce:
-        r2 = r13 & 12;
-        if (r2 != 0) goto L_0x0db4;
     L_0x05d2:
+        r2 = r13 & 12;
+        if (r2 != 0) goto L_0x0db8;
+    L_0x05d6:
         r2 = r13 | 4;
         r20 = r2;
-    L_0x05d6:
-        if (r18 <= 0) goto L_0x096f;
-    L_0x05d8:
+    L_0x05da:
+        if (r18 <= 0) goto L_0x0973;
+    L_0x05dc:
         r12 = 0;
         switch(r21) {
-            case 0: goto L_0x05dc;
-            case 1: goto L_0x05dc;
-            case 2: goto L_0x08fb;
-            case 3: goto L_0x08ff;
-            case 4: goto L_0x0903;
-            default: goto L_0x05dc;
+            case 0: goto L_0x05e0;
+            case 1: goto L_0x05e0;
+            case 2: goto L_0x08ff;
+            case 3: goto L_0x0903;
+            case 4: goto L_0x0907;
+            default: goto L_0x05e0;
         };
-    L_0x05dc:
+    L_0x05e0:
         r2 = android.text.Layout.Alignment.ALIGN_NORMAL;
         switch(r37) {
-            case 1: goto L_0x090b;
-            case 2: goto L_0x0907;
-            default: goto L_0x05e1;
+            case 1: goto L_0x090f;
+            case 2: goto L_0x090b;
+            default: goto L_0x05e5;
         };
-    L_0x05e1:
-        r8 = android.text.Layout.Alignment.ALIGN_NORMAL;
-    L_0x05e3:
-        if (r18 <= 0) goto L_0x090f;
     L_0x05e5:
-        r19 = r18;
+        r8 = android.text.Layout.Alignment.ALIGN_NORMAL;
     L_0x05e7:
-        if (r15 <= 0) goto L_0x0913;
+        if (r18 <= 0) goto L_0x0913;
     L_0x05e9:
+        r19 = r18;
+    L_0x05eb:
+        if (r15 <= 0) goto L_0x0917;
+    L_0x05ed:
         r14 = r15;
-    L_0x05ea:
+    L_0x05ee:
         r16 = r17;
         r13 = r18;
-    L_0x05ee:
+    L_0x05f2:
         r2 = new android.text.StaticLayout;
         r4 = 0;
         r5 = r3.length();
@@ -981,31 +981,31 @@ public final class NexImageLoader {
         r7 = r33 * 2;
         r5 = r5 + r7;
         r0 = r19;
-        if (r4 > r0) goto L_0x0918;
-    L_0x0613:
-        if (r5 > r14) goto L_0x0918;
-    L_0x0615:
+        if (r4 > r0) goto L_0x091c;
+    L_0x0617:
+        if (r5 > r14) goto L_0x091c;
+    L_0x0619:
         r7 = 1;
         r0 = r26;
-        if (r0 < r7) goto L_0x0dad;
-    L_0x061a:
+        if (r0 < r7) goto L_0x0db1;
+    L_0x061e:
         r7 = r2.getLineCount();
         r0 = r26;
-        if (r7 > r0) goto L_0x0918;
-    L_0x0622:
+        if (r7 > r0) goto L_0x091c;
+    L_0x0626:
         r44 = r5;
         r5 = r4;
         r4 = r44;
-    L_0x0627:
+    L_0x062b:
         r3 = 0;
         r0 = r20;
         r7 = r0 & 1024;
-        if (r7 != 0) goto L_0x0da8;
-    L_0x062e:
-        if (r18 <= 0) goto L_0x0da8;
-    L_0x0630:
-        if (r15 <= 0) goto L_0x0da8;
+        if (r7 != 0) goto L_0x0dac;
     L_0x0632:
+        if (r18 <= 0) goto L_0x0dac;
+    L_0x0634:
+        if (r15 <= 0) goto L_0x0dac;
+    L_0x0636:
         r7 = "NexImageLoader";
         r8 = new java.lang.StringBuilder;
         r8.<init>();
@@ -1029,35 +1029,35 @@ public final class NexImageLoader {
         r5 = r5.toString();
         android.util.Log.d(r7, r5);
         switch(r36) {
-            case 16: goto L_0x0959;
-            case 32: goto L_0x0955;
-            default: goto L_0x0679;
+            case 16: goto L_0x095d;
+            case 32: goto L_0x0959;
+            default: goto L_0x067d;
         };
-    L_0x0679:
+    L_0x067d:
         r8 = r3;
         r4 = r18;
         r3 = r15;
-    L_0x067d:
-        r5 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-        if (r4 <= r5) goto L_0x0683;
     L_0x0681:
-        r4 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-    L_0x0683:
         r5 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-        if (r3 <= r5) goto L_0x0689;
+        if (r4 <= r5) goto L_0x0687;
+    L_0x0685:
+        r4 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
     L_0x0687:
+        r5 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
+        if (r3 <= r5) goto L_0x068d;
+    L_0x068b:
         r3 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-    L_0x0689:
-        r5 = 1;
-        if (r4 >= r5) goto L_0x068d;
-    L_0x068c:
-        r4 = 1;
     L_0x068d:
         r5 = 1;
-        if (r3 >= r5) goto L_0x0691;
+        if (r4 >= r5) goto L_0x0691;
     L_0x0690:
-        r3 = 1;
+        r4 = 1;
     L_0x0691:
+        r5 = 1;
+        if (r3 >= r5) goto L_0x0695;
+    L_0x0694:
+        r3 = 1;
+    L_0x0695:
         r5 = android.graphics.Bitmap.Config.ARGB_8888;
         r7 = android.graphics.Bitmap.createBitmap(r4, r3, r5);
         r3 = r7.getWidth();
@@ -1079,12 +1079,12 @@ public final class NexImageLoader {
         r9.translate(r3, r8);
         r0 = r20;
         r3 = r0 & 256;
-        if (r3 == 0) goto L_0x06f3;
-    L_0x06c4:
+        if (r3 == 0) goto L_0x06f7;
+    L_0x06c8:
         r3 = 0;
         r3 = (r30 > r3 ? 1 : (r30 == r3 ? 0 : -1));
-        if (r3 <= 0) goto L_0x06f3;
-    L_0x06c9:
+        if (r3 <= 0) goto L_0x06f7;
+    L_0x06cd:
         r9.save();
         r0 = r34;
         r1 = r35;
@@ -1102,11 +1102,11 @@ public final class NexImageLoader {
         r3 = 0;
         r6.setMaskFilter(r3);
         r9.restore();
-    L_0x06f3:
+    L_0x06f7:
         r0 = r20;
         r3 = r0 & 4096;
-        if (r3 == 0) goto L_0x070b;
-    L_0x06f9:
+        if (r3 == 0) goto L_0x070f;
+    L_0x06fd:
         r3 = android.graphics.Paint.Style.STROKE;
         r6.setStyle(r3);
         r0 = r24;
@@ -1114,39 +1114,39 @@ public final class NexImageLoader {
         r0 = r29;
         r6.setStrokeWidth(r0);
         r2.draw(r9);
-    L_0x070b:
+    L_0x070f:
         r0 = r31;
         r10 = (double) r0;
         r12 = 4532020583610935537; // 0x3ee4f8b588e368f1 float:-1.3686737E-33 double:1.0E-5;
         r3 = (r10 > r12 ? 1 : (r10 == r12 ? 0 : -1));
-        if (r3 <= 0) goto L_0x0726;
-    L_0x0717:
+        if (r3 <= 0) goto L_0x072a;
+    L_0x071b:
         r3 = android.graphics.BlurMaskFilter.Blur.NORMAL;
         switch(r32) {
-            case 0: goto L_0x095f;
-            case 1: goto L_0x096b;
-            case 2: goto L_0x0963;
-            case 3: goto L_0x0967;
-            default: goto L_0x071c;
+            case 0: goto L_0x0963;
+            case 1: goto L_0x096f;
+            case 2: goto L_0x0967;
+            case 3: goto L_0x096b;
+            default: goto L_0x0720;
         };
-    L_0x071c:
+    L_0x0720:
         r8 = new android.graphics.BlurMaskFilter;
         r0 = r31;
         r8.<init>(r0, r3);
         r6.setMaskFilter(r8);
-    L_0x0726:
-        r3 = r20 & 4;
-        if (r3 == 0) goto L_0x074b;
     L_0x072a:
+        r3 = r20 & 4;
+        if (r3 == 0) goto L_0x074f;
+    L_0x072e:
         r0 = r20;
         r3 = r0 & 2048;
-        if (r3 == 0) goto L_0x073a;
-    L_0x0730:
+        if (r3 == 0) goto L_0x073e;
+    L_0x0734:
         r3 = new android.graphics.PorterDuffXfermode;
         r8 = android.graphics.PorterDuff.Mode.DST_IN;
         r3.<init>(r8);
         r6.setXfermode(r3);
-    L_0x073a:
+    L_0x073e:
         r3 = android.graphics.Paint.Style.FILL;
         r6.setStyle(r3);
         r0 = r23;
@@ -1154,10 +1154,10 @@ public final class NexImageLoader {
         r2.draw(r9);
         r3 = 0;
         r6.setXfermode(r3);
-    L_0x074b:
-        r3 = r20 & 8;
-        if (r3 == 0) goto L_0x0761;
     L_0x074f:
+        r3 = r20 & 8;
+        if (r3 == 0) goto L_0x0765;
+    L_0x0753:
         r3 = android.graphics.Paint.Style.STROKE;
         r6.setStyle(r3);
         r0 = r24;
@@ -1165,162 +1165,162 @@ public final class NexImageLoader {
         r0 = r29;
         r6.setStrokeWidth(r0);
         r2.draw(r9);
-    L_0x0761:
+    L_0x0765:
         r2 = 0;
         r6.setMaskFilter(r2);
         r9.restore();
         r2 = r4;
         r3 = r5;
         r4 = r7;
-    L_0x076b:
+    L_0x076f:
         r5 = r4;
         r4 = r3;
         r3 = r2;
-    L_0x076e:
-        if (r5 == 0) goto L_0x0d96;
-    L_0x0770:
-        if (r4 <= 0) goto L_0x0d96;
     L_0x0772:
-        if (r3 <= 0) goto L_0x0d96;
+        if (r5 == 0) goto L_0x0d9a;
     L_0x0774:
+        if (r4 <= 0) goto L_0x0d9a;
+    L_0x0776:
+        if (r3 <= 0) goto L_0x0d9a;
+    L_0x0778:
         r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
         r2.<init>(r5, r4, r3);
         goto L_0x002c;
-    L_0x077b:
-        if (r7 == 0) goto L_0x0792;
-    L_0x077d:
+    L_0x077f:
+        if (r7 == 0) goto L_0x0796;
+    L_0x0781:
         r2 = 0;
         r4 = r13 & 1;
-        if (r4 == 0) goto L_0x0783;
-    L_0x0782:
+        if (r4 == 0) goto L_0x0787;
+    L_0x0786:
         r2 = 1;
-    L_0x0783:
-        r4 = r13 & 2;
-        if (r4 == 0) goto L_0x0789;
     L_0x0787:
+        r4 = r13 & 2;
+        if (r4 == 0) goto L_0x078d;
+    L_0x078b:
         r2 = r2 | 2;
-    L_0x0789:
+    L_0x078d:
         r2 = android.graphics.Typeface.defaultFromStyle(r2);
         r6.setTypeface(r2);
-        goto L_0x0580;
-    L_0x0792:
+        goto L_0x0584;
+    L_0x0796:
         r5 = "android:";
         r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x07b9;
-    L_0x079a:
+        if (r5 == 0) goto L_0x07bd;
+    L_0x079e:
         r4 = "android:";
         r4 = r4.length();
         r4 = r2.substring(r4);
         r2 = 0;
         r5 = r13 & 1;
-        if (r5 == 0) goto L_0x07aa;
-    L_0x07a9:
+        if (r5 == 0) goto L_0x07ae;
+    L_0x07ad:
         r2 = 1;
-    L_0x07aa:
-        r5 = r13 & 2;
-        if (r5 == 0) goto L_0x07b0;
     L_0x07ae:
+        r5 = r13 & 2;
+        if (r5 == 0) goto L_0x07b4;
+    L_0x07b2:
         r2 = r2 | 2;
-    L_0x07b0:
+    L_0x07b4:
         r2 = android.graphics.Typeface.create(r4, r2);
         r6.setTypeface(r2);
-        goto L_0x0580;
-    L_0x07b9:
+        goto L_0x0584;
+    L_0x07bd:
         r5 = "file:";
         r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x07d4;
-    L_0x07c1:
+        if (r5 == 0) goto L_0x07d8;
+    L_0x07c5:
         r4 = "file:";
         r4 = r4.length();
         r2 = r2.substring(r4);
         r2 = android.graphics.Typeface.createFromFile(r2);
         r6.setTypeface(r2);
-        goto L_0x0580;
-    L_0x07d4:
+        goto L_0x0584;
+    L_0x07d8:
         r5 = "asset:";
         r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x07f9;
-    L_0x07dc:
+        if (r5 == 0) goto L_0x07fd;
+    L_0x07e0:
         r4 = "asset:";
         r4 = r4.length();
         r2 = r2.substring(r4);
         r0 = r45;
         r4 = r0.m_assetManager;
-        if (r4 == 0) goto L_0x0580;
-    L_0x07ec:
+        if (r4 == 0) goto L_0x0584;
+    L_0x07f0:
         r0 = r45;
         r4 = r0.m_assetManager;
         r2 = android.graphics.Typeface.createFromAsset(r4, r2);
         r6.setTypeface(r2);
-        goto L_0x0580;
-    L_0x07f9:
+        goto L_0x0584;
+    L_0x07fd:
         r5 = "theme:";
         r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x0826;
-    L_0x0802:
+        if (r5 == 0) goto L_0x082a;
+    L_0x0806:
         r4 = "theme:";
         r4 = r4.length();
         r2 = r2.substring(r4);
         r0 = r45;
         r4 = r0.m_effectResourceLoader;
-        if (r4 == 0) goto L_0x0580;
-    L_0x0813:
+        if (r4 == 0) goto L_0x0584;
+    L_0x0817:
         r0 = r45;
-        r4 = r0.m_effectResourceLoader;	 Catch:{ TypefaceLoadException -> 0x0820 }
-        r2 = r4.a(r2);	 Catch:{ TypefaceLoadException -> 0x0820 }
-        r6.setTypeface(r2);	 Catch:{ TypefaceLoadException -> 0x0820 }
-        goto L_0x0580;
-    L_0x0820:
+        r4 = r0.m_effectResourceLoader;	 Catch:{ TypefaceLoadException -> 0x0824 }
+        r2 = r4.a(r2);	 Catch:{ TypefaceLoadException -> 0x0824 }
+        r6.setTypeface(r2);	 Catch:{ TypefaceLoadException -> 0x0824 }
+        goto L_0x0584;
+    L_0x0824:
         r2 = move-exception;
         r2.printStackTrace();
-        goto L_0x0580;
-    L_0x0826:
+        goto L_0x0584;
+    L_0x082a:
         r5 = "fontid:";
         r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x0845;
-    L_0x082e:
+        if (r5 == 0) goto L_0x0849;
+    L_0x0832:
         r4 = "fontid:";
         r4 = r4.length();
         r2 = r2.substring(r4);
         r4 = com.nexstreaming.kminternal.kinemaster.fonts.c.a();
         r2 = r4.b(r2);
         r6.setTypeface(r2);
-        goto L_0x0580;
-    L_0x0845:
+        goto L_0x0584;
+    L_0x0849:
         r5 = "fontfile:";
         r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x0891;
-    L_0x084d:
+        if (r5 == 0) goto L_0x0895;
+    L_0x0851:
         r5 = 0;
         r7 = "fontfile:";
         r7 = r7.length();
         r7 = r2.substring(r7);
         r0 = r45;
         r2 = r0.m_effectResourceLoader;
-        if (r2 == 0) goto L_0x0879;
-    L_0x085e:
+        if (r2 == 0) goto L_0x087d;
+    L_0x0862:
         r0 = r45;
-        r2 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x086d, TypefaceLoadException -> 0x0874 }
-        r2 = r2.c(r4, r7);	 Catch:{ IOException -> 0x086d, TypefaceLoadException -> 0x0874 }
-    L_0x0866:
-        if (r2 == 0) goto L_0x087b;
-    L_0x0868:
+        r2 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x0871, TypefaceLoadException -> 0x0878 }
+        r2 = r2.c(r4, r7);	 Catch:{ IOException -> 0x0871, TypefaceLoadException -> 0x0878 }
+    L_0x086a:
+        if (r2 == 0) goto L_0x087f;
+    L_0x086c:
         r6.setTypeface(r2);
-        goto L_0x0580;
-    L_0x086d:
+        goto L_0x0584;
+    L_0x0871:
         r2 = move-exception;
         r5 = 0;
         r2.printStackTrace();
         r2 = r5;
-        goto L_0x0866;
-    L_0x0874:
+        goto L_0x086a;
+    L_0x0878:
         r2 = move-exception;
         r5 = 0;
         r2.printStackTrace();
-    L_0x0879:
+    L_0x087d:
         r2 = r5;
-        goto L_0x0866;
-    L_0x087b:
+        goto L_0x086a;
+    L_0x087f:
         r2 = "NexImageLoader";
         r5 = "TYPEFACE NOT FOUND : base_id=%s, font=%s";
         r8 = 2;
@@ -1331,22 +1331,22 @@ public final class NexImageLoader {
         r8[r4] = r7;
         r4 = java.lang.String.format(r5, r8);
         android.util.Log.d(r2, r4);
-        goto L_0x0580;
-    L_0x0891:
+        goto L_0x0584;
+    L_0x0895:
         r5 = 0;
         r0 = r45;
         r7 = r0.m_effectResourceLoader;
-        if (r7 == 0) goto L_0x08d0;
-    L_0x0898:
+        if (r7 == 0) goto L_0x08d4;
+    L_0x089c:
         r0 = r45;
-        r7 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x08cc }
-        r2 = r7.a(r4, r2);	 Catch:{ IOException -> 0x08cc }
-    L_0x08a0:
-        if (r2 == 0) goto L_0x08db;
-    L_0x08a2:
+        r7 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x08d0 }
+        r2 = r7.a(r4, r2);	 Catch:{ IOException -> 0x08d0 }
+    L_0x08a4:
+        if (r2 == 0) goto L_0x08df;
+    L_0x08a6:
         r5 = r2.exists();
-        if (r5 != 0) goto L_0x08d2;
-    L_0x08a8:
+        if (r5 != 0) goto L_0x08d6;
+    L_0x08ac:
         r5 = "NexImageLoader";
         r7 = new java.lang.StringBuilder;
         r7.<init>();
@@ -1358,18 +1358,18 @@ public final class NexImageLoader {
         r2 = r4.append(r2);
         r2 = r2.toString();
         android.util.Log.i(r5, r2);
-        goto L_0x0580;
-    L_0x08cc:
+        goto L_0x0584;
+    L_0x08d0:
         r2 = move-exception;
         r2.printStackTrace();
-    L_0x08d0:
+    L_0x08d4:
         r2 = r5;
-        goto L_0x08a0;
-    L_0x08d2:
+        goto L_0x08a4;
+    L_0x08d6:
         r2 = android.graphics.Typeface.createFromFile(r2);
         r6.setTypeface(r2);
-        goto L_0x0580;
-    L_0x08db:
+        goto L_0x0584;
+    L_0x08df:
         r2 = "NexImageLoader";
         r5 = new java.lang.StringBuilder;
         r5.<init>();
@@ -1378,33 +1378,33 @@ public final class NexImageLoader {
         r4 = r5.append(r4);
         r4 = r4.toString();
         android.util.Log.i(r2, r4);
-        goto L_0x0580;
-    L_0x08f5:
+        goto L_0x0584;
+    L_0x08f9:
         r17 = r6.getTextSize();
-        goto L_0x05ce;
-    L_0x08fb:
-        r12 = android.text.TextUtils.TruncateAt.START;
-        goto L_0x05dc;
+        goto L_0x05d2;
     L_0x08ff:
-        r12 = android.text.TextUtils.TruncateAt.MIDDLE;
-        goto L_0x05dc;
+        r12 = android.text.TextUtils.TruncateAt.START;
+        goto L_0x05e0;
     L_0x0903:
-        r12 = android.text.TextUtils.TruncateAt.END;
-        goto L_0x05dc;
+        r12 = android.text.TextUtils.TruncateAt.MIDDLE;
+        goto L_0x05e0;
     L_0x0907:
-        r8 = android.text.Layout.Alignment.ALIGN_OPPOSITE;
-        goto L_0x05e3;
+        r12 = android.text.TextUtils.TruncateAt.END;
+        goto L_0x05e0;
     L_0x090b:
-        r8 = android.text.Layout.Alignment.ALIGN_CENTER;
-        goto L_0x05e3;
+        r8 = android.text.Layout.Alignment.ALIGN_OPPOSITE;
+        goto L_0x05e7;
     L_0x090f:
-        r19 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
+        r8 = android.text.Layout.Alignment.ALIGN_CENTER;
         goto L_0x05e7;
     L_0x0913:
+        r19 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
+        goto L_0x05eb;
+    L_0x0917:
         r2 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
         r14 = r2;
-        goto L_0x05ea;
-    L_0x0918:
+        goto L_0x05ee;
+    L_0x091c:
         r0 = r16;
         r0 = (double) r0;
         r38 = r0;
@@ -1414,15 +1414,15 @@ public final class NexImageLoader {
         r42 = 4617315517961601024; // 0x4014000000000000 float:0.0 double:5.0;
         r40 = r40 / r42;
         r7 = (r38 > r40 ? 1 : (r38 == r40 ? 0 : -1));
-        if (r7 <= 0) goto L_0x0949;
-    L_0x092a:
+        if (r7 <= 0) goto L_0x094d;
+    L_0x092e:
         r0 = r16;
         r0 = (double) r0;
         r38 = r0;
         r40 = 4618441417868443648; // 0x4018000000000000 float:0.0 double:6.0;
         r7 = (r38 > r40 ? 1 : (r38 == r40 ? 0 : -1));
-        if (r7 <= 0) goto L_0x0949;
-    L_0x0935:
+        if (r7 <= 0) goto L_0x094d;
+    L_0x0939:
         r2 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
         r5 = 1094713344; // 0x41400000 float:12.0 double:5.408602553E-315;
         r5 = r17 / r5;
@@ -1431,38 +1431,38 @@ public final class NexImageLoader {
         r6.setTextSize(r2);
         r16 = r2;
         r13 = r4;
-        goto L_0x05ee;
-    L_0x0949:
-        r0 = r19;
-        if (r4 <= r0) goto L_0x094f;
+        goto L_0x05f2;
     L_0x094d:
-        r4 = r19;
-    L_0x094f:
-        if (r5 <= r14) goto L_0x0dad;
+        r0 = r19;
+        if (r4 <= r0) goto L_0x0953;
     L_0x0951:
+        r4 = r19;
+    L_0x0953:
+        if (r5 <= r14) goto L_0x0db1;
+    L_0x0955:
         r5 = r4;
         r4 = r14;
-        goto L_0x0627;
-    L_0x0955:
-        r3 = r15 - r4;
-        goto L_0x0679;
+        goto L_0x062b;
     L_0x0959:
         r3 = r15 - r4;
+        goto L_0x067d;
+    L_0x095d:
+        r3 = r15 - r4;
         r3 = r3 / 2;
-        goto L_0x0679;
-    L_0x095f:
-        r3 = android.graphics.BlurMaskFilter.Blur.NORMAL;
-        goto L_0x071c;
+        goto L_0x067d;
     L_0x0963:
-        r3 = android.graphics.BlurMaskFilter.Blur.INNER;
-        goto L_0x071c;
+        r3 = android.graphics.BlurMaskFilter.Blur.NORMAL;
+        goto L_0x0720;
     L_0x0967:
-        r3 = android.graphics.BlurMaskFilter.Blur.OUTER;
-        goto L_0x071c;
+        r3 = android.graphics.BlurMaskFilter.Blur.INNER;
+        goto L_0x0720;
     L_0x096b:
-        r3 = android.graphics.BlurMaskFilter.Blur.SOLID;
-        goto L_0x071c;
+        r3 = android.graphics.BlurMaskFilter.Blur.OUTER;
+        goto L_0x0720;
     L_0x096f:
+        r3 = android.graphics.BlurMaskFilter.Blur.SOLID;
+        goto L_0x0720;
+    L_0x0973:
         r2 = new android.graphics.Rect;
         r2.<init>();
         r4 = 0;
@@ -1487,11 +1487,11 @@ public final class NexImageLoader {
         r5 = (int) r4;
         r4 = 1;
         r0 = r18;
-        if (r0 < r4) goto L_0x09a8;
-    L_0x09a5:
+        if (r0 < r4) goto L_0x09ac;
+    L_0x09a9:
         r4 = 1;
-        if (r15 >= r4) goto L_0x0da3;
-    L_0x09a8:
+        if (r15 >= r4) goto L_0x0da7;
+    L_0x09ac:
         r4 = r2.width();
         r2 = r2.right;
         r2 = java.lang.Math.max(r4, r2);
@@ -1506,37 +1506,37 @@ public final class NexImageLoader {
         r5 = (int) r5;
         r2 = r2 + r5;
         r5 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-        if (r4 <= r5) goto L_0x09ca;
-    L_0x09c8:
+        if (r4 <= r5) goto L_0x09ce;
+    L_0x09cc:
         r4 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-    L_0x09ca:
-        r5 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-        if (r2 <= r5) goto L_0x09d0;
     L_0x09ce:
+        r5 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
+        if (r2 <= r5) goto L_0x09d4;
+    L_0x09d2:
         r2 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-    L_0x09d0:
+    L_0x09d4:
         r5 = 1;
-        if (r4 >= r5) goto L_0x0a5e;
-    L_0x09d3:
+        if (r4 >= r5) goto L_0x0a62;
+    L_0x09d7:
         r4 = 1;
         r5 = r4;
-    L_0x09d5:
+    L_0x09d9:
         r4 = 1;
-        if (r2 >= r4) goto L_0x0a61;
-    L_0x09d8:
+        if (r2 >= r4) goto L_0x0a65;
+    L_0x09dc:
         r2 = 1;
         r4 = r2;
-    L_0x09da:
+    L_0x09de:
         switch(r37) {
-            case 1: goto L_0x0a6c;
-            case 2: goto L_0x0a64;
-            default: goto L_0x09dd;
+            case 1: goto L_0x0a70;
+            case 2: goto L_0x0a68;
+            default: goto L_0x09e1;
         };
-    L_0x09dd:
+    L_0x09e1:
         r2 = android.graphics.Paint.Align.LEFT;
         r6.setTextAlign(r2);
         r2 = 1101004800; // 0x41a00000 float:20.0 double:5.439686476E-315;
-    L_0x09e4:
+    L_0x09e8:
         r9 = (float) r4;
         r8 = r8.ascent;
         r8 = r9 - r8;
@@ -1559,30 +1559,30 @@ public final class NexImageLoader {
         r0 = r22;
         r13.drawColor(r0);
         r7 = r20 & 4;
-        if (r7 == 0) goto L_0x0a25;
-    L_0x0a18:
+        if (r7 == 0) goto L_0x0a29;
+    L_0x0a1c:
         r7 = android.graphics.Paint.Style.FILL;
         r6.setStyle(r7);
         r0 = r23;
         r6.setColor(r0);
         r13.drawText(r3, r10, r11, r6);
-    L_0x0a25:
-        r7 = r20 & 8;
-        if (r7 == 0) goto L_0x0a5a;
     L_0x0a29:
-        r7 = r20 & 4;
-        if (r7 == 0) goto L_0x0a3a;
+        r7 = r20 & 8;
+        if (r7 == 0) goto L_0x0a5e;
     L_0x0a2d:
+        r7 = r20 & 4;
+        if (r7 == 0) goto L_0x0a3e;
+    L_0x0a31:
         r0 = r20;
         r7 = r0 & 256;
-        if (r7 == 0) goto L_0x0a3a;
-    L_0x0a33:
+        if (r7 == 0) goto L_0x0a3e;
+    L_0x0a37:
         r7 = 0;
         r8 = 0;
         r9 = 0;
         r12 = 0;
         r6.setShadowLayer(r7, r8, r9, r12);
-    L_0x0a3a:
+    L_0x0a3e:
         r7 = android.graphics.Paint.Style.STROKE;
         r6.setStyle(r7);
         r0 = r24;
@@ -1596,78 +1596,78 @@ public final class NexImageLoader {
         r7 = r3;
         r6.getTextPath(r7, r8, r9, r10, r11, r12);
         r13.drawPath(r12, r6);
-    L_0x0a5a:
+    L_0x0a5e:
         r3 = r4;
         r4 = r5;
-        goto L_0x076b;
-    L_0x0a5e:
+        goto L_0x076f;
+    L_0x0a62:
         r5 = r4;
-        goto L_0x09d5;
-    L_0x0a61:
+        goto L_0x09d9;
+    L_0x0a65:
         r4 = r2;
-        goto L_0x09da;
-    L_0x0a64:
+        goto L_0x09de;
+    L_0x0a68:
         r2 = android.graphics.Paint.Align.RIGHT;
         r6.setTextAlign(r2);
         r2 = (float) r5;
-        goto L_0x09e4;
-    L_0x0a6c:
+        goto L_0x09e8;
+    L_0x0a70:
         r2 = android.graphics.Paint.Align.CENTER;
         r6.setTextAlign(r2);
         r2 = r5 / 2;
         r2 = (float) r2;
-        goto L_0x09e4;
-    L_0x0a76:
+        goto L_0x09e8;
+    L_0x0a7a:
         r2 = "[ThemeImage]";
         r0 = r46;
         r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x0b53;
-    L_0x0a80:
+        if (r2 == 0) goto L_0x0b57;
+    L_0x0a84:
         r2 = "[ThemeImage]";
         r2 = r2.length();
         r0 = r46;
         r2 = r0.substring(r2);
         r3 = 47;
         r4 = r2.indexOf(r3);
-        if (r4 < 0) goto L_0x0ad7;
-    L_0x0a94:
+        if (r4 < 0) goto L_0x0adb;
+    L_0x0a98:
         r3 = 0;
         r3 = r2.substring(r3, r4);
         r4 = r4 + 1;
         r2 = r2.substring(r4);
-    L_0x0a9f:
+    L_0x0aa3:
         r4 = 0;
         r0 = r45;
         r7 = r0.m_effectResourceLoader;
-        if (r7 == 0) goto L_0x0ab2;
-    L_0x0aa6:
+        if (r7 == 0) goto L_0x0ab6;
+    L_0x0aaa:
         r0 = r45;
-        r4 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x0ada }
-        r4 = r4.b(r3, r2);	 Catch:{ IOException -> 0x0ada }
-        r4 = android.graphics.BitmapFactory.decodeStream(r4);	 Catch:{ IOException -> 0x0ada }
-    L_0x0ab2:
-        if (r4 != 0) goto L_0x0ac6;
-    L_0x0ab4:
+        r4 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x0ade }
+        r4 = r4.b(r3, r2);	 Catch:{ IOException -> 0x0ade }
+        r4 = android.graphics.BitmapFactory.decodeStream(r4);	 Catch:{ IOException -> 0x0ade }
+    L_0x0ab6:
+        if (r4 != 0) goto L_0x0aca;
+    L_0x0ab8:
         r0 = r45;
         r7 = r0.m_assetManager;
-        if (r7 == 0) goto L_0x0ac6;
-    L_0x0aba:
+        if (r7 == 0) goto L_0x0aca;
+    L_0x0abe:
         r0 = r45;
-        r4 = r0.m_assetManager;	 Catch:{ IOException -> 0x0b03 }
-        r4 = r4.open(r2);	 Catch:{ IOException -> 0x0b03 }
-        r4 = android.graphics.BitmapFactory.decodeStream(r4);	 Catch:{ IOException -> 0x0b03 }
-    L_0x0ac6:
-        if (r4 == 0) goto L_0x0b2c;
-    L_0x0ac8:
+        r4 = r0.m_assetManager;	 Catch:{ IOException -> 0x0b07 }
+        r4 = r4.open(r2);	 Catch:{ IOException -> 0x0b07 }
+        r4 = android.graphics.BitmapFactory.decodeStream(r4);	 Catch:{ IOException -> 0x0b07 }
+    L_0x0aca:
+        if (r4 == 0) goto L_0x0b30;
+    L_0x0acc:
         r3 = r4.getWidth();
         r5 = r4.getHeight();
         r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
         r2.<init>(r4, r3, r5);
         goto L_0x002c;
-    L_0x0ad7:
+    L_0x0adb:
         r3 = "";
-        goto L_0x0a9f;
-    L_0x0ada:
+        goto L_0x0aa3;
+    L_0x0ade:
         r4 = move-exception;
         r7 = 0;
         r8 = "NexImageLoader";
@@ -1683,8 +1683,8 @@ public final class NexImageLoader {
         android.util.Log.e(r8, r9);
         r4.printStackTrace();
         r4 = r7;
-        goto L_0x0ab2;
-    L_0x0b03:
+        goto L_0x0ab6;
+    L_0x0b07:
         r4 = move-exception;
         r7 = 0;
         r8 = "NexImageLoader";
@@ -1700,8 +1700,8 @@ public final class NexImageLoader {
         android.util.Log.e(r8, r9);
         r4.printStackTrace();
         r4 = r7;
-        goto L_0x0ac6;
-    L_0x0b2c:
+        goto L_0x0aca;
+    L_0x0b30:
         r7 = "NexImageLoader";
         r8 = new java.lang.StringBuilder;
         r8.<init>();
@@ -1716,17 +1716,17 @@ public final class NexImageLoader {
         r3 = r5;
         r5 = r4;
         r4 = r6;
-        goto L_0x076e;
-    L_0x0b53:
+        goto L_0x0772;
+    L_0x0b57:
         r2 = "[Overlay]";
         r0 = r46;
         r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x0bd6;
-    L_0x0b5d:
+        if (r2 == 0) goto L_0x0bda;
+    L_0x0b61:
         r0 = r45;
         r2 = r0.m_overlayPathResolver;
-        if (r2 != 0) goto L_0x0b7c;
-    L_0x0b63:
+        if (r2 != 0) goto L_0x0b80;
+    L_0x0b67:
         r2 = 8;
         r3 = 8;
         r4 = android.graphics.Bitmap.Config.ARGB_8888;
@@ -1736,7 +1736,7 @@ public final class NexImageLoader {
         r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
         r2.<init>(r3, r4, r5);
         goto L_0x002c;
-    L_0x0b7c:
+    L_0x0b80:
         r2 = "[Overlay]";
         r2 = r2.length();
         r0 = r46;
@@ -1744,8 +1744,8 @@ public final class NexImageLoader {
         r0 = r45;
         r3 = r0.m_overlayPathResolver;
         r2 = r3.a(r2);
-        if (r2 != 0) goto L_0x0bab;
-    L_0x0b92:
+        if (r2 != 0) goto L_0x0baf;
+    L_0x0b96:
         r2 = 8;
         r3 = 8;
         r4 = android.graphics.Bitmap.Config.ARGB_8888;
@@ -1755,7 +1755,7 @@ public final class NexImageLoader {
         r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
         r2.<init>(r3, r4, r5);
         goto L_0x002c;
-    L_0x0bab:
+    L_0x0baf:
         r3 = new android.graphics.BitmapFactory$Options;
         r3.<init>();
         r4 = 1;
@@ -1766,73 +1766,73 @@ public final class NexImageLoader {
         r4 = 1;
         r3.inSampleSize = r4;
         r4 = android.graphics.BitmapFactory.decodeFile(r2, r3);
-        if (r4 == 0) goto L_0x0bd1;
-    L_0x0bc2:
+        if (r4 == 0) goto L_0x0bd5;
+    L_0x0bc6:
         r3 = r4.getWidth();
         r5 = r4.getHeight();
         r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
         r2.<init>(r4, r3, r5);
         goto L_0x002c;
-    L_0x0bd1:
+    L_0x0bd5:
         r3 = r5;
         r5 = r4;
         r4 = r6;
-        goto L_0x076e;
-    L_0x0bd6:
+        goto L_0x0772;
+    L_0x0bda:
         r2 = "[PvwThImage]";
         r0 = r46;
         r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x0cba;
-    L_0x0be0:
+        if (r2 == 0) goto L_0x0cbe;
+    L_0x0be4:
         r2 = "[ThemeImage]";
         r2 = r2.length();
         r0 = r46;
         r2 = r0.substring(r2);
         r3 = 47;
         r4 = r2.indexOf(r3);
-        if (r4 < 0) goto L_0x0c3e;
-    L_0x0bf4:
+        if (r4 < 0) goto L_0x0c42;
+    L_0x0bf8:
         r3 = 0;
         r3 = r2.substring(r3, r4);
         r4 = r4 + 1;
         r2 = r2.substring(r4);
-    L_0x0bff:
+    L_0x0c03:
         r4 = 0;
         r8 = new android.graphics.BitmapFactory$Options;
         r8.<init>();
         r0 = r45;
         r7 = r0.m_effectResourceLoader;
-        if (r7 == 0) goto L_0x0c18;
-    L_0x0c0b:
+        if (r7 == 0) goto L_0x0c1c;
+    L_0x0c0f:
         r0 = r45;
-        r4 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x0c41 }
-        r4 = r4.b(r3, r2);	 Catch:{ IOException -> 0x0c41 }
+        r4 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x0c45 }
+        r4 = r4.b(r3, r2);	 Catch:{ IOException -> 0x0c45 }
         r7 = 0;
-        r4 = android.graphics.BitmapFactory.decodeStream(r4, r7, r8);	 Catch:{ IOException -> 0x0c41 }
-    L_0x0c18:
-        if (r4 != 0) goto L_0x0c2d;
-    L_0x0c1a:
+        r4 = android.graphics.BitmapFactory.decodeStream(r4, r7, r8);	 Catch:{ IOException -> 0x0c45 }
+    L_0x0c1c:
+        if (r4 != 0) goto L_0x0c31;
+    L_0x0c1e:
         r0 = r45;
         r7 = r0.m_assetManager;
-        if (r7 == 0) goto L_0x0c2d;
-    L_0x0c20:
+        if (r7 == 0) goto L_0x0c31;
+    L_0x0c24:
         r0 = r45;
-        r4 = r0.m_assetManager;	 Catch:{ IOException -> 0x0c6a }
-        r4 = r4.open(r2);	 Catch:{ IOException -> 0x0c6a }
+        r4 = r0.m_assetManager;	 Catch:{ IOException -> 0x0c6e }
+        r4 = r4.open(r2);	 Catch:{ IOException -> 0x0c6e }
         r7 = 0;
-        r4 = android.graphics.BitmapFactory.decodeStream(r4, r7, r8);	 Catch:{ IOException -> 0x0c6a }
-    L_0x0c2d:
-        if (r4 == 0) goto L_0x0c93;
-    L_0x0c2f:
+        r4 = android.graphics.BitmapFactory.decodeStream(r4, r7, r8);	 Catch:{ IOException -> 0x0c6e }
+    L_0x0c31:
+        if (r4 == 0) goto L_0x0c97;
+    L_0x0c33:
         r3 = r4.getWidth();
         r5 = r4.getHeight();
         r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
         r2.<init>(r4, r3, r5);
         goto L_0x002c;
-    L_0x0c3e:
+    L_0x0c42:
         r3 = "";
-        goto L_0x0bff;
-    L_0x0c41:
+        goto L_0x0c03;
+    L_0x0c45:
         r4 = move-exception;
         r7 = 0;
         r9 = "NexImageLoader";
@@ -1848,8 +1848,8 @@ public final class NexImageLoader {
         android.util.Log.e(r9, r10);
         r4.printStackTrace();
         r4 = r7;
-        goto L_0x0c18;
-    L_0x0c6a:
+        goto L_0x0c1c;
+    L_0x0c6e:
         r4 = move-exception;
         r7 = 0;
         r8 = "NexImageLoader";
@@ -1865,8 +1865,8 @@ public final class NexImageLoader {
         android.util.Log.e(r8, r9);
         r4.printStackTrace();
         r4 = r7;
-        goto L_0x0c2d;
-    L_0x0c93:
+        goto L_0x0c31;
+    L_0x0c97:
         r7 = "NexImageLoader";
         r8 = new java.lang.StringBuilder;
         r8.<init>();
@@ -1881,17 +1881,17 @@ public final class NexImageLoader {
         r3 = r5;
         r5 = r4;
         r4 = r6;
-        goto L_0x076e;
-    L_0x0cba:
+        goto L_0x0772;
+    L_0x0cbe:
         r2 = "[Overlay]";
         r0 = r46;
         r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x0d3d;
-    L_0x0cc4:
+        if (r2 == 0) goto L_0x0d41;
+    L_0x0cc8:
         r0 = r45;
         r2 = r0.m_overlayPathResolver;
-        if (r2 != 0) goto L_0x0ce3;
-    L_0x0cca:
+        if (r2 != 0) goto L_0x0ce7;
+    L_0x0cce:
         r2 = 8;
         r3 = 8;
         r4 = android.graphics.Bitmap.Config.ARGB_8888;
@@ -1901,7 +1901,7 @@ public final class NexImageLoader {
         r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
         r2.<init>(r3, r4, r5);
         goto L_0x002c;
-    L_0x0ce3:
+    L_0x0ce7:
         r2 = "[Overlay]";
         r2 = r2.length();
         r0 = r46;
@@ -1909,8 +1909,8 @@ public final class NexImageLoader {
         r0 = r45;
         r3 = r0.m_overlayPathResolver;
         r2 = r3.a(r2);
-        if (r2 != 0) goto L_0x0d12;
-    L_0x0cf9:
+        if (r2 != 0) goto L_0x0d16;
+    L_0x0cfd:
         r2 = 8;
         r3 = 8;
         r4 = android.graphics.Bitmap.Config.ARGB_8888;
@@ -1920,7 +1920,7 @@ public final class NexImageLoader {
         r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
         r2.<init>(r3, r4, r5);
         goto L_0x002c;
-    L_0x0d12:
+    L_0x0d16:
         r3 = new android.graphics.BitmapFactory$Options;
         r3.<init>();
         r4 = 1;
@@ -1931,106 +1931,106 @@ public final class NexImageLoader {
         r4 = 1;
         r3.inSampleSize = r4;
         r4 = android.graphics.BitmapFactory.decodeFile(r2, r3);
-        if (r4 == 0) goto L_0x0d38;
-    L_0x0d29:
+        if (r4 == 0) goto L_0x0d3c;
+    L_0x0d2d:
         r3 = r4.getWidth();
         r5 = r4.getHeight();
         r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
         r2.<init>(r4, r3, r5);
         goto L_0x002c;
-    L_0x0d38:
+    L_0x0d3c:
         r3 = r5;
         r5 = r4;
         r4 = r6;
-        goto L_0x076e;
-    L_0x0d3d:
+        goto L_0x0772;
+    L_0x0d41:
         r2 = "[";
         r0 = r46;
         r2 = r0.startsWith(r2);
-        if (r2 != 0) goto L_0x0d9e;
-    L_0x0d47:
+        if (r2 != 0) goto L_0x0da2;
+    L_0x0d4b:
         r4 = 0;
         r0 = r45;
         r2 = r0.m_assetManager;
-        if (r2 == 0) goto L_0x0d71;
-    L_0x0d4e:
+        if (r2 == 0) goto L_0x0d75;
+    L_0x0d52:
         r2 = "placeholder1.jpg";
         r0 = r46;
-        r2 = r0.compareTo(r2);	 Catch:{ IOException -> 0x0d91 }
-        if (r2 == 0) goto L_0x0d62;
-    L_0x0d58:
+        r2 = r0.compareTo(r2);	 Catch:{ IOException -> 0x0d95 }
+        if (r2 == 0) goto L_0x0d66;
+    L_0x0d5c:
         r2 = "placeholder2.jpg";
         r0 = r46;
-        r2 = r0.compareTo(r2);	 Catch:{ IOException -> 0x0d91 }
-        if (r2 != 0) goto L_0x0d82;
-    L_0x0d62:
+        r2 = r0.compareTo(r2);	 Catch:{ IOException -> 0x0d95 }
+        if (r2 != 0) goto L_0x0d86;
+    L_0x0d66:
         r0 = r45;
-        r2 = r0.m_assetManager;	 Catch:{ IOException -> 0x0d91 }
+        r2 = r0.m_assetManager;	 Catch:{ IOException -> 0x0d95 }
         r0 = r46;
-        r2 = r2.open(r0);	 Catch:{ IOException -> 0x0d91 }
-        r2 = android.graphics.BitmapFactory.decodeStream(r2);	 Catch:{ IOException -> 0x0d91 }
-    L_0x0d70:
+        r2 = r2.open(r0);	 Catch:{ IOException -> 0x0d95 }
+        r2 = android.graphics.BitmapFactory.decodeStream(r2);	 Catch:{ IOException -> 0x0d95 }
+    L_0x0d74:
         r4 = r2;
-    L_0x0d71:
-        if (r4 == 0) goto L_0x0d99;
-    L_0x0d73:
+    L_0x0d75:
+        if (r4 == 0) goto L_0x0d9d;
+    L_0x0d77:
         r3 = r4.getWidth();
         r5 = r4.getHeight();
         r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
         r2.<init>(r4, r3, r5);
         goto L_0x002c;
-    L_0x0d82:
+    L_0x0d86:
         r0 = r45;
-        r2 = r0.m_assetManager;	 Catch:{ IOException -> 0x0d91 }
+        r2 = r0.m_assetManager;	 Catch:{ IOException -> 0x0d95 }
         r0 = r46;
-        r2 = r2.open(r0);	 Catch:{ IOException -> 0x0d91 }
-        r2 = android.graphics.BitmapFactory.decodeStream(r2);	 Catch:{ IOException -> 0x0d91 }
-        goto L_0x0d70;
-    L_0x0d91:
+        r2 = r2.open(r0);	 Catch:{ IOException -> 0x0d95 }
+        r2 = android.graphics.BitmapFactory.decodeStream(r2);	 Catch:{ IOException -> 0x0d95 }
+        goto L_0x0d74;
+    L_0x0d95:
         r2 = move-exception;
         r2.printStackTrace();
-        goto L_0x0d71;
-    L_0x0d96:
+        goto L_0x0d75;
+    L_0x0d9a:
         r2 = 0;
         goto L_0x002c;
-    L_0x0d99:
+    L_0x0d9d:
         r3 = r5;
         r5 = r4;
         r4 = r6;
-        goto L_0x076e;
-    L_0x0d9e:
+        goto L_0x0772;
+    L_0x0da2:
         r3 = r5;
         r5 = r4;
         r4 = r6;
-        goto L_0x076e;
-    L_0x0da3:
+        goto L_0x0772;
+    L_0x0da7:
         r2 = r15;
         r4 = r18;
-        goto L_0x09d0;
-    L_0x0da8:
+        goto L_0x09d4;
+    L_0x0dac:
         r8 = r3;
         r3 = r4;
         r4 = r5;
-        goto L_0x067d;
-    L_0x0dad:
+        goto L_0x0681;
+    L_0x0db1:
         r44 = r5;
         r5 = r4;
         r4 = r44;
-        goto L_0x0627;
-    L_0x0db4:
-        r20 = r13;
-        goto L_0x05d6;
+        goto L_0x062b;
     L_0x0db8:
+        r20 = r13;
+        goto L_0x05da;
+    L_0x0dbc:
         r7 = r2;
-        goto L_0x0567;
-    L_0x0dbb:
+        goto L_0x056b;
+    L_0x0dbf:
         r2 = r11;
         r6 = r12;
-        goto L_0x029f;
-    L_0x0dbf:
+        goto L_0x02a3;
+    L_0x0dc3:
         r7 = r8;
-        goto L_0x028a;
-    L_0x0dc2:
+        goto L_0x028e;
+    L_0x0dc6:
         r5 = r2;
         r2 = r3;
         goto L_0x0074;
