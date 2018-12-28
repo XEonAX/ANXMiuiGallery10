@@ -1,11 +1,11 @@
 package com.miui.gallery.picker;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import com.miui.gallery.R;
 import com.miui.gallery.util.GallerySamplingStatHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import miui.app.Fragment;
 
 public abstract class PickerCompatFragment extends Fragment {
     private static int IMAGE_LOADER_USED_COUNT = 0;

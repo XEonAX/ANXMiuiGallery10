@@ -1,6 +1,6 @@
 package com.miui.gallery.search.transitions;
 
-import miui.app.Fragment;
+import android.app.Fragment;
 
 public abstract class SearchTransitionHelper {
     protected SearchTransitionListener mEnterTransitionListener;

@@ -2,6 +2,7 @@ package com.miui.gallery.card.ui.detail;
 
 import android.animation.ObjectAnimator;
 import android.app.ActionBar.LayoutParams;
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -85,7 +86,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import miui.app.Activity;
 
 public class StoryAlbumFragment extends BaseMediaFragment {
     private ActionBarHelper mActionBarHelper;
@@ -400,7 +400,7 @@ public class StoryAlbumFragment extends BaseMediaFragment {
             int i = 1;
             if (StoryAlbumFragment.this.mActivity != null) {
                 if (StoryAlbumFragment.this.mIsShowTranslucentStatusBar) {
-                    Activity activity = (Activity) StoryAlbumFragment.this.getActivity();
+                    Activity activity = StoryAlbumFragment.this.getActivity();
                     if (!StoryAlbumFragment.this.mIsInActionMode) {
                         i = 2;
                     }
@@ -411,7 +411,7 @@ public class StoryAlbumFragment extends BaseMediaFragment {
                     StoryAlbumFragment.this.mActivity.getActionBar().setBackgroundDrawable(null);
                     return;
                 }
-                ((Activity) StoryAlbumFragment.this.getActivity()).setTranslucentStatus(1);
+                StoryAlbumFragment.this.getActivity().setTranslucentStatus(1);
                 this.mBackView.setImageResource(miui.R.drawable.action_bar_back_light);
                 this.mTitleView.setTextColor(StoryAlbumFragment.this.mActivity.getResources().getColor(R.color.action_bar_title_text_color_light));
                 this.mMenuView.setBackgroundResource(miui.R.drawable.action_mode_immersion_more_light);

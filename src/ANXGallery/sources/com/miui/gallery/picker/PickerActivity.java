@@ -1,5 +1,6 @@
 package com.miui.gallery.picker;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +25,6 @@ import com.miui.gallery.util.Log;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import miui.app.ActionBar;
 
 public abstract class PickerActivity extends PickerCompatActivity {
     protected static final String[] PICKABLE_PROJECTION = new String[]{"_id", "sha1", "microthumbfile", "thumbnailFile", "localFile", "serverType", "size", "exifImageLength", "exifImageWidth"};

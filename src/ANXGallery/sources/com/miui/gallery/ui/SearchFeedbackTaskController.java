@@ -1,5 +1,6 @@
 package com.miui.gallery.ui;
 
+import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.widget.TextView;
 import com.miui.gallery.R;
 import com.miui.gallery.search.feedback.SearchFeedbackHelper;
 import com.miui.gallery.search.utils.SearchLog;
-import miui.app.Fragment;
 
 public class SearchFeedbackTaskController {
     private Fragment mFragment;

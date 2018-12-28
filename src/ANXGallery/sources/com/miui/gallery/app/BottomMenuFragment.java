@@ -1,9 +1,9 @@
 package com.miui.gallery.app;
 
+import android.app.ActionBar;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
-import miui.app.ActionBar;
-import miui.app.Fragment;
 
 public abstract class BottomMenuFragment extends Fragment implements IBottomMenu {
     private BottomMenuFragmentDelegate mDelegate;

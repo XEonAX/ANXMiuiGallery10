@@ -1,5 +1,7 @@
 package com.miui.gallery.view;
 
+import android.app.ActionBar;
+import android.app.ActionBar.FragmentViewPagerChangeListener;
 import android.app.ActionBar.LayoutParams;
 import android.app.ActionBar.OnMenuVisibilityListener;
 import android.app.ActionBar.OnNavigationListener;
@@ -12,8 +14,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.SpinnerAdapter;
 import com.miui.gallery.util.MiscUtil;
-import miui.app.ActionBar;
-import miui.app.ActionBar.FragmentViewPagerChangeListener;
 
 public class ActionBarWrapper extends ActionBar {
     protected ActionBar mWrapped;

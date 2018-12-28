@@ -1,5 +1,6 @@
 package com.miui.gallery.app;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import com.miui.gallery.R;
 import com.miui.gallery.view.menu.MenuBuilder;
 import com.miui.gallery.widget.BottomMenu;
-import miui.app.Fragment;
 
 public class BottomMenuFragmentDelegate extends BottomMenuDelegateImpl {
     private int mExtraThemeRes;

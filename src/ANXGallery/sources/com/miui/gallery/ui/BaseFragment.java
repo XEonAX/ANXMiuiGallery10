@@ -1,12 +1,12 @@
 package com.miui.gallery.ui;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import com.miui.gallery.R;
 import com.miui.gallery.activity.BaseActivity;
 import com.miui.gallery.util.GallerySamplingStatHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import miui.app.Fragment;
 
 public abstract class BaseFragment extends Fragment {
     protected BaseActivity mActivity;

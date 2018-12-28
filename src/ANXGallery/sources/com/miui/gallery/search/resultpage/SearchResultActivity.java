@@ -1,5 +1,6 @@
 package com.miui.gallery.search.resultpage;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import com.miui.gallery.search.utils.SearchLog;
 import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.util.HashMap;
 import java.util.Map;
-import miui.app.Fragment;
 
 public class SearchResultActivity extends BaseActivity {
     private Fragment mFragment;
@@ -54,7 +54,7 @@ public class SearchResultActivity extends BaseActivity {
             params.put(paramName, uri.getQueryParameter(paramName));
         }
         SearchStatUtils.cacheEvent(intent.getStringExtra("from"), actionType, params);
-        this.mFragment = (Fragment) getFragmentManager().findFragmentByTag("RootFragment");
+        this.mFragment = getFragmentManager().findFragmentByTag("RootFragment");
         if (this.mFragment == null) {
             getIntent().setData(uri.buildUpon().appendQueryParameter(nexExportFormat.TAG_FORMAT_TYPE, resultType).build());
             if (resultType.equals("imageList")) {

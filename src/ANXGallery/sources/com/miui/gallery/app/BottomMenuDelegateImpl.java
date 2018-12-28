@@ -75,7 +75,7 @@ public abstract class BottomMenuDelegateImpl implements Callback, MenuPresenter.
         return this.mBottomMenu != null ? this.mBottomMenu.getCollapsedHeight() : -1;
     }
 
-    protected miui.app.ActionBar wrapActionBar(miui.app.ActionBar actionBar) {
+    protected ActionBar wrapActionBar(ActionBar actionBar) {
         if (actionBar == null) {
             return null;
         }

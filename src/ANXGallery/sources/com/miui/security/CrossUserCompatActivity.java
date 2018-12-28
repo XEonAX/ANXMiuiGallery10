@@ -1,5 +1,6 @@
 package com.miui.security;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -9,7 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import com.miui.core.SdkHelper;
 import com.miui.internal.CrossUserHelper;
-import miui.app.Activity;
 
 public class CrossUserCompatActivity extends Activity {
     private volatile ContentResolver mCrossUserContentResolver;

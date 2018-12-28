@@ -1,5 +1,6 @@
 package com.miui.gallery.picker;
 
+import android.app.ActionBar.FragmentViewPagerChangeListener;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -54,7 +55,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import miui.app.ActionBar.FragmentViewPagerChangeListener;
 
 public class PickGalleryActivity extends PickerActivity {
     private OnCancelListener mCancelConfirmListener = new OnCancelListener() {

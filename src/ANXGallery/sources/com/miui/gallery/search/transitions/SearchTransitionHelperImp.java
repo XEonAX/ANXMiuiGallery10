@@ -1,6 +1,7 @@
 package com.miui.gallery.search.transitions;
 
 import android.annotation.TargetApi;
+import android.app.Fragment;
 import android.os.Build.VERSION;
 import android.transition.ChangeBounds;
 import android.transition.ChangeClipBounds;
@@ -13,7 +14,6 @@ import com.miui.gallery.R;
 import com.miui.gallery.search.transitions.SearchTransitionHelper.SearchTransitionListener;
 import java.util.List;
 import java.util.Map;
-import miui.app.Fragment;
 
 public class SearchTransitionHelperImp extends SearchTransitionHelper {
     private SearchSharedElementCallback mSharedElementCallback;

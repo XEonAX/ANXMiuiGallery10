@@ -1,5 +1,6 @@
 package com.miui.gallery.activity;
 
+import android.app.ActionBar.FragmentViewPagerChangeListener;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -32,7 +33,6 @@ import com.miui.gallery.util.GallerySamplingStatHelper;
 import com.miui.gallery.util.Log;
 import com.miui.gallery.util.PhotoPageOrientationHelper;
 import com.miui.gallery.util.ReceiverUtils;
-import miui.app.ActionBar.FragmentViewPagerChangeListener;
 import miui.view.ViewPager;
 
 public class HomePageActivity extends BaseActivity implements Attacher, OnAppFocusedListener {

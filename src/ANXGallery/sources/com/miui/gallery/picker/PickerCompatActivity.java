@@ -1,5 +1,6 @@
 package com.miui.gallery.picker;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -13,7 +14,6 @@ import com.miui.gallery.util.Log;
 import com.miui.gallery.util.PermissionUtils;
 import com.miui.security.CrossUserCompatActivity;
 import java.util.ArrayList;
-import miui.app.ActionBar;
 
 public class PickerCompatActivity extends CrossUserCompatActivity {
     private static final String[] REQUIRED_RUNTIME_PERMISSIONS = new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"};

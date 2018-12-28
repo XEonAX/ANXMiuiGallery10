@@ -1,6 +1,7 @@
 package com.miui.gallery.ui;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Intent;
@@ -34,7 +35,6 @@ import com.miui.gallery.search.widget.BannerSearchBar.OnHintClickListener;
 import com.miui.gallery.search.widget.bannerView.BaseBannerAdapter.OnUpdateTextListener;
 import com.miui.gallery.search.widget.bannerView.BaseBannerItemData;
 import com.miui.gallery.util.ActionURIHandler;
-import miui.app.Fragment;
 
 public class TopSearchBarController implements LoaderCallbacks<SuggestionResult>, OnHintClickListener, OnUpdateTextListener {
     private Bundle mActionBundle = null;

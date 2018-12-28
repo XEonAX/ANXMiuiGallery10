@@ -11,7 +11,7 @@ import com.miui.gallery.R;
 import com.miui.gallery.activity.BaseActivity;
 
 public class ProjectSlideFragment extends Fragment {
-    public static void showProjectSlideFragment(BaseActivity activity, miui.app.Fragment targetFragment, String connectedDevice) {
+    public static void showProjectSlideFragment(BaseActivity activity, Fragment targetFragment, String connectedDevice) {
         Fragment projectSlideFragment = new ProjectSlideFragment();
         Bundle data = new Bundle();
         data.putString("photo_connected_device", connectedDevice);

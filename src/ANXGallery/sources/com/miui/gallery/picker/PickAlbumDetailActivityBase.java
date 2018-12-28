@@ -1,5 +1,6 @@
 package com.miui.gallery.picker;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.Typeface;
@@ -16,7 +17,6 @@ import com.miui.gallery.picker.helper.Picker.Mode;
 import com.miui.gallery.picker.helper.Picker.ResultType;
 import com.miui.gallery.util.BuildUtil;
 import java.util.ArrayList;
-import miui.app.ActionBar;
 
 public class PickAlbumDetailActivityBase extends PickerActivity {
     protected PickAlbumDetailFragmentBase mAlbumDetailFragment;
