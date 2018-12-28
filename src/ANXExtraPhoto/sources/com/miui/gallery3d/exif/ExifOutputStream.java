@@ -32,7 +32,7 @@ class ExifOutputStream extends FilterOutputStream {
     private int mState = 0;
 
     protected ExifOutputStream(OutputStream ou, ExifInterface iRef) {
-        super(new BufferedOutputStream(ou, STREAMBUFFER_SIZE));
+        super(new BufferedOutputStream(ou, 65536));
         this.mInterface = iRef;
     }
 
@@ -98,14 +98,14 @@ class ExifOutputStream extends FilterOutputStream {
                                 this.mBuffer.rewind();
                                 short marker = this.mBuffer.getShort();
                                 if (marker == (short) -31) {
-                                    this.mByteToSkip = (this.mBuffer.getShort() & MAX_EXIF_SIZE) - 2;
+                                    this.mByteToSkip = (this.mBuffer.getShort() & 65535) - 2;
                                     this.mState = 2;
                                 } else if (JpegHeader.isSofMarker(marker)) {
                                     this.out.write(this.mBuffer.array(), 0, 4);
                                     this.mState = 2;
                                 } else {
                                     this.out.write(this.mBuffer.array(), 0, 4);
-                                    this.mByteToCopy = (this.mBuffer.getShort() & MAX_EXIF_SIZE) - 2;
+                                    this.mByteToCopy = (this.mBuffer.getShort() & 65535) - 2;
                                 }
                                 this.mBuffer.rewind();
                                 break;
@@ -137,7 +137,7 @@ class ExifOutputStream extends FilterOutputStream {
             ArrayList<ExifTag> nullTags = stripNullValueTags(this.mExifData);
             createRequiredIfdAndTag();
             int exifSize = calculateAllOffset();
-            if (exifSize + 8 <= MAX_EXIF_SIZE) {
+            if (exifSize + 8 <= 65535) {
                 OrderedDataOutputStream dataOutputStream = new OrderedDataOutputStream(this.out);
                 dataOutputStream.setByteOrder(ByteOrder.BIG_ENDIAN);
                 dataOutputStream.writeShort((short) -31);

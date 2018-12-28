@@ -306,7 +306,7 @@ public class ThreadPool {
     public ThreadPool(int corePoolSize, int maxPoolSize) {
         this.mCpuCounter = new ResourceCounter(4);
         this.mNetworkCounter = new ResourceCounter(2);
-        this.mExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 10, TimeUnit.SECONDS, new LinkedBlockingQueue(), new PriorityThreadFactory("thread-pool", KEEP_ALIVE_TIME));
+        this.mExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 10, TimeUnit.SECONDS, new LinkedBlockingQueue(), new PriorityThreadFactory("thread-pool", 10));
     }
 
     public void shutdown() {

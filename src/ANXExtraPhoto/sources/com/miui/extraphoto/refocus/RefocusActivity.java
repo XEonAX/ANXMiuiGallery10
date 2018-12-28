@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.State;
+import android.support.v7.widget.helper.ItemTouchHelper.Callback;
 import android.text.TextUtils;
 import android.transition.ChangeBounds;
 import android.transition.Transition;
@@ -387,7 +388,7 @@ public class RefocusActivity extends Activity implements PermissionCheckCallback
             ImageTransition imageEnter = new ImageTransition(true, this.mMatrix, this.mWidth, this.mHeight);
             imageEnter.setInterpolator(new CubicEaseInOutInterpolator());
             TransitionCompat.addTarget(imageEnter, RefocusActivity.TAG_TRANSITION_VIEW);
-            MenuTransition menuTransition = new MenuTransition((float) this.mMenuOffset, true, 300, 200, RefocusActivity.this.mMenuGroup.getY());
+            MenuTransition menuTransition = new MenuTransition((float) this.mMenuOffset, true, 300, Callback.DEFAULT_DRAG_ANIMATION_DURATION, RefocusActivity.this.mMenuGroup.getY());
             menuTransition.setInterpolator(new CubicEaseInOutInterpolator());
             TransitionCompat.addTarget(menuTransition, RefocusActivity.TAG_TRANSITION_VIEW_MENU);
             enter.addTransition(imageEnter).addTransition(menuTransition).setDuration(400).addListener(new TransitionListener() {
@@ -438,7 +439,7 @@ public class RefocusActivity extends Activity implements PermissionCheckCallback
             imageExit.setInterpolator(new CubicEaseOutInterpolator());
             imageExit.setDuration(300);
             TransitionCompat.addTarget(imageExit, RefocusActivity.TAG_TRANSITION_VIEW);
-            MenuTransition menuTransition = new MenuTransition((float) this.mMenuOffset, false, 300, 200, RefocusActivity.this.mMenuGroup.getY());
+            MenuTransition menuTransition = new MenuTransition((float) this.mMenuOffset, false, 300, Callback.DEFAULT_DRAG_ANIMATION_DURATION, RefocusActivity.this.mMenuGroup.getY());
             menuTransition.setInterpolator(new CubicEaseOutInterpolator());
             TransitionCompat.addTarget(menuTransition, RefocusActivity.TAG_TRANSITION_VIEW_MENU);
             exit.addTransition(imageExit).addTransition(menuTransition).addListener(new TransitionListener() {

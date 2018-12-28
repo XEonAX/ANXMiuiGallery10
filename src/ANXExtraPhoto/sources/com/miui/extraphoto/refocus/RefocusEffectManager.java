@@ -4,7 +4,7 @@ import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.miui.extraphoto.refocus.effect.RefocusEffect;
 import com.miui.extraphoto.refocus.effect.RefocusEffectBasic;
@@ -57,13 +57,13 @@ class RefocusEffectManager {
                 Gson gson = new Gson();
                 JsonParser jsonParser = new JsonParser();
                 for (String folderName : refocusItemPath) {
-                    JsonObject jsonObject = jsonParser.parse(RefocusIOUtils.loadResourceFileString(assetManager, RefocusEffectManager.getConfigPath(folderName))).getAsJsonObject();
+                    JsonElement jsonObject = jsonParser.parse(RefocusIOUtils.loadResourceFileString(assetManager, RefocusEffectManager.getConfigPath(folderName))).getAsJsonObject();
                     jsonObject.addProperty("relativePath", RefocusEffectManager.getRelativePath(folderName));
                     this.mRefocusEffectConfigs.add((RefocusEffectConfig) gson.fromJson(jsonObject, RefocusEffectConfig.class));
                 }
                 while (i < relightingItemPath.length) {
                     String folderName2 = relightingItemPath[i];
-                    JsonObject jsonObject2 = jsonParser.parse(RefocusIOUtils.loadResourceFileString(assetManager, RefocusEffectManager.getRelightingConfigPath(folderName2))).getAsJsonObject();
+                    JsonElement jsonObject2 = jsonParser.parse(RefocusIOUtils.loadResourceFileString(assetManager, RefocusEffectManager.getRelightingConfigPath(folderName2))).getAsJsonObject();
                     jsonObject2.addProperty("relativePath", RefocusEffectManager.getRelightingRelativePath(folderName2));
                     this.mRelightingEffectConfigs.add((RefocusEffectConfig) gson.fromJson(jsonObject2, RefocusEffectConfig.class));
                     i++;
@@ -72,7 +72,7 @@ class RefocusEffectManager {
                 stringBuilder.append(RefocusEffectManager.PATH_STATIC);
                 stringBuilder.append(RefocusEffectManager.SEPARATOR);
                 stringBuilder.append(RefocusEffectManager.FILE_NAME_CONFIG);
-                JsonObject jsonObject3 = jsonParser.parse(RefocusIOUtils.loadResourceFileString(assetManager, stringBuilder.toString())).getAsJsonObject();
+                JsonElement jsonObject3 = jsonParser.parse(RefocusIOUtils.loadResourceFileString(assetManager, stringBuilder.toString())).getAsJsonObject();
                 StringBuilder stringBuilder2 = new StringBuilder();
                 stringBuilder2.append(RefocusEffectManager.PATH_STATIC);
                 stringBuilder2.append(RefocusEffectManager.SEPARATOR);

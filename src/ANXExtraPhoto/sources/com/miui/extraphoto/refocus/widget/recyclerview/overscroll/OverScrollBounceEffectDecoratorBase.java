@@ -140,7 +140,7 @@ public abstract class OverScrollBounceEffectDecoratorBase implements IOverScroll
         protected ObjectAnimator createBounceBackAnimator(float startOffset) {
             float bounceBackDuration = (Math.abs(startOffset) / this.mAnimAttributes.mMaxOffset) * 800.0f;
             ObjectAnimator bounceBackAnim = ObjectAnimator.ofFloat(OverScrollBounceEffectDecoratorBase.this.mViewAdapter.getView(), this.mAnimAttributes.mProperty, new float[]{OverScrollBounceEffectDecoratorBase.this.mStartAttr.mAbsOffset});
-            bounceBackAnim.setDuration((long) Math.max((int) bounceBackDuration, OverScrollBounceEffectDecoratorBase.MIN_BOUNCE_BACK_DURATION_MS));
+            bounceBackAnim.setDuration((long) Math.max((int) bounceBackDuration, 200));
             bounceBackAnim.setInterpolator(this.mBounceBackInterpolator);
             bounceBackAnim.addUpdateListener(this);
             return bounceBackAnim;

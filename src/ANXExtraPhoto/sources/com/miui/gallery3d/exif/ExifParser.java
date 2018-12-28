@@ -1,5 +1,6 @@
 package com.miui.gallery3d.exif;
 
+import android.support.v4.internal.view.SupportMenu;
 import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
@@ -176,7 +177,7 @@ class ExifParser {
             return 5;
         }
         int offset = this.mTiffStream.getReadByteCount();
-        int endOfTags = (this.mIfdStartOffset + 2) + (this.mNumOfTagInIfd * TAG_SIZE);
+        int endOfTags = (this.mIfdStartOffset + 2) + (this.mNumOfTagInIfd * 12);
         if (offset < endOfTags) {
             this.mTag = readTag();
             if (this.mTag == null) {
@@ -228,7 +229,7 @@ class ExifParser {
                     this.mIfdType = ((IfdEvent) event).ifd;
                     this.mNumOfTagInIfd = this.mTiffStream.readUnsignedShort();
                     this.mIfdStartOffset = ((Integer) entry.getKey()).intValue();
-                    if (((this.mNumOfTagInIfd * TAG_SIZE) + this.mIfdStartOffset) + 2 > this.mApp1End) {
+                    if (((this.mNumOfTagInIfd * 12) + this.mIfdStartOffset) + 2 > this.mApp1End) {
                         String str2 = TAG;
                         StringBuilder stringBuilder2 = new StringBuilder();
                         stringBuilder2.append("Invalid size of IFD ");
@@ -270,13 +271,13 @@ class ExifParser {
     }
 
     protected void skipRemainingTagsInCurrentIfd() throws IOException, ExifInvalidFormatException {
-        int endOfTags = (this.mIfdStartOffset + 2) + (TAG_SIZE * this.mNumOfTagInIfd);
+        int endOfTags = (this.mIfdStartOffset + 2) + (12 * this.mNumOfTagInIfd);
         int offset = this.mTiffStream.getReadByteCount();
         if (offset <= endOfTags) {
             if (this.mNeedToParseOffsetsInCurrentIfd) {
                 while (offset < endOfTags) {
                     this.mTag = readTag();
-                    offset += TAG_SIZE;
+                    offset += 12;
                     if (this.mTag != null) {
                         checkOffsetOrImageTag(this.mTag);
                     }
@@ -640,7 +641,7 @@ class ExifParser {
     }
 
     protected int readUnsignedShort() throws IOException {
-        return this.mTiffStream.readShort() & 65535;
+        return this.mTiffStream.readShort() & SupportMenu.USER_MASK;
     }
 
     protected long readUnsignedLong() throws IOException {

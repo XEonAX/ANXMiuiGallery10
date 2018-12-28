@@ -3,6 +3,7 @@ package com.miui.gallery3d.exif;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
+import android.support.v4.internal.view.SupportMenu;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseIntArray;
@@ -408,7 +409,7 @@ public class ExifInterface {
     }
 
     public static int defineTag(int ifdId, short tagId) {
-        return (65535 & tagId) | (ifdId << 16);
+        return (SupportMenu.USER_MASK & tagId) | (ifdId << 16);
     }
 
     public static short getTrueTagKey(int tag) {
@@ -1587,7 +1588,7 @@ public class ExifInterface {
     }
 
     protected static int getComponentCountFromInfo(int info) {
-        return 65535 & info;
+        return SupportMenu.USER_MASK & info;
     }
 
     public static byte[] addXiaomiComment(byte[] jpeg, String comment) {

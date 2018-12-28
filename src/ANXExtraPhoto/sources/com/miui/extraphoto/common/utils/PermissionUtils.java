@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build.VERSION;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import java.util.ArrayList;
 
 public class PermissionUtils {
@@ -14,7 +15,7 @@ public class PermissionUtils {
         if (!supportRuntimePermissionCheck()) {
             return true;
         }
-        if (ActivityCompat.checkSelfPermission(activity, permission) != 0) {
+        if (ContextCompat.checkSelfPermission(activity, permission) != 0) {
             z = false;
         }
         return z;
@@ -25,7 +26,7 @@ public class PermissionUtils {
         if (!supportRuntimePermissionCheck()) {
             return true;
         }
-        if (ActivityCompat.checkSelfPermission(context, permission) != 0) {
+        if (ContextCompat.checkSelfPermission(context, permission) != 0) {
             z = false;
         }
         return z;
