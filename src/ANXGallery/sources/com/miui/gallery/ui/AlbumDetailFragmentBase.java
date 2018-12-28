@@ -1,6 +1,7 @@
 package com.miui.gallery.ui;
 
 import android.accounts.Account;
+import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -132,7 +133,7 @@ public abstract class AlbumDetailFragmentBase extends PhotoListFragmentBase impl
                     break;
                 case R.id.add_to_album /*2131886809*/:
                     boolean z;
-                    Object obj = AlbumDetailFragmentBase.this.mActivity;
+                    Activity activity = AlbumDetailFragmentBase.this.mActivity;
                     OnAddAlbumListener anonymousClass1 = new OnAddAlbumListener() {
                         public void onComplete(long[] result, boolean deleteOrigin) {
                             AnonymousClass8.this.mMode.finish();
@@ -144,7 +145,7 @@ public abstract class AlbumDetailFragmentBase extends PhotoListFragmentBase impl
                     } else {
                         z = true;
                     }
-                    MediaAndAlbumOperations.addToAlbum(obj, anonymousClass1, 0, z, AlbumDetailFragmentBase.this.canAddSecret(), AlbumDetailFragmentBase.this.mAlbumDetailGridViewWrapper.getCheckedItemIds());
+                    MediaAndAlbumOperations.addToAlbum(activity, anonymousClass1, 0, z, AlbumDetailFragmentBase.this.canAddSecret(), AlbumDetailFragmentBase.this.mAlbumDetailGridViewWrapper.getCheckedItemIds());
                     break;
                 case R.id.remove_secret /*2131886826*/:
                     MediaAndAlbumOperations.removeFromSecretAlbum(AlbumDetailFragmentBase.this.mActivity, new OnCompleteListener() {

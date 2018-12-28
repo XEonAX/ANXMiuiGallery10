@@ -1,5 +1,7 @@
 package com.miui.gallery.activity;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
@@ -22,8 +24,6 @@ import com.miui.gallery.util.PermissionCheckHelper.PermissionCheckCallback;
 import com.miui.gallery.util.ReceiverUtils;
 import com.miui.gallery.util.TransitionPatching;
 import com.nexstreaming.nexeditorsdk.nexEngine;
-import miui.app.ActionBar;
-import miui.app.Activity;
 
 public class BaseActivity extends Activity implements PermissionCheckCallback {
     private static final String[] REQUIRED_RUNTIME_PERMISSIONS = new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"};

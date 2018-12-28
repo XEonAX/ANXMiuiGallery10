@@ -1,5 +1,5 @@
 .class public Lcom/miui/gallery/activity/BaseActivity;
-.super Lmiui/app/Activity;
+.super Landroid/app/Activity;
 .source "BaseActivity.java"
 
 # interfaces
@@ -19,7 +19,7 @@
 
 
 # instance fields
-.field protected mActionBar:Lmiui/app/ActionBar;
+.field protected mActionBar:Landroid/app/ActionBar;
 
 .field private mCtaAgreedListener:Landroid/content/DialogInterface$OnClickListener;
 
@@ -60,7 +60,7 @@
 
     .prologue
     .line 30
-    invoke-direct {p0}, Lmiui/app/Activity;-><init>()V
+    invoke-direct {p0}, Landroid/app/Activity;-><init>()V
 
     .line 40
     const/4 v0, 0x0
@@ -142,11 +142,11 @@
 
     .prologue
     .line 114
-    invoke-virtual {p0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/activity/BaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/miui/gallery/activity/BaseActivity;->mActionBar:Lmiui/app/ActionBar;
+    iput-object v0, p0, Lcom/miui/gallery/activity/BaseActivity;->mActionBar:Landroid/app/ActionBar;
 
     .line 115
     return-void
@@ -180,7 +180,7 @@
 
     .prologue
     .line 79
-    invoke-super {p0, p1, p2, p3}, Lmiui/app/Activity;->onActivityResult(IILandroid/content/Intent;)V
+    invoke-super {p0, p1, p2, p3}, Landroid/app/Activity;->onActivityResult(IILandroid/content/Intent;)V
 
     .line 80
     invoke-static {p0, p1, p2, p3}, Lcom/miui/gallery/util/DocumentProviderUtils;->handleRequestPermissionResult(Landroid/app/Activity;IILandroid/content/Intent;)V
@@ -298,7 +298,7 @@
     const/4 v2, 0x0
 
     .line 48
-    invoke-super {p0, p1}, Lmiui/app/Activity;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
     .line 49
     invoke-virtual {p0}, Lcom/miui/gallery/activity/BaseActivity;->hasCustomContentView()Z
@@ -415,7 +415,7 @@
 
     .prologue
     .line 106
-    invoke-super {p0}, Lmiui/app/Activity;->onDestroy()V
+    invoke-super {p0}, Landroid/app/Activity;->onDestroy()V
 
     .line 108
     iget-object v0, p0, Lcom/miui/gallery/activity/BaseActivity;->mScreenReceiver:Landroid/content/BroadcastReceiver;
@@ -466,7 +466,7 @@
     return v0
 
     :cond_1
-    invoke-super {p0, p1, p2}, Lmiui/app/Activity;->onKeyDown(ILandroid/view/KeyEvent;)Z
+    invoke-super {p0, p1, p2}, Landroid/app/Activity;->onKeyDown(ILandroid/view/KeyEvent;)Z
 
     move-result v0
 
@@ -478,7 +478,7 @@
 
     .prologue
     .line 100
-    invoke-super {p0}, Lmiui/app/Activity;->onPause()V
+    invoke-super {p0}, Landroid/app/Activity;->onPause()V
 
     .line 101
     const/4 v0, 0x0
@@ -510,7 +510,7 @@
 
     .prologue
     .line 93
-    invoke-super {p0}, Lmiui/app/Activity;->onResume()V
+    invoke-super {p0}, Landroid/app/Activity;->onResume()V
 
     .line 94
     const/4 v0, 0x1
@@ -545,7 +545,7 @@
 
     .line 74
     :cond_0
-    invoke-super {p0}, Lmiui/app/Activity;->onStop()V
+    invoke-super {p0}, Landroid/app/Activity;->onStop()V
 
     .line 75
     return-void
@@ -567,14 +567,14 @@
 
     .prologue
     .line 119
-    iget-object v0, p0, Lcom/miui/gallery/activity/BaseActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/BaseActivity;->mActionBar:Landroid/app/ActionBar;
 
     if-eqz v0, :cond_0
 
     .line 120
-    iget-object v0, p0, Lcom/miui/gallery/activity/BaseActivity;->mActionBar:Lmiui/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/BaseActivity;->mActionBar:Landroid/app/ActionBar;
 
-    invoke-virtual {v0, p1}, Lmiui/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
+    invoke-virtual {v0, p1}, Landroid/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
 
     .line 122
     :cond_0
@@ -685,7 +685,7 @@
 
     .prologue
     .line 245
-    invoke-super {p0}, Lmiui/app/Activity;->startPostponedEnterTransition()V
+    invoke-super {p0}, Landroid/app/Activity;->startPostponedEnterTransition()V
 
     .line 246
     const/4 v0, 0x1
