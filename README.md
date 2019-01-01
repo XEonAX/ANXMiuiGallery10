@@ -18,10 +18,3 @@ Instructions for Development:
  2. Run redo.bat 
  3. Start porting
 
-  
-Instructions for Testing:
-
- 1. Download the `zip` from https://github.com/XEonAX/ANXMiuiGallery10/tree/master/out
- 2. Install the `zip` with Magisk
- 3. Grant All Permissions
- 4. Start Testing
