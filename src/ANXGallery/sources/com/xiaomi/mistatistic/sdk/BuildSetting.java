@@ -2,6 +2,8 @@ package com.xiaomi.mistatistic.sdk;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.os.Build.VERSION;
+import android.provider.Settings.Global;
 import android.util.Log;
 import com.xiaomi.mistatistic.sdk.controller.d;
 import com.xiaomi.mistatistic.sdk.controller.j;
@@ -70,34 +72,23 @@ public class BuildSetting {
 
     /* JADX WARNING: Removed duplicated region for block: B:9:0x0020  */
     /* JADX WARNING: Removed duplicated region for block: B:10:? A:{SYNTHETIC, RETURN, ORIG_RETURN} */
-    public static boolean isMiTvExperienceUploadGrantedByUser(android.content.Context r4) {
-        /*
-        r1 = 1;
-        r0 = android.os.Build.VERSION.SDK_INT;	 Catch:{ Exception -> 0x0016 }
-        r2 = 17;
-        if (r0 < r2) goto L_0x001e;
-    L_0x0007:
-        r0 = r4.getContentResolver();	 Catch:{ Exception -> 0x0016 }
-        r2 = "user_experience_enabled";
-        r3 = 1;
-        r0 = android.provider.Settings.Global.getInt(r0, r2, r3);	 Catch:{ Exception -> 0x0016 }
-    L_0x0013:
-        if (r0 != r1) goto L_0x0020;
-    L_0x0015:
-        return r1;
-    L_0x0016:
-        r0 = move-exception;
-        r2 = "BS";
-        r3 = "isMiTvExperienceUploadGrantedByUser exception:";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r0);
-    L_0x001e:
-        r0 = r1;
-        goto L_0x0013;
-    L_0x0020:
-        r1 = 0;
-        goto L_0x0015;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.mistatistic.sdk.BuildSetting.isMiTvExperienceUploadGrantedByUser(android.content.Context):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static boolean isMiTvExperienceUploadGrantedByUser(Context context) {
+        int i;
+        try {
+            if (VERSION.SDK_INT >= 17) {
+                i = Global.getInt(context.getContentResolver(), "user_experience_enabled", 1);
+                if (i != 1) {
+                    return true;
+                }
+                return false;
+            }
+        } catch (Throwable e) {
+            j.a("BS", "isMiTvExperienceUploadGrantedByUser exception:", e);
+        }
+        i = 1;
+        if (i != 1) {
+        }
     }
 
     public static boolean isUploadDebugLogEnable(Context context) {

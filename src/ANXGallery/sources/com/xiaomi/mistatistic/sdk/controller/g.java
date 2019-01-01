@@ -7,6 +7,9 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import com.xiaomi.mistatistic.sdk.BuildSetting;
 import com.xiaomi.mistatistic.sdk.controller.e.a;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.UUID;
 
 /* compiled from: DeviceIdHolder */
@@ -166,96 +169,75 @@ public class g {
 
     /* JADX WARNING: Removed duplicated region for block: B:21:0x0061 A:{SYNTHETIC, Splitter: B:21:0x0061} */
     /* JADX WARNING: Removed duplicated region for block: B:28:0x0072 A:{SYNTHETIC, Splitter: B:28:0x0072} */
-    private static java.lang.String a(java.lang.String r6) {
-        /*
-        r3 = 0;
-        r1 = "";
-        r2 = new java.io.BufferedReader;	 Catch:{ Exception -> 0x0053, all -> 0x006e }
-        r0 = new java.io.InputStreamReader;	 Catch:{ Exception -> 0x0053, all -> 0x006e }
-        r4 = new java.io.FileInputStream;	 Catch:{ Exception -> 0x0053, all -> 0x006e }
-        r4.<init>(r6);	 Catch:{ Exception -> 0x0053, all -> 0x006e }
-        r0.<init>(r4);	 Catch:{ Exception -> 0x0053, all -> 0x006e }
-        r4 = 512; // 0x200 float:7.175E-43 double:2.53E-321;
-        r2.<init>(r0, r4);	 Catch:{ Exception -> 0x0053, all -> 0x006e }
-        r0 = r2.readLine();	 Catch:{ Exception -> 0x0081 }
-        if (r0 == 0) goto L_0x0086;
-    L_0x001a:
-        r3 = r1.length();	 Catch:{ Exception -> 0x0081 }
-        if (r3 <= 0) goto L_0x0033;
-    L_0x0020:
-        r3 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x0081 }
-        r3.<init>();	 Catch:{ Exception -> 0x0081 }
-        r3 = r3.append(r1);	 Catch:{ Exception -> 0x0081 }
-        r4 = "\n";
-        r3 = r3.append(r4);	 Catch:{ Exception -> 0x0081 }
-        r1 = r3.toString();	 Catch:{ Exception -> 0x0081 }
-    L_0x0033:
-        r3 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x0081 }
-        r3.<init>();	 Catch:{ Exception -> 0x0081 }
-        r3 = r3.append(r1);	 Catch:{ Exception -> 0x0081 }
-        r0 = r3.append(r0);	 Catch:{ Exception -> 0x0081 }
-        r0 = r0.toString();	 Catch:{ Exception -> 0x0081 }
-    L_0x0044:
-        if (r2 == 0) goto L_0x0049;
-    L_0x0046:
-        r2.close();	 Catch:{ Exception -> 0x004a }
-    L_0x0049:
-        return r0;
-    L_0x004a:
-        r1 = move-exception;
-        r2 = "DIH";
-        r3 = "catEntry finally exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r1);
-        goto L_0x0049;
-    L_0x0053:
-        r0 = move-exception;
-        r2 = r3;
-        r5 = r1;
-        r1 = r0;
-        r0 = r5;
-    L_0x0058:
-        r3 = "DIH";
-        r4 = "catEntry exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r3, r4, r1);	 Catch:{ all -> 0x007f }
-        if (r2 == 0) goto L_0x0049;
-    L_0x0061:
-        r2.close();	 Catch:{ Exception -> 0x0065 }
-        goto L_0x0049;
-    L_0x0065:
-        r1 = move-exception;
-        r2 = "DIH";
-        r3 = "catEntry finally exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r1);
-        goto L_0x0049;
-    L_0x006e:
-        r0 = move-exception;
-        r2 = r3;
-    L_0x0070:
-        if (r2 == 0) goto L_0x0075;
-    L_0x0072:
-        r2.close();	 Catch:{ Exception -> 0x0076 }
-    L_0x0075:
-        throw r0;
-    L_0x0076:
-        r1 = move-exception;
-        r2 = "DIH";
-        r3 = "catEntry finally exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r1);
-        goto L_0x0075;
-    L_0x007f:
-        r0 = move-exception;
-        goto L_0x0070;
-    L_0x0081:
-        r0 = move-exception;
-        r5 = r0;
-        r0 = r1;
-        r1 = r5;
-        goto L_0x0058;
-    L_0x0086:
-        r0 = r1;
-        goto L_0x0044;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.mistatistic.sdk.controller.g.a(java.lang.String):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static String a(String str) {
+        String readLine;
+        Throwable e;
+        Throwable e2;
+        String str2 = "";
+        BufferedReader bufferedReader;
+        try {
+            bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(str)), 512);
+            try {
+                readLine = bufferedReader.readLine();
+                if (readLine != null) {
+                    if (str2.length() > 0) {
+                        str2 = str2 + "\n";
+                    }
+                    readLine = str2 + readLine;
+                } else {
+                    readLine = str2;
+                }
+                if (bufferedReader != null) {
+                    try {
+                        bufferedReader.close();
+                    } catch (Throwable e3) {
+                        j.a("DIH", "catEntry finally exception", e3);
+                    }
+                }
+            } catch (Throwable e22) {
+                Throwable th = e22;
+                readLine = str2;
+                e3 = th;
+                try {
+                    j.a("DIH", "catEntry exception", e3);
+                    if (bufferedReader != null) {
+                        try {
+                            bufferedReader.close();
+                        } catch (Throwable e32) {
+                            j.a("DIH", "catEntry finally exception", e32);
+                        }
+                    }
+                    return readLine;
+                } catch (Throwable th2) {
+                    e22 = th2;
+                    if (bufferedReader != null) {
+                    }
+                    throw e22;
+                }
+            }
+        } catch (Throwable e222) {
+            bufferedReader = null;
+            String str3 = str2;
+            e32 = e222;
+            readLine = str3;
+            j.a("DIH", "catEntry exception", e32);
+            if (bufferedReader != null) {
+            }
+            return readLine;
+        } catch (Throwable th3) {
+            e222 = th3;
+            bufferedReader = null;
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (Throwable e322) {
+                    j.a("DIH", "catEntry finally exception", e322);
+                }
+            }
+            throw e222;
+        }
+        return readLine;
     }
 
     public static synchronized String c(Context context) {

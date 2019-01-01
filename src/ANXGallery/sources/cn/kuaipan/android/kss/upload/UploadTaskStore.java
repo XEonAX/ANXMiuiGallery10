@@ -10,6 +10,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
+import cn.kuaipan.android.exception.KscException;
 import cn.kuaipan.android.exception.KscRuntimeException;
 import cn.kuaipan.android.kss.IDataFactory;
 import cn.kuaipan.android.kss.KssDef;
@@ -139,84 +140,48 @@ public class UploadTaskStore implements KssDef {
         }
 
         /* JADX WARNING: Removed duplicated region for block: B:22:0x0085  */
-        public cn.kuaipan.android.kss.upload.KssUploadInfo queryKss(int r21, cn.kuaipan.android.kss.IDataFactory r22) throws cn.kuaipan.android.exception.KscException {
-            /*
-            r20 = this;
-            r2 = r20.getReadableDatabase();
-            r3 = "upload_chunks";
-            r4 = QUERY_KSS;
-            r5 = WHERE_QUERY;
-            r6 = 1;
-            r6 = new java.lang.String[r6];
-            r7 = 0;
-            r8 = java.lang.String.valueOf(r21);
-            r6[r7] = r8;
-            r7 = 0;
-            r8 = 0;
-            r9 = 0;
-            r10 = r2.query(r3, r4, r5, r6, r7, r8, r9);
-            r17 = 0;
-            if (r10 == 0) goto L_0x007a;
-        L_0x0020:
-            r3 = r10.moveToFirst();	 Catch:{ all -> 0x0082 }
-            if (r3 == 0) goto L_0x007a;
-        L_0x0026:
-            r3 = "kss_request";
-            r3 = r10.getColumnIndex(r3);	 Catch:{ all -> 0x0082 }
-            r16 = r10.getString(r3);	 Catch:{ all -> 0x0082 }
-            r3 = "kss_file_info";
-            r3 = r10.getColumnIndex(r3);	 Catch:{ all -> 0x0082 }
-            r12 = r10.getString(r3);	 Catch:{ all -> 0x0082 }
-            r3 = "gen_time";
-            r3 = r10.getColumnIndex(r3);	 Catch:{ all -> 0x0082 }
-            r14 = r10.getLong(r3);	 Catch:{ all -> 0x0082 }
-            r3 = android.text.TextUtils.isEmpty(r16);	 Catch:{ all -> 0x0082 }
-            if (r3 != 0) goto L_0x0050;
-        L_0x004a:
-            r3 = android.text.TextUtils.isEmpty(r12);	 Catch:{ all -> 0x0082 }
-            if (r3 == 0) goto L_0x0057;
-        L_0x0050:
-            r3 = 0;
-            if (r10 == 0) goto L_0x0056;
-        L_0x0053:
-            r10.close();
-        L_0x0056:
-            return r3;
-        L_0x0057:
-            r0 = r22;
-            r1 = r16;
-            r13 = r0.createUploadRequestResult(r1);	 Catch:{ all -> 0x0082 }
-            r11 = new cn.kuaipan.android.kss.upload.UploadFileInfo;	 Catch:{ all -> 0x0082 }
-            r11.<init>(r12);	 Catch:{ all -> 0x0082 }
-            r18 = new cn.kuaipan.android.kss.upload.KssUploadInfo;	 Catch:{ all -> 0x0082 }
-            r0 = r18;
-            r0.<init>(r11, r13, r14);	 Catch:{ all -> 0x0082 }
-            r3 = "kss_upload_id";
-            r3 = r10.getColumnIndex(r3);	 Catch:{ all -> 0x0089 }
-            r19 = r10.getString(r3);	 Catch:{ all -> 0x0089 }
-            r18.setUploadId(r19);	 Catch:{ all -> 0x0089 }
-            r17 = r18;
-        L_0x007a:
-            if (r10 == 0) goto L_0x007f;
-        L_0x007c:
-            r10.close();
-        L_0x007f:
-            r3 = r17;
-            goto L_0x0056;
-        L_0x0082:
-            r3 = move-exception;
-        L_0x0083:
-            if (r10 == 0) goto L_0x0088;
-        L_0x0085:
-            r10.close();
-        L_0x0088:
-            throw r3;
-        L_0x0089:
-            r3 = move-exception;
-            r17 = r18;
-            goto L_0x0083;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: cn.kuaipan.android.kss.upload.UploadTaskStore.DBHelper.queryKss(int, cn.kuaipan.android.kss.IDataFactory):cn.kuaipan.android.kss.upload.KssUploadInfo");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public KssUploadInfo queryKss(int taskHash, IDataFactory dataFactory) throws KscException {
+            Throwable th;
+            Cursor c = getReadableDatabase().query("upload_chunks", QUERY_KSS, WHERE_QUERY, new String[]{String.valueOf(taskHash)}, null, null, null);
+            KssUploadInfo result = null;
+            if (c != null) {
+                try {
+                    if (c.moveToFirst()) {
+                        String requestStr = c.getString(c.getColumnIndex("kss_request"));
+                        String fileInfoStr = c.getString(c.getColumnIndex("kss_file_info"));
+                        long generateTime = c.getLong(c.getColumnIndex("gen_time"));
+                        if (!TextUtils.isEmpty(requestStr) && !TextUtils.isEmpty(fileInfoStr)) {
+                            KssUploadInfo kssUploadInfo = new KssUploadInfo(new UploadFileInfo(fileInfoStr), dataFactory.createUploadRequestResult(requestStr), generateTime);
+                            try {
+                                kssUploadInfo.setUploadId(c.getString(c.getColumnIndex("kss_upload_id")));
+                                result = kssUploadInfo;
+                            } catch (Throwable th2) {
+                                th = th2;
+                                result = kssUploadInfo;
+                                if (c != null) {
+                                }
+                                throw th;
+                            }
+                        } else if (c == null) {
+                            return null;
+                        } else {
+                            c.close();
+                            return null;
+                        }
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    if (c != null) {
+                        c.close();
+                    }
+                    throw th;
+                }
+            }
+            if (c != null) {
+                c.close();
+            }
+            return result;
         }
 
         public void update(int taskHash, KssUploadInfo info, UploadChunkInfoPersist uploadChunkInfoPersist) {

@@ -101,72 +101,27 @@ public class ThreadPoolExecutor extends AbsDownloadExecutor implements FutureLis
     /* JADX WARNING: Missing block: B:33:?, code:
             return r0;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private boolean dispatchJobs() {
-        /*
-        r9 = this;
-        r0 = 0;
-        r7 = r9.mExecutorLock;
-        monitor-enter(r7);
-        r6 = r9.mPool;	 Catch:{ all -> 0x005a }
-        if (r6 == 0) goto L_0x0010;
-    L_0x0008:
-        r6 = r9.mPool;	 Catch:{ all -> 0x005a }
-        r6 = r6.isShutdown();	 Catch:{ all -> 0x005a }
-        if (r6 == 0) goto L_0x0013;
-    L_0x0010:
-        monitor-exit(r7);	 Catch:{ all -> 0x005a }
-        r1 = r0;
-    L_0x0012:
-        return r1;
-    L_0x0013:
-        r6 = r9.mQueue;	 Catch:{ all -> 0x005a }
-        r5 = r6.getPendingSize();	 Catch:{ all -> 0x005a }
-        if (r5 <= 0) goto L_0x0057;
-    L_0x001b:
-        r3 = 0;
-    L_0x001c:
-        r6 = r9.mCoreSize;	 Catch:{ all -> 0x005a }
-        if (r3 >= r6) goto L_0x0057;
-    L_0x0020:
-        if (r5 <= 0) goto L_0x0057;
-    L_0x0022:
-        r6 = r9.mFutures;	 Catch:{ all -> 0x005a }
-        r2 = r6[r3];	 Catch:{ all -> 0x005a }
-        if (r2 == 0) goto L_0x0034;
-    L_0x0028:
-        r6 = r2.isCancelled();	 Catch:{ all -> 0x005a }
-        if (r6 != 0) goto L_0x0034;
-    L_0x002e:
-        r6 = r2.isDone();	 Catch:{ all -> 0x005a }
-        if (r6 == 0) goto L_0x0054;
-    L_0x0034:
-        r4 = new com.miui.gallery.sdk.download.executor.ThreadPoolExecutor$Job;	 Catch:{ all -> 0x005a }
-        r6 = 0;
-        r4.<init>();	 Catch:{ all -> 0x005a }
-        r6 = "ThreadPoolExecutor";
-        r8 = "submit runnable %s";
-        com.miui.gallery.util.Log.i(r6, r8, r4);	 Catch:{ all -> 0x005a }
-        r6 = r9.mPool;	 Catch:{ all -> 0x005a }
-        r2 = r6.submit(r4, r9);	 Catch:{ all -> 0x005a }
-        r6 = r9.mFutures;	 Catch:{ all -> 0x005a }
-        r6[r3] = r2;	 Catch:{ all -> 0x005a }
-        r6 = r9.mQueue;	 Catch:{ all -> 0x005a }
-        r6 = r6.getBatchSize();	 Catch:{ all -> 0x005a }
-        r5 = r5 - r6;
-        r0 = 1;
-    L_0x0054:
-        r3 = r3 + 1;
-        goto L_0x001c;
-    L_0x0057:
-        monitor-exit(r7);	 Catch:{ all -> 0x005a }
-        r1 = r0;
-        goto L_0x0012;
-    L_0x005a:
-        r6 = move-exception;
-        monitor-exit(r7);	 Catch:{ all -> 0x005a }
-        throw r6;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.sdk.download.executor.ThreadPoolExecutor.dispatchJobs():boolean");
+        boolean dispatched = false;
+        synchronized (this.mExecutorLock) {
+            if (this.mPool == null || this.mPool.isShutdown()) {
+            } else {
+                int size = this.mQueue.getPendingSize();
+                if (size > 0) {
+                    for (int i = 0; i < this.mCoreSize && size > 0; i++) {
+                        Future future = this.mFutures[i];
+                        if (future == null || future.isCancelled() || future.isDone()) {
+                            Object job = new Job();
+                            Log.i("ThreadPoolExecutor", "submit runnable %s", job);
+                            this.mFutures[i] = this.mPool.submit(job, this);
+                            size -= this.mQueue.getBatchSize();
+                            dispatched = true;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void interrupt() {

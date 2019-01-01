@@ -2,12 +2,23 @@ package com.xiaomi.push.mpcd.job;
 
 import android.content.Context;
 import android.text.TextUtils;
+import com.xiaomi.channel.commonutils.file.IOUtils;
+import com.xiaomi.channel.commonutils.misc.ByteUtils;
 import com.xiaomi.channel.commonutils.misc.JobMutualExclusor;
 import com.xiaomi.channel.commonutils.misc.ScheduledJobManager.Job;
 import com.xiaomi.push.mpcd.CDActionProvider;
 import com.xiaomi.push.mpcd.CDActionProviderHolder;
+import com.xiaomi.push.mpcd.CDataHelper;
+import com.xiaomi.push.mpcd.Constants;
 import com.xiaomi.xmpush.thrift.ClientCollectionType;
 import com.xiaomi.xmpush.thrift.DataCollectionItem;
+import com.xiaomi.xmpush.thrift.XmPushThriftSerializeUtils;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileLock;
 
 public abstract class CollectionJob extends Job {
     protected Context context;
@@ -53,128 +64,108 @@ public abstract class CollectionJob extends Job {
 
     /* JADX WARNING: Removed duplicated region for block: B:31:0x0075 A:{SYNTHETIC, Splitter: B:31:0x0075} */
     /* JADX WARNING: Removed duplicated region for block: B:31:0x0075 A:{SYNTHETIC, Splitter: B:31:0x0075} */
-    private static void writeItemToFile(android.content.Context r12, com.xiaomi.xmpush.thrift.DataCollectionItem r13, java.lang.String r14) {
-        /*
-        r4 = com.xiaomi.xmpush.thrift.XmPushThriftSerializeUtils.convertThriftObjectToBytes(r13);
-        r4 = com.xiaomi.push.mpcd.CDataHelper.encryptData(r14, r4);
-        if (r4 == 0) goto L_0x000d;
-    L_0x000a:
-        r9 = r4.length;
-        if (r9 != 0) goto L_0x000e;
-    L_0x000d:
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static void writeItemToFile(Context context, DataCollectionItem collectionItem, String regSecret) {
+        IOException e;
+        Throwable th;
+        byte[] itemBytes = CDataHelper.encryptData(regSecret, XmPushThriftSerializeUtils.convertThriftObjectToBytes(collectionItem));
+        if (itemBytes != null && itemBytes.length != 0) {
+            synchronized (Constants.cDataLock4Thread) {
+                RandomAccessFile lockRandomFile = null;
+                FileLock lock = null;
+                BufferedOutputStream bos = null;
+                try {
+                    BufferedOutputStream bos2;
+                    File lockFile = new File(context.getExternalFilesDir(null), "push_cdata.lock");
+                    IOUtils.createFileQuietly(lockFile);
+                    RandomAccessFile lockRandomFile2 = new RandomAccessFile(lockFile, "rw");
+                    try {
+                        lock = lockRandomFile2.getChannel().lock();
+                        bos2 = new BufferedOutputStream(new FileOutputStream(new File(context.getExternalFilesDir(null), "push_cdata.data"), true));
+                    } catch (IOException e2) {
+                        e = e2;
+                        lockRandomFile = lockRandomFile2;
+                        try {
+                            e.printStackTrace();
+                            if (lock != null) {
+                                if (lock.isValid()) {
+                                    try {
+                                        lock.release();
+                                    } catch (IOException e3) {
+                                    }
+                                }
+                            }
+                            IOUtils.closeQuietly(bos);
+                            IOUtils.closeQuietly(lockRandomFile);
+                            return;
+                        } catch (Throwable th2) {
+                            th = th2;
+                        }
+                    } catch (Throwable th3) {
+                        th = th3;
+                        lockRandomFile = lockRandomFile2;
+                        if (lock != null && lock.isValid()) {
+                            lock.release();
+                        }
+                        IOUtils.closeQuietly(bos);
+                        IOUtils.closeQuietly(lockRandomFile);
+                        throw th;
+                    }
+                    try {
+                        bos2.write(ByteUtils.parseInt(itemBytes.length));
+                        bos2.write(itemBytes);
+                        bos2.flush();
+                        if (lock != null) {
+                            try {
+                                if (lock.isValid()) {
+                                    try {
+                                        lock.release();
+                                    } catch (IOException e4) {
+                                    }
+                                }
+                            } catch (Throwable th4) {
+                                th = th4;
+                                bos = bos2;
+                                lockRandomFile = lockRandomFile2;
+                            }
+                        }
+                        IOUtils.closeQuietly(bos2);
+                        IOUtils.closeQuietly(lockRandomFile2);
+                        bos = bos2;
+                        lockRandomFile = lockRandomFile2;
+                    } catch (IOException e5) {
+                        e = e5;
+                        bos = bos2;
+                        lockRandomFile = lockRandomFile2;
+                        e.printStackTrace();
+                        if (lock != null) {
+                        }
+                        IOUtils.closeQuietly(bos);
+                        IOUtils.closeQuietly(lockRandomFile);
+                        return;
+                    } catch (Throwable th5) {
+                        th = th5;
+                        bos = bos2;
+                        lockRandomFile = lockRandomFile2;
+                        lock.release();
+                        IOUtils.closeQuietly(bos);
+                        IOUtils.closeQuietly(lockRandomFile);
+                        throw th;
+                    }
+                } catch (IOException e6) {
+                    e = e6;
+                    e.printStackTrace();
+                    if (lock != null) {
+                    }
+                    IOUtils.closeQuietly(bos);
+                    IOUtils.closeQuietly(lockRandomFile);
+                    return;
+                }
+                return;
+            }
+        }
         return;
-    L_0x000e:
-        r10 = com.xiaomi.push.mpcd.Constants.cDataLock4Thread;
-        monitor-enter(r10);
-        r7 = 0;
-        r5 = 0;
-        r0 = 0;
-        r6 = new java.io.File;	 Catch:{ IOException -> 0x006f }
-        r9 = 0;
-        r9 = r12.getExternalFilesDir(r9);	 Catch:{ IOException -> 0x006f }
-        r11 = "push_cdata.lock";
-        r6.<init>(r9, r11);	 Catch:{ IOException -> 0x006f }
-        com.xiaomi.channel.commonutils.file.IOUtils.createFileQuietly(r6);	 Catch:{ IOException -> 0x006f }
-        r8 = new java.io.RandomAccessFile;	 Catch:{ IOException -> 0x006f }
-        r9 = "rw";
-        r8.<init>(r6, r9);	 Catch:{ IOException -> 0x006f }
-        r9 = r8.getChannel();	 Catch:{ IOException -> 0x00a9, all -> 0x00a2 }
-        r5 = r9.lock();	 Catch:{ IOException -> 0x00a9, all -> 0x00a2 }
-        r3 = new java.io.File;	 Catch:{ IOException -> 0x00a9, all -> 0x00a2 }
-        r9 = 0;
-        r9 = r12.getExternalFilesDir(r9);	 Catch:{ IOException -> 0x00a9, all -> 0x00a2 }
-        r11 = "push_cdata.data";
-        r3.<init>(r9, r11);	 Catch:{ IOException -> 0x00a9, all -> 0x00a2 }
-        r1 = new java.io.BufferedOutputStream;	 Catch:{ IOException -> 0x00a9, all -> 0x00a2 }
-        r9 = new java.io.FileOutputStream;	 Catch:{ IOException -> 0x00a9, all -> 0x00a2 }
-        r11 = 1;
-        r9.<init>(r3, r11);	 Catch:{ IOException -> 0x00a9, all -> 0x00a2 }
-        r1.<init>(r9);	 Catch:{ IOException -> 0x00a9, all -> 0x00a2 }
-        r9 = r4.length;	 Catch:{ IOException -> 0x00ac, all -> 0x00a5 }
-        r9 = com.xiaomi.channel.commonutils.misc.ByteUtils.parseInt(r9);	 Catch:{ IOException -> 0x00ac, all -> 0x00a5 }
-        r1.write(r9);	 Catch:{ IOException -> 0x00ac, all -> 0x00a5 }
-        r1.write(r4);	 Catch:{ IOException -> 0x00ac, all -> 0x00a5 }
-        r1.flush();	 Catch:{ IOException -> 0x00ac, all -> 0x00a5 }
-        if (r5 == 0) goto L_0x0062;
-    L_0x0059:
-        r9 = r5.isValid();	 Catch:{ all -> 0x009e }
-        if (r9 == 0) goto L_0x0062;
-    L_0x005f:
-        r5.release();	 Catch:{ IOException -> 0x0098 }
-    L_0x0062:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r1);	 Catch:{ all -> 0x009e }
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r8);	 Catch:{ all -> 0x009e }
-        r0 = r1;
-        r7 = r8;
-    L_0x006a:
-        monitor-exit(r10);	 Catch:{ all -> 0x006c }
-        goto L_0x000d;
-    L_0x006c:
-        r9 = move-exception;
-    L_0x006d:
-        monitor-exit(r10);	 Catch:{ all -> 0x006c }
-        throw r9;
-    L_0x006f:
-        r2 = move-exception;
-    L_0x0070:
-        r2.printStackTrace();	 Catch:{ all -> 0x0085 }
-        if (r5 == 0) goto L_0x007e;
-    L_0x0075:
-        r9 = r5.isValid();	 Catch:{ all -> 0x006c }
-        if (r9 == 0) goto L_0x007e;
-    L_0x007b:
-        r5.release();	 Catch:{ IOException -> 0x009a }
-    L_0x007e:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r0);	 Catch:{ all -> 0x006c }
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r7);	 Catch:{ all -> 0x006c }
-        goto L_0x006a;
-    L_0x0085:
-        r9 = move-exception;
-    L_0x0086:
-        if (r5 == 0) goto L_0x0091;
-    L_0x0088:
-        r11 = r5.isValid();	 Catch:{ all -> 0x006c }
-        if (r11 == 0) goto L_0x0091;
-    L_0x008e:
-        r5.release();	 Catch:{ IOException -> 0x009c }
-    L_0x0091:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r0);	 Catch:{ all -> 0x006c }
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r7);	 Catch:{ all -> 0x006c }
-        throw r9;	 Catch:{ all -> 0x006c }
-    L_0x0098:
-        r9 = move-exception;
-        goto L_0x0062;
-    L_0x009a:
-        r9 = move-exception;
-        goto L_0x007e;
-    L_0x009c:
-        r11 = move-exception;
-        goto L_0x0091;
-    L_0x009e:
-        r9 = move-exception;
-        r0 = r1;
-        r7 = r8;
-        goto L_0x006d;
-    L_0x00a2:
-        r9 = move-exception;
-        r7 = r8;
-        goto L_0x0086;
-    L_0x00a5:
-        r9 = move-exception;
-        r0 = r1;
-        r7 = r8;
-        goto L_0x0086;
-    L_0x00a9:
-        r2 = move-exception;
-        r7 = r8;
-        goto L_0x0070;
-    L_0x00ac:
-        r2 = move-exception;
-        r0 = r1;
-        r7 = r8;
-        goto L_0x0070;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.push.mpcd.job.CollectionJob.writeItemToFile(android.content.Context, com.xiaomi.xmpush.thrift.DataCollectionItem, java.lang.String):void");
+        throw th;
     }
 
     protected boolean checkPermission() {

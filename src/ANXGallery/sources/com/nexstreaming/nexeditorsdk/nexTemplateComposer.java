@@ -381,196 +381,88 @@ public final class nexTemplateComposer {
         return false;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:50:0x014a A:{ExcHandler: java.lang.Exception (e java.lang.Exception), Splitter: B:2:0x000c} */
+    /* JADX WARNING: Removed duplicated region for block: B:50:0x014a A:{Splitter: B:2:0x000c, ExcHandler: java.lang.Exception (e java.lang.Exception)} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:40:?, code:
             android.util.Log.d(TAG, "Info(name: (" + r5 + "))");
             r1 = "template 1.0";
      */
-    static java.lang.String[] checkMissEffects(com.nexstreaming.nexeditorsdk.nexEffectLibrary r9, java.io.InputStream r10) {
-        /*
-        r0 = 0;
-        r1 = readFromFile(r10);
-        r3 = new java.util.ArrayList;
-        r3.<init>();
-        if (r1 == 0) goto L_0x014b;
-    L_0x000c:
-        r4 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r4.<init>(r1);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r1 = "template_name";
-        r5 = r4.getString(r1);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r1 = "template_version";
-        r1 = r4.getString(r1);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        com.nexstreaming.nexeditorsdk.nexApplicationConfig.getDefaultLetterboxEffect();	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r2 = "template_letterbox";
-        r2 = r4.has(r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        if (r2 == 0) goto L_0x0031;
-    L_0x002b:
-        r2 = "template_letterbox";
-        r4.getString(r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-    L_0x0031:
-        r2 = "template_desc";
-        r2 = r4.getString(r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r6 = "v1.x";
-        r6 = r1.equals(r6);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        if (r6 != 0) goto L_0x004a;
-    L_0x0041:
-        r6 = "v2.0.0";
-        r6 = r1.equals(r6);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        if (r6 == 0) goto L_0x00a3;
-    L_0x004a:
-        r1 = "template 1.x";
-    L_0x004d:
-        r6 = "nexTemplateComposer";
-        r7 = new java.lang.StringBuilder;	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r7.<init>();	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r8 = "Info(name, version, description): (";
-        r7 = r7.append(r8);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r7 = r7.append(r5);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r8 = " ,";
-        r7 = r7.append(r8);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r7 = r7.append(r1);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r8 = " ,";
-        r7 = r7.append(r8);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r2 = r7.append(r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r7 = "))";
-        r2 = r2.append(r7);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r2 = r2.toString();	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        android.util.Log.d(r6, r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r2 = "template_intro";
-        r6 = r4.getJSONArray(r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r2 = r0;
-    L_0x0087:
-        r7 = r6.length();	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        if (r2 >= r7) goto L_0x00b3;
-    L_0x008d:
-        r7 = r6.getJSONObject(r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r8 = "effects";
-        r7 = r7.getString(r8);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r8 = checkEffectId(r9, r7);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        if (r8 != 0) goto L_0x00a0;
-    L_0x009d:
-        r3.add(r7);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-    L_0x00a0:
-        r2 = r2 + 1;
-        goto L_0x0087;
-    L_0x00a3:
-        r6 = "2.0.0";
-        r1 = r1.equals(r6);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        if (r1 == 0) goto L_0x00af;
-    L_0x00ab:
-        r1 = "template 2.0";
-        goto L_0x004d;
-    L_0x00af:
-        r1 = "template 1.0";
-        goto L_0x004d;
-    L_0x00b3:
-        r2 = "template_loop";
-        r6 = r4.getJSONArray(r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r2 = r0;
-    L_0x00bb:
-        r7 = r6.length();	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        if (r2 >= r7) goto L_0x00d7;
-    L_0x00c1:
-        r7 = r6.getJSONObject(r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r8 = "effects";
-        r7 = r7.getString(r8);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r8 = checkEffectId(r9, r7);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        if (r8 != 0) goto L_0x00d4;
-    L_0x00d1:
-        r3.add(r7);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-    L_0x00d4:
-        r2 = r2 + 1;
-        goto L_0x00bb;
-    L_0x00d7:
-        r2 = "template_outro";
-        r6 = r4.getJSONArray(r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r2 = r0;
-    L_0x00df:
-        r7 = r6.length();	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        if (r2 >= r7) goto L_0x011d;
-    L_0x00e5:
-        r7 = r6.getJSONObject(r2);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r8 = "effects";
-        r7 = r7.getString(r8);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        r8 = checkEffectId(r9, r7);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-        if (r8 != 0) goto L_0x00f8;
-    L_0x00f5:
-        r3.add(r7);	 Catch:{ JSONException -> 0x00fb, Exception -> 0x014a }
-    L_0x00f8:
-        r2 = r2 + 1;
-        goto L_0x00df;
-    L_0x00fb:
-        r1 = move-exception;
-        r1 = "nexTemplateComposer";
-        r2 = new java.lang.StringBuilder;	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r2.<init>();	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r6 = "Info(name: (";
-        r2 = r2.append(r6);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r2 = r2.append(r5);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r5 = "))";
-        r2 = r2.append(r5);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r2 = r2.toString();	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        android.util.Log.d(r1, r2);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r1 = "template 1.0";
-    L_0x011d:
-        r2 = "template 1.0";
-        r1 = r1.equals(r2);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        if (r1 == 0) goto L_0x014b;
-    L_0x0126:
-        r1 = "template";
-        r2 = r4.getJSONArray(r1);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r1 = r0;
-    L_0x012e:
-        r4 = r2.length();	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        if (r1 >= r4) goto L_0x014b;
-    L_0x0134:
-        r4 = r2.getJSONObject(r1);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r5 = "effects";
-        r4 = r4.getString(r5);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        r5 = checkEffectId(r9, r4);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-        if (r5 != 0) goto L_0x0147;
-    L_0x0144:
-        r3.add(r4);	 Catch:{ JSONException -> 0x0172, Exception -> 0x014a }
-    L_0x0147:
-        r1 = r1 + 1;
-        goto L_0x012e;
-    L_0x014a:
-        r1 = move-exception;
-    L_0x014b:
-        r1 = r3.size();
-        if (r1 <= 0) goto L_0x0170;
-    L_0x0151:
-        r1 = r3.size();
-        r2 = new java.lang.String[r1];
-        r1 = r0;
-    L_0x0158:
-        r0 = r3.size();
-        if (r1 >= r0) goto L_0x016e;
-    L_0x015e:
-        r0 = r3.get(r1);
-        r0 = (java.lang.String) r0;
-        r0 = r0.toString();
-        r2[r1] = r0;
-        r0 = r1 + 1;
-        r1 = r0;
-        goto L_0x0158;
-    L_0x016e:
-        r0 = r2;
-    L_0x016f:
-        return r0;
-    L_0x0170:
-        r0 = 0;
-        goto L_0x016f;
-    L_0x0172:
-        r1 = move-exception;
-        goto L_0x014b;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.nexTemplateComposer.checkMissEffects(com.nexstreaming.nexeditorsdk.nexEffectLibrary, java.io.InputStream):java.lang.String[]");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    static String[] checkMissEffects(nexEffectLibrary nexeffectlibrary, InputStream inputStream) {
+        int i;
+        int i2 = 0;
+        String readFromFile = readFromFile(inputStream);
+        ArrayList arrayList = new ArrayList();
+        if (readFromFile != null) {
+            try {
+                int i3;
+                String string;
+                JSONObject jSONObject = new JSONObject(readFromFile);
+                String string2 = jSONObject.getString(TAG_TEMPLATE_NAME);
+                readFromFile = jSONObject.getString(TAG_TEMPLATE_VERSION);
+                nexApplicationConfig.getDefaultLetterboxEffect();
+                if (jSONObject.has(TAG_TEMPLATE_LETTERBOX)) {
+                    jSONObject.getString(TAG_TEMPLATE_LETTERBOX);
+                }
+                String string3 = jSONObject.getString(TAG_TEMPLATE_DESCRIPTION);
+                if (readFromFile.equals("v1.x") || readFromFile.equals("v2.0.0")) {
+                    readFromFile = "template 1.x";
+                } else if (readFromFile.equals("2.0.0")) {
+                    readFromFile = "template 2.0";
+                } else {
+                    readFromFile = "template 1.0";
+                }
+                Log.d(TAG, "Info(name, version, description): (" + string2 + " ," + readFromFile + " ," + string3 + "))");
+                JSONArray jSONArray = jSONObject.getJSONArray(TAG_TEMPLATE_INTRO);
+                for (i3 = 0; i3 < jSONArray.length(); i3++) {
+                    string = jSONArray.getJSONObject(i3).getString(TAG_EFFECTS);
+                    if (!checkEffectId(nexeffectlibrary, string)) {
+                        arrayList.add(string);
+                    }
+                }
+                jSONArray = jSONObject.getJSONArray(TAG_TEMPLATE_LOOP);
+                for (i3 = 0; i3 < jSONArray.length(); i3++) {
+                    string = jSONArray.getJSONObject(i3).getString(TAG_EFFECTS);
+                    if (!checkEffectId(nexeffectlibrary, string)) {
+                        arrayList.add(string);
+                    }
+                }
+                jSONArray = jSONObject.getJSONArray(TAG_TEMPLATE_OUTRO);
+                for (i3 = 0; i3 < jSONArray.length(); i3++) {
+                    string = jSONArray.getJSONObject(i3).getString(TAG_EFFECTS);
+                    if (!checkEffectId(nexeffectlibrary, string)) {
+                        arrayList.add(string);
+                    }
+                }
+                if (readFromFile.equals("template 1.0")) {
+                    JSONArray jSONArray2 = jSONObject.getJSONArray(TAG_TEMPLATE);
+                    for (i = 0; i < jSONArray2.length(); i++) {
+                        String string4 = jSONArray2.getJSONObject(i).getString(TAG_EFFECTS);
+                        if (!checkEffectId(nexeffectlibrary, string4)) {
+                            arrayList.add(string4);
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+            } catch (Exception e2) {
+            }
+        }
+        if (arrayList.size() <= 0) {
+            return null;
+        }
+        String[] strArr = new String[arrayList.size()];
+        while (true) {
+            i = i2;
+            if (i >= arrayList.size()) {
+                return strArr;
+            }
+            strArr[i] = ((String) arrayList.get(i)).toString();
+            i2 = i + 1;
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:41:0x017b A:{Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }} */
-    /* JADX WARNING: Removed duplicated region for block: B:49:0x01b1 A:{ExcHandler: java.lang.Exception (r0_57 'e' java.lang.Exception), Splitter: B:4:0x000e} */
+    /* JADX WARNING: Removed duplicated region for block: B:49:0x01b1 A:{Splitter: B:4:0x000e, ExcHandler: java.lang.Exception (r0_57 'e' java.lang.Exception)} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:38:?, code:
             android.util.Log.d(TAG, "Info(name: (" + r4 + "))");
@@ -585,211 +477,71 @@ public final class nexTemplateComposer {
     /* JADX WARNING: Missing block: B:59:?, code:
             return r0.getMessage();
      */
-    java.lang.String parsingJSONFile(com.nexstreaming.nexeditorsdk.nexProject r9) {
-        /*
-        r8 = this;
-        r1 = 0;
-        r2 = 0;
-        r0 = r8.mTemplateID;
-        if (r0 == 0) goto L_0x00c6;
-    L_0x0006:
-        r0 = r8.mTemplateID;
-        r0 = AssetPackageTemplateJsonToString(r0);
-    L_0x000c:
-        if (r0 == 0) goto L_0x01b7;
-    L_0x000e:
-        r3 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r3.<init>(r0);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0 = "template_name";
-        r4 = r3.getString(r0);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0 = "template_version";
-        r5 = r3.getString(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = com.nexstreaming.nexeditorsdk.nexApplicationConfig.getDefaultLetterboxEffect();	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = "template_letterbox";
-        r6 = r3.has(r6);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        if (r6 == 0) goto L_0x0035;
-    L_0x002e:
-        r0 = "template_letterbox";
-        r0 = r3.getString(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-    L_0x0035:
-        r9.setLetterboxEffect(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = "template_desc";
-        r0 = r3.getString(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = "v1.x";
-        r6 = r5.equals(r6);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        if (r6 != 0) goto L_0x0051;
-    L_0x0048:
-        r6 = "v2.0.0";
-        r5 = r5.equals(r6);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        if (r5 == 0) goto L_0x0126;
-    L_0x0051:
-        r5 = "template 1.x";
-        r8.mTemplateVersion = r5;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r5 = "nexTemplateComposer";
-        r6 = new java.lang.StringBuilder;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6.<init>();	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r7 = "Info(name, version, description): (";
-        r6 = r6.append(r7);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r6.append(r4);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r7 = " ,";
-        r6 = r6.append(r7);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r7 = r8.mTemplateVersion;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r6.append(r7);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r7 = " ,";
-        r6 = r6.append(r7);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = r6.append(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = "))";
-        r0 = r0.append(r6);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = r0.toString();	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        android.util.Log.d(r5, r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = "template_bgm";
-        r0 = r3.getString(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r8.applyBGM2Project(r9, r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = "template_bgm_volume";
-        r0 = r3.getString(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = java.lang.Float.parseFloat(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r9.setBGMMasterVolumeScale(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = "template_intro";
-        r0 = r3.getJSONArray(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r8.mIntroTemplateArray = r0;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = r2;
-    L_0x00ac:
-        r5 = r8.mIntroTemplateArray;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r5 = r5.length();	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        if (r0 >= r5) goto L_0x00de;
-    L_0x00b4:
-        r5 = r8.mIntroTemplateList;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r8.mIntroTemplateArray;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r6.getJSONObject(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r8.setParameter2List(r6);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r5.add(r6);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = r0 + 1;
-        goto L_0x00ac;
-    L_0x00c6:
-        r0 = r8.mTemplateFilePath;
-        if (r0 == 0) goto L_0x00d2;
-    L_0x00ca:
-        r0 = r8.mTemplateFilePath;
-        r0 = readFromFile(r0);
-        goto L_0x000c;
-    L_0x00d2:
-        r0 = r8.mInputStream;
-        if (r0 == 0) goto L_0x01bb;
-    L_0x00d6:
-        r0 = r8.mInputStream;
-        r0 = readFromFile(r0);
-        goto L_0x000c;
-    L_0x00de:
-        r0 = "template_loop";
-        r0 = r3.getJSONArray(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r8.mLoopTemplateArray = r0;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = r2;
-    L_0x00e8:
-        r5 = r8.mLoopTemplateArray;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r5 = r5.length();	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        if (r0 >= r5) goto L_0x0102;
-    L_0x00f0:
-        r5 = r8.mLoopTemplateList;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r8.mLoopTemplateArray;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r6.getJSONObject(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r8.setParameter2List(r6);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r5.add(r6);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = r0 + 1;
-        goto L_0x00e8;
-    L_0x0102:
-        r0 = "template_outro";
-        r0 = r3.getJSONArray(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r8.mOutroTemplateArray = r0;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = r2;
-    L_0x010c:
-        r5 = r8.mOutroTemplateArray;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r5 = r5.length();	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        if (r0 >= r5) goto L_0x0170;
-    L_0x0114:
-        r5 = r8.mOutroTemplateList;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r8.mOutroTemplateArray;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r6.getJSONObject(r0);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r6 = r8.setParameter2List(r6);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r5.add(r6);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = r0 + 1;
-        goto L_0x010c;
-    L_0x0126:
-        r0 = "template 2.0";
-        r8.mTemplateVersion = r0;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = new com.nexstreaming.nexeditorsdk.c;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0.<init>();	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r8.mTemplate = r0;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = r8.mTemplate;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r5 = r8.mTemplateFilePath;	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        r0 = r0.a(r5, r3);	 Catch:{ JSONException -> 0x013d, Exception -> 0x01b1 }
-        if (r0 == 0) goto L_0x0170;
-    L_0x013c:
-        return r0;
-    L_0x013d:
-        r0 = move-exception;
-        r0 = "nexTemplateComposer";
-        r5 = new java.lang.StringBuilder;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r5.<init>();	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r6 = "Info(name: (";
-        r5 = r5.append(r6);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r4 = r5.append(r4);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r5 = "))";
-        r4 = r4.append(r5);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r4 = r4.toString();	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        android.util.Log.d(r0, r4);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0 = r8.mIntroTemplateList;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0.clear();	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0 = r8.mLoopTemplateList;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0.clear();	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0 = r8.mOutroTemplateList;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0.clear();	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0 = "template 1.0";
-        r8.mTemplateVersion = r0;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-    L_0x0170:
-        r0 = r8.mTemplateVersion;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r4 = "template 1.0";
-        r0 = r0.equals(r4);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        if (r0 == 0) goto L_0x01a9;
-    L_0x017b:
-        r0 = "template";
-        r0 = r3.getJSONArray(r0);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r8.mTemplateArray = r0;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0 = r2;
-    L_0x0185:
-        r2 = r8.mTemplateArray;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r2 = r2.length();	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        if (r0 >= r2) goto L_0x019f;
-    L_0x018d:
-        r2 = r8.mTemplateList;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r4 = r8.mTemplateArray;	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r4 = r4.getJSONObject(r0);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r4 = r8.setParameter2List(r4);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r2.add(r4);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r0 = r0 + 1;
-        goto L_0x0185;
-    L_0x019f:
-        r0 = "template_bgm";
-        r0 = r3.getString(r0);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-        r8.applyBGM2Project(r9, r0);	 Catch:{ JSONException -> 0x01ab, Exception -> 0x01b1 }
-    L_0x01a9:
-        r0 = r1;
-        goto L_0x013c;
-    L_0x01ab:
-        r0 = move-exception;
-        r0 = r0.getMessage();
-        goto L_0x013c;
-    L_0x01b1:
-        r0 = move-exception;
-        r0 = r0.getMessage();
-        goto L_0x013c;
-    L_0x01b7:
-        r0 = "template parsing fail!";
-        goto L_0x013c;
-    L_0x01bb:
-        r0 = r1;
-        goto L_0x000c;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.nexTemplateComposer.parsingJSONFile(com.nexstreaming.nexeditorsdk.nexProject):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    String parsingJSONFile(nexProject nexproject) {
+        String AssetPackageTemplateJsonToString;
+        if (this.mTemplateID != null) {
+            AssetPackageTemplateJsonToString = AssetPackageTemplateJsonToString(this.mTemplateID);
+        } else if (this.mTemplateFilePath != null) {
+            AssetPackageTemplateJsonToString = readFromFile(this.mTemplateFilePath);
+        } else if (this.mInputStream != null) {
+            AssetPackageTemplateJsonToString = readFromFile(this.mInputStream);
+        } else {
+            AssetPackageTemplateJsonToString = null;
+        }
+        if (AssetPackageTemplateJsonToString == null) {
+            return "template parsing fail!";
+        }
+        try {
+            JSONObject jSONObject = new JSONObject(AssetPackageTemplateJsonToString);
+            String string = jSONObject.getString(TAG_TEMPLATE_NAME);
+            String string2 = jSONObject.getString(TAG_TEMPLATE_VERSION);
+            AssetPackageTemplateJsonToString = nexApplicationConfig.getDefaultLetterboxEffect();
+            if (jSONObject.has(TAG_TEMPLATE_LETTERBOX)) {
+                AssetPackageTemplateJsonToString = jSONObject.getString(TAG_TEMPLATE_LETTERBOX);
+            }
+            nexproject.setLetterboxEffect(AssetPackageTemplateJsonToString);
+            AssetPackageTemplateJsonToString = jSONObject.getString(TAG_TEMPLATE_DESCRIPTION);
+            if (string2.equals("v1.x") || string2.equals("v2.0.0")) {
+                int i;
+                this.mTemplateVersion = "template 1.x";
+                Log.d(TAG, "Info(name, version, description): (" + string + " ," + this.mTemplateVersion + " ," + AssetPackageTemplateJsonToString + "))");
+                applyBGM2Project(nexproject, jSONObject.getString(TAG_TEMPLATE_BGM));
+                nexproject.setBGMMasterVolumeScale(Float.parseFloat(jSONObject.getString(TAG_TEMPLATE_BGM_VOLUME)));
+                this.mIntroTemplateArray = jSONObject.getJSONArray(TAG_TEMPLATE_INTRO);
+                for (i = 0; i < this.mIntroTemplateArray.length(); i++) {
+                    this.mIntroTemplateList.add(setParameter2List(this.mIntroTemplateArray.getJSONObject(i)));
+                }
+                this.mLoopTemplateArray = jSONObject.getJSONArray(TAG_TEMPLATE_LOOP);
+                for (i = 0; i < this.mLoopTemplateArray.length(); i++) {
+                    this.mLoopTemplateList.add(setParameter2List(this.mLoopTemplateArray.getJSONObject(i)));
+                }
+                this.mOutroTemplateArray = jSONObject.getJSONArray(TAG_TEMPLATE_OUTRO);
+                for (i = 0; i < this.mOutroTemplateArray.length(); i++) {
+                    this.mOutroTemplateList.add(setParameter2List(this.mOutroTemplateArray.getJSONObject(i)));
+                }
+                if (this.mTemplateVersion.equals("template 1.0")) {
+                    this.mTemplateArray = jSONObject.getJSONArray(TAG_TEMPLATE);
+                    for (i = 0; i < this.mTemplateArray.length(); i++) {
+                        this.mTemplateList.add(setParameter2List(this.mTemplateArray.getJSONObject(i)));
+                    }
+                    applyBGM2Project(nexproject, jSONObject.getString(TAG_TEMPLATE_BGM));
+                }
+                return null;
+            }
+            this.mTemplateVersion = "template 2.0";
+            this.mTemplate = new c();
+            AssetPackageTemplateJsonToString = this.mTemplate.a(this.mTemplateFilePath, jSONObject);
+            if (AssetPackageTemplateJsonToString != null) {
+                return AssetPackageTemplateJsonToString;
+            }
+            if (this.mTemplateVersion.equals("template 1.0")) {
+            }
+            return null;
+        } catch (JSONException e) {
+            return e.getMessage();
+        } catch (Exception e2) {
+        }
     }
 
     void applyBGM2Project(nexProject nexproject, String str) {
@@ -1013,846 +765,253 @@ public final class nexTemplateComposer {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:25:0x014b  */
-    void consistProjectViaVer2(com.nexstreaming.nexeditorsdk.nexProject r22) {
-        /*
-        r21 = this;
-        r7 = 0;
-        r2 = 0;
-        r4 = 0;
-        r6 = 0;
-        r5 = 0;
-        r1 = 0;
-        r3 = r2;
-        r2 = r1;
-    L_0x0008:
-        r0 = r21;
-        r1 = r0.mIntroTemplateList;
-        r1 = r1.size();
-        if (r2 >= r1) goto L_0x002d;
-    L_0x0012:
-        r0 = r21;
-        r1 = r0.mIntroTemplateList;
-        r1 = r1.get(r2);
-        r1 = (java.util.HashMap) r1;
-        r8 = "duration";
-        r1 = r1.get(r8);
-        r1 = (java.lang.String) r1;
-        r1 = java.lang.Integer.parseInt(r1);
-        r3 = r3 + r1;
-        r1 = r2 + 2;
-        r2 = r1;
-        goto L_0x0008;
-    L_0x002d:
-        r1 = 0;
-        r2 = r1;
-    L_0x002f:
-        r0 = r21;
-        r1 = r0.mOutroTemplateList;
-        r1 = r1.size();
-        if (r2 >= r1) goto L_0x0054;
-    L_0x0039:
-        r0 = r21;
-        r1 = r0.mOutroTemplateList;
-        r1 = r1.get(r2);
-        r1 = (java.util.HashMap) r1;
-        r8 = "duration";
-        r1 = r1.get(r8);
-        r1 = (java.lang.String) r1;
-        r1 = java.lang.Integer.parseInt(r1);
-        r4 = r4 + r1;
-        r1 = r2 + 2;
-        r2 = r1;
-        goto L_0x002f;
-    L_0x0054:
-        r0 = r21;
-        r1 = r0.mIntroTemplateList;
-        r0 = r21;
-        r0.templateList = r1;
-        r13 = com.nexstreaming.nexeditorsdk.nexProject.clone(r22);
-        r1 = 1;
-        r0 = r22;
-        r0.allClear(r1);
-        r2 = r5;
-        r5 = r6;
-        r6 = r7;
-    L_0x0069:
-        r1 = 1;
-        r1 = r13.getClip(r6, r1);
-        r1 = r1.getClipType();
-        r7 = 4;
-        if (r1 != r7) goto L_0x05cd;
-    L_0x0075:
-        r1 = 1;
-        r1 = r13.getClip(r6, r1);
-        r14 = r1.getRotateDegree();
-        r1 = 1;
-        r1 = r13.getClip(r6, r1);
-        r1 = r1.getVideoClipEdit();
-        r15 = r1.getSpeedControl();
-        r1 = 1;
-        r1 = r13.getClip(r6, r1);
-        r1 = r1.getVideoClipEdit();
-        r8 = r1.getStartTrimTime();
-        r1 = 1;
-        r1 = r13.getClip(r6, r1);
-        r1 = r1.getVideoClipEdit();
-        r1 = r1.getEndTrimTime();
-        if (r1 != 0) goto L_0x010b;
-    L_0x00a7:
-        r1 = 1;
-        r1 = r13.getClip(r6, r1);
-        r1 = r1.getTotalTime();
-        r7 = r1;
-    L_0x00b1:
-        r1 = 1;
-        r1 = r13.getClip(r6, r1);
-        r16 = com.nexstreaming.nexeditorsdk.nexClip.dup(r1);
-        r1 = 1;
-        r0 = r22;
-        r1 = r0.getTotalClipCount(r1);
-        r0 = r21;
-        r0.tempClipID = r1;
-        r0 = r21;
-        r1 = r0.tempClipID;
-        if (r1 >= 0) goto L_0x00d0;
-    L_0x00cb:
-        r1 = 0;
-        r0 = r21;
-        r0.tempClipID = r1;
-    L_0x00d0:
-        r9 = r7 - r8;
-        r1 = r3 + r4;
-        if (r1 < r9) goto L_0x011a;
-    L_0x00d6:
-        r1 = "nexTemplateComposer";
-        r10 = new java.lang.StringBuilder;
-        r10.<init>();
-        r11 = "OVER durationOfSourceClip/ introDuration:";
-        r10 = r10.append(r11);
-        r10 = r10.append(r3);
-        r11 = " outroDuration:";
-        r10 = r10.append(r11);
-        r10 = r10.append(r4);
-        r11 = " sourceDuration:";
-        r10 = r10.append(r11);
-        r10 = r10.append(r9);
-        r10 = r10.toString();
-        android.util.Log.d(r1, r10);
-        r10 = r8;
-        r8 = r9;
-    L_0x0104:
-        r0 = r21;
-        r1 = r0.mCancel;
-        if (r1 == 0) goto L_0x014b;
-    L_0x010a:
-        return;
-    L_0x010b:
-        r1 = 1;
-        r1 = r13.getClip(r6, r1);
-        r1 = r1.getVideoClipEdit();
-        r1 = r1.getEndTrimTime();
-        r7 = r1;
-        goto L_0x00b1;
-    L_0x011a:
-        r1 = r9 - r4;
-        r10 = "nexTemplateComposer";
-        r11 = new java.lang.StringBuilder;
-        r11.<init>();
-        r12 = "UNDER durationOfSourceClip/ introDuration:";
-        r11 = r11.append(r12);
-        r11 = r11.append(r3);
-        r12 = " outroDuration:";
-        r11 = r11.append(r12);
-        r11 = r11.append(r4);
-        r12 = " remainTime2Project:";
-        r11 = r11.append(r12);
-        r11 = r11.append(r1);
-        r11 = r11.toString();
-        android.util.Log.d(r10, r11);
-    L_0x0148:
-        r10 = r8;
-        r8 = r1;
-        goto L_0x0104;
-    L_0x014b:
-        r21.addSpecialClip2Project(r22);
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r11 = r0.templateListID;
-        r1 = r1.get(r11);
-        r1 = (java.util.HashMap) r1;
-        r11 = "duration";
-        r1 = r1.get(r11);
-        r1 = (java.lang.String) r1;
-        r1 = java.lang.Integer.parseInt(r1);
-        if (r1 >= 0) goto L_0x01de;
-    L_0x016a:
-        r1 = 0;
-        r11 = r1;
-    L_0x016c:
-        r17 = r8 - r11;
-        r0 = r21;
-        r1 = r0.templateListID;
-    L_0x0172:
-        r12 = r1 + 2;
-        r0 = r21;
-        r1 = r0.templateList;
-        r1 = r1.size();
-        if (r12 < r1) goto L_0x017f;
-    L_0x017e:
-        r12 = 0;
-    L_0x017f:
-        r0 = r21;
-        r1 = r0.templateList;
-        r1 = r1.get(r12);
-        r1 = (java.util.HashMap) r1;
-        r18 = "source_type";
-        r0 = r18;
-        r1 = r1.get(r0);
-        r1 = (java.lang.String) r1;
-        r18 = "EXTERNAL_VIDEO";
-        r0 = r18;
-        r1 = r1.equals(r0);
-        if (r1 != 0) goto L_0x06bc;
-    L_0x019e:
-        r0 = r21;
-        r1 = r0.templateList;
-        r1 = r1.get(r12);
-        r1 = (java.util.HashMap) r1;
-        r18 = "source_type";
-        r0 = r18;
-        r1 = r1.get(r0);
-        r1 = (java.lang.String) r1;
-        r18 = "EXTERNAL_IMAGE";
-        r0 = r18;
-        r1 = r1.equals(r0);
-        if (r1 != 0) goto L_0x06bc;
-    L_0x01bd:
-        r0 = r21;
-        r1 = r0.templateList;
-        r1 = r1.get(r12);
-        r1 = (java.util.HashMap) r1;
-        r18 = "source_type";
-        r0 = r18;
-        r1 = r1.get(r0);
-        r1 = (java.lang.String) r1;
-        r18 = "SOLID";
-        r0 = r18;
-        r1 = r1.equals(r0);
-        if (r1 == 0) goto L_0x01fb;
-    L_0x01dc:
-        r1 = r12;
-        goto L_0x0172;
-    L_0x01de:
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r11 = r0.templateListID;
-        r1 = r1.get(r11);
-        r1 = (java.util.HashMap) r1;
-        r11 = "duration";
-        r1 = r1.get(r11);
-        r1 = (java.lang.String) r1;
-        r1 = java.lang.Integer.parseInt(r1);
-        r11 = r1;
-        goto L_0x016c;
-    L_0x01fb:
-        r0 = r21;
-        r1 = r0.templateList;
-        r1 = r1.get(r12);
-        r1 = (java.util.HashMap) r1;
-        r12 = "duration";
-        r1 = r1.get(r12);
-        r1 = (java.lang.String) r1;
-        r12 = java.lang.Integer.parseInt(r1);
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r0 = r0.mOutroTemplateList;
-        r18 = r0;
-        r0 = r18;
-        if (r1 == r0) goto L_0x0221;
-    L_0x021f:
-        if (r5 == 0) goto L_0x0319;
-    L_0x0221:
-        r1 = com.nexstreaming.nexeditorsdk.nexClip.dup(r16);
-        r0 = r22;
-        r0.add(r1);
-        r0 = r21;
-        r1 = r0.tempClipID;
-        r11 = 1;
-        r0 = r22;
-        r11 = r0.getClip(r1, r11);
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r12 = r0.templateListID;
-        r1 = r1.get(r12);
-        r1 = (java.util.HashMap) r1;
-        r12 = "source_type";
-        r1 = r1.get(r12);
-        r1 = (java.lang.String) r1;
-        r12 = "ALL";
-        r1 = r1.equals(r12);
-        if (r1 != 0) goto L_0x0273;
-    L_0x0254:
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r12 = r0.templateListID;
-        r1 = r1.get(r12);
-        r1 = (java.util.HashMap) r1;
-        r12 = "source_type";
-        r1 = r1.get(r12);
-        r1 = (java.lang.String) r1;
-        r12 = "VIDEO";
-        r1 = r1.equals(r12);
-        if (r1 == 0) goto L_0x028b;
-    L_0x0273:
-        r1 = r11.getClipType();
-        r12 = 4;
-        if (r1 != r12) goto L_0x028b;
-    L_0x027a:
-        r11.setRotateDegree(r14);
-        r1 = r11.getVideoClipEdit();
-        r1.setSpeedControl(r15);
-        r1 = r11.getVideoClipEdit();
-        r1.setTrim(r10, r7);
-    L_0x028b:
-        r10 = r10 + r7;
-        if (r5 == 0) goto L_0x02a9;
-    L_0x028e:
-        r5 = 0;
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r11 = r0.mIntroTemplateList;
-        if (r1 != r11) goto L_0x0304;
-    L_0x0299:
-        r0 = r21;
-        r1 = r0.introCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.introCount = r1;
-    L_0x02a3:
-        r1 = 1;
-        r0 = r21;
-        r0.manageTemplateList(r1);
-    L_0x02a9:
-        r1 = r8;
-        r8 = r10;
-    L_0x02ab:
-        if (r8 < r7) goto L_0x0148;
-    L_0x02ad:
-        r1 = r2;
-        r2 = r5;
-    L_0x02af:
-        r5 = r6 + 1;
-        r6 = 1;
-        r6 = r13.getTotalClipCount(r6);
-        if (r5 < r6) goto L_0x06b7;
-    L_0x02b8:
-        r1 = "nexTemplateComposer";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "intro:";
-        r2 = r2.append(r3);
-        r0 = r21;
-        r3 = r0.mTemplateTypeCountList;
-        r4 = 0;
-        r3 = r3.get(r4);
-        r2 = r2.append(r3);
-        r3 = " loop:";
-        r2 = r2.append(r3);
-        r0 = r21;
-        r3 = r0.mTemplateTypeCountList;
-        r4 = 1;
-        r3 = r3.get(r4);
-        r2 = r2.append(r3);
-        r3 = " out-ro:";
-        r2 = r2.append(r3);
-        r0 = r21;
-        r3 = r0.mTemplateTypeCountList;
-        r4 = 2;
-        r3 = r3.get(r4);
-        r2 = r2.append(r3);
-        r2 = r2.toString();
-        android.util.Log.d(r1, r2);
-        r22.updateProject();
-        goto L_0x010a;
-    L_0x0304:
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r11 = r0.mLoopTemplateList;
-        if (r1 != r11) goto L_0x02a3;
-    L_0x030e:
-        r0 = r21;
-        r1 = r0.loopCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.loopCount = r1;
-        goto L_0x02a3;
-    L_0x0319:
-        r18 = "nexTemplateComposer";
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r19 = "id:";
-        r0 = r19;
-        r19 = r1.append(r0);
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r0 = r0.templateListID;
-        r20 = r0;
-        r0 = r20;
-        r1 = r1.get(r0);
-        r1 = (java.util.HashMap) r1;
-        r20 = "id";
-        r0 = r20;
-        r1 = r1.get(r0);
-        r1 = (java.lang.String) r1;
-        r1 = java.lang.Integer.parseInt(r1);
-        r0 = r19;
-        r1 = r0.append(r1);
-        r19 = "/ current defined duration:";
-        r0 = r19;
-        r1 = r1.append(r0);
-        r1 = r1.append(r11);
-        r19 = "/ next defined duration:";
-        r0 = r19;
-        r1 = r1.append(r0);
-        r1 = r1.append(r12);
-        r19 = "/ remain duration(based on source_duration - outro_duration)):";
-        r0 = r19;
-        r1 = r1.append(r0);
-        r0 = r17;
-        r1 = r1.append(r0);
-        r1 = r1.toString();
-        r0 = r18;
-        android.util.Log.d(r0, r1);
-        r1 = r3 + r4;
-        if (r1 < r9) goto L_0x0443;
-    L_0x0381:
-        r1 = com.nexstreaming.nexeditorsdk.nexClip.dup(r16);
-        r0 = r22;
-        r0.add(r1);
-        r0 = r21;
-        r1 = r0.tempClipID;
-        r11 = r1 + 1;
-        r0 = r21;
-        r0.tempClipID = r11;
-        r11 = 1;
-        r0 = r22;
-        r11 = r0.getClip(r1, r11);
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r12 = r0.templateListID;
-        r1 = r1.get(r12);
-        r1 = (java.util.HashMap) r1;
-        r12 = "source_type";
-        r1 = r1.get(r12);
-        r1 = (java.lang.String) r1;
-        r12 = "ALL";
-        r1 = r1.equals(r12);
-        if (r1 != 0) goto L_0x03d9;
-    L_0x03ba:
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r12 = r0.templateListID;
-        r1 = r1.get(r12);
-        r1 = (java.util.HashMap) r1;
-        r12 = "source_type";
-        r1 = r1.get(r12);
-        r1 = (java.lang.String) r1;
-        r12 = "VIDEO";
-        r1 = r1.equals(r12);
-        if (r1 == 0) goto L_0x03f4;
-    L_0x03d9:
-        r1 = r11.getClipType();
-        r12 = 4;
-        if (r1 != r12) goto L_0x03f4;
-    L_0x03e0:
-        r11.setRotateDegree(r14);
-        r1 = r11.getVideoClipEdit();
-        r1.setSpeedControl(r15);
-        r1 = r11.getVideoClipEdit();
-        r11 = r8 / 2;
-        r11 = r11 + r10;
-        r1.setTrim(r10, r11);
-    L_0x03f4:
-        r1 = r8 / 2;
-        r10 = r10 + r1;
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r11 = r0.mIntroTemplateList;
-        if (r1 != r11) goto L_0x0427;
-    L_0x0401:
-        r0 = r21;
-        r1 = r0.introCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.introCount = r1;
-    L_0x040b:
-        r2 = r2 + 1;
-        r1 = 1;
-        r1 = r13.getTotalClipCount(r1);
-        if (r2 >= r1) goto L_0x0432;
-    L_0x0414:
-        r1 = "nexTemplateComposer";
-        r5 = "video,case 1] some clips exist in the source project.";
-        android.util.Log.d(r1, r5);
-        r5 = 1;
-        r1 = 1;
-        r0 = r21;
-        r0.manageTemplateList(r1);
-    L_0x0423:
-        r1 = r8;
-        r8 = r10;
-        goto L_0x02ab;
-    L_0x0427:
-        r0 = r21;
-        r1 = r0.loopCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.loopCount = r1;
-        goto L_0x040b;
-    L_0x0432:
-        r0 = r21;
-        r1 = r0.introCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.introCount = r1;
-        r1 = 0;
-        r0 = r21;
-        r0.manageTemplateList(r1);
-        goto L_0x0423;
-    L_0x0443:
-        r0 = r17;
-        if (r0 <= r12) goto L_0x04fd;
-    L_0x0447:
-        if (r17 >= 0) goto L_0x044d;
-    L_0x0449:
-        r1 = r8;
-        r8 = r10;
-        goto L_0x02ab;
-    L_0x044d:
-        r8 = r8 - r11;
-        r1 = com.nexstreaming.nexeditorsdk.nexClip.dup(r16);
-        r0 = r22;
-        r0.add(r1);
-        r0 = r21;
-        r1 = r0.tempClipID;
-        r12 = r1 + 1;
-        r0 = r21;
-        r0.tempClipID = r12;
-        r12 = 1;
-        r0 = r22;
-        r12 = r0.getClip(r1, r12);
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r0 = r0.templateListID;
-        r17 = r0;
-        r0 = r17;
-        r1 = r1.get(r0);
-        r1 = (java.util.HashMap) r1;
-        r17 = "source_type";
-        r0 = r17;
-        r1 = r1.get(r0);
-        r1 = (java.lang.String) r1;
-        r17 = "ALL";
-        r0 = r17;
-        r1 = r1.equals(r0);
-        if (r1 != 0) goto L_0x04b6;
-    L_0x048f:
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r0 = r0.templateListID;
-        r17 = r0;
-        r0 = r17;
-        r1 = r1.get(r0);
-        r1 = (java.util.HashMap) r1;
-        r17 = "source_type";
-        r0 = r17;
-        r1 = r1.get(r0);
-        r1 = (java.lang.String) r1;
-        r17 = "VIDEO";
-        r0 = r17;
-        r1 = r1.equals(r0);
-        if (r1 == 0) goto L_0x04d3;
-    L_0x04b6:
-        r1 = r12.getClipType();
-        r17 = 4;
-        r0 = r17;
-        if (r1 != r0) goto L_0x04d3;
-    L_0x04c0:
-        r12.setRotateDegree(r14);
-        r1 = r12.getVideoClipEdit();
-        r1.setSpeedControl(r15);
-        r1 = r12.getVideoClipEdit();
-        r12 = r10 + r11;
-        r1.setTrim(r10, r12);
-    L_0x04d3:
-        r10 = r10 + r11;
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r11 = r0.mIntroTemplateList;
-        if (r1 != r11) goto L_0x04f2;
-    L_0x04de:
-        r0 = r21;
-        r1 = r0.introCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.introCount = r1;
-    L_0x04e8:
-        r1 = 1;
-        r0 = r21;
-        r0.manageTemplateList(r1);
-        r1 = r8;
-        r8 = r10;
-        goto L_0x02ab;
-    L_0x04f2:
-        r0 = r21;
-        r1 = r0.loopCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.loopCount = r1;
-        goto L_0x04e8;
-    L_0x04fd:
-        r1 = com.nexstreaming.nexeditorsdk.nexClip.dup(r16);
-        r0 = r22;
-        r0.add(r1);
-        r0 = r21;
-        r1 = r0.tempClipID;
-        r12 = r1 + 1;
-        r0 = r21;
-        r0.tempClipID = r12;
-        r12 = 1;
-        r0 = r22;
-        r12 = r0.getClip(r1, r12);
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r0 = r0.templateListID;
-        r18 = r0;
-        r0 = r18;
-        r1 = r1.get(r0);
-        r1 = (java.util.HashMap) r1;
-        r18 = "source_type";
-        r0 = r18;
-        r1 = r1.get(r0);
-        r1 = (java.lang.String) r1;
-        r18 = "ALL";
-        r0 = r18;
-        r1 = r1.equals(r0);
-        if (r1 != 0) goto L_0x0565;
-    L_0x053e:
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r0 = r0.templateListID;
-        r18 = r0;
-        r0 = r18;
-        r1 = r1.get(r0);
-        r1 = (java.util.HashMap) r1;
-        r18 = "source_type";
-        r0 = r18;
-        r1 = r1.get(r0);
-        r1 = (java.lang.String) r1;
-        r18 = "VIDEO";
-        r0 = r18;
-        r1 = r1.equals(r0);
-        if (r1 == 0) goto L_0x0584;
-    L_0x0565:
-        r1 = r12.getClipType();
-        r18 = 4;
-        r0 = r18;
-        if (r1 != r0) goto L_0x0584;
-    L_0x056f:
-        r12.setRotateDegree(r14);
-        r1 = r12.getVideoClipEdit();
-        r1.setSpeedControl(r15);
-        r1 = r12.getVideoClipEdit();
-        r12 = r17 / 2;
-        r12 = r12 + r11;
-        r12 = r12 + r10;
-        r1.setTrim(r10, r12);
-    L_0x0584:
-        r1 = r17 / 2;
-        r1 = r1 + r11;
-        r10 = r10 + r1;
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r11 = r0.mIntroTemplateList;
-        if (r1 != r11) goto L_0x05b8;
-    L_0x0592:
-        r0 = r21;
-        r1 = r0.introCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.introCount = r1;
-    L_0x059c:
-        r2 = r2 + 1;
-        r1 = 1;
-        r1 = r13.getTotalClipCount(r1);
-        if (r2 >= r1) goto L_0x05c3;
-    L_0x05a5:
-        r1 = "nexTemplateComposer";
-        r5 = "video,case 3] the certain clip exist in the source project.";
-        android.util.Log.d(r1, r5);
-        r5 = 1;
-        r1 = 1;
-        r0 = r21;
-        r0.manageTemplateList(r1);
-        r1 = r8;
-        r8 = r10;
-        goto L_0x02ab;
-    L_0x05b8:
-        r0 = r21;
-        r1 = r0.loopCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.loopCount = r1;
-        goto L_0x059c;
-    L_0x05c3:
-        r1 = 0;
-        r0 = r21;
-        r0.manageTemplateList(r1);
-        r1 = r8;
-        r8 = r10;
-        goto L_0x02ab;
-    L_0x05cd:
-        r1 = 1;
-        r1 = r13.getClip(r6, r1);
-        r1 = r1.getClipType();
-        r7 = 1;
-        if (r1 != r7) goto L_0x0692;
-    L_0x05d9:
-        r21.addSpecialClip2Project(r22);
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r7 = r0.templateListID;
-        r1 = r1.get(r7);
-        r1 = (java.util.HashMap) r1;
-        r7 = "duration";
-        r1 = r1.get(r7);
-        r1 = (java.lang.String) r1;
-        r1 = java.lang.Integer.parseInt(r1);
-        r7 = 1;
-        r7 = r13.getClip(r6, r7);
-        r7 = r7.getRotateDegree();
-        r8 = 1;
-        r8 = r13.getClip(r6, r8);
-        r8 = com.nexstreaming.nexeditorsdk.nexClip.dup(r8);
-        r8.setRotateDegree(r7);
-        r8.setImageClipDuration(r1);
-        r0 = r22;
-        r0.add(r8);
-        r2 = r2 + 1;
-        r1 = 1;
-        r1 = r13.getTotalClipCount(r1);
-        if (r2 >= r1) goto L_0x067d;
-    L_0x061c:
-        r0 = r21;
-        r1 = r0.templateList;
-        r0 = r21;
-        r7 = r0.mIntroTemplateList;
-        if (r1 != r7) goto L_0x0656;
-    L_0x0626:
-        r0 = r21;
-        r1 = r0.introCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.introCount = r1;
-    L_0x0630:
-        r1 = 1;
-        r1 = r13.getTotalClipCount(r1);
-        r1 = r1 + -1;
-        if (r2 != r1) goto L_0x066f;
-    L_0x0639:
-        r1 = 1;
-        r1 = r13.getClip(r2, r1);
-        r1 = r1.getClipType();
-        r7 = 4;
-        if (r1 != r7) goto L_0x0661;
-    L_0x0645:
-        r1 = "nexTemplateComposer";
-        r7 = "image] the clipType of last clip is video, and go continually";
-        android.util.Log.d(r1, r7);
-        r1 = 1;
-        r0 = r21;
-        r0.manageTemplateList(r1);
-    L_0x0652:
-        r1 = r2;
-        r2 = r5;
-        goto L_0x02af;
-    L_0x0656:
-        r0 = r21;
-        r1 = r0.loopCount;
-        r1 = r1 + 1;
-        r0 = r21;
-        r0.loopCount = r1;
-        goto L_0x0630;
-    L_0x0661:
-        r1 = "nexTemplateComposer";
-        r7 = "image] the clipType of last clip is image, and goto OutTroTemplate";
-        android.util.Log.d(r1, r7);
-        r1 = 0;
-        r0 = r21;
-        r0.manageTemplateList(r1);
-        goto L_0x0652;
-    L_0x066f:
-        r1 = "nexTemplateComposer";
-        r7 = "image] some clips exist in the source project.";
-        android.util.Log.d(r1, r7);
-        r1 = 1;
-        r0 = r21;
-        r0.manageTemplateList(r1);
-        goto L_0x0652;
-    L_0x067d:
-        r1 = "nexTemplateComposer";
-        r7 = "image] No more any clip after this image clip.";
-        android.util.Log.d(r1, r7);
-        r0 = r21;
-        r1 = r0.mTemplateTypeCountList;
-        r7 = 2;
-        r8 = 1;
-        r8 = java.lang.Integer.valueOf(r8);
-        r1.append(r7, r8);
-        goto L_0x0652;
-    L_0x0692:
-        r1 = "nexTemplateComposer";
-        r7 = new java.lang.StringBuilder;
-        r7.<init>();
-        r8 = "not support_type in template:";
-        r7 = r7.append(r8);
-        r8 = 1;
-        r8 = r13.getClip(r6, r8);
-        r8 = r8.getClipType();
-        r7 = r7.append(r8);
-        r7 = r7.toString();
-        android.util.Log.d(r1, r7);
-        r1 = r2;
-        r2 = r5;
-        goto L_0x02af;
-    L_0x06b7:
-        r6 = r5;
-        r5 = r2;
-        r2 = r1;
-        goto L_0x0069;
-    L_0x06bc:
-        r1 = r12;
-        goto L_0x0172;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.nexTemplateComposer.consistProjectViaVer2(com.nexstreaming.nexeditorsdk.nexProject):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    void consistProjectViaVer2(nexProject nexproject) {
+        int i;
+        int i2 = 0;
+        int i3 = 0;
+        int i4 = 0;
+        while (true) {
+            i = i3;
+            if (i >= this.mIntroTemplateList.size()) {
+                break;
+            }
+            i4 += Integer.parseInt((String) ((HashMap) this.mIntroTemplateList.get(i)).get(TAG_DURATION));
+            i3 = i + 2;
+        }
+        i3 = 0;
+        while (true) {
+            i = i3;
+            if (i >= this.mOutroTemplateList.size()) {
+                break;
+            }
+            i2 += Integer.parseInt((String) ((HashMap) this.mOutroTemplateList.get(i)).get(TAG_DURATION));
+            i3 = i + 2;
+        }
+        this.templateList = this.mIntroTemplateList;
+        nexProject clone = nexProject.clone(nexproject);
+        nexproject.allClear(true);
+        i = 0;
+        Object obj = null;
+        int i5 = 0;
+        while (true) {
+            Object obj2;
+            int totalTime;
+            if (clone.getClip(i5, true).getClipType() == 4) {
+                int i6;
+                int rotateDegree = clone.getClip(i5, true).getRotateDegree();
+                int speedControl = clone.getClip(i5, true).getVideoClipEdit().getSpeedControl();
+                int startTrimTime = clone.getClip(i5, true).getVideoClipEdit().getStartTrimTime();
+                if (clone.getClip(i5, true).getVideoClipEdit().getEndTrimTime() == 0) {
+                    totalTime = clone.getClip(i5, true).getTotalTime();
+                } else {
+                    totalTime = clone.getClip(i5, true).getVideoClipEdit().getEndTrimTime();
+                }
+                nexClip dup = nexClip.dup(clone.getClip(i5, true));
+                this.tempClipID = nexproject.getTotalClipCount(true);
+                if (this.tempClipID < 0) {
+                    this.tempClipID = 0;
+                }
+                int i7 = totalTime - startTrimTime;
+                if (i4 + i2 >= i7) {
+                    Log.d(TAG, "OVER durationOfSourceClip/ introDuration:" + i4 + " outroDuration:" + i2 + " sourceDuration:" + i7);
+                    i6 = startTrimTime;
+                    startTrimTime = i7;
+                } else {
+                    i3 = i7 - i2;
+                    Log.d(TAG, "UNDER durationOfSourceClip/ introDuration:" + i4 + " outroDuration:" + i2 + " remainTime2Project:" + i3);
+                    i6 = startTrimTime;
+                    startTrimTime = i3;
+                }
+                if (this.mCancel) {
+                    int i8;
+                    int i9;
+                    addSpecialClip2Project(nexproject);
+                    if (Integer.parseInt((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_DURATION)) < 0) {
+                        i8 = 0;
+                    } else {
+                        i8 = Integer.parseInt((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_DURATION));
+                    }
+                    int i10 = startTrimTime - i8;
+                    i3 = this.templateListID;
+                    while (true) {
+                        i9 = i3 + 2;
+                        if (i9 >= this.templateList.size()) {
+                            i9 = 0;
+                        }
+                        if (((String) ((HashMap) this.templateList.get(i9)).get(TAG_SOURCE_TYPE)).equals("EXTERNAL_VIDEO") || ((String) ((HashMap) this.templateList.get(i9)).get(TAG_SOURCE_TYPE)).equals("EXTERNAL_IMAGE")) {
+                            i3 = i9;
+                        } else {
+                            if (!((String) ((HashMap) this.templateList.get(i9)).get(TAG_SOURCE_TYPE)).equals("SOLID")) {
+                                break;
+                            }
+                            i3 = i9;
+                            i3 = i9;
+                        }
+                    }
+                    i9 = Integer.parseInt((String) ((HashMap) this.templateList.get(i9)).get(TAG_DURATION));
+                    nexClip clip;
+                    if (this.templateList == this.mOutroTemplateList || obj != null) {
+                        nexproject.add(nexClip.dup(dup));
+                        clip = nexproject.getClip(this.tempClipID, true);
+                        if ((((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_SOURCE_TYPE)).equals("ALL") || ((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_SOURCE_TYPE)).equals("VIDEO")) && clip.getClipType() == 4) {
+                            clip.setRotateDegree(rotateDegree);
+                            clip.getVideoClipEdit().setSpeedControl(speedControl);
+                            clip.getVideoClipEdit().setTrim(i6, totalTime);
+                        }
+                        i6 += totalTime;
+                        if (obj != null) {
+                            obj = null;
+                            if (this.templateList == this.mIntroTemplateList) {
+                                this.introCount++;
+                            } else if (this.templateList == this.mLoopTemplateList) {
+                                this.loopCount++;
+                            }
+                            manageTemplateList(true);
+                        }
+                        i3 = startTrimTime;
+                        startTrimTime = i6;
+                    } else {
+                        String str = TAG;
+                        String str2 = str;
+                        Log.d(str2, "id:" + Integer.parseInt((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_ID)) + "/ current defined duration:" + i8 + "/ next defined duration:" + i9 + "/ remain duration(based on source_duration - outro_duration)):" + i10);
+                        nexClip clip2;
+                        if (i4 + i2 >= i7) {
+                            nexproject.add(nexClip.dup(dup));
+                            i3 = this.tempClipID;
+                            this.tempClipID = i3 + 1;
+                            clip = nexproject.getClip(i3, true);
+                            if ((((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_SOURCE_TYPE)).equals("ALL") || ((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_SOURCE_TYPE)).equals("VIDEO")) && clip.getClipType() == 4) {
+                                clip.setRotateDegree(rotateDegree);
+                                clip.getVideoClipEdit().setSpeedControl(speedControl);
+                                clip.getVideoClipEdit().setTrim(i6, (startTrimTime / 2) + i6);
+                            }
+                            i6 += startTrimTime / 2;
+                            if (this.templateList == this.mIntroTemplateList) {
+                                this.introCount++;
+                            } else {
+                                this.loopCount++;
+                            }
+                            i++;
+                            if (i < clone.getTotalClipCount(true)) {
+                                Log.d(TAG, "video,case 1] some clips exist in the source project.");
+                                obj = 1;
+                                manageTemplateList(true);
+                            } else {
+                                this.introCount++;
+                                manageTemplateList(false);
+                            }
+                            i3 = startTrimTime;
+                            startTrimTime = i6;
+                        } else if (i10 <= i9) {
+                            nexproject.add(nexClip.dup(dup));
+                            i3 = this.tempClipID;
+                            this.tempClipID = i3 + 1;
+                            clip2 = nexproject.getClip(i3, true);
+                            if ((((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_SOURCE_TYPE)).equals("ALL") || ((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_SOURCE_TYPE)).equals("VIDEO")) && clip2.getClipType() == 4) {
+                                clip2.setRotateDegree(rotateDegree);
+                                clip2.getVideoClipEdit().setSpeedControl(speedControl);
+                                clip2.getVideoClipEdit().setTrim(i6, ((i10 / 2) + i8) + i6);
+                            }
+                            i6 += (i10 / 2) + i8;
+                            if (this.templateList == this.mIntroTemplateList) {
+                                this.introCount++;
+                            } else {
+                                this.loopCount++;
+                            }
+                            i++;
+                            if (i < clone.getTotalClipCount(true)) {
+                                Log.d(TAG, "video,case 3] the certain clip exist in the source project.");
+                                obj = 1;
+                                manageTemplateList(true);
+                                i3 = startTrimTime;
+                                startTrimTime = i6;
+                            } else {
+                                manageTemplateList(false);
+                                i3 = startTrimTime;
+                                startTrimTime = i6;
+                            }
+                        } else if (i10 < 0) {
+                            i3 = startTrimTime;
+                            startTrimTime = i6;
+                        } else {
+                            startTrimTime -= i8;
+                            nexproject.add(nexClip.dup(dup));
+                            i3 = this.tempClipID;
+                            this.tempClipID = i3 + 1;
+                            clip2 = nexproject.getClip(i3, true);
+                            if ((((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_SOURCE_TYPE)).equals("ALL") || ((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_SOURCE_TYPE)).equals("VIDEO")) && clip2.getClipType() == 4) {
+                                clip2.setRotateDegree(rotateDegree);
+                                clip2.getVideoClipEdit().setSpeedControl(speedControl);
+                                clip2.getVideoClipEdit().setTrim(i6, i6 + i8);
+                            }
+                            i6 += i8;
+                            if (this.templateList == this.mIntroTemplateList) {
+                                this.introCount++;
+                            } else {
+                                this.loopCount++;
+                            }
+                            manageTemplateList(true);
+                            i3 = startTrimTime;
+                            startTrimTime = i6;
+                        }
+                    }
+                    if (startTrimTime >= totalTime) {
+                        i3 = i;
+                        obj2 = obj;
+                    }
+                    i6 = startTrimTime;
+                    startTrimTime = i3;
+                    if (this.mCancel) {
+                    }
+                }
+                return;
+            } else if (clone.getClip(i5, true).getClipType() == 1) {
+                addSpecialClip2Project(nexproject);
+                i3 = Integer.parseInt((String) ((HashMap) this.templateList.get(this.templateListID)).get(TAG_DURATION));
+                totalTime = clone.getClip(i5, true).getRotateDegree();
+                nexClip dup2 = nexClip.dup(clone.getClip(i5, true));
+                dup2.setRotateDegree(totalTime);
+                dup2.setImageClipDuration(i3);
+                nexproject.add(dup2);
+                i++;
+                if (i < clone.getTotalClipCount(true)) {
+                    if (this.templateList == this.mIntroTemplateList) {
+                        this.introCount++;
+                    } else {
+                        this.loopCount++;
+                    }
+                    if (i != clone.getTotalClipCount(true) - 1) {
+                        Log.d(TAG, "image] some clips exist in the source project.");
+                        manageTemplateList(true);
+                    } else if (clone.getClip(i, true).getClipType() == 4) {
+                        Log.d(TAG, "image] the clipType of last clip is video, and go continually");
+                        manageTemplateList(true);
+                    } else {
+                        Log.d(TAG, "image] the clipType of last clip is image, and goto OutTroTemplate");
+                        manageTemplateList(false);
+                    }
+                } else {
+                    Log.d(TAG, "image] No more any clip after this image clip.");
+                    this.mTemplateTypeCountList.append(2, Integer.valueOf(1));
+                }
+                i3 = i;
+                obj2 = obj;
+            } else {
+                Log.d(TAG, "not support_type in template:" + clone.getClip(i5, true).getClipType());
+                i3 = i;
+                obj2 = obj;
+            }
+            int i11 = i5 + 1;
+            if (i11 >= clone.getTotalClipCount(true)) {
+                Log.d(TAG, "intro:" + this.mTemplateTypeCountList.get(0) + " loop:" + this.mTemplateTypeCountList.get(1) + " out-ro:" + this.mTemplateTypeCountList.get(2));
+                nexproject.updateProject();
+                return;
+            }
+            i5 = i11;
+            obj = obj2;
+            i = i3;
+        }
     }
 
     String setProperty2VideoClip(nexProject nexproject, nexClip nexclip, int i) {

@@ -15,11 +15,16 @@ import com.xiaomi.mistatistic.sdk.controller.r;
 import com.xiaomi.mistatistic.sdk.controller.s;
 import com.xiaomi.mistatistic.sdk.controller.t;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -160,77 +165,63 @@ public class b implements UncaughtExceptionHandler {
     /* JADX WARNING: Removed duplicated region for block: B:35:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:18:0x0043 A:{SYNTHETIC, Splitter: B:18:0x0043} */
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0053 A:{SYNTHETIC, Splitter: B:24:0x0053} */
-    private static void a(java.lang.Throwable r5) {
-        /*
-        r3 = 0;
-        r0 = b();
-        r1 = new com.xiaomi.mistatistic.sdk.b$a;
-        r1.<init>(r5);
-        r0.add(r1);
-        r1 = r0.size();
-        r2 = 5;
-        if (r1 <= r2) goto L_0x0017;
-    L_0x0014:
-        r0.remove(r3);
-    L_0x0017:
-        r2 = 0;
-        r1 = com.xiaomi.mistatistic.sdk.controller.d.a();	 Catch:{ IOException -> 0x003a, all -> 0x0050 }
-        r3 = ".exceptiondetail";
-        r4 = 0;
-        r3 = r1.openFileOutput(r3, r4);	 Catch:{ IOException -> 0x003a, all -> 0x0050 }
-        r1 = new java.io.ObjectOutputStream;	 Catch:{ IOException -> 0x003a, all -> 0x0050 }
-        r1.<init>(r3);	 Catch:{ IOException -> 0x003a, all -> 0x0050 }
-        r1.writeObject(r0);	 Catch:{ IOException -> 0x0063 }
-        if (r1 == 0) goto L_0x0030;
-    L_0x002d:
-        r1.close();	 Catch:{ IOException -> 0x0031 }
-    L_0x0030:
-        return;
-    L_0x0031:
-        r0 = move-exception;
-        r1 = "MEH";
-        r2 = "saveException exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r1, r2, r0);
-        goto L_0x0030;
-    L_0x003a:
-        r0 = move-exception;
-        r1 = r2;
-    L_0x003c:
-        r2 = "";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r0);	 Catch:{ all -> 0x0060 }
-        if (r1 == 0) goto L_0x0030;
-    L_0x0043:
-        r1.close();	 Catch:{ IOException -> 0x0047 }
-        goto L_0x0030;
-    L_0x0047:
-        r0 = move-exception;
-        r1 = "MEH";
-        r2 = "saveException exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r1, r2, r0);
-        goto L_0x0030;
-    L_0x0050:
-        r0 = move-exception;
-    L_0x0051:
-        if (r2 == 0) goto L_0x0056;
-    L_0x0053:
-        r2.close();	 Catch:{ IOException -> 0x0057 }
-    L_0x0056:
-        throw r0;
-    L_0x0057:
-        r1 = move-exception;
-        r2 = "MEH";
-        r3 = "saveException exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r1);
-        goto L_0x0056;
-    L_0x0060:
-        r0 = move-exception;
-        r2 = r1;
-        goto L_0x0051;
-    L_0x0063:
-        r0 = move-exception;
-        goto L_0x003c;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.mistatistic.sdk.b.a(java.lang.Throwable):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static void a(Throwable th) {
+        Throwable e;
+        ArrayList b = b();
+        b.add(new a(th));
+        if (b.size() > 5) {
+            b.remove(0);
+        }
+        ObjectOutputStream objectOutputStream = null;
+        ObjectOutputStream objectOutputStream2;
+        try {
+            objectOutputStream2 = new ObjectOutputStream(d.a().openFileOutput(".exceptiondetail", 0));
+            try {
+                objectOutputStream2.writeObject(b);
+                if (objectOutputStream2 != null) {
+                    try {
+                        objectOutputStream2.close();
+                    } catch (Throwable e2) {
+                        j.a("MEH", "saveException exception", e2);
+                    }
+                }
+            } catch (IOException e3) {
+                e2 = e3;
+                try {
+                    j.a("", e2);
+                    if (objectOutputStream2 == null) {
+                    }
+                } catch (Throwable th2) {
+                    e2 = th2;
+                    objectOutputStream = objectOutputStream2;
+                    if (objectOutputStream != null) {
+                    }
+                    throw e2;
+                }
+            }
+        } catch (IOException e4) {
+            e2 = e4;
+            objectOutputStream2 = null;
+            j.a("", e2);
+            if (objectOutputStream2 == null) {
+                try {
+                    objectOutputStream2.close();
+                } catch (Throwable e22) {
+                    j.a("MEH", "saveException exception", e22);
+                }
+            }
+        } catch (Throwable th3) {
+            e22 = th3;
+            if (objectOutputStream != null) {
+                try {
+                    objectOutputStream.close();
+                } catch (Throwable e5) {
+                    j.a("MEH", "saveException exception", e5);
+                }
+            }
+            throw e22;
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:41:0x0079  */
@@ -241,102 +232,98 @@ public class b implements UncaughtExceptionHandler {
     /* JADX WARNING: Removed duplicated region for block: B:40:0x0077  */
     /* JADX WARNING: Removed duplicated region for block: B:25:0x0053 A:{SYNTHETIC, Splitter: B:25:0x0053} */
     /* JADX WARNING: Removed duplicated region for block: B:15:0x0038  */
-    public static java.util.ArrayList<com.xiaomi.mistatistic.sdk.b.a> b() {
-        /*
-        r4 = new java.util.ArrayList;
-        r4.<init>();
-        r2 = 0;
-        r3 = 0;
-        r0 = com.xiaomi.mistatistic.sdk.controller.d.a();	 Catch:{ Exception -> 0x0047, all -> 0x0062 }
-        r0 = r0.getFilesDir();	 Catch:{ Exception -> 0x0047, all -> 0x0062 }
-        if (r0 == 0) goto L_0x007c;
-    L_0x0011:
-        r5 = new java.io.File;	 Catch:{ Exception -> 0x0047, all -> 0x0062 }
-        r1 = ".exceptiondetail";
-        r5.<init>(r0, r1);	 Catch:{ Exception -> 0x0047, all -> 0x0062 }
-        r0 = r5.isFile();	 Catch:{ Exception -> 0x0047, all -> 0x0062 }
-        if (r0 == 0) goto L_0x007c;
-    L_0x001e:
-        r1 = new java.io.ObjectInputStream;	 Catch:{ Exception -> 0x0047, all -> 0x0062 }
-        r0 = new java.io.FileInputStream;	 Catch:{ Exception -> 0x0047, all -> 0x0062 }
-        r0.<init>(r5);	 Catch:{ Exception -> 0x0047, all -> 0x0062 }
-        r1.<init>(r0);	 Catch:{ Exception -> 0x0047, all -> 0x0062 }
-        r0 = r1.readObject();	 Catch:{ Exception -> 0x0075 }
-        r0 = (java.util.ArrayList) r0;	 Catch:{ Exception -> 0x0075 }
-        r2 = r1;
-    L_0x002f:
-        if (r2 == 0) goto L_0x0079;
-    L_0x0031:
-        r2.close();	 Catch:{ IOException -> 0x003c }
-        r1 = r0;
-        r0 = r3;
-    L_0x0036:
-        if (r0 == 0) goto L_0x003b;
-    L_0x0038:
-        c();
-    L_0x003b:
-        return r1;
-    L_0x003c:
-        r1 = move-exception;
-        r2 = "MEH";
-        r4 = "loadException exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r4, r1);
-        r1 = r0;
-        r0 = r3;
-        goto L_0x0036;
-    L_0x0047:
-        r0 = move-exception;
-        r1 = r2;
-    L_0x0049:
-        r2 = "MEH";
-        r3 = "loadException exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r0);	 Catch:{ all -> 0x0072 }
-        r0 = 1;
-        if (r1 == 0) goto L_0x0077;
-    L_0x0053:
-        r1.close();	 Catch:{ IOException -> 0x0058 }
-        r1 = r4;
-        goto L_0x0036;
-    L_0x0058:
-        r1 = move-exception;
-        r2 = "MEH";
-        r3 = "loadException exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r1);
-        r1 = r4;
-        goto L_0x0036;
-    L_0x0062:
-        r0 = move-exception;
-    L_0x0063:
-        if (r2 == 0) goto L_0x0068;
-    L_0x0065:
-        r2.close();	 Catch:{ IOException -> 0x0069 }
-    L_0x0068:
-        throw r0;
-    L_0x0069:
-        r1 = move-exception;
-        r2 = "MEH";
-        r3 = "loadException exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r1);
-        goto L_0x0068;
-    L_0x0072:
-        r0 = move-exception;
-        r2 = r1;
-        goto L_0x0063;
-    L_0x0075:
-        r0 = move-exception;
-        goto L_0x0049;
-    L_0x0077:
-        r1 = r4;
-        goto L_0x0036;
-    L_0x0079:
-        r1 = r0;
-        r0 = r3;
-        goto L_0x0036;
-    L_0x007c:
-        r0 = r4;
-        goto L_0x002f;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.mistatistic.sdk.b.b():java.util.ArrayList<com.xiaomi.mistatistic.sdk.b$a>");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static ArrayList<a> b() {
+        ArrayList<a> arrayList;
+        Object obj;
+        Throwable e;
+        ArrayList<a> arrayList2 = new ArrayList();
+        ObjectInputStream objectInputStream = null;
+        ObjectInputStream objectInputStream2;
+        try {
+            ArrayList<a> arrayList3;
+            File filesDir = d.a().getFilesDir();
+            if (filesDir != null) {
+                File file = new File(filesDir, ".exceptiondetail");
+                if (file.isFile()) {
+                    objectInputStream2 = new ObjectInputStream(new FileInputStream(file));
+                    try {
+                        arrayList3 = (ArrayList) objectInputStream2.readObject();
+                        objectInputStream = objectInputStream2;
+                        if (objectInputStream == null) {
+                            try {
+                                objectInputStream.close();
+                                arrayList = arrayList3;
+                                obj = null;
+                            } catch (Throwable e2) {
+                                j.a("MEH", "loadException exception", e2);
+                                arrayList = arrayList3;
+                                obj = null;
+                            }
+                        } else {
+                            arrayList = arrayList3;
+                            obj = null;
+                        }
+                    } catch (Exception e3) {
+                        e = e3;
+                        try {
+                            j.a("MEH", "loadException exception", e);
+                            obj = 1;
+                            if (objectInputStream2 == null) {
+                            }
+                            if (obj != null) {
+                            }
+                            return arrayList;
+                        } catch (Throwable th) {
+                            e = th;
+                            objectInputStream = objectInputStream2;
+                            if (objectInputStream != null) {
+                                try {
+                                    objectInputStream.close();
+                                } catch (Throwable e22) {
+                                    j.a("MEH", "loadException exception", e22);
+                                }
+                            }
+                            throw e;
+                        }
+                    }
+                    if (obj != null) {
+                        c();
+                    }
+                    return arrayList;
+                }
+            }
+            arrayList3 = arrayList2;
+            if (objectInputStream == null) {
+            }
+        } catch (Exception e4) {
+            e = e4;
+            objectInputStream2 = null;
+            j.a("MEH", "loadException exception", e);
+            obj = 1;
+            if (objectInputStream2 == null) {
+                try {
+                    objectInputStream2.close();
+                    arrayList = arrayList2;
+                } catch (Throwable e222) {
+                    j.a("MEH", "loadException exception", e222);
+                    arrayList = arrayList2;
+                }
+            } else {
+                arrayList = arrayList2;
+            }
+            if (obj != null) {
+            }
+            return arrayList;
+        } catch (Throwable th2) {
+            e = th2;
+            if (objectInputStream != null) {
+            }
+            throw e;
+        }
+        if (obj != null) {
+        }
+        return arrayList;
     }
 
     public static void c() {

@@ -12,7 +12,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.util.Date;
@@ -269,62 +271,62 @@ public class IOUtils {
     /* JADX WARNING: Removed duplicated region for block: B:19:0x0034  */
     /* JADX WARNING: Removed duplicated region for block: B:17:0x002f  */
     /* JADX WARNING: Removed duplicated region for block: B:19:0x0034  */
-    public static void copyFile(java.io.File r8, java.io.File r9) throws java.io.IOException {
-        /*
-        r6 = r8.getAbsolutePath();
-        r7 = r9.getAbsolutePath();
-        r6 = r6.equals(r7);
-        if (r6 == 0) goto L_0x000f;
-    L_0x000e:
-        return;
-    L_0x000f:
-        r1 = 0;
-        r4 = 0;
-        r2 = new java.io.FileInputStream;	 Catch:{ all -> 0x0043 }
-        r2.<init>(r8);	 Catch:{ all -> 0x0043 }
-        r5 = new java.io.FileOutputStream;	 Catch:{ all -> 0x0045 }
-        r5.<init>(r9);	 Catch:{ all -> 0x0045 }
-        r6 = 1024; // 0x400 float:1.435E-42 double:5.06E-321;
-        r0 = new byte[r6];	 Catch:{ all -> 0x002a }
-    L_0x001f:
-        r3 = r2.read(r0);	 Catch:{ all -> 0x002a }
-        if (r3 < 0) goto L_0x0038;
-    L_0x0025:
-        r6 = 0;
-        r5.write(r0, r6, r3);	 Catch:{ all -> 0x002a }
-        goto L_0x001f;
-    L_0x002a:
-        r6 = move-exception;
-        r4 = r5;
-        r1 = r2;
-    L_0x002d:
-        if (r1 == 0) goto L_0x0032;
-    L_0x002f:
-        r1.close();
-    L_0x0032:
-        if (r4 == 0) goto L_0x0037;
-    L_0x0034:
-        r4.close();
-    L_0x0037:
-        throw r6;
-    L_0x0038:
-        if (r2 == 0) goto L_0x003d;
-    L_0x003a:
-        r2.close();
-    L_0x003d:
-        if (r5 == 0) goto L_0x000e;
-    L_0x003f:
-        r5.close();
-        goto L_0x000e;
-    L_0x0043:
-        r6 = move-exception;
-        goto L_0x002d;
-    L_0x0045:
-        r6 = move-exception;
-        r1 = r2;
-        goto L_0x002d;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.channel.commonutils.file.IOUtils.copyFile(java.io.File, java.io.File):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void copyFile(File src, File dest) throws IOException {
+        Throwable th;
+        if (!src.getAbsolutePath().equals(dest.getAbsolutePath())) {
+            InputStream in = null;
+            OutputStream out = null;
+            try {
+                OutputStream out2;
+                InputStream in2 = new FileInputStream(src);
+                try {
+                    out2 = new FileOutputStream(dest);
+                } catch (Throwable th2) {
+                    th = th2;
+                    in = in2;
+                    if (in != null) {
+                    }
+                    if (out != null) {
+                    }
+                    throw th;
+                }
+                try {
+                    byte[] buf = new byte[1024];
+                    while (true) {
+                        int len = in2.read(buf);
+                        if (len < 0) {
+                            break;
+                        }
+                        out2.write(buf, 0, len);
+                    }
+                    if (in2 != null) {
+                        in2.close();
+                    }
+                    if (out2 != null) {
+                        out2.close();
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    out = out2;
+                    in = in2;
+                    if (in != null) {
+                    }
+                    if (out != null) {
+                    }
+                    throw th;
+                }
+            } catch (Throwable th4) {
+                th = th4;
+                if (in != null) {
+                    in.close();
+                }
+                if (out != null) {
+                    out.close();
+                }
+                throw th;
+            }
+        }
     }
 
     public static boolean createFileQuietly(File file) {

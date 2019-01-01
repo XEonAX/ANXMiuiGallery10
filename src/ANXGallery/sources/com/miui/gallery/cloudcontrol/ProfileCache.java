@@ -3,11 +3,13 @@ package com.miui.gallery.cloudcontrol;
 import android.content.Context;
 import android.database.Cursor;
 import android.text.TextUtils;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.miui.gallery.R;
 import com.miui.gallery.cloudcontrol.FeatureProfile.Deserializer;
 import com.miui.gallery.cloudcontrol.FeatureProfile.Status;
+import com.miui.gallery.cloudcontrol.strategies.BaseStrategy;
 import com.miui.gallery.provider.GalleryContract.CloudControl;
 import com.miui.gallery.threadpool.ThreadManager;
 import com.miui.gallery.util.GallerySamplingStatHelper;
@@ -107,126 +109,54 @@ class ProfileCache {
     /* JADX WARNING: Missing block: B:52:?, code:
             return r7;
      */
-    <T extends com.miui.gallery.cloudcontrol.strategies.BaseStrategy> T queryStrategy(java.lang.String r11, java.lang.Class<T> r12, com.miui.gallery.cloudcontrol.Merger<T> r13) {
-        /*
-        r10 = this;
-        r7 = android.text.TextUtils.isEmpty(r11);
-        if (r7 == 0) goto L_0x0008;
-    L_0x0006:
-        r7 = 0;
-    L_0x0007:
-        return r7;
-    L_0x0008:
-        r8 = r10.mSyncLock;
-        monitor-enter(r8);
-        r1 = 0;
-        r4 = 0;
-        r7 = r10.mCloudStrategyCache;	 Catch:{ all -> 0x0047 }
-        r2 = r7.get(r11);	 Catch:{ all -> 0x0047 }
-        if (r2 == 0) goto L_0x004a;
-    L_0x0015:
-        r7 = r2.getClass();	 Catch:{ all -> 0x0047 }
-        r7 = r12.isAssignableFrom(r7);	 Catch:{ all -> 0x0047 }
-        if (r7 == 0) goto L_0x004a;
-    L_0x001f:
-        r0 = r2;
-        r0 = (com.miui.gallery.cloudcontrol.strategies.BaseStrategy) r0;	 Catch:{ all -> 0x0047 }
-        r1 = r0;
-    L_0x0023:
-        r7 = r10.mLocalStrategyCache;	 Catch:{ all -> 0x0047 }
-        r5 = r7.get(r11);	 Catch:{ all -> 0x0047 }
-        if (r5 == 0) goto L_0x0082;
-    L_0x002b:
-        r7 = r5.getClass();	 Catch:{ all -> 0x0047 }
-        r7 = r12.isAssignableFrom(r7);	 Catch:{ all -> 0x0047 }
-        if (r7 == 0) goto L_0x0082;
-    L_0x0035:
-        r0 = r5;
-        r0 = (com.miui.gallery.cloudcontrol.strategies.BaseStrategy) r0;	 Catch:{ all -> 0x0047 }
-        r4 = r0;
-    L_0x0039:
-        if (r13 == 0) goto L_0x00ba;
-    L_0x003b:
-        if (r1 == 0) goto L_0x00ba;
-    L_0x003d:
-        if (r4 == 0) goto L_0x00ba;
-    L_0x003f:
-        r7 = r13.merge(r4, r1);	 Catch:{ all -> 0x0047 }
-        r7 = (com.miui.gallery.cloudcontrol.strategies.BaseStrategy) r7;	 Catch:{ all -> 0x0047 }
-        monitor-exit(r8);	 Catch:{ all -> 0x0047 }
-        goto L_0x0007;
-    L_0x0047:
-        r7 = move-exception;
-        monitor-exit(r8);	 Catch:{ all -> 0x0047 }
-        throw r7;
-    L_0x004a:
-        r7 = r10.mCloudCache;	 Catch:{ all -> 0x0047 }
-        r7 = r7.get(r11);	 Catch:{ all -> 0x0047 }
-        if (r7 == 0) goto L_0x0023;
-    L_0x0052:
-        r7 = r10.mCloudCache;	 Catch:{ all -> 0x0047 }
-        r7 = r7.get(r11);	 Catch:{ all -> 0x0047 }
-        r7 = (com.miui.gallery.cloudcontrol.FeatureProfile) r7;	 Catch:{ all -> 0x0047 }
-        r6 = r7.getStrategy();	 Catch:{ all -> 0x0047 }
-        r7 = new com.google.gson.Gson;	 Catch:{ Exception -> 0x0076 }
-        r7.<init>();	 Catch:{ Exception -> 0x0076 }
-        r7 = r7.fromJson(r6, r12);	 Catch:{ Exception -> 0x0076 }
-        r0 = r7;
-        r0 = (com.miui.gallery.cloudcontrol.strategies.BaseStrategy) r0;	 Catch:{ Exception -> 0x0076 }
-        r1 = r0;
-        if (r1 == 0) goto L_0x0023;
-    L_0x006d:
-        r1.doAdditionalProcessing();	 Catch:{ Exception -> 0x0076 }
-        r7 = r10.mCloudStrategyCache;	 Catch:{ Exception -> 0x0076 }
-        r7.put(r11, r1);	 Catch:{ Exception -> 0x0076 }
-        goto L_0x0023;
-    L_0x0076:
-        r3 = move-exception;
-        r7 = "CloudControl.ProfileCache";
-        r9 = "Failed to deserialize strategy: %s";
-        com.miui.gallery.util.Log.e(r7, r9, r6);	 Catch:{ all -> 0x0047 }
-        r3.printStackTrace();	 Catch:{ all -> 0x0047 }
-        goto L_0x0023;
-    L_0x0082:
-        r7 = r10.mLocalCache;	 Catch:{ all -> 0x0047 }
-        r7 = r7.get(r11);	 Catch:{ all -> 0x0047 }
-        if (r7 == 0) goto L_0x0039;
-    L_0x008a:
-        r7 = r10.mLocalCache;	 Catch:{ all -> 0x0047 }
-        r7 = r7.get(r11);	 Catch:{ all -> 0x0047 }
-        r7 = (com.miui.gallery.cloudcontrol.FeatureProfile) r7;	 Catch:{ all -> 0x0047 }
-        r6 = r7.getStrategy();	 Catch:{ all -> 0x0047 }
-        r7 = new com.google.gson.Gson;	 Catch:{ Exception -> 0x00ae }
-        r7.<init>();	 Catch:{ Exception -> 0x00ae }
-        r7 = r7.fromJson(r6, r12);	 Catch:{ Exception -> 0x00ae }
-        r0 = r7;
-        r0 = (com.miui.gallery.cloudcontrol.strategies.BaseStrategy) r0;	 Catch:{ Exception -> 0x00ae }
-        r4 = r0;
-        if (r4 == 0) goto L_0x0039;
-    L_0x00a5:
-        r4.doAdditionalProcessing();	 Catch:{ Exception -> 0x00ae }
-        r7 = r10.mLocalStrategyCache;	 Catch:{ Exception -> 0x00ae }
-        r7.put(r11, r4);	 Catch:{ Exception -> 0x00ae }
-        goto L_0x0039;
-    L_0x00ae:
-        r3 = move-exception;
-        r7 = "CloudControl.ProfileCache";
-        r9 = "Failed to deserialize strategy: %s";
-        com.miui.gallery.util.Log.e(r7, r9, r6);	 Catch:{ all -> 0x0047 }
-        r3.printStackTrace();	 Catch:{ all -> 0x0047 }
-        goto L_0x0039;
-    L_0x00ba:
-        if (r1 == 0) goto L_0x00c0;
-    L_0x00bc:
-        r7 = r1;
-    L_0x00bd:
-        monitor-exit(r8);	 Catch:{ all -> 0x0047 }
-        goto L_0x0007;
-    L_0x00c0:
-        r7 = r4;
-        goto L_0x00bd;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloudcontrol.ProfileCache.queryStrategy(java.lang.String, java.lang.Class, com.miui.gallery.cloudcontrol.Merger):T");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    <T extends BaseStrategy> T queryStrategy(String feature, Class<T> classOfT, Merger<T> merger) {
+        if (TextUtils.isEmpty(feature)) {
+            return null;
+        }
+        synchronized (this.mSyncLock) {
+            Object strategyJson;
+            T cloudStrategy = null;
+            T localStrategy = null;
+            Object cloudStrategyObj = this.mCloudStrategyCache.get(feature);
+            if (cloudStrategyObj != null && classOfT.isAssignableFrom(cloudStrategyObj.getClass())) {
+                cloudStrategy = (BaseStrategy) cloudStrategyObj;
+            } else if (this.mCloudCache.get(feature) != null) {
+                strategyJson = ((FeatureProfile) this.mCloudCache.get(feature)).getStrategy();
+                try {
+                    cloudStrategy = (BaseStrategy) new Gson().fromJson((String) strategyJson, (Class) classOfT);
+                    if (cloudStrategy != null) {
+                        cloudStrategy.doAdditionalProcessing();
+                        this.mCloudStrategyCache.put(feature, cloudStrategy);
+                    }
+                } catch (Exception e) {
+                    Log.e("CloudControl.ProfileCache", "Failed to deserialize strategy: %s", strategyJson);
+                    e.printStackTrace();
+                }
+            }
+            Object localStrategyObj = this.mLocalStrategyCache.get(feature);
+            if (localStrategyObj != null && classOfT.isAssignableFrom(localStrategyObj.getClass())) {
+                localStrategy = (BaseStrategy) localStrategyObj;
+            } else if (this.mLocalCache.get(feature) != null) {
+                strategyJson = ((FeatureProfile) this.mLocalCache.get(feature)).getStrategy();
+                try {
+                    localStrategy = (BaseStrategy) new Gson().fromJson((String) strategyJson, (Class) classOfT);
+                    if (localStrategy != null) {
+                        localStrategy.doAdditionalProcessing();
+                        this.mLocalStrategyCache.put(feature, localStrategy);
+                    }
+                } catch (Exception e2) {
+                    Log.e("CloudControl.ProfileCache", "Failed to deserialize strategy: %s", strategyJson);
+                    e2.printStackTrace();
+                }
+            }
+            if (merger == null || cloudStrategy == null || localStrategy == null) {
+                T t = cloudStrategy != null ? cloudStrategy : localStrategy;
+            } else {
+                BaseStrategy baseStrategy = (BaseStrategy) merger.merge(localStrategy, cloudStrategy);
+                return baseStrategy;
+            }
+        }
     }
 
     Status registerStatusObserver(String feature, FeatureStatusObserver observer) {

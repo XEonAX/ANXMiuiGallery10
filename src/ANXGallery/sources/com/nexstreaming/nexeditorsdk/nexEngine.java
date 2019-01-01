@@ -44,6 +44,7 @@ import com.nexstreaming.kminternal.nexvideoeditor.NexEditor.v;
 import com.nexstreaming.kminternal.nexvideoeditor.NexRectangle;
 import com.nexstreaming.kminternal.nexvideoeditor.NexThemeView;
 import com.nexstreaming.kminternal.nexvideoeditor.NexVisualClip;
+import com.nexstreaming.kminternal.nexvideoeditor.b;
 import com.nexstreaming.kminternal.nexvideoeditor.c;
 import com.nexstreaming.nexeditorsdk.exception.InvalidRangeException;
 import com.nexstreaming.nexeditorsdk.exception.ProjectNotAttachedException;
@@ -2107,107 +2108,59 @@ public final class nexEngine implements Callback {
     /* JADX WARNING: Missing block: B:31:0x0090, code:
             if (r8.size() <= 0) goto L_0x0092;
      */
-    private boolean checkUpdateProject(java.util.List<com.nexstreaming.kminternal.nexvideoeditor.NexVisualClip> r7, java.util.List<com.nexstreaming.kminternal.nexvideoeditor.NexAudioClip> r8) {
-        /*
-        r6 = this;
-        r2 = 0;
-        r1 = 1;
-        r0 = r6.mCachedNexVisualClips;
-        if (r0 == 0) goto L_0x0079;
-    L_0x0006:
-        r0 = r6.mCachedNexVisualClips;
-        r0 = r0.size();
-        r3 = r7.size();
-        if (r0 != r3) goto L_0x0070;
-    L_0x0012:
-        r4 = r7.size();
-        r3 = r2;
-    L_0x0017:
-        if (r3 >= r4) goto L_0x0096;
-    L_0x0019:
-        r0 = r6.mCachedNexVisualClips;
-        r0 = r0.get(r3);
-        r0 = (com.nexstreaming.kminternal.nexvideoeditor.NexVisualClip) r0;
-        r5 = r7.get(r3);
-        r0 = r0.equals(r5);
-        if (r0 != 0) goto L_0x006c;
-    L_0x002b:
-        r0 = "nexEngine";
-        r3 = "checkUpdateProject video not equals";
-        android.util.Log.d(r0, r3);
-        r0 = r1;
-    L_0x0033:
-        r3 = r0;
-    L_0x0034:
-        if (r3 != 0) goto L_0x0092;
-    L_0x0036:
-        r0 = r6.mCachedNexAudioClips;
-        if (r0 == 0) goto L_0x008c;
-    L_0x003a:
-        r0 = r6.mCachedNexAudioClips;
-        r0 = r0.size();
-        r4 = r8.size();
-        if (r0 != r4) goto L_0x0084;
-    L_0x0046:
-        r4 = r8.size();
-    L_0x004a:
-        if (r2 >= r4) goto L_0x0092;
-    L_0x004c:
-        r0 = r6.mCachedNexAudioClips;
-        r0 = r0.get(r2);
-        r0 = (com.nexstreaming.kminternal.nexvideoeditor.NexAudioClip) r0;
-        r5 = r8.get(r2);
-        r0 = r0.equals(r5);
-        if (r0 != 0) goto L_0x0081;
-    L_0x005e:
-        r0 = "nexEngine";
-        r2 = "checkUpdateProject audio not equals";
-        android.util.Log.d(r0, r2);
-    L_0x0065:
-        if (r1 == 0) goto L_0x006b;
-    L_0x0067:
-        r6.mCachedNexVisualClips = r7;
-        r6.mCachedNexAudioClips = r8;
-    L_0x006b:
-        return r1;
-    L_0x006c:
-        r0 = r3 + 1;
-        r3 = r0;
-        goto L_0x0017;
-    L_0x0070:
-        r0 = "nexEngine";
-        r3 = "checkUpdateProject video diff size";
-        android.util.Log.d(r0, r3);
-        r3 = r1;
-        goto L_0x0034;
-    L_0x0079:
-        r0 = r7.size();
-        if (r0 <= 0) goto L_0x0094;
-    L_0x007f:
-        r3 = r1;
-        goto L_0x0034;
-    L_0x0081:
-        r2 = r2 + 1;
-        goto L_0x004a;
-    L_0x0084:
-        r0 = "nexEngine";
-        r2 = "checkUpdateProject audio diff size";
-        android.util.Log.d(r0, r2);
-        goto L_0x0065;
-    L_0x008c:
-        r0 = r8.size();
-        if (r0 > 0) goto L_0x0065;
-    L_0x0092:
-        r1 = r3;
-        goto L_0x0065;
-    L_0x0094:
-        r3 = r2;
-        goto L_0x0034;
-    L_0x0096:
-        r0 = r2;
-        goto L_0x0033;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.nexEngine.checkUpdateProject(java.util.List, java.util.List):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private boolean checkUpdateProject(List<NexVisualClip> list, List<NexAudioClip> list2) {
+        int size;
+        boolean z;
+        int i = 0;
+        boolean z2 = true;
+        if (this.mCachedNexVisualClips != null) {
+            if (this.mCachedNexVisualClips.size() == list.size()) {
+                boolean z3;
+                size = list.size();
+                for (int i2 = 0; i2 < size; i2++) {
+                    if (!((NexVisualClip) this.mCachedNexVisualClips.get(i2)).equals(list.get(i2))) {
+                        Log.d(TAG, "checkUpdateProject video not equals");
+                        z3 = true;
+                        break;
+                    }
+                }
+                z3 = false;
+                z = z3;
+            } else {
+                Log.d(TAG, "checkUpdateProject video diff size");
+                z = true;
+            }
+        } else if (list.size() > 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (!z) {
+            if (this.mCachedNexAudioClips != null) {
+                if (this.mCachedNexAudioClips.size() == list2.size()) {
+                    size = list2.size();
+                    while (i < size) {
+                        if (!((NexAudioClip) this.mCachedNexAudioClips.get(i)).equals(list2.get(i))) {
+                            Log.d(TAG, "checkUpdateProject audio not equals");
+                            break;
+                        }
+                        i++;
+                    }
+                } else {
+                    Log.d(TAG, "checkUpdateProject audio diff size");
+                }
+                if (z2) {
+                    this.mCachedNexVisualClips = list;
+                    this.mCachedNexAudioClips = list2;
+                }
+                return z2;
+            }
+        }
+        z2 = z;
+        if (z2) {
+        }
+        return z2;
     }
 
     private boolean loadClipToEngine(List<NexVisualClip> list, List<NexAudioClip> list2, boolean z, boolean z2, int i) {
@@ -2716,55 +2669,29 @@ public final class nexEngine implements Callback {
     /* JADX WARNING: Missing block: B:17:?, code:
             return;
      */
-    private void setOverlays(com.nexstreaming.nexeditorsdk.nexEngine.OverlayCommand r4) {
-        /*
-        r3 = this;
-        r1 = r3.m_layerRenderLock;
-        monitor-enter(r1);
-        r0 = com.nexstreaming.nexeditorsdk.nexEngine.AnonymousClass13.a;	 Catch:{ all -> 0x001d }
-        r2 = r4.ordinal();	 Catch:{ all -> 0x001d }
-        r0 = r0[r2];	 Catch:{ all -> 0x001d }
-        switch(r0) {
-            case 1: goto L_0x0010;
-            case 2: goto L_0x0020;
-            case 3: goto L_0x002c;
-            case 4: goto L_0x0030;
-            default: goto L_0x000e;
-        };	 Catch:{ all -> 0x001d }
-    L_0x000e:
-        monitor-exit(r1);	 Catch:{ all -> 0x001d }
-    L_0x000f:
-        return;
-    L_0x0010:
-        r0 = r3.mActiveRenderLayers;	 Catch:{ all -> 0x001d }
-        r0.clear();	 Catch:{ all -> 0x001d }
-        r0 = com.nexstreaming.kminternal.nexvideoeditor.b.a();	 Catch:{ all -> 0x001d }
-        r0.b();	 Catch:{ all -> 0x001d }
-        goto L_0x000e;
-    L_0x001d:
-        r0 = move-exception;
-        monitor-exit(r1);	 Catch:{ all -> 0x001d }
-        throw r0;
-    L_0x0020:
-        r0 = r3.mProject;	 Catch:{ all -> 0x001d }
-        if (r0 != 0) goto L_0x0026;
-    L_0x0024:
-        monitor-exit(r1);	 Catch:{ all -> 0x001d }
-        goto L_0x000f;
-    L_0x0026:
-        r0 = r3.mActiveRenderLayers;	 Catch:{ all -> 0x001d }
-        r0.clear();	 Catch:{ all -> 0x001d }
-        goto L_0x000e;
-    L_0x002c:
-        r0 = 1;
-        r3.m_layerLock = r0;	 Catch:{ all -> 0x001d }
-        goto L_0x000e;
-    L_0x0030:
-        r0 = 0;
-        r3.m_layerLock = r0;	 Catch:{ all -> 0x001d }
-        goto L_0x000e;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.nexEngine.setOverlays(com.nexstreaming.nexeditorsdk.nexEngine$OverlayCommand):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void setOverlays(OverlayCommand overlayCommand) {
+        synchronized (this.m_layerRenderLock) {
+            switch (overlayCommand) {
+                case clear:
+                    this.mActiveRenderLayers.clear();
+                    b.a().b();
+                    break;
+                case upload:
+                    if (this.mProject != null) {
+                        this.mActiveRenderLayers.clear();
+                        break;
+                    } else {
+                        return;
+                    }
+                case lock:
+                    this.m_layerLock = true;
+                    break;
+                case unlock:
+                    this.m_layerLock = false;
+                    break;
+            }
+        }
     }
 
     private int getOverlayVideoCount() {

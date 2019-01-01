@@ -17,6 +17,7 @@ import android.graphics.Shader;
 import android.graphics.Shader.TileMode;
 import android.util.Log;
 import com.miui.gallery.assistant.jni.filter.BaiduSceneResult;
+import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.io.InputStream;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -468,1043 +469,347 @@ public class SVGParser {
         /* JADX WARNING: Missing block: B:156:0x075b, code:
             if (r19.equals("polyline") != false) goto L_0x075d;
      */
-        public void startElement(java.lang.String r18, java.lang.String r19, java.lang.String r20, org.xml.sax.Attributes r21) throws org.xml.sax.SAXException {
-            /*
-            r17 = this;
-            r2 = "SVGAndroid";
-            r3 = new java.lang.StringBuilder;
-            r3.<init>();
-            r4 = "startElement : ";
-            r3 = r3.append(r4);
-            r0 = r19;
-            r3 = r3.append(r0);
-            r4 = " atts=";
-            r3 = r3.append(r4);
-            r4 = r21.toString();
-            r3 = r3.append(r4);
-            r3 = r3.toString();
-            android.util.Log.d(r2, r3);
-            r0 = r17;
-            r2 = r0.o;
-            if (r2 == 0) goto L_0x008d;
-        L_0x002f:
-            r2 = "rect";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x008c;
-        L_0x0039:
-            r2 = "x";
-            r0 = r21;
-            r2 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            if (r2 != 0) goto L_0x0049;
-        L_0x0044:
-            r2 = 0;
-            r2 = java.lang.Float.valueOf(r2);
-        L_0x0049:
-            r3 = "y";
-            r0 = r21;
-            r3 = com.larvalabs.svgandroid.SVGParser.f(r3, r0);
-            if (r3 != 0) goto L_0x0059;
-        L_0x0054:
-            r3 = 0;
-            r3 = java.lang.Float.valueOf(r3);
-        L_0x0059:
-            r4 = "width";
-            r0 = r21;
-            r4 = com.larvalabs.svgandroid.SVGParser.f(r4, r0);
-            r5 = "height";
-            r0 = r21;
-            com.larvalabs.svgandroid.SVGParser.f(r5, r0);
-            r5 = new android.graphics.RectF;
-            r6 = r2.floatValue();
-            r7 = r3.floatValue();
-            r2 = r2.floatValue();
-            r8 = r4.floatValue();
-            r2 = r2 + r8;
-            r3 = r3.floatValue();
-            r4 = r4.floatValue();
-            r3 = r3 + r4;
-            r5.<init>(r6, r7, r2, r3);
-            r0 = r17;
-            r0.e = r5;
-        L_0x008c:
-            return;
-        L_0x008d:
-            r2 = "svg";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x01a1;
-        L_0x0098:
-            r2 = "width";
-            r0 = r21;
-            r2 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r3 = "height";
-            r0 = r21;
-            r6 = com.larvalabs.svgandroid.SVGParser.f(r3, r0);
-            r4 = 0;
-            r3 = 0;
-            if (r2 == 0) goto L_0x00af;
-        L_0x00ad:
-            if (r6 != 0) goto L_0x017e;
-        L_0x00af:
-            r2 = "viewBox";
-            r0 = r21;
-            r2 = com.larvalabs.svgandroid.SVGParser.e(r2, r0);
-            if (r2 != 0) goto L_0x0111;
-        L_0x00ba:
-            r2 = 100;
-            r5 = "SVGHandler";
-            r6 = "Missing SVG bounds! Defaulting to 100x100";
-            android.util.Log.e(r5, r6);
-            r5 = r4;
-            r4 = r3;
-            r3 = r2;
-        L_0x00c6:
-            r6 = "SVGAndroid";
-            r7 = new java.lang.StringBuilder;
-            r7.<init>();
-            r8 = "BEGIN REC: dx,dy=";
-            r7 = r7.append(r8);
-            r7 = r7.append(r5);
-            r8 = ",";
-            r7 = r7.append(r8);
-            r7 = r7.append(r4);
-            r8 = "  w,h=";
-            r7 = r7.append(r8);
-            r7 = r7.append(r3);
-            r8 = ",";
-            r7 = r7.append(r8);
-            r7 = r7.append(r2);
-            r7 = r7.toString();
-            android.util.Log.d(r6, r7);
-            r0 = r17;
-            r6 = r0.a;
-            r2 = r6.beginRecording(r3, r2);
-            r0 = r17;
-            r0.b = r2;
-            r0 = r17;
-            r2 = r0.b;
-            r2.translate(r5, r4);
-            goto L_0x008c;
-        L_0x0111:
-            r6 = com.larvalabs.svgandroid.SVGParser.d(r2);
-            r2 = r6.a;
-            r2 = r2.size();
-            r5 = 4;
-            if (r2 >= r5) goto L_0x012d;
-        L_0x0120:
-            r2 = 100;
-            r5 = "SVGHandler";
-            r6 = "Malformed SVG bounds! Defaulting to 100x100";
-            android.util.Log.e(r5, r6);
-            r5 = r4;
-            r4 = r3;
-            r3 = r2;
-            goto L_0x00c6;
-        L_0x012d:
-            r2 = r6.a;
-            r3 = 0;
-            r2 = r2.get(r3);
-            r2 = (java.lang.Float) r2;
-            r5 = r2.floatValue();
-            r2 = r6.a;
-            r3 = 1;
-            r2 = r2.get(r3);
-            r2 = (java.lang.Float) r2;
-            r4 = r2.floatValue();
-            r2 = r6.a;
-            r3 = 2;
-            r2 = r2.get(r3);
-            r2 = (java.lang.Float) r2;
-            r2 = r2.floatValue();
-            r2 = (double) r2;
-            r2 = java.lang.Math.ceil(r2);
-            r3 = (int) r2;
-            r2 = r6.a;
-            r6 = 3;
-            r2 = r2.get(r6);
-            r2 = (java.lang.Float) r2;
-            r2 = r2.floatValue();
-            r6 = (double) r2;
-            r6 = java.lang.Math.ceil(r6);
-            r2 = (int) r6;
-            r6 = "SVGAndroid";
-            r7 = "Used viewBox";
-            android.util.Log.d(r6, r7);
-            goto L_0x00c6;
-        L_0x017e:
-            r2 = r2.floatValue();
-            r8 = (double) r2;
-            r8 = java.lang.Math.ceil(r8);
-            r5 = (int) r8;
-            r2 = r6.floatValue();
-            r6 = (double) r2;
-            r6 = java.lang.Math.ceil(r6);
-            r2 = (int) r6;
-            r6 = "SVGAndroid";
-            r7 = "Used width, height";
-            android.util.Log.d(r6, r7);
-            r16 = r5;
-            r5 = r4;
-            r4 = r3;
-            r3 = r16;
-            goto L_0x00c6;
-        L_0x01a1:
-            r2 = "defs";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 != 0) goto L_0x008c;
-        L_0x01ab:
-            r2 = "linearGradient";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x01c4;
-        L_0x01b5:
-            r2 = 1;
-            r0 = r17;
-            r1 = r21;
-            r2 = r0.a(r2, r1);
-            r0 = r17;
-            r0.l = r2;
-            goto L_0x008c;
-        L_0x01c4:
-            r2 = "radialGradient";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x01dd;
-        L_0x01ce:
-            r2 = 0;
-            r0 = r17;
-            r1 = r21;
-            r2 = r0.a(r2, r1);
-            r0 = r17;
-            r0.l = r2;
-            goto L_0x008c;
-        L_0x01dd:
-            r2 = "stop";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x028d;
-        L_0x01e8:
-            r0 = r17;
-            r2 = r0.l;
-            if (r2 == 0) goto L_0x008c;
-        L_0x01ee:
-            r2 = "offset";
-            r0 = r21;
-            r2 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r4 = r2.floatValue();
-            r2 = "style";
-            r0 = r21;
-            com.larvalabs.svgandroid.SVGParser.e(r2, r0);
-            r3 = new com.larvalabs.svgandroid.SVGParser$d;
-            r2 = 0;
-            r0 = r21;
-            r3.<init>(r0);
-            r2 = "stop-color";
-            r5 = r3.b(r2);
-            r2 = -16777216; // 0xffffffffff000000 float:-1.7014118E38 double:NaN;
-            if (r5 == 0) goto L_0x0228;
-        L_0x0215:
-            r2 = "#";
-            r2 = r5.startsWith(r2);
-            if (r2 == 0) goto L_0x0282;
-        L_0x021d:
-            r2 = 1;
-            r2 = r5.substring(r2);
-            r5 = 16;
-            r2 = java.lang.Integer.parseInt(r2, r5);
-        L_0x0228:
-            r5 = "stop-opacity";
-            r3 = r3.b(r5);
-            if (r3 == 0) goto L_0x0289;
-        L_0x0231:
-            r3 = java.lang.Float.parseFloat(r3);
-            r5 = 1132396544; // 0x437f0000 float:255.0 double:5.5947823E-315;
-            r3 = r3 * r5;
-            r3 = java.lang.Math.round(r3);
-            r5 = 255; // 0xff float:3.57E-43 double:1.26E-321;
-            if (r3 <= r5) goto L_0x0242;
-        L_0x0240:
-            r3 = 255; // 0xff float:3.57E-43 double:1.26E-321;
-        L_0x0242:
-            r3 = r3 << 24;
-            r2 = r2 | r3;
-        L_0x0245:
-            r0 = r17;
-            r3 = r0.l;
-            r3 = r3.k;
-            r4 = java.lang.Float.valueOf(r4);
-            r3.add(r4);
-            r0 = r17;
-            r3 = r0.h;
-            r3 = r3.i;
-            if (r3 == 0) goto L_0x026b;
-        L_0x025c:
-            r0 = r17;
-            r3 = r0.h;
-            r3 = r3.i;
-            r4 = java.lang.Integer.valueOf(r2);
-            r3.add(r4);
-        L_0x026b:
-            r0 = r17;
-            r3 = r0.h;
-            r2 = r3.a(r2);
-            r0 = r17;
-            r3 = r0.l;
-            r3 = r3.l;
-            r2 = java.lang.Integer.valueOf(r2);
-            r3.add(r2);
-            goto L_0x008c;
-        L_0x0282:
-            r2 = 16;
-            r2 = java.lang.Integer.parseInt(r5, r2);
-            goto L_0x0228;
-        L_0x0289:
-            r3 = -16777216; // 0xffffffffff000000 float:-1.7014118E38 double:NaN;
-            r2 = r2 | r3;
-            goto L_0x0245;
-        L_0x028d:
-            r2 = "g";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x0347;
-        L_0x0297:
-            r2 = "bounds";
-            r3 = "id";
-            r0 = r21;
-            r3 = com.larvalabs.svgandroid.SVGParser.e(r3, r0);
-            r2 = r2.equalsIgnoreCase(r3);
-            if (r2 == 0) goto L_0x02ac;
-        L_0x02a7:
-            r2 = 1;
-            r0 = r17;
-            r0.o = r2;
-        L_0x02ac:
-            r0 = r17;
-            r2 = r0.m;
-            if (r2 == 0) goto L_0x02bc;
-        L_0x02b2:
-            r0 = r17;
-            r2 = r0.n;
-            r2 = r2 + 1;
-            r0 = r17;
-            r0.n = r2;
-        L_0x02bc:
-            r3 = new com.larvalabs.svgandroid.SVGParser$f;
-            r0 = r17;
-            r2 = r0.g;
-            r2 = r2.peek();
-            r2 = (com.larvalabs.svgandroid.SVGParser.f) r2;
-            r3.<init>(r2);
-            r4 = new com.larvalabs.svgandroid.SVGParser$d;
-            r2 = 0;
-            r0 = r21;
-            r4.<init>(r0);
-            r2 = "opacity";
-            r2 = r4.e(r2);
-            if (r2 != 0) goto L_0x032b;
-        L_0x02db:
-            r2 = 255; // 0xff float:3.57E-43 double:1.26E-321;
-        L_0x02dd:
-            r5 = 255; // 0xff float:3.57E-43 double:1.26E-321;
-            if (r2 >= r5) goto L_0x033f;
-        L_0x02e1:
-            if (r2 <= 0) goto L_0x033f;
-        L_0x02e3:
-            r0 = r17;
-            r5 = r0.b;
-            r6 = 0;
-            r7 = 31;
-            r5.saveLayerAlpha(r6, r2, r7);
-            r5 = "opacity";
-            r4.a(r5);
-        L_0x02f2:
-            r0 = r17;
-            r5 = r0.j;
-            r0 = r17;
-            r0.a(r4, r5, r3);
-            r0 = r17;
-            r0.a(r4, r3);
-            r0 = r17;
-            r4 = r0.g;
-            r4.push(r3);
-            if (r2 <= 0) goto L_0x0319;
-        L_0x0309:
-            r2 = "none";
-            r3 = "display";
-            r0 = r21;
-            r3 = com.larvalabs.svgandroid.SVGParser.e(r3, r0);
-            r2 = r2.equals(r3);
-            if (r2 == 0) goto L_0x008c;
-        L_0x0319:
-            r0 = r17;
-            r2 = r0.m;
-            if (r2 != 0) goto L_0x008c;
-        L_0x031f:
-            r2 = 1;
-            r0 = r17;
-            r0.m = r2;
-            r2 = 1;
-            r0 = r17;
-            r0.n = r2;
-            goto L_0x008c;
-        L_0x032b:
-            r5 = 0;
-            r6 = 255; // 0xff float:3.57E-43 double:1.26E-321;
-            r2 = r2.floatValue();
-            r7 = 1132396544; // 0x437f0000 float:255.0 double:5.5947823E-315;
-            r2 = r2 * r7;
-            r2 = (int) r2;
-            r2 = java.lang.Math.min(r6, r2);
-            r2 = java.lang.Math.max(r5, r2);
-            goto L_0x02dd;
-        L_0x033f:
-            r0 = r17;
-            r5 = r0.b;
-            r5.save();
-            goto L_0x02f2;
-        L_0x0347:
-            r0 = r17;
-            r2 = r0.m;
-            if (r2 != 0) goto L_0x04e5;
-        L_0x034d:
-            r2 = "rect";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x04e5;
-        L_0x0357:
-            r2 = "x";
-            r0 = r21;
-            r2 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            if (r2 != 0) goto L_0x08d5;
-        L_0x0362:
-            r2 = 0;
-            r2 = java.lang.Float.valueOf(r2);
-            r8 = r2;
-        L_0x0368:
-            r2 = "y";
-            r0 = r21;
-            r2 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            if (r2 != 0) goto L_0x08d2;
-        L_0x0373:
-            r2 = 0;
-            r2 = java.lang.Float.valueOf(r2);
-            r9 = r2;
-        L_0x0379:
-            r2 = "rx";
-            r0 = r21;
-            r3 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r2 = "ry";
-            r0 = r21;
-            r2 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            if (r3 != 0) goto L_0x048c;
-        L_0x038b:
-            if (r2 != 0) goto L_0x048c;
-        L_0x038d:
-            r2 = 0;
-            r3 = java.lang.Float.valueOf(r2);
-            r2 = 0;
-            r2 = java.lang.Float.valueOf(r2);
-            r10 = r2;
-            r11 = r3;
-        L_0x0399:
-            r2 = "width";
-            r0 = r21;
-            r12 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r2 = "height";
-            r0 = r21;
-            r13 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r0 = r17;
-            r1 = r21;
-            r0.a(r1);
-            r3 = new com.larvalabs.svgandroid.SVGParser$d;
-            r2 = 0;
-            r0 = r21;
-            r3.<init>(r0);
-            r14 = new com.larvalabs.svgandroid.SVGParser$f;
-            r0 = r17;
-            r2 = r0.g;
-            r2 = r2.peek();
-            r2 = (com.larvalabs.svgandroid.SVGParser.f) r2;
-            r14.<init>(r2);
-            r0 = r17;
-            r2 = r0.j;
-            r0 = r17;
-            r0.a(r3, r2, r14);
-            r0 = r17;
-            r0.a(r3, r14);
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r14.a(r2);
-            if (r2 == 0) goto L_0x0439;
-        L_0x03e0:
-            r2 = r8.floatValue();
-            r3 = r9.floatValue();
-            r4 = r12.floatValue();
-            r5 = r13.floatValue();
-            r0 = r17;
-            r0.a(r2, r3, r4, r5);
-            r2 = r11.floatValue();
-            r3 = 0;
-            r2 = (r2 > r3 ? 1 : (r2 == r3 ? 0 : -1));
-            if (r2 <= 0) goto L_0x0498;
-        L_0x03fe:
-            r2 = r10.floatValue();
-            r3 = 0;
-            r2 = (r2 > r3 ? 1 : (r2 == r3 ? 0 : -1));
-            if (r2 <= 0) goto L_0x0498;
-        L_0x0407:
-            r0 = r17;
-            r2 = r0.b;
-            r3 = new android.graphics.RectF;
-            r4 = r8.floatValue();
-            r5 = r9.floatValue();
-            r6 = r8.floatValue();
-            r7 = r12.floatValue();
-            r6 = r6 + r7;
-            r7 = r9.floatValue();
-            r15 = r13.floatValue();
-            r7 = r7 + r15;
-            r3.<init>(r4, r5, r6, r7);
-            r4 = r11.floatValue();
-            r5 = r10.floatValue();
-            r0 = r17;
-            r6 = r0.c;
-            r2.drawRoundRect(r3, r4, r5, r6);
-        L_0x0439:
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r14.b(r2);
-            if (r2 == 0) goto L_0x0487;
-        L_0x0443:
-            r2 = r11.floatValue();
-            r3 = 0;
-            r2 = (r2 > r3 ? 1 : (r2 == r3 ? 0 : -1));
-            if (r2 <= 0) goto L_0x04bf;
-        L_0x044c:
-            r2 = r10.floatValue();
-            r3 = 0;
-            r2 = (r2 > r3 ? 1 : (r2 == r3 ? 0 : -1));
-            if (r2 <= 0) goto L_0x04bf;
-        L_0x0455:
-            r0 = r17;
-            r2 = r0.b;
-            r3 = new android.graphics.RectF;
-            r4 = r8.floatValue();
-            r5 = r9.floatValue();
-            r6 = r8.floatValue();
-            r7 = r12.floatValue();
-            r6 = r6 + r7;
-            r7 = r9.floatValue();
-            r8 = r13.floatValue();
-            r7 = r7 + r8;
-            r3.<init>(r4, r5, r6, r7);
-            r4 = r11.floatValue();
-            r5 = r10.floatValue();
-            r0 = r17;
-            r6 = r0.c;
-            r2.drawRoundRect(r3, r4, r5, r6);
-        L_0x0487:
-            r17.b();
-            goto L_0x008c;
-        L_0x048c:
-            if (r3 != 0) goto L_0x0492;
-        L_0x048e:
-            r10 = r2;
-            r11 = r2;
-            goto L_0x0399;
-        L_0x0492:
-            if (r2 != 0) goto L_0x08ce;
-        L_0x0494:
-            r10 = r3;
-            r11 = r3;
-            goto L_0x0399;
-        L_0x0498:
-            r0 = r17;
-            r2 = r0.b;
-            r3 = r8.floatValue();
-            r4 = r9.floatValue();
-            r5 = r8.floatValue();
-            r6 = r12.floatValue();
-            r5 = r5 + r6;
-            r6 = r9.floatValue();
-            r7 = r13.floatValue();
-            r6 = r6 + r7;
-            r0 = r17;
-            r7 = r0.c;
-            r2.drawRect(r3, r4, r5, r6, r7);
-            goto L_0x0439;
-        L_0x04bf:
-            r0 = r17;
-            r2 = r0.b;
-            r3 = r8.floatValue();
-            r4 = r9.floatValue();
-            r5 = r8.floatValue();
-            r6 = r12.floatValue();
-            r5 = r5 + r6;
-            r6 = r9.floatValue();
-            r7 = r13.floatValue();
-            r6 = r6 + r7;
-            r0 = r17;
-            r7 = r0.c;
-            r2.drawRect(r3, r4, r5, r6, r7);
-            goto L_0x0487;
-        L_0x04e5:
-            r0 = r17;
-            r2 = r0.m;
-            if (r2 != 0) goto L_0x0580;
-        L_0x04eb:
-            r2 = "line";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x0580;
-        L_0x04f5:
-            r2 = "x1";
-            r0 = r21;
-            r3 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r2 = "x2";
-            r0 = r21;
-            r5 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r2 = "y1";
-            r0 = r21;
-            r4 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r2 = "y2";
-            r0 = r21;
-            r6 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r7 = new com.larvalabs.svgandroid.SVGParser$d;
-            r2 = 0;
-            r0 = r21;
-            r7.<init>(r0);
-            r8 = new com.larvalabs.svgandroid.SVGParser$f;
-            r0 = r17;
-            r2 = r0.g;
-            r2 = r2.peek();
-            r2 = (com.larvalabs.svgandroid.SVGParser.f) r2;
-            r8.<init>(r2);
-            r0 = r17;
-            r0.a(r7, r8);
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r8.b(r2);
-            if (r2 == 0) goto L_0x008c;
-        L_0x053f:
-            r0 = r17;
-            r1 = r21;
-            r0.a(r1);
-            r2 = r3.floatValue();
-            r7 = r4.floatValue();
-            r0 = r17;
-            r0.a(r2, r7);
-            r2 = r5.floatValue();
-            r7 = r6.floatValue();
-            r0 = r17;
-            r0.a(r2, r7);
-            r0 = r17;
-            r2 = r0.b;
-            r3 = r3.floatValue();
-            r4 = r4.floatValue();
-            r5 = r5.floatValue();
-            r6 = r6.floatValue();
-            r0 = r17;
-            r7 = r0.c;
-            r2.drawLine(r3, r4, r5, r6, r7);
-            r17.b();
-            goto L_0x008c;
-        L_0x0580:
-            r0 = r17;
-            r2 = r0.m;
-            if (r2 != 0) goto L_0x064f;
-        L_0x0586:
-            r2 = "circle";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x064f;
-        L_0x0590:
-            r2 = "cx";
-            r0 = r21;
-            r3 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r2 = "cy";
-            r0 = r21;
-            r4 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r2 = "r";
-            r0 = r21;
-            r5 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            if (r3 == 0) goto L_0x008c;
-        L_0x05aa:
-            if (r4 == 0) goto L_0x008c;
-        L_0x05ac:
-            if (r5 == 0) goto L_0x008c;
-        L_0x05ae:
-            r0 = r17;
-            r1 = r21;
-            r0.a(r1);
-            r6 = new com.larvalabs.svgandroid.SVGParser$d;
-            r2 = 0;
-            r0 = r21;
-            r6.<init>(r0);
-            r7 = new com.larvalabs.svgandroid.SVGParser$f;
-            r0 = r17;
-            r2 = r0.g;
-            r2 = r2.peek();
-            r2 = (com.larvalabs.svgandroid.SVGParser.f) r2;
-            r7.<init>(r2);
-            r0 = r17;
-            r2 = r0.j;
-            r0 = r17;
-            r0.a(r6, r2, r7);
-            r0 = r17;
-            r0.a(r6, r7);
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r7.a(r2);
-            if (r2 == 0) goto L_0x0629;
-        L_0x05e4:
-            r2 = r3.floatValue();
-            r6 = r5.floatValue();
-            r2 = r2 - r6;
-            r6 = r4.floatValue();
-            r8 = r5.floatValue();
-            r6 = r6 - r8;
-            r0 = r17;
-            r0.a(r2, r6);
-            r2 = r3.floatValue();
-            r6 = r5.floatValue();
-            r2 = r2 + r6;
-            r6 = r4.floatValue();
-            r8 = r5.floatValue();
-            r6 = r6 + r8;
-            r0 = r17;
-            r0.a(r2, r6);
-            r0 = r17;
-            r2 = r0.b;
-            r6 = r3.floatValue();
-            r8 = r4.floatValue();
-            r9 = r5.floatValue();
-            r0 = r17;
-            r10 = r0.c;
-            r2.drawCircle(r6, r8, r9, r10);
-        L_0x0629:
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r7.b(r2);
-            if (r2 == 0) goto L_0x064a;
-        L_0x0633:
-            r0 = r17;
-            r2 = r0.b;
-            r3 = r3.floatValue();
-            r4 = r4.floatValue();
-            r5 = r5.floatValue();
-            r0 = r17;
-            r6 = r0.c;
-            r2.drawCircle(r3, r4, r5, r6);
-        L_0x064a:
-            r17.b();
-            goto L_0x008c;
-        L_0x064f:
-            r0 = r17;
-            r2 = r0.m;
-            if (r2 != 0) goto L_0x0743;
-        L_0x0655:
-            r2 = "ellipse";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x0743;
-        L_0x065f:
-            r2 = "cx";
-            r0 = r21;
-            r3 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r2 = "cy";
-            r0 = r21;
-            r4 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r2 = "rx";
-            r0 = r21;
-            r5 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            r2 = "ry";
-            r0 = r21;
-            r6 = com.larvalabs.svgandroid.SVGParser.f(r2, r0);
-            if (r3 == 0) goto L_0x008c;
-        L_0x0681:
-            if (r4 == 0) goto L_0x008c;
-        L_0x0683:
-            if (r5 == 0) goto L_0x008c;
-        L_0x0685:
-            if (r6 == 0) goto L_0x008c;
-        L_0x0687:
-            r0 = r17;
-            r1 = r21;
-            r0.a(r1);
-            r7 = new com.larvalabs.svgandroid.SVGParser$d;
-            r2 = 0;
-            r0 = r21;
-            r7.<init>(r0);
-            r8 = new com.larvalabs.svgandroid.SVGParser$f;
-            r0 = r17;
-            r2 = r0.g;
-            r2 = r2.peek();
-            r2 = (com.larvalabs.svgandroid.SVGParser.f) r2;
-            r8.<init>(r2);
-            r0 = r17;
-            r2 = r0.j;
-            r0 = r17;
-            r0.a(r7, r2, r8);
-            r0 = r17;
-            r0.a(r7, r8);
-            r0 = r17;
-            r2 = r0.d;
-            r7 = r3.floatValue();
-            r9 = r5.floatValue();
-            r7 = r7 - r9;
-            r9 = r4.floatValue();
-            r10 = r6.floatValue();
-            r9 = r9 - r10;
-            r10 = r3.floatValue();
-            r11 = r5.floatValue();
-            r10 = r10 + r11;
-            r11 = r4.floatValue();
-            r12 = r6.floatValue();
-            r11 = r11 + r12;
-            r2.set(r7, r9, r10, r11);
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r8.a(r2);
-            if (r2 == 0) goto L_0x0725;
-        L_0x06e8:
-            r2 = r3.floatValue();
-            r7 = r5.floatValue();
-            r2 = r2 - r7;
-            r7 = r4.floatValue();
-            r9 = r6.floatValue();
-            r7 = r7 - r9;
-            r0 = r17;
-            r0.a(r2, r7);
-            r2 = r3.floatValue();
-            r3 = r5.floatValue();
-            r2 = r2 + r3;
-            r3 = r4.floatValue();
-            r4 = r6.floatValue();
-            r3 = r3 + r4;
-            r0 = r17;
-            r0.a(r2, r3);
-            r0 = r17;
-            r2 = r0.b;
-            r0 = r17;
-            r3 = r0.d;
-            r0 = r17;
-            r4 = r0.c;
-            r2.drawOval(r3, r4);
-        L_0x0725:
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r8.b(r2);
-            if (r2 == 0) goto L_0x073e;
-        L_0x072f:
-            r0 = r17;
-            r2 = r0.b;
-            r0 = r17;
-            r3 = r0.d;
-            r0 = r17;
-            r4 = r0.c;
-            r2.drawOval(r3, r4);
-        L_0x073e:
-            r17.b();
-            goto L_0x008c;
-        L_0x0743:
-            r0 = r17;
-            r2 = r0.m;
-            if (r2 != 0) goto L_0x0829;
-        L_0x0749:
-            r2 = "polygon";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 != 0) goto L_0x075d;
-        L_0x0753:
-            r2 = "polyline";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x0829;
-        L_0x075d:
-            r2 = "points";
-            r0 = r21;
-            r2 = com.larvalabs.svgandroid.SVGParser.d(r2, r0);
-            if (r2 == 0) goto L_0x008c;
-        L_0x0767:
-            r4 = new android.graphics.Path;
-            r4.<init>();
-            r5 = r2.a;
-            r2 = r5.size();
-            r3 = 1;
-            if (r2 <= r3) goto L_0x008c;
-        L_0x0777:
-            r0 = r17;
-            r1 = r21;
-            r0.a(r1);
-            r3 = new com.larvalabs.svgandroid.SVGParser$d;
-            r2 = 0;
-            r0 = r21;
-            r3.<init>(r0);
-            r6 = new com.larvalabs.svgandroid.SVGParser$f;
-            r0 = r17;
-            r2 = r0.g;
-            r2 = r2.peek();
-            r2 = (com.larvalabs.svgandroid.SVGParser.f) r2;
-            r6.<init>(r2);
-            r0 = r17;
-            r2 = r0.j;
-            r0 = r17;
-            r0.a(r3, r2, r6);
-            r0 = r17;
-            r0.a(r3, r6);
-            r2 = 0;
-            r2 = r5.get(r2);
-            r2 = (java.lang.Float) r2;
-            r3 = r2.floatValue();
-            r2 = 1;
-            r2 = r5.get(r2);
-            r2 = (java.lang.Float) r2;
-            r2 = r2.floatValue();
-            r4.moveTo(r3, r2);
-            r2 = 2;
-            r3 = r2;
-        L_0x07be:
-            r2 = r5.size();
-            if (r3 >= r2) goto L_0x07e1;
-        L_0x07c4:
-            r2 = r5.get(r3);
-            r2 = (java.lang.Float) r2;
-            r7 = r2.floatValue();
-            r2 = r3 + 1;
-            r2 = r5.get(r2);
-            r2 = (java.lang.Float) r2;
-            r2 = r2.floatValue();
-            r4.lineTo(r7, r2);
-            r2 = r3 + 2;
-            r3 = r2;
-            goto L_0x07be;
-        L_0x07e1:
-            r2 = "polygon";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x07ee;
-        L_0x07eb:
-            r4.close();
-        L_0x07ee:
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r6.a(r2);
-            if (r2 == 0) goto L_0x080f;
-        L_0x07f8:
-            r2 = r6.a();
-            r4.setFillType(r2);
-            r0 = r17;
-            r0.a(r4);
-            r0 = r17;
-            r2 = r0.b;
-            r0 = r17;
-            r3 = r0.c;
-            r2.drawPath(r4, r3);
-        L_0x080f:
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r6.b(r2);
-            if (r2 == 0) goto L_0x0824;
-        L_0x0819:
-            r0 = r17;
-            r2 = r0.b;
-            r0 = r17;
-            r3 = r0.c;
-            r2.drawPath(r4, r3);
-        L_0x0824:
-            r17.b();
-            goto L_0x008c;
-        L_0x0829:
-            r0 = r17;
-            r2 = r0.m;
-            if (r2 != 0) goto L_0x08ac;
-        L_0x082f:
-            r2 = "path";
-            r0 = r19;
-            r2 = r0.equals(r2);
-            if (r2 == 0) goto L_0x08ac;
-        L_0x0839:
-            r2 = "d";
-            r0 = r21;
-            r2 = com.larvalabs.svgandroid.SVGParser.e(r2, r0);
-            r3 = com.larvalabs.svgandroid.SVGParser.f(r2);
-            r0 = r17;
-            r1 = r21;
-            r0.a(r1);
-            r4 = new com.larvalabs.svgandroid.SVGParser$d;
-            r2 = 0;
-            r0 = r21;
-            r4.<init>(r0);
-            r5 = new com.larvalabs.svgandroid.SVGParser$f;
-            r0 = r17;
-            r2 = r0.g;
-            r2 = r2.peek();
-            r2 = (com.larvalabs.svgandroid.SVGParser.f) r2;
-            r5.<init>(r2);
-            r0 = r17;
-            r2 = r0.j;
-            r0 = r17;
-            r0.a(r4, r2, r5);
-            r0 = r17;
-            r0.a(r4, r5);
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r5.a(r2);
-            if (r2 == 0) goto L_0x0892;
-        L_0x087b:
-            r2 = r5.a();
-            r3.setFillType(r2);
-            r0 = r17;
-            r0.a(r3);
-            r0 = r17;
-            r2 = r0.b;
-            r0 = r17;
-            r4 = r0.c;
-            r2.drawPath(r3, r4);
-        L_0x0892:
-            r0 = r17;
-            r2 = r0.c;
-            r2 = r5.b(r2);
-            if (r2 == 0) goto L_0x08a7;
-        L_0x089c:
-            r0 = r17;
-            r2 = r0.b;
-            r0 = r17;
-            r4 = r0.c;
-            r2.drawPath(r3, r4);
-        L_0x08a7:
-            r17.b();
-            goto L_0x008c;
-        L_0x08ac:
-            r0 = r17;
-            r2 = r0.m;
-            if (r2 != 0) goto L_0x008c;
-        L_0x08b2:
-            r2 = "SVGAndroid";
-            r3 = new java.lang.StringBuilder;
-            r3.<init>();
-            r4 = "UNRECOGNIZED SVG COMMAND: ";
-            r3 = r3.append(r4);
-            r0 = r19;
-            r3 = r3.append(r0);
-            r3 = r3.toString();
-            android.util.Log.w(r2, r3);
-            goto L_0x008c;
-        L_0x08ce:
-            r10 = r2;
-            r11 = r3;
-            goto L_0x0399;
-        L_0x08d2:
-            r9 = r2;
-            goto L_0x0379;
-        L_0x08d5:
-            r8 = r2;
-            goto L_0x0368;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.larvalabs.svgandroid.SVGParser.e.startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void startElement(String str, String str2, String str3, Attributes attributes) throws SAXException {
+            Log.d("SVGAndroid", "startElement : " + str2 + " atts=" + attributes.toString());
+            Float b;
+            Float b2;
+            Float b3;
+            if (this.o) {
+                if (str2.equals("rect")) {
+                    b = SVGParser.f("x", attributes);
+                    if (b == null) {
+                        b = Float.valueOf(0.0f);
+                    }
+                    b2 = SVGParser.f("y", attributes);
+                    if (b2 == null) {
+                        b2 = Float.valueOf(0.0f);
+                    }
+                    b3 = SVGParser.f(nexExportFormat.TAG_FORMAT_WIDTH, attributes);
+                    SVGParser.f(nexExportFormat.TAG_FORMAT_HEIGHT, attributes);
+                    this.e = new RectF(b.floatValue(), b2.floatValue(), b.floatValue() + b3.floatValue(), b2.floatValue() + b3.floatValue());
+                    return;
+                }
+                return;
+            }
+            Float b4;
+            int i;
+            float f;
+            int i2;
+            if (str2.equals("svg")) {
+                float f2;
+                b = SVGParser.f(nexExportFormat.TAG_FORMAT_WIDTH, attributes);
+                b4 = SVGParser.f(nexExportFormat.TAG_FORMAT_HEIGHT, attributes);
+                if (b == null || b4 == null) {
+                    String a = SVGParser.e("viewBox", attributes);
+                    if (a == null) {
+                        i = 100;
+                        Log.e("SVGHandler", "Missing SVG bounds! Defaulting to 100x100");
+                        f2 = 0.0f;
+                        f = 0.0f;
+                        i2 = 100;
+                    } else {
+                        b a2 = SVGParser.d(a);
+                        if (a2.a.size() < 4) {
+                            i = 100;
+                            Log.e("SVGHandler", "Malformed SVG bounds! Defaulting to 100x100");
+                            f2 = 0.0f;
+                            f = 0.0f;
+                            i2 = 100;
+                        } else {
+                            f2 = ((Float) a2.a.get(0)).floatValue();
+                            f = ((Float) a2.a.get(1)).floatValue();
+                            i2 = (int) Math.ceil((double) ((Float) a2.a.get(2)).floatValue());
+                            i = (int) Math.ceil((double) ((Float) a2.a.get(3)).floatValue());
+                            Log.d("SVGAndroid", "Used viewBox");
+                        }
+                    }
+                } else {
+                    int ceil = (int) Math.ceil((double) b.floatValue());
+                    i = (int) Math.ceil((double) b4.floatValue());
+                    Log.d("SVGAndroid", "Used width, height");
+                    int i3 = ceil;
+                    f2 = 0.0f;
+                    f = 0.0f;
+                    i2 = i3;
+                }
+                Log.d("SVGAndroid", "BEGIN REC: dx,dy=" + f2 + "," + f + "  w,h=" + i2 + "," + i);
+                this.b = this.a.beginRecording(i2, i);
+                this.b.translate(f2, f);
+                return;
+            }
+            if (!str2.equals("defs")) {
+                if (str2.equals("linearGradient")) {
+                    this.l = a(true, attributes);
+                    return;
+                }
+                if (str2.equals("radialGradient")) {
+                    this.l = a(false, attributes);
+                    return;
+                }
+                d dVar;
+                if (!str2.equals("stop")) {
+                    d dVar2;
+                    if (str2.equals("g")) {
+                        if ("bounds".equalsIgnoreCase(SVGParser.e("id", attributes))) {
+                            this.o = true;
+                        }
+                        if (this.m) {
+                            this.n++;
+                        }
+                        f fVar = new f((f) this.g.peek());
+                        dVar2 = new d(attributes);
+                        b = dVar2.e("opacity");
+                        if (b == null) {
+                            i = 255;
+                        } else {
+                            i = Math.max(0, Math.min(255, (int) (b.floatValue() * 255.0f)));
+                        }
+                        if (i >= 255 || i <= 0) {
+                            this.b.save();
+                        } else {
+                            this.b.saveLayerAlpha(null, i, 31);
+                            dVar2.a("opacity");
+                        }
+                        a(dVar2, this.j, fVar);
+                        a(dVar2, fVar);
+                        this.g.push(fVar);
+                        if ((i <= 0 || "none".equals(SVGParser.e("display", attributes))) && !this.m) {
+                            this.m = true;
+                            this.n = 1;
+                            return;
+                        }
+                        return;
+                    }
+                    Float b5;
+                    d dVar3;
+                    f fVar2;
+                    if (!this.m) {
+                        if (str2.equals("rect")) {
+                            Float valueOf;
+                            Float valueOf2;
+                            Float valueOf3;
+                            Float f3;
+                            b = SVGParser.f("x", attributes);
+                            if (b == null) {
+                                valueOf = Float.valueOf(0.0f);
+                            } else {
+                                valueOf = b;
+                            }
+                            b = SVGParser.f("y", attributes);
+                            if (b == null) {
+                                valueOf2 = Float.valueOf(0.0f);
+                            } else {
+                                valueOf2 = b;
+                            }
+                            b2 = SVGParser.f("rx", attributes);
+                            b = SVGParser.f("ry", attributes);
+                            if (b2 == null && b == null) {
+                                b2 = Float.valueOf(0.0f);
+                                valueOf3 = Float.valueOf(0.0f);
+                                f3 = b2;
+                            } else if (b2 == null) {
+                                valueOf3 = b;
+                                f3 = b;
+                            } else if (b == null) {
+                                valueOf3 = b2;
+                                f3 = b2;
+                            } else {
+                                valueOf3 = b;
+                                f3 = b2;
+                            }
+                            Float b6 = SVGParser.f(nexExportFormat.TAG_FORMAT_WIDTH, attributes);
+                            Float b7 = SVGParser.f(nexExportFormat.TAG_FORMAT_HEIGHT, attributes);
+                            a(attributes);
+                            dVar = new d(attributes);
+                            f fVar3 = new f((f) this.g.peek());
+                            a(dVar, this.j, fVar3);
+                            a(dVar, fVar3);
+                            if (fVar3.a(this.c)) {
+                                a(valueOf.floatValue(), valueOf2.floatValue(), b6.floatValue(), b7.floatValue());
+                                if (f3.floatValue() <= 0.0f || valueOf3.floatValue() <= 0.0f) {
+                                    this.b.drawRect(valueOf.floatValue(), valueOf2.floatValue(), valueOf.floatValue() + b6.floatValue(), valueOf2.floatValue() + b7.floatValue(), this.c);
+                                } else {
+                                    this.b.drawRoundRect(new RectF(valueOf.floatValue(), valueOf2.floatValue(), valueOf.floatValue() + b6.floatValue(), valueOf2.floatValue() + b7.floatValue()), f3.floatValue(), valueOf3.floatValue(), this.c);
+                                }
+                            }
+                            if (fVar3.b(this.c)) {
+                                if (f3.floatValue() <= 0.0f || valueOf3.floatValue() <= 0.0f) {
+                                    this.b.drawRect(valueOf.floatValue(), valueOf2.floatValue(), valueOf.floatValue() + b6.floatValue(), valueOf2.floatValue() + b7.floatValue(), this.c);
+                                } else {
+                                    this.b.drawRoundRect(new RectF(valueOf.floatValue(), valueOf2.floatValue(), valueOf.floatValue() + b6.floatValue(), valueOf2.floatValue() + b7.floatValue()), f3.floatValue(), valueOf3.floatValue(), this.c);
+                                }
+                            }
+                            b();
+                            return;
+                        }
+                    }
+                    if (!this.m) {
+                        if (str2.equals("line")) {
+                            b2 = SVGParser.f("x1", attributes);
+                            b5 = SVGParser.f("x2", attributes);
+                            b3 = SVGParser.f("y1", attributes);
+                            b4 = SVGParser.f("y2", attributes);
+                            dVar3 = new d(attributes);
+                            fVar2 = new f((f) this.g.peek());
+                            a(dVar3, fVar2);
+                            if (fVar2.b(this.c)) {
+                                a(attributes);
+                                a(b2.floatValue(), b3.floatValue());
+                                a(b5.floatValue(), b4.floatValue());
+                                this.b.drawLine(b2.floatValue(), b3.floatValue(), b5.floatValue(), b4.floatValue(), this.c);
+                                b();
+                                return;
+                            }
+                            return;
+                        }
+                    }
+                    if (!this.m) {
+                        if (str2.equals("circle")) {
+                            b2 = SVGParser.f("cx", attributes);
+                            b3 = SVGParser.f("cy", attributes);
+                            b5 = SVGParser.f("r", attributes);
+                            if (b2 != null && b3 != null && b5 != null) {
+                                a(attributes);
+                                d dVar4 = new d(attributes);
+                                f fVar4 = new f((f) this.g.peek());
+                                a(dVar4, this.j, fVar4);
+                                a(dVar4, fVar4);
+                                if (fVar4.a(this.c)) {
+                                    a(b2.floatValue() - b5.floatValue(), b3.floatValue() - b5.floatValue());
+                                    a(b2.floatValue() + b5.floatValue(), b3.floatValue() + b5.floatValue());
+                                    this.b.drawCircle(b2.floatValue(), b3.floatValue(), b5.floatValue(), this.c);
+                                }
+                                if (fVar4.b(this.c)) {
+                                    this.b.drawCircle(b2.floatValue(), b3.floatValue(), b5.floatValue(), this.c);
+                                }
+                                b();
+                                return;
+                            }
+                            return;
+                        }
+                    }
+                    if (!this.m) {
+                        if (str2.equals("ellipse")) {
+                            b2 = SVGParser.f("cx", attributes);
+                            b3 = SVGParser.f("cy", attributes);
+                            b5 = SVGParser.f("rx", attributes);
+                            b4 = SVGParser.f("ry", attributes);
+                            if (b2 != null && b3 != null && b5 != null && b4 != null) {
+                                a(attributes);
+                                dVar3 = new d(attributes);
+                                fVar2 = new f((f) this.g.peek());
+                                a(dVar3, this.j, fVar2);
+                                a(dVar3, fVar2);
+                                this.d.set(b2.floatValue() - b5.floatValue(), b3.floatValue() - b4.floatValue(), b2.floatValue() + b5.floatValue(), b3.floatValue() + b4.floatValue());
+                                if (fVar2.a(this.c)) {
+                                    a(b2.floatValue() - b5.floatValue(), b3.floatValue() - b4.floatValue());
+                                    a(b2.floatValue() + b5.floatValue(), b3.floatValue() + b4.floatValue());
+                                    this.b.drawOval(this.d, this.c);
+                                }
+                                if (fVar2.b(this.c)) {
+                                    this.b.drawOval(this.d, this.c);
+                                }
+                                b();
+                                return;
+                            }
+                            return;
+                        }
+                    }
+                    if (!this.m) {
+                        if (!str2.equals("polygon")) {
+                        }
+                        b c = SVGParser.d("points", attributes);
+                        if (c != null) {
+                            Path path = new Path();
+                            ArrayList a3 = c.a;
+                            if (a3.size() > 1) {
+                                a(attributes);
+                                dVar = new d(attributes);
+                                f fVar5 = new f((f) this.g.peek());
+                                a(dVar, this.j, fVar5);
+                                a(dVar, fVar5);
+                                path.moveTo(((Float) a3.get(0)).floatValue(), ((Float) a3.get(1)).floatValue());
+                                i = 2;
+                                while (true) {
+                                    i2 = i;
+                                    if (i2 >= a3.size()) {
+                                        break;
+                                    }
+                                    path.lineTo(((Float) a3.get(i2)).floatValue(), ((Float) a3.get(i2 + 1)).floatValue());
+                                    i = i2 + 2;
+                                }
+                                if (str2.equals("polygon")) {
+                                    path.close();
+                                }
+                                if (fVar5.a(this.c)) {
+                                    path.setFillType(fVar5.a());
+                                    a(path);
+                                    this.b.drawPath(path, this.c);
+                                }
+                                if (fVar5.b(this.c)) {
+                                    this.b.drawPath(path, this.c);
+                                }
+                                b();
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    if (!this.m) {
+                        if (str2.equals(nexExportFormat.TAG_FORMAT_PATH)) {
+                            Path c2 = SVGParser.f(SVGParser.e("d", attributes));
+                            a(attributes);
+                            dVar2 = new d(attributes);
+                            f fVar6 = new f((f) this.g.peek());
+                            a(dVar2, this.j, fVar6);
+                            a(dVar2, fVar6);
+                            if (fVar6.a(this.c)) {
+                                c2.setFillType(fVar6.a());
+                                a(c2);
+                                this.b.drawPath(c2, this.c);
+                            }
+                            if (fVar6.b(this.c)) {
+                                this.b.drawPath(c2, this.c);
+                            }
+                            b();
+                            return;
+                        }
+                    }
+                    if (!this.m) {
+                        Log.w("SVGAndroid", "UNRECOGNIZED SVG COMMAND: " + str2);
+                    }
+                } else if (this.l != null) {
+                    f = SVGParser.f("offset", attributes).floatValue();
+                    SVGParser.e("style", attributes);
+                    dVar = new d(attributes);
+                    String b8 = dVar.b("stop-color");
+                    i = -16777216;
+                    if (b8 != null) {
+                        if (b8.startsWith("#")) {
+                            i = Integer.parseInt(b8.substring(1), 16);
+                        } else {
+                            i = Integer.parseInt(b8, 16);
+                        }
+                    }
+                    String b9 = dVar.b("stop-opacity");
+                    if (b9 != null) {
+                        i2 = Math.round(Float.parseFloat(b9) * 255.0f);
+                        if (i2 > 255) {
+                            i2 = 255;
+                        }
+                        i |= i2 << 24;
+                    } else {
+                        i |= -16777216;
+                    }
+                    this.l.k.add(Float.valueOf(f));
+                    if (this.h.i != null) {
+                        this.h.i.add(Integer.valueOf(i));
+                    }
+                    this.l.l.add(Integer.valueOf(this.h.a(i)));
+                }
+            }
         }
 
         public void characters(char[] cArr, int i, int i2) {
@@ -1910,354 +1215,276 @@ public class SVGParser {
         return new h(str).a();
     }
 
-    private static android.graphics.Path f(java.lang.String r23) {
-        /*
-        r19 = r23.length();
-        r20 = new com.larvalabs.svgandroid.a;
-        r2 = 0;
-        r0 = r20;
-        r1 = r23;
-        r0.<init>(r1, r2);
-        r20.a();
-        r2 = new android.graphics.Path;
-        r2.<init>();
-        r9 = 0;
-        r8 = 0;
-        r7 = 0;
-        r6 = 0;
-        r5 = 0;
-        r4 = 0;
-        r3 = 0;
-        r13 = r4;
-        r14 = r5;
-        r15 = r6;
-        r16 = r7;
-        r5 = r3;
-        r4 = r8;
-        r3 = r9;
-    L_0x0025:
-        r0 = r20;
-        r6 = r0.a;
-        r0 = r19;
-        if (r6 >= r0) goto L_0x01da;
-    L_0x002d:
-        r0 = r20;
-        r6 = r0.a;
-        r0 = r23;
-        r6 = r0.charAt(r6);
-        switch(r6) {
-            case 43: goto L_0x005e;
-            case 44: goto L_0x003a;
-            case 45: goto L_0x005e;
-            case 46: goto L_0x003a;
-            case 47: goto L_0x003a;
-            case 48: goto L_0x005e;
-            case 49: goto L_0x005e;
-            case 50: goto L_0x005e;
-            case 51: goto L_0x005e;
-            case 52: goto L_0x005e;
-            case 53: goto L_0x005e;
-            case 54: goto L_0x005e;
-            case 55: goto L_0x005e;
-            case 56: goto L_0x005e;
-            case 57: goto L_0x005e;
-            default: goto L_0x003a;
-        };
-    L_0x003a:
-        r20.c();
-        r18 = r6;
-        r12 = r6;
-    L_0x0040:
-        r17 = 0;
-        switch(r18) {
-            case 65: goto L_0x01ae;
-            case 67: goto L_0x013f;
-            case 72: goto L_0x00ef;
-            case 76: goto L_0x00c0;
-            case 77: goto L_0x0085;
-            case 83: goto L_0x0179;
-            case 86: goto L_0x0117;
-            case 90: goto L_0x00b1;
-            case 97: goto L_0x01ae;
-            case 99: goto L_0x013f;
-            case 104: goto L_0x00ef;
-            case 108: goto L_0x00c0;
-            case 109: goto L_0x0085;
-            case 115: goto L_0x0179;
-            case 118: goto L_0x0117;
-            case 122: goto L_0x00b1;
-            default: goto L_0x0045;
-        };
-    L_0x0045:
-        r9 = r17;
-        r5 = r15;
-        r6 = r16;
-        r7 = r4;
-        r8 = r3;
-        r3 = r13;
-        r4 = r14;
-    L_0x004e:
-        if (r9 != 0) goto L_0x0052;
-    L_0x0050:
-        r5 = r7;
-        r6 = r8;
-    L_0x0052:
-        r20.a();
-        r13 = r3;
-        r14 = r4;
-        r15 = r5;
-        r16 = r6;
-        r5 = r12;
-        r4 = r7;
-        r3 = r8;
-        goto L_0x0025;
-    L_0x005e:
-        r7 = 109; // 0x6d float:1.53E-43 double:5.4E-322;
-        if (r5 == r7) goto L_0x0066;
-    L_0x0062:
-        r7 = 77;
-        if (r5 != r7) goto L_0x006d;
-    L_0x0066:
-        r6 = r5 + -1;
-        r6 = (char) r6;
-        r18 = r6;
-        r12 = r5;
-        goto L_0x0040;
-    L_0x006d:
-        r7 = 99;
-        if (r5 == r7) goto L_0x0075;
-    L_0x0071:
-        r7 = 67;
-        if (r5 != r7) goto L_0x0079;
-    L_0x0075:
-        r18 = r5;
-        r12 = r5;
-        goto L_0x0040;
-    L_0x0079:
-        r7 = 108; // 0x6c float:1.51E-43 double:5.34E-322;
-        if (r5 == r7) goto L_0x0081;
-    L_0x007d:
-        r7 = 76;
-        if (r5 != r7) goto L_0x003a;
-    L_0x0081:
-        r18 = r5;
-        r12 = r5;
-        goto L_0x0040;
-    L_0x0085:
-        r6 = r20.e();
-        r5 = r20.e();
-        r7 = 109; // 0x6d float:1.53E-43 double:5.4E-322;
-        r0 = r18;
-        if (r0 != r7) goto L_0x00a4;
-    L_0x0093:
-        r14 = r14 + r6;
-        r13 = r13 + r5;
-        r2.rMoveTo(r6, r5);
-        r3 = r3 + r6;
-        r4 = r4 + r5;
-        r9 = r17;
-        r5 = r15;
-        r6 = r16;
-        r7 = r4;
-        r8 = r3;
-        r3 = r13;
-        r4 = r14;
-        goto L_0x004e;
-    L_0x00a4:
-        r2.moveTo(r6, r5);
-        r9 = r17;
-        r3 = r5;
-        r4 = r6;
-        r7 = r5;
-        r8 = r6;
-        r5 = r15;
-        r6 = r16;
-        goto L_0x004e;
-    L_0x00b1:
-        r2.close();
-        r2.moveTo(r14, r13);
-        r3 = 1;
-        r9 = r3;
-        r4 = r14;
-        r5 = r13;
-        r6 = r14;
-        r7 = r13;
-        r8 = r14;
-        r3 = r13;
-        goto L_0x004e;
-    L_0x00c0:
-        r7 = r20.e();
-        r8 = r20.e();
-        r5 = 108; // 0x6c float:1.51E-43 double:5.34E-322;
-        r0 = r18;
-        if (r0 != r5) goto L_0x00de;
-    L_0x00ce:
-        r2.rLineTo(r7, r8);
-        r3 = r3 + r7;
-        r4 = r4 + r8;
-        r9 = r17;
-        r5 = r15;
-        r6 = r16;
-        r7 = r4;
-        r8 = r3;
-        r3 = r13;
-        r4 = r14;
-        goto L_0x004e;
-    L_0x00de:
-        r2.lineTo(r7, r8);
-        r9 = r17;
-        r3 = r13;
-        r4 = r14;
-        r5 = r15;
-        r6 = r16;
-        r21 = r8;
-        r8 = r7;
-        r7 = r21;
-        goto L_0x004e;
-    L_0x00ef:
-        r7 = r20.e();
-        r5 = 104; // 0x68 float:1.46E-43 double:5.14E-322;
-        r0 = r18;
-        if (r0 != r5) goto L_0x0109;
-    L_0x00f9:
-        r5 = 0;
-        r2.rLineTo(r7, r5);
-        r3 = r3 + r7;
-        r9 = r17;
-        r5 = r15;
-        r6 = r16;
-        r7 = r4;
-        r8 = r3;
-        r3 = r13;
-        r4 = r14;
-        goto L_0x004e;
-    L_0x0109:
-        r2.lineTo(r7, r4);
-        r9 = r17;
-        r3 = r13;
-        r5 = r15;
-        r6 = r16;
-        r8 = r7;
-        r7 = r4;
-        r4 = r14;
-        goto L_0x004e;
-    L_0x0117:
-        r8 = r20.e();
-        r5 = 118; // 0x76 float:1.65E-43 double:5.83E-322;
-        r0 = r18;
-        if (r0 != r5) goto L_0x0131;
-    L_0x0121:
-        r5 = 0;
-        r2.rLineTo(r5, r8);
-        r4 = r4 + r8;
-        r9 = r17;
-        r5 = r15;
-        r6 = r16;
-        r7 = r4;
-        r8 = r3;
-        r3 = r13;
-        r4 = r14;
-        goto L_0x004e;
-    L_0x0131:
-        r2.lineTo(r3, r8);
-        r9 = r17;
-        r4 = r14;
-        r5 = r15;
-        r6 = r16;
-        r7 = r8;
-        r8 = r3;
-        r3 = r13;
-        goto L_0x004e;
-    L_0x013f:
-        r11 = 1;
-        r10 = r20.e();
-        r9 = r20.e();
-        r5 = r20.e();
-        r6 = r20.e();
-        r7 = r20.e();
-        r8 = r20.e();
-        r15 = 99;
-        r0 = r18;
-        if (r0 != r15) goto L_0x01db;
-    L_0x015e:
-        r10 = r10 + r3;
-        r5 = r5 + r3;
-        r7 = r7 + r3;
-        r3 = r9 + r4;
-        r6 = r6 + r4;
-        r8 = r8 + r4;
-        r4 = r3;
-        r3 = r10;
-    L_0x0167:
-        r2.cubicTo(r3, r4, r5, r6, r7, r8);
-        r9 = r11;
-        r3 = r13;
-        r4 = r14;
-        r21 = r6;
-        r6 = r5;
-        r5 = r21;
-        r22 = r8;
-        r8 = r7;
-        r7 = r22;
-        goto L_0x004e;
-    L_0x0179:
-        r9 = 1;
-        r5 = r20.e();
-        r6 = r20.e();
-        r7 = r20.e();
-        r8 = r20.e();
-        r10 = 115; // 0x73 float:1.61E-43 double:5.7E-322;
-        r0 = r18;
-        if (r0 != r10) goto L_0x0194;
-    L_0x0190:
-        r5 = r5 + r3;
-        r7 = r7 + r3;
-        r6 = r6 + r4;
-        r8 = r8 + r4;
-    L_0x0194:
-        r10 = 1073741824; // 0x40000000 float:2.0 double:5.304989477E-315;
-        r3 = r3 * r10;
-        r3 = r3 - r16;
-        r10 = 1073741824; // 0x40000000 float:2.0 double:5.304989477E-315;
-        r4 = r4 * r10;
-        r4 = r4 - r15;
-        r2.cubicTo(r3, r4, r5, r6, r7, r8);
-        r3 = r13;
-        r4 = r14;
-        r21 = r6;
-        r6 = r5;
-        r5 = r21;
-        r22 = r8;
-        r8 = r7;
-        r7 = r22;
-        goto L_0x004e;
-    L_0x01ae:
-        r7 = r20.e();
-        r8 = r20.e();
-        r9 = r20.e();
-        r5 = r20.e();
-        r10 = (int) r5;
-        r5 = r20.e();
-        r11 = (int) r5;
-        r5 = r20.e();
-        r6 = r20.e();
-        a(r2, r3, r4, r5, r6, r7, r8, r9, r10, r11);
-        r9 = r17;
-        r3 = r13;
-        r4 = r14;
-        r7 = r6;
-        r8 = r5;
-        r5 = r15;
-        r6 = r16;
-        goto L_0x004e;
-    L_0x01da:
-        return r2;
-    L_0x01db:
-        r4 = r9;
-        r3 = r10;
-        goto L_0x0167;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.larvalabs.svgandroid.SVGParser.f(java.lang.String):android.graphics.Path");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static Path f(String str) {
+        int length = str.length();
+        a aVar = new a(str, 0);
+        aVar.a();
+        Path path = new Path();
+        float f = 0.0f;
+        float f2 = 0.0f;
+        float f3 = 0.0f;
+        float f4 = 0.0f;
+        char c = 0;
+        float f5 = 0.0f;
+        float f6 = 0.0f;
+        while (aVar.a < length) {
+            char c2;
+            char c3;
+            float e;
+            float e2;
+            float e3;
+            float e4;
+            Object obj;
+            char charAt = str.charAt(aVar.a);
+            switch (charAt) {
+                case '+':
+                case '-':
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                    if (c != BaiduSceneResult.CHURCH && c != 'M') {
+                        if (c != 'c' && c != 'C') {
+                            if (c == BaiduSceneResult.ANCIENT_CHINESE_ARCHITECTURE || c == 'L') {
+                                c2 = c;
+                                c3 = c;
+                                break;
+                            }
+                        }
+                        c2 = c;
+                        c3 = c;
+                        break;
+                    }
+                    c2 = (char) (c - 1);
+                    c3 = c;
+                    break;
+                    break;
+                default:
+                    aVar.c();
+                    c2 = charAt;
+                    c3 = charAt;
+                    break;
+            }
+            float e5;
+            int obj2;
+            float f7;
+            float f8;
+            switch (c2) {
+                case 'A':
+                case BaiduSceneResult.SKATEBOARD /*97*/:
+                    e = aVar.e();
+                    e2 = aVar.e();
+                    e5 = aVar.e();
+                    int e6 = (int) aVar.e();
+                    int e7 = (int) aVar.e();
+                    e3 = aVar.e();
+                    e4 = aVar.e();
+                    a(path, f6, f5, e3, e4, e, e2, e5, e6, e7);
+                    obj2 = null;
+                    f6 = f;
+                    f5 = f2;
+                    e = e4;
+                    e2 = e3;
+                    e3 = f3;
+                    e4 = f4;
+                    break;
+                case 'C':
+                case BaiduSceneResult.VOLLEYBALL /*99*/:
+                    float e8 = aVar.e();
+                    e5 = aVar.e();
+                    e3 = aVar.e();
+                    e4 = aVar.e();
+                    e = aVar.e();
+                    e2 = aVar.e();
+                    if (c2 == 'c') {
+                        e3 += f6;
+                        e += f6;
+                        e4 += f5;
+                        e2 += f5;
+                        f5 = e5 + f5;
+                        f6 = e8 + f6;
+                    } else {
+                        f5 = e5;
+                        f6 = e8;
+                    }
+                    path.cubicTo(f6, f5, e3, e4, e, e2);
+                    obj2 = 1;
+                    f6 = f;
+                    f5 = f2;
+                    f7 = e4;
+                    e4 = e3;
+                    e3 = f7;
+                    f8 = e2;
+                    e2 = e;
+                    e = f8;
+                    break;
+                case 'H':
+                case BaiduSceneResult.SPORTS_OTHER /*104*/:
+                    e = aVar.e();
+                    if (c2 != 'h') {
+                        path.lineTo(e, f5);
+                        obj2 = null;
+                        f6 = f;
+                        e3 = f3;
+                        e4 = f4;
+                        e2 = e;
+                        e = f5;
+                        f5 = f2;
+                        break;
+                    }
+                    path.rLineTo(e, 0.0f);
+                    f6 += e;
+                    obj2 = null;
+                    e3 = f3;
+                    e4 = f4;
+                    e = f5;
+                    e2 = f6;
+                    f6 = f;
+                    f5 = f2;
+                    break;
+                case 'L':
+                case BaiduSceneResult.ANCIENT_CHINESE_ARCHITECTURE /*108*/:
+                    e = aVar.e();
+                    e2 = aVar.e();
+                    if (c2 != 'l') {
+                        path.lineTo(e, e2);
+                        obj2 = null;
+                        f6 = f;
+                        f5 = f2;
+                        e3 = f3;
+                        e4 = f4;
+                        f7 = e2;
+                        e2 = e;
+                        e = f7;
+                        break;
+                    }
+                    path.rLineTo(e, e2);
+                    f6 += e;
+                    obj2 = null;
+                    e3 = f3;
+                    e4 = f4;
+                    e = f5 + e2;
+                    e2 = f6;
+                    f6 = f;
+                    f5 = f2;
+                    break;
+                case 'M':
+                case BaiduSceneResult.CHURCH /*109*/:
+                    e4 = aVar.e();
+                    e3 = aVar.e();
+                    if (c2 != 'm') {
+                        path.moveTo(e4, e3);
+                        obj2 = null;
+                        f6 = e3;
+                        f5 = e4;
+                        e = e3;
+                        e2 = e4;
+                        e3 = f3;
+                        e4 = f4;
+                        break;
+                    }
+                    f2 += e4;
+                    f += e3;
+                    path.rMoveTo(e4, e3);
+                    f6 += e4;
+                    f5 += e3;
+                    obj2 = null;
+                    e3 = f3;
+                    e4 = f4;
+                    e = f5;
+                    e2 = f6;
+                    f6 = f;
+                    f5 = f2;
+                    break;
+                case BaiduSceneResult.RUN /*83*/:
+                case BaiduSceneResult.BUILDING_OTHER /*115*/:
+                    obj2 = 1;
+                    e3 = aVar.e();
+                    e4 = aVar.e();
+                    e = aVar.e();
+                    e2 = aVar.e();
+                    if (c2 == 's') {
+                        e3 += f6;
+                        e += f6;
+                        e4 += f5;
+                        e2 += f5;
+                    }
+                    path.cubicTo((f6 * 2.0f) - f4, (f5 * 2.0f) - f3, e3, e4, e, e2);
+                    f6 = f;
+                    f5 = f2;
+                    f7 = e4;
+                    e4 = e3;
+                    e3 = f7;
+                    f8 = e2;
+                    e2 = e;
+                    e = f8;
+                    break;
+                case BaiduSceneResult.TENNIS /*86*/:
+                case BaiduSceneResult.SUBWAY /*118*/:
+                    e2 = aVar.e();
+                    if (c2 != 'v') {
+                        path.lineTo(f6, e2);
+                        obj2 = null;
+                        f5 = f2;
+                        e3 = f3;
+                        e4 = f4;
+                        e = e2;
+                        e2 = f6;
+                        f6 = f;
+                        break;
+                    }
+                    path.rLineTo(0.0f, e2);
+                    obj2 = null;
+                    e3 = f3;
+                    e4 = f4;
+                    e = f5 + e2;
+                    e2 = f6;
+                    f6 = f;
+                    f5 = f2;
+                    break;
+                case 'Z':
+                case 'z':
+                    path.close();
+                    path.moveTo(f2, f);
+                    obj2 = 1;
+                    f5 = f2;
+                    e3 = f;
+                    e4 = f2;
+                    e = f;
+                    e2 = f2;
+                    f6 = f;
+                    break;
+                default:
+                    obj2 = null;
+                    e3 = f3;
+                    e4 = f4;
+                    e = f5;
+                    e2 = f6;
+                    f6 = f;
+                    f5 = f2;
+                    break;
+            }
+            if (obj2 == null) {
+                e3 = e;
+                e4 = e2;
+            }
+            aVar.a();
+            f = f6;
+            f2 = f5;
+            f3 = e3;
+            f4 = e4;
+            c = c3;
+            f5 = e;
+            f6 = e2;
+        }
+        return path;
     }
 
     private static void a(Path path, float f, float f2, float f3, float f4, float f5, float f6, float f7, int i, int i2) {

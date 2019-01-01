@@ -462,65 +462,25 @@ public final class DiskLruCache implements Closeable {
     /* JADX WARNING: Missing block: B:20:0x0063, code:
             if (com.nostra13.universalimageloader.cache.disc.impl.ext.DiskLruCache.Entry.access$800(r1) != null) goto L_0x0020;
      */
-    private synchronized com.nostra13.universalimageloader.cache.disc.impl.ext.DiskLruCache.Editor edit(java.lang.String r7, long r8) throws java.io.IOException {
-        /*
-        r6 = this;
-        r0 = 0;
-        monitor-enter(r6);
-        r6.checkNotClosed();	 Catch:{ all -> 0x005c }
-        r6.validateKey(r7);	 Catch:{ all -> 0x005c }
-        r2 = r6.lruEntries;	 Catch:{ all -> 0x005c }
-        r1 = r2.get(r7);	 Catch:{ all -> 0x005c }
-        r1 = (com.nostra13.universalimageloader.cache.disc.impl.ext.DiskLruCache.Entry) r1;	 Catch:{ all -> 0x005c }
-        r2 = -1;
-        r2 = (r8 > r2 ? 1 : (r8 == r2 ? 0 : -1));
-        if (r2 == 0) goto L_0x0022;
-    L_0x0016:
-        if (r1 == 0) goto L_0x0020;
-    L_0x0018:
-        r2 = r1.sequenceNumber;	 Catch:{ all -> 0x005c }
-        r2 = (r2 > r8 ? 1 : (r2 == r8 ? 0 : -1));
-        if (r2 == 0) goto L_0x0022;
-    L_0x0020:
-        monitor-exit(r6);
-        return r0;
-    L_0x0022:
-        if (r1 != 0) goto L_0x005f;
-    L_0x0024:
-        r1 = new com.nostra13.universalimageloader.cache.disc.impl.ext.DiskLruCache$Entry;	 Catch:{ all -> 0x005c }
-        r2 = 0;
-        r1.<init>(r6, r7, r2);	 Catch:{ all -> 0x005c }
-        r2 = r6.lruEntries;	 Catch:{ all -> 0x005c }
-        r2.put(r7, r1);	 Catch:{ all -> 0x005c }
-    L_0x002f:
-        r0 = new com.nostra13.universalimageloader.cache.disc.impl.ext.DiskLruCache$Editor;	 Catch:{ all -> 0x005c }
-        r2 = 0;
-        r0.<init>(r6, r1, r2);	 Catch:{ all -> 0x005c }
-        r1.currentEditor = r0;	 Catch:{ all -> 0x005c }
-        r2 = r6.journalWriter;	 Catch:{ all -> 0x005c }
-        r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x005c }
-        r3.<init>();	 Catch:{ all -> 0x005c }
-        r4 = "DIRTY ";
-        r3 = r3.append(r4);	 Catch:{ all -> 0x005c }
-        r3 = r3.append(r7);	 Catch:{ all -> 0x005c }
-        r4 = 10;
-        r3 = r3.append(r4);	 Catch:{ all -> 0x005c }
-        r3 = r3.toString();	 Catch:{ all -> 0x005c }
-        r2.write(r3);	 Catch:{ all -> 0x005c }
-        r2 = r6.journalWriter;	 Catch:{ all -> 0x005c }
-        r2.flush();	 Catch:{ all -> 0x005c }
-        goto L_0x0020;
-    L_0x005c:
-        r2 = move-exception;
-        monitor-exit(r6);
-        throw r2;
-    L_0x005f:
-        r2 = r1.currentEditor;	 Catch:{ all -> 0x005c }
-        if (r2 == 0) goto L_0x002f;
-    L_0x0065:
-        goto L_0x0020;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nostra13.universalimageloader.cache.disc.impl.ext.DiskLruCache.edit(java.lang.String, long):com.nostra13.universalimageloader.cache.disc.impl.ext.DiskLruCache$Editor");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private synchronized Editor edit(String key, long expectedSequenceNumber) throws IOException {
+        Editor editor = null;
+        synchronized (this) {
+            checkNotClosed();
+            validateKey(key);
+            Entry entry = (Entry) this.lruEntries.get(key);
+            if (expectedSequenceNumber == -1 || (entry != null && entry.sequenceNumber == expectedSequenceNumber)) {
+                if (entry == null) {
+                    entry = new Entry(this, key, null);
+                    this.lruEntries.put(key, entry);
+                }
+                editor = new Editor(this, entry, null);
+                entry.currentEditor = editor;
+                this.journalWriter.write("DIRTY " + key + 10);
+                this.journalWriter.flush();
+            }
+        }
+        return editor;
     }
 
     private synchronized void completeEdit(Editor editor, boolean success) throws IOException {

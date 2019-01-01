@@ -1,16 +1,21 @@
 package com.xiaomi.smack;
 
 import android.os.SystemClock;
+import android.text.TextUtils;
 import com.xiaomi.channel.commonutils.logger.MyLog;
 import com.xiaomi.channel.commonutils.network.Network;
 import com.xiaomi.network.Fallback;
+import com.xiaomi.network.Host;
 import com.xiaomi.network.HostManager;
 import com.xiaomi.push.service.XMPushService;
 import com.xiaomi.push.service.XMPushService.Job;
 import com.xiaomi.slim.Blob;
 import com.xiaomi.smack.util.TaskExecutor;
+import com.xiaomi.stats.StatsHelper;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class SocketConnection extends Connection {
     private String connectedHost;
@@ -111,317 +116,85 @@ public abstract class SocketConnection extends Connection {
     /* JADX WARNING: Missing block: B:52:0x02e8, code:
             if (android.text.TextUtils.equals(r10, com.xiaomi.channel.commonutils.network.Network.getActiveConnPoint(r19.pushService)) == false) goto L_0x016d;
      */
-    private void connectDirectly(java.lang.String r20, int r21) throws com.xiaomi.smack.XMPPException {
-        /*
-        r19 = this;
-        r15 = 0;
-        r4 = 0;
-        r0 = r19;
-        r0.failedException = r4;
-        r13 = new java.util.ArrayList;
-        r13.<init>();
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r5 = "get bucket for host : ";
-        r4 = r4.append(r5);
-        r0 = r20;
-        r4 = r4.append(r0);
-        r4 = r4.toString();
-        r4 = com.xiaomi.channel.commonutils.logger.MyLog.ps(r4);
-        r9 = r4.intValue();
-        r2 = r19.getFallback(r20);
-        r4 = java.lang.Integer.valueOf(r9);
-        com.xiaomi.channel.commonutils.logger.MyLog.pe(r4);
-        if (r2 == 0) goto L_0x003a;
-    L_0x0035:
-        r4 = 1;
-        r13 = r2.getHosts(r4);
-    L_0x003a:
-        r4 = r13.isEmpty();
-        if (r4 == 0) goto L_0x0045;
-    L_0x0040:
-        r0 = r20;
-        r13.add(r0);
-    L_0x0045:
-        r4 = 0;
-        r0 = r19;
-        r0.lastConnectedTime = r4;
-        r0 = r19;
-        r4 = r0.pushService;
-        r10 = com.xiaomi.channel.commonutils.network.Network.getActiveConnPoint(r4);
-        r12 = new java.lang.StringBuilder;
-        r12.<init>();
-        r18 = r13.iterator();
-    L_0x005c:
-        r4 = r18.hasNext();
-        if (r4 == 0) goto L_0x016d;
-    L_0x0062:
-        r3 = r18.next();
-        r3 = (java.lang.String) r3;
-        r16 = java.lang.System.currentTimeMillis();
-        r0 = r19;
-        r4 = r0.connTimes;
-        r4 = r4 + 1;
-        r0 = r19;
-        r0.connTimes = r4;
-        r4 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4.<init>();	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r5 = "begin to connect to ";
-        r4 = r4.append(r5);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4 = r4.append(r3);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4 = r4.toString();	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        com.xiaomi.channel.commonutils.logger.MyLog.w(r4);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4 = r19.createSocket();	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r0 = r19;
-        r0.socket = r4;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r0 = r21;
-        r14 = com.xiaomi.network.Host.from(r3, r0);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r0 = r19;
-        r4 = r0.socket;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r5 = 8000; // 0x1f40 float:1.121E-41 double:3.9525E-320;
-        r4.connect(r14, r5);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4 = "tcp connected";
-        com.xiaomi.channel.commonutils.logger.MyLog.w(r4);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r0 = r19;
-        r4 = r0.socket;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r5 = 1;
-        r4.setTcpNoDelay(r5);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r0 = r19;
-        r0.connectedHost = r3;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r19.initConnection();	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r15 = 1;
-        r4 = java.lang.System.currentTimeMillis();	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4 = r4 - r16;
-        r0 = r19;
-        r0.connectTime = r4;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r0 = r19;
-        r0.connectionPoint = r10;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        if (r2 == 0) goto L_0x00d2;
-    L_0x00c9:
-        r0 = r19;
-        r4 = r0.connectTime;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r6 = 0;
-        r2.succeedHost(r3, r4, r6);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-    L_0x00d2:
-        r4 = android.os.SystemClock.elapsedRealtime();	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r0 = r19;
-        r0.lastConnectedTime = r4;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4.<init>();	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r5 = "connected to ";
-        r4 = r4.append(r5);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4 = r4.append(r3);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r5 = " in ";
-        r4 = r4.append(r5);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r0 = r19;
-        r6 = r0.connectTime;	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4 = r4.append(r6);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        r4 = r4.toString();	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        com.xiaomi.channel.commonutils.logger.MyLog.w(r4);	 Catch:{ Exception -> 0x0180, Throwable -> 0x01f6 }
-        if (r15 != 0) goto L_0x016d;
-    L_0x0100:
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r5 = "SMACK: Could not connect to:";
-        r4 = r4.append(r5);
-        r4 = r4.append(r3);
-        r4 = r4.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r4);
-        r4 = "SMACK: Could not connect to ";
-        r4 = r12.append(r4);
-        r4 = r4.append(r3);
-        r5 = " port:";
-        r4 = r4.append(r5);
-        r0 = r21;
-        r4 = r4.append(r0);
-        r5 = " err:";
-        r4 = r4.append(r5);
-        r0 = r19;
-        r5 = r0.failedException;
-        r5 = r5.getClass();
-        r5 = r5.getSimpleName();
-        r4 = r4.append(r5);
-        r5 = "\n";
-        r4.append(r5);
-        r0 = r19;
-        r4 = r0.failedException;
-        com.xiaomi.stats.StatsHelper.connectFail(r3, r4);
-        if (r2 == 0) goto L_0x015f;
-    L_0x0150:
-        r4 = java.lang.System.currentTimeMillis();
-        r4 = r4 - r16;
-        r6 = 0;
-        r0 = r19;
-        r8 = r0.failedException;
-        r2.failedHost(r3, r4, r6, r8);
-    L_0x015f:
-        r0 = r19;
-        r4 = r0.pushService;
-        r4 = com.xiaomi.channel.commonutils.network.Network.getActiveConnPoint(r4);
-        r4 = android.text.TextUtils.equals(r10, r4);
-        if (r4 != 0) goto L_0x016d;
-    L_0x016d:
-        r4 = com.xiaomi.network.HostManager.getInstance();
-        r4.persist();
-        if (r15 != 0) goto L_0x0277;
-    L_0x0176:
-        r4 = new com.xiaomi.smack.XMPPException;
-        r5 = r12.toString();
-        r4.<init>(r5);
-        throw r4;
-    L_0x0180:
-        r11 = move-exception;
-        r0 = r19;
-        r0.failedException = r11;	 Catch:{ all -> 0x0278 }
-        if (r15 != 0) goto L_0x005c;
-    L_0x0187:
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r5 = "SMACK: Could not connect to:";
-        r4 = r4.append(r5);
-        r4 = r4.append(r3);
-        r4 = r4.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r4);
-        r4 = "SMACK: Could not connect to ";
-        r4 = r12.append(r4);
-        r4 = r4.append(r3);
-        r5 = " port:";
-        r4 = r4.append(r5);
-        r0 = r21;
-        r4 = r4.append(r0);
-        r5 = " err:";
-        r4 = r4.append(r5);
-        r0 = r19;
-        r5 = r0.failedException;
-        r5 = r5.getClass();
-        r5 = r5.getSimpleName();
-        r4 = r4.append(r5);
-        r5 = "\n";
-        r4.append(r5);
-        r0 = r19;
-        r4 = r0.failedException;
-        com.xiaomi.stats.StatsHelper.connectFail(r3, r4);
-        if (r2 == 0) goto L_0x01e6;
-    L_0x01d7:
-        r4 = java.lang.System.currentTimeMillis();
-        r4 = r4 - r16;
-        r6 = 0;
-        r0 = r19;
-        r8 = r0.failedException;
-        r2.failedHost(r3, r4, r6, r8);
-    L_0x01e6:
-        r0 = r19;
-        r4 = r0.pushService;
-        r4 = com.xiaomi.channel.commonutils.network.Network.getActiveConnPoint(r4);
-        r4 = android.text.TextUtils.equals(r10, r4);
-        if (r4 != 0) goto L_0x005c;
-    L_0x01f4:
-        goto L_0x016d;
-    L_0x01f6:
-        r11 = move-exception;
-        r4 = new java.lang.Exception;	 Catch:{ all -> 0x0278 }
-        r5 = "abnormal exception";
-        r4.<init>(r5, r11);	 Catch:{ all -> 0x0278 }
-        r0 = r19;
-        r0.failedException = r4;	 Catch:{ all -> 0x0278 }
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r11);	 Catch:{ all -> 0x0278 }
-        if (r15 != 0) goto L_0x005c;
-    L_0x0207:
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r5 = "SMACK: Could not connect to:";
-        r4 = r4.append(r5);
-        r4 = r4.append(r3);
-        r4 = r4.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r4);
-        r4 = "SMACK: Could not connect to ";
-        r4 = r12.append(r4);
-        r4 = r4.append(r3);
-        r5 = " port:";
-        r4 = r4.append(r5);
-        r0 = r21;
-        r4 = r4.append(r0);
-        r5 = " err:";
-        r4 = r4.append(r5);
-        r0 = r19;
-        r5 = r0.failedException;
-        r5 = r5.getClass();
-        r5 = r5.getSimpleName();
-        r4 = r4.append(r5);
-        r5 = "\n";
-        r4.append(r5);
-        r0 = r19;
-        r4 = r0.failedException;
-        com.xiaomi.stats.StatsHelper.connectFail(r3, r4);
-        if (r2 == 0) goto L_0x0266;
-    L_0x0257:
-        r4 = java.lang.System.currentTimeMillis();
-        r4 = r4 - r16;
-        r6 = 0;
-        r0 = r19;
-        r8 = r0.failedException;
-        r2.failedHost(r3, r4, r6, r8);
-    L_0x0266:
-        r0 = r19;
-        r4 = r0.pushService;
-        r4 = com.xiaomi.channel.commonutils.network.Network.getActiveConnPoint(r4);
-        r4 = android.text.TextUtils.equals(r10, r4);
-        if (r4 != 0) goto L_0x005c;
-    L_0x0274:
-        goto L_0x016d;
-    L_0x0276:
-        throw r18;
-    L_0x0277:
-        return;
-    L_0x0278:
-        r4 = move-exception;
-        r18 = r4;
-        if (r15 != 0) goto L_0x0276;
-    L_0x027d:
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r5 = "SMACK: Could not connect to:";
-        r4 = r4.append(r5);
-        r4 = r4.append(r3);
-        r4 = r4.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r4);
-        r4 = "SMACK: Could not connect to ";
-        r4 = r12.append(r4);
-        r4 = r4.append(r3);
-        r5 = " port:";
-        r4 = r4.append(r5);
-        r0 = r21;
-        r4 = r4.append(r0);
-        r5 = " err:";
-        r4 = r4.append(r5);
-        r0 = r19;
-        r5 = r0.failedException;
-        r5 = r5.getClass();
-        r5 = r5.getSimpleName();
-        r4 = r4.append(r5);
-        r5 = "\n";
-        r4.append(r5);
-        r0 = r19;
-        r4 = r0.failedException;
-        com.xiaomi.stats.StatsHelper.connectFail(r3, r4);
-        if (r2 == 0) goto L_0x02dc;
-    L_0x02cd:
-        r4 = java.lang.System.currentTimeMillis();
-        r4 = r4 - r16;
-        r6 = 0;
-        r0 = r19;
-        r8 = r0.failedException;
-        r2.failedHost(r3, r4, r6, r8);
-    L_0x02dc:
-        r0 = r19;
-        r4 = r0.pushService;
-        r4 = com.xiaomi.channel.commonutils.network.Network.getActiveConnPoint(r4);
-        r4 = android.text.TextUtils.equals(r10, r4);
-        if (r4 != 0) goto L_0x0276;
-    L_0x02ea:
-        goto L_0x016d;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.smack.SocketConnection.connectDirectly(java.lang.String, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void connectDirectly(String host, int port) throws XMPPException {
+        boolean succeeded = false;
+        this.failedException = null;
+        ArrayList<String> hosts = new ArrayList();
+        int code = MyLog.ps("get bucket for host : " + host).intValue();
+        Fallback fallback = getFallback(host);
+        MyLog.pe(Integer.valueOf(code));
+        if (fallback != null) {
+            hosts = fallback.getHosts(true);
+        }
+        if (hosts.isEmpty()) {
+            hosts.add(host);
+        }
+        this.lastConnectedTime = 0;
+        String currentNetwork = Network.getActiveConnPoint(this.pushService);
+        StringBuilder errorSB = new StringBuilder();
+        Iterator it = hosts.iterator();
+        while (it.hasNext()) {
+            String currentHost = (String) it.next();
+            long start = System.currentTimeMillis();
+            this.connTimes++;
+            try {
+                MyLog.w("begin to connect to " + currentHost);
+                this.socket = createSocket();
+                this.socket.connect(Host.from(currentHost, port), 8000);
+                MyLog.w("tcp connected");
+                this.socket.setTcpNoDelay(true);
+                this.connectedHost = currentHost;
+                initConnection();
+                succeeded = true;
+                this.connectTime = System.currentTimeMillis() - start;
+                this.connectionPoint = currentNetwork;
+                if (fallback != null) {
+                    fallback.succeedHost(currentHost, this.connectTime, 0);
+                }
+                this.lastConnectedTime = SystemClock.elapsedRealtime();
+                MyLog.w("connected to " + currentHost + " in " + this.connectTime);
+                if (1 == null) {
+                    MyLog.e("SMACK: Could not connect to:" + currentHost);
+                    errorSB.append("SMACK: Could not connect to ").append(currentHost).append(" port:").append(port).append(" err:").append(this.failedException.getClass().getSimpleName()).append("\n");
+                    StatsHelper.connectFail(currentHost, this.failedException);
+                    if (fallback != null) {
+                        fallback.failedHost(currentHost, System.currentTimeMillis() - start, 0, this.failedException);
+                    }
+                    if (TextUtils.equals(currentNetwork, Network.getActiveConnPoint(this.pushService))) {
+                    }
+                }
+            } catch (Exception e) {
+                this.failedException = e;
+                if (null == null) {
+                    MyLog.e("SMACK: Could not connect to:" + currentHost);
+                    errorSB.append("SMACK: Could not connect to ").append(currentHost).append(" port:").append(port).append(" err:").append(this.failedException.getClass().getSimpleName()).append("\n");
+                    StatsHelper.connectFail(currentHost, this.failedException);
+                    if (fallback != null) {
+                        fallback.failedHost(currentHost, System.currentTimeMillis() - start, 0, this.failedException);
+                    }
+                    if (!TextUtils.equals(currentNetwork, Network.getActiveConnPoint(this.pushService))) {
+                        break;
+                    }
+                } else {
+                    continue;
+                }
+            } catch (Throwable th) {
+                Throwable th2 = th;
+                if (null == null) {
+                    MyLog.e("SMACK: Could not connect to:" + currentHost);
+                    errorSB.append("SMACK: Could not connect to ").append(currentHost).append(" port:").append(port).append(" err:").append(this.failedException.getClass().getSimpleName()).append("\n");
+                    StatsHelper.connectFail(currentHost, this.failedException);
+                    if (fallback != null) {
+                        fallback.failedHost(currentHost, System.currentTimeMillis() - start, 0, this.failedException);
+                    }
+                }
+            }
+        }
+        HostManager.getInstance().persist();
+        if (!succeeded) {
+            throw new XMPPException(errorSB.toString());
+        }
     }
 
     protected synchronized void initConnection() throws XMPPException, IOException {

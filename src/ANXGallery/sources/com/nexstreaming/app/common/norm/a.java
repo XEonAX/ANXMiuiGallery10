@@ -367,181 +367,92 @@ public abstract class a extends SQLiteOpenHelper {
         }
     }
 
-    public <T extends com.nexstreaming.app.common.norm.b, RESULT_TYPE> java.util.List<RESULT_TYPE> queryIndividualField(java.lang.Class<T> r12, java.lang.String r13, java.lang.String r14, java.lang.Object... r15) {
-        /*
-        r11 = this;
-        r9 = 1;
-        r5 = 0;
-        r8 = 0;
-        if (r15 == 0) goto L_0x0017;
-    L_0x0005:
-        r0 = r15.length;
-        r4 = new java.lang.String[r0];
-        r0 = r8;
-    L_0x0009:
-        r1 = r15.length;
-        if (r0 >= r1) goto L_0x0018;
-    L_0x000c:
-        r1 = r15[r0];
-        r1 = java.lang.String.valueOf(r1);
-        r4[r0] = r1;
-        r0 = r0 + 1;
-        goto L_0x0009;
-    L_0x0017:
-        r4 = r5;
-    L_0x0018:
-        r1 = com.nexstreaming.app.common.norm.c.a(r12);
-        r10 = r1.a(r13);
-        r2 = new java.lang.String[r9];
-        r2[r8] = r13;
-        r0 = r11.getReadableDatabase();
-        r1 = r1.c();
-        r3 = r14;
-        r6 = r5;
-        r7 = r5;
-        r2 = r0.query(r1, r2, r3, r4, r5, r6, r7);
-        r3 = new java.util.ArrayList;
-        r3.<init>();
-        r4 = new java.util.HashMap;
-        r4.<init>();
-        r0 = -1;
-        r2.moveToPosition(r0);	 Catch:{ all -> 0x0059 }
-    L_0x0041:
-        r0 = r2.moveToNext();	 Catch:{ all -> 0x0059 }
-        if (r0 == 0) goto L_0x0121;
-    L_0x0047:
-        r0 = com.nexstreaming.app.common.norm.a.AnonymousClass1.a;	 Catch:{ all -> 0x0059 }
-        r1 = r10.c;	 Catch:{ all -> 0x0059 }
-        r1 = r1.ordinal();	 Catch:{ all -> 0x0059 }
-        r0 = r0[r1];	 Catch:{ all -> 0x0059 }
-        switch(r0) {
-            case 1: goto L_0x00da;
-            case 2: goto L_0x005e;
-            case 3: goto L_0x0068;
-            case 4: goto L_0x00b6;
-            case 5: goto L_0x00c0;
-            case 6: goto L_0x0108;
-            case 7: goto L_0x00ca;
-            case 8: goto L_0x00e1;
-            case 9: goto L_0x00e8;
-            case 10: goto L_0x00e8;
-            case 11: goto L_0x00f5;
-            default: goto L_0x0054;
-        };	 Catch:{ all -> 0x0059 }
-    L_0x0054:
-        r0 = r5;
-    L_0x0055:
-        r3.add(r0);	 Catch:{ all -> 0x0059 }
-        goto L_0x0041;
-    L_0x0059:
-        r0 = move-exception;
-        r2.close();
-        throw r0;
-    L_0x005e:
-        r0 = 0;
-        r0 = r2.getInt(r0);	 Catch:{ all -> 0x0059 }
-        r0 = java.lang.Integer.valueOf(r0);	 Catch:{ all -> 0x0059 }
-        goto L_0x0055;
-    L_0x0068:
-        r0 = r10.f;	 Catch:{ all -> 0x0059 }
-        if (r0 == 0) goto L_0x00ac;
-    L_0x006c:
-        r0 = r10.j;	 Catch:{ all -> 0x0059 }
-        r0 = r4.containsKey(r0);	 Catch:{ all -> 0x0059 }
-        if (r0 != 0) goto L_0x007e;
-    L_0x0074:
-        r0 = r10.j;	 Catch:{ all -> 0x0059 }
-        r1 = new java.util.HashMap;	 Catch:{ all -> 0x0059 }
-        r1.<init>();	 Catch:{ all -> 0x0059 }
-        r4.put(r0, r1);	 Catch:{ all -> 0x0059 }
-    L_0x007e:
-        r0 = 0;
-        r6 = r2.getLong(r0);	 Catch:{ all -> 0x0059 }
-        r0 = r10.j;	 Catch:{ all -> 0x0059 }
-        r0 = r4.get(r0);	 Catch:{ all -> 0x0059 }
-        r0 = (java.util.Map) r0;	 Catch:{ all -> 0x0059 }
-        r1 = java.lang.Long.valueOf(r6);	 Catch:{ all -> 0x0059 }
-        r0 = r0.get(r1);	 Catch:{ all -> 0x0059 }
-        if (r0 != 0) goto L_0x0055;
-    L_0x0095:
-        r0 = r10.j;	 Catch:{ all -> 0x0059 }
-        r1 = r11.findById(r0, r6);	 Catch:{ all -> 0x0059 }
-        r0 = r10.j;	 Catch:{ all -> 0x0059 }
-        r0 = r4.get(r0);	 Catch:{ all -> 0x0059 }
-        r0 = (java.util.Map) r0;	 Catch:{ all -> 0x0059 }
-        r6 = java.lang.Long.valueOf(r6);	 Catch:{ all -> 0x0059 }
-        r0.put(r6, r1);	 Catch:{ all -> 0x0059 }
-        r0 = r1;
-        goto L_0x0055;
-    L_0x00ac:
-        r0 = 0;
-        r0 = r2.getLong(r0);	 Catch:{ all -> 0x0059 }
-        r0 = java.lang.Long.valueOf(r0);	 Catch:{ all -> 0x0059 }
-        goto L_0x0055;
-    L_0x00b6:
-        r0 = 0;
-        r0 = r2.getDouble(r0);	 Catch:{ all -> 0x0059 }
-        r0 = java.lang.Double.valueOf(r0);	 Catch:{ all -> 0x0059 }
-        goto L_0x0055;
-    L_0x00c0:
-        r0 = 0;
-        r0 = r2.getFloat(r0);	 Catch:{ all -> 0x0059 }
-        r0 = java.lang.Float.valueOf(r0);	 Catch:{ all -> 0x0059 }
-        goto L_0x0055;
-    L_0x00ca:
-        r0 = 0;
-        r0 = r2.getInt(r0);	 Catch:{ all -> 0x0059 }
-        if (r0 == 0) goto L_0x00d8;
-    L_0x00d1:
-        r0 = r9;
-    L_0x00d2:
-        r0 = java.lang.Boolean.valueOf(r0);	 Catch:{ all -> 0x0059 }
-        goto L_0x0055;
-    L_0x00d8:
-        r0 = r8;
-        goto L_0x00d2;
-    L_0x00da:
-        r0 = 0;
-        r0 = r2.getString(r0);	 Catch:{ all -> 0x0059 }
-        goto L_0x0055;
-    L_0x00e1:
-        r0 = 0;
-        r0 = r2.getBlob(r0);	 Catch:{ all -> 0x0059 }
-        goto L_0x0055;
-    L_0x00e8:
-        r0 = 0;
-        r0 = r2.getBlob(r0);	 Catch:{ all -> 0x0059 }
-        r1 = 0;
-        r6 = r0.length;	 Catch:{ all -> 0x0059 }
-        r0 = android.graphics.BitmapFactory.decodeByteArray(r0, r1, r6);	 Catch:{ all -> 0x0059 }
-        goto L_0x0055;
-    L_0x00f5:
-        r0 = 0;
-        r0 = r2.getString(r0);	 Catch:{ all -> 0x0059 }
-        r1 = r11.gson;	 Catch:{ all -> 0x0059 }
-        r6 = r10.b;	 Catch:{ all -> 0x0059 }
-        r6 = r6.getGenericType();	 Catch:{ all -> 0x0059 }
-        r0 = r1.fromJson(r0, r6);	 Catch:{ all -> 0x0059 }
-        goto L_0x0055;
-    L_0x0108:
-        r0 = r10.b;	 Catch:{ all -> 0x0059 }
-        r0 = r0.getType();	 Catch:{ all -> 0x0059 }
-        r0 = (java.lang.Class) r0;	 Catch:{ all -> 0x0059 }
-        r1 = 0;
-        r1 = r2.getString(r1);	 Catch:{ all -> 0x0059 }
-        if (r1 == 0) goto L_0x0054;
-    L_0x0117:
-        r0 = java.lang.Enum.valueOf(r0, r1);	 Catch:{ IllegalArgumentException -> 0x011d }
-        goto L_0x0055;
-    L_0x011d:
-        r0 = move-exception;
-        r0 = r5;
-        goto L_0x0055;
-    L_0x0121:
-        r2.close();
-        return r3;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.norm.a.queryIndividualField(java.lang.Class, java.lang.String, java.lang.String, java.lang.Object[]):java.util.List<RESULT_TYPE>");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public <T extends b, RESULT_TYPE> List<RESULT_TYPE> queryIndividualField(Class<T> cls, String str, String str2, Object... objArr) {
+        String[] strArr;
+        if (objArr != null) {
+            strArr = new String[objArr.length];
+            for (int i = 0; i < objArr.length; i++) {
+                strArr[i] = String.valueOf(objArr[i]);
+            }
+        } else {
+            strArr = null;
+        }
+        c a = c.a((Class) cls);
+        NormColumnInfo a2 = a.a(str);
+        Cursor query = getReadableDatabase().query(a.c(), new String[]{str}, str2, strArr, null, null, null);
+        List<RESULT_TYPE> arrayList = new ArrayList();
+        Map hashMap = new HashMap();
+        try {
+            query.moveToPosition(-1);
+            while (query.moveToNext()) {
+                Object string;
+                switch (a2.c) {
+                    case TEXT:
+                        string = query.getString(0);
+                        break;
+                    case INT:
+                        string = Integer.valueOf(query.getInt(0));
+                        break;
+                    case LONG:
+                        if (!a2.f) {
+                            string = Long.valueOf(query.getLong(0));
+                            break;
+                        }
+                        if (!hashMap.containsKey(a2.j)) {
+                            hashMap.put(a2.j, new HashMap());
+                        }
+                        long j = query.getLong(0);
+                        string = ((Map) hashMap.get(a2.j)).get(Long.valueOf(j));
+                        if (string == null) {
+                            b findById = findById(a2.j, j);
+                            ((Map) hashMap.get(a2.j)).put(Long.valueOf(j), findById);
+                            b string2 = findById;
+                            break;
+                        }
+                        break;
+                    case DOUBLE:
+                        string2 = Double.valueOf(query.getDouble(0));
+                        break;
+                    case FLOAT:
+                        string2 = Float.valueOf(query.getFloat(0));
+                        break;
+                    case ENUM:
+                        Class type = a2.b.getType();
+                        String string3 = query.getString(0);
+                        if (string3 != null) {
+                            try {
+                                string2 = Enum.valueOf(type, string3);
+                                break;
+                            } catch (IllegalArgumentException e) {
+                                string2 = null;
+                                break;
+                            }
+                        }
+                    case BOOL:
+                        string2 = Boolean.valueOf(query.getInt(0) != 0);
+                        break;
+                    case BLOB:
+                        string2 = query.getBlob(0);
+                        break;
+                    case PNG:
+                    case JPEG:
+                        byte[] blob = query.getBlob(0);
+                        string2 = BitmapFactory.decodeByteArray(blob, 0, blob.length);
+                        break;
+                    case JSON:
+                        string2 = this.gson.fromJson(query.getString(0), a2.b.getGenericType());
+                        break;
+                    default:
+                        string2 = null;
+                        break;
+                }
+                arrayList.add(string2);
+            }
+            return arrayList;
+        } finally {
+            query.close();
+        }
     }
 
     public void beginTransaction() {

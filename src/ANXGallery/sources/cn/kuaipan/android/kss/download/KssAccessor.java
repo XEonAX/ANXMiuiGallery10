@@ -83,44 +83,26 @@ public class KssAccessor {
     /* JADX WARNING: Missing block: B:17:?, code:
             return;
      */
-    public void close() throws java.io.IOException {
-        /*
-        r3 = this;
-        r2 = 0;
-        r0 = r3.mClosed;
-        if (r0 == 0) goto L_0x0006;
-    L_0x0005:
-        return;
-    L_0x0006:
-        r0 = 1;
-        r3.mClosed = r0;
-        r0 = r3.mFilelocker;	 Catch:{ all -> 0x0021 }
-        if (r0 == 0) goto L_0x0015;
-    L_0x000d:
-        r0 = r3.mFilelocker;	 Catch:{ all -> 0x0021 }
-        r0.release();	 Catch:{ all -> 0x0021 }
-        r0 = 0;
-        r3.mFilelocker = r0;	 Catch:{ all -> 0x0021 }
-    L_0x0015:
-        r0 = r3.mFileAccessor;
-        if (r0 == 0) goto L_0x0005;
-    L_0x0019:
-        r0 = r3.mFileAccessor;
-        r0.close();
-        r3.mFileAccessor = r2;
-        goto L_0x0005;
-    L_0x0021:
-        r0 = move-exception;
-        r1 = r3.mFileAccessor;
-        if (r1 == 0) goto L_0x002d;
-    L_0x0026:
-        r1 = r3.mFileAccessor;
-        r1.close();
-        r3.mFileAccessor = r2;
-    L_0x002d:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: cn.kuaipan.android.kss.download.KssAccessor.close():void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void close() throws IOException {
+        if (!this.mClosed) {
+            this.mClosed = true;
+            try {
+                if (this.mFilelocker != null) {
+                    this.mFilelocker.release();
+                    this.mFilelocker = null;
+                }
+                if (this.mFileAccessor != null) {
+                    this.mFileAccessor.close();
+                    this.mFileAccessor = null;
+                }
+            } catch (Throwable th) {
+                if (this.mFileAccessor != null) {
+                    this.mFileAccessor.close();
+                    this.mFileAccessor = null;
+                }
+            }
+        }
     }
 
     protected void finalize() throws Throwable {

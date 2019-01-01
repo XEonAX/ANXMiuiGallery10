@@ -39,172 +39,71 @@ class SlidingWindow {
     /* JADX WARNING: Missing block: B:24:0x0068, code:
             if (r1 < 0) goto L_0x0018;
      */
-    public synchronized java.lang.String getPrevious(java.lang.String r6, boolean r7) {
-        /*
-        r5 = this;
-        r2 = 0;
-        monitor-enter(r5);
-        r3 = r5.mCurrentIndexChanged;	 Catch:{ all -> 0x006b }
-        if (r3 == 0) goto L_0x000e;
-    L_0x0006:
-        r3 = 0;
-        r5.mCurrentIndexChanged = r3;	 Catch:{ all -> 0x006b }
-        r3 = r5.mCurrentIndex;	 Catch:{ all -> 0x006b }
-        r5.slideWindowTo(r3);	 Catch:{ all -> 0x006b }
-    L_0x000e:
-        r3 = r5.mTotalCount;	 Catch:{ all -> 0x006b }
-        if (r3 <= 0) goto L_0x0018;
-    L_0x0012:
-        r3 = android.text.TextUtils.isEmpty(r6);	 Catch:{ all -> 0x006b }
-        if (r3 == 0) goto L_0x001a;
-    L_0x0018:
-        monitor-exit(r5);
-        return r2;
-    L_0x001a:
-        r0 = r5.indexOf(r6);	 Catch:{ all -> 0x006b }
-        if (r0 != 0) goto L_0x0029;
-    L_0x0020:
-        r3 = r5.mStartIndex;	 Catch:{ all -> 0x006b }
-        r5.slideWindowTo(r3);	 Catch:{ all -> 0x006b }
-        r0 = r5.indexOf(r6);	 Catch:{ all -> 0x006b }
-    L_0x0029:
-        r3 = -1;
-        if (r0 != r3) goto L_0x0032;
-    L_0x002c:
-        r3 = r5.mCurrentIndex;	 Catch:{ all -> 0x006b }
-        r4 = r5.mStartIndex;	 Catch:{ all -> 0x006b }
-        r0 = r3 - r4;
-    L_0x0032:
-        r1 = r0 + -1;
-        if (r7 == 0) goto L_0x0068;
-    L_0x0036:
-        if (r1 >= 0) goto L_0x003d;
-    L_0x0038:
-        r2 = r5.mFiles;	 Catch:{ all -> 0x006b }
-        r2 = r2.length;	 Catch:{ all -> 0x006b }
-        r1 = r2 + -1;
-    L_0x003d:
-        r2 = "SlidingWindow";
-        r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x006b }
-        r3.<init>();	 Catch:{ all -> 0x006b }
-        r4 = "getPrevious: pre=";
-        r3 = r3.append(r4);	 Catch:{ all -> 0x006b }
-        r4 = r5.mFiles;	 Catch:{ all -> 0x006b }
-        r4 = r4[r1];	 Catch:{ all -> 0x006b }
-        r3 = r3.append(r4);	 Catch:{ all -> 0x006b }
-        r4 = ", index=";
-        r3 = r3.append(r4);	 Catch:{ all -> 0x006b }
-        r3 = r3.append(r1);	 Catch:{ all -> 0x006b }
-        r3 = r3.toString();	 Catch:{ all -> 0x006b }
-        com.miui.gallery.util.Log.i(r2, r3);	 Catch:{ all -> 0x006b }
-        r2 = r5.mFiles;	 Catch:{ all -> 0x006b }
-        r2 = r2[r1];	 Catch:{ all -> 0x006b }
-        goto L_0x0018;
-    L_0x0068:
-        if (r1 >= 0) goto L_0x003d;
-    L_0x006a:
-        goto L_0x0018;
-    L_0x006b:
-        r2 = move-exception;
-        monitor-exit(r5);
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.projection.SlidingWindow.getPrevious(java.lang.String, boolean):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized String getPrevious(String filePath, boolean isRecyle) {
+        String str = null;
+        synchronized (this) {
+            if (this.mCurrentIndexChanged) {
+                this.mCurrentIndexChanged = false;
+                slideWindowTo(this.mCurrentIndex);
+            }
+            if (this.mTotalCount > 0 && !TextUtils.isEmpty(filePath)) {
+                int index = indexOf(filePath);
+                if (index == 0) {
+                    slideWindowTo(this.mStartIndex);
+                    index = indexOf(filePath);
+                }
+                if (index == -1) {
+                    index = this.mCurrentIndex - this.mStartIndex;
+                }
+                int pre = index - 1;
+                if (isRecyle) {
+                    if (pre < 0) {
+                        pre = this.mFiles.length - 1;
+                    }
+                }
+                Log.i("SlidingWindow", "getPrevious: pre=" + this.mFiles[pre] + ", index=" + pre);
+                str = this.mFiles[pre];
+            }
+        }
+        return str;
     }
 
     /* JADX WARNING: Missing block: B:30:0x0082, code:
             if (r1 >= r5.mFiles.length) goto L_0x0018;
      */
-    public synchronized java.lang.String getNext(java.lang.String r6, boolean r7) {
-        /*
-        r5 = this;
-        r2 = 0;
-        monitor-enter(r5);
-        r3 = r5.mCurrentIndexChanged;	 Catch:{ all -> 0x0085 }
-        if (r3 == 0) goto L_0x000e;
-    L_0x0006:
-        r3 = 0;
-        r5.mCurrentIndexChanged = r3;	 Catch:{ all -> 0x0085 }
-        r3 = r5.mCurrentIndex;	 Catch:{ all -> 0x0085 }
-        r5.slideWindowTo(r3);	 Catch:{ all -> 0x0085 }
-    L_0x000e:
-        r3 = r5.mTotalCount;	 Catch:{ all -> 0x0085 }
-        if (r3 <= 0) goto L_0x0018;
-    L_0x0012:
-        r3 = android.text.TextUtils.isEmpty(r6);	 Catch:{ all -> 0x0085 }
-        if (r3 == 0) goto L_0x001a;
-    L_0x0018:
-        monitor-exit(r5);
-        return r2;
-    L_0x001a:
-        r0 = r5.indexOf(r6);	 Catch:{ all -> 0x0085 }
-        r3 = -1;
-        if (r0 != r3) goto L_0x005c;
-    L_0x0021:
-        r3 = r5.mCurrentIndex;	 Catch:{ all -> 0x0085 }
-        r4 = r5.mStartIndex;	 Catch:{ all -> 0x0085 }
-        r0 = r3 - r4;
-    L_0x0027:
-        r1 = r0 + 1;
-        if (r7 == 0) goto L_0x007f;
-    L_0x002b:
-        r2 = r5.mFiles;	 Catch:{ all -> 0x0085 }
-        r2 = r2.length;	 Catch:{ all -> 0x0085 }
-        if (r1 < r2) goto L_0x0031;
-    L_0x0030:
-        r1 = 0;
-    L_0x0031:
-        r2 = "SlidingWindow";
-        r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0085 }
-        r3.<init>();	 Catch:{ all -> 0x0085 }
-        r4 = "getNext: next=";
-        r3 = r3.append(r4);	 Catch:{ all -> 0x0085 }
-        r4 = r5.mFiles;	 Catch:{ all -> 0x0085 }
-        r4 = r4[r1];	 Catch:{ all -> 0x0085 }
-        r3 = r3.append(r4);	 Catch:{ all -> 0x0085 }
-        r4 = ", index=";
-        r3 = r3.append(r4);	 Catch:{ all -> 0x0085 }
-        r3 = r3.append(r1);	 Catch:{ all -> 0x0085 }
-        r3 = r3.toString();	 Catch:{ all -> 0x0085 }
-        com.miui.gallery.util.Log.i(r2, r3);	 Catch:{ all -> 0x0085 }
-        r2 = r5.mFiles;	 Catch:{ all -> 0x0085 }
-        r2 = r2[r1];	 Catch:{ all -> 0x0085 }
-        goto L_0x0018;
-    L_0x005c:
-        r3 = r5.mEndIndex;	 Catch:{ all -> 0x0085 }
-        r4 = r5.mStartIndex;	 Catch:{ all -> 0x0085 }
-        r3 = r3 - r4;
-        r3 = r3 + -1;
-        if (r0 != r3) goto L_0x0027;
-    L_0x0065:
-        r3 = r5.mEndIndex;	 Catch:{ all -> 0x0085 }
-        r4 = r5.mTotalCount;	 Catch:{ all -> 0x0085 }
-        if (r3 >= r4) goto L_0x0077;
-    L_0x006b:
-        r3 = r5.mEndIndex;	 Catch:{ all -> 0x0085 }
-        r3 = r3 + -1;
-        r5.slideWindowTo(r3);	 Catch:{ all -> 0x0085 }
-        r0 = r5.indexOf(r6);	 Catch:{ all -> 0x0085 }
-        goto L_0x0027;
-    L_0x0077:
-        if (r7 == 0) goto L_0x0018;
-    L_0x0079:
-        r3 = 0;
-        r5.slideWindowTo(r3);	 Catch:{ all -> 0x0085 }
-        r0 = -1;
-        goto L_0x0027;
-    L_0x007f:
-        r3 = r5.mFiles;	 Catch:{ all -> 0x0085 }
-        r3 = r3.length;	 Catch:{ all -> 0x0085 }
-        if (r1 < r3) goto L_0x0031;
-    L_0x0084:
-        goto L_0x0018;
-    L_0x0085:
-        r2 = move-exception;
-        monitor-exit(r5);
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.projection.SlidingWindow.getNext(java.lang.String, boolean):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized String getNext(String filePath, boolean isRecyle) {
+        String str = null;
+        synchronized (this) {
+            if (this.mCurrentIndexChanged) {
+                this.mCurrentIndexChanged = false;
+                slideWindowTo(this.mCurrentIndex);
+            }
+            if (this.mTotalCount > 0 && !TextUtils.isEmpty(filePath)) {
+                int index = indexOf(filePath);
+                if (index == -1) {
+                    index = this.mCurrentIndex - this.mStartIndex;
+                } else if (index == (this.mEndIndex - this.mStartIndex) - 1) {
+                    if (this.mEndIndex < this.mTotalCount) {
+                        slideWindowTo(this.mEndIndex - 1);
+                        index = indexOf(filePath);
+                    } else if (isRecyle) {
+                        slideWindowTo(0);
+                        index = -1;
+                    }
+                }
+                int next = index + 1;
+                if (isRecyle) {
+                    if (next >= this.mFiles.length) {
+                        next = 0;
+                    }
+                }
+                Log.i("SlidingWindow", "getNext: next=" + this.mFiles[next] + ", index=" + next);
+                str = this.mFiles[next];
+            }
+        }
+        return str;
     }
 
     private int indexOf(String filePath) {

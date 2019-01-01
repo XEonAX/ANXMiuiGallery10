@@ -161,88 +161,46 @@ public class RetryRequest {
     /* JADX WARNING: Removed duplicated region for block: B:15:0x0078  */
     /* JADX WARNING: Removed duplicated region for block: B:18:0x0093  */
     /* JADX WARNING: Removed duplicated region for block: B:23:0x008d A:{SYNTHETIC} */
-    public static int doUpDownDeleteItems(android.content.Context r10, android.accounts.Account r11, com.miui.gallery.cloud.GalleryExtendedAuthToken r12, java.util.List<? extends com.miui.gallery.cloud.RequestItemBase> r13, com.miui.gallery.cloud.Operation r14) throws java.lang.Exception {
-        /*
-        r5 = new java.util.ArrayList;
-        r5.<init>();
-        r0 = 0;
-    L_0x0006:
-        r7 = r13.size();
-        if (r0 >= r7) goto L_0x00a3;
-    L_0x000c:
-        r3 = 0;
-        r4 = r13.get(r0);
-        r4 = (com.miui.gallery.cloud.RequestItemBase) r4;
-        r7 = r5.isEmpty();
-        if (r7 != 0) goto L_0x002b;
-    L_0x0019:
-        r7 = r5.size();
-        r7 = r7 + -1;
-        r7 = r5.get(r7);
-        r7 = (com.miui.gallery.cloud.RequestItemBase) r7;
-        r7 = r4.isInSameAlbum(r7);
-        if (r7 == 0) goto L_0x0043;
-    L_0x002b:
-        r5.add(r4);
-        r7 = r5.size();
-        r8 = r4.getRequestLimitAGroup();
-        if (r7 >= r8) goto L_0x004b;
-    L_0x0038:
-        r7 = r13.size();
-        r7 = r7 + -1;
-        if (r0 >= r7) goto L_0x004b;
-    L_0x0040:
-        r0 = r0 + 1;
-        goto L_0x0006;
-    L_0x0043:
-        r7 = "RetryRequest";
-        r8 = "requestItem in this group, try this group and add this item later.";
-        com.miui.gallery.util.Log.d(r7, r8);
-        r3 = 1;
-    L_0x004b:
-        r7 = "RetryRequest";
-        r8 = new java.lang.StringBuilder;
-        r8.<init>();
-        r9 = "do ";
-        r8 = r8.append(r9);
-        r9 = r14.getClass();
-        r8 = r8.append(r9);
-        r9 = " a group items:";
-        r8 = r8.append(r9);
-        r8 = r8.append(r0);
-        r8 = r8.toString();
-        com.miui.gallery.util.Log.d(r7, r8);
-        r6 = 0;
-        r7 = r4.supportMultiRequest();
-        if (r7 == 0) goto L_0x008e;
-    L_0x0078:
-        r2 = new com.miui.gallery.cloud.RequestMultiItem;
-        r7 = r4.priority;
-        r2.<init>(r5, r7);
-        r1 = new java.util.ArrayList;
-        r1.<init>();
-        r1.add(r2);
-        r6 = tryAGroupItems(r11, r12, r1, r14);
-    L_0x008b:
-        if (r6 == 0) goto L_0x0093;
-    L_0x008d:
-        return r6;
-    L_0x008e:
-        r6 = tryAGroupItems(r11, r12, r5, r14);
-        goto L_0x008b;
-    L_0x0093:
-        r7 = "RetryRequest";
-        r8 = "finish one loop for upload";
-        com.miui.gallery.util.Log.v(r7, r8);
-        r5.clear();
-        if (r3 == 0) goto L_0x0040;
-    L_0x009f:
-        r5.add(r4);
-        goto L_0x0040;
-    L_0x00a3:
-        r6 = 0;
-        goto L_0x008d;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloud.RetryRequest.doUpDownDeleteItems(android.content.Context, android.accounts.Account, com.miui.gallery.cloud.GalleryExtendedAuthToken, java.util.List, com.miui.gallery.cloud.Operation):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static int doUpDownDeleteItems(Context context, Account account, GalleryExtendedAuthToken extToken, List<? extends RequestItemBase> requestItems, Operation upDownloadCloud) throws Exception {
+        ArrayList<RequestItemBase> requestItemsAGroup = new ArrayList();
+        int i = 0;
+        while (i < requestItems.size()) {
+            boolean needAddInNewGroup = false;
+            RequestItemBase requestItem = (RequestItemBase) requestItems.get(i);
+            int result;
+            if (requestItemsAGroup.isEmpty() || requestItem.isInSameAlbum((RequestItemBase) requestItemsAGroup.get(requestItemsAGroup.size() - 1))) {
+                requestItemsAGroup.add(requestItem);
+                if (requestItemsAGroup.size() < requestItem.getRequestLimitAGroup() && i < requestItems.size() - 1) {
+                }
+                Log.d("RetryRequest", "do " + upDownloadCloud.getClass() + " a group items:" + i);
+                if (requestItem.supportMultiRequest()) {
+                    result = tryAGroupItems(account, extToken, requestItemsAGroup, upDownloadCloud);
+                } else {
+                    RequestItemBase multRequestItem = new RequestMultiItem(requestItemsAGroup, requestItem.priority);
+                    ArrayList<RequestItemBase> multRequestGroup = new ArrayList();
+                    multRequestGroup.add(multRequestItem);
+                    result = tryAGroupItems(account, extToken, multRequestGroup, upDownloadCloud);
+                }
+                if (result == 0) {
+                    return result;
+                }
+                Log.v("RetryRequest", "finish one loop for upload");
+                requestItemsAGroup.clear();
+                if (needAddInNewGroup) {
+                    requestItemsAGroup.add(requestItem);
+                }
+            } else {
+                Log.d("RetryRequest", "requestItem in this group, try this group and add this item later.");
+                needAddInNewGroup = true;
+                Log.d("RetryRequest", "do " + upDownloadCloud.getClass() + " a group items:" + i);
+                if (requestItem.supportMultiRequest()) {
+                }
+                if (result == 0) {
+                }
+            }
+            i++;
+        }
+        return 0;
     }
 }

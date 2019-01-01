@@ -16,6 +16,8 @@ import com.nexstreaming.kminternal.kinemaster.config.NexEditorDeviceProfile;
 import com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader;
 import com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader.d;
 import com.nexstreaming.kminternal.nexvideoeditor.NexThemeRenderer;
+import java.io.IOException;
+import java.util.Collections;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLDisplay;
@@ -63,466 +65,125 @@ public class a extends GLSurfaceView {
         /* JADX WARNING: Removed duplicated region for block: B:63:0x02b3  */
         /* JADX WARNING: Removed duplicated region for block: B:90:? A:{SYNTHETIC, RETURN} */
         /* JADX WARNING: Removed duplicated region for block: B:65:0x02cf  */
-        public void onDrawFrame(javax.microedition.khronos.opengles.GL10 r19) {
-            /*
-            r18 = this;
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.miliTime();
-            r2.m_frameEnd = r4;
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.m_frameStart;
-            r4 = 0;
-            r2 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-            if (r2 != 0) goto L_0x0028;
-        L_0x0019:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r0 = r18;
-            r3 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r4 = r3.m_frameEnd;
-            r2.m_frameStart = r4;
-        L_0x0028:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.m_frameEnd;
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r4 = r4.m_frameStart;
-            r2 = r2 - r4;
-            r4 = 33;
-            r2 = r4 - r2;
-            r4 = 5;
-            r2 = r2 - r4;
-            r4 = 5;
-            r4 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-            if (r4 <= 0) goto L_0x0049;
-        L_0x0046:
-            java.lang.Thread.sleep(r2);	 Catch:{ InterruptedException -> 0x02fd }
-        L_0x0049:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r0 = r18;
-            r3 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r4 = r3.m_frameStart;
-            r6 = 33;
-            r4 = r4 + r6;
-            r2.m_frameStart = r4;
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r0 = r18;
-            r3 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r3 = r3.mColor;
-            r4 = 1000593162; // 0x3ba3d70a float:0.005 double:4.94358707E-315;
-            r3 = r3 + r4;
-            r2.mColor = r3;
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.mColor;
-            r3 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-            r2 = (r2 > r3 ? 1 : (r2 == r3 ? 0 : -1));
-            if (r2 <= 0) goto L_0x0084;
-        L_0x007c:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r3 = 0;
-            r2.mColor = r3;
-        L_0x0084:
-            r2 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-            r3 = 1045220557; // 0x3e4ccccd float:0.2 double:5.164075695E-315;
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r4 = r4.mColor;
-            r5 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-            r0 = r19;
-            r0.glClearColor(r2, r3, r4, r5);
-            r2 = 16640; // 0x4100 float:2.3318E-41 double:8.2213E-320;
-            r0 = r19;
-            r0.glClear(r2);
-            r4 = -1;
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.m_effectTime;
-            r6 = 0;
-            r2 = (r2 > r6 ? 1 : (r2 == r6 ? 0 : -1));
-            if (r2 != 0) goto L_0x0307;
-        L_0x00af:
-            r2 = 0;
-            r12 = r4;
-        L_0x00b1:
-            r3 = 0;
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r4 = r4.m_swapPlaceholders;
-            if (r2 == r4) goto L_0x0351;
-        L_0x00bc:
-            r3 = 1;
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r4.m_swapPlaceholders = r2;
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.m_swapPlaceholders;
-            if (r2 == 0) goto L_0x0342;
-        L_0x00ce:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.m_nexThemeRenderer;
-            r4 = "placeholder2.jpg";
-            r5 = "placeholder1.jpg";
-            r2.setPlaceholders(r4, r5);
-            r11 = r3;
-        L_0x00de:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r14 = r2.m_renderLock;
-            monitor-enter(r14);
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r2 = r2.m_nexThemeRenderer;	 Catch:{ all -> 0x0387 }
-            if (r2 == 0) goto L_0x02a8;
-        L_0x00f1:
-            r3 = 0;
-            r2 = 0;
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_effectOptions;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r5 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r5 = r5.m_setEffectOptions;	 Catch:{ all -> 0x0387 }
-            if (r4 == r5) goto L_0x0115;
-        L_0x0105:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_effectOptions;	 Catch:{ all -> 0x0387 }
-            r2.m_setEffectOptions = r4;	 Catch:{ all -> 0x0387 }
-            r2 = 1;
-        L_0x0115:
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_effect;	 Catch:{ all -> 0x0387 }
-            if (r4 == 0) goto L_0x0141;
-        L_0x011f:
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_effect;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r5 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r5 = r5.m_setEffect;	 Catch:{ all -> 0x0387 }
-            if (r4 == r5) goto L_0x0141;
-        L_0x0131:
-            r0 = r18;
-            r3 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_effect;	 Catch:{ all -> 0x0387 }
-            r3.m_setEffect = r4;	 Catch:{ all -> 0x0387 }
-            r3 = 1;
-        L_0x0141:
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_setEffectTime;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r6 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r6 = r6.m_effectTime;	 Catch:{ all -> 0x0387 }
-            r4 = (r4 > r6 ? 1 : (r4 == r6 ? 0 : -1));
-            if (r4 == 0) goto L_0x0165;
-        L_0x0155:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_effectTime;	 Catch:{ all -> 0x0387 }
-            r2.m_setEffectTime = r4;	 Catch:{ all -> 0x0387 }
-            r2 = 1;
-        L_0x0165:
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_assetPackageManager;	 Catch:{ all -> 0x0387 }
-            if (r4 == 0) goto L_0x0262;
-        L_0x016f:
-            if (r2 != 0) goto L_0x0173;
-        L_0x0171:
-            if (r3 == 0) goto L_0x0262;
-        L_0x0173:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r2 = r2.m_nexThemeRenderer;	 Catch:{ all -> 0x0387 }
-            r2.clearClipEffect();	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r2 = r2.m_nexThemeRenderer;	 Catch:{ all -> 0x0387 }
-            r2.clearTransitionEffect();	 Catch:{ all -> 0x0387 }
-            if (r3 == 0) goto L_0x0212;
-        L_0x018b:
-            r3 = 0;
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ IOException -> 0x0373 }
-            r2 = r2.m_isRenderItem;	 Catch:{ IOException -> 0x0373 }
-            if (r2 == 0) goto L_0x0354;
-        L_0x0196:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ IOException -> 0x0373 }
-            r2 = r2.m_assetPackageManager;	 Catch:{ IOException -> 0x0373 }
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ IOException -> 0x0373 }
-            r4 = r4.m_effect;	 Catch:{ IOException -> 0x0373 }
-            r4 = r4.getId();	 Catch:{ IOException -> 0x0373 }
-            r4 = java.util.Collections.singletonList(r4);	 Catch:{ IOException -> 0x0373 }
-            r2 = r2.a(r4);	 Catch:{ IOException -> 0x0373 }
-        L_0x01b2:
-            r3 = "EffectPreviewView";
-            r4 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0387 }
-            r4.<init>();	 Catch:{ all -> 0x0387 }
-            r5 = " m_isRenderItem=";
-            r4 = r4.append(r5);	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r5 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r5 = r5.m_isRenderItem;	 Catch:{ all -> 0x0387 }
-            r4 = r4.append(r5);	 Catch:{ all -> 0x0387 }
-            r5 = ",m_isClipEffect=";
-            r4 = r4.append(r5);	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r5 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r5 = r5.m_isClipEffect;	 Catch:{ all -> 0x0387 }
-            r4 = r4.append(r5);	 Catch:{ all -> 0x0387 }
-            r4 = r4.toString();	 Catch:{ all -> 0x0387 }
-            android.util.Log.d(r3, r4);	 Catch:{ all -> 0x0387 }
-            if (r2 == 0) goto L_0x0212;
-        L_0x01e6:
-            r0 = r18;
-            r3 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r3 = r3.m_isRenderItem;	 Catch:{ all -> 0x0387 }
-            if (r3 == 0) goto L_0x037a;
-        L_0x01f0:
-            r0 = r18;
-            r3 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r3 = r3.m_nexThemeRenderer;	 Catch:{ all -> 0x0387 }
-            r3.clearRenderItems();	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r3 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r3 = r3.m_nexThemeRenderer;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_effect;	 Catch:{ all -> 0x0387 }
-            r4 = r4.getId();	 Catch:{ all -> 0x0387 }
-            r3.loadRenderItem(r4, r2);	 Catch:{ all -> 0x0387 }
-        L_0x0212:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r2 = r2.m_effect;	 Catch:{ all -> 0x0387 }
-            if (r2 == 0) goto L_0x0262;
-        L_0x021c:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r2 = r2.m_isClipEffect;	 Catch:{ all -> 0x0387 }
-            if (r2 == 0) goto L_0x038a;
-        L_0x0226:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r2 = r2.m_nexThemeRenderer;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r3 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r3 = r3.m_effect;	 Catch:{ all -> 0x0387 }
-            r3 = r3.getId();	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_effectOptions;	 Catch:{ all -> 0x0387 }
-            r5 = 1;
-            r6 = 3;
-            r7 = 0;
-            r0 = r18;
-            r8 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r8 = r8.m_effectTime;	 Catch:{ all -> 0x0387 }
-            r8 = (int) r8;	 Catch:{ all -> 0x0387 }
-            r8 = r8 + 100;
-            r9 = 50;
-            r0 = r18;
-            r10 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r16 = r10.m_effectTime;	 Catch:{ all -> 0x0387 }
-            r0 = r16;
-            r10 = (int) r0;	 Catch:{ all -> 0x0387 }
-            r10 = r10 + 50;
-            r2.setClipEffect(r3, r4, r5, r6, r7, r8, r9, r10);	 Catch:{ all -> 0x0387 }
-        L_0x0262:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r3 = r2.m_nexThemeRenderer;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r2.m_pauseTime;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r6 = r2.m_effectTime;	 Catch:{ all -> 0x0387 }
-            r4 = r4 + r6;
-            r4 = r12 % r4;
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r6 = r2.m_effectTime;	 Catch:{ all -> 0x0387 }
-            r8 = 1;
-            r6 = r6 - r8;
-            r4 = java.lang.Math.min(r4, r6);	 Catch:{ all -> 0x0387 }
-            r4 = (int) r4;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r2 = r2.m_isClipEffect;	 Catch:{ all -> 0x0387 }
-            if (r2 == 0) goto L_0x03b7;
-        L_0x0297:
-            r2 = 50;
-        L_0x0299:
-            r2 = r2 + r4;
-            r3.setCTS(r2);	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r2 = r2.m_nexThemeRenderer;	 Catch:{ all -> 0x0387 }
-            r2.render();	 Catch:{ all -> 0x0387 }
-        L_0x02a8:
-            monitor-exit(r14);	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.m_showOnRender;
-            if (r2 == 0) goto L_0x02cd;
-        L_0x02b3:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r3 = 0;
-            r2.m_showOnRender = r3;
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.m_handler;
-            r3 = new com.nexstreaming.app.common.nexasset.preview.a$a$1;
-            r0 = r18;
-            r3.<init>();
-            r2.post(r3);
-        L_0x02cd:
-            if (r11 == 0) goto L_0x02fc;
-        L_0x02cf:
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.miliTime();
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r4 = r4.m_frameEnd;
-            r2 = r2 - r4;
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r0 = r18;
-            r5 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r6 = r5.m_startTime;
-            r6 = r6 + r2;
-            r4.m_startTime = r6;
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r0 = r18;
-            r5 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r6 = r5.m_frameStart;
-            r2 = r2 + r6;
-            r4.m_frameStart = r2;
-        L_0x02fc:
-            return;
-        L_0x02fd:
-            r2 = move-exception;
-            r2 = "NexThemePreviewView";
-            r3 = "Preview sleep INTERRUPTED";
-            android.util.Log.d(r2, r3);
-            goto L_0x0049;
-        L_0x0307:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.m_pauseTime;
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r4 = r4.m_effectTime;
-            r2 = r2 + r4;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.miliTime();
-            r0 = r18;
-            r6 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r6 = r6.m_startTime;
-            r4 = r4 - r6;
-            r6 = 2;
-            r6 = r6 * r2;
-            r4 = r4 % r6;
-            r6 = 33;
-            r6 = r4 % r6;
-            r4 = r4 - r6;
-            r2 = (r4 > r2 ? 1 : (r4 == r2 ? 0 : -1));
-            if (r2 <= 0) goto L_0x0340;
-        L_0x0332:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.m_isClipEffect;
-            if (r2 != 0) goto L_0x0340;
-        L_0x033c:
-            r2 = 1;
-        L_0x033d:
-            r12 = r4;
-            goto L_0x00b1;
-        L_0x0340:
-            r2 = 0;
-            goto L_0x033d;
-        L_0x0342:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;
-            r2 = r2.m_nexThemeRenderer;
-            r4 = "placeholder1.jpg";
-            r5 = "placeholder2.jpg";
-            r2.setPlaceholders(r4, r5);
-        L_0x0351:
-            r11 = r3;
-            goto L_0x00de;
-        L_0x0354:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ IOException -> 0x0373 }
-            r2 = r2.m_assetPackageManager;	 Catch:{ IOException -> 0x0373 }
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ IOException -> 0x0373 }
-            r4 = r4.m_effect;	 Catch:{ IOException -> 0x0373 }
-            r4 = r4.getId();	 Catch:{ IOException -> 0x0373 }
-            r4 = java.util.Collections.singletonList(r4);	 Catch:{ IOException -> 0x0373 }
-            r5 = 0;
-            r2 = r2.a(r4, r5);	 Catch:{ IOException -> 0x0373 }
-            goto L_0x01b2;
-        L_0x0373:
-            r2 = move-exception;
-            r2.printStackTrace();	 Catch:{ all -> 0x0387 }
-            r2 = r3;
-            goto L_0x01b2;
-        L_0x037a:
-            r0 = r18;
-            r3 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r3 = r3.m_nexThemeRenderer;	 Catch:{ all -> 0x0387 }
-            r3.a(r2);	 Catch:{ all -> 0x0387 }
-            goto L_0x0212;
-        L_0x0387:
-            r2 = move-exception;
-            monitor-exit(r14);	 Catch:{ all -> 0x0387 }
-            throw r2;
-        L_0x038a:
-            r0 = r18;
-            r2 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r2 = r2.m_nexThemeRenderer;	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r3 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r3 = r3.m_effect;	 Catch:{ all -> 0x0387 }
-            r3 = r3.getId();	 Catch:{ all -> 0x0387 }
-            r0 = r18;
-            r4 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r4 = r4.m_effectOptions;	 Catch:{ all -> 0x0387 }
-            r5 = 1;
-            r6 = 3;
-            r7 = 0;
-            r0 = r18;
-            r8 = com.nexstreaming.app.common.nexasset.preview.a.this;	 Catch:{ all -> 0x0387 }
-            r8 = r8.m_effectTime;	 Catch:{ all -> 0x0387 }
-            r8 = (int) r8;	 Catch:{ all -> 0x0387 }
-            r2.setTransitionEffect(r3, r4, r5, r6, r7, r8);	 Catch:{ all -> 0x0387 }
-            goto L_0x0262;
-        L_0x03b7:
-            r2 = 0;
-            goto L_0x0299;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.nexasset.preview.a.a.onDrawFrame(javax.microedition.khronos.opengles.GL10):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void onDrawFrame(GL10 gl10) {
+            boolean z;
+            long j;
+            Object obj;
+            a.this.m_frameEnd = a.miliTime();
+            if (a.this.m_frameStart == 0) {
+                a.this.m_frameStart = a.this.m_frameEnd;
+            }
+            long access$100 = (a.FRAME_TIME - (a.this.m_frameEnd - a.this.m_frameStart)) - 5;
+            if (access$100 > 5) {
+                try {
+                    Thread.sleep(access$100);
+                } catch (InterruptedException e) {
+                    Log.d("NexThemePreviewView", "Preview sleep INTERRUPTED");
+                }
+            }
+            a.this.m_frameStart = a.this.m_frameStart + a.FRAME_TIME;
+            a.this.mColor = a.this.mColor + 0.005f;
+            if (a.this.mColor > 1.0f) {
+                a.this.mColor = 0.0f;
+            }
+            gl10.glClearColor(1.0f, 0.2f, a.this.mColor, 1.0f);
+            gl10.glClear(16640);
+            if (a.this.m_effectTime == 0) {
+                z = false;
+                j = -1;
+            } else {
+                access$100 = a.this.m_pauseTime + a.this.m_effectTime;
+                long access$200 = (a.miliTime() - a.this.m_startTime) % (2 * access$100);
+                access$200 -= access$200 % a.FRAME_TIME;
+                z = access$200 > access$100 && !a.this.m_isClipEffect;
+                j = access$200;
+            }
+            Object obj2 = null;
+            if (z != a.this.m_swapPlaceholders) {
+                obj2 = 1;
+                a.this.m_swapPlaceholders = z;
+                if (a.this.m_swapPlaceholders) {
+                    a.this.m_nexThemeRenderer.setPlaceholders("placeholder2.jpg", "placeholder1.jpg");
+                    obj = 1;
+                    synchronized (a.this.m_renderLock) {
+                        if (a.this.m_nexThemeRenderer != null) {
+                            obj2 = null;
+                            Object obj3 = null;
+                            if (a.this.m_effectOptions != a.this.m_setEffectOptions) {
+                                a.this.m_setEffectOptions = a.this.m_effectOptions;
+                                obj3 = 1;
+                            }
+                            if (!(a.this.m_effect == null || a.this.m_effect == a.this.m_setEffect)) {
+                                a.this.m_setEffect = a.this.m_effect;
+                                obj2 = 1;
+                            }
+                            if (a.this.m_setEffectTime != a.this.m_effectTime) {
+                                a.this.m_setEffectTime = a.this.m_effectTime;
+                                obj3 = 1;
+                            }
+                            if (!(a.this.m_assetPackageManager == null || (r2 == null && obj2 == null))) {
+                                a.this.m_nexThemeRenderer.clearClipEffect();
+                                a.this.m_nexThemeRenderer.clearTransitionEffect();
+                                if (obj2 != null) {
+                                    String a;
+                                    try {
+                                        if (a.this.m_isRenderItem) {
+                                            a = a.this.m_assetPackageManager.a(Collections.singletonList(a.this.m_effect.getId()));
+                                        } else {
+                                            a = a.this.m_assetPackageManager.a(Collections.singletonList(a.this.m_effect.getId()), false);
+                                        }
+                                    } catch (IOException e2) {
+                                        e2.printStackTrace();
+                                        a = null;
+                                    }
+                                    Log.d("EffectPreviewView", " m_isRenderItem=" + a.this.m_isRenderItem + ",m_isClipEffect=" + a.this.m_isClipEffect);
+                                    if (a != null) {
+                                        if (a.this.m_isRenderItem) {
+                                            a.this.m_nexThemeRenderer.clearRenderItems();
+                                            a.this.m_nexThemeRenderer.loadRenderItem(a.this.m_effect.getId(), a);
+                                        } else {
+                                            a.this.m_nexThemeRenderer.a(a);
+                                        }
+                                    }
+                                }
+                                if (a.this.m_effect != null) {
+                                    if (a.this.m_isClipEffect) {
+                                        a.this.m_nexThemeRenderer.setClipEffect(a.this.m_effect.getId(), a.this.m_effectOptions, 1, 3, 0, ((int) a.this.m_effectTime) + 100, 50, ((int) a.this.m_effectTime) + 50);
+                                    } else {
+                                        a.this.m_nexThemeRenderer.setTransitionEffect(a.this.m_effect.getId(), a.this.m_effectOptions, 1, 3, 0, (int) a.this.m_effectTime);
+                                    }
+                                }
+                            }
+                            a.this.m_nexThemeRenderer.setCTS((a.this.m_isClipEffect ? 50 : 0) + ((int) Math.min(j % (a.this.m_pauseTime + a.this.m_effectTime), a.this.m_effectTime - 1)));
+                            a.this.m_nexThemeRenderer.render();
+                        }
+                    }
+                    if (a.this.m_showOnRender) {
+                        a.this.m_showOnRender = false;
+                        a.this.m_handler.post(new Runnable() {
+                            public void run() {
+                                a.this.setVisibility(0);
+                            }
+                        });
+                    }
+                    if (obj == null) {
+                        access$100 = a.miliTime() - a.this.m_frameEnd;
+                        a.this.m_startTime = a.this.m_startTime + access$100;
+                        a.this.m_frameStart = access$100 + a.this.m_frameStart;
+                        return;
+                    }
+                    return;
+                }
+                a.this.m_nexThemeRenderer.setPlaceholders("placeholder1.jpg", "placeholder2.jpg");
+            }
+            obj = obj2;
+            synchronized (a.this.m_renderLock) {
+            }
+            if (a.this.m_showOnRender) {
+            }
+            if (obj == null) {
+            }
         }
 
         public void onSurfaceChanged(GL10 gl10, int i, int i2) {

@@ -609,242 +609,114 @@ class a implements nexCollageInfo, nexCollageInfoDraw {
     /* JADX WARNING: Removed duplicated region for block: B:28:0x00d1  */
     /* JADX WARNING: Removed duplicated region for block: B:50:0x0185  */
     /* JADX WARNING: Removed duplicated region for block: B:31:0x010a  */
-    public boolean changeSource(com.nexstreaming.nexeditorsdk.nexClip r12) {
-        /*
-        r11 = this;
-        r0 = r11.a;
-        if (r0 == 0) goto L_0x0018;
-    L_0x0004:
-        r0 = r11.a;
-        r0 = r0.getDrawInfos();
-        if (r0 == 0) goto L_0x0018;
-    L_0x000c:
-        r0 = r11.a;
-        r0 = r0.getDrawInfos();
-        r0 = r0.size();
-        if (r0 > 0) goto L_0x001a;
-    L_0x0018:
-        r0 = 0;
-    L_0x0019:
-        return r0;
-    L_0x001a:
-        r0 = r11.a;
-        r0 = r0.getDrawInfos();
-        r1 = 0;
-        r0 = r0.get(r1);
-        r0 = (com.nexstreaming.nexeditorsdk.nexDrawInfo) r0;
-        if (r0 != 0) goto L_0x002b;
-    L_0x0029:
-        r0 = 0;
-        goto L_0x0019;
-    L_0x002b:
-        r12.clearDrawInfos();
-        r12.addDrawInfo(r0);
-        r1 = r11.a;
-        r1 = r1.mStartTime;
-        r12.mStartTime = r1;
-        r1 = r11.a;
-        r1 = r1.mEndTime;
-        r12.mEndTime = r1;
-        r1 = r12.getClipType();
-        r2 = 4;
-        if (r1 != r2) goto L_0x0114;
-    L_0x0044:
-        r1 = 0;
-        r12.setAudioOnOff(r1);
-    L_0x0048:
-        r2 = r12.getWidth();
-        r1 = r12.getHeight();
-        r3 = r12.getRotateInMeta();
-        r4 = 90;
-        if (r3 == r4) goto L_0x0060;
-    L_0x0058:
-        r3 = r12.getRotateInMeta();
-        r4 = 270; // 0x10e float:3.78E-43 double:1.334E-321;
-        if (r3 != r4) goto L_0x0068;
-    L_0x0060:
-        r2 = r12.getHeight();
-        r1 = r12.getWidth();
-    L_0x0068:
-        r4 = new android.graphics.Rect;
-        r3 = 0;
-        r5 = 0;
-        r4.<init>(r3, r5, r2, r1);
-        r5 = new android.graphics.Rect;
-        r3 = 0;
-        r6 = 0;
-        r7 = 1;
-        r8 = 1;
-        r5.<init>(r3, r6, r7, r8);
-        r3 = r12.getClipType();
-        r6 = 1;
-        if (r3 != r6) goto L_0x017c;
-    L_0x007f:
-        r3 = new android.graphics.RectF;
-        r3.<init>();
-        r6 = r11.c;
-        if (r6 == 0) goto L_0x0092;
-    L_0x0088:
-        r3 = r11.c;
-        r6 = r12.getPath();
-        r3 = r3.FaceRect(r6);
-    L_0x0092:
-        r6 = r3.left;
-        r7 = (float) r2;
-        r6 = r6 * r7;
-        r6 = (int) r6;
-        r7 = r3.top;
-        r8 = (float) r1;
-        r7 = r7 * r8;
-        r7 = (int) r7;
-        r8 = r3.right;
-        r9 = (float) r2;
-        r8 = r8 * r9;
-        r8 = (int) r8;
-        r9 = r3.bottom;
-        r10 = (float) r1;
-        r9 = r9 * r10;
-        r9 = (int) r9;
-        r4.set(r6, r7, r8, r9);
-        r6 = r4.isEmpty();
-        if (r6 == 0) goto L_0x0129;
-    L_0x00af:
-        r3 = new android.graphics.Rect;
-        r4 = 0;
-        r6 = 0;
-        r3.<init>(r4, r6, r2, r1);
-    L_0x00b6:
-        r4 = r11.q;
-        com.nexstreaming.nexeditorsdk.nexCollage.a(r3, r4);
-        com.nexstreaming.nexeditorsdk.nexCollage.b(r3, r2, r1);
-        com.nexstreaming.nexeditorsdk.nexCollage.b(r5, r2, r1);
-        r0.setStartRect(r3);
-        r0.setEndRect(r3);
-        r0.setFaceRect(r5);
-        r3 = r12.getClipType();
-        r4 = 4;
-        if (r3 != r4) goto L_0x017f;
-    L_0x00d1:
-        r3 = r12.getRotateInMeta();
-        r0.setRotateState(r3);
-    L_0x00d8:
-        r3 = 0;
-        r0.setUserRotateState(r3);
-        r3 = 0;
-        r4 = 0;
-        r0.setUserTranslate(r3, r4);
-        r3 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r0.setRealScale(r3);
-        r3 = 0;
-        r0.setBrightness(r3);
-        r0 = 0;
-        r11.r = r0;
-        r0 = 0;
-        r11.s = r0;
-        r0 = new android.graphics.RectF;
-        r3 = 0;
-        r4 = 0;
-        r2 = (float) r2;
-        r1 = (float) r1;
-        r0.<init>(r3, r4, r2, r1);
-        r11.b = r0;
-        r0 = r11.a;
-        r11.a = r12;
-        r1 = 0;
-        r11.t = r1;
-        r1 = 1;
-        r11.a(r1);
-        r1 = r11.c;
-        if (r1 == 0) goto L_0x0185;
-    L_0x010a:
-        r1 = r11.c;
-        r2 = r11.a;
-        r1.SourceChanged(r0, r2);
-        r0 = 1;
-        goto L_0x0019;
-    L_0x0114:
-        r1 = r12.getClipType();
-        r2 = 1;
-        if (r1 != r2) goto L_0x0126;
-    L_0x011b:
-        r1 = r11.a;
-        r1 = r1.getProjectDuration();
-        r12.setImageClipDuration(r1);
-        goto L_0x0048;
-    L_0x0126:
-        r0 = 0;
-        goto L_0x0019;
-    L_0x0129:
-        r6 = r3.left;
-        r7 = (float) r2;
-        r6 = r6 * r7;
-        r6 = (int) r6;
-        r7 = r3.top;
-        r8 = (float) r1;
-        r7 = r7 * r8;
-        r7 = (int) r7;
-        r8 = r3.right;
-        r9 = (float) r2;
-        r8 = r8 * r9;
-        r8 = (int) r8;
-        r3 = r3.bottom;
-        r9 = (float) r1;
-        r3 = r3 * r9;
-        r3 = (int) r3;
-        r5.set(r6, r7, r8, r3);
-        r3 = r4.right;
-        r6 = r4.left;
-        r3 = r3 - r6;
-        r3 = r3 / 2;
-        r6 = r4.left;
-        r6 = r6 - r3;
-        r4.left = r6;
-        r6 = r4.right;
-        r3 = r3 + r6;
-        r4.right = r3;
-        r3 = r4.left;
-        if (r3 >= 0) goto L_0x0158;
-    L_0x0155:
-        r3 = 0;
-        r4.left = r3;
-    L_0x0158:
-        r3 = r4.right;
-        if (r3 <= r2) goto L_0x015e;
-    L_0x015c:
-        r4.right = r2;
-    L_0x015e:
-        r3 = r4.bottom;
-        r6 = r4.top;
-        r3 = r3 - r6;
-        r3 = r3 / 2;
-        r6 = r4.top;
-        r6 = r6 - r3;
-        r4.top = r6;
-        r6 = r4.bottom;
-        r3 = r3 + r6;
-        r4.bottom = r3;
-        r3 = r4.top;
-        if (r3 >= 0) goto L_0x0176;
-    L_0x0173:
-        r3 = 0;
-        r4.top = r3;
-    L_0x0176:
-        r3 = r4.bottom;
-        if (r3 <= r1) goto L_0x017c;
-    L_0x017a:
-        r4.bottom = r1;
-    L_0x017c:
-        r3 = r4;
-        goto L_0x00b6;
-    L_0x017f:
-        r3 = 0;
-        r0.setRotateState(r3);
-        goto L_0x00d8;
-    L_0x0185:
-        r0 = 0;
-        goto L_0x0019;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.a.changeSource(com.nexstreaming.nexeditorsdk.nexClip):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean changeSource(nexClip nexclip) {
+        if (this.a == null || this.a.getDrawInfos() == null || this.a.getDrawInfos().size() <= 0) {
+            return false;
+        }
+        nexDrawInfo nexdrawinfo = (nexDrawInfo) this.a.getDrawInfos().get(0);
+        if (nexdrawinfo == null) {
+            return false;
+        }
+        Rect rect;
+        nexClip nexclip2;
+        nexclip.clearDrawInfos();
+        nexclip.addDrawInfo(nexdrawinfo);
+        nexclip.mStartTime = this.a.mStartTime;
+        nexclip.mEndTime = this.a.mEndTime;
+        if (nexclip.getClipType() == 4) {
+            nexclip.setAudioOnOff(false);
+        } else if (nexclip.getClipType() != 1) {
+            return false;
+        } else {
+            nexclip.setImageClipDuration(this.a.getProjectDuration());
+        }
+        int width = nexclip.getWidth();
+        int height = nexclip.getHeight();
+        if (nexclip.getRotateInMeta() == 90 || nexclip.getRotateInMeta() == nexClip.kClip_Rotate_270) {
+            width = nexclip.getHeight();
+            height = nexclip.getWidth();
+        }
+        Rect rect2 = new Rect(0, 0, width, height);
+        Rect rect3 = new Rect(0, 0, 1, 1);
+        if (nexclip.getClipType() == 1) {
+            RectF rectF = new RectF();
+            if (this.c != null) {
+                rectF = this.c.FaceRect(nexclip.getPath());
+            }
+            rect2.set((int) (rectF.left * ((float) width)), (int) (rectF.top * ((float) height)), (int) (rectF.right * ((float) width)), (int) (rectF.bottom * ((float) height)));
+            if (rect2.isEmpty()) {
+                rect = new Rect(0, 0, width, height);
+                nexCollage.a(rect, this.q);
+                nexCollage.b(rect, width, height);
+                nexCollage.b(rect3, width, height);
+                nexdrawinfo.setStartRect(rect);
+                nexdrawinfo.setEndRect(rect);
+                nexdrawinfo.setFaceRect(rect3);
+                if (nexclip.getClipType() != 4) {
+                    nexdrawinfo.setRotateState(nexclip.getRotateInMeta());
+                } else {
+                    nexdrawinfo.setRotateState(0);
+                }
+                nexdrawinfo.setUserRotateState(0);
+                nexdrawinfo.setUserTranslate(0, 0);
+                nexdrawinfo.setRealScale(1.0f);
+                nexdrawinfo.setBrightness(0);
+                this.r = null;
+                this.s = null;
+                this.b = new RectF(0.0f, 0.0f, (float) width, (float) height);
+                nexclip2 = this.a;
+                this.a = nexclip;
+                this.t = null;
+                a(true);
+                if (this.c != null) {
+                    return false;
+                }
+                this.c.SourceChanged(nexclip2, this.a);
+                return true;
+            }
+            rect3.set((int) (rectF.left * ((float) width)), (int) (rectF.top * ((float) height)), (int) (rectF.right * ((float) width)), (int) (rectF.bottom * ((float) height)));
+            int i = (rect2.right - rect2.left) / 2;
+            rect2.left -= i;
+            rect2.right = i + rect2.right;
+            if (rect2.left < 0) {
+                rect2.left = 0;
+            }
+            if (rect2.right > width) {
+                rect2.right = width;
+            }
+            i = (rect2.bottom - rect2.top) / 2;
+            rect2.top -= i;
+            rect2.bottom = i + rect2.bottom;
+            if (rect2.top < 0) {
+                rect2.top = 0;
+            }
+            if (rect2.bottom > height) {
+                rect2.bottom = height;
+            }
+        }
+        rect = rect2;
+        nexCollage.a(rect, this.q);
+        nexCollage.b(rect, width, height);
+        nexCollage.b(rect3, width, height);
+        nexdrawinfo.setStartRect(rect);
+        nexdrawinfo.setEndRect(rect);
+        nexdrawinfo.setFaceRect(rect3);
+        if (nexclip.getClipType() != 4) {
+        }
+        nexdrawinfo.setUserRotateState(0);
+        nexdrawinfo.setUserTranslate(0, 0);
+        nexdrawinfo.setRealScale(1.0f);
+        nexdrawinfo.setBrightness(0);
+        this.r = null;
+        this.s = null;
+        this.b = new RectF(0.0f, 0.0f, (float) width, (float) height);
+        nexclip2 = this.a;
+        this.a = nexclip;
+        this.t = null;
+        a(true);
+        if (this.c != null) {
+        }
     }
 
     public boolean a(nexClip nexclip, nexDrawInfo nexdrawinfo) {

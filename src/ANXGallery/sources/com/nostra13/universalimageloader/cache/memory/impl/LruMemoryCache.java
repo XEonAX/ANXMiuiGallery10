@@ -5,6 +5,7 @@ import com.nostra13.universalimageloader.cache.memory.MemoryCache;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 
 public class LruMemoryCache implements MemoryCache {
     private final LinkedHashMap<String, Bitmap> map;
@@ -48,72 +49,25 @@ public class LruMemoryCache implements MemoryCache {
     /* JADX WARNING: Missing block: B:9:0x0031, code:
             throw new java.lang.IllegalStateException(getClass().getName() + ".sizeOf() is reporting inconsistent results!");
      */
-    private void trimToSize(int r7) {
-        /*
-        r6 = this;
-    L_0x0000:
-        monitor-enter(r6);
-        r3 = r6.size;	 Catch:{ all -> 0x0032 }
-        if (r3 < 0) goto L_0x0011;
-    L_0x0005:
-        r3 = r6.map;	 Catch:{ all -> 0x0032 }
-        r3 = r3.isEmpty();	 Catch:{ all -> 0x0032 }
-        if (r3 == 0) goto L_0x0035;
-    L_0x000d:
-        r3 = r6.size;	 Catch:{ all -> 0x0032 }
-        if (r3 == 0) goto L_0x0035;
-    L_0x0011:
-        r3 = new java.lang.IllegalStateException;	 Catch:{ all -> 0x0032 }
-        r4 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0032 }
-        r4.<init>();	 Catch:{ all -> 0x0032 }
-        r5 = r6.getClass();	 Catch:{ all -> 0x0032 }
-        r5 = r5.getName();	 Catch:{ all -> 0x0032 }
-        r4 = r4.append(r5);	 Catch:{ all -> 0x0032 }
-        r5 = ".sizeOf() is reporting inconsistent results!";
-        r4 = r4.append(r5);	 Catch:{ all -> 0x0032 }
-        r4 = r4.toString();	 Catch:{ all -> 0x0032 }
-        r3.<init>(r4);	 Catch:{ all -> 0x0032 }
-        throw r3;	 Catch:{ all -> 0x0032 }
-    L_0x0032:
-        r3 = move-exception;
-        monitor-exit(r6);	 Catch:{ all -> 0x0032 }
-        throw r3;
-    L_0x0035:
-        r3 = r6.size;	 Catch:{ all -> 0x0032 }
-        if (r3 <= r7) goto L_0x0041;
-    L_0x0039:
-        r3 = r6.map;	 Catch:{ all -> 0x0032 }
-        r3 = r3.isEmpty();	 Catch:{ all -> 0x0032 }
-        if (r3 == 0) goto L_0x0043;
-    L_0x0041:
-        monitor-exit(r6);	 Catch:{ all -> 0x0032 }
-    L_0x0042:
-        return;
-    L_0x0043:
-        r3 = r6.map;	 Catch:{ all -> 0x0032 }
-        r3 = r3.entrySet();	 Catch:{ all -> 0x0032 }
-        r3 = r3.iterator();	 Catch:{ all -> 0x0032 }
-        r1 = r3.next();	 Catch:{ all -> 0x0032 }
-        r1 = (java.util.Map.Entry) r1;	 Catch:{ all -> 0x0032 }
-        if (r1 != 0) goto L_0x0057;
-    L_0x0055:
-        monitor-exit(r6);	 Catch:{ all -> 0x0032 }
-        goto L_0x0042;
-    L_0x0057:
-        r0 = r1.getKey();	 Catch:{ all -> 0x0032 }
-        r0 = (java.lang.String) r0;	 Catch:{ all -> 0x0032 }
-        r2 = r1.getValue();	 Catch:{ all -> 0x0032 }
-        r2 = (android.graphics.Bitmap) r2;	 Catch:{ all -> 0x0032 }
-        r3 = r6.map;	 Catch:{ all -> 0x0032 }
-        r3.remove(r0);	 Catch:{ all -> 0x0032 }
-        r3 = r6.size;	 Catch:{ all -> 0x0032 }
-        r4 = r6.sizeOf(r0, r2);	 Catch:{ all -> 0x0032 }
-        r3 = r3 - r4;
-        r6.size = r3;	 Catch:{ all -> 0x0032 }
-        monitor-exit(r6);	 Catch:{ all -> 0x0032 }
-        goto L_0x0000;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache.trimToSize(int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void trimToSize(int maxSize) {
+        while (true) {
+            synchronized (this) {
+                if (this.size >= 0 && (!this.map.isEmpty() || this.size == 0)) {
+                    if (this.size <= maxSize || this.map.isEmpty()) {
+                    } else {
+                        Entry<String, Bitmap> toEvict = (Entry) this.map.entrySet().iterator().next();
+                        if (toEvict == null) {
+                            return;
+                        }
+                        String key = (String) toEvict.getKey();
+                        Bitmap value = (Bitmap) toEvict.getValue();
+                        this.map.remove(key);
+                        this.size -= sizeOf(key, value);
+                    }
+                }
+            }
+        }
     }
 
     public final Bitmap remove(String key) {

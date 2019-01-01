@@ -528,131 +528,33 @@ public class PhotoPageFaceItem extends PhotoPageItem implements PhotoViewProvide
             r6 = r22.faceHScale;
             r2 = r22.faceWScale;
      */
-    private static android.graphics.RectF getFaceRect(float r20, float r21, com.miui.gallery.cloud.peopleface.PeopleFace r22, int r23) {
-        /*
-        r0 = r22;
-        r8 = r0.faceXScale;
-        r0 = r22;
-        r10 = r0.faceYScale;
-        r0 = r22;
-        r6 = r0.faceWScale;
-        r0 = r22;
-        r2 = r0.faceHScale;
-        r12 = 0;
-        switch(r23) {
-            case 1: goto L_0x0014;
-            case 2: goto L_0x0052;
-            case 3: goto L_0x0075;
-            case 4: goto L_0x0074;
-            case 5: goto L_0x009b;
-            case 6: goto L_0x0055;
-            case 7: goto L_0x0054;
-            case 8: goto L_0x009c;
-            default: goto L_0x0014;
-        };
-    L_0x0014:
-        if (r12 == 0) goto L_0x001c;
-    L_0x0016:
-        r16 = 4607182418800017408; // 0x3ff0000000000000 float:0.0 double:1.0;
-        r16 = r16 - r8;
-        r8 = r16 - r6;
-    L_0x001c:
-        r0 = r20;
-        r0 = (double) r0;
-        r16 = r0;
-        r16 = r16 * r8;
-        r0 = r16;
-        r14 = (float) r0;
-        r0 = r21;
-        r0 = (double) r0;
-        r16 = r0;
-        r16 = r16 * r10;
-        r0 = r16;
-        r15 = (float) r0;
-        r0 = r20;
-        r0 = (double) r0;
-        r16 = r0;
-        r16 = r16 * r6;
-        r0 = r16;
-        r13 = (float) r0;
-        r0 = r21;
-        r0 = (double) r0;
-        r16 = r0;
-        r16 = r16 * r2;
-        r0 = r16;
-        r5 = (float) r0;
-        r4 = new android.graphics.RectF;
-        r16 = r14 + r13;
-        r17 = r15 + r5;
-        r0 = r16;
-        r1 = r17;
-        r4.<init>(r14, r15, r0, r1);
-        return r4;
-    L_0x0052:
-        r12 = 1;
-        goto L_0x0014;
-    L_0x0054:
-        r12 = 1;
-    L_0x0055:
-        r16 = 4607182418800017408; // 0x3ff0000000000000 float:0.0 double:1.0;
-        r0 = r22;
-        r0 = r0.faceYScale;
-        r18 = r0;
-        r16 = r16 - r18;
-        r0 = r22;
-        r0 = r0.faceHScale;
-        r18 = r0;
-        r8 = r16 - r18;
-        r0 = r22;
-        r10 = r0.faceXScale;
-        r0 = r22;
-        r6 = r0.faceHScale;
-        r0 = r22;
-        r2 = r0.faceWScale;
-        goto L_0x0014;
-    L_0x0074:
-        r12 = 1;
-    L_0x0075:
-        r16 = 4607182418800017408; // 0x3ff0000000000000 float:0.0 double:1.0;
-        r0 = r22;
-        r0 = r0.faceXScale;
-        r18 = r0;
-        r16 = r16 - r18;
-        r0 = r22;
-        r0 = r0.faceWScale;
-        r18 = r0;
-        r8 = r16 - r18;
-        r16 = 4607182418800017408; // 0x3ff0000000000000 float:0.0 double:1.0;
-        r0 = r22;
-        r0 = r0.faceYScale;
-        r18 = r0;
-        r16 = r16 - r18;
-        r0 = r22;
-        r0 = r0.faceHScale;
-        r18 = r0;
-        r10 = r16 - r18;
-        goto L_0x0014;
-    L_0x009b:
-        r12 = 1;
-    L_0x009c:
-        r0 = r22;
-        r8 = r0.faceYScale;
-        r16 = 4607182418800017408; // 0x3ff0000000000000 float:0.0 double:1.0;
-        r0 = r22;
-        r0 = r0.faceXScale;
-        r18 = r0;
-        r16 = r16 - r18;
-        r0 = r22;
-        r0 = r0.faceWScale;
-        r18 = r0;
-        r10 = r16 - r18;
-        r0 = r22;
-        r6 = r0.faceHScale;
-        r0 = r22;
-        r2 = r0.faceWScale;
-        goto L_0x0014;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.ui.PhotoPageFaceItem.getFaceRect(float, float, com.miui.gallery.cloud.peopleface.PeopleFace, int):android.graphics.RectF");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static RectF getFaceRect(float imageWidth, float imageHeight, PeopleFace faceInfo, int orientation) {
+        double faceXScale = faceInfo.faceXScale;
+        double faceYScale = faceInfo.faceYScale;
+        double faceWScale = faceInfo.faceWScale;
+        double faceHScale = faceInfo.faceHScale;
+        boolean isFlip = false;
+        switch (orientation) {
+            case 2:
+                isFlip = true;
+                break;
+            case 3:
+                break;
+            case 4:
+                isFlip = true;
+                break;
+            case 5:
+                isFlip = true;
+                break;
+            case 6:
+                break;
+            case 7:
+                isFlip = true;
+                break;
+            case 8:
+                break;
+        }
     }
 
     public void onActionBarVisibleChanged(Boolean visible, int actionBarHeight) {

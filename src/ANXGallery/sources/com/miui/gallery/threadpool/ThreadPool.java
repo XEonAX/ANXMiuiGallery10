@@ -187,59 +187,19 @@ public class ThreadPool {
         /* JADX WARNING: Missing block: B:46:?, code:
             return true;
      */
-        private boolean acquireResource(com.miui.gallery.threadpool.ThreadPool.ResourceCounter r2) {
-            /*
-            r1 = this;
-        L_0x0000:
-            monitor-enter(r1);
-            r0 = r1.mIsCancelled;	 Catch:{ all -> 0x0021 }
-            if (r0 == 0) goto L_0x000b;
-        L_0x0005:
-            r0 = 0;
-            r1.mWaitOnResource = r0;	 Catch:{ all -> 0x0021 }
-            r0 = 0;
-            monitor-exit(r1);	 Catch:{ all -> 0x0021 }
-        L_0x000a:
-            return r0;
-        L_0x000b:
-            r1.mWaitOnResource = r2;	 Catch:{ all -> 0x0021 }
-            monitor-exit(r1);	 Catch:{ all -> 0x0021 }
-            monitor-enter(r2);
-            r0 = r2.value;	 Catch:{ all -> 0x0029 }
-            if (r0 <= 0) goto L_0x0024;
-        L_0x0013:
-            r0 = r2.value;	 Catch:{ all -> 0x0029 }
-            r0 = r0 + -1;
-            r2.value = r0;	 Catch:{ all -> 0x0029 }
-            monitor-exit(r2);	 Catch:{ all -> 0x0029 }
-            monitor-enter(r1);
-            r0 = 0;
-            r1.mWaitOnResource = r0;	 Catch:{ all -> 0x002c }
-            monitor-exit(r1);	 Catch:{ all -> 0x002c }
-            r0 = 1;
-            goto L_0x000a;
-        L_0x0021:
-            r0 = move-exception;
-            monitor-exit(r1);	 Catch:{ all -> 0x0021 }
-            throw r0;
-        L_0x0024:
-            r2.wait();	 Catch:{ InterruptedException -> 0x002f }
-        L_0x0027:
-            monitor-exit(r2);	 Catch:{ all -> 0x0029 }
-            goto L_0x0000;
-        L_0x0029:
-            r0 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x0029 }
-            throw r0;
-        L_0x002c:
-            r0 = move-exception;
-            monitor-exit(r1);	 Catch:{ all -> 0x002c }
-            throw r0;
-        L_0x002f:
-            r0 = move-exception;
-            goto L_0x0027;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.threadpool.ThreadPool.Worker.acquireResource(com.miui.gallery.threadpool.ThreadPool$ResourceCounter):boolean");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        private boolean acquireResource(ResourceCounter counter) {
+            while (true) {
+                synchronized (this) {
+                    if (this.mIsCancelled) {
+                        this.mWaitOnResource = null;
+                        return false;
+                    }
+                    this.mWaitOnResource = counter;
+                }
+            }
+            while (true) {
+            }
         }
 
         private void releaseResource(ResourceCounter counter) {

@@ -113,150 +113,80 @@ public class SuggestionTagView extends LinearLayout {
 
     /* JADX WARNING: Removed duplicated region for block: B:64:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:27:0x0066 A:{SKIP} */
-    private void layoutTags(int r13) {
-        /*
-        r12 = this;
-        r4 = 0;
-        r10 = 0;
-        r12.removeAllViews();
-        r12.mInvalid = r4;
-        r11 = r12.mMaxLines;
-        if (r11 <= 0) goto L_0x000f;
-    L_0x000b:
-        r11 = r12.mAdapter;
-        if (r11 != 0) goto L_0x0010;
-    L_0x000f:
-        return;
-    L_0x0010:
-        r11 = r12.mAdapter;
-        r0 = r11.isFixedMoreItem();
-        r8 = 0;
-        r6 = 0;
-        r11 = r12.mAdapter;
-        r5 = r11.getCount();
-        r7 = 0;
-        r11 = r12.mAdapter;
-        r11 = r11.hasMoreItem();
-        if (r11 == 0) goto L_0x0084;
-    L_0x0027:
-        r11 = r12.mAdapter;
-        r3 = r11.getMoreItemView(r10, r12);
-    L_0x002d:
-        if (r3 == 0) goto L_0x0033;
-    L_0x002f:
-        r4 = r12.getItemMeasuredWidth(r3);
-    L_0x0033:
-        r11 = r12.mMaxLines;
-        r11 = r11 + -1;
-        if (r6 != r11) goto L_0x003c;
-    L_0x0039:
-        if (r3 == 0) goto L_0x003c;
-    L_0x003b:
-        r8 = r4;
-    L_0x003c:
-        r1 = 0;
-    L_0x003d:
-        if (r1 >= r5) goto L_0x0064;
-    L_0x003f:
-        r11 = r12.mAdapter;
-        r9 = r11.getView(r1, r10, r12);
-        r2 = r12.getItemMeasuredWidth(r9);
-        r8 = r8 + r2;
-        if (r8 <= r13) goto L_0x00ba;
-    L_0x004c:
-        r6 = r6 + 1;
-        r11 = r12.mMaxLines;
-        if (r6 < r11) goto L_0x0089;
-    L_0x0052:
-        if (r3 == 0) goto L_0x0086;
-    L_0x0054:
-        r10 = r5 + -1;
-        if (r1 != r10) goto L_0x0086;
-    L_0x0058:
-        if (r0 != 0) goto L_0x0086;
-    L_0x005a:
-        r10 = r8 - r4;
-        if (r10 > r13) goto L_0x0086;
-    L_0x005e:
-        r10 = r12.mItemLayoutParam;
-        r7.addView(r9, r10);
-        r3 = 0;
-    L_0x0064:
-        if (r3 == 0) goto L_0x000f;
-    L_0x0066:
-        if (r0 == 0) goto L_0x0078;
-    L_0x0068:
-        if (r7 == 0) goto L_0x0074;
-    L_0x006a:
-        r10 = r12.mMaxLines;
-        r10 = r10 + -1;
-        if (r6 >= r10) goto L_0x0078;
-    L_0x0070:
-        r10 = r8 + r4;
-        if (r10 <= r13) goto L_0x0078;
-    L_0x0074:
-        r7 = r12.changeToNewLine();
-    L_0x0078:
-        if (r0 != 0) goto L_0x007e;
-    L_0x007a:
-        r10 = r5 + -1;
-        if (r1 >= r10) goto L_0x000f;
-    L_0x007e:
-        r10 = r12.mItemLayoutParam;
-        r7.addView(r3, r10);
-        goto L_0x000f;
-    L_0x0084:
-        r3 = r10;
-        goto L_0x002d;
-    L_0x0086:
-        r1 = r1 + -1;
-        goto L_0x0064;
-    L_0x0089:
-        r7 = r12.changeToNewLine();
-        r11 = r12.mMaxLines;
-        r11 = r11 + -1;
-        if (r6 != r11) goto L_0x00b3;
-    L_0x0093:
-        if (r3 == 0) goto L_0x00b3;
-    L_0x0095:
-        r8 = r4;
-        r11 = r8 + r2;
-        if (r11 > r13) goto L_0x00a3;
-    L_0x009a:
-        r8 = r8 + r2;
-        r11 = r12.mItemLayoutParam;
-        r7.addView(r9, r11);
-    L_0x00a0:
-        r1 = r1 + 1;
-        goto L_0x003d;
-    L_0x00a3:
-        r10 = r5 + -1;
-        if (r1 != r10) goto L_0x00b0;
-    L_0x00a7:
-        if (r0 != 0) goto L_0x00b0;
-    L_0x00a9:
-        r10 = r12.mItemLayoutParam;
-        r7.addView(r9, r10);
-        r3 = 0;
-        goto L_0x0064;
-    L_0x00b0:
-        r1 = r1 + -1;
-        goto L_0x0064;
-    L_0x00b3:
-        r8 = r2;
-        r11 = r12.mItemLayoutParam;
-        r7.addView(r9, r11);
-        goto L_0x00a0;
-    L_0x00ba:
-        if (r7 != 0) goto L_0x00c0;
-    L_0x00bc:
-        r7 = r12.changeToNewLine();
-    L_0x00c0:
-        r11 = r12.mItemLayoutParam;
-        r7.addView(r9, r11);
-        goto L_0x00a0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.search.navigationpage.SuggestionTagView.layoutTags(int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void layoutTags(int width) {
+        int lastTagWidth = 0;
+        removeAllViews();
+        this.mInvalid = false;
+        if (this.mMaxLines > 0 && this.mAdapter != null) {
+            View lastTagItem;
+            boolean fixedMoreItem = this.mAdapter.isFixedMoreItem();
+            int size = 0;
+            int rowIndex = 0;
+            int length = this.mAdapter.getCount();
+            LinearLayout rowLayout = null;
+            if (this.mAdapter.hasMoreItem()) {
+                lastTagItem = this.mAdapter.getMoreItemView(null, this);
+            } else {
+                lastTagItem = null;
+            }
+            if (lastTagItem != null) {
+                lastTagWidth = getItemMeasuredWidth(lastTagItem);
+            }
+            if (0 == this.mMaxLines - 1 && lastTagItem != null) {
+                size = lastTagWidth;
+            }
+            int i = 0;
+            while (i < length) {
+                View tagItemView = this.mAdapter.getView(i, null, this);
+                int itemWidth = getItemMeasuredWidth(tagItemView);
+                size += itemWidth;
+                if (size > width) {
+                    rowIndex++;
+                    if (rowIndex < this.mMaxLines) {
+                        rowLayout = changeToNewLine();
+                        if (rowIndex != this.mMaxLines - 1 || lastTagItem == null) {
+                            size = itemWidth;
+                            rowLayout.addView(tagItemView, this.mItemLayoutParam);
+                        } else {
+                            size = lastTagWidth;
+                            if (size + itemWidth <= width) {
+                                size += itemWidth;
+                                rowLayout.addView(tagItemView, this.mItemLayoutParam);
+                            } else if (i != length - 1 || fixedMoreItem) {
+                                i--;
+                            } else {
+                                rowLayout.addView(tagItemView, this.mItemLayoutParam);
+                                lastTagItem = null;
+                            }
+                        }
+                    } else if (lastTagItem == null || i != length - 1 || fixedMoreItem || size - lastTagWidth > width) {
+                        i--;
+                    } else {
+                        rowLayout.addView(tagItemView, this.mItemLayoutParam);
+                        lastTagItem = null;
+                    }
+                    if (lastTagItem == null) {
+                        if (fixedMoreItem && (rowLayout == null || (rowIndex < this.mMaxLines - 1 && size + lastTagWidth > width))) {
+                            rowLayout = changeToNewLine();
+                        }
+                        if (fixedMoreItem || i < length - 1) {
+                            rowLayout.addView(lastTagItem, this.mItemLayoutParam);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                if (rowLayout == null) {
+                    rowLayout = changeToNewLine();
+                }
+                rowLayout.addView(tagItemView, this.mItemLayoutParam);
+                i++;
+            }
+            if (lastTagItem == null) {
+            }
+        }
     }
 
     private int getFillWidth(int viewWidth) {

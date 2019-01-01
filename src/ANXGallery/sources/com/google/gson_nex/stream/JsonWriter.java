@@ -244,71 +244,40 @@ public class JsonWriter implements Closeable, Flushable {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:15:0x0030  */
-    private void string(java.lang.String r8) throws java.io.IOException {
-        /*
-        r7 = this;
-        r1 = 0;
-        r0 = r7.htmlSafe;
-        if (r0 == 0) goto L_0x0025;
-    L_0x0005:
-        r0 = HTML_SAFE_REPLACEMENT_CHARS;
-    L_0x0007:
-        r2 = r7.out;
-        r3 = "\"";
-        r2.write(r3);
-        r4 = r8.length();
-        r3 = r1;
-    L_0x0013:
-        if (r3 >= r4) goto L_0x0046;
-    L_0x0015:
-        r2 = r8.charAt(r3);
-        r5 = 128; // 0x80 float:1.794E-43 double:6.32E-322;
-        if (r2 >= r5) goto L_0x0028;
-    L_0x001d:
-        r2 = r0[r2];
-        if (r2 != 0) goto L_0x002e;
-    L_0x0021:
-        r2 = r3 + 1;
-        r3 = r2;
-        goto L_0x0013;
-    L_0x0025:
-        r0 = REPLACEMENT_CHARS;
-        goto L_0x0007;
-    L_0x0028:
-        r5 = 8232; // 0x2028 float:1.1535E-41 double:4.067E-320;
-        if (r2 != r5) goto L_0x003f;
-    L_0x002c:
-        r2 = "\\u2028";
-    L_0x002e:
-        if (r1 >= r3) goto L_0x0037;
-    L_0x0030:
-        r5 = r7.out;
-        r6 = r3 - r1;
-        r5.write(r8, r1, r6);
-    L_0x0037:
-        r1 = r7.out;
-        r1.write(r2);
-        r1 = r3 + 1;
-        goto L_0x0021;
-    L_0x003f:
-        r5 = 8233; // 0x2029 float:1.1537E-41 double:4.0676E-320;
-        if (r2 != r5) goto L_0x0021;
-    L_0x0043:
-        r2 = "\\u2029";
-        goto L_0x002e;
-    L_0x0046:
-        if (r1 >= r4) goto L_0x004f;
-    L_0x0048:
-        r0 = r7.out;
-        r2 = r4 - r1;
-        r0.write(r8, r1, r2);
-    L_0x004f:
-        r0 = r7.out;
-        r1 = "\"";
-        r0.write(r1);
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.gson_nex.stream.JsonWriter.string(java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void string(String str) throws IOException {
+        int i = 0;
+        String[] strArr = this.htmlSafe ? HTML_SAFE_REPLACEMENT_CHARS : REPLACEMENT_CHARS;
+        this.out.write("\"");
+        int length = str.length();
+        for (int i2 = 0; i2 < length; i2++) {
+            char charAt = str.charAt(i2);
+            String str2;
+            if (charAt < 128) {
+                str2 = strArr[charAt];
+                if (str2 == null) {
+                }
+                if (i < i2) {
+                    this.out.write(str, i, i2 - i);
+                }
+                this.out.write(str2);
+                i = i2 + 1;
+            } else {
+                if (charAt == 8232) {
+                    str2 = "\\u2028";
+                } else if (charAt == 8233) {
+                    str2 = "\\u2029";
+                }
+                if (i < i2) {
+                }
+                this.out.write(str2);
+                i = i2 + 1;
+            }
+        }
+        if (i < length) {
+            this.out.write(str, i, length - i);
+        }
+        this.out.write("\"");
     }
 
     private void newline() throws IOException {

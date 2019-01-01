@@ -14,6 +14,9 @@ import com.xiaomi.channel.commonutils.string.XMStringUtils;
 import com.xiaomi.clientreport.manager.ClientReportLogicManager;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileLock;
 import java.util.Arrays;
 import java.util.List;
 
@@ -98,203 +101,155 @@ public class ClientReportUtil {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:78:0x0136  */
-    public static void moveFiles(android.content.Context r23, java.lang.String r24, java.lang.String r25) {
-        /*
-        r0 = r23;
-        r1 = r25;
-        r6 = r0.getExternalFilesDir(r1);
-        if (r6 == 0) goto L_0x0022;
-    L_0x000a:
-        r17 = r6.exists();
-        if (r17 != 0) goto L_0x0013;
-    L_0x0010:
-        r6.mkdirs();
-    L_0x0013:
-        r11 = r23.getExternalFilesDir(r24);
-        if (r11 == 0) goto L_0x0022;
-    L_0x0019:
-        r17 = r11.exists();
-        if (r17 != 0) goto L_0x0023;
-    L_0x001f:
-        r11.mkdirs();
-    L_0x0022:
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void moveFiles(Context context, String srcDir, String destDir) {
+        RandomAccessFile lockRandomFile;
+        FileLock lock;
+        File lockFile;
+        Throwable e;
+        Throwable th;
+        File destFolder = context.getExternalFilesDir(destDir);
+        if (destFolder != null) {
+            if (!destFolder.exists()) {
+                destFolder.mkdirs();
+            }
+            File folder = context.getExternalFilesDir(srcDir);
+            if (folder == null) {
+                return;
+            }
+            if (folder.exists()) {
+                File[] files = folder.listFiles(new FilenameFilter() {
+                    public boolean accept(File dir, String filename) {
+                        if (TextUtils.isEmpty(filename) || filename.toLowerCase().endsWith(".lock")) {
+                            return false;
+                        }
+                        return true;
+                    }
+                });
+                if (files != null && files.length > 0) {
+                    lockRandomFile = null;
+                    lock = null;
+                    lockFile = null;
+                    long now = System.currentTimeMillis();
+                    int length = files.length;
+                    int i = 0;
+                    while (true) {
+                        File lockFile2 = lockFile;
+                        RandomAccessFile lockRandomFile2 = lockRandomFile;
+                        if (i < length) {
+                            File file = files[i];
+                            if (file != null) {
+                                try {
+                                    if (!TextUtils.isEmpty(file.getAbsolutePath())) {
+                                        lockFile = new File(file.getAbsolutePath() + ".lock");
+                                        try {
+                                            IOUtils.createFileQuietly(lockFile);
+                                            lockRandomFile = new RandomAccessFile(lockFile, "rw");
+                                            try {
+                                                lock = lockRandomFile.getChannel().lock();
+                                                File destFile = new File(destFolder.getAbsolutePath() + File.separator + file.getName() + now);
+                                                try {
+                                                    IOUtils.copyFile(file, destFile);
+                                                } catch (IOException e2) {
+                                                    e2.printStackTrace();
+                                                    file.delete();
+                                                    destFile.delete();
+                                                }
+                                                file.delete();
+                                                if (lock != null && lock.isValid()) {
+                                                    try {
+                                                        lock.release();
+                                                    } catch (Throwable e3) {
+                                                        MyLog.e(e3);
+                                                    }
+                                                }
+                                                IOUtils.closeQuietly(lockRandomFile);
+                                                if (lockFile != null) {
+                                                    lockFile.delete();
+                                                }
+                                            } catch (Exception e4) {
+                                                e3 = e4;
+                                            }
+                                        } catch (Exception e5) {
+                                            e3 = e5;
+                                            lockRandomFile = lockRandomFile2;
+                                            try {
+                                                MyLog.e(e3);
+                                                if (lock != null && lock.isValid()) {
+                                                    try {
+                                                        lock.release();
+                                                    } catch (Throwable e32) {
+                                                        MyLog.e(e32);
+                                                    }
+                                                }
+                                                IOUtils.closeQuietly(lockRandomFile);
+                                                if (lockFile != null) {
+                                                    lockFile.delete();
+                                                }
+                                                i++;
+                                            } catch (Throwable th2) {
+                                                th = th2;
+                                            }
+                                        } catch (Throwable th3) {
+                                            th = th3;
+                                            lockRandomFile = lockRandomFile2;
+                                        }
+                                        i++;
+                                    }
+                                } catch (Exception e6) {
+                                    e32 = e6;
+                                    lockFile = lockFile2;
+                                    lockRandomFile = lockRandomFile2;
+                                } catch (Throwable th4) {
+                                    th = th4;
+                                    lockFile = lockFile2;
+                                    lockRandomFile = lockRandomFile2;
+                                }
+                            }
+                            if (lock != null && lock.isValid()) {
+                                try {
+                                    lock.release();
+                                } catch (Throwable e322) {
+                                    MyLog.e(e322);
+                                }
+                            }
+                            IOUtils.closeQuietly(lockRandomFile2);
+                            if (lockFile2 != null) {
+                                lockFile2.delete();
+                                lockFile = lockFile2;
+                                lockRandomFile = lockRandomFile2;
+                            } else {
+                                lockFile = lockFile2;
+                                lockRandomFile = lockRandomFile2;
+                            }
+                            i++;
+                        } else {
+                            return;
+                        }
+                    }
+                }
+                return;
+            }
+            folder.mkdirs();
+            return;
+        }
         return;
-    L_0x0023:
-        r17 = new com.xiaomi.clientreport.util.ClientReportUtil$1;
-        r17.<init>();
-        r0 = r17;
-        r10 = r11.listFiles(r0);
-        if (r10 == 0) goto L_0x0022;
-    L_0x0030:
-        r0 = r10.length;
-        r17 = r0;
-        if (r17 <= 0) goto L_0x0022;
-    L_0x0035:
-        r15 = 0;
-        r12 = 0;
-        r13 = 0;
-        r18 = java.lang.System.currentTimeMillis();
-        r0 = r10.length;
-        r20 = r0;
-        r17 = 0;
-        r14 = r13;
-        r16 = r15;
-    L_0x0044:
-        r0 = r17;
-        r1 = r20;
-        if (r0 >= r1) goto L_0x0022;
-    L_0x004a:
-        r9 = r10[r17];
-        if (r9 == 0) goto L_0x0058;
-    L_0x004e:
-        r21 = r9.getAbsolutePath();	 Catch:{ Exception -> 0x0145, all -> 0x0122 }
-        r21 = android.text.TextUtils.isEmpty(r21);	 Catch:{ Exception -> 0x0145, all -> 0x0122 }
-        if (r21 == 0) goto L_0x0079;
-    L_0x0058:
-        if (r12 == 0) goto L_0x0063;
-    L_0x005a:
-        r21 = r12.isValid();
-        if (r21 == 0) goto L_0x0063;
-    L_0x0060:
-        r12.release();	 Catch:{ IOException -> 0x0074 }
-    L_0x0063:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r16);
-        if (r14 == 0) goto L_0x014e;
-    L_0x0068:
-        r14.delete();
-        r13 = r14;
-        r15 = r16;
-    L_0x006e:
-        r17 = r17 + 1;
-        r14 = r13;
-        r16 = r15;
-        goto L_0x0044;
-    L_0x0074:
-        r8 = move-exception;
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r8);
-        goto L_0x0063;
-    L_0x0079:
-        r13 = new java.io.File;	 Catch:{ Exception -> 0x0145, all -> 0x0122 }
-        r21 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x0145, all -> 0x0122 }
-        r21.<init>();	 Catch:{ Exception -> 0x0145, all -> 0x0122 }
-        r22 = r9.getAbsolutePath();	 Catch:{ Exception -> 0x0145, all -> 0x0122 }
-        r21 = r21.append(r22);	 Catch:{ Exception -> 0x0145, all -> 0x0122 }
-        r22 = ".lock";
-        r21 = r21.append(r22);	 Catch:{ Exception -> 0x0145, all -> 0x0122 }
-        r21 = r21.toString();	 Catch:{ Exception -> 0x0145, all -> 0x0122 }
-        r0 = r21;
-        r13.<init>(r0);	 Catch:{ Exception -> 0x0145, all -> 0x0122 }
-        com.xiaomi.channel.commonutils.file.IOUtils.createFileQuietly(r13);	 Catch:{ Exception -> 0x014a, all -> 0x013f }
-        r15 = new java.io.RandomAccessFile;	 Catch:{ Exception -> 0x014a, all -> 0x013f }
-        r21 = "rw";
-        r0 = r21;
-        r15.<init>(r13, r0);	 Catch:{ Exception -> 0x014a, all -> 0x013f }
-        r21 = r15.getChannel();	 Catch:{ Exception -> 0x00ff }
-        r12 = r21.lock();	 Catch:{ Exception -> 0x00ff }
-        r7 = r6.getAbsolutePath();	 Catch:{ Exception -> 0x00ff }
-        r21 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x00ff }
-        r21.<init>();	 Catch:{ Exception -> 0x00ff }
-        r0 = r21;
-        r21 = r0.append(r7);	 Catch:{ Exception -> 0x00ff }
-        r22 = java.io.File.separator;	 Catch:{ Exception -> 0x00ff }
-        r21 = r21.append(r22);	 Catch:{ Exception -> 0x00ff }
-        r22 = r9.getName();	 Catch:{ Exception -> 0x00ff }
-        r21 = r21.append(r22);	 Catch:{ Exception -> 0x00ff }
-        r0 = r21;
-        r1 = r18;
-        r21 = r0.append(r1);	 Catch:{ Exception -> 0x00ff }
-        r4 = r21.toString();	 Catch:{ Exception -> 0x00ff }
-        r5 = new java.io.File;	 Catch:{ Exception -> 0x00ff }
-        r5.<init>(r4);	 Catch:{ Exception -> 0x00ff }
-        com.xiaomi.channel.commonutils.file.IOUtils.copyFile(r9, r5);	 Catch:{ IOException -> 0x00f4 }
-    L_0x00dc:
-        r9.delete();	 Catch:{ Exception -> 0x00ff }
-        if (r12 == 0) goto L_0x00ea;
-    L_0x00e1:
-        r21 = r12.isValid();
-        if (r21 == 0) goto L_0x00ea;
-    L_0x00e7:
-        r12.release();	 Catch:{ IOException -> 0x0118 }
-    L_0x00ea:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r15);
-        if (r13 == 0) goto L_0x006e;
-    L_0x00ef:
-        r13.delete();
-        goto L_0x006e;
-    L_0x00f4:
-        r8 = move-exception;
-        r8.printStackTrace();	 Catch:{ Exception -> 0x00ff }
-        r9.delete();	 Catch:{ Exception -> 0x00ff }
-        r5.delete();	 Catch:{ Exception -> 0x00ff }
-        goto L_0x00dc;
-    L_0x00ff:
-        r8 = move-exception;
-    L_0x0100:
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r8);	 Catch:{ all -> 0x0143 }
-        if (r12 == 0) goto L_0x010e;
-    L_0x0105:
-        r21 = r12.isValid();
-        if (r21 == 0) goto L_0x010e;
-    L_0x010b:
-        r12.release();	 Catch:{ IOException -> 0x011d }
-    L_0x010e:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r15);
-        if (r13 == 0) goto L_0x006e;
-    L_0x0113:
-        r13.delete();
-        goto L_0x006e;
-    L_0x0118:
-        r8 = move-exception;
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r8);
-        goto L_0x00ea;
-    L_0x011d:
-        r8 = move-exception;
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r8);
-        goto L_0x010e;
-    L_0x0122:
-        r17 = move-exception;
-        r13 = r14;
-        r15 = r16;
-    L_0x0126:
-        if (r12 == 0) goto L_0x0131;
-    L_0x0128:
-        r20 = r12.isValid();
-        if (r20 == 0) goto L_0x0131;
-    L_0x012e:
-        r12.release();	 Catch:{ IOException -> 0x013a }
-    L_0x0131:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r15);
-        if (r13 == 0) goto L_0x0139;
-    L_0x0136:
-        r13.delete();
-    L_0x0139:
-        throw r17;
-    L_0x013a:
-        r8 = move-exception;
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r8);
-        goto L_0x0131;
-    L_0x013f:
-        r17 = move-exception;
-        r15 = r16;
-        goto L_0x0126;
-    L_0x0143:
-        r17 = move-exception;
-        goto L_0x0126;
-    L_0x0145:
-        r8 = move-exception;
-        r13 = r14;
-        r15 = r16;
-        goto L_0x0100;
-    L_0x014a:
-        r8 = move-exception;
-        r15 = r16;
-        goto L_0x0100;
-    L_0x014e:
-        r13 = r14;
-        r15 = r16;
-        goto L_0x006e;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.clientreport.util.ClientReportUtil.moveFiles(android.content.Context, java.lang.String, java.lang.String):void");
+        IOUtils.closeQuietly(lockRandomFile);
+        if (lockFile != null) {
+            lockFile.delete();
+        }
+        throw th;
+        if (lock != null && lock.isValid()) {
+            try {
+                lock.release();
+            } catch (Throwable e3222) {
+                MyLog.e(e3222);
+            }
+        }
+        IOUtils.closeQuietly(lockRandomFile);
+        if (lockFile != null) {
+        }
+        throw th;
     }
 
     public static boolean isFileCanBeUse(Context context, String filePath) {

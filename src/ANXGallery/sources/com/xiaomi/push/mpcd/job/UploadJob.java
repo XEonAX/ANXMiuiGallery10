@@ -3,12 +3,16 @@ package com.xiaomi.push.mpcd.job;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.text.TextUtils;
 import com.xiaomi.channel.commonutils.file.IOUtils;
+import com.xiaomi.channel.commonutils.misc.ByteUtils;
 import com.xiaomi.channel.commonutils.misc.CollectionUtils;
 import com.xiaomi.channel.commonutils.misc.ScheduledJobManager.Job;
 import com.xiaomi.channel.commonutils.network.Network;
 import com.xiaomi.push.mpcd.CDActionProvider;
 import com.xiaomi.push.mpcd.CDActionProviderHolder;
+import com.xiaomi.push.mpcd.CDataHelper;
+import com.xiaomi.push.mpcd.Constants;
 import com.xiaomi.push.service.OnlineConfig;
 import com.xiaomi.xmpush.thrift.ActionType;
 import com.xiaomi.xmpush.thrift.ConfigKey;
@@ -18,6 +22,11 @@ import com.xiaomi.xmpush.thrift.XmPushActionCollectData;
 import com.xiaomi.xmpush.thrift.XmPushActionNotification;
 import com.xiaomi.xmpush.thrift.XmPushThriftSerializeUtils;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileLock;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UploadJob extends Job {
@@ -112,161 +121,104 @@ public class UploadJob extends Job {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:43:0x00ae A:{SYNTHETIC, Splitter: B:43:0x00ae} */
-    private java.util.List<com.xiaomi.xmpush.thrift.DataCollectionItem> readFromFile(java.io.File r21) {
-        /*
-        r20 = this;
-        r17 = com.xiaomi.push.mpcd.CDActionProviderHolder.getInstance();
-        r3 = r17.getCDActionProvider();
-        if (r3 != 0) goto L_0x0014;
-    L_0x000a:
-        r14 = "";
-    L_0x000c:
-        r17 = android.text.TextUtils.isEmpty(r14);
-        if (r17 == 0) goto L_0x0019;
-    L_0x0012:
-        r15 = 0;
-    L_0x0013:
-        return r15;
-    L_0x0014:
-        r14 = r3.getRegSecret();
-        goto L_0x000c;
-    L_0x0019:
-        r15 = new java.util.ArrayList;
-        r15.<init>();
-        r5 = 0;
-        r17 = 4;
-        r0 = r17;
-        r9 = new byte[r0];
-        r12 = 0;
-        r10 = 0;
-        r18 = com.xiaomi.push.mpcd.Constants.cDataLock4Thread;
-        monitor-enter(r18);
-        r11 = new java.io.File;	 Catch:{ Exception -> 0x00e2, all -> 0x00be }
-        r0 = r20;
-        r0 = r0.context;	 Catch:{ Exception -> 0x00e2, all -> 0x00be }
-        r17 = r0;
-        r19 = 0;
-        r0 = r17;
-        r1 = r19;
-        r17 = r0.getExternalFilesDir(r1);	 Catch:{ Exception -> 0x00e2, all -> 0x00be }
-        r19 = "push_cdata.lock";
-        r0 = r17;
-        r1 = r19;
-        r11.<init>(r0, r1);	 Catch:{ Exception -> 0x00e2, all -> 0x00be }
-        com.xiaomi.channel.commonutils.file.IOUtils.createFileQuietly(r11);	 Catch:{ Exception -> 0x00e2, all -> 0x00be }
-        r13 = new java.io.RandomAccessFile;	 Catch:{ Exception -> 0x00e2, all -> 0x00be }
-        r17 = "rw";
-        r0 = r17;
-        r13.<init>(r11, r0);	 Catch:{ Exception -> 0x00e2, all -> 0x00be }
-        r17 = r13.getChannel();	 Catch:{ Exception -> 0x00e4, all -> 0x00db }
-        r10 = r17.lock();	 Catch:{ Exception -> 0x00e4, all -> 0x00db }
-        r6 = new java.io.FileInputStream;	 Catch:{ Exception -> 0x00e4, all -> 0x00db }
-        r0 = r21;
-        r6.<init>(r0);	 Catch:{ Exception -> 0x00e4, all -> 0x00db }
-    L_0x0060:
-        r16 = r6.read(r9);	 Catch:{ Exception -> 0x00a9, all -> 0x00de }
-        r17 = 4;
-        r0 = r16;
-        r1 = r17;
-        if (r0 == r1) goto L_0x0084;
-    L_0x006c:
-        if (r10 == 0) goto L_0x0077;
-    L_0x006e:
-        r17 = r10.isValid();	 Catch:{ all -> 0x00d7 }
-        if (r17 == 0) goto L_0x0077;
-    L_0x0074:
-        r10.release();	 Catch:{ IOException -> 0x00d1 }
-    L_0x0077:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r6);	 Catch:{ all -> 0x00d7 }
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r13);	 Catch:{ all -> 0x00d7 }
-        r12 = r13;
-        r5 = r6;
-    L_0x007f:
-        monitor-exit(r18);	 Catch:{ all -> 0x0081 }
-        goto L_0x0013;
-    L_0x0081:
-        r17 = move-exception;
-    L_0x0082:
-        monitor-exit(r18);	 Catch:{ all -> 0x0081 }
-        throw r17;
-    L_0x0084:
-        r8 = com.xiaomi.channel.commonutils.misc.ByteUtils.toInt(r9);	 Catch:{ Exception -> 0x00a9, all -> 0x00de }
-        r2 = new byte[r8];	 Catch:{ Exception -> 0x00a9, all -> 0x00de }
-        r16 = r6.read(r2);	 Catch:{ Exception -> 0x00a9, all -> 0x00de }
-        r0 = r16;
-        if (r0 != r8) goto L_0x006c;
-    L_0x0092:
-        r4 = com.xiaomi.push.mpcd.CDataHelper.decryptData(r14, r2);	 Catch:{ Exception -> 0x00a9, all -> 0x00de }
-        if (r4 == 0) goto L_0x0060;
-    L_0x0098:
-        r0 = r4.length;	 Catch:{ Exception -> 0x00a9, all -> 0x00de }
-        r17 = r0;
-        if (r17 == 0) goto L_0x0060;
-    L_0x009d:
-        r7 = new com.xiaomi.xmpush.thrift.DataCollectionItem;	 Catch:{ Exception -> 0x00a9, all -> 0x00de }
-        r7.<init>();	 Catch:{ Exception -> 0x00a9, all -> 0x00de }
-        com.xiaomi.xmpush.thrift.XmPushThriftSerializeUtils.convertByteArrayToThriftObject(r7, r4);	 Catch:{ Exception -> 0x00a9, all -> 0x00de }
-        r15.add(r7);	 Catch:{ Exception -> 0x00a9, all -> 0x00de }
-        goto L_0x0060;
-    L_0x00a9:
-        r17 = move-exception;
-        r12 = r13;
-        r5 = r6;
-    L_0x00ac:
-        if (r10 == 0) goto L_0x00b7;
-    L_0x00ae:
-        r17 = r10.isValid();	 Catch:{ all -> 0x0081 }
-        if (r17 == 0) goto L_0x00b7;
-    L_0x00b4:
-        r10.release();	 Catch:{ IOException -> 0x00d3 }
-    L_0x00b7:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r5);	 Catch:{ all -> 0x0081 }
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r12);	 Catch:{ all -> 0x0081 }
-        goto L_0x007f;
-    L_0x00be:
-        r17 = move-exception;
-    L_0x00bf:
-        if (r10 == 0) goto L_0x00ca;
-    L_0x00c1:
-        r19 = r10.isValid();	 Catch:{ all -> 0x0081 }
-        if (r19 == 0) goto L_0x00ca;
-    L_0x00c7:
-        r10.release();	 Catch:{ IOException -> 0x00d5 }
-    L_0x00ca:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r5);	 Catch:{ all -> 0x0081 }
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r12);	 Catch:{ all -> 0x0081 }
-        throw r17;	 Catch:{ all -> 0x0081 }
-    L_0x00d1:
-        r17 = move-exception;
-        goto L_0x0077;
-    L_0x00d3:
-        r17 = move-exception;
-        goto L_0x00b7;
-    L_0x00d5:
-        r19 = move-exception;
-        goto L_0x00ca;
-    L_0x00d7:
-        r17 = move-exception;
-        r12 = r13;
-        r5 = r6;
-        goto L_0x0082;
-    L_0x00db:
-        r17 = move-exception;
-        r12 = r13;
-        goto L_0x00bf;
-    L_0x00de:
-        r17 = move-exception;
-        r12 = r13;
-        r5 = r6;
-        goto L_0x00bf;
-    L_0x00e2:
-        r17 = move-exception;
-        goto L_0x00ac;
-    L_0x00e4:
-        r17 = move-exception;
-        r12 = r13;
-        goto L_0x00ac;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.push.mpcd.job.UploadJob.readFromFile(java.io.File):java.util.List<com.xiaomi.xmpush.thrift.DataCollectionItem>");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private List<DataCollectionItem> readFromFile(File file) {
+        Throwable th;
+        CDActionProvider cdActionProvider = CDActionProviderHolder.getInstance().getCDActionProvider();
+        String regSecret = cdActionProvider == null ? "" : cdActionProvider.getRegSecret();
+        if (TextUtils.isEmpty(regSecret)) {
+            return null;
+        }
+        List<DataCollectionItem> result = new ArrayList();
+        FileInputStream fis = null;
+        byte[] lengthBuffer = new byte[4];
+        RandomAccessFile lockRandomFile = null;
+        FileLock lock = null;
+        synchronized (Constants.cDataLock4Thread) {
+            try {
+                File lockFile = new File(this.context.getExternalFilesDir(null), "push_cdata.lock");
+                IOUtils.createFileQuietly(lockFile);
+                RandomAccessFile lockRandomFile2 = new RandomAccessFile(lockFile, "rw");
+                try {
+                    lock = lockRandomFile2.getChannel().lock();
+                    FileInputStream fis2 = new FileInputStream(file);
+                    while (fis2.read(lengthBuffer) == 4) {
+                        try {
+                            int length = ByteUtils.toInt(lengthBuffer);
+                            byte[] buffer = new byte[length];
+                            if (fis2.read(buffer) != length) {
+                                break;
+                            }
+                            byte[] decryptBytes = CDataHelper.decryptData(regSecret, buffer);
+                            if (!(decryptBytes == null || decryptBytes.length == 0)) {
+                                DataCollectionItem item = new DataCollectionItem();
+                                XmPushThriftSerializeUtils.convertByteArrayToThriftObject(item, decryptBytes);
+                                result.add(item);
+                            }
+                        } catch (Exception e) {
+                            lockRandomFile = lockRandomFile2;
+                            fis = fis2;
+                        } catch (Throwable th2) {
+                            th = th2;
+                            lockRandomFile = lockRandomFile2;
+                            fis = fis2;
+                        }
+                    }
+                    if (lock != null) {
+                        try {
+                            if (lock.isValid()) {
+                                try {
+                                    lock.release();
+                                } catch (IOException e2) {
+                                }
+                            }
+                        } catch (Throwable th3) {
+                            th = th3;
+                            lockRandomFile = lockRandomFile2;
+                            fis = fis2;
+                        }
+                    }
+                    IOUtils.closeQuietly(fis2);
+                    IOUtils.closeQuietly(lockRandomFile2);
+                    lockRandomFile = lockRandomFile2;
+                    fis = fis2;
+                } catch (Exception e3) {
+                    lockRandomFile = lockRandomFile2;
+                    if (lock != null) {
+                        if (lock.isValid()) {
+                            try {
+                                lock.release();
+                            } catch (IOException e4) {
+                            }
+                        }
+                    }
+                    IOUtils.closeQuietly(fis);
+                    IOUtils.closeQuietly(lockRandomFile);
+                    return result;
+                } catch (Throwable th4) {
+                    th = th4;
+                    lockRandomFile = lockRandomFile2;
+                    if (lock != null && lock.isValid()) {
+                        try {
+                            lock.release();
+                        } catch (IOException e5) {
+                        }
+                    }
+                    IOUtils.closeQuietly(fis);
+                    IOUtils.closeQuietly(lockRandomFile);
+                    throw th;
+                }
+            } catch (Exception e6) {
+                if (lock != null) {
+                }
+                IOUtils.closeQuietly(fis);
+                IOUtils.closeQuietly(lockRandomFile);
+                return result;
+            } catch (Throwable th5) {
+                th = th5;
+            }
+            return result;
+        }
+        throw th;
     }
 }

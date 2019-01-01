@@ -9,9 +9,11 @@ import android.content.Loader;
 import android.location.Address;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -165,101 +167,37 @@ public class PhotoDetailFragment extends BaseFragment {
     /* JADX WARNING: Missing block: B:3:0x0016, code:
             if (r2 == null) goto L_0x0018;
      */
-    public android.view.View onInflateView(android.view.LayoutInflater r5, android.view.ViewGroup r6, android.os.Bundle r7) {
-        /*
-        r4 = this;
-        r2 = r4.mActivity;
-        r2 = r2.getIntent();
-        r0 = r2.getExtras();
-        if (r0 == 0) goto L_0x0018;
-    L_0x000c:
-        r2 = "photo_detail_target";
-        r2 = r0.getSerializable(r2);
-        r2 = (com.miui.gallery.model.BaseDataItem) r2;
-        r4.mItem = r2;
-        if (r2 != 0) goto L_0x001b;
-    L_0x0018:
-        r4.finish();
-    L_0x001b:
-        r4.setRootViewClickable(r6);
-        r2 = 2130968793; // 0x7f0400d9 float:1.754625E38 double:1.052838473E-314;
-        r3 = 0;
-        r1 = r5.inflate(r2, r6, r3);
-        r2 = 2131886581; // 0x7f1201f5 float:1.9407745E38 double:1.0532919205E-314;
-        r2 = r1.findViewById(r2);
-        r4.mTimeItem = r2;
-        r2 = 2131886583; // 0x7f1201f7 float:1.9407749E38 double:1.0532919215E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mTimeTitle = r2;
-        r2 = 2131886584; // 0x7f1201f8 float:1.940775E38 double:1.053291922E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mTimeSub = r2;
-        r2 = 2131886585; // 0x7f1201f9 float:1.9407753E38 double:1.0532919225E-314;
-        r2 = r1.findViewById(r2);
-        r4.mFileInfoItem = r2;
-        r2 = 2131886587; // 0x7f1201fb float:1.9407757E38 double:1.0532919235E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mFileInfoTitle = r2;
-        r2 = 2131886588; // 0x7f1201fc float:1.940776E38 double:1.053291924E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mTipNoDownload = r2;
-        r2 = 2131886589; // 0x7f1201fd float:1.9407761E38 double:1.0532919245E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mFileInfoSub = r2;
-        r2 = 2131886590; // 0x7f1201fe float:1.9407763E38 double:1.053291925E-314;
-        r2 = r1.findViewById(r2);
-        r4.mParamsItem = r2;
-        r2 = 2131886592; // 0x7f120200 float:1.9407767E38 double:1.053291926E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mTakenParamsTitle = r2;
-        r2 = 2131886593; // 0x7f120201 float:1.940777E38 double:1.0532919264E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mTakenParamsSub = r2;
-        r2 = 2131886594; // 0x7f120202 float:1.9407771E38 double:1.053291927E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mTakenParamsThird = r2;
-        r2 = 2131886595; // 0x7f120203 float:1.9407773E38 double:1.0532919274E-314;
-        r2 = r1.findViewById(r2);
-        r4.mPathItem = r2;
-        r2 = 2131886597; // 0x7f120205 float:1.9407777E38 double:1.0532919284E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mPath = r2;
-        r2 = 2131886598; // 0x7f120206 float:1.940778E38 double:1.053291929E-314;
-        r2 = r1.findViewById(r2);
-        r4.mLocationItem = r2;
-        r2 = 2131886600; // 0x7f120208 float:1.9407783E38 double:1.05329193E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mLocation = r2;
-        r2 = 2131886553; // 0x7f1201d9 float:1.9407688E38 double:1.0532919067E-314;
-        r2 = r1.findViewById(r2);
-        r4.mContentContainer = r2;
-        r2 = 2131886100; // 0x7f120014 float:1.940677E38 double:1.053291683E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.ProgressBar) r2;
-        r4.mProgress = r2;
-        r2 = 2131886601; // 0x7f120209 float:1.9407785E38 double:1.0532919304E-314;
-        r2 = r1.findViewById(r2);
-        r4.mScreenshotPackageItem = r2;
-        r2 = 2131886603; // 0x7f12020b float:1.940779E38 double:1.0532919314E-314;
-        r2 = r1.findViewById(r2);
-        r2 = (android.widget.TextView) r2;
-        r4.mScreenshotPackageInfo = r2;
-        r2 = r4.mLocation;
-        r3 = r4.mClickListener;
-        r2.setOnClickListener(r3);
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.ui.PhotoDetailFragment.onInflateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle):android.view.View");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public View onInflateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Bundle bundle = this.mActivity.getIntent().getExtras();
+        if (bundle != null) {
+            BaseDataItem baseDataItem = (BaseDataItem) bundle.getSerializable("photo_detail_target");
+            this.mItem = baseDataItem;
+        }
+        finish();
+        setRootViewClickable(container);
+        View view = inflater.inflate(R.layout.photo_detail, container, false);
+        this.mTimeItem = view.findViewById(R.id.time_item);
+        this.mTimeTitle = (TextView) view.findViewById(R.id.time_title);
+        this.mTimeSub = (TextView) view.findViewById(R.id.time_subtitle);
+        this.mFileInfoItem = view.findViewById(R.id.file_info_item);
+        this.mFileInfoTitle = (TextView) view.findViewById(R.id.file_info_title);
+        this.mTipNoDownload = (TextView) view.findViewById(R.id.tip_no_download);
+        this.mFileInfoSub = (TextView) view.findViewById(R.id.file_info_subtitle);
+        this.mParamsItem = view.findViewById(R.id.params_item);
+        this.mTakenParamsTitle = (TextView) view.findViewById(R.id.params_title);
+        this.mTakenParamsSub = (TextView) view.findViewById(R.id.params_subtitle);
+        this.mTakenParamsThird = (TextView) view.findViewById(R.id.params_thirdtitle);
+        this.mPathItem = view.findViewById(R.id.path_item);
+        this.mPath = (TextView) view.findViewById(R.id.path_title);
+        this.mLocationItem = view.findViewById(R.id.location_item);
+        this.mLocation = (TextView) view.findViewById(R.id.location_title);
+        this.mContentContainer = view.findViewById(R.id.content_container);
+        this.mProgress = (ProgressBar) view.findViewById(R.id.progress);
+        this.mScreenshotPackageItem = view.findViewById(R.id.screenshot_package_info);
+        this.mScreenshotPackageInfo = (TextView) view.findViewById(R.id.screenshot_package_name);
+        this.mLocation.setOnClickListener(this.mClickListener);
+        return view;
     }
 
     private boolean isNeedConfirmPassword() {

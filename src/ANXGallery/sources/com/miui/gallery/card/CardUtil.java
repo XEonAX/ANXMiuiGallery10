@@ -11,6 +11,7 @@ import com.miui.gallery.assistant.process.BaseImageTask;
 import com.miui.gallery.card.Card.CardExtraInfo;
 import com.miui.gallery.cloud.card.model.CardInfo;
 import com.miui.gallery.dao.GalleryEntityManager;
+import com.miui.gallery.provider.GalleryContract.Cloud;
 import com.miui.gallery.provider.GalleryContract.Common;
 import com.miui.gallery.provider.GalleryContract.Media;
 import com.miui.gallery.sdk.download.DownloadType;
@@ -26,83 +27,42 @@ import java.util.Locale;
 
 public class CardUtil {
     /* JADX WARNING: Removed duplicated region for block: B:8:0x0045 A:{Catch:{ all -> 0x007b }} */
-    public static java.util.List<com.miui.gallery.assistant.model.MediaFeatureItem> getCoverMediaItemsByServerIds(java.util.List<java.lang.Long> r12) {
-        /*
-        r11 = 0;
-        r4 = 0;
-        r0 = com.miui.gallery.util.MiscUtil.isValid(r12);
-        if (r0 == 0) goto L_0x0080;
-    L_0x0008:
-        r0 = "%s IN ('%s')";
-        r1 = 2;
-        r1 = new java.lang.Object[r1];
-        r2 = "serverId";
-        r1[r11] = r2;
-        r2 = 1;
-        r5 = "','";
-        r5 = android.text.TextUtils.join(r5, r12);
-        r1[r2] = r5;
-        r3 = java.lang.String.format(r0, r1);
-        r0 = com.miui.gallery.GalleryApp.sGetAndroidContext();
-        r0 = r0.getContentResolver();
-        r1 = com.miui.gallery.provider.GalleryContract.Cloud.CLOUD_URI;
-        r2 = com.miui.gallery.assistant.model.MediaFeatureItem.PROJECTION;
-        r5 = r4;
-        r6 = r0.query(r1, r2, r3, r4, r5);
-        if (r6 == 0) goto L_0x0080;
-    L_0x0031:
-        r0 = r6.getCount();
-        r1 = r12.size();
-        r0 = java.lang.Math.max(r0, r1);
-        r9 = new com.miui.gallery.assistant.model.MediaFeatureItem[r0];
-    L_0x003f:
-        r0 = r6.moveToNext();	 Catch:{ all -> 0x007b }
-        if (r0 == 0) goto L_0x0065;
-    L_0x0045:
-        r8 = new com.miui.gallery.assistant.model.MediaFeatureItem;	 Catch:{ all -> 0x007b }
-        r8.<init>(r6);	 Catch:{ all -> 0x007b }
-        r7 = 0;
-    L_0x004b:
-        r0 = r9.length;	 Catch:{ all -> 0x007b }
-        if (r7 >= r0) goto L_0x003f;
-    L_0x004e:
-        r0 = r12.get(r7);	 Catch:{ all -> 0x007b }
-        r0 = (java.lang.Long) r0;	 Catch:{ all -> 0x007b }
-        r0 = r0.longValue();	 Catch:{ all -> 0x007b }
-        r4 = r8.getServerId();	 Catch:{ all -> 0x007b }
-        r0 = (r0 > r4 ? 1 : (r0 == r4 ? 0 : -1));
-        if (r0 != 0) goto L_0x0062;
-    L_0x0060:
-        r9[r7] = r8;	 Catch:{ all -> 0x007b }
-    L_0x0062:
-        r7 = r7 + 1;
-        goto L_0x004b;
-    L_0x0065:
-        com.miui.gallery.util.MiscUtil.closeSilently(r6);
-        r10 = new java.util.ArrayList;
-        r10.<init>();
-        r1 = r9.length;
-        r0 = r11;
-    L_0x006f:
-        if (r0 >= r1) goto L_0x0081;
-    L_0x0071:
-        r8 = r9[r0];
-        if (r8 == 0) goto L_0x0078;
-    L_0x0075:
-        r10.add(r8);
-    L_0x0078:
-        r0 = r0 + 1;
-        goto L_0x006f;
-    L_0x007b:
-        r0 = move-exception;
-        com.miui.gallery.util.MiscUtil.closeSilently(r6);
-        throw r0;
-    L_0x0080:
-        r10 = r4;
-    L_0x0081:
-        return r10;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.card.CardUtil.getCoverMediaItemsByServerIds(java.util.List):java.util.List<com.miui.gallery.assistant.model.MediaFeatureItem>");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static List<MediaFeatureItem> getCoverMediaItemsByServerIds(List<Long> mediaCoverServerIds) {
+        if (MiscUtil.isValid(mediaCoverServerIds)) {
+            Cursor cursor = GalleryApp.sGetAndroidContext().getContentResolver().query(Cloud.CLOUD_URI, MediaFeatureItem.PROJECTION, String.format("%s IN ('%s')", new Object[]{"serverId", TextUtils.join("','", mediaCoverServerIds)}), null, null);
+            if (cursor != null) {
+                MediaFeatureItem mediaFeatureItem;
+                MediaFeatureItem[] mediaFeatureItems1 = new MediaFeatureItem[Math.max(cursor.getCount(), mediaCoverServerIds.size())];
+                while (cursor.moveToNext()) {
+                    try {
+                        mediaFeatureItem = new MediaFeatureItem(cursor);
+                        int i = 0;
+                        while (true) {
+                            if (i < mediaFeatureItems1.length) {
+                                if (((Long) mediaCoverServerIds.get(i)).longValue() == mediaFeatureItem.getServerId()) {
+                                    mediaFeatureItems1[i] = mediaFeatureItem;
+                                }
+                                i++;
+                            }
+                        }
+                        if (cursor.moveToNext()) {
+                        }
+                        break;
+                    } finally {
+                        MiscUtil.closeSilently(cursor);
+                    }
+                }
+                List<MediaFeatureItem> arrayList = new ArrayList();
+                for (MediaFeatureItem mediaFeatureItem2 : mediaFeatureItems1) {
+                    if (mediaFeatureItem2 != null) {
+                        arrayList.add(mediaFeatureItem2);
+                    }
+                }
+                return arrayList;
+            }
+        }
+        return null;
     }
 
     public static List<String> getSha1sByServerIds(List<Long> serverId) {

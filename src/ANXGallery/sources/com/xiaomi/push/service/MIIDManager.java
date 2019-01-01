@@ -119,43 +119,14 @@ public class MIIDManager {
     /* JADX WARNING: Missing block: B:23:?, code:
             return;
      */
-    private void executeCallback(java.lang.String r6) {
-        /*
-        r5 = this;
-        r3 = r5.mObject;
-        monitor-enter(r3);
-        r2 = r5.mMIIDUpdatedCallbacks;	 Catch:{ all -> 0x0030 }
-        if (r2 == 0) goto L_0x0010;
-    L_0x0007:
-        r2 = r5.mMIIDUpdatedCallbacks;	 Catch:{ all -> 0x0030 }
-        r2 = r2.size();	 Catch:{ all -> 0x0030 }
-        r4 = 1;
-        if (r2 >= r4) goto L_0x0012;
-    L_0x0010:
-        monitor-exit(r3);	 Catch:{ all -> 0x0030 }
-    L_0x0011:
-        return;
-    L_0x0012:
-        r1 = new java.util.ArrayList;	 Catch:{ all -> 0x0030 }
-        r2 = r5.mMIIDUpdatedCallbacks;	 Catch:{ all -> 0x0030 }
-        r1.<init>(r2);	 Catch:{ all -> 0x0030 }
-        monitor-exit(r3);	 Catch:{ all -> 0x0030 }
-        r2 = r1.iterator();
-    L_0x001e:
-        r3 = r2.hasNext();
-        if (r3 == 0) goto L_0x0011;
-    L_0x0024:
-        r0 = r2.next();
-        r0 = (com.xiaomi.push.service.MIIDManager.MIIDUpdatedCallback) r0;
-        r3 = r5.mContext;
-        r0.onMIIDUpdate(r6, r3);
-        goto L_0x001e;
-    L_0x0030:
-        r2 = move-exception;
-        monitor-exit(r3);	 Catch:{ all -> 0x0030 }
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.push.service.MIIDManager.executeCallback(java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void executeCallback(String miid) {
+        synchronized (this.mObject) {
+            if (this.mMIIDUpdatedCallbacks == null || this.mMIIDUpdatedCallbacks.size() < 1) {
+            } else {
+                ArrayList<MIIDUpdatedCallback> callbacks = new ArrayList(this.mMIIDUpdatedCallbacks);
+            }
+        }
     }
 
     public String getMIID() {
@@ -191,35 +162,16 @@ public class MIIDManager {
     /* JADX WARNING: Missing block: B:15:?, code:
             return;
      */
-    public void removeMIIDUpdateCallback(com.xiaomi.push.service.MIIDManager.MIIDUpdatedCallback r3) {
-        /*
-        r2 = this;
-        r1 = r2.mObject;
-        monitor-enter(r1);
-        r0 = r2.mMIIDUpdatedCallbacks;	 Catch:{ all -> 0x001d }
-        if (r0 != 0) goto L_0x0009;
-    L_0x0007:
-        monitor-exit(r1);	 Catch:{ all -> 0x001d }
-    L_0x0008:
-        return;
-    L_0x0009:
-        if (r3 == 0) goto L_0x001b;
-    L_0x000b:
-        r0 = r2.mMIIDUpdatedCallbacks;	 Catch:{ all -> 0x001d }
-        r0.remove(r3);	 Catch:{ all -> 0x001d }
-        r0 = r2.mMIIDUpdatedCallbacks;	 Catch:{ all -> 0x001d }
-        r0 = r0.size();	 Catch:{ all -> 0x001d }
-        if (r0 != 0) goto L_0x001b;
-    L_0x0018:
-        r2.recycleMIIDUpdateListener();	 Catch:{ all -> 0x001d }
-    L_0x001b:
-        monitor-exit(r1);	 Catch:{ all -> 0x001d }
-        goto L_0x0008;
-    L_0x001d:
-        r0 = move-exception;
-        monitor-exit(r1);	 Catch:{ all -> 0x001d }
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.push.service.MIIDManager.removeMIIDUpdateCallback(com.xiaomi.push.service.MIIDManager$MIIDUpdatedCallback):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void removeMIIDUpdateCallback(MIIDUpdatedCallback miidUpdatedCallback) {
+        synchronized (this.mObject) {
+            if (this.mMIIDUpdatedCallbacks == null) {
+            } else if (miidUpdatedCallback != null) {
+                this.mMIIDUpdatedCallbacks.remove(miidUpdatedCallback);
+                if (this.mMIIDUpdatedCallbacks.size() == 0) {
+                    recycleMIIDUpdateListener();
+                }
+            }
+        }
     }
 }

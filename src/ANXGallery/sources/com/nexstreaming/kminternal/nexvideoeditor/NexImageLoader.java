@@ -9,21 +9,43 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
+import android.graphics.BlurMaskFilter;
+import android.graphics.BlurMaskFilter.Blur;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Paint.Align;
+import android.graphics.Paint.FontMetrics;
+import android.graphics.Paint.Style;
+import android.graphics.Path;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.MediaStore.Images.Media;
 import android.provider.MediaStore.Images.Thumbnails;
+import android.text.Layout.Alignment;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils.TruncateAt;
 import android.util.Log;
 import com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader;
 import com.nexstreaming.app.common.nexasset.assetpackage.f;
+import com.nexstreaming.kminternal.kinemaster.fonts.Font.TypefaceLoadException;
+import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.WeakHashMap;
 
 public final class NexImageLoader {
@@ -294,1748 +316,632 @@ public final class NexImageLoader {
             r5 = r4;
             r4 = r14;
      */
-    public com.nexstreaming.kminternal.nexvideoeditor.NexImage openThemeImage(java.lang.String r46) {
-        /*
-        r45 = this;
-        r4 = 0;
-        r6 = 0;
-        r5 = 0;
-        r2 = ".force_effect/";
-        r0 = r46;
-        r2 = r0.contains(r2);
-        if (r2 == 0) goto L_0x0017;
-    L_0x000d:
-        r2 = ".force_effect/";
-        r3 = "/";
-        r0 = r46;
-        r46 = r0.replace(r2, r3);
-    L_0x0017:
-        r2 = "[ThemeImage]/@special:";
-        r0 = r46;
-        r2 = r0.startsWith(r2);
-        if (r2 != 0) goto L_0x002b;
-    L_0x0021:
-        r2 = "[PvwThImage]/@special:";
-        r0 = r46;
-        r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x002d;
-    L_0x002b:
-        r2 = 0;
-    L_0x002c:
-        return r2;
-    L_0x002d:
-        r2 = "[Text]";
-        r0 = r46;
-        r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x0a7a;
-    L_0x0037:
-        r2 = "[Text]";
-        r2 = r2.length();
-        r0 = r46;
-        r6 = r0.substring(r2);
-        r2 = ";;";
-        r7 = r6.indexOf(r2);
-        r2 = r7 + 2;
-        r3 = r6.substring(r2);
-        r2 = 0;
-        r4 = 27;
-        r5 = r3.indexOf(r4);
-        r4 = -1;
-        if (r5 <= r4) goto L_0x0dc6;
-    L_0x0059:
-        r0 = r45;
-        r4 = r0.m_effectResourceLoader;
-        if (r4 == 0) goto L_0x006c;
-    L_0x005f:
-        r0 = r45;
-        r4 = r0.m_effectResourceLoader;	 Catch:{ TypefaceLoadException -> 0x00ca }
-        r8 = 0;
-        r8 = r3.substring(r8, r5);	 Catch:{ TypefaceLoadException -> 0x00ca }
-        r2 = r4.a(r8);	 Catch:{ TypefaceLoadException -> 0x00ca }
-    L_0x006c:
-        r4 = r5 + 1;
-        r3 = r3.substring(r4);
-        r5 = r2;
-        r2 = r3;
-    L_0x0074:
-        r3 = r2.length();
-        r4 = 1;
-        if (r3 >= r4) goto L_0x007d;
-    L_0x007b:
-        r2 = "Title Text Goes Here";
-    L_0x007d:
-        r3 = 1;
-        r0 = new java.lang.String[r3];
-        r19 = r0;
-        r3 = 0;
-        r19[r3] = r2;
-        r3 = "NexImageLoader";
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r8 = "==== User Text: ";
-        r4 = r4.append(r8);
-        r2 = r4.append(r2);
-        r2 = r2.toString();
-        android.util.Log.d(r3, r2);
-        r2 = 0;
-        r2 = r6.substring(r2, r7);
-        r3 = ";";
-        r3 = r2.split(r3);
-        r20 = new java.util.HashMap;
-        r20.<init>();
-        r2 = 0;
-    L_0x00ae:
-        r4 = r3.length;
-        if (r2 >= r4) goto L_0x00e0;
-    L_0x00b1:
-        r4 = r3[r2];
-        r6 = "=";
-        r4 = r4.split(r6);
-        r6 = r4.length;
-        r7 = 2;
-        if (r6 >= r7) goto L_0x00d4;
-    L_0x00bd:
-        r6 = 0;
-        r4 = r4[r6];
-        r6 = "";
-        r0 = r20;
-        r0.put(r4, r6);
-    L_0x00c7:
-        r2 = r2 + 1;
-        goto L_0x00ae;
-    L_0x00ca:
-        r4 = move-exception;
-        r8 = "NexImageLoader";
-        r9 = "typeface error";
-        android.util.Log.e(r8, r9, r4);
-        goto L_0x006c;
-    L_0x00d4:
-        r6 = 0;
-        r6 = r4[r6];
-        r7 = 1;
-        r4 = r4[r7];
-        r0 = r20;
-        r0.put(r6, r4);
-        goto L_0x00c7;
-    L_0x00e0:
-        r2 = "flags";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r3 = 16;
-        r2 = java.lang.Long.parseLong(r2, r3);
-        r13 = (int) r2;
-        r2 = "align";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r6 = java.lang.Integer.parseInt(r2);
-        r2 = "longtext";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r21 = java.lang.Integer.parseInt(r2);
-        r2 = "width";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r18 = java.lang.Integer.parseInt(r2);
-        r2 = "height";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r15 = java.lang.Integer.parseInt(r2);
-        r2 = "bgcolor";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r3 = 16;
-        r2 = java.lang.Long.parseLong(r2, r3);
-        r0 = (int) r2;
-        r22 = r0;
-        r2 = "fillcolor";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r3 = 16;
-        r2 = java.lang.Long.parseLong(r2, r3);
-        r0 = (int) r2;
-        r23 = r0;
-        r2 = "strokecolor";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r3 = 16;
-        r2 = java.lang.Long.parseLong(r2, r3);
-        r0 = (int) r2;
-        r24 = r0;
-        r2 = "shadowcolor";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r3 = 16;
-        r2 = java.lang.Long.parseLong(r2, r3);
-        r0 = (int) r2;
-        r25 = r0;
-        r2 = "maxlines";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r3 = 16;
-        r2 = java.lang.Long.parseLong(r2, r3);
-        r0 = (int) r2;
-        r26 = r0;
-        r2 = "skewx";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r27 = java.lang.Float.parseFloat(r2);
-        r2 = "scalex";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r28 = java.lang.Float.parseFloat(r2);
-        r2 = "size";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r17 = java.lang.Float.parseFloat(r2);
-        r2 = "strokewidth";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r29 = java.lang.Float.parseFloat(r2);
-        r2 = "spacingmult";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r9 = java.lang.Float.parseFloat(r2);
-        r2 = "spacingadd";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r10 = java.lang.Float.parseFloat(r2);
-        r2 = "shadowradius";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r30 = java.lang.Float.parseFloat(r2);
-        r2 = "textblur";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r31 = java.lang.Float.parseFloat(r2);
-        r2 = "blurtype";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r32 = java.lang.Integer.parseInt(r2);
-        r2 = "margin";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r33 = java.lang.Integer.parseInt(r2);
-        r2 = "shadowoffsx";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r34 = java.lang.Float.parseFloat(r2);
-        r2 = "shadowoffsy";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r35 = java.lang.Float.parseFloat(r2);
-        r2 = "text";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        r3 = "baseid";
-        r0 = r20;
-        r3 = r0.get(r3);
-        r4 = r3;
-        r4 = (java.lang.String) r4;
-        r0 = r45;
-        r3 = r0.pdecode(r2);
-        r0 = r6 & 240;
-        r36 = r0;
-        r37 = r6 & 15;
-        r2 = 0;
-        r16 = r2;
-    L_0x0261:
-        r2 = 3;
-        r0 = r16;
-        if (r0 >= r2) goto L_0x0560;
-    L_0x0266:
-        r0 = r19;
-        r2 = r0.length;
-        r0 = r16;
-        if (r0 >= r2) goto L_0x04bc;
-    L_0x026d:
-        r12 = r19[r16];
-        r14 = r12.length();
-        r11 = "";
-        r2 = 0;
-        r6 = 0;
-        r8 = r14;
-    L_0x0278:
-        if (r6 >= r14) goto L_0x0292;
-    L_0x027a:
-        r7 = r12.charAt(r6);
-        r38 = 32;
-        r0 = r38;
-        if (r7 != r0) goto L_0x0dc3;
-    L_0x0284:
-        r7 = r14 / 2;
-        r7 = r7 - r6;
-        r7 = java.lang.Math.abs(r7);
-        if (r7 >= r8) goto L_0x0dc3;
-    L_0x028d:
-        r2 = r6;
-    L_0x028e:
-        r6 = r6 + 1;
-        r8 = r7;
-        goto L_0x0278;
-    L_0x0292:
-        if (r2 <= 0) goto L_0x0dbf;
-    L_0x0294:
-        r6 = r2 + 1;
-        if (r6 >= r14) goto L_0x0dbf;
-    L_0x0298:
-        r6 = 0;
-        r6 = r12.substring(r6, r2);
-        r2 = r2 + 1;
-        r2 = r12.substring(r2);
-    L_0x02a3:
-        r7 = new java.lang.StringBuilder;
-        r7.<init>();
-        r8 = "%";
-        r7 = r7.append(r8);
-        r8 = r16 + 1;
-        r7 = r7.append(r8);
-        r7 = r7.toString();
-        r3 = r3.replace(r7, r12);
-        r7 = new java.lang.StringBuilder;
-        r7.<init>();
-        r8 = "%f";
-        r7 = r7.append(r8);
-        r8 = r16 + 1;
-        r7 = r7.append(r8);
-        r7 = r7.toString();
-        r3 = r3.replace(r7, r6);
-        r6 = new java.lang.StringBuilder;
-        r6.<init>();
-        r7 = "%b";
-        r6 = r6.append(r7);
-        r7 = r16 + 1;
-        r6 = r6.append(r7);
-        r6 = r6.toString();
-        r2 = r3.replace(r6, r2);
-        r3 = r12.length();
-        r6 = 1;
-        if (r3 != r6) goto L_0x0387;
-    L_0x02f5:
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%s";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = 0;
-        r7 = 1;
-        r6 = r12.substring(r6, r7);
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%!s";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%e";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%!e";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%m";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-    L_0x0380:
-        r3 = r16 + 1;
-        r16 = r3;
-        r3 = r2;
-        goto L_0x0261;
-    L_0x0387:
-        r3 = r12.length();
-        r6 = 1;
-        if (r3 >= r6) goto L_0x0417;
-    L_0x038e:
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%s";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%!s";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%e";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%!e";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%m";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        goto L_0x0380;
-    L_0x0417:
-        r3 = r12.length();
-        r6 = 1;
-        if (r3 <= r6) goto L_0x0380;
-    L_0x041e:
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%s";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = 0;
-        r7 = 1;
-        r6 = r12.substring(r6, r7);
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%!s";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = 1;
-        r6 = r12.substring(r6, r14);
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%e";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = r14 + -1;
-        r6 = r12.substring(r6, r14);
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%!e";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = 0;
-        r7 = r14 + -1;
-        r6 = r12.substring(r6, r7);
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%m";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = 1;
-        r7 = r14 + -1;
-        r6 = r12.substring(r6, r7);
-        r2 = r2.replace(r3, r6);
-        goto L_0x0380;
-    L_0x04bc:
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r6 = "%";
-        r2 = r2.append(r6);
-        r6 = r16 + 1;
-        r2 = r2.append(r6);
-        r2 = r2.toString();
-        r6 = "";
-        r2 = r3.replace(r2, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%s";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%!s";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%e";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%!e";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "%m";
-        r3 = r3.append(r6);
-        r6 = r16 + 1;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r6 = "";
-        r2 = r2.replace(r3, r6);
-        goto L_0x0380;
-    L_0x0560:
-        r2 = 0;
-        r6 = ".*[[\\u0400-\\u052F][\\u2DE0-\\u2DFF][\\uA640-\\uA69F]].*";
-        r6 = r3.matches(r6);
-        if (r6 == 0) goto L_0x0dbc;
-    L_0x0569:
-        r2 = 1;
-        r7 = r2;
-    L_0x056b:
-        r6 = new android.text.TextPaint;
-        r6.<init>();
-        r2 = 1;
-        r6.setAntiAlias(r2);
-        r2 = "typeface";
-        r0 = r20;
-        r2 = r0.get(r2);
-        r2 = (java.lang.String) r2;
-        if (r5 == 0) goto L_0x077f;
-    L_0x0581:
-        r6.setTypeface(r5);
-    L_0x0584:
-        r2 = r13 & 16;
-        if (r2 == 0) goto L_0x058c;
-    L_0x0588:
-        r2 = 1;
-        r6.setUnderlineText(r2);
-    L_0x058c:
-        r2 = r13 & 32;
-        if (r2 == 0) goto L_0x0594;
-    L_0x0590:
-        r2 = 1;
-        r6.setStrikeThruText(r2);
-    L_0x0594:
-        r2 = r13 & 128;
-        if (r2 == 0) goto L_0x059c;
-    L_0x0598:
-        r2 = 1;
-        r6.setSubpixelText(r2);
-    L_0x059c:
-        r2 = r13 & 512;
-        if (r2 == 0) goto L_0x05a4;
-    L_0x05a0:
-        r2 = 1;
-        r6.setLinearText(r2);
-    L_0x05a4:
-        r2 = r13 & 256;
-        if (r2 == 0) goto L_0x05a8;
-    L_0x05a8:
-        r0 = r28;
-        r4 = (double) r0;
-        r38 = 0;
-        r2 = (r4 > r38 ? 1 : (r4 == r38 ? 0 : -1));
-        if (r2 <= 0) goto L_0x05b6;
-    L_0x05b1:
-        r0 = r28;
-        r6.setTextScaleX(r0);
-    L_0x05b6:
-        r0 = r27;
-        r4 = (double) r0;
-        r38 = 0;
-        r2 = (r4 > r38 ? 1 : (r4 == r38 ? 0 : -1));
-        if (r2 <= 0) goto L_0x05c4;
-    L_0x05bf:
-        r0 = r27;
-        r6.setTextSkewX(r0);
-    L_0x05c4:
-        r0 = r17;
-        r4 = (double) r0;
-        r38 = 0;
-        r2 = (r4 > r38 ? 1 : (r4 == r38 ? 0 : -1));
-        if (r2 <= 0) goto L_0x08f9;
-    L_0x05cd:
-        r0 = r17;
-        r6.setTextSize(r0);
-    L_0x05d2:
-        r2 = r13 & 12;
-        if (r2 != 0) goto L_0x0db8;
-    L_0x05d6:
-        r2 = r13 | 4;
-        r20 = r2;
-    L_0x05da:
-        if (r18 <= 0) goto L_0x0973;
-    L_0x05dc:
-        r12 = 0;
-        switch(r21) {
-            case 0: goto L_0x05e0;
-            case 1: goto L_0x05e0;
-            case 2: goto L_0x08ff;
-            case 3: goto L_0x0903;
-            case 4: goto L_0x0907;
-            default: goto L_0x05e0;
-        };
-    L_0x05e0:
-        r2 = android.text.Layout.Alignment.ALIGN_NORMAL;
-        switch(r37) {
-            case 1: goto L_0x090f;
-            case 2: goto L_0x090b;
-            default: goto L_0x05e5;
-        };
-    L_0x05e5:
-        r8 = android.text.Layout.Alignment.ALIGN_NORMAL;
-    L_0x05e7:
-        if (r18 <= 0) goto L_0x0913;
-    L_0x05e9:
-        r19 = r18;
-    L_0x05eb:
-        if (r15 <= 0) goto L_0x0917;
-    L_0x05ed:
-        r14 = r15;
-    L_0x05ee:
-        r16 = r17;
-        r13 = r18;
-    L_0x05f2:
-        r2 = new android.text.StaticLayout;
-        r4 = 0;
-        r5 = r3.length();
-        r7 = r33 * 2;
-        r7 = r13 - r7;
-        r11 = 1;
-        r21 = r33 * 2;
-        r13 = r13 - r21;
-        r2.<init>(r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13);
-        r4 = r2.getWidth();
-        r5 = r33 * 2;
-        r4 = r4 + r5;
-        r5 = r2.getHeight();
-        r7 = r33 * 2;
-        r5 = r5 + r7;
-        r0 = r19;
-        if (r4 > r0) goto L_0x091c;
-    L_0x0617:
-        if (r5 > r14) goto L_0x091c;
-    L_0x0619:
-        r7 = 1;
-        r0 = r26;
-        if (r0 < r7) goto L_0x0db1;
-    L_0x061e:
-        r7 = r2.getLineCount();
-        r0 = r26;
-        if (r7 > r0) goto L_0x091c;
-    L_0x0626:
-        r44 = r5;
-        r5 = r4;
-        r4 = r44;
-    L_0x062b:
-        r3 = 0;
-        r0 = r20;
-        r7 = r0 & 1024;
-        if (r7 != 0) goto L_0x0dac;
-    L_0x0632:
-        if (r18 <= 0) goto L_0x0dac;
-    L_0x0634:
-        if (r15 <= 0) goto L_0x0dac;
-    L_0x0636:
-        r7 = "NexImageLoader";
-        r8 = new java.lang.StringBuilder;
-        r8.<init>();
-        r9 = "VAlign=";
-        r8 = r8.append(r9);
-        r0 = r36;
-        r8 = r8.append(r0);
-        r9 = " originalWidth=";
-        r8 = r8.append(r9);
-        r0 = r18;
-        r8 = r8.append(r0);
-        r9 = " originalHeight=";
-        r8 = r8.append(r9);
-        r8 = r8.append(r15);
-        r9 = " width=";
-        r8 = r8.append(r9);
-        r5 = r8.append(r5);
-        r8 = " height=";
-        r5 = r5.append(r8);
-        r5 = r5.append(r4);
-        r5 = r5.toString();
-        android.util.Log.d(r7, r5);
-        switch(r36) {
-            case 16: goto L_0x095d;
-            case 32: goto L_0x0959;
-            default: goto L_0x067d;
-        };
-    L_0x067d:
-        r8 = r3;
-        r4 = r18;
-        r3 = r15;
-    L_0x0681:
-        r5 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-        if (r4 <= r5) goto L_0x0687;
-    L_0x0685:
-        r4 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-    L_0x0687:
-        r5 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-        if (r3 <= r5) goto L_0x068d;
-    L_0x068b:
-        r3 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-    L_0x068d:
-        r5 = 1;
-        if (r4 >= r5) goto L_0x0691;
-    L_0x0690:
-        r4 = 1;
-    L_0x0691:
-        r5 = 1;
-        if (r3 >= r5) goto L_0x0695;
-    L_0x0694:
-        r3 = 1;
-    L_0x0695:
-        r5 = android.graphics.Bitmap.Config.ARGB_8888;
-        r7 = android.graphics.Bitmap.createBitmap(r4, r3, r5);
-        r3 = r7.getWidth();
-        r5 = r3 & -2;
-        r3 = r7.getHeight();
-        r4 = r3 & -2;
-        r9 = new android.graphics.Canvas;
-        r9.<init>(r7);
-        r0 = r22;
-        r9.drawColor(r0);
-        r9.save();
-        r0 = r33;
-        r3 = (float) r0;
-        r0 = r33;
-        r10 = (float) r0;
-        r9.translate(r3, r10);
-        r3 = 0;
-        r8 = (float) r8;
-        r9.translate(r3, r8);
-        r0 = r20;
-        r3 = r0 & 256;
-        if (r3 == 0) goto L_0x06f7;
-    L_0x06c8:
-        r3 = 0;
-        r3 = (r30 > r3 ? 1 : (r30 == r3 ? 0 : -1));
-        if (r3 <= 0) goto L_0x06f7;
-    L_0x06cd:
-        r9.save();
-        r0 = r34;
-        r1 = r35;
-        r9.translate(r0, r1);
-        r3 = new android.graphics.BlurMaskFilter;
-        r8 = android.graphics.BlurMaskFilter.Blur.SOLID;
-        r0 = r30;
-        r3.<init>(r0, r8);
-        r6.setMaskFilter(r3);
-        r3 = android.graphics.Paint.Style.FILL;
-        r6.setStyle(r3);
-        r0 = r25;
-        r6.setColor(r0);
-        r2.draw(r9);
-        r3 = 0;
-        r6.setMaskFilter(r3);
-        r9.restore();
-    L_0x06f7:
-        r0 = r20;
-        r3 = r0 & 4096;
-        if (r3 == 0) goto L_0x070f;
-    L_0x06fd:
-        r3 = android.graphics.Paint.Style.STROKE;
-        r6.setStyle(r3);
-        r0 = r24;
-        r6.setColor(r0);
-        r0 = r29;
-        r6.setStrokeWidth(r0);
-        r2.draw(r9);
-    L_0x070f:
-        r0 = r31;
-        r10 = (double) r0;
-        r12 = 4532020583610935537; // 0x3ee4f8b588e368f1 float:-1.3686737E-33 double:1.0E-5;
-        r3 = (r10 > r12 ? 1 : (r10 == r12 ? 0 : -1));
-        if (r3 <= 0) goto L_0x072a;
-    L_0x071b:
-        r3 = android.graphics.BlurMaskFilter.Blur.NORMAL;
-        switch(r32) {
-            case 0: goto L_0x0963;
-            case 1: goto L_0x096f;
-            case 2: goto L_0x0967;
-            case 3: goto L_0x096b;
-            default: goto L_0x0720;
-        };
-    L_0x0720:
-        r8 = new android.graphics.BlurMaskFilter;
-        r0 = r31;
-        r8.<init>(r0, r3);
-        r6.setMaskFilter(r8);
-    L_0x072a:
-        r3 = r20 & 4;
-        if (r3 == 0) goto L_0x074f;
-    L_0x072e:
-        r0 = r20;
-        r3 = r0 & 2048;
-        if (r3 == 0) goto L_0x073e;
-    L_0x0734:
-        r3 = new android.graphics.PorterDuffXfermode;
-        r8 = android.graphics.PorterDuff.Mode.DST_IN;
-        r3.<init>(r8);
-        r6.setXfermode(r3);
-    L_0x073e:
-        r3 = android.graphics.Paint.Style.FILL;
-        r6.setStyle(r3);
-        r0 = r23;
-        r6.setColor(r0);
-        r2.draw(r9);
-        r3 = 0;
-        r6.setXfermode(r3);
-    L_0x074f:
-        r3 = r20 & 8;
-        if (r3 == 0) goto L_0x0765;
-    L_0x0753:
-        r3 = android.graphics.Paint.Style.STROKE;
-        r6.setStyle(r3);
-        r0 = r24;
-        r6.setColor(r0);
-        r0 = r29;
-        r6.setStrokeWidth(r0);
-        r2.draw(r9);
-    L_0x0765:
-        r2 = 0;
-        r6.setMaskFilter(r2);
-        r9.restore();
-        r2 = r4;
-        r3 = r5;
-        r4 = r7;
-    L_0x076f:
-        r5 = r4;
-        r4 = r3;
-        r3 = r2;
-    L_0x0772:
-        if (r5 == 0) goto L_0x0d9a;
-    L_0x0774:
-        if (r4 <= 0) goto L_0x0d9a;
-    L_0x0776:
-        if (r3 <= 0) goto L_0x0d9a;
-    L_0x0778:
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
-        r2.<init>(r5, r4, r3);
-        goto L_0x002c;
-    L_0x077f:
-        if (r7 == 0) goto L_0x0796;
-    L_0x0781:
-        r2 = 0;
-        r4 = r13 & 1;
-        if (r4 == 0) goto L_0x0787;
-    L_0x0786:
-        r2 = 1;
-    L_0x0787:
-        r4 = r13 & 2;
-        if (r4 == 0) goto L_0x078d;
-    L_0x078b:
-        r2 = r2 | 2;
-    L_0x078d:
-        r2 = android.graphics.Typeface.defaultFromStyle(r2);
-        r6.setTypeface(r2);
-        goto L_0x0584;
-    L_0x0796:
-        r5 = "android:";
-        r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x07bd;
-    L_0x079e:
-        r4 = "android:";
-        r4 = r4.length();
-        r4 = r2.substring(r4);
-        r2 = 0;
-        r5 = r13 & 1;
-        if (r5 == 0) goto L_0x07ae;
-    L_0x07ad:
-        r2 = 1;
-    L_0x07ae:
-        r5 = r13 & 2;
-        if (r5 == 0) goto L_0x07b4;
-    L_0x07b2:
-        r2 = r2 | 2;
-    L_0x07b4:
-        r2 = android.graphics.Typeface.create(r4, r2);
-        r6.setTypeface(r2);
-        goto L_0x0584;
-    L_0x07bd:
-        r5 = "file:";
-        r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x07d8;
-    L_0x07c5:
-        r4 = "file:";
-        r4 = r4.length();
-        r2 = r2.substring(r4);
-        r2 = android.graphics.Typeface.createFromFile(r2);
-        r6.setTypeface(r2);
-        goto L_0x0584;
-    L_0x07d8:
-        r5 = "asset:";
-        r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x07fd;
-    L_0x07e0:
-        r4 = "asset:";
-        r4 = r4.length();
-        r2 = r2.substring(r4);
-        r0 = r45;
-        r4 = r0.m_assetManager;
-        if (r4 == 0) goto L_0x0584;
-    L_0x07f0:
-        r0 = r45;
-        r4 = r0.m_assetManager;
-        r2 = android.graphics.Typeface.createFromAsset(r4, r2);
-        r6.setTypeface(r2);
-        goto L_0x0584;
-    L_0x07fd:
-        r5 = "theme:";
-        r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x082a;
-    L_0x0806:
-        r4 = "theme:";
-        r4 = r4.length();
-        r2 = r2.substring(r4);
-        r0 = r45;
-        r4 = r0.m_effectResourceLoader;
-        if (r4 == 0) goto L_0x0584;
-    L_0x0817:
-        r0 = r45;
-        r4 = r0.m_effectResourceLoader;	 Catch:{ TypefaceLoadException -> 0x0824 }
-        r2 = r4.a(r2);	 Catch:{ TypefaceLoadException -> 0x0824 }
-        r6.setTypeface(r2);	 Catch:{ TypefaceLoadException -> 0x0824 }
-        goto L_0x0584;
-    L_0x0824:
-        r2 = move-exception;
-        r2.printStackTrace();
-        goto L_0x0584;
-    L_0x082a:
-        r5 = "fontid:";
-        r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x0849;
-    L_0x0832:
-        r4 = "fontid:";
-        r4 = r4.length();
-        r2 = r2.substring(r4);
-        r4 = com.nexstreaming.kminternal.kinemaster.fonts.c.a();
-        r2 = r4.b(r2);
-        r6.setTypeface(r2);
-        goto L_0x0584;
-    L_0x0849:
-        r5 = "fontfile:";
-        r5 = r2.startsWith(r5);
-        if (r5 == 0) goto L_0x0895;
-    L_0x0851:
-        r5 = 0;
-        r7 = "fontfile:";
-        r7 = r7.length();
-        r7 = r2.substring(r7);
-        r0 = r45;
-        r2 = r0.m_effectResourceLoader;
-        if (r2 == 0) goto L_0x087d;
-    L_0x0862:
-        r0 = r45;
-        r2 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x0871, TypefaceLoadException -> 0x0878 }
-        r2 = r2.c(r4, r7);	 Catch:{ IOException -> 0x0871, TypefaceLoadException -> 0x0878 }
-    L_0x086a:
-        if (r2 == 0) goto L_0x087f;
-    L_0x086c:
-        r6.setTypeface(r2);
-        goto L_0x0584;
-    L_0x0871:
-        r2 = move-exception;
-        r5 = 0;
-        r2.printStackTrace();
-        r2 = r5;
-        goto L_0x086a;
-    L_0x0878:
-        r2 = move-exception;
-        r5 = 0;
-        r2.printStackTrace();
-    L_0x087d:
-        r2 = r5;
-        goto L_0x086a;
-    L_0x087f:
-        r2 = "NexImageLoader";
-        r5 = "TYPEFACE NOT FOUND : base_id=%s, font=%s";
-        r8 = 2;
-        r8 = new java.lang.Object[r8];
-        r11 = 0;
-        r8[r11] = r4;
-        r4 = 1;
-        r8[r4] = r7;
-        r4 = java.lang.String.format(r5, r8);
-        android.util.Log.d(r2, r4);
-        goto L_0x0584;
-    L_0x0895:
-        r5 = 0;
-        r0 = r45;
-        r7 = r0.m_effectResourceLoader;
-        if (r7 == 0) goto L_0x08d4;
-    L_0x089c:
-        r0 = r45;
-        r7 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x08d0 }
-        r2 = r7.a(r4, r2);	 Catch:{ IOException -> 0x08d0 }
-    L_0x08a4:
-        if (r2 == 0) goto L_0x08df;
-    L_0x08a6:
-        r5 = r2.exists();
-        if (r5 != 0) goto L_0x08d6;
-    L_0x08ac:
-        r5 = "NexImageLoader";
-        r7 = new java.lang.StringBuilder;
-        r7.<init>();
-        r8 = "TYPEFACE FILE DOES NOT EXIST : base_id=";
-        r7 = r7.append(r8);
-        r4 = r7.append(r4);
-        r7 = "; f=";
-        r4 = r4.append(r7);
-        r2 = r4.append(r2);
-        r2 = r2.toString();
-        android.util.Log.i(r5, r2);
-        goto L_0x0584;
-    L_0x08d0:
-        r2 = move-exception;
-        r2.printStackTrace();
-    L_0x08d4:
-        r2 = r5;
-        goto L_0x08a4;
-    L_0x08d6:
-        r2 = android.graphics.Typeface.createFromFile(r2);
-        r6.setTypeface(r2);
-        goto L_0x0584;
-    L_0x08df:
-        r2 = "NexImageLoader";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r7 = "TYPEFACE NOT FOUND : base_id=";
-        r5 = r5.append(r7);
-        r4 = r5.append(r4);
-        r4 = r4.toString();
-        android.util.Log.i(r2, r4);
-        goto L_0x0584;
-    L_0x08f9:
-        r17 = r6.getTextSize();
-        goto L_0x05d2;
-    L_0x08ff:
-        r12 = android.text.TextUtils.TruncateAt.START;
-        goto L_0x05e0;
-    L_0x0903:
-        r12 = android.text.TextUtils.TruncateAt.MIDDLE;
-        goto L_0x05e0;
-    L_0x0907:
-        r12 = android.text.TextUtils.TruncateAt.END;
-        goto L_0x05e0;
-    L_0x090b:
-        r8 = android.text.Layout.Alignment.ALIGN_OPPOSITE;
-        goto L_0x05e7;
-    L_0x090f:
-        r8 = android.text.Layout.Alignment.ALIGN_CENTER;
-        goto L_0x05e7;
-    L_0x0913:
-        r19 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-        goto L_0x05eb;
-    L_0x0917:
-        r2 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-        r14 = r2;
-        goto L_0x05ee;
-    L_0x091c:
-        r0 = r16;
-        r0 = (double) r0;
-        r38 = r0;
-        r0 = r17;
-        r0 = (double) r0;
-        r40 = r0;
-        r42 = 4617315517961601024; // 0x4014000000000000 float:0.0 double:5.0;
-        r40 = r40 / r42;
-        r7 = (r38 > r40 ? 1 : (r38 == r40 ? 0 : -1));
-        if (r7 <= 0) goto L_0x094d;
-    L_0x092e:
-        r0 = r16;
-        r0 = (double) r0;
-        r38 = r0;
-        r40 = 4618441417868443648; // 0x4018000000000000 float:0.0 double:6.0;
-        r7 = (r38 > r40 ? 1 : (r38 == r40 ? 0 : -1));
-        if (r7 <= 0) goto L_0x094d;
-    L_0x0939:
-        r2 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r5 = 1094713344; // 0x41400000 float:12.0 double:5.408602553E-315;
-        r5 = r17 / r5;
-        r2 = java.lang.Math.max(r2, r5);
-        r2 = r16 - r2;
-        r6.setTextSize(r2);
-        r16 = r2;
-        r13 = r4;
-        goto L_0x05f2;
-    L_0x094d:
-        r0 = r19;
-        if (r4 <= r0) goto L_0x0953;
-    L_0x0951:
-        r4 = r19;
-    L_0x0953:
-        if (r5 <= r14) goto L_0x0db1;
-    L_0x0955:
-        r5 = r4;
-        r4 = r14;
-        goto L_0x062b;
-    L_0x0959:
-        r3 = r15 - r4;
-        goto L_0x067d;
-    L_0x095d:
-        r3 = r15 - r4;
-        r3 = r3 / 2;
-        goto L_0x067d;
-    L_0x0963:
-        r3 = android.graphics.BlurMaskFilter.Blur.NORMAL;
-        goto L_0x0720;
-    L_0x0967:
-        r3 = android.graphics.BlurMaskFilter.Blur.INNER;
-        goto L_0x0720;
-    L_0x096b:
-        r3 = android.graphics.BlurMaskFilter.Blur.OUTER;
-        goto L_0x0720;
-    L_0x096f:
-        r3 = android.graphics.BlurMaskFilter.Blur.SOLID;
-        goto L_0x0720;
-    L_0x0973:
-        r2 = new android.graphics.Rect;
-        r2.<init>();
-        r4 = 0;
-        r5 = r3.length();
-        r6.getTextBounds(r3, r4, r5, r2);
-        r4 = r2.right;
-        r4 = r4 + 20;
-        r2.right = r4;
-        r0 = r30;
-        r4 = (double) r0;
-        r4 = java.lang.Math.ceil(r4);
-        r7 = (int) r4;
-        r8 = r6.getFontMetrics();
-        r4 = r8.bottom;
-        r5 = 1073741824; // 0x40000000 float:2.0 double:5.304989477E-315;
-        r4 = r4 * r5;
-        r5 = r8.top;
-        r4 = r4 - r5;
-        r5 = r2.height();
-        r5 = (float) r5;
-        r4 = java.lang.Math.max(r4, r5);
-        r5 = (int) r4;
-        r4 = 1;
-        r0 = r18;
-        if (r0 < r4) goto L_0x09ac;
-    L_0x09a9:
-        r4 = 1;
-        if (r15 >= r4) goto L_0x0da7;
-    L_0x09ac:
-        r4 = r2.width();
-        r2 = r2.right;
-        r2 = java.lang.Math.max(r4, r2);
-        r4 = r7 * 2;
-        r2 = r2 + r4;
-        r4 = java.lang.Math.abs(r34);
-        r4 = (int) r4;
-        r4 = r4 + r2;
-        r2 = r7 * 2;
-        r2 = r2 + r5;
-        r5 = java.lang.Math.abs(r35);
-        r5 = (int) r5;
-        r2 = r2 + r5;
-        r5 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-        if (r4 <= r5) goto L_0x09ce;
-    L_0x09cc:
-        r4 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-    L_0x09ce:
-        r5 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-        if (r2 <= r5) goto L_0x09d4;
-    L_0x09d2:
-        r2 = 2048; // 0x800 float:2.87E-42 double:1.0118E-320;
-    L_0x09d4:
-        r5 = 1;
-        if (r4 >= r5) goto L_0x0a62;
-    L_0x09d7:
-        r4 = 1;
-        r5 = r4;
-    L_0x09d9:
-        r4 = 1;
-        if (r2 >= r4) goto L_0x0a65;
-    L_0x09dc:
-        r2 = 1;
-        r4 = r2;
-    L_0x09de:
-        switch(r37) {
-            case 1: goto L_0x0a70;
-            case 2: goto L_0x0a68;
-            default: goto L_0x09e1;
-        };
-    L_0x09e1:
-        r2 = android.graphics.Paint.Align.LEFT;
-        r6.setTextAlign(r2);
-        r2 = 1101004800; // 0x41a00000 float:20.0 double:5.439686476E-315;
-    L_0x09e8:
-        r9 = (float) r4;
-        r8 = r8.ascent;
-        r8 = r9 - r8;
-        r9 = 1073741824; // 0x40000000 float:2.0 double:5.304989477E-315;
-        r11 = r8 / r9;
-        r7 = (float) r7;
-        r8 = 0;
-        r0 = r34;
-        r8 = java.lang.Math.min(r8, r0);
-        r7 = r7 - r8;
-        r10 = r2 + r7;
-        r2 = android.graphics.Bitmap.Config.ARGB_8888;
-        r5 = android.graphics.Bitmap.createBitmap(r5, r4, r2);
-        r2 = r5.getWidth();
-        r4 = r2 & -2;
-        r2 = r5.getHeight();
-        r2 = r2 & -2;
-        r13 = new android.graphics.Canvas;
-        r13.<init>(r5);
-        r0 = r22;
-        r13.drawColor(r0);
-        r7 = r20 & 4;
-        if (r7 == 0) goto L_0x0a29;
-    L_0x0a1c:
-        r7 = android.graphics.Paint.Style.FILL;
-        r6.setStyle(r7);
-        r0 = r23;
-        r6.setColor(r0);
-        r13.drawText(r3, r10, r11, r6);
-    L_0x0a29:
-        r7 = r20 & 8;
-        if (r7 == 0) goto L_0x0a5e;
-    L_0x0a2d:
-        r7 = r20 & 4;
-        if (r7 == 0) goto L_0x0a3e;
-    L_0x0a31:
-        r0 = r20;
-        r7 = r0 & 256;
-        if (r7 == 0) goto L_0x0a3e;
-    L_0x0a37:
-        r7 = 0;
-        r8 = 0;
-        r9 = 0;
-        r12 = 0;
-        r6.setShadowLayer(r7, r8, r9, r12);
-    L_0x0a3e:
-        r7 = android.graphics.Paint.Style.STROKE;
-        r6.setStyle(r7);
-        r0 = r24;
-        r6.setColor(r0);
-        r0 = r29;
-        r6.setStrokeWidth(r0);
-        r12 = new android.graphics.Path;
-        r12.<init>();
-        r8 = 0;
-        r9 = r3.length();
-        r7 = r3;
-        r6.getTextPath(r7, r8, r9, r10, r11, r12);
-        r13.drawPath(r12, r6);
-    L_0x0a5e:
-        r3 = r4;
-        r4 = r5;
-        goto L_0x076f;
-    L_0x0a62:
-        r5 = r4;
-        goto L_0x09d9;
-    L_0x0a65:
-        r4 = r2;
-        goto L_0x09de;
-    L_0x0a68:
-        r2 = android.graphics.Paint.Align.RIGHT;
-        r6.setTextAlign(r2);
-        r2 = (float) r5;
-        goto L_0x09e8;
-    L_0x0a70:
-        r2 = android.graphics.Paint.Align.CENTER;
-        r6.setTextAlign(r2);
-        r2 = r5 / 2;
-        r2 = (float) r2;
-        goto L_0x09e8;
-    L_0x0a7a:
-        r2 = "[ThemeImage]";
-        r0 = r46;
-        r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x0b57;
-    L_0x0a84:
-        r2 = "[ThemeImage]";
-        r2 = r2.length();
-        r0 = r46;
-        r2 = r0.substring(r2);
-        r3 = 47;
-        r4 = r2.indexOf(r3);
-        if (r4 < 0) goto L_0x0adb;
-    L_0x0a98:
-        r3 = 0;
-        r3 = r2.substring(r3, r4);
-        r4 = r4 + 1;
-        r2 = r2.substring(r4);
-    L_0x0aa3:
-        r4 = 0;
-        r0 = r45;
-        r7 = r0.m_effectResourceLoader;
-        if (r7 == 0) goto L_0x0ab6;
-    L_0x0aaa:
-        r0 = r45;
-        r4 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x0ade }
-        r4 = r4.b(r3, r2);	 Catch:{ IOException -> 0x0ade }
-        r4 = android.graphics.BitmapFactory.decodeStream(r4);	 Catch:{ IOException -> 0x0ade }
-    L_0x0ab6:
-        if (r4 != 0) goto L_0x0aca;
-    L_0x0ab8:
-        r0 = r45;
-        r7 = r0.m_assetManager;
-        if (r7 == 0) goto L_0x0aca;
-    L_0x0abe:
-        r0 = r45;
-        r4 = r0.m_assetManager;	 Catch:{ IOException -> 0x0b07 }
-        r4 = r4.open(r2);	 Catch:{ IOException -> 0x0b07 }
-        r4 = android.graphics.BitmapFactory.decodeStream(r4);	 Catch:{ IOException -> 0x0b07 }
-    L_0x0aca:
-        if (r4 == 0) goto L_0x0b30;
-    L_0x0acc:
-        r3 = r4.getWidth();
-        r5 = r4.getHeight();
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
-        r2.<init>(r4, r3, r5);
-        goto L_0x002c;
-    L_0x0adb:
-        r3 = "";
-        goto L_0x0aa3;
-    L_0x0ade:
-        r4 = move-exception;
-        r7 = 0;
-        r8 = "NexImageLoader";
-        r9 = new java.lang.StringBuilder;
-        r9.<init>();
-        r10 = "Error loading bitmap for effect(";
-        r9 = r9.append(r10);
-        r9 = r9.append(r3);
-        r10 = ") : ";
-        r9 = r9.append(r10);
-        r9 = r9.append(r2);
-        r9 = r9.toString();
-        android.util.Log.e(r8, r9);
-        r4.printStackTrace();
-        r4 = r7;
-        goto L_0x0ab6;
-    L_0x0b07:
-        r4 = move-exception;
-        r7 = 0;
-        r8 = "NexImageLoader";
-        r9 = new java.lang.StringBuilder;
-        r9.<init>();
-        r10 = "Error loading bitmap (general asset mode) for effect(";
-        r9 = r9.append(r10);
-        r9 = r9.append(r3);
-        r10 = ") : ";
-        r9 = r9.append(r10);
-        r9 = r9.append(r2);
-        r9 = r9.toString();
-        android.util.Log.e(r8, r9);
-        r4.printStackTrace();
-        r4 = r7;
-        goto L_0x0aca;
-    L_0x0b30:
-        r7 = "NexImageLoader";
-        r8 = new java.lang.StringBuilder;
-        r8.<init>();
-        r9 = "Bitmap failed to load for effect(";
-        r8 = r8.append(r9);
-        r3 = r8.append(r3);
-        r8 = ") : ";
-        r3 = r3.append(r8);
-        r2 = r3.append(r2);
-        r2 = r2.toString();
-        android.util.Log.e(r7, r2);
-        r3 = r5;
-        r5 = r4;
-        r4 = r6;
-        goto L_0x0772;
-    L_0x0b57:
-        r2 = "[Overlay]";
-        r0 = r46;
-        r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x0bda;
-    L_0x0b61:
-        r0 = r45;
-        r2 = r0.m_overlayPathResolver;
-        if (r2 != 0) goto L_0x0b80;
-    L_0x0b67:
-        r2 = 8;
-        r3 = 8;
-        r4 = android.graphics.Bitmap.Config.ARGB_8888;
-        r3 = android.graphics.Bitmap.createBitmap(r2, r3, r4);
-        r4 = r3.getWidth();
-        r5 = r3.getHeight();
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
-        r2.<init>(r3, r4, r5);
-        goto L_0x002c;
-    L_0x0b80:
-        r2 = "[Overlay]";
-        r2 = r2.length();
-        r0 = r46;
-        r2 = r0.substring(r2);
-        r0 = r45;
-        r3 = r0.m_overlayPathResolver;
-        r2 = r3.a(r2);
-        if (r2 != 0) goto L_0x0baf;
-    L_0x0b96:
-        r2 = 8;
-        r3 = 8;
-        r4 = android.graphics.Bitmap.Config.ARGB_8888;
-        r3 = android.graphics.Bitmap.createBitmap(r2, r3, r4);
-        r4 = r3.getWidth();
-        r5 = r3.getHeight();
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
-        r2.<init>(r3, r4, r5);
-        goto L_0x002c;
-    L_0x0baf:
-        r3 = new android.graphics.BitmapFactory$Options;
-        r3.<init>();
-        r4 = 1;
-        r3.inJustDecodeBounds = r4;
-        android.graphics.BitmapFactory.decodeFile(r2, r3);
-        r4 = 0;
-        r3.inJustDecodeBounds = r4;
-        r4 = 1;
-        r3.inSampleSize = r4;
-        r4 = android.graphics.BitmapFactory.decodeFile(r2, r3);
-        if (r4 == 0) goto L_0x0bd5;
-    L_0x0bc6:
-        r3 = r4.getWidth();
-        r5 = r4.getHeight();
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
-        r2.<init>(r4, r3, r5);
-        goto L_0x002c;
-    L_0x0bd5:
-        r3 = r5;
-        r5 = r4;
-        r4 = r6;
-        goto L_0x0772;
-    L_0x0bda:
-        r2 = "[PvwThImage]";
-        r0 = r46;
-        r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x0cbe;
-    L_0x0be4:
-        r2 = "[ThemeImage]";
-        r2 = r2.length();
-        r0 = r46;
-        r2 = r0.substring(r2);
-        r3 = 47;
-        r4 = r2.indexOf(r3);
-        if (r4 < 0) goto L_0x0c42;
-    L_0x0bf8:
-        r3 = 0;
-        r3 = r2.substring(r3, r4);
-        r4 = r4 + 1;
-        r2 = r2.substring(r4);
-    L_0x0c03:
-        r4 = 0;
-        r8 = new android.graphics.BitmapFactory$Options;
-        r8.<init>();
-        r0 = r45;
-        r7 = r0.m_effectResourceLoader;
-        if (r7 == 0) goto L_0x0c1c;
-    L_0x0c0f:
-        r0 = r45;
-        r4 = r0.m_effectResourceLoader;	 Catch:{ IOException -> 0x0c45 }
-        r4 = r4.b(r3, r2);	 Catch:{ IOException -> 0x0c45 }
-        r7 = 0;
-        r4 = android.graphics.BitmapFactory.decodeStream(r4, r7, r8);	 Catch:{ IOException -> 0x0c45 }
-    L_0x0c1c:
-        if (r4 != 0) goto L_0x0c31;
-    L_0x0c1e:
-        r0 = r45;
-        r7 = r0.m_assetManager;
-        if (r7 == 0) goto L_0x0c31;
-    L_0x0c24:
-        r0 = r45;
-        r4 = r0.m_assetManager;	 Catch:{ IOException -> 0x0c6e }
-        r4 = r4.open(r2);	 Catch:{ IOException -> 0x0c6e }
-        r7 = 0;
-        r4 = android.graphics.BitmapFactory.decodeStream(r4, r7, r8);	 Catch:{ IOException -> 0x0c6e }
-    L_0x0c31:
-        if (r4 == 0) goto L_0x0c97;
-    L_0x0c33:
-        r3 = r4.getWidth();
-        r5 = r4.getHeight();
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
-        r2.<init>(r4, r3, r5);
-        goto L_0x002c;
-    L_0x0c42:
-        r3 = "";
-        goto L_0x0c03;
-    L_0x0c45:
-        r4 = move-exception;
-        r7 = 0;
-        r9 = "NexImageLoader";
-        r10 = new java.lang.StringBuilder;
-        r10.<init>();
-        r11 = "Error loading bitmap for effect(";
-        r10 = r10.append(r11);
-        r10 = r10.append(r3);
-        r11 = ") : ";
-        r10 = r10.append(r11);
-        r10 = r10.append(r2);
-        r10 = r10.toString();
-        android.util.Log.e(r9, r10);
-        r4.printStackTrace();
-        r4 = r7;
-        goto L_0x0c1c;
-    L_0x0c6e:
-        r4 = move-exception;
-        r7 = 0;
-        r8 = "NexImageLoader";
-        r9 = new java.lang.StringBuilder;
-        r9.<init>();
-        r10 = "Error loading bitmap (general asset mode) for effect(";
-        r9 = r9.append(r10);
-        r9 = r9.append(r3);
-        r10 = ") : ";
-        r9 = r9.append(r10);
-        r9 = r9.append(r2);
-        r9 = r9.toString();
-        android.util.Log.e(r8, r9);
-        r4.printStackTrace();
-        r4 = r7;
-        goto L_0x0c31;
-    L_0x0c97:
-        r7 = "NexImageLoader";
-        r8 = new java.lang.StringBuilder;
-        r8.<init>();
-        r9 = "Bitmap failed to load for effect(";
-        r8 = r8.append(r9);
-        r3 = r8.append(r3);
-        r8 = ") : ";
-        r3 = r3.append(r8);
-        r2 = r3.append(r2);
-        r2 = r2.toString();
-        android.util.Log.e(r7, r2);
-        r3 = r5;
-        r5 = r4;
-        r4 = r6;
-        goto L_0x0772;
-    L_0x0cbe:
-        r2 = "[Overlay]";
-        r0 = r46;
-        r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x0d41;
-    L_0x0cc8:
-        r0 = r45;
-        r2 = r0.m_overlayPathResolver;
-        if (r2 != 0) goto L_0x0ce7;
-    L_0x0cce:
-        r2 = 8;
-        r3 = 8;
-        r4 = android.graphics.Bitmap.Config.ARGB_8888;
-        r3 = android.graphics.Bitmap.createBitmap(r2, r3, r4);
-        r4 = r3.getWidth();
-        r5 = r3.getHeight();
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
-        r2.<init>(r3, r4, r5);
-        goto L_0x002c;
-    L_0x0ce7:
-        r2 = "[Overlay]";
-        r2 = r2.length();
-        r0 = r46;
-        r2 = r0.substring(r2);
-        r0 = r45;
-        r3 = r0.m_overlayPathResolver;
-        r2 = r3.a(r2);
-        if (r2 != 0) goto L_0x0d16;
-    L_0x0cfd:
-        r2 = 8;
-        r3 = 8;
-        r4 = android.graphics.Bitmap.Config.ARGB_8888;
-        r3 = android.graphics.Bitmap.createBitmap(r2, r3, r4);
-        r4 = r3.getWidth();
-        r5 = r3.getHeight();
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
-        r2.<init>(r3, r4, r5);
-        goto L_0x002c;
-    L_0x0d16:
-        r3 = new android.graphics.BitmapFactory$Options;
-        r3.<init>();
-        r4 = 1;
-        r3.inJustDecodeBounds = r4;
-        android.graphics.BitmapFactory.decodeFile(r2, r3);
-        r4 = 0;
-        r3.inJustDecodeBounds = r4;
-        r4 = 1;
-        r3.inSampleSize = r4;
-        r4 = android.graphics.BitmapFactory.decodeFile(r2, r3);
-        if (r4 == 0) goto L_0x0d3c;
-    L_0x0d2d:
-        r3 = r4.getWidth();
-        r5 = r4.getHeight();
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
-        r2.<init>(r4, r3, r5);
-        goto L_0x002c;
-    L_0x0d3c:
-        r3 = r5;
-        r5 = r4;
-        r4 = r6;
-        goto L_0x0772;
-    L_0x0d41:
-        r2 = "[";
-        r0 = r46;
-        r2 = r0.startsWith(r2);
-        if (r2 != 0) goto L_0x0da2;
-    L_0x0d4b:
-        r4 = 0;
-        r0 = r45;
-        r2 = r0.m_assetManager;
-        if (r2 == 0) goto L_0x0d75;
-    L_0x0d52:
-        r2 = "placeholder1.jpg";
-        r0 = r46;
-        r2 = r0.compareTo(r2);	 Catch:{ IOException -> 0x0d95 }
-        if (r2 == 0) goto L_0x0d66;
-    L_0x0d5c:
-        r2 = "placeholder2.jpg";
-        r0 = r46;
-        r2 = r0.compareTo(r2);	 Catch:{ IOException -> 0x0d95 }
-        if (r2 != 0) goto L_0x0d86;
-    L_0x0d66:
-        r0 = r45;
-        r2 = r0.m_assetManager;	 Catch:{ IOException -> 0x0d95 }
-        r0 = r46;
-        r2 = r2.open(r0);	 Catch:{ IOException -> 0x0d95 }
-        r2 = android.graphics.BitmapFactory.decodeStream(r2);	 Catch:{ IOException -> 0x0d95 }
-    L_0x0d74:
-        r4 = r2;
-    L_0x0d75:
-        if (r4 == 0) goto L_0x0d9d;
-    L_0x0d77:
-        r3 = r4.getWidth();
-        r5 = r4.getHeight();
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImage;
-        r2.<init>(r4, r3, r5);
-        goto L_0x002c;
-    L_0x0d86:
-        r0 = r45;
-        r2 = r0.m_assetManager;	 Catch:{ IOException -> 0x0d95 }
-        r0 = r46;
-        r2 = r2.open(r0);	 Catch:{ IOException -> 0x0d95 }
-        r2 = android.graphics.BitmapFactory.decodeStream(r2);	 Catch:{ IOException -> 0x0d95 }
-        goto L_0x0d74;
-    L_0x0d95:
-        r2 = move-exception;
-        r2.printStackTrace();
-        goto L_0x0d75;
-    L_0x0d9a:
-        r2 = 0;
-        goto L_0x002c;
-    L_0x0d9d:
-        r3 = r5;
-        r5 = r4;
-        r4 = r6;
-        goto L_0x0772;
-    L_0x0da2:
-        r3 = r5;
-        r5 = r4;
-        r4 = r6;
-        goto L_0x0772;
-    L_0x0da7:
-        r2 = r15;
-        r4 = r18;
-        goto L_0x09d4;
-    L_0x0dac:
-        r8 = r3;
-        r3 = r4;
-        r4 = r5;
-        goto L_0x0681;
-    L_0x0db1:
-        r44 = r5;
-        r5 = r4;
-        r4 = r44;
-        goto L_0x062b;
-    L_0x0db8:
-        r20 = r13;
-        goto L_0x05da;
-    L_0x0dbc:
-        r7 = r2;
-        goto L_0x056b;
-    L_0x0dbf:
-        r2 = r11;
-        r6 = r12;
-        goto L_0x02a3;
-    L_0x0dc3:
-        r7 = r8;
-        goto L_0x028e;
-    L_0x0dc6:
-        r5 = r2;
-        r2 = r3;
-        goto L_0x0074;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader.openThemeImage(java.lang.String):com.nexstreaming.kminternal.nexvideoeditor.NexImage");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public NexImage openThemeImage(String str) {
+        if (str.contains(".force_effect/")) {
+            str = str.replace(".force_effect/", "/");
+        }
+        if (!str.startsWith("[ThemeImage]/@special:")) {
+            if (!str.startsWith("[PvwThImage]/@special:")) {
+                int width;
+                int i;
+                Bitmap createBitmap;
+                String substring;
+                String substring2;
+                Bitmap bitmap;
+                if (str.startsWith(TAG_Text)) {
+                    Typeface typeface;
+                    int i2;
+                    int length;
+                    int i3;
+                    Object obj;
+                    int i4;
+                    String substring3 = str.substring(TAG_Text.length());
+                    int indexOf = substring3.indexOf(";;");
+                    substring = substring3.substring(indexOf + 2);
+                    Typeface typeface2 = null;
+                    int indexOf2 = substring.indexOf(27);
+                    if (indexOf2 > -1) {
+                        if (this.m_effectResourceLoader != null) {
+                            try {
+                                typeface2 = this.m_effectResourceLoader.a(substring.substring(0, indexOf2));
+                            } catch (Throwable e) {
+                                Log.e(LOG_TAG, "typeface error", e);
+                            }
+                        }
+                        typeface = typeface2;
+                        substring2 = substring.substring(indexOf2 + 1);
+                    } else {
+                        typeface = typeface2;
+                        substring2 = substring;
+                    }
+                    if (substring2.length() < 1) {
+                        substring2 = "Title Text Goes Here";
+                    }
+                    String[] strArr = new String[]{substring2};
+                    Log.d(LOG_TAG, "==== User Text: " + substring2);
+                    String[] split = substring3.substring(0, indexOf).split(";");
+                    HashMap hashMap = new HashMap();
+                    for (String split2 : split) {
+                        String[] split3 = split2.split("=");
+                        if (split3.length < 2) {
+                            hashMap.put(split3[0], "");
+                        } else {
+                            hashMap.put(split3[0], split3[1]);
+                        }
+                    }
+                    int parseLong = (int) Long.parseLong((String) hashMap.get("flags"), 16);
+                    int parseInt = Integer.parseInt((String) hashMap.get("align"));
+                    int parseInt2 = Integer.parseInt((String) hashMap.get("longtext"));
+                    int parseInt3 = Integer.parseInt((String) hashMap.get(nexExportFormat.TAG_FORMAT_WIDTH));
+                    int parseInt4 = Integer.parseInt((String) hashMap.get(nexExportFormat.TAG_FORMAT_HEIGHT));
+                    int parseLong2 = (int) Long.parseLong((String) hashMap.get("bgcolor"), 16);
+                    int parseLong3 = (int) Long.parseLong((String) hashMap.get("fillcolor"), 16);
+                    int parseLong4 = (int) Long.parseLong((String) hashMap.get("strokecolor"), 16);
+                    int parseLong5 = (int) Long.parseLong((String) hashMap.get("shadowcolor"), 16);
+                    int parseLong6 = (int) Long.parseLong((String) hashMap.get("maxlines"), 16);
+                    float parseFloat = Float.parseFloat((String) hashMap.get("skewx"));
+                    float parseFloat2 = Float.parseFloat((String) hashMap.get("scalex"));
+                    float parseFloat3 = Float.parseFloat((String) hashMap.get("size"));
+                    float parseFloat4 = Float.parseFloat((String) hashMap.get("strokewidth"));
+                    float parseFloat5 = Float.parseFloat((String) hashMap.get("spacingmult"));
+                    float parseFloat6 = Float.parseFloat((String) hashMap.get("spacingadd"));
+                    float parseFloat7 = Float.parseFloat((String) hashMap.get("shadowradius"));
+                    float parseFloat8 = Float.parseFloat((String) hashMap.get("textblur"));
+                    int parseInt5 = Integer.parseInt((String) hashMap.get("blurtype"));
+                    int parseInt6 = Integer.parseInt((String) hashMap.get("margin"));
+                    float parseFloat9 = Float.parseFloat((String) hashMap.get("shadowoffsx"));
+                    float parseFloat10 = Float.parseFloat((String) hashMap.get("shadowoffsy"));
+                    String split22 = (String) hashMap.get("baseid");
+                    substring = pdecode((String) hashMap.get("text"));
+                    int i5 = parseInt & NXT_VALIGNMASK;
+                    int i6 = parseInt & 15;
+                    int i7 = 0;
+                    while (i7 < 3) {
+                        if (i7 < strArr.length) {
+                            CharSequence substring4;
+                            CharSequence substring5;
+                            String str2 = strArr[i7];
+                            length = str2.length();
+                            String str3 = "";
+                            i2 = 0;
+                            parseInt = 0;
+                            i3 = length;
+                            while (parseInt < length) {
+                                if (str2.charAt(parseInt) == ' ') {
+                                    indexOf = Math.abs((length / 2) - parseInt);
+                                    if (indexOf < i3) {
+                                        i2 = parseInt;
+                                        parseInt++;
+                                        i3 = indexOf;
+                                    }
+                                }
+                                indexOf = i3;
+                                parseInt++;
+                                i3 = indexOf;
+                            }
+                            if (i2 <= 0 || i2 + 1 >= length) {
+                                Object substring52 = str3;
+                                Object substring42 = str2;
+                            } else {
+                                substring42 = str2.substring(0, i2);
+                                substring52 = str2.substring(i2 + 1);
+                            }
+                            substring2 = substring.replace("%" + (i7 + 1), str2).replace("%f" + (i7 + 1), substring42).replace("%b" + (i7 + 1), substring52);
+                            if (str2.length() == 1) {
+                                substring2 = substring2.replace("%s" + (i7 + 1), str2.substring(0, 1)).replace("%!s" + (i7 + 1), "").replace("%e" + (i7 + 1), "").replace("%!e" + (i7 + 1), "").replace("%m" + (i7 + 1), "");
+                            } else if (str2.length() < 1) {
+                                substring2 = substring2.replace("%s" + (i7 + 1), "").replace("%!s" + (i7 + 1), "").replace("%e" + (i7 + 1), "").replace("%!e" + (i7 + 1), "").replace("%m" + (i7 + 1), "");
+                            } else if (str2.length() > 1) {
+                                substring2 = substring2.replace("%s" + (i7 + 1), str2.substring(0, 1)).replace("%!s" + (i7 + 1), str2.substring(1, length)).replace("%e" + (i7 + 1), str2.substring(length - 1, length)).replace("%!e" + (i7 + 1), str2.substring(0, length - 1)).replace("%m" + (i7 + 1), str2.substring(1, length - 1));
+                            }
+                        } else {
+                            substring2 = substring.replace("%" + (i7 + 1), "").replace("%s" + (i7 + 1), "").replace("%!s" + (i7 + 1), "").replace("%e" + (i7 + 1), "").replace("%!e" + (i7 + 1), "").replace("%m" + (i7 + 1), "");
+                        }
+                        i7++;
+                        substring = substring2;
+                    }
+                    if (substring.matches(".*[[\\u0400-\\u052F][\\u2DE0-\\u2DFF][\\uA640-\\uA69F]].*")) {
+                        obj = 1;
+                    } else {
+                        obj = null;
+                    }
+                    Paint textPaint = new TextPaint();
+                    textPaint.setAntiAlias(true);
+                    substring2 = (String) hashMap.get("typeface");
+                    if (typeface != null) {
+                        textPaint.setTypeface(typeface);
+                    } else if (obj != null) {
+                        i2 = 0;
+                        if ((parseLong & 1) != 0) {
+                            i2 = 1;
+                        }
+                        if ((parseLong & 2) != 0) {
+                            i2 |= 2;
+                        }
+                        textPaint.setTypeface(Typeface.defaultFromStyle(i2));
+                    } else if (substring2.startsWith(TYPEFACE_SYSTEM)) {
+                        split22 = substring2.substring(TYPEFACE_SYSTEM.length());
+                        i2 = 0;
+                        if ((parseLong & 1) != 0) {
+                            i2 = 1;
+                        }
+                        if ((parseLong & 2) != 0) {
+                            i2 |= 2;
+                        }
+                        textPaint.setTypeface(Typeface.create(split22, i2));
+                    } else if (substring2.startsWith(TYPEFACE_FILE)) {
+                        textPaint.setTypeface(Typeface.createFromFile(substring2.substring(TYPEFACE_FILE.length())));
+                    } else if (substring2.startsWith(TYPEFACE_ASSET)) {
+                        substring2 = substring2.substring(TYPEFACE_ASSET.length());
+                        if (this.m_assetManager != null) {
+                            textPaint.setTypeface(Typeface.createFromAsset(this.m_assetManager, substring2));
+                        }
+                    } else if (substring2.startsWith(TYPEFACE_THEME)) {
+                        substring2 = substring2.substring(TYPEFACE_THEME.length());
+                        if (this.m_effectResourceLoader != null) {
+                            try {
+                                textPaint.setTypeface(this.m_effectResourceLoader.a(substring2));
+                            } catch (TypefaceLoadException e2) {
+                                e2.printStackTrace();
+                            }
+                        }
+                    } else if (substring2.startsWith(TYPEFACE_FONTID)) {
+                        textPaint.setTypeface(com.nexstreaming.kminternal.kinemaster.fonts.c.a().b(substring2.substring(TYPEFACE_FONTID.length())));
+                    } else if (substring2.startsWith(TYPEFACE_FONTFILE)) {
+                        typeface = null;
+                        String substring6 = substring2.substring(TYPEFACE_FONTFILE.length());
+                        if (this.m_effectResourceLoader != null) {
+                            try {
+                                typeface2 = this.m_effectResourceLoader.c(split22, substring6);
+                            } catch (IOException e3) {
+                                e3.printStackTrace();
+                                typeface2 = null;
+                            } catch (TypefaceLoadException e22) {
+                                typeface = null;
+                                e22.printStackTrace();
+                            }
+                            if (typeface2 == null) {
+                                textPaint.setTypeface(typeface2);
+                            } else {
+                                Log.d(LOG_TAG, String.format("TYPEFACE NOT FOUND : base_id=%s, font=%s", new Object[]{split22, substring6}));
+                            }
+                        }
+                        typeface2 = typeface;
+                        if (typeface2 == null) {
+                        }
+                    } else {
+                        File a;
+                        if (this.m_effectResourceLoader != null) {
+                            try {
+                                a = this.m_effectResourceLoader.a(split22, substring2);
+                            } catch (IOException e32) {
+                                e32.printStackTrace();
+                            }
+                            if (a != null) {
+                                Log.i(LOG_TAG, "TYPEFACE NOT FOUND : base_id=" + split22);
+                            } else if (a.exists()) {
+                                textPaint.setTypeface(Typeface.createFromFile(a));
+                            } else {
+                                Log.i(LOG_TAG, "TYPEFACE FILE DOES NOT EXIST : base_id=" + split22 + "; f=" + a);
+                            }
+                        }
+                        a = null;
+                        if (a != null) {
+                        }
+                    }
+                    if ((parseLong & 16) != 0) {
+                        textPaint.setUnderlineText(true);
+                    }
+                    if ((parseLong & 32) != 0) {
+                        textPaint.setStrikeThruText(true);
+                    }
+                    if ((parseLong & 128) != 0) {
+                        textPaint.setSubpixelText(true);
+                    }
+                    if ((parseLong & 512) != 0) {
+                        textPaint.setLinearText(true);
+                    }
+                    if ((parseLong & 256) != 0) {
+                    }
+                    if (((double) parseFloat2) > 0.0d) {
+                        textPaint.setTextScaleX(parseFloat2);
+                    }
+                    if (((double) parseFloat) > 0.0d) {
+                        textPaint.setTextSkewX(parseFloat);
+                    }
+                    if (((double) parseFloat3) > 0.0d) {
+                        textPaint.setTextSize(parseFloat3);
+                    } else {
+                        parseFloat3 = textPaint.getTextSize();
+                    }
+                    if ((parseLong & 12) == 0) {
+                        i4 = parseLong | 4;
+                    } else {
+                        i4 = parseLong;
+                    }
+                    float max;
+                    if (parseInt3 > 0) {
+                        Alignment alignment;
+                        StaticLayout staticLayout;
+                        int i8;
+                        TruncateAt truncateAt = null;
+                        switch (parseInt2) {
+                            case 2:
+                                truncateAt = TruncateAt.START;
+                                break;
+                            case 3:
+                                truncateAt = TruncateAt.MIDDLE;
+                                break;
+                            case 4:
+                                truncateAt = TruncateAt.END;
+                                break;
+                        }
+                        Alignment alignment2 = Alignment.ALIGN_NORMAL;
+                        switch (i6) {
+                            case 1:
+                                alignment = Alignment.ALIGN_CENTER;
+                                break;
+                            case 2:
+                                alignment = Alignment.ALIGN_OPPOSITE;
+                                break;
+                            default:
+                                alignment = Alignment.ALIGN_NORMAL;
+                                break;
+                        }
+                        int i9 = parseInt3 > 0 ? parseInt3 : 2048;
+                        if (parseInt4 > 0) {
+                            length = parseInt4;
+                        } else {
+                            length = 2048;
+                        }
+                        float f = parseFloat3;
+                        parseLong = parseInt3;
+                        while (true) {
+                            staticLayout = new StaticLayout(substring, 0, substring.length(), textPaint, parseLong - (parseInt6 * 2), alignment, parseFloat5, parseFloat6, true, truncateAt, parseLong - (parseInt6 * 2));
+                            width = staticLayout.getWidth() + (parseInt6 * 2);
+                            indexOf2 = staticLayout.getHeight() + (parseInt6 * 2);
+                            if (width <= i9 && indexOf2 <= r14) {
+                                if (parseLong6 >= 1) {
+                                    if (staticLayout.getLineCount() <= parseLong6) {
+                                        i8 = indexOf2;
+                                        indexOf2 = width;
+                                        width = i8;
+                                    }
+                                }
+                            }
+                            if (((double) f) > ((double) parseFloat3) / 5.0d && ((double) f) > 6.0d) {
+                                max = f - Math.max(1.0f, parseFloat3 / 12.0f);
+                                textPaint.setTextSize(max);
+                                f = max;
+                                parseLong = width;
+                            }
+                        }
+                        i8 = indexOf2;
+                        indexOf2 = width;
+                        width = i8;
+                        i = 0;
+                        if ((i4 & 1024) != 0 || parseInt3 <= 0 || parseInt4 <= 0) {
+                            i3 = 0;
+                            i = width;
+                            width = indexOf2;
+                        } else {
+                            Log.d(LOG_TAG, "VAlign=" + i5 + " originalWidth=" + parseInt3 + " originalHeight=" + parseInt4 + " width=" + indexOf2 + " height=" + width);
+                            switch (i5) {
+                                case 16:
+                                    i = (parseInt4 - width) / 2;
+                                    break;
+                                case 32:
+                                    i = parseInt4 - width;
+                                    break;
+                            }
+                            i3 = i;
+                            width = parseInt3;
+                            i = parseInt4;
+                        }
+                        if (width > 2048) {
+                            width = 2048;
+                        }
+                        if (i > 2048) {
+                            i = 2048;
+                        }
+                        if (width < 1) {
+                            width = 1;
+                        }
+                        if (i < 1) {
+                            i = 1;
+                        }
+                        Bitmap createBitmap2 = Bitmap.createBitmap(width, i, Config.ARGB_8888);
+                        indexOf2 = createBitmap2.getWidth() & -2;
+                        width = createBitmap2.getHeight() & -2;
+                        Canvas canvas = new Canvas(createBitmap2);
+                        canvas.drawColor(parseLong2);
+                        canvas.save();
+                        canvas.translate((float) parseInt6, (float) parseInt6);
+                        canvas.translate(0.0f, (float) i3);
+                        if ((i4 & 256) != 0 && parseFloat7 > 0.0f) {
+                            canvas.save();
+                            canvas.translate(parseFloat9, parseFloat10);
+                            textPaint.setMaskFilter(new BlurMaskFilter(parseFloat7, Blur.SOLID));
+                            textPaint.setStyle(Style.FILL);
+                            textPaint.setColor(parseLong5);
+                            staticLayout.draw(canvas);
+                            textPaint.setMaskFilter(null);
+                            canvas.restore();
+                        }
+                        if ((i4 & 4096) != 0) {
+                            textPaint.setStyle(Style.STROKE);
+                            textPaint.setColor(parseLong4);
+                            textPaint.setStrokeWidth(parseFloat4);
+                            staticLayout.draw(canvas);
+                        }
+                        if (((double) parseFloat8) > 1.0E-5d) {
+                            Blur blur = Blur.NORMAL;
+                            switch (parseInt5) {
+                                case 0:
+                                    blur = Blur.NORMAL;
+                                    break;
+                                case 1:
+                                    blur = Blur.SOLID;
+                                    break;
+                                case 2:
+                                    blur = Blur.INNER;
+                                    break;
+                                case 3:
+                                    blur = Blur.OUTER;
+                                    break;
+                            }
+                            textPaint.setMaskFilter(new BlurMaskFilter(parseFloat8, blur));
+                        }
+                        if ((i4 & 4) != 0) {
+                            if ((i4 & 2048) != 0) {
+                                textPaint.setXfermode(new PorterDuffXfermode(Mode.DST_IN));
+                            }
+                            textPaint.setStyle(Style.FILL);
+                            textPaint.setColor(parseLong3);
+                            staticLayout.draw(canvas);
+                            textPaint.setXfermode(null);
+                        }
+                        if ((i4 & 8) != 0) {
+                            textPaint.setStyle(Style.STROKE);
+                            textPaint.setColor(parseLong4);
+                            textPaint.setStrokeWidth(parseFloat4);
+                            staticLayout.draw(canvas);
+                        }
+                        textPaint.setMaskFilter(null);
+                        canvas.restore();
+                        i2 = width;
+                        i = indexOf2;
+                        bitmap = createBitmap2;
+                    } else {
+                        Rect rect = new Rect();
+                        textPaint.getTextBounds(substring, 0, substring.length(), rect);
+                        rect.right += 20;
+                        indexOf = (int) Math.ceil((double) parseFloat7);
+                        FontMetrics fontMetrics = textPaint.getFontMetrics();
+                        indexOf2 = (int) Math.max((fontMetrics.bottom * 2.0f) - fontMetrics.top, (float) rect.height());
+                        if (parseInt3 < 1 || parseInt4 < 1) {
+                            width = ((int) Math.abs(parseFloat9)) + (Math.max(rect.width(), rect.right) + (indexOf * 2));
+                            i2 = ((indexOf * 2) + indexOf2) + ((int) Math.abs(parseFloat10));
+                            if (width > 2048) {
+                                width = 2048;
+                            }
+                            if (i2 > 2048) {
+                                i2 = 2048;
+                            }
+                        } else {
+                            i2 = parseInt4;
+                            width = parseInt3;
+                        }
+                        indexOf2 = width < 1 ? 1 : width;
+                        if (i2 < 1) {
+                            width = 1;
+                        } else {
+                            width = i2;
+                        }
+                        switch (i6) {
+                            case 1:
+                                textPaint.setTextAlign(Align.CENTER);
+                                max = (float) (indexOf2 / 2);
+                                break;
+                            case 2:
+                                textPaint.setTextAlign(Align.RIGHT);
+                                max = (float) indexOf2;
+                                break;
+                            default:
+                                textPaint.setTextAlign(Align.LEFT);
+                                max = 20.0f;
+                                break;
+                        }
+                        float f2 = (((float) width) - fontMetrics.ascent) / 2.0f;
+                        parseFloat6 = max + (((float) indexOf) - Math.min(0.0f, parseFloat9));
+                        createBitmap = Bitmap.createBitmap(indexOf2, width, Config.ARGB_8888);
+                        width = createBitmap.getWidth() & -2;
+                        i2 = createBitmap.getHeight() & -2;
+                        Canvas canvas2 = new Canvas(createBitmap);
+                        canvas2.drawColor(parseLong2);
+                        if ((i4 & 4) != 0) {
+                            textPaint.setStyle(Style.FILL);
+                            textPaint.setColor(parseLong3);
+                            canvas2.drawText(substring, parseFloat6, f2, textPaint);
+                        }
+                        if ((i4 & 8) != 0) {
+                            if (!((i4 & 4) == 0 || (i4 & 256) == 0)) {
+                                textPaint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                            }
+                            textPaint.setStyle(Style.STROKE);
+                            textPaint.setColor(parseLong4);
+                            textPaint.setStrokeWidth(parseFloat4);
+                            Path path = new Path();
+                            textPaint.getTextPath(substring, 0, substring.length(), parseFloat6, f2, path);
+                            canvas2.drawPath(path, textPaint);
+                        }
+                        i = width;
+                        bitmap = createBitmap;
+                    }
+                    createBitmap = bitmap;
+                    width = i;
+                    i = i2;
+                } else {
+                    if (str.startsWith(TAG_ThemeImage)) {
+                        substring2 = str.substring(TAG_ThemeImage.length());
+                        width = substring2.indexOf(47);
+                        if (width >= 0) {
+                            substring = substring2.substring(0, width);
+                            substring2 = substring2.substring(width + 1);
+                        } else {
+                            substring = "";
+                        }
+                        bitmap = null;
+                        if (this.m_effectResourceLoader != null) {
+                            try {
+                                bitmap = BitmapFactory.decodeStream(this.m_effectResourceLoader.b(substring, substring2));
+                            } catch (IOException e4) {
+                                Log.e(LOG_TAG, "Error loading bitmap for effect(" + substring + ") : " + substring2);
+                                e4.printStackTrace();
+                                bitmap = null;
+                            }
+                        }
+                        if (bitmap == null && this.m_assetManager != null) {
+                            try {
+                                bitmap = BitmapFactory.decodeStream(this.m_assetManager.open(substring2));
+                            } catch (IOException e42) {
+                                Log.e(LOG_TAG, "Error loading bitmap (general asset mode) for effect(" + substring + ") : " + substring2);
+                                e42.printStackTrace();
+                                bitmap = null;
+                            }
+                        }
+                        if (bitmap != null) {
+                            return new NexImage(bitmap, bitmap.getWidth(), bitmap.getHeight());
+                        }
+                        Log.e(LOG_TAG, "Bitmap failed to load for effect(" + substring + ") : " + substring2);
+                        i = 0;
+                        createBitmap = bitmap;
+                        width = 0;
+                    } else {
+                        Bitmap createBitmap3;
+                        Options options;
+                        if (!str.startsWith(TAG_Overlay)) {
+                            if (str.startsWith(TAG_PreviewThemeImage)) {
+                                substring2 = str.substring(TAG_ThemeImage.length());
+                                width = substring2.indexOf(47);
+                                if (width >= 0) {
+                                    substring = substring2.substring(0, width);
+                                    substring2 = substring2.substring(width + 1);
+                                } else {
+                                    substring = "";
+                                }
+                                bitmap = null;
+                                Options options2 = new Options();
+                                if (this.m_effectResourceLoader != null) {
+                                    try {
+                                        bitmap = BitmapFactory.decodeStream(this.m_effectResourceLoader.b(substring, substring2), null, options2);
+                                    } catch (IOException e422) {
+                                        Log.e(LOG_TAG, "Error loading bitmap for effect(" + substring + ") : " + substring2);
+                                        e422.printStackTrace();
+                                        bitmap = null;
+                                    }
+                                }
+                                if (bitmap == null && this.m_assetManager != null) {
+                                    try {
+                                        bitmap = BitmapFactory.decodeStream(this.m_assetManager.open(substring2), null, options2);
+                                    } catch (IOException e4222) {
+                                        Log.e(LOG_TAG, "Error loading bitmap (general asset mode) for effect(" + substring + ") : " + substring2);
+                                        e4222.printStackTrace();
+                                        bitmap = null;
+                                    }
+                                }
+                                if (bitmap != null) {
+                                    return new NexImage(bitmap, bitmap.getWidth(), bitmap.getHeight());
+                                }
+                                Log.e(LOG_TAG, "Bitmap failed to load for effect(" + substring + ") : " + substring2);
+                                i = 0;
+                                createBitmap = bitmap;
+                                width = 0;
+                            } else {
+                                if (!str.startsWith(TAG_Overlay)) {
+                                    if (str.startsWith("[")) {
+                                        i = 0;
+                                        createBitmap = null;
+                                        width = 0;
+                                    } else {
+                                        bitmap = null;
+                                        if (this.m_assetManager != null) {
+                                            try {
+                                                Bitmap decodeStream;
+                                                if (str.compareTo("placeholder1.jpg") != 0) {
+                                                    if (str.compareTo("placeholder2.jpg") != 0) {
+                                                        decodeStream = BitmapFactory.decodeStream(this.m_assetManager.open(str));
+                                                        bitmap = decodeStream;
+                                                    }
+                                                }
+                                                decodeStream = BitmapFactory.decodeStream(this.m_assetManager.open(str));
+                                                bitmap = decodeStream;
+                                            } catch (IOException e322) {
+                                                e322.printStackTrace();
+                                            }
+                                        }
+                                        if (bitmap != null) {
+                                            return new NexImage(bitmap, bitmap.getWidth(), bitmap.getHeight());
+                                        }
+                                        i = 0;
+                                        createBitmap = bitmap;
+                                        width = 0;
+                                    }
+                                } else if (this.m_overlayPathResolver == null) {
+                                    createBitmap3 = Bitmap.createBitmap(8, 8, Config.ARGB_8888);
+                                    return new NexImage(createBitmap3, createBitmap3.getWidth(), createBitmap3.getHeight());
+                                } else {
+                                    substring2 = this.m_overlayPathResolver.a(str.substring(TAG_Overlay.length()));
+                                    if (substring2 == null) {
+                                        createBitmap3 = Bitmap.createBitmap(8, 8, Config.ARGB_8888);
+                                        return new NexImage(createBitmap3, createBitmap3.getWidth(), createBitmap3.getHeight());
+                                    }
+                                    options = new Options();
+                                    options.inJustDecodeBounds = true;
+                                    BitmapFactory.decodeFile(substring2, options);
+                                    options.inJustDecodeBounds = false;
+                                    options.inSampleSize = 1;
+                                    bitmap = BitmapFactory.decodeFile(substring2, options);
+                                    if (bitmap != null) {
+                                        return new NexImage(bitmap, bitmap.getWidth(), bitmap.getHeight());
+                                    }
+                                    i = 0;
+                                    createBitmap = bitmap;
+                                    width = 0;
+                                }
+                            }
+                        } else if (this.m_overlayPathResolver == null) {
+                            createBitmap3 = Bitmap.createBitmap(8, 8, Config.ARGB_8888);
+                            return new NexImage(createBitmap3, createBitmap3.getWidth(), createBitmap3.getHeight());
+                        } else {
+                            substring2 = this.m_overlayPathResolver.a(str.substring(TAG_Overlay.length()));
+                            if (substring2 == null) {
+                                createBitmap3 = Bitmap.createBitmap(8, 8, Config.ARGB_8888);
+                                return new NexImage(createBitmap3, createBitmap3.getWidth(), createBitmap3.getHeight());
+                            }
+                            options = new Options();
+                            options.inJustDecodeBounds = true;
+                            BitmapFactory.decodeFile(substring2, options);
+                            options.inJustDecodeBounds = false;
+                            options.inSampleSize = 1;
+                            bitmap = BitmapFactory.decodeFile(substring2, options);
+                            if (bitmap != null) {
+                                return new NexImage(bitmap, bitmap.getWidth(), bitmap.getHeight());
+                            }
+                            i = 0;
+                            createBitmap = bitmap;
+                            width = 0;
+                        }
+                    }
+                }
+                if (createBitmap == null || width <= 0 || i <= 0) {
+                    return null;
+                }
+                return new NexImage(createBitmap, width, i);
+            }
+        }
+        return null;
     }
 
     public static b loadBitmap(String str, int i, int i2) {
@@ -2103,387 +1009,165 @@ public final class NexImageLoader {
     /* JADX WARNING: Missing block: B:57:0x0110, code:
             r2 = 0;
      */
-    public static com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader.b loadBitmap(java.lang.String r11, int r12, int r13, int r14, android.graphics.Bitmap.Config r15, int r16) {
-        /*
-        r1 = 1;
-        r0 = r16;
-        if (r0 != r1) goto L_0x000a;
-    L_0x0005:
-        r2 = loadBitmapThumb(r11, r12, r13, r14, r15);
-    L_0x0009:
-        return r2;
-    L_0x000a:
-        r1 = "NexImageLoader";
-        r2 = "loadBitmap";
-        android.util.Log.d(r1, r2);
-        r1 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$a;
-        r7 = 0;
-        r8 = 0;
-        r2 = r11;
-        r3 = r12;
-        r4 = r13;
-        r5 = r14;
-        r6 = r15;
-        r1.<init>(r2, r3, r4, r5, r6, r7);
-        r8 = sBitmapCacheLock;
-        monitor-enter(r8);
-        r5 = 0;
-        r2 = sBitmapCache;	 Catch:{ all -> 0x00ad }
-        r2 = r2.get(r1);	 Catch:{ all -> 0x00ad }
-        r2 = (java.lang.ref.WeakReference) r2;	 Catch:{ all -> 0x00ad }
-        if (r2 == 0) goto L_0x0052;
-    L_0x002b:
-        r3 = r2.get();	 Catch:{ all -> 0x00ad }
-        r3 = (android.graphics.Bitmap) r3;	 Catch:{ all -> 0x00ad }
-        if (r3 == 0) goto L_0x0052;
-    L_0x0033:
-        r2 = sLoadedBitmapCache;	 Catch:{ all -> 0x00ad }
-        r2 = r2.get(r3);	 Catch:{ all -> 0x00ad }
-        r0 = r2;
-        r0 = (com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader.c) r0;	 Catch:{ all -> 0x00ad }
-        r6 = r0;
-        if (r6 == 0) goto L_0x0052;
-    L_0x003f:
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b;	 Catch:{ all -> 0x00ad }
-        r4 = r6.a();	 Catch:{ all -> 0x00ad }
-        r5 = r6.b();	 Catch:{ all -> 0x00ad }
-        r6 = r6.c();	 Catch:{ all -> 0x00ad }
-        r7 = 0;
-        r2.<init>(r3, r4, r5, r6);	 Catch:{ all -> 0x00ad }
-        r5 = r2;
-    L_0x0052:
-        r2 = sCleanCacheCount;	 Catch:{ all -> 0x00ad }
-        r2 = r2 + 1;
-        sCleanCacheCount = r2;	 Catch:{ all -> 0x00ad }
-        r2 = sCleanCacheCount;	 Catch:{ all -> 0x00ad }
-        r3 = 30;
-        if (r2 <= r3) goto L_0x00b0;
-    L_0x005e:
-        r2 = 0;
-        sCleanCacheCount = r2;	 Catch:{ all -> 0x00ad }
-        r4 = 0;
-        r2 = sBitmapCache;	 Catch:{ all -> 0x00ad }
-        r2 = r2.entrySet();	 Catch:{ all -> 0x00ad }
-        r6 = r2.iterator();	 Catch:{ all -> 0x00ad }
-    L_0x006c:
-        r2 = r6.hasNext();	 Catch:{ all -> 0x00ad }
-        if (r2 == 0) goto L_0x0095;
-    L_0x0072:
-        r2 = r6.next();	 Catch:{ all -> 0x00ad }
-        r2 = (java.util.Map.Entry) r2;	 Catch:{ all -> 0x00ad }
-        r3 = r2.getValue();	 Catch:{ all -> 0x00ad }
-        r3 = (java.lang.ref.WeakReference) r3;	 Catch:{ all -> 0x00ad }
-        r3 = r3.get();	 Catch:{ all -> 0x00ad }
-        if (r3 != 0) goto L_0x02b5;
-    L_0x0084:
-        if (r4 != 0) goto L_0x02b2;
-    L_0x0086:
-        r3 = new java.util.ArrayList;	 Catch:{ all -> 0x00ad }
-        r3.<init>();	 Catch:{ all -> 0x00ad }
-    L_0x008b:
-        r2 = r2.getKey();	 Catch:{ all -> 0x00ad }
-        r3.add(r2);	 Catch:{ all -> 0x00ad }
-        r2 = r3;
-    L_0x0093:
-        r4 = r2;
-        goto L_0x006c;
-    L_0x0095:
-        if (r4 == 0) goto L_0x00b0;
-    L_0x0097:
-        r3 = r4.iterator();	 Catch:{ all -> 0x00ad }
-    L_0x009b:
-        r2 = r3.hasNext();	 Catch:{ all -> 0x00ad }
-        if (r2 == 0) goto L_0x00b0;
-    L_0x00a1:
-        r2 = r3.next();	 Catch:{ all -> 0x00ad }
-        r2 = (com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader.a) r2;	 Catch:{ all -> 0x00ad }
-        r4 = sBitmapCache;	 Catch:{ all -> 0x00ad }
-        r4.remove(r2);	 Catch:{ all -> 0x00ad }
-        goto L_0x009b;
-    L_0x00ad:
-        r1 = move-exception;
-        monitor-exit(r8);	 Catch:{ all -> 0x00ad }
-        throw r1;
-    L_0x00b0:
-        if (r5 == 0) goto L_0x00b6;
-    L_0x00b2:
-        monitor-exit(r8);	 Catch:{ all -> 0x00ad }
-        r2 = r5;
-        goto L_0x0009;
-    L_0x00b6:
-        monitor-exit(r8);	 Catch:{ all -> 0x00ad }
-        r2 = java.util.Locale.US;
-        r3 = r11.toLowerCase(r2);
-        r2 = 0;
-        r4 = ".jpeg";
-        r4 = r3.endsWith(r4);
-        if (r4 != 0) goto L_0x00ce;
-    L_0x00c6:
-        r4 = ".jpg";
-        r3 = r3.endsWith(r4);
-        if (r3 == 0) goto L_0x00da;
-    L_0x00ce:
-        r2 = new android.media.ExifInterface;	 Catch:{ IOException -> 0x010f }
-        r2.<init>(r11);	 Catch:{ IOException -> 0x010f }
-        r3 = "Orientation";
-        r4 = 0;
-        r2 = r2.getAttributeInt(r3, r4);	 Catch:{ IOException -> 0x010f }
-    L_0x00da:
-        r5 = new android.graphics.BitmapFactory$Options;
-        r5.<init>();
-        r3 = 1;
-        r5.inJustDecodeBounds = r3;
-        android.graphics.BitmapFactory.decodeFile(r11, r5);
-        r3 = 0;
-        r5.inJustDecodeBounds = r3;
-        r5.inPreferredConfig = r15;
-        r6 = r5.outWidth;
-        r7 = r5.outHeight;
-        r3 = 1;
-        r4 = r3;
-    L_0x00f0:
-        r3 = 8;
-        if (r4 >= r3) goto L_0x0116;
-    L_0x00f4:
-        r3 = r5.outWidth;
-        r3 = r3 / r4;
-        if (r3 <= r12) goto L_0x00fe;
-    L_0x00f9:
-        r3 = r5.outHeight;
-        r3 = r3 / r4;
-        if (r3 > r13) goto L_0x010b;
-    L_0x00fe:
-        r3 = r5.outWidth;
-        r3 = r3 / r4;
-        r8 = r5.outHeight;
-        r3 = r3 * r8;
-        r8 = r3 / r4;
-        if (r14 <= 0) goto L_0x0112;
-    L_0x0108:
-        r3 = r14;
-    L_0x0109:
-        if (r8 <= r3) goto L_0x0116;
-    L_0x010b:
-        r3 = r4 * 2;
-        r4 = r3;
-        goto L_0x00f0;
-    L_0x010f:
-        r2 = move-exception;
-        r2 = 0;
-        goto L_0x00da;
-    L_0x0112:
-        r3 = 1500000; // 0x16e360 float:2.101948E-39 double:7.410985E-318;
-        goto L_0x0109;
-    L_0x0116:
-        r5.inSampleSize = r4;
-        r3 = "NexImageLoader";
-        r8 = new java.lang.StringBuilder;
-        r8.<init>();
-        r9 = "loadBitmap width=";
-        r8 = r8.append(r9);
-        r9 = r5.outWidth;
-        r8 = r8.append(r9);
-        r9 = " height=";
-        r8 = r8.append(r9);
-        r9 = r5.outHeight;
-        r8 = r8.append(r9);
-        r9 = " sampleSize=";
-        r8 = r8.append(r9);
-        r4 = r8.append(r4);
-        r8 = " name='";
-        r4 = r4.append(r8);
-        r4 = r4.append(r11);
-        r8 = "'";
-        r4 = r4.append(r8);
-        r4 = r4.toString();
-        android.util.Log.d(r3, r4);
-        r3 = android.graphics.BitmapFactory.decodeFile(r11, r5);
-        if (r3 != 0) goto L_0x0169;
-    L_0x015e:
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b;
-        r1 = 0;
-        r3 = 0;
-        r4 = 0;
-        r5 = 0;
-        r2.<init>(r1, r3, r4, r5);
-        goto L_0x0009;
-    L_0x0169:
-        switch(r2) {
-            case 0: goto L_0x02a4;
-            case 1: goto L_0x0211;
-            case 2: goto L_0x01b7;
-            case 3: goto L_0x0214;
-            case 4: goto L_0x01e3;
-            case 5: goto L_0x029e;
-            case 6: goto L_0x0246;
-            case 7: goto L_0x02a1;
-            case 8: goto L_0x0272;
-            default: goto L_0x016c;
-        };
-    L_0x016c:
-        r4 = r3;
-    L_0x016d:
-        if (r15 == 0) goto L_0x02af;
-    L_0x016f:
-        r3 = r4.getConfig();
-        if (r3 == r15) goto L_0x02af;
-    L_0x0175:
-        r3 = r4.getWidth();
-        r5 = r4.getHeight();
-        r3 = android.graphics.Bitmap.createBitmap(r3, r5, r15);
-        r5 = new android.graphics.Canvas;
-        r5.<init>(r3);
-        r8 = 0;
-        r9 = 0;
-        r10 = 0;
-        r5.drawBitmap(r4, r8, r9, r10);
-        r4.recycle();
-    L_0x018f:
-        switch(r2) {
-            case 5: goto L_0x02a7;
-            case 6: goto L_0x02a7;
-            case 7: goto L_0x02a7;
-            case 8: goto L_0x02a7;
-            default: goto L_0x0192;
-        };
-    L_0x0192:
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b;
-        r4 = 0;
-        r2.<init>(r3, r6, r7, r4);
-    L_0x0198:
-        r4 = sBitmapCache;
-        r5 = new java.lang.ref.WeakReference;
-        r5.<init>(r3);
-        r4.put(r1, r5);
-        r1 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$c;
-        r4 = r2.b();
-        r5 = r2.c();
-        r6 = 0;
-        r1.<init>(r4, r5, r6);
-        r4 = sLoadedBitmapCache;
-        r4.put(r3, r1);
-        goto L_0x0009;
-    L_0x01b7:
-        r4 = r3.getWidth();
-        r5 = r3.getHeight();
-        r8 = android.graphics.Bitmap.Config.ARGB_8888;
-        r4 = android.graphics.Bitmap.createBitmap(r4, r5, r8);
-        r5 = new android.graphics.Canvas;
-        r5.<init>(r4);
-        r4 = new android.graphics.Matrix;
-        r4.<init>();
-        r8 = -1082130432; // 0xffffffffbf800000 float:-1.0 double:NaN;
-        r9 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r4.setScale(r8, r9);
-        r8 = r3.getWidth();
-        r8 = (float) r8;
-        r9 = 0;
-        r4.postTranslate(r8, r9);
-        r8 = 0;
-        r5.drawBitmap(r3, r4, r8);
-    L_0x01e3:
-        r4 = r3.getWidth();
-        r5 = r3.getHeight();
-        r8 = android.graphics.Bitmap.Config.ARGB_8888;
-        r4 = android.graphics.Bitmap.createBitmap(r4, r5, r8);
-        r5 = new android.graphics.Canvas;
-        r5.<init>(r4);
-        r8 = new android.graphics.Matrix;
-        r8.<init>();
-        r9 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r10 = -1082130432; // 0xffffffffbf800000 float:-1.0 double:NaN;
-        r8.setScale(r9, r10);
-        r9 = 0;
-        r10 = r3.getHeight();
-        r10 = (float) r10;
-        r8.postTranslate(r9, r10);
-        r9 = 0;
-        r5.drawBitmap(r3, r8, r9);
-        goto L_0x016d;
-    L_0x0211:
-        r4 = r3;
-        goto L_0x016d;
-    L_0x0214:
-        r4 = r3.getWidth();
-        r5 = r3.getHeight();
-        r8 = android.graphics.Bitmap.Config.ARGB_8888;
-        r4 = android.graphics.Bitmap.createBitmap(r4, r5, r8);
-        r5 = new android.graphics.Canvas;
-        r5.<init>(r4);
-        r8 = new android.graphics.Matrix;
-        r8.<init>();
-        r9 = -1082130432; // 0xffffffffbf800000 float:-1.0 double:NaN;
-        r10 = -1082130432; // 0xffffffffbf800000 float:-1.0 double:NaN;
-        r8.setScale(r9, r10);
-        r9 = r3.getWidth();
-        r9 = (float) r9;
-        r10 = r3.getHeight();
-        r10 = (float) r10;
-        r8.postTranslate(r9, r10);
-        r9 = 0;
-        r5.drawBitmap(r3, r8, r9);
-        goto L_0x016d;
-    L_0x0246:
-        r4 = r3.getHeight();
-        r5 = r3.getWidth();
-        r8 = android.graphics.Bitmap.Config.ARGB_8888;
-        r4 = android.graphics.Bitmap.createBitmap(r4, r5, r8);
-        r5 = new android.graphics.Canvas;
-        r5.<init>(r4);
-        r8 = new android.graphics.Matrix;
-        r8.<init>();
-        r9 = 1119092736; // 0x42b40000 float:90.0 double:5.529052754E-315;
-        r8.setRotate(r9);
-        r9 = r3.getHeight();
-        r9 = (float) r9;
-        r10 = 0;
-        r8.postTranslate(r9, r10);
-        r9 = 0;
-        r5.drawBitmap(r3, r8, r9);
-        goto L_0x016d;
-    L_0x0272:
-        r4 = r3.getHeight();
-        r5 = r3.getWidth();
-        r8 = android.graphics.Bitmap.Config.ARGB_8888;
-        r4 = android.graphics.Bitmap.createBitmap(r4, r5, r8);
-        r5 = new android.graphics.Canvas;
-        r5.<init>(r4);
-        r8 = new android.graphics.Matrix;
-        r8.<init>();
-        r9 = 1132920832; // 0x43870000 float:270.0 double:5.597372625E-315;
-        r8.setRotate(r9);
-        r9 = 0;
-        r10 = r3.getWidth();
-        r10 = (float) r10;
-        r8.postTranslate(r9, r10);
-        r9 = 0;
-        r5.drawBitmap(r3, r8, r9);
-        goto L_0x016d;
-    L_0x029e:
-        r4 = r3;
-        goto L_0x016d;
-    L_0x02a1:
-        r4 = r3;
-        goto L_0x016d;
-    L_0x02a4:
-        r4 = r3;
-        goto L_0x016d;
-    L_0x02a7:
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b;
-        r4 = 0;
-        r2.<init>(r3, r7, r6, r4);
-        goto L_0x0198;
-    L_0x02af:
-        r3 = r4;
-        goto L_0x018f;
-    L_0x02b2:
-        r3 = r4;
-        goto L_0x008b;
-    L_0x02b5:
-        r2 = r4;
-        goto L_0x0093;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader.loadBitmap(java.lang.String, int, int, int, android.graphics.Bitmap$Config, int):com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static b loadBitmap(String str, int i, int i2, int i3, Config config, int i4) {
+        a aVar;
+        Bitmap bitmap;
+        if (i4 == 1) {
+            return loadBitmapThumb(str, i, i2, i3, config);
+        }
+        Log.d(LOG_TAG, "loadBitmap");
+        aVar = new a(str, i, i2, i3, config, false);
+        synchronized (sBitmapCacheLock) {
+            b bVar = null;
+            WeakReference weakReference = (WeakReference) sBitmapCache.get(aVar);
+            if (weakReference != null) {
+                bitmap = (Bitmap) weakReference.get();
+                if (bitmap != null) {
+                    c cVar = (c) sLoadedBitmapCache.get(bitmap);
+                    if (cVar != null) {
+                        bVar = new b(bitmap, cVar.a(), cVar.b(), cVar.c());
+                    }
+                }
+            }
+            sCleanCacheCount++;
+            if (sCleanCacheCount > 30) {
+                sCleanCacheCount = 0;
+                List list = null;
+                for (Entry entry : sBitmapCache.entrySet()) {
+                    List list2;
+                    if (((WeakReference) entry.getValue()).get() == null) {
+                        List arrayList;
+                        if (list == null) {
+                            arrayList = new ArrayList();
+                        } else {
+                            arrayList = list;
+                        }
+                        arrayList.add(entry.getKey());
+                        list2 = arrayList;
+                    } else {
+                        list2 = list;
+                    }
+                    list = list2;
+                }
+                if (list != null) {
+                    for (a remove : list) {
+                        sBitmapCache.remove(remove);
+                    }
+                }
+            }
+            if (bVar != null) {
+                return bVar;
+            }
+        }
+        int i5;
+        Options options = new Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(str, options);
+        options.inJustDecodeBounds = false;
+        options.inPreferredConfig = config;
+        int i6 = options.outWidth;
+        int i7 = options.outHeight;
+        int i8 = 1;
+        while (true) {
+            i5 = i8;
+            if (i5 >= 8) {
+                break;
+            }
+            if (options.outWidth / i5 <= i || options.outHeight / i5 <= i2) {
+                if (((options.outWidth / i5) * options.outHeight) / i5 <= (i3 > 0 ? i3 : 1500000)) {
+                    break;
+                }
+            }
+            i8 = i5 * 2;
+        }
+        options.inSampleSize = i5;
+        Log.d(LOG_TAG, "loadBitmap width=" + options.outWidth + " height=" + options.outHeight + " sampleSize=" + i5 + " name='" + str + "'");
+        bitmap = BitmapFactory.decodeFile(str, options);
+        if (bitmap == null) {
+            return new b(null, 0, 0, null);
+        }
+        Bitmap bitmap2;
+        Canvas canvas;
+        Matrix matrix;
+        b bVar2;
+        switch (r2) {
+            case 0:
+                bitmap2 = bitmap;
+                break;
+            case 1:
+                bitmap2 = bitmap;
+                break;
+            case 2:
+                canvas = new Canvas(Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888));
+                Matrix matrix2 = new Matrix();
+                matrix2.setScale(-1.0f, 1.0f);
+                matrix2.postTranslate((float) bitmap.getWidth(), 0.0f);
+                canvas.drawBitmap(bitmap, matrix2, null);
+                break;
+            case 3:
+                bitmap2 = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
+                canvas = new Canvas(bitmap2);
+                matrix = new Matrix();
+                matrix.setScale(-1.0f, -1.0f);
+                matrix.postTranslate((float) bitmap.getWidth(), (float) bitmap.getHeight());
+                canvas.drawBitmap(bitmap, matrix, null);
+                break;
+            case 4:
+                break;
+            case 5:
+                bitmap2 = bitmap;
+                break;
+            case 6:
+                bitmap2 = Bitmap.createBitmap(bitmap.getHeight(), bitmap.getWidth(), Config.ARGB_8888);
+                canvas = new Canvas(bitmap2);
+                matrix = new Matrix();
+                matrix.setRotate(90.0f);
+                matrix.postTranslate((float) bitmap.getHeight(), 0.0f);
+                canvas.drawBitmap(bitmap, matrix, null);
+                break;
+            case 7:
+                bitmap2 = bitmap;
+                break;
+            case 8:
+                bitmap2 = Bitmap.createBitmap(bitmap.getHeight(), bitmap.getWidth(), Config.ARGB_8888);
+                canvas = new Canvas(bitmap2);
+                matrix = new Matrix();
+                matrix.setRotate(270.0f);
+                matrix.postTranslate(0.0f, (float) bitmap.getWidth());
+                canvas.drawBitmap(bitmap, matrix, null);
+                break;
+            default:
+                bitmap2 = bitmap;
+                break;
+        }
+        bitmap2 = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
+        canvas = new Canvas(bitmap2);
+        matrix = new Matrix();
+        matrix.setScale(1.0f, -1.0f);
+        matrix.postTranslate(0.0f, (float) bitmap.getHeight());
+        canvas.drawBitmap(bitmap, matrix, null);
+        if (config == null || bitmap2.getConfig() == config) {
+            bitmap = bitmap2;
+        } else {
+            bitmap = Bitmap.createBitmap(bitmap2.getWidth(), bitmap2.getHeight(), config);
+            new Canvas(bitmap).drawBitmap(bitmap2, 0.0f, 0.0f, null);
+            bitmap2.recycle();
+        }
+        switch (r2) {
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+                bVar2 = new b(bitmap, i7, i6, null);
+                break;
+            default:
+                bVar2 = new b(bitmap, i6, i7, null);
+                break;
+        }
+        sBitmapCache.put(aVar, new WeakReference(bitmap));
+        sLoadedBitmapCache.put(bitmap, new c(bVar2.b(), bVar2.c(), null));
+        return bVar2;
     }
 
     /* JADX WARNING: Missing block: B:35:0x00ac, code:
@@ -2522,192 +1206,52 @@ public final class NexImageLoader {
     /* JADX WARNING: Missing block: B:53:?, code:
             return r2;
      */
-    public static com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader.b loadBitmapThumb(java.lang.String r9, int r10, int r11, int r12, android.graphics.Bitmap.Config r13) {
-        /*
-        r1 = "NexImageLoader";
-        r2 = "loadBitmapThumb";
-        android.util.Log.d(r1, r2);
-        r1 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$a;
-        r7 = 1;
-        r8 = 0;
-        r2 = r9;
-        r3 = r10;
-        r4 = r11;
-        r5 = r12;
-        r6 = r13;
-        r1.<init>(r2, r3, r4, r5, r6, r7);
-        r8 = sBitmapCacheLock;
-        monitor-enter(r8);
-        r5 = 0;
-        r2 = sBitmapCache;	 Catch:{ all -> 0x00a3 }
-        r2 = r2.get(r1);	 Catch:{ all -> 0x00a3 }
-        r2 = (java.lang.ref.WeakReference) r2;	 Catch:{ all -> 0x00a3 }
-        if (r2 == 0) goto L_0x0048;
-    L_0x0021:
-        r3 = r2.get();	 Catch:{ all -> 0x00a3 }
-        r3 = (android.graphics.Bitmap) r3;	 Catch:{ all -> 0x00a3 }
-        if (r3 == 0) goto L_0x0048;
-    L_0x0029:
-        r2 = sLoadedBitmapCache;	 Catch:{ all -> 0x00a3 }
-        r2 = r2.get(r3);	 Catch:{ all -> 0x00a3 }
-        r0 = r2;
-        r0 = (com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader.c) r0;	 Catch:{ all -> 0x00a3 }
-        r6 = r0;
-        if (r6 == 0) goto L_0x0048;
-    L_0x0035:
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b;	 Catch:{ all -> 0x00a3 }
-        r4 = r6.a();	 Catch:{ all -> 0x00a3 }
-        r5 = r6.b();	 Catch:{ all -> 0x00a3 }
-        r6 = r6.c();	 Catch:{ all -> 0x00a3 }
-        r7 = 0;
-        r2.<init>(r3, r4, r5, r6);	 Catch:{ all -> 0x00a3 }
-        r5 = r2;
-    L_0x0048:
-        r2 = sCleanCacheCount;	 Catch:{ all -> 0x00a3 }
-        r2 = r2 + 1;
-        sCleanCacheCount = r2;	 Catch:{ all -> 0x00a3 }
-        r2 = sCleanCacheCount;	 Catch:{ all -> 0x00a3 }
-        r3 = 30;
-        if (r2 <= r3) goto L_0x00a6;
-    L_0x0054:
-        r2 = 0;
-        sCleanCacheCount = r2;	 Catch:{ all -> 0x00a3 }
-        r4 = 0;
-        r2 = sBitmapCache;	 Catch:{ all -> 0x00a3 }
-        r2 = r2.entrySet();	 Catch:{ all -> 0x00a3 }
-        r6 = r2.iterator();	 Catch:{ all -> 0x00a3 }
-    L_0x0062:
-        r2 = r6.hasNext();	 Catch:{ all -> 0x00a3 }
-        if (r2 == 0) goto L_0x008b;
-    L_0x0068:
-        r2 = r6.next();	 Catch:{ all -> 0x00a3 }
-        r2 = (java.util.Map.Entry) r2;	 Catch:{ all -> 0x00a3 }
-        r3 = r2.getValue();	 Catch:{ all -> 0x00a3 }
-        r3 = (java.lang.ref.WeakReference) r3;	 Catch:{ all -> 0x00a3 }
-        r3 = r3.get();	 Catch:{ all -> 0x00a3 }
-        if (r3 != 0) goto L_0x013c;
-    L_0x007a:
-        if (r4 != 0) goto L_0x0139;
-    L_0x007c:
-        r3 = new java.util.ArrayList;	 Catch:{ all -> 0x00a3 }
-        r3.<init>();	 Catch:{ all -> 0x00a3 }
-    L_0x0081:
-        r2 = r2.getKey();	 Catch:{ all -> 0x00a3 }
-        r3.add(r2);	 Catch:{ all -> 0x00a3 }
-        r2 = r3;
-    L_0x0089:
-        r4 = r2;
-        goto L_0x0062;
-    L_0x008b:
-        if (r4 == 0) goto L_0x00a6;
-    L_0x008d:
-        r3 = r4.iterator();	 Catch:{ all -> 0x00a3 }
-    L_0x0091:
-        r2 = r3.hasNext();	 Catch:{ all -> 0x00a3 }
-        if (r2 == 0) goto L_0x00a6;
-    L_0x0097:
-        r2 = r3.next();	 Catch:{ all -> 0x00a3 }
-        r2 = (com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader.a) r2;	 Catch:{ all -> 0x00a3 }
-        r4 = sBitmapCache;	 Catch:{ all -> 0x00a3 }
-        r4.remove(r2);	 Catch:{ all -> 0x00a3 }
-        goto L_0x0091;
-    L_0x00a3:
-        r1 = move-exception;
-        monitor-exit(r8);	 Catch:{ all -> 0x00a3 }
-        throw r1;
-    L_0x00a6:
-        if (r5 == 0) goto L_0x00ab;
-    L_0x00a8:
-        monitor-exit(r8);	 Catch:{ all -> 0x00a3 }
-        r1 = r5;
-    L_0x00aa:
-        return r1;
-    L_0x00ab:
-        monitor-exit(r8);	 Catch:{ all -> 0x00a3 }
-        r2 = com.nexstreaming.kminternal.kinemaster.config.a.a();
-        r2 = r2.b();
-        r8 = getThumbnail(r2, r9);
-        if (r8 != 0) goto L_0x00c5;
-    L_0x00ba:
-        r1 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b;
-        r2 = 0;
-        r3 = 0;
-        r4 = 0;
-        r5 = 0;
-        r6 = 0;
-        r1.<init>(r2, r3, r4, r5);
-        goto L_0x00aa;
-    L_0x00c5:
-        r2 = com.nexstreaming.kminternal.kinemaster.config.a.a();
-        r2 = r2.b();
-        r2 = getThumbnailOrientation(r2, r9);
-        switch(r2) {
-            case 90: goto L_0x0103;
-            case 180: goto L_0x0115;
-            case 270: goto L_0x0127;
-            default: goto L_0x00d4;
-        };
-    L_0x00d4:
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b;
-        r4 = 1280; // 0x500 float:1.794E-42 double:6.324E-321;
-        r5 = 720; // 0x2d0 float:1.009E-42 double:3.557E-321;
-        r6 = 2;
-        r7 = 0;
-        r3 = r8;
-        r2.<init>(r3, r4, r5, r6);
-    L_0x00e0:
-        r3 = sBitmapCache;
-        r4 = new java.lang.ref.WeakReference;
-        r4.<init>(r8);
-        r3.put(r1, r4);
-        r1 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$c;
-        r3 = r2.b();
-        r4 = r2.c();
-        r5 = r2.d();
-        r6 = 0;
-        r1.<init>(r3, r4, r5);
-        r3 = sLoadedBitmapCache;
-        r3.put(r8, r1);
-        r1 = r2;
-        goto L_0x00aa;
-    L_0x0103:
-        r2 = 90;
-        r3 = rotateImage(r8, r2);
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b;
-        r4 = 720; // 0x2d0 float:1.009E-42 double:3.557E-321;
-        r5 = 1280; // 0x500 float:1.794E-42 double:6.324E-321;
-        r6 = 2;
-        r7 = 0;
-        r2.<init>(r3, r4, r5, r6);
-        goto L_0x00e0;
-    L_0x0115:
-        r2 = 180; // 0xb4 float:2.52E-43 double:8.9E-322;
-        r3 = rotateImage(r8, r2);
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b;
-        r4 = 1280; // 0x500 float:1.794E-42 double:6.324E-321;
-        r5 = 720; // 0x2d0 float:1.009E-42 double:3.557E-321;
-        r6 = 2;
-        r7 = 0;
-        r2.<init>(r3, r4, r5, r6);
-        goto L_0x00e0;
-    L_0x0127:
-        r2 = 270; // 0x10e float:3.78E-43 double:1.334E-321;
-        r3 = rotateImage(r8, r2);
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b;
-        r4 = 720; // 0x2d0 float:1.009E-42 double:3.557E-321;
-        r5 = 1280; // 0x500 float:1.794E-42 double:6.324E-321;
-        r6 = 2;
-        r7 = 0;
-        r2.<init>(r3, r4, r5, r6);
-        goto L_0x00e0;
-    L_0x0139:
-        r3 = r4;
-        goto L_0x0081;
-    L_0x013c:
-        r2 = r4;
-        goto L_0x0089;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader.loadBitmapThumb(java.lang.String, int, int, int, android.graphics.Bitmap$Config):com.nexstreaming.kminternal.nexvideoeditor.NexImageLoader$b");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static b loadBitmapThumb(String str, int i, int i2, int i3, Config config) {
+        Log.d(LOG_TAG, "loadBitmapThumb");
+        a aVar = new a(str, i, i2, i3, config, true);
+        synchronized (sBitmapCacheLock) {
+            b bVar = null;
+            WeakReference weakReference = (WeakReference) sBitmapCache.get(aVar);
+            if (weakReference != null) {
+                Bitmap bitmap = (Bitmap) weakReference.get();
+                if (bitmap != null) {
+                    c cVar = (c) sLoadedBitmapCache.get(bitmap);
+                    if (cVar != null) {
+                        bVar = new b(bitmap, cVar.a(), cVar.b(), cVar.c());
+                    }
+                }
+            }
+            sCleanCacheCount++;
+            if (sCleanCacheCount > 30) {
+                sCleanCacheCount = 0;
+                List list = null;
+                for (Entry entry : sBitmapCache.entrySet()) {
+                    List list2;
+                    if (((WeakReference) entry.getValue()).get() == null) {
+                        List arrayList;
+                        if (list == null) {
+                            arrayList = new ArrayList();
+                        } else {
+                            arrayList = list;
+                        }
+                        arrayList.add(entry.getKey());
+                        list2 = arrayList;
+                    } else {
+                        list2 = list;
+                    }
+                    list = list2;
+                }
+                if (list != null) {
+                    for (a remove : list) {
+                        sBitmapCache.remove(remove);
+                    }
+                }
+            }
+            if (bVar != null) {
+                return bVar;
+            }
+        }
     }
 
     public static Bitmap rotateImage(Bitmap bitmap, int i) {

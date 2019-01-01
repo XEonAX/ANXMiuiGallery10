@@ -1,11 +1,13 @@
 package com.xiaomi.mipush.sdk;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.ServiceInfo;
+import android.net.Uri;
 import android.text.TextUtils;
 import com.xiaomi.channel.commonutils.android.DeviceInfo;
 import com.xiaomi.channel.commonutils.android.SharedPrefsCompat;
@@ -40,6 +42,9 @@ import com.xiaomi.xmpush.thrift.XmPushActionSubscriptionResult;
 import com.xiaomi.xmpush.thrift.XmPushActionUnRegistrationResult;
 import com.xiaomi.xmpush.thrift.XmPushActionUnSubscriptionResult;
 import com.xiaomi.xmpush.thrift.XmPushThriftSerializeUtils;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -801,202 +806,95 @@ public class PushMessageProcessor {
 
     /* JADX WARNING: Removed duplicated region for block: B:14:0x0042  */
     /* JADX WARNING: Removed duplicated region for block: B:14:0x0042  */
-    public static android.content.Intent getNotificationMessageIntent(android.content.Context r16, java.lang.String r17, java.util.Map<java.lang.String, java.lang.String> r18) {
-        /*
-        if (r18 == 0) goto L_0x000c;
-    L_0x0002:
-        r14 = "notify_effect";
-        r0 = r18;
-        r14 = r0.containsKey(r14);
-        if (r14 != 0) goto L_0x000e;
-    L_0x000c:
-        r3 = 0;
-    L_0x000d:
-        return r3;
-    L_0x000e:
-        r14 = "notify_effect";
-        r0 = r18;
-        r11 = r0.get(r14);
-        r11 = (java.lang.String) r11;
-        r5 = -1;
-        r14 = "intent_flag";
-        r0 = r18;
-        r6 = r0.get(r14);
-        r6 = (java.lang.String) r6;
-        r14 = android.text.TextUtils.isEmpty(r6);	 Catch:{ NumberFormatException -> 0x005a }
-        if (r14 != 0) goto L_0x002d;
-    L_0x0029:
-        r5 = java.lang.Integer.parseInt(r6);	 Catch:{ NumberFormatException -> 0x005a }
-    L_0x002d:
-        r3 = 0;
-        r14 = com.xiaomi.push.service.PushConstants.NOTIFICATION_CLICK_DEFAULT;
-        r14 = r14.equals(r11);
-        if (r14 == 0) goto L_0x0092;
-    L_0x0036:
-        r14 = r16.getPackageManager();	 Catch:{ Exception -> 0x0076 }
-        r0 = r17;
-        r3 = r14.getLaunchIntentForPackage(r0);	 Catch:{ Exception -> 0x0076 }
-    L_0x0040:
-        if (r3 == 0) goto L_0x0058;
-    L_0x0042:
-        if (r5 < 0) goto L_0x0047;
-    L_0x0044:
-        r3.setFlags(r5);
-    L_0x0047:
-        r14 = 268435456; // 0x10000000 float:2.5243549E-29 double:1.32624737E-315;
-        r3.addFlags(r14);
-        r14 = r16.getPackageManager();	 Catch:{ Exception -> 0x0180 }
-        r15 = 65536; // 0x10000 float:9.18355E-41 double:3.2379E-319;
-        r9 = r14.resolveActivity(r3, r15);	 Catch:{ Exception -> 0x0180 }
-        if (r9 != 0) goto L_0x000d;
-    L_0x0058:
-        r3 = 0;
-        goto L_0x000d;
-    L_0x005a:
-        r2 = move-exception;
-        r14 = new java.lang.StringBuilder;
-        r14.<init>();
-        r15 = "Cause by intent_flag: ";
-        r14 = r14.append(r15);
-        r15 = r2.getMessage();
-        r14 = r14.append(r15);
-        r14 = r14.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r14);
-        goto L_0x002d;
-    L_0x0076:
-        r2 = move-exception;
-        r14 = new java.lang.StringBuilder;
-        r14.<init>();
-        r15 = "Cause: ";
-        r14 = r14.append(r15);
-        r15 = r2.getMessage();
-        r14 = r14.append(r15);
-        r14 = r14.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r14);
-        goto L_0x0040;
-    L_0x0092:
-        r14 = com.xiaomi.push.service.PushConstants.NOTIFICATION_CLICK_INTENT;
-        r14 = r14.equals(r11);
-        if (r14 == 0) goto L_0x00fd;
-    L_0x009a:
-        r14 = "intent_uri";
-        r0 = r18;
-        r14 = r0.containsKey(r14);
-        if (r14 == 0) goto L_0x00d8;
-    L_0x00a4:
-        r14 = "intent_uri";
-        r0 = r18;
-        r7 = r0.get(r14);
-        r7 = (java.lang.String) r7;
-        if (r7 == 0) goto L_0x0040;
-    L_0x00b0:
-        r14 = 1;
-        r3 = android.content.Intent.parseUri(r7, r14);	 Catch:{ URISyntaxException -> 0x00bb }
-        r0 = r17;
-        r3.setPackage(r0);	 Catch:{ URISyntaxException -> 0x00bb }
-        goto L_0x0040;
-    L_0x00bb:
-        r2 = move-exception;
-        r14 = new java.lang.StringBuilder;
-        r14.<init>();
-        r15 = "Cause: ";
-        r14 = r14.append(r15);
-        r15 = r2.getMessage();
-        r14 = r14.append(r15);
-        r14 = r14.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r14);
-        goto L_0x0040;
-    L_0x00d8:
-        r14 = "class_name";
-        r0 = r18;
-        r14 = r0.containsKey(r14);
-        if (r14 == 0) goto L_0x0040;
-    L_0x00e2:
-        r14 = "class_name";
-        r0 = r18;
-        r1 = r0.get(r14);
-        r1 = (java.lang.String) r1;
-        r3 = new android.content.Intent;
-        r3.<init>();
-        r14 = new android.content.ComponentName;
-        r0 = r17;
-        r14.<init>(r0, r1);
-        r3.setComponent(r14);
-        goto L_0x0040;
-    L_0x00fd:
-        r14 = com.xiaomi.push.service.PushConstants.NOTIFICATION_CLICK_WEB_PAGE;
-        r14 = r14.equals(r11);
-        if (r14 == 0) goto L_0x0040;
-    L_0x0105:
-        r14 = "web_uri";
-        r0 = r18;
-        r12 = r0.get(r14);
-        r12 = (java.lang.String) r12;
-        if (r12 == 0) goto L_0x0040;
-    L_0x0112:
-        r10 = r12.trim();
-        r14 = "http://";
-        r14 = r10.startsWith(r14);
-        if (r14 != 0) goto L_0x0139;
-    L_0x011e:
-        r14 = "https://";
-        r14 = r10.startsWith(r14);
-        if (r14 != 0) goto L_0x0139;
-    L_0x0126:
-        r14 = new java.lang.StringBuilder;
-        r14.<init>();
-        r15 = "http://";
-        r14 = r14.append(r15);
-        r14 = r14.append(r10);
-        r10 = r14.toString();
-    L_0x0139:
-        r13 = new java.net.URL;	 Catch:{ MalformedURLException -> 0x0163 }
-        r13.<init>(r10);	 Catch:{ MalformedURLException -> 0x0163 }
-        r8 = r13.getProtocol();	 Catch:{ MalformedURLException -> 0x0163 }
-        r14 = "http";
-        r14 = r14.equals(r8);	 Catch:{ MalformedURLException -> 0x0163 }
-        if (r14 != 0) goto L_0x0152;
-    L_0x014a:
-        r14 = "https";
-        r14 = r14.equals(r8);	 Catch:{ MalformedURLException -> 0x0163 }
-        if (r14 == 0) goto L_0x0040;
-    L_0x0152:
-        r4 = new android.content.Intent;	 Catch:{ MalformedURLException -> 0x0163 }
-        r14 = "android.intent.action.VIEW";
-        r4.<init>(r14);	 Catch:{ MalformedURLException -> 0x0163 }
-        r14 = android.net.Uri.parse(r10);	 Catch:{ MalformedURLException -> 0x019d }
-        r4.setData(r14);	 Catch:{ MalformedURLException -> 0x019d }
-        r3 = r4;
-        goto L_0x0040;
-    L_0x0163:
-        r2 = move-exception;
-    L_0x0164:
-        r14 = new java.lang.StringBuilder;
-        r14.<init>();
-        r15 = "Cause: ";
-        r14 = r14.append(r15);
-        r15 = r2.getMessage();
-        r14 = r14.append(r15);
-        r14 = r14.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r14);
-        goto L_0x0040;
-    L_0x0180:
-        r2 = move-exception;
-        r14 = new java.lang.StringBuilder;
-        r14.<init>();
-        r15 = "Cause: ";
-        r14 = r14.append(r15);
-        r15 = r2.getMessage();
-        r14 = r14.append(r15);
-        r14 = r14.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r14);
-        goto L_0x0058;
-    L_0x019d:
-        r2 = move-exception;
-        r3 = r4;
-        goto L_0x0164;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.mipush.sdk.PushMessageProcessor.getNotificationMessageIntent(android.content.Context, java.lang.String, java.util.Map):android.content.Intent");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Intent getNotificationMessageIntent(Context context, String pkgName, Map<String, String> extra) {
+        MalformedURLException e;
+        if (extra != null) {
+            if (extra.containsKey("notify_effect")) {
+                String typeId = (String) extra.get("notify_effect");
+                int intentFlag = -1;
+                String intentFlagStr = (String) extra.get("intent_flag");
+                try {
+                    if (!TextUtils.isEmpty(intentFlagStr)) {
+                        intentFlag = Integer.parseInt(intentFlagStr);
+                    }
+                } catch (NumberFormatException e2) {
+                    MyLog.e("Cause by intent_flag: " + e2.getMessage());
+                }
+                Intent intent = null;
+                if (PushConstants.NOTIFICATION_CLICK_DEFAULT.equals(typeId)) {
+                    try {
+                        intent = context.getPackageManager().getLaunchIntentForPackage(pkgName);
+                    } catch (Exception e3) {
+                        MyLog.e("Cause: " + e3.getMessage());
+                    }
+                } else if (PushConstants.NOTIFICATION_CLICK_INTENT.equals(typeId)) {
+                    if (extra.containsKey("intent_uri")) {
+                        String intentStr = (String) extra.get("intent_uri");
+                        if (intentStr != null) {
+                            try {
+                                intent = Intent.parseUri(intentStr, 1);
+                                intent.setPackage(pkgName);
+                            } catch (URISyntaxException e4) {
+                                MyLog.e("Cause: " + e4.getMessage());
+                            }
+                        }
+                    } else {
+                        if (extra.containsKey("class_name")) {
+                            String className = (String) extra.get("class_name");
+                            intent = new Intent();
+                            intent.setComponent(new ComponentName(pkgName, className));
+                        }
+                    }
+                } else if (PushConstants.NOTIFICATION_CLICK_WEB_PAGE.equals(typeId)) {
+                    String uri = (String) extra.get("web_uri");
+                    if (uri != null) {
+                        String tmp = uri.trim();
+                        if (!(tmp.startsWith("http://") || tmp.startsWith("https://"))) {
+                            tmp = "http://" + tmp;
+                        }
+                        try {
+                            String protocol = new URL(tmp).getProtocol();
+                            if ("http".equals(protocol) || "https".equals(protocol)) {
+                                Intent intent2 = new Intent("android.intent.action.VIEW");
+                                try {
+                                    intent2.setData(Uri.parse(tmp));
+                                    intent = intent2;
+                                } catch (MalformedURLException e5) {
+                                    e = e5;
+                                    intent = intent2;
+                                    MyLog.e("Cause: " + e.getMessage());
+                                    if (intent != null) {
+                                    }
+                                    return null;
+                                }
+                            }
+                        } catch (MalformedURLException e6) {
+                            e = e6;
+                            MyLog.e("Cause: " + e.getMessage());
+                            if (intent != null) {
+                            }
+                            return null;
+                        }
+                    }
+                }
+                if (intent != null) {
+                    if (intentFlag >= 0) {
+                        intent.setFlags(intentFlag);
+                    }
+                    intent.addFlags(268435456);
+                    try {
+                        if (context.getPackageManager().resolveActivity(intent, 65536) != null) {
+                            return intent;
+                        }
+                    } catch (Exception e32) {
+                        MyLog.e("Cause: " + e32.getMessage());
+                    }
+                }
+                return null;
+            }
+        }
+        return null;
     }
 
     private boolean isHybridMsg(XmPushActionContainer message) {

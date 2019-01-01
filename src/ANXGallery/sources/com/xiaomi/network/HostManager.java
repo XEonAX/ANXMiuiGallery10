@@ -494,67 +494,30 @@ public class HostManager {
     /* JADX WARNING: Missing block: B:25:0x005b, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public void refreshFallbacks() {
-        /*
-        r8 = this;
-        r2 = 0;
-        r6 = r8.mHostsMapping;
-        monitor-enter(r6);
-        r8.checkHostMapping();	 Catch:{ all -> 0x0058 }
-        r3 = new java.util.ArrayList;	 Catch:{ all -> 0x0058 }
-        r5 = r8.mHostsMapping;	 Catch:{ all -> 0x0058 }
-        r5 = r5.keySet();	 Catch:{ all -> 0x0058 }
-        r3.<init>(r5);	 Catch:{ all -> 0x0058 }
-        r5 = r3.size();	 Catch:{ all -> 0x005c }
-        r4 = r5 + -1;
-    L_0x0018:
-        if (r4 < 0) goto L_0x0034;
-    L_0x001a:
-        r5 = r8.mHostsMapping;	 Catch:{ all -> 0x005c }
-        r7 = r3.get(r4);	 Catch:{ all -> 0x005c }
-        r0 = r5.get(r7);	 Catch:{ all -> 0x005c }
-        r0 = (com.xiaomi.network.Fallbacks) r0;	 Catch:{ all -> 0x005c }
-        if (r0 == 0) goto L_0x0031;
-    L_0x0028:
-        r5 = r0.getFallback();	 Catch:{ all -> 0x005c }
-        if (r5 == 0) goto L_0x0031;
-    L_0x002e:
-        r3.remove(r4);	 Catch:{ all -> 0x005c }
-    L_0x0031:
-        r4 = r4 + -1;
-        goto L_0x0018;
-    L_0x0034:
-        monitor-exit(r6);	 Catch:{ all -> 0x005c }
-        r1 = r8.requestRemoteFallbacks(r3);
-        r4 = 0;
-    L_0x003a:
-        r5 = r3.size();
-        if (r4 >= r5) goto L_0x005b;
-    L_0x0040:
-        r5 = r1.get(r4);
-        if (r5 == 0) goto L_0x0055;
-    L_0x0046:
-        r5 = r3.get(r4);
-        r5 = (java.lang.String) r5;
-        r6 = r1.get(r4);
-        r6 = (com.xiaomi.network.Fallback) r6;
-        r8.updateFallbacks(r5, r6);
-    L_0x0055:
-        r4 = r4 + 1;
-        goto L_0x003a;
-    L_0x0058:
-        r5 = move-exception;
-    L_0x0059:
-        monitor-exit(r6);	 Catch:{ all -> 0x0058 }
-        throw r5;
-    L_0x005b:
-        return;
-    L_0x005c:
-        r5 = move-exception;
-        r2 = r3;
-        goto L_0x0059;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.network.HostManager.refreshFallbacks():void");
+        Throwable th;
+        synchronized (this.mHostsMapping) {
+            try {
+                checkHostMapping();
+                ArrayList<String> hosts = new ArrayList(this.mHostsMapping.keySet());
+                try {
+                    for (int i = hosts.size() - 1; i >= 0; i--) {
+                        Fallbacks fbs = (Fallbacks) this.mHostsMapping.get(hosts.get(i));
+                        if (!(fbs == null || fbs.getFallback() == null)) {
+                            hosts.remove(i);
+                        }
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    ArrayList<String> arrayList = hosts;
+                    throw th;
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                throw th;
+            }
+        }
     }
 
     protected String loadHosts() {

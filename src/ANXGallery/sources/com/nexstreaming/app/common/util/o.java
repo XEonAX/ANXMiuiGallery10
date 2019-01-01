@@ -9,6 +9,7 @@ import android.os.Build.VERSION;
 import android.preference.PreferenceManager;
 import android.provider.Settings.Secure;
 import android.util.Log;
+import com.nexstreaming.kminternal.nexvideoeditor.NexEditor;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
@@ -96,74 +97,31 @@ public class o {
     /* JADX WARNING: Missing block: B:15:0x0044, code:
             if (r0.equalsIgnoreCase("universal7420") != false) goto L_0x0046;
      */
-    public static java.lang.String b() {
-        /*
-        r3 = 1;
-        r0 = "ro.board.platform";
-        r1 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.b(r0);
-        if (r1 == 0) goto L_0x002b;
-    L_0x0009:
-        r0 = r1.trim();
-        r2 = "msm8960";
-        r0 = r0.equalsIgnoreCase(r2);
-        if (r0 == 0) goto L_0x002b;
-    L_0x0015:
-        r0 = "ro.product.board";
-        r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.b(r0);
-        if (r0 == 0) goto L_0x002b;
-    L_0x001d:
-        r0 = r0.trim();
-        r2 = "8x30";
-        r0 = r0.equalsIgnoreCase(r2);
-        if (r0 == 0) goto L_0x002b;
-    L_0x0029:
-        r1 = "MSM8x30n";
-    L_0x002b:
-        if (r1 == 0) goto L_0x007a;
-    L_0x002d:
-        r0 = "exynos5";
-        r0 = r1.equalsIgnoreCase(r0);
-        if (r0 == 0) goto L_0x007a;
-    L_0x0035:
-        r0 = "ro.product.board";
-        r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.b(r0);
-        if (r0 == 0) goto L_0x007a;
-    L_0x003d:
-        r2 = "universal7420";
-        r2 = r0.equalsIgnoreCase(r2);
-        if (r2 == 0) goto L_0x007a;
-    L_0x0046:
-        if (r0 == 0) goto L_0x0052;
-    L_0x0048:
-        r1 = r0.trim();
-        r1 = r1.length();
-        if (r1 >= r3) goto L_0x0058;
-    L_0x0052:
-        r0 = "ro.mediatek.platform";
-        r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.b(r0);
-    L_0x0058:
-        if (r0 == 0) goto L_0x0064;
-    L_0x005a:
-        r1 = r0.trim();
-        r1 = r1.length();
-        if (r1 >= r3) goto L_0x006a;
-    L_0x0064:
-        r0 = "ro.hardware";
-        r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.b(r0);
-    L_0x006a:
-        if (r0 == 0) goto L_0x0076;
-    L_0x006c:
-        r1 = r0.trim();
-        r1 = r1.length();
-        if (r1 >= r3) goto L_0x0079;
-    L_0x0076:
-        r0 = "unknown";
-    L_0x0079:
-        return r0;
-    L_0x007a:
-        r0 = r1;
-        goto L_0x0046;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.util.o.b():java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static String b() {
+        String b;
+        String b2 = NexEditor.b("ro.board.platform");
+        if (b2 != null && b2.trim().equalsIgnoreCase("msm8960")) {
+            b = NexEditor.b("ro.product.board");
+            if (b != null && b.trim().equalsIgnoreCase("8x30")) {
+                b2 = "MSM8x30n";
+            }
+        }
+        if (b2 != null && b2.equalsIgnoreCase("exynos5")) {
+            b = NexEditor.b("ro.product.board");
+            if (b != null) {
+            }
+        }
+        b = b2;
+        if (b == null || b.trim().length() < 1) {
+            b = NexEditor.b("ro.mediatek.platform");
+        }
+        if (b == null || b.trim().length() < 1) {
+            b = NexEditor.b("ro.hardware");
+        }
+        if (b == null || b.trim().length() < 1) {
+            return "unknown";
+        }
+        return b;
     }
 }

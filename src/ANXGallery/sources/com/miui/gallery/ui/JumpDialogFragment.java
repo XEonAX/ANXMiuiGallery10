@@ -9,6 +9,7 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +17,7 @@ import android.view.WindowManager.LayoutParams;
 import com.miui.account.AccountHelper;
 import com.miui.gallery.R;
 import com.miui.gallery.activity.facebaby.BabyAlbumDetailActivity;
+import com.miui.gallery.activity.facebaby.FacePageActivity;
 import com.miui.gallery.provider.GalleryContract.Album;
 import com.miui.gallery.provider.GalleryContract.PeopleFace;
 import com.miui.gallery.provider.GalleryContract.RecentAlbum;
@@ -269,118 +271,56 @@ public class JumpDialogFragment extends GalleryDialogFragment {
         /* JADX WARNING: Removed duplicated region for block: B:20:0x00b3  */
         /* JADX WARNING: Removed duplicated region for block: B:20:0x00b3  */
         /* JADX WARNING: Removed duplicated region for block: B:23:0x00c0  */
-        public void onLoadFinished(android.content.Loader r18, java.lang.Object r19) {
-            /*
-            r17 = this;
-            r4 = 0;
-            if (r19 == 0) goto L_0x00b1;
-        L_0x0003:
-            r2 = r19;
-            r2 = (android.database.Cursor) r2;
-            r10 = r2.moveToFirst();	 Catch:{ Exception -> 0x00bb }
-            if (r10 == 0) goto L_0x00b1;
-        L_0x000d:
-            r1 = new android.os.Bundle;	 Catch:{ Exception -> 0x00bb }
-            r1.<init>();	 Catch:{ Exception -> 0x00bb }
-            r10 = 10;
-            r6 = r2.getString(r10);	 Catch:{ Exception -> 0x00bb }
-            r10 = 0;
-            r7 = r2.getString(r10);	 Catch:{ Exception -> 0x00bb }
-            r10 = "server_id_of_album";
-            r1.putString(r10, r6);	 Catch:{ Exception -> 0x00bb }
-            r10 = "local_id_of_album";
-            r1.putString(r10, r7);	 Catch:{ Exception -> 0x00bb }
-            r10 = 1;
-            r8 = r2.getString(r10);	 Catch:{ Exception -> 0x00bb }
-            r10 = android.text.TextUtils.isEmpty(r8);	 Catch:{ Exception -> 0x00bb }
-            if (r10 == 0) goto L_0x003d;
-        L_0x0032:
-            r0 = r17;
-            r10 = r0.mFragment;	 Catch:{ Exception -> 0x00bb }
-            r11 = 2131624735; // 0x7f0e031f float:1.8876658E38 double:1.0531625514E-314;
-            r8 = r10.getString(r11);	 Catch:{ Exception -> 0x00bb }
-        L_0x003d:
-            r10 = "album_name";
-            r1.putString(r10, r8);	 Catch:{ Exception -> 0x00bb }
-            r10 = "relationType";
-            r11 = 2;
-            r11 = r2.getInt(r11);	 Catch:{ Exception -> 0x00bb }
-            r1.putInt(r10, r11);	 Catch:{ Exception -> 0x00bb }
-            r10 = 4;
-            r9 = r2.getString(r10);	 Catch:{ Exception -> 0x00bb }
-            r10 = android.text.TextUtils.isEmpty(r9);	 Catch:{ Exception -> 0x00bb }
-            if (r10 == 0) goto L_0x005c;
-        L_0x0057:
-            r10 = 3;
-            r9 = r2.getString(r10);	 Catch:{ Exception -> 0x00bb }
-        L_0x005c:
-            r10 = android.text.TextUtils.isEmpty(r9);	 Catch:{ Exception -> 0x00bb }
-            if (r10 == 0) goto L_0x0067;
-        L_0x0062:
-            r10 = 5;
-            r9 = r2.getString(r10);	 Catch:{ Exception -> 0x00bb }
-        L_0x0067:
-            r10 = "face_album_cover";
-            r1.putString(r10, r9);	 Catch:{ Exception -> 0x00bb }
-            r10 = "face_position_rect";
-            r11 = new android.graphics.RectF;	 Catch:{ Exception -> 0x00bb }
-            r12 = 6;
-            r12 = r2.getFloat(r12);	 Catch:{ Exception -> 0x00bb }
-            r13 = 7;
-            r13 = r2.getFloat(r13);	 Catch:{ Exception -> 0x00bb }
-            r14 = 6;
-            r14 = r2.getFloat(r14);	 Catch:{ Exception -> 0x00bb }
-            r15 = 8;
-            r15 = r2.getFloat(r15);	 Catch:{ Exception -> 0x00bb }
-            r14 = r14 + r15;
-            r15 = 7;
-            r15 = r2.getFloat(r15);	 Catch:{ Exception -> 0x00bb }
-            r16 = 9;
-            r0 = r16;
-            r16 = r2.getFloat(r0);	 Catch:{ Exception -> 0x00bb }
-            r15 = r15 + r16;
-            r11.<init>(r12, r13, r14, r15);	 Catch:{ Exception -> 0x00bb }
-            r1.putParcelable(r10, r11);	 Catch:{ Exception -> 0x00bb }
-            r5 = new android.content.Intent;	 Catch:{ Exception -> 0x00bb }
-            r5.<init>();	 Catch:{ Exception -> 0x00bb }
-            r5.putExtras(r1);	 Catch:{ Exception -> 0x00db }
-            r0 = r17;
-            r10 = r0.mFragment;	 Catch:{ Exception -> 0x00db }
-            r10 = r10.getActivity();	 Catch:{ Exception -> 0x00db }
-            r11 = com.miui.gallery.activity.facebaby.FacePageActivity.class;
-            r5.setClass(r10, r11);	 Catch:{ Exception -> 0x00db }
-            r4 = r5;
-        L_0x00b1:
-            if (r4 == 0) goto L_0x00c0;
-        L_0x00b3:
-            r0 = r17;
-            r10 = r0.mHandleIntentCallback;
-            r10.onHandleIntent(r4);
-        L_0x00ba:
-            return;
-        L_0x00bb:
-            r3 = move-exception;
-        L_0x00bc:
-            r2.close();
-            goto L_0x00b1;
-        L_0x00c0:
-            r0 = r17;
-            r10 = r0.mHandleIntentCallback;
-            r0 = r17;
-            r11 = r0.mFragment;
-            r11 = r11.getActivity();
-            r0 = r17;
-            r12 = r0.mFragment;
-            r13 = 2131624731; // 0x7f0e031b float:1.887665E38 double:1.0531625494E-314;
-            r12 = r12.getString(r13);
-            r10.onJumpFailed(r11, r12);
-            goto L_0x00ba;
-        L_0x00db:
-            r3 = move-exception;
-            r4 = r5;
-            goto L_0x00bc;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.ui.JumpDialogFragment.PeopleJumpHelper.onLoadFinished(android.content.Loader, java.lang.Object):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void onLoadFinished(Loader loader, Object data) {
+            Intent intent = null;
+            if (data != null) {
+                Cursor cursor = (Cursor) data;
+                try {
+                    if (cursor.moveToFirst()) {
+                        Bundle bundle = new Bundle();
+                        String peopleId = cursor.getString(10);
+                        String peopleLocalId = cursor.getString(0);
+                        bundle.putString("server_id_of_album", peopleId);
+                        bundle.putString("local_id_of_album", peopleLocalId);
+                        String peopleName = cursor.getString(1);
+                        if (TextUtils.isEmpty(peopleName)) {
+                            peopleName = this.mFragment.getString(R.string.people_page_unname);
+                        }
+                        bundle.putString("album_name", peopleName);
+                        bundle.putInt("relationType", cursor.getInt(2));
+                        String thumbnail = cursor.getString(4);
+                        if (TextUtils.isEmpty(thumbnail)) {
+                            thumbnail = cursor.getString(3);
+                        }
+                        if (TextUtils.isEmpty(thumbnail)) {
+                            thumbnail = cursor.getString(5);
+                        }
+                        bundle.putString("face_album_cover", thumbnail);
+                        bundle.putParcelable("face_position_rect", new RectF(cursor.getFloat(6), cursor.getFloat(7), cursor.getFloat(6) + cursor.getFloat(8), cursor.getFloat(7) + cursor.getFloat(9)));
+                        Intent intent2 = new Intent();
+                        try {
+                            intent2.putExtras(bundle);
+                            intent2.setClass(this.mFragment.getActivity(), FacePageActivity.class);
+                            intent = intent2;
+                        } catch (Exception e) {
+                            intent = intent2;
+                            cursor.close();
+                            if (intent != null) {
+                            }
+                        }
+                    }
+                } catch (Exception e2) {
+                    cursor.close();
+                    if (intent != null) {
+                    }
+                }
+            }
+            if (intent != null) {
+                this.mHandleIntentCallback.onHandleIntent(intent);
+            } else {
+                this.mHandleIntentCallback.onJumpFailed(this.mFragment.getActivity(), this.mFragment.getString(R.string.people_jump_failed));
+            }
         }
 
         public void onLoaderReset(Loader loader) {

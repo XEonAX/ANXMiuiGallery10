@@ -345,37 +345,28 @@ public class LinkedBlockingDeque<E> extends AbstractQueue<E> implements Blocking
     /* JADX WARNING: Missing block: B:6:0x0015, code:
             r1 = null;
      */
-    public E pollFirst(long r8, java.util.concurrent.TimeUnit r10) throws java.lang.InterruptedException {
-        /*
-        r7 = this;
-        r2 = r10.toNanos(r8);
-        r0 = r7.lock;
-        r0.lockInterruptibly();
-    L_0x0009:
-        r1 = r7.unlinkFirst();	 Catch:{ all -> 0x0025 }
-        if (r1 != 0) goto L_0x0021;
-    L_0x000f:
-        r4 = 0;
-        r4 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-        if (r4 > 0) goto L_0x001a;
-    L_0x0015:
-        r1 = 0;
-        r0.unlock();
-    L_0x0019:
-        return r1;
-    L_0x001a:
-        r4 = r7.notEmpty;	 Catch:{ all -> 0x0025 }
-        r2 = r4.awaitNanos(r2);	 Catch:{ all -> 0x0025 }
-        goto L_0x0009;
-    L_0x0021:
-        r0.unlock();
-        goto L_0x0019;
-    L_0x0025:
-        r4 = move-exception;
-        r0.unlock();
-        throw r4;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque.pollFirst(long, java.util.concurrent.TimeUnit):E");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public E pollFirst(long timeout, TimeUnit unit) throws InterruptedException {
+        E unlinkFirst;
+        long nanos = unit.toNanos(timeout);
+        ReentrantLock lock = this.lock;
+        lock.lockInterruptibly();
+        while (true) {
+            try {
+                unlinkFirst = unlinkFirst();
+                if (unlinkFirst != null) {
+                    lock.unlock();
+                    return unlinkFirst;
+                } else if (nanos <= 0) {
+                    break;
+                } else {
+                    nanos = this.notEmpty.awaitNanos(nanos);
+                }
+            } finally {
+                lock.unlock();
+            }
+        }
+        return unlinkFirst;
     }
 
     public E getFirst() {

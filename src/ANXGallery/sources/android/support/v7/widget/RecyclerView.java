@@ -22,6 +22,7 @@ import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.NestedScrollingChildHelper;
 import android.support.v4.view.ScrollingView;
+import android.support.v4.view.VelocityTrackerCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityEventCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
@@ -4798,522 +4799,150 @@ public class RecyclerView extends ViewGroup implements NestedScrollingChild, Scr
     /* JADX WARNING: Missing block: B:82:0x037a, code:
             if (fling((int) r15, (int) r17) == false) goto L_0x037c;
      */
-    public boolean onTouchEvent(android.view.MotionEvent r24) {
-        /*
-        r23 = this;
-        r0 = r23;
-        r0 = r0.mLayoutFrozen;
-        r18 = r0;
-        if (r18 != 0) goto L_0x0010;
-    L_0x0008:
-        r0 = r23;
-        r0 = r0.mIgnoreMotionEventTillDown;
-        r18 = r0;
-        if (r18 == 0) goto L_0x0013;
-    L_0x0010:
-        r18 = 0;
-    L_0x0012:
-        return r18;
-    L_0x0013:
-        r18 = r23.dispatchOnItemTouch(r24);
-        if (r18 == 0) goto L_0x001f;
-    L_0x0019:
-        r23.cancelTouch();
-        r18 = 1;
-        goto L_0x0012;
-    L_0x001f:
-        r0 = r23;
-        r0 = r0.mLayout;
-        r18 = r0;
-        if (r18 != 0) goto L_0x002a;
-    L_0x0027:
-        r18 = 0;
-        goto L_0x0012;
-    L_0x002a:
-        r0 = r23;
-        r0 = r0.mLayout;
-        r18 = r0;
-        r5 = r18.canScrollHorizontally();
-        r0 = r23;
-        r0 = r0.mLayout;
-        r18 = r0;
-        r6 = r18.canScrollVertically();
-        r0 = r23;
-        r0 = r0.mVelocityTracker;
-        r18 = r0;
-        if (r18 != 0) goto L_0x0050;
-    L_0x0046:
-        r18 = android.view.VelocityTracker.obtain();
-        r0 = r18;
-        r1 = r23;
-        r1.mVelocityTracker = r0;
-    L_0x0050:
-        r9 = 0;
-        r13 = android.view.MotionEvent.obtain(r24);
-        r3 = android.support.v4.view.MotionEventCompat.getActionMasked(r24);
-        r4 = android.support.v4.view.MotionEventCompat.getActionIndex(r24);
-        if (r3 != 0) goto L_0x0075;
-    L_0x005f:
-        r0 = r23;
-        r0 = r0.mNestedOffsets;
-        r18 = r0;
-        r19 = 0;
-        r0 = r23;
-        r0 = r0.mNestedOffsets;
-        r20 = r0;
-        r21 = 1;
-        r22 = 0;
-        r20[r21] = r22;
-        r18[r19] = r22;
-    L_0x0075:
-        r0 = r23;
-        r0 = r0.mNestedOffsets;
-        r18 = r0;
-        r19 = 0;
-        r18 = r18[r19];
-        r0 = r18;
-        r0 = (float) r0;
-        r18 = r0;
-        r0 = r23;
-        r0 = r0.mNestedOffsets;
-        r19 = r0;
-        r20 = 1;
-        r19 = r19[r20];
-        r0 = r19;
-        r0 = (float) r0;
-        r19 = r0;
-        r0 = r18;
-        r1 = r19;
-        r13.offsetLocation(r0, r1);
-        switch(r3) {
-            case 0: goto L_0x00b1;
-            case 1: goto L_0x030e;
-            case 2: goto L_0x0146;
-            case 3: goto L_0x038f;
-            case 4: goto L_0x009d;
-            case 5: goto L_0x0102;
-            case 6: goto L_0x0309;
-            default: goto L_0x009d;
-        };
-    L_0x009d:
-        if (r9 != 0) goto L_0x00aa;
-    L_0x009f:
-        r0 = r23;
-        r0 = r0.mVelocityTracker;
-        r18 = r0;
-        r0 = r18;
-        r0.addMovement(r13);
-    L_0x00aa:
-        r13.recycle();
-        r18 = 1;
-        goto L_0x0012;
-    L_0x00b1:
-        r18 = 0;
-        r0 = r24;
-        r1 = r18;
-        r18 = r0.getPointerId(r1);
-        r0 = r18;
-        r1 = r23;
-        r1.mScrollPointerId = r0;
-        r18 = r24.getX();
-        r19 = 1056964608; // 0x3f000000 float:0.5 double:5.222099017E-315;
-        r18 = r18 + r19;
-        r0 = r18;
-        r0 = (int) r0;
-        r18 = r0;
-        r0 = r18;
-        r1 = r23;
-        r1.mLastTouchX = r0;
-        r0 = r18;
-        r1 = r23;
-        r1.mInitialTouchX = r0;
-        r18 = r24.getY();
-        r19 = 1056964608; // 0x3f000000 float:0.5 double:5.222099017E-315;
-        r18 = r18 + r19;
-        r0 = r18;
-        r0 = (int) r0;
-        r18 = r0;
-        r0 = r18;
-        r1 = r23;
-        r1.mLastTouchY = r0;
-        r0 = r18;
-        r1 = r23;
-        r1.mInitialTouchY = r0;
-        r11 = 0;
-        if (r5 == 0) goto L_0x00f8;
-    L_0x00f6:
-        r11 = r11 | 1;
-    L_0x00f8:
-        if (r6 == 0) goto L_0x00fc;
-    L_0x00fa:
-        r11 = r11 | 2;
-    L_0x00fc:
-        r0 = r23;
-        r0.startNestedScroll(r11);
-        goto L_0x009d;
-    L_0x0102:
-        r0 = r24;
-        r18 = r0.getPointerId(r4);
-        r0 = r18;
-        r1 = r23;
-        r1.mScrollPointerId = r0;
-        r0 = r24;
-        r18 = r0.getX(r4);
-        r19 = 1056964608; // 0x3f000000 float:0.5 double:5.222099017E-315;
-        r18 = r18 + r19;
-        r0 = r18;
-        r0 = (int) r0;
-        r18 = r0;
-        r0 = r18;
-        r1 = r23;
-        r1.mLastTouchX = r0;
-        r0 = r18;
-        r1 = r23;
-        r1.mInitialTouchX = r0;
-        r0 = r24;
-        r18 = r0.getY(r4);
-        r19 = 1056964608; // 0x3f000000 float:0.5 double:5.222099017E-315;
-        r18 = r18 + r19;
-        r0 = r18;
-        r0 = (int) r0;
-        r18 = r0;
-        r0 = r18;
-        r1 = r23;
-        r1.mLastTouchY = r0;
-        r0 = r18;
-        r1 = r23;
-        r1.mInitialTouchY = r0;
-        goto L_0x009d;
-    L_0x0146:
-        r0 = r23;
-        r0 = r0.mScrollPointerId;
-        r18 = r0;
-        r0 = r24;
-        r1 = r18;
-        r10 = r0.findPointerIndex(r1);
-        if (r10 >= 0) goto L_0x017e;
-    L_0x0156:
-        r18 = "RecyclerView";
-        r19 = new java.lang.StringBuilder;
-        r19.<init>();
-        r20 = "Error processing scroll; pointer index for id ";
-        r19 = r19.append(r20);
-        r0 = r23;
-        r0 = r0.mScrollPointerId;
-        r20 = r0;
-        r19 = r19.append(r20);
-        r20 = " not found. Did any MotionEvents get skipped?";
-        r19 = r19.append(r20);
-        r19 = r19.toString();
-        android.util.Log.e(r18, r19);
-        r18 = 0;
-        goto L_0x0012;
-    L_0x017e:
-        r0 = r24;
-        r18 = r0.getX(r10);
-        r19 = 1056964608; // 0x3f000000 float:0.5 double:5.222099017E-315;
-        r18 = r18 + r19;
-        r0 = r18;
-        r14 = (int) r0;
-        r0 = r24;
-        r18 = r0.getY(r10);
-        r19 = 1056964608; // 0x3f000000 float:0.5 double:5.222099017E-315;
-        r18 = r18 + r19;
-        r0 = r18;
-        r0 = (int) r0;
-        r16 = r0;
-        r0 = r23;
-        r0 = r0.mLastTouchX;
-        r18 = r0;
-        r7 = r18 - r14;
-        r0 = r23;
-        r0 = r0.mLastTouchY;
-        r18 = r0;
-        r8 = r18 - r16;
-        r0 = r23;
-        r0 = r0.mScrollConsumed;
-        r18 = r0;
-        r0 = r23;
-        r0 = r0.mScrollOffset;
-        r19 = r0;
-        r0 = r23;
-        r1 = r18;
-        r2 = r19;
-        r18 = r0.dispatchNestedPreScroll(r7, r8, r1, r2);
-        if (r18 == 0) goto L_0x022f;
-    L_0x01c2:
-        r0 = r23;
-        r0 = r0.mScrollConsumed;
-        r18 = r0;
-        r19 = 0;
-        r18 = r18[r19];
-        r7 = r7 - r18;
-        r0 = r23;
-        r0 = r0.mScrollConsumed;
-        r18 = r0;
-        r19 = 1;
-        r18 = r18[r19];
-        r8 = r8 - r18;
-        r0 = r23;
-        r0 = r0.mScrollOffset;
-        r18 = r0;
-        r19 = 0;
-        r18 = r18[r19];
-        r0 = r18;
-        r0 = (float) r0;
-        r18 = r0;
-        r0 = r23;
-        r0 = r0.mScrollOffset;
-        r19 = r0;
-        r20 = 1;
-        r19 = r19[r20];
-        r0 = r19;
-        r0 = (float) r0;
-        r19 = r0;
-        r0 = r18;
-        r1 = r19;
-        r13.offsetLocation(r0, r1);
-        r0 = r23;
-        r0 = r0.mNestedOffsets;
-        r18 = r0;
-        r19 = 0;
-        r20 = r18[r19];
-        r0 = r23;
-        r0 = r0.mScrollOffset;
-        r21 = r0;
-        r22 = 0;
-        r21 = r21[r22];
-        r20 = r20 + r21;
-        r18[r19] = r20;
-        r0 = r23;
-        r0 = r0.mNestedOffsets;
-        r18 = r0;
-        r19 = 1;
-        r20 = r18[r19];
-        r0 = r23;
-        r0 = r0.mScrollOffset;
-        r21 = r0;
-        r22 = 1;
-        r21 = r21[r22];
-        r20 = r20 + r21;
-        r18[r19] = r20;
-    L_0x022f:
-        r0 = r23;
-        r0 = r0.mScrollState;
-        r18 = r0;
-        r19 = 1;
-        r0 = r18;
-        r1 = r19;
-        if (r0 == r1) goto L_0x0283;
-    L_0x023d:
-        r12 = 0;
-        if (r5 == 0) goto L_0x025b;
-    L_0x0240:
-        r18 = java.lang.Math.abs(r7);
-        r0 = r23;
-        r0 = r0.mTouchSlop;
-        r19 = r0;
-        r0 = r18;
-        r1 = r19;
-        if (r0 <= r1) goto L_0x025b;
-    L_0x0250:
-        if (r7 <= 0) goto L_0x02ed;
-    L_0x0252:
-        r0 = r23;
-        r0 = r0.mTouchSlop;
-        r18 = r0;
-        r7 = r7 - r18;
-    L_0x025a:
-        r12 = 1;
-    L_0x025b:
-        if (r6 == 0) goto L_0x0278;
-    L_0x025d:
-        r18 = java.lang.Math.abs(r8);
-        r0 = r23;
-        r0 = r0.mTouchSlop;
-        r19 = r0;
-        r0 = r18;
-        r1 = r19;
-        if (r0 <= r1) goto L_0x0278;
-    L_0x026d:
-        if (r8 <= 0) goto L_0x02f7;
-    L_0x026f:
-        r0 = r23;
-        r0 = r0.mTouchSlop;
-        r18 = r0;
-        r8 = r8 - r18;
-    L_0x0277:
-        r12 = 1;
-    L_0x0278:
-        if (r12 == 0) goto L_0x0283;
-    L_0x027a:
-        r18 = 1;
-        r0 = r23;
-        r1 = r18;
-        r0.setScrollState(r1);
-    L_0x0283:
-        r0 = r23;
-        r0 = r0.mScrollState;
-        r18 = r0;
-        r19 = 1;
-        r0 = r18;
-        r1 = r19;
-        if (r0 != r1) goto L_0x009d;
-    L_0x0291:
-        r0 = r23;
-        r0 = r0.mScrollOffset;
-        r18 = r0;
-        r19 = 0;
-        r18 = r18[r19];
-        r18 = r14 - r18;
-        r0 = r18;
-        r1 = r23;
-        r1.mLastTouchX = r0;
-        r0 = r23;
-        r0 = r0.mScrollOffset;
-        r18 = r0;
-        r19 = 1;
-        r18 = r18[r19];
-        r18 = r16 - r18;
-        r0 = r18;
-        r1 = r23;
-        r1.mLastTouchY = r0;
-        if (r5 == 0) goto L_0x0301;
-    L_0x02b7:
-        r19 = r7;
-    L_0x02b9:
-        if (r6 == 0) goto L_0x0306;
-    L_0x02bb:
-        r18 = r8;
-    L_0x02bd:
-        r0 = r23;
-        r1 = r19;
-        r2 = r18;
-        r18 = r0.scrollByInternal(r1, r2, r13);
-        if (r18 == 0) goto L_0x02d2;
-    L_0x02c9:
-        r18 = r23.getParent();
-        r19 = 1;
-        r18.requestDisallowInterceptTouchEvent(r19);
-    L_0x02d2:
-        r0 = r23;
-        r0 = r0.mGapWorker;
-        r18 = r0;
-        if (r18 == 0) goto L_0x009d;
-    L_0x02da:
-        if (r7 != 0) goto L_0x02de;
-    L_0x02dc:
-        if (r8 == 0) goto L_0x009d;
-    L_0x02de:
-        r0 = r23;
-        r0 = r0.mGapWorker;
-        r18 = r0;
-        r0 = r18;
-        r1 = r23;
-        r0.postFromTraversal(r1, r7, r8);
-        goto L_0x009d;
-    L_0x02ed:
-        r0 = r23;
-        r0 = r0.mTouchSlop;
-        r18 = r0;
-        r7 = r7 + r18;
-        goto L_0x025a;
-    L_0x02f7:
-        r0 = r23;
-        r0 = r0.mTouchSlop;
-        r18 = r0;
-        r8 = r8 + r18;
-        goto L_0x0277;
-    L_0x0301:
-        r18 = 0;
-        r19 = r18;
-        goto L_0x02b9;
-    L_0x0306:
-        r18 = 0;
-        goto L_0x02bd;
-    L_0x0309:
-        r23.onPointerUp(r24);
-        goto L_0x009d;
-    L_0x030e:
-        r0 = r23;
-        r0 = r0.mVelocityTracker;
-        r18 = r0;
-        r0 = r18;
-        r0.addMovement(r13);
-        r9 = 1;
-        r0 = r23;
-        r0 = r0.mVelocityTracker;
-        r18 = r0;
-        r19 = 1000; // 0x3e8 float:1.401E-42 double:4.94E-321;
-        r0 = r23;
-        r0 = r0.mMaxFlingVelocity;
-        r20 = r0;
-        r0 = r20;
-        r0 = (float) r0;
-        r20 = r0;
-        r18.computeCurrentVelocity(r19, r20);
-        if (r5 == 0) goto L_0x038a;
-    L_0x0332:
-        r0 = r23;
-        r0 = r0.mVelocityTracker;
-        r18 = r0;
-        r0 = r23;
-        r0 = r0.mScrollPointerId;
-        r19 = r0;
-        r18 = android.support.v4.view.VelocityTrackerCompat.getXVelocity(r18, r19);
-        r0 = r18;
-        r15 = -r0;
-    L_0x0345:
-        if (r6 == 0) goto L_0x038c;
-    L_0x0347:
-        r0 = r23;
-        r0 = r0.mVelocityTracker;
-        r18 = r0;
-        r0 = r23;
-        r0 = r0.mScrollPointerId;
-        r19 = r0;
-        r18 = android.support.v4.view.VelocityTrackerCompat.getYVelocity(r18, r19);
-        r0 = r18;
-        r0 = -r0;
-        r17 = r0;
-    L_0x035c:
-        r18 = 0;
-        r18 = (r15 > r18 ? 1 : (r15 == r18 ? 0 : -1));
-        if (r18 != 0) goto L_0x0368;
-    L_0x0362:
-        r18 = 0;
-        r18 = (r17 > r18 ? 1 : (r17 == r18 ? 0 : -1));
-        if (r18 == 0) goto L_0x037c;
-    L_0x0368:
-        r0 = (int) r15;
-        r18 = r0;
-        r0 = r17;
-        r0 = (int) r0;
-        r19 = r0;
-        r0 = r23;
-        r1 = r18;
-        r2 = r19;
-        r18 = r0.fling(r1, r2);
-        if (r18 != 0) goto L_0x0385;
-    L_0x037c:
-        r18 = 0;
-        r0 = r23;
-        r1 = r18;
-        r0.setScrollState(r1);
-    L_0x0385:
-        r23.resetTouch();
-        goto L_0x009d;
-    L_0x038a:
-        r15 = 0;
-        goto L_0x0345;
-    L_0x038c:
-        r17 = 0;
-        goto L_0x035c;
-    L_0x038f:
-        r23.cancelTouch();
-        goto L_0x009d;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v7.widget.RecyclerView.onTouchEvent(android.view.MotionEvent):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean onTouchEvent(MotionEvent e) {
+        if (this.mLayoutFrozen || this.mIgnoreMotionEventTillDown) {
+            return false;
+        }
+        if (dispatchOnItemTouch(e)) {
+            cancelTouch();
+            return true;
+        } else if (this.mLayout == null) {
+            return false;
+        } else {
+            int[] iArr;
+            boolean canScrollHorizontally = this.mLayout.canScrollHorizontally();
+            boolean canScrollVertically = this.mLayout.canScrollVertically();
+            if (this.mVelocityTracker == null) {
+                this.mVelocityTracker = VelocityTracker.obtain();
+            }
+            boolean eventAddedToVelocityTracker = false;
+            MotionEvent vtev = MotionEvent.obtain(e);
+            int action = MotionEventCompat.getActionMasked(e);
+            int actionIndex = MotionEventCompat.getActionIndex(e);
+            if (action == 0) {
+                iArr = this.mNestedOffsets;
+                this.mNestedOffsets[1] = 0;
+                iArr[0] = 0;
+            }
+            vtev.offsetLocation((float) this.mNestedOffsets[0], (float) this.mNestedOffsets[1]);
+            int x;
+            switch (action) {
+                case 0:
+                    this.mScrollPointerId = e.getPointerId(0);
+                    x = (int) (e.getX() + 0.5f);
+                    this.mLastTouchX = x;
+                    this.mInitialTouchX = x;
+                    x = (int) (e.getY() + 0.5f);
+                    this.mLastTouchY = x;
+                    this.mInitialTouchY = x;
+                    int nestedScrollAxis = 0;
+                    if (canScrollHorizontally) {
+                        nestedScrollAxis = 0 | 1;
+                    }
+                    if (canScrollVertically) {
+                        nestedScrollAxis |= 2;
+                    }
+                    startNestedScroll(nestedScrollAxis);
+                    break;
+                case 1:
+                    this.mVelocityTracker.addMovement(vtev);
+                    eventAddedToVelocityTracker = true;
+                    this.mVelocityTracker.computeCurrentVelocity(1000, (float) this.mMaxFlingVelocity);
+                    float xvel = canScrollHorizontally ? -VelocityTrackerCompat.getXVelocity(this.mVelocityTracker, this.mScrollPointerId) : 0.0f;
+                    float yvel = canScrollVertically ? -VelocityTrackerCompat.getYVelocity(this.mVelocityTracker, this.mScrollPointerId) : 0.0f;
+                    if (!(xvel == 0.0f && yvel == 0.0f)) {
+                        break;
+                    }
+                    setScrollState(0);
+                    resetTouch();
+                    break;
+                case 2:
+                    int index = e.findPointerIndex(this.mScrollPointerId);
+                    if (index >= 0) {
+                        int x2 = (int) (e.getX(index) + 0.5f);
+                        int y = (int) (e.getY(index) + 0.5f);
+                        int dx = this.mLastTouchX - x2;
+                        int dy = this.mLastTouchY - y;
+                        if (dispatchNestedPreScroll(dx, dy, this.mScrollConsumed, this.mScrollOffset)) {
+                            dx -= this.mScrollConsumed[0];
+                            dy -= this.mScrollConsumed[1];
+                            vtev.offsetLocation((float) this.mScrollOffset[0], (float) this.mScrollOffset[1]);
+                            iArr = this.mNestedOffsets;
+                            iArr[0] = iArr[0] + this.mScrollOffset[0];
+                            iArr = this.mNestedOffsets;
+                            iArr[1] = iArr[1] + this.mScrollOffset[1];
+                        }
+                        if (this.mScrollState != 1) {
+                            boolean startScroll = false;
+                            if (canScrollHorizontally && Math.abs(dx) > this.mTouchSlop) {
+                                if (dx > 0) {
+                                    dx -= this.mTouchSlop;
+                                } else {
+                                    dx += this.mTouchSlop;
+                                }
+                                startScroll = true;
+                            }
+                            if (canScrollVertically && Math.abs(dy) > this.mTouchSlop) {
+                                if (dy > 0) {
+                                    dy -= this.mTouchSlop;
+                                } else {
+                                    dy += this.mTouchSlop;
+                                }
+                                startScroll = true;
+                            }
+                            if (startScroll) {
+                                setScrollState(1);
+                            }
+                        }
+                        if (this.mScrollState == 1) {
+                            int i;
+                            this.mLastTouchX = x2 - this.mScrollOffset[0];
+                            this.mLastTouchY = y - this.mScrollOffset[1];
+                            if (canScrollHorizontally) {
+                                i = dx;
+                            } else {
+                                i = 0;
+                            }
+                            if (canScrollVertically) {
+                                x = dy;
+                            } else {
+                                x = 0;
+                            }
+                            if (scrollByInternal(i, x, vtev)) {
+                                getParent().requestDisallowInterceptTouchEvent(true);
+                            }
+                            if (!(this.mGapWorker == null || (dx == 0 && dy == 0))) {
+                                this.mGapWorker.postFromTraversal(this, dx, dy);
+                                break;
+                            }
+                        }
+                    }
+                    Log.e("RecyclerView", "Error processing scroll; pointer index for id " + this.mScrollPointerId + " not found. Did any MotionEvents get skipped?");
+                    return false;
+                    break;
+                case 3:
+                    cancelTouch();
+                    break;
+                case 5:
+                    this.mScrollPointerId = e.getPointerId(actionIndex);
+                    x = (int) (e.getX(actionIndex) + 0.5f);
+                    this.mLastTouchX = x;
+                    this.mInitialTouchX = x;
+                    x = (int) (e.getY(actionIndex) + 0.5f);
+                    this.mLastTouchY = x;
+                    this.mInitialTouchY = x;
+                    break;
+                case 6:
+                    onPointerUp(e);
+                    break;
+            }
+            if (!eventAddedToVelocityTracker) {
+                this.mVelocityTracker.addMovement(vtev);
+            }
+            vtev.recycle();
+            return true;
+        }
     }
 
     private void resetTouch() {

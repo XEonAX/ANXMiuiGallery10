@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -1793,678 +1794,204 @@ public class CloudManager {
 
     /* JADX WARNING: Removed duplicated region for block: B:23:0x00a3  */
     /* JADX WARNING: Removed duplicated region for block: B:23:0x00a3  */
-    public static android.os.Bundle call(android.content.Context r66, android.database.sqlite.SQLiteDatabase r67, com.miui.gallery.provider.cache.MediaManager r68, java.lang.String r69, java.lang.String r70, android.os.Bundle r71) {
-        /*
-        r60 = new android.os.Bundle;
-        r60.<init>();
-        r7 = new java.util.ArrayList;
-        r7.<init>();
-        r4 = "add_to_album";
-        r0 = r69;
-        r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x012e;
-    L_0x0014:
-        r4 = -1;
-        r4 = java.lang.Long.valueOf(r4);
-        r0 = r70;
-        r4 = com.miui.gallery.util.Numbers.parse(r0, r4);
-        r8 = r4.longValue();
-        r4 = "extra_src_type";
-        r5 = 0;
-        r0 = r71;
-        r64 = r0.getInt(r4, r5);
-        r4 = "extra_type";
-        r5 = 0;
-        r0 = r71;
-        r58 = r0.getInt(r4, r5);
-        r4 = 1;
-        r0 = r64;
-        if (r0 != r4) goto L_0x00b8;
-    L_0x003b:
-        r4 = "extra_src_uris";
-        r0 = r71;
-        r65 = r0.getParcelableArrayList(r4);
-        if (r65 == 0) goto L_0x004b;
-    L_0x0045:
-        r4 = isVirtualAlbum(r8);
-        if (r4 == 0) goto L_0x0057;
-    L_0x004b:
-        r4 = "CloudManager";
-        r5 = "error, albumId is %s, uris is %s";
-        r0 = r70;
-        r1 = r65;
-        com.miui.gallery.util.Log.e(r4, r5, r0, r1);
-    L_0x0056:
-        return r60;
-    L_0x0057:
-        r4 = r65.size();
-        r0 = new long[r4];
-        r33 = r0;
-        r56 = 0;
-        r11 = r65.iterator();
-    L_0x0065:
-        r4 = r11.hasNext();
-        if (r4 == 0) goto L_0x0094;
-    L_0x006b:
-        r10 = r11.next();
-        r10 = (android.net.Uri) r10;
-        if (r58 != 0) goto L_0x0082;
-    L_0x0073:
-        r4 = r66;
-        r5 = r67;
-        r6 = r68;
-        r4 = copyByUri(r4, r5, r6, r7, r8, r10);
-        r33[r56] = r4;
-    L_0x007f:
-        r56 = r56 + 1;
-        goto L_0x0065;
-    L_0x0082:
-        r4 = 1;
-        r0 = r58;
-        if (r0 != r4) goto L_0x007f;
-    L_0x0087:
-        r4 = r66;
-        r5 = r67;
-        r6 = r68;
-        r4 = moveByUri(r4, r5, r6, r7, r8, r10);
-        r33[r56] = r4;
-        goto L_0x007f;
-    L_0x0094:
-        r4 = "ids";
-        r0 = r60;
-        r1 = r33;
-        r0.putLongArray(r4, r1);
-    L_0x009d:
-        r4 = r7.isEmpty();
-        if (r4 != 0) goto L_0x0056;
-    L_0x00a3:
-        if (r71 == 0) goto L_0x04fa;
-    L_0x00a5:
-        r4 = "should_operate_sync";
-        r5 = 0;
-        r0 = r71;
-        r4 = r0.getBoolean(r4, r5);
-        if (r4 == 0) goto L_0x04fa;
-    L_0x00b1:
-        r4 = 1;
-    L_0x00b2:
-        r0 = r66;
-        startUpdater(r0, r4, r7);
-        goto L_0x0056;
-    L_0x00b8:
-        if (r64 != 0) goto L_0x009d;
-    L_0x00ba:
-        r4 = "extra_dup_type";
-        r5 = -1;
-        r0 = r71;
-        r20 = r0.getInt(r4, r5);
-        r4 = "extra_src_media_ids";
-        r0 = r71;
-        r57 = r0.getLongArray(r4);
-        if (r57 == 0) goto L_0x00da;
-    L_0x00cd:
-        if (r58 == 0) goto L_0x00d4;
-    L_0x00cf:
-        r4 = 1;
-        r0 = r58;
-        if (r0 != r4) goto L_0x00da;
-    L_0x00d4:
-        r4 = isVirtualAlbum(r8);
-        if (r4 == 0) goto L_0x00e7;
-    L_0x00da:
-        r4 = "CloudManager";
-        r5 = "error, albumId is %s, mediaIds is %s";
-        r0 = r70;
-        r1 = r57;
-        com.miui.gallery.util.Log.e(r4, r5, r0, r1);
-        goto L_0x0056;
-    L_0x00e7:
-        r0 = r57;
-        r4 = r0.length;
-        r0 = new long[r4];
-        r33 = r0;
-        r56 = 0;
-        r0 = r57;
-        r5 = r0.length;
-        r4 = 0;
-    L_0x00f4:
-        if (r4 >= r5) goto L_0x0123;
-    L_0x00f6:
-        r18 = r57[r4];
-        if (r58 != 0) goto L_0x010e;
-    L_0x00fa:
-        r12 = r66;
-        r13 = r67;
-        r14 = r68;
-        r15 = r7;
-        r16 = r8;
-        r12 = copy(r12, r13, r14, r15, r16, r18, r20);
-        r33[r56] = r12;
-    L_0x0109:
-        r56 = r56 + 1;
-        r4 = r4 + 1;
-        goto L_0x00f4;
-    L_0x010e:
-        r6 = 1;
-        r0 = r58;
-        if (r0 != r6) goto L_0x0109;
-    L_0x0113:
-        r12 = r66;
-        r13 = r67;
-        r14 = r68;
-        r15 = r7;
-        r16 = r8;
-        r12 = move(r12, r13, r14, r15, r16, r18, r20);
-        r33[r56] = r12;
-        goto L_0x0109;
-    L_0x0123:
-        r4 = "ids";
-        r0 = r60;
-        r1 = r33;
-        r0.putLongArray(r4, r1);
-        goto L_0x009d;
-    L_0x012e:
-        r4 = "delete_album";
-        r0 = r69;
-        r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x0171;
-    L_0x0138:
-        r27 = new java.util.ArrayList;
-        r27.<init>();
-        r4 = "extra_delete_options";
-        r5 = 0;
-        r0 = r71;
-        r26 = r0.getInt(r4, r5);
-        r4 = "extra_delete_reason";
-        r5 = 21;
-        r0 = r71;
-        r28 = r0.getInt(r4, r5);
-        r4 = "extra_album_ids";
-        r0 = r71;
-        r25 = r0.getLongArray(r4);
-        r21 = r66;
-        r22 = r67;
-        r23 = r68;
-        r24 = r7;
-        r61 = deleteAlbum(r21, r22, r23, r24, r25, r26, r27, r28);
-        r4 = "ids";
-        r5 = com.miui.gallery.util.MiscUtil.ListToArray(r27);
-        r0 = r60;
-        r0.putLongArray(r4, r5);
-        goto L_0x009d;
-    L_0x0171:
-        r4 = "delete";
-        r0 = r69;
-        r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x0255;
-    L_0x017b:
-        r61 = 0;
-        r27 = new java.util.ArrayList;
-        r27.<init>();
-        r4 = "delete_by";
-        r0 = r71;
-        r55 = r0.getInt(r4);
-        r4 = "extra_delete_options";
-        r5 = 0;
-        r0 = r71;
-        r26 = r0.getInt(r4, r5);
-        r4 = "extra_delete_reason";
-        r5 = 24;
-        r0 = r71;
-        r28 = r0.getInt(r4, r5);
-        if (r55 != 0) goto L_0x01dd;
-    L_0x019f:
-        r4 = "extra_dup_type";
-        r5 = -1;
-        r0 = r71;
-        r20 = r0.getInt(r4, r5);
-        r4 = "extra_ids";
-        r0 = r71;
-        r33 = r0.getLongArray(r4);
-        r29 = r66;
-        r30 = r67;
-        r31 = r68;
-        r32 = r7;
-        r34 = r20;
-        r35 = r26;
-        r36 = r27;
-        r37 = r28;
-        r61 = deleteById(r29, r30, r31, r32, r33, r34, r35, r36, r37);
-        r4 = "ids";
-        r5 = com.miui.gallery.util.MiscUtil.ListToArray(r27);
-        r0 = r60;
-        r0.putLongArray(r4, r5);
-    L_0x01cf:
-        r4 = "count";
-        r5 = getValidCount(r61);
-        r12 = (long) r5;
-        r0 = r60;
-        r0.putLong(r4, r12);
-        goto L_0x009d;
-    L_0x01dd:
-        r4 = 1;
-        r0 = r55;
-        if (r0 != r4) goto L_0x0208;
-    L_0x01e2:
-        r4 = "extra_paths";
-        r0 = r71;
-        r38 = r0.getStringArray(r4);
-        r34 = r66;
-        r35 = r67;
-        r36 = r68;
-        r37 = r7;
-        r39 = r26;
-        r40 = r27;
-        r41 = r28;
-        r61 = deleteByPath(r34, r35, r36, r37, r38, r39, r40, r41);
-        r4 = "ids";
-        r5 = com.miui.gallery.util.MiscUtil.ListToArray(r27);
-        r0 = r60;
-        r0.putLongArray(r4, r5);
-        goto L_0x01cf;
-    L_0x0208:
-        r4 = 2;
-        r0 = r55;
-        if (r0 != r4) goto L_0x022b;
-    L_0x020d:
-        r4 = "extra_sha1s";
-        r0 = r71;
-        r15 = r0.getStringArray(r4);
-        r4 = "extra_keep_dup";
-        r0 = r71;
-        r16 = r0.getBoolean(r4);
-        r11 = r66;
-        r12 = r67;
-        r13 = r68;
-        r14 = r7;
-        r17 = r28;
-        r61 = deleteBySha1(r11, r12, r13, r14, r15, r16, r17);
-        goto L_0x01cf;
-    L_0x022b:
-        r4 = 3;
-        r0 = r55;
-        if (r0 != r4) goto L_0x01cf;
-    L_0x0230:
-        r4 = "extra_paths";
-        r0 = r71;
-        r38 = r0.getStringArray(r4);
-        r34 = r66;
-        r35 = r67;
-        r36 = r68;
-        r37 = r7;
-        r39 = r27;
-        r40 = r28;
-        r61 = deleteCloudByPath(r34, r35, r36, r37, r38, r39, r40);
-        r4 = "ids";
-        r5 = com.miui.gallery.util.MiscUtil.ListToArray(r27);
-        r0 = r60;
-        r0.putLongArray(r4, r5);
-        goto L_0x01cf;
-    L_0x0255:
-        r4 = "create_album";
-        r0 = r69;
-        r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x0281;
-    L_0x025f:
-        r0 = r66;
-        r1 = r67;
-        r2 = r68;
-        r3 = r70;
-        r54 = createAlbum(r0, r1, r2, r7, r3);
-        if (r54 == 0) goto L_0x0276;
-    L_0x026d:
-        r0 = r60;
-        r1 = r54;
-        r0.putAll(r1);
-        goto L_0x009d;
-    L_0x0276:
-        r4 = "id";
-        r12 = -101; // 0xffffffffffffff9b float:NaN double:NaN;
-        r0 = r60;
-        r0.putLong(r4, r12);
-        goto L_0x009d;
-    L_0x0281:
-        r4 = "rename_album";
-        r0 = r69;
-        r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x02d0;
-    L_0x028b:
-        r4 = "album_id";
-        r0 = r71;
-        r8 = r0.getLong(r4);
-        r40 = r66;
-        r41 = r67;
-        r42 = r68;
-        r43 = r7;
-        r44 = r8;
-        r46 = r70;
-        r59 = renameAlbum(r40, r41, r42, r43, r44, r46);
-        if (r59 == 0) goto L_0x02c5;
-    L_0x02a5:
-        r0 = r60;
-        r1 = r59;
-        r0.putAll(r1);
-        r4 = "id";
-        r0 = r59;
-        r4 = r0.getLong(r4);
-        r12 = 0;
-        r4 = (r4 > r12 ? 1 : (r4 == r12 ? 0 : -1));
-        if (r4 <= 0) goto L_0x009d;
-    L_0x02ba:
-        r4 = "should_request_sync";
-        r5 = 1;
-        r0 = r60;
-        r0.putBoolean(r4, r5);
-        goto L_0x009d;
-    L_0x02c5:
-        r4 = "id";
-        r12 = -101; // 0xffffffffffffff9b float:NaN double:NaN;
-        r0 = r60;
-        r0.putLong(r4, r12);
-        goto L_0x009d;
-    L_0x02d0:
-        r4 = "set_album_attributes";
-        r0 = r69;
-        r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x031a;
-    L_0x02db:
-        r4 = "album_id";
-        r0 = r71;
-        r33 = r0.getLongArray(r4);
-        r4 = "attributes_bit";
-        r0 = r71;
-        r34 = r0.getLong(r4);
-        r4 = "set";
-        r0 = r71;
-        r36 = r0.getBoolean(r4);
-        r4 = "manual";
-        r0 = r71;
-        r37 = r0.getBoolean(r4);
-        r31 = r67;
-        r32 = r68;
-        setAlbumAttributes(r31, r32, r33, r34, r36, r37);
-        r4 = 1;
-        r4 = (r34 > r4 ? 1 : (r34 == r4 ? 0 : -1));
-        if (r4 != 0) goto L_0x009d;
-    L_0x0308:
-        r4 = "should_request_sync";
-        r5 = "set";
-        r0 = r71;
-        r5 = r0.getBoolean(r5);
-        r0 = r60;
-        r0.putBoolean(r4, r5);
-        goto L_0x009d;
-    L_0x031a:
-        r4 = "force_top";
-        r0 = r69;
-        r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x0339;
-    L_0x0324:
-        r4 = "album_id";
-        r0 = r71;
-        r33 = r0.getLongArray(r4);
-        r0 = r66;
-        r1 = r67;
-        r2 = r68;
-        r3 = r33;
-        forceTop(r0, r1, r2, r3);
-        goto L_0x009d;
-    L_0x0339:
-        r4 = "unforce_top";
-        r0 = r69;
-        r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x0359;
-    L_0x0344:
-        r4 = "album_id";
-        r0 = r71;
-        r33 = r0.getLongArray(r4);
-        r0 = r66;
-        r1 = r67;
-        r2 = r68;
-        r3 = r33;
-        unforceTop(r0, r1, r2, r3);
-        goto L_0x009d;
-    L_0x0359:
-        r4 = "add_remove_secret";
-        r0 = r69;
-        r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x0447;
-    L_0x0363:
-        r4 = "operation_type";
-        r0 = r71;
-        r44 = r0.getInt(r4);
-        r4 = 1;
-        r0 = r44;
-        if (r0 != r4) goto L_0x03ff;
-    L_0x0370:
-        r4 = "extra_src_media_ids";
-        r0 = r71;
-        r33 = r0.getLongArray(r4);
-        if (r33 != 0) goto L_0x03d6;
-    L_0x037a:
-        r4 = "extra_src_uris";
-        r0 = r71;
-        r65 = r0.getParcelableArrayList(r4);
-        if (r65 == 0) goto L_0x03b8;
-    L_0x0384:
-        r4 = r65.size();
-        r0 = new long[r4];
-        r33 = r0;
-        r56 = 0;
-    L_0x038e:
-        r4 = r65.size();
-        r0 = r56;
-        if (r0 >= r4) goto L_0x03af;
-    L_0x0396:
-        r0 = r65;
-        r1 = r56;
-        r4 = r0.get(r1);
-        r4 = (android.net.Uri) r4;
-        r0 = r66;
-        r1 = r67;
-        r2 = r68;
-        r4 = addToSecret(r0, r1, r2, r7, r4);
-        r33[r56] = r4;
-        r56 = r56 + 1;
-        goto L_0x038e;
-    L_0x03af:
-        r4 = "ids";
-        r0 = r60;
-        r1 = r33;
-        r0.putLongArray(r4, r1);
-    L_0x03b8:
-        r63 = 0;
-        r0 = r33;
-        r5 = r0.length;
-        r4 = 0;
-    L_0x03be:
-        if (r4 >= r5) goto L_0x03ca;
-    L_0x03c0:
-        r18 = r33[r4];
-        r12 = 0;
-        r6 = (r18 > r12 ? 1 : (r18 == r12 ? 0 : -1));
-        if (r6 <= 0) goto L_0x03fc;
-    L_0x03c8:
-        r63 = 1;
-    L_0x03ca:
-        r4 = "should_request_sync";
-        r0 = r60;
-        r1 = r63;
-        r0.putBoolean(r4, r1);
-        goto L_0x009d;
-    L_0x03d6:
-        r56 = 0;
-    L_0x03d8:
-        r0 = r33;
-        r4 = r0.length;
-        r0 = r56;
-        if (r0 >= r4) goto L_0x03f2;
-    L_0x03df:
-        r44 = r33[r56];
-        r40 = r66;
-        r41 = r67;
-        r42 = r68;
-        r43 = r7;
-        r4 = addToSecret(r40, r41, r42, r43, r44);
-        r33[r56] = r4;
-        r56 = r56 + 1;
-        goto L_0x03d8;
-    L_0x03f2:
-        r4 = "ids";
-        r0 = r60;
-        r1 = r33;
-        r0.putLongArray(r4, r1);
-        goto L_0x03b8;
-    L_0x03fc:
-        r4 = r4 + 1;
-        goto L_0x03be;
-    L_0x03ff:
-        r4 = 2;
-        r0 = r44;
-        if (r0 != r4) goto L_0x009d;
-    L_0x0404:
-        r4 = -1;
-        r4 = java.lang.Long.valueOf(r4);
-        r0 = r70;
-        r4 = com.miui.gallery.util.Numbers.parse(r0, r4);
-        r8 = r4.longValue();
-        r4 = "extra_src_media_ids";
-        r0 = r71;
-        r33 = r0.getLongArray(r4);
-        if (r33 == 0) goto L_0x009d;
-    L_0x041e:
-        r56 = 0;
-    L_0x0420:
-        r0 = r33;
-        r4 = r0.length;
-        r0 = r56;
-        if (r0 >= r4) goto L_0x043c;
-    L_0x0427:
-        r46 = r33[r56];
-        r40 = r66;
-        r41 = r67;
-        r42 = r68;
-        r43 = r7;
-        r44 = r8;
-        r4 = removeFromSecret(r40, r41, r42, r43, r44, r46);
-        r33[r56] = r4;
-        r56 = r56 + 1;
-        goto L_0x0420;
-    L_0x043c:
-        r4 = "ids";
-        r0 = r60;
-        r1 = r33;
-        r0.putLongArray(r4, r1);
-        goto L_0x009d;
-    L_0x0447:
-        r4 = "add_remove_favorite";
-        r0 = r69;
-        r4 = r4.equals(r0);
-        if (r4 == 0) goto L_0x009d;
-    L_0x0451:
-        r4 = "add_remove_by";
-        r0 = r71;
-        r53 = r0.getInt(r4);
-        r4 = "operation_type";
-        r0 = r71;
-        r44 = r0.getInt(r4);
-        r61 = 0;
-        switch(r53) {
-            case 1: goto L_0x04cb;
-            case 2: goto L_0x0471;
-            case 3: goto L_0x049e;
-            default: goto L_0x0466;
-        };
-    L_0x0466:
-        r4 = "ids";
-        r0 = r60;
-        r1 = r61;
-        r0.putLongArray(r4, r1);
-        goto L_0x009d;
-    L_0x0471:
-        r4 = "extra_src_sha1";
-        r0 = r71;
-        r62 = r0.getStringArray(r4);
-        if (r62 == 0) goto L_0x0466;
-    L_0x047b:
-        r0 = r62;
-        r4 = r0.length;
-        r0 = new long[r4];
-        r61 = r0;
-        r56 = 0;
-    L_0x0484:
-        r0 = r62;
-        r4 = r0.length;
-        r0 = r56;
-        if (r0 >= r4) goto L_0x0466;
-    L_0x048b:
-        r43 = r62[r56];
-        r39 = r66;
-        r40 = r67;
-        r41 = r68;
-        r42 = r7;
-        r4 = addRemoveFavoritesSha1(r39, r40, r41, r42, r43, r44);
-        r61[r56] = r4;
-        r56 = r56 + 1;
-        goto L_0x0484;
-    L_0x049e:
-        r4 = "extra_src_paths";
-        r0 = r71;
-        r38 = r0.getStringArray(r4);
-        if (r38 == 0) goto L_0x04cb;
-    L_0x04a8:
-        r0 = r38;
-        r4 = r0.length;
-        r0 = new long[r4];
-        r61 = r0;
-        r56 = 0;
-    L_0x04b1:
-        r0 = r38;
-        r4 = r0.length;
-        r0 = r56;
-        if (r0 >= r4) goto L_0x04cb;
-    L_0x04b8:
-        r43 = r38[r56];
-        r39 = r66;
-        r40 = r67;
-        r41 = r68;
-        r42 = r7;
-        r4 = addRemoveFavoritesByPath(r39, r40, r41, r42, r43, r44);
-        r61[r56] = r4;
-        r56 = r56 + 1;
-        goto L_0x04b1;
-    L_0x04cb:
-        r4 = "extra_src_media_ids";
-        r0 = r71;
-        r33 = r0.getLongArray(r4);
-        if (r33 == 0) goto L_0x0466;
-    L_0x04d5:
-        r0 = r33;
-        r4 = r0.length;
-        r0 = new long[r4];
-        r61 = r0;
-        r56 = 0;
-    L_0x04de:
-        r0 = r33;
-        r4 = r0.length;
-        r0 = r56;
-        if (r0 >= r4) goto L_0x0466;
-    L_0x04e5:
-        r50 = r33[r56];
-        r46 = r66;
-        r47 = r67;
-        r48 = r68;
-        r49 = r7;
-        r52 = r44;
-        r4 = addRemoveFavoritesById(r46, r47, r48, r49, r50, r52);
-        r61[r56] = r4;
-        r56 = r56 + 1;
-        goto L_0x04de;
-    L_0x04fa:
-        r4 = 0;
-        goto L_0x00b2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.provider.cloudmanager.CloudManager.call(android.content.Context, android.database.sqlite.SQLiteDatabase, com.miui.gallery.provider.cache.MediaManager, java.lang.String, java.lang.String, android.os.Bundle):android.os.Bundle");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Bundle call(Context context, SQLiteDatabase db, MediaManager manager, String method, String arg, Bundle extras) {
+        Bundle result = new Bundle();
+        ArrayList syncDirtyIds = new ArrayList();
+        long albumId;
+        ArrayList<Uri> uris;
+        long[] ids;
+        int i;
+        if ("add_to_album".equals(method)) {
+            albumId = Numbers.parse(arg, Long.valueOf(-1)).longValue();
+            int srcType = extras.getInt("extra_src_type", 0);
+            int operationType = extras.getInt("extra_type", 0);
+            if (srcType == 1) {
+                uris = extras.getParcelableArrayList("extra_src_uris");
+                if (uris == null || isVirtualAlbum(albumId)) {
+                    Log.e("CloudManager", "error, albumId is %s, uris is %s", arg, uris);
+                } else {
+                    ids = new long[uris.size()];
+                    i = 0;
+                    Iterator it = uris.iterator();
+                    while (it.hasNext()) {
+                        Uri uri = (Uri) it.next();
+                        if (operationType == 0) {
+                            ids[i] = copyByUri(context, db, manager, syncDirtyIds, albumId, uri);
+                        } else if (operationType == 1) {
+                            ids[i] = moveByUri(context, db, manager, syncDirtyIds, albumId, uri);
+                        }
+                        i++;
+                    }
+                    result.putLongArray("ids", ids);
+                    if (!syncDirtyIds.isEmpty()) {
+                        boolean z;
+                        if (extras != null) {
+                            if (extras.getBoolean("should_operate_sync", false)) {
+                                z = true;
+                                startUpdater(context, z, syncDirtyIds);
+                            }
+                        }
+                        z = false;
+                        startUpdater(context, z, syncDirtyIds);
+                    }
+                }
+            } else {
+                if (srcType == 0) {
+                    int dupType = extras.getInt("extra_dup_type", -1);
+                    Object mediaIds = extras.getLongArray("extra_src_media_ids");
+                    if (mediaIds == null || (!(operationType == 0 || operationType == 1) || isVirtualAlbum(albumId))) {
+                        Log.e("CloudManager", "error, albumId is %s, mediaIds is %s", arg, mediaIds);
+                    } else {
+                        ids = new long[mediaIds.length];
+                        i = 0;
+                        for (long id : mediaIds) {
+                            if (operationType == 0) {
+                                ids[i] = copy(context, db, manager, syncDirtyIds, albumId, id, dupType);
+                            } else if (operationType == 1) {
+                                ids[i] = move(context, db, manager, syncDirtyIds, albumId, id, dupType);
+                            }
+                            i++;
+                        }
+                        result.putLongArray("ids", ids);
+                    }
+                }
+                if (syncDirtyIds.isEmpty()) {
+                }
+            }
+        } else {
+            ArrayList<Long> deleteIds;
+            long[] results;
+            int type;
+            if ("delete_album".equals(method)) {
+                deleteIds = new ArrayList();
+                results = deleteAlbum(context, db, manager, syncDirtyIds, extras.getLongArray("extra_album_ids"), extras.getInt("extra_delete_options", 0), deleteIds, extras.getInt("extra_delete_reason", 21));
+                result.putLongArray("ids", MiscUtil.ListToArray(deleteIds));
+            } else if ("delete".equals(method)) {
+                results = null;
+                deleteIds = new ArrayList();
+                int deleteBy = extras.getInt("delete_by");
+                int deleteOptions = extras.getInt("extra_delete_options", 0);
+                int deleteReason = extras.getInt("extra_delete_reason", 24);
+                if (deleteBy == 0) {
+                    results = deleteById(context, db, manager, syncDirtyIds, extras.getLongArray("extra_ids"), extras.getInt("extra_dup_type", -1), deleteOptions, deleteIds, deleteReason);
+                    result.putLongArray("ids", MiscUtil.ListToArray(deleteIds));
+                } else if (deleteBy == 1) {
+                    results = deleteByPath(context, db, manager, syncDirtyIds, extras.getStringArray("extra_paths"), deleteOptions, deleteIds, deleteReason);
+                    result.putLongArray("ids", MiscUtil.ListToArray(deleteIds));
+                } else if (deleteBy == 2) {
+                    results = deleteBySha1(context, db, manager, syncDirtyIds, extras.getStringArray("extra_sha1s"), extras.getBoolean("extra_keep_dup"), deleteReason);
+                } else if (deleteBy == 3) {
+                    results = deleteCloudByPath(context, db, manager, syncDirtyIds, extras.getStringArray("extra_paths"), deleteIds, deleteReason);
+                    result.putLongArray("ids", MiscUtil.ListToArray(deleteIds));
+                }
+                result.putLong("count", (long) getValidCount(results));
+            } else if ("create_album".equals(method)) {
+                Bundle createAlbumResult = createAlbum(context, db, manager, syncDirtyIds, arg);
+                if (createAlbumResult != null) {
+                    result.putAll(createAlbumResult);
+                } else {
+                    result.putLong("id", -101);
+                }
+            } else if ("rename_album".equals(method)) {
+                Bundle renameAlbumResult = renameAlbum(context, db, manager, syncDirtyIds, extras.getLong("album_id"), arg);
+                if (renameAlbumResult != null) {
+                    result.putAll(renameAlbumResult);
+                    if (renameAlbumResult.getLong("id") > 0) {
+                        result.putBoolean("should_request_sync", true);
+                    }
+                } else {
+                    result.putLong("id", -101);
+                }
+            } else if ("set_album_attributes".equals(method)) {
+                ids = extras.getLongArray("album_id");
+                long attributesBit = extras.getLong("attributes_bit");
+                setAlbumAttributes(db, manager, ids, attributesBit, extras.getBoolean("set"), extras.getBoolean("manual"));
+                if (attributesBit == 1) {
+                    result.putBoolean("should_request_sync", extras.getBoolean("set"));
+                }
+            } else if ("force_top".equals(method)) {
+                forceTop(context, db, manager, extras.getLongArray("album_id"));
+            } else if ("unforce_top".equals(method)) {
+                unforceTop(context, db, manager, extras.getLongArray("album_id"));
+            } else if ("add_remove_secret".equals(method)) {
+                type = extras.getInt("operation_type");
+                if (type == 1) {
+                    ids = extras.getLongArray("extra_src_media_ids");
+                    if (ids == null) {
+                        uris = extras.getParcelableArrayList("extra_src_uris");
+                        if (uris != null) {
+                            ids = new long[uris.size()];
+                            for (i = 0; i < uris.size(); i++) {
+                                ids[i] = addToSecret(context, db, manager, syncDirtyIds, (Uri) uris.get(i));
+                            }
+                            result.putLongArray("ids", ids);
+                        }
+                    } else {
+                        for (i = 0; i < ids.length; i++) {
+                            ids[i] = addToSecret(context, db, manager, syncDirtyIds, ids[i]);
+                        }
+                        result.putLongArray("ids", ids);
+                    }
+                    boolean shouldSync = false;
+                    for (long id2 : ids) {
+                        if (id2 > 0) {
+                            shouldSync = true;
+                            break;
+                        }
+                    }
+                    result.putBoolean("should_request_sync", shouldSync);
+                } else if (type == 2) {
+                    albumId = Numbers.parse(arg, Long.valueOf(-1)).longValue();
+                    ids = extras.getLongArray("extra_src_media_ids");
+                    if (ids != null) {
+                        for (i = 0; i < ids.length; i++) {
+                            ids[i] = removeFromSecret(context, db, manager, syncDirtyIds, albumId, ids[i]);
+                        }
+                        result.putLongArray("ids", ids);
+                    }
+                }
+            } else if ("add_remove_favorite".equals(method)) {
+                int addRemoveBy = extras.getInt("add_remove_by");
+                type = extras.getInt("operation_type");
+                results = null;
+                switch (addRemoveBy) {
+                    case 1:
+                        break;
+                    case 2:
+                        String[] sha1 = extras.getStringArray("extra_src_sha1");
+                        if (sha1 != null) {
+                            results = new long[sha1.length];
+                            for (i = 0; i < sha1.length; i++) {
+                                results[i] = addRemoveFavoritesSha1(context, db, manager, syncDirtyIds, sha1[i], type);
+                            }
+                            break;
+                        }
+                        break;
+                    case 3:
+                        String[] paths = extras.getStringArray("extra_src_paths");
+                        if (paths != null) {
+                            results = new long[paths.length];
+                            for (i = 0; i < paths.length; i++) {
+                                results[i] = addRemoveFavoritesByPath(context, db, manager, syncDirtyIds, paths[i], type);
+                            }
+                            break;
+                        }
+                        break;
+                }
+                ids = extras.getLongArray("extra_src_media_ids");
+                if (ids != null) {
+                    results = new long[ids.length];
+                    for (i = 0; i < ids.length; i++) {
+                        results[i] = addRemoveFavoritesById(context, db, manager, syncDirtyIds, ids[i], type);
+                    }
+                }
+                result.putLongArray("ids", results);
+            }
+            if (syncDirtyIds.isEmpty()) {
+            }
+        }
+        return result;
     }
 
     static {

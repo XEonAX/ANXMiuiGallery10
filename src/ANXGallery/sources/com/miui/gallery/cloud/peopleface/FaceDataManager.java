@@ -251,62 +251,9 @@ public class FaceDataManager {
             /* JADX WARNING: Missing block: B:15:0x0068, code:
             return java.lang.Boolean.valueOf(r2);
      */
-            public java.lang.Boolean handle(android.database.Cursor r6) {
-                /*
-                r5 = this;
-                r4 = 19;
-                r2 = 0;
-                if (r6 == 0) goto L_0x0064;
-            L_0x0005:
-                r3 = r6.moveToNext();
-                if (r3 == 0) goto L_0x0064;
-            L_0x000b:
-                r3 = r11;
-                r1 = r3.iterator();
-            L_0x0011:
-                r3 = r1.hasNext();
-                if (r3 == 0) goto L_0x0005;
-            L_0x0017:
-                r0 = r1.next();
-                r0 = (com.miui.gallery.cloud.peopleface.PeopleFace) r0;
-                r3 = com.miui.gallery.cloud.peopleface.FaceDataManager.isFaceInGroup(r0, r6);
-                if (r3 == 0) goto L_0x0011;
-            L_0x0023:
-                r3 = com.miui.gallery.cloud.peopleface.FaceDataManager.isPeopleMerged(r6);
-                if (r3 == 0) goto L_0x003f;
-            L_0x0029:
-                r3 = 4;
-                r3 = r6.getString(r3);
-                r0.localGroupId = r3;
-                r3 = 3;
-                r3 = r6.getString(r3);
-                r0.groupId = r3;
-                r3 = r6.getInt(r4);
-                r0.relationType = r3;
-            L_0x003d:
-                r2 = 1;
-                goto L_0x0011;
-            L_0x003f:
-                r3 = 15;
-                r3 = r6.getString(r3);
-                r0.peopleName = r3;
-                r3 = 0;
-                r3 = r6.getString(r3);
-                r0.localGroupId = r3;
-                r3 = 1;
-                r3 = r6.getString(r3);
-                r0.groupId = r3;
-                r3 = r6.getInt(r4);
-                r0.relationType = r3;
-                r1.remove();
-                r3 = r8;
-                r3.add(r0);
-                goto L_0x003d;
-            L_0x0064:
-                r3 = java.lang.Boolean.valueOf(r2);
-                return r3;
-                */
-                throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloud.peopleface.FaceDataManager.1.handle(android.database.Cursor):java.lang.Boolean");
+            /* Code decompiled incorrectly, please refer to instructions dump. */
+            public Boolean handle(Cursor cursor) {
+                boolean updated = false;
             }
         })).booleanValue() && !brotherPeoples.isEmpty() && invokeDeep < 4) {
             ret.addAll(fillInPeopleInfo(brotherPeoples, invokeDeep + 1));
@@ -366,72 +313,30 @@ public class FaceDataManager {
     /* JADX WARNING: Missing block: B:21:?, code:
             return r0;
      */
-    public static com.miui.gallery.cloud.peopleface.PeopleFace getGroupByPeopleName(android.content.Context r10, java.lang.String r11, long r12) {
-        /*
-        r7 = 0;
-        if (r11 != 0) goto L_0x0005;
-    L_0x0003:
-        r0 = r7;
-    L_0x0004:
-        return r0;
-    L_0x0005:
-        r6 = 0;
-        r0 = r10.getContentResolver();	 Catch:{ all -> 0x0065 }
-        r1 = 1;
-        r1 = getPeopleFaceLimitUri(r1);	 Catch:{ all -> 0x0065 }
-        r2 = com.miui.gallery.cloud.CloudUtils.getProjectionAll();	 Catch:{ all -> 0x0065 }
-        r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0065 }
-        r3.<init>();	 Catch:{ all -> 0x0065 }
-        r4 = "%s = ? AND %s != ? AND ";
-        r3 = r3.append(r4);	 Catch:{ all -> 0x0065 }
-        r4 = IS_VALID_GROUP;	 Catch:{ all -> 0x0065 }
-        r3 = r3.append(r4);	 Catch:{ all -> 0x0065 }
-        r3 = r3.toString();	 Catch:{ all -> 0x0065 }
-        r4 = 2;
-        r4 = new java.lang.Object[r4];	 Catch:{ all -> 0x0065 }
-        r5 = 0;
-        r8 = "peopleName";
-        r4[r5] = r8;	 Catch:{ all -> 0x0065 }
-        r5 = 1;
-        r8 = "_id";
-        r4[r5] = r8;	 Catch:{ all -> 0x0065 }
-        r3 = java.lang.String.format(r3, r4);	 Catch:{ all -> 0x0065 }
-        r4 = 2;
-        r4 = new java.lang.String[r4];	 Catch:{ all -> 0x0065 }
-        r5 = 0;
-        r4[r5] = r11;	 Catch:{ all -> 0x0065 }
-        r5 = 1;
-        r8 = java.lang.Long.toString(r12);	 Catch:{ all -> 0x0065 }
-        r4[r5] = r8;	 Catch:{ all -> 0x0065 }
-        r5 = 0;
-        r6 = r0.query(r1, r2, r3, r4, r5);	 Catch:{ all -> 0x0065 }
-        if (r6 == 0) goto L_0x005e;
-    L_0x004d:
-        r0 = r6.moveToNext();	 Catch:{ all -> 0x0065 }
-        if (r0 == 0) goto L_0x005e;
-    L_0x0053:
-        r0 = new com.miui.gallery.cloud.peopleface.PeopleFace;	 Catch:{ all -> 0x0065 }
-        r0.<init>(r6);	 Catch:{ all -> 0x0065 }
-        if (r6 == 0) goto L_0x0004;
-    L_0x005a:
-        r6.close();
-        goto L_0x0004;
-    L_0x005e:
-        if (r6 == 0) goto L_0x0063;
-    L_0x0060:
-        r6.close();
-    L_0x0063:
-        r0 = r7;
-        goto L_0x0004;
-    L_0x0065:
-        r0 = move-exception;
-        if (r6 == 0) goto L_0x006b;
-    L_0x0068:
-        r6.close();
-    L_0x006b:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloud.peopleface.FaceDataManager.getGroupByPeopleName(android.content.Context, java.lang.String, long):com.miui.gallery.cloud.peopleface.PeopleFace");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static PeopleFace getGroupByPeopleName(Context context, String peopleName, long exceptLocalId) {
+        if (peopleName == null) {
+            return null;
+        }
+        Cursor cursor = null;
+        try {
+            cursor = context.getContentResolver().query(getPeopleFaceLimitUri(1), CloudUtils.getProjectionAll(), String.format("%s = ? AND %s != ? AND " + IS_VALID_GROUP, new Object[]{"peopleName", "_id"}), new String[]{peopleName, Long.toString(exceptLocalId)}, null);
+            if (cursor == null || !cursor.moveToNext()) {
+                if (cursor != null) {
+                    cursor.close();
+                }
+                return null;
+            }
+            PeopleFace peopleFace = new PeopleFace(cursor);
+            if (cursor == null) {
+                return peopleFace;
+            }
+            cursor.close();
+        } catch (Throwable th) {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 
     public static boolean ifHaveBabyType(Context context) {

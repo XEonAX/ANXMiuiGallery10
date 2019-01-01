@@ -244,70 +244,40 @@ public class JsonWriter implements Closeable, Flushable {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:15:0x002f  */
-    private void string(java.lang.String r9) throws java.io.IOException {
-        /*
-        r8 = this;
-        r6 = r8.htmlSafe;
-        if (r6 == 0) goto L_0x0024;
-    L_0x0004:
-        r5 = HTML_SAFE_REPLACEMENT_CHARS;
-    L_0x0006:
-        r6 = r8.out;
-        r7 = "\"";
-        r6.write(r7);
-        r2 = 0;
-        r3 = r9.length();
-        r1 = 0;
-    L_0x0013:
-        if (r1 >= r3) goto L_0x0045;
-    L_0x0015:
-        r0 = r9.charAt(r1);
-        r6 = 128; // 0x80 float:1.794E-43 double:6.32E-322;
-        if (r0 >= r6) goto L_0x0027;
-    L_0x001d:
-        r4 = r5[r0];
-        if (r4 != 0) goto L_0x002d;
-    L_0x0021:
-        r1 = r1 + 1;
-        goto L_0x0013;
-    L_0x0024:
-        r5 = REPLACEMENT_CHARS;
-        goto L_0x0006;
-    L_0x0027:
-        r6 = 8232; // 0x2028 float:1.1535E-41 double:4.067E-320;
-        if (r0 != r6) goto L_0x003e;
-    L_0x002b:
-        r4 = "\\u2028";
-    L_0x002d:
-        if (r2 >= r1) goto L_0x0036;
-    L_0x002f:
-        r6 = r8.out;
-        r7 = r1 - r2;
-        r6.write(r9, r2, r7);
-    L_0x0036:
-        r6 = r8.out;
-        r6.write(r4);
-        r2 = r1 + 1;
-        goto L_0x0021;
-    L_0x003e:
-        r6 = 8233; // 0x2029 float:1.1537E-41 double:4.0676E-320;
-        if (r0 != r6) goto L_0x0021;
-    L_0x0042:
-        r4 = "\\u2029";
-        goto L_0x002d;
-    L_0x0045:
-        if (r2 >= r3) goto L_0x004e;
-    L_0x0047:
-        r6 = r8.out;
-        r7 = r3 - r2;
-        r6.write(r9, r2, r7);
-    L_0x004e:
-        r6 = r8.out;
-        r7 = "\"";
-        r6.write(r7);
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.gson.stream.JsonWriter.string(java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void string(String value) throws IOException {
+        String[] replacements = this.htmlSafe ? HTML_SAFE_REPLACEMENT_CHARS : REPLACEMENT_CHARS;
+        this.out.write("\"");
+        int last = 0;
+        int length = value.length();
+        for (int i = 0; i < length; i++) {
+            char c = value.charAt(i);
+            String replacement;
+            if (c < 128) {
+                replacement = replacements[c];
+                if (replacement == null) {
+                }
+                if (last < i) {
+                    this.out.write(value, last, i - last);
+                }
+                this.out.write(replacement);
+                last = i + 1;
+            } else {
+                if (c == 8232) {
+                    replacement = "\\u2028";
+                } else if (c == 8233) {
+                    replacement = "\\u2029";
+                }
+                if (last < i) {
+                }
+                this.out.write(replacement);
+                last = i + 1;
+            }
+        }
+        if (last < length) {
+            this.out.write(value, last, length - last);
+        }
+        this.out.write("\"");
     }
 
     private void newline() throws IOException {

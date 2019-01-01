@@ -1,6 +1,7 @@
 package android.support.v4.view;
 
 import android.content.Context;
+import android.content.res.Resources.NotFoundException;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
@@ -726,634 +727,170 @@ public class ViewPager extends ViewGroup {
     /* JADX WARNING: Removed duplicated region for block: B:65:0x0200  */
     /* JADX WARNING: Removed duplicated region for block: B:173:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:121:0x041c  */
-    void populate(int r30) {
-        /*
-        r29 = this;
-        r20 = 0;
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r26 = r0;
-        r0 = r26;
-        r1 = r30;
-        if (r0 == r1) goto L_0x0022;
-    L_0x000e:
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r26 = r0;
-        r0 = r29;
-        r1 = r26;
-        r20 = r0.infoForPosition(r1);
-        r0 = r30;
-        r1 = r29;
-        r1.mCurItem = r0;
-    L_0x0022:
-        r0 = r29;
-        r0 = r0.mAdapter;
-        r26 = r0;
-        if (r26 != 0) goto L_0x002e;
-    L_0x002a:
-        r29.sortChildDrawingOrder();
-    L_0x002d:
-        return;
-    L_0x002e:
-        r0 = r29;
-        r0 = r0.mPopulatePending;
-        r26 = r0;
-        if (r26 == 0) goto L_0x003a;
-    L_0x0036:
-        r29.sortChildDrawingOrder();
-        goto L_0x002d;
-    L_0x003a:
-        r26 = r29.getWindowToken();
-        if (r26 == 0) goto L_0x002d;
-    L_0x0040:
-        r0 = r29;
-        r0 = r0.mAdapter;
-        r26 = r0;
-        r0 = r26;
-        r1 = r29;
-        r0.startUpdate(r1);
-        r0 = r29;
-        r0 = r0.mOffscreenPageLimit;
-        r21 = r0;
-        r26 = 0;
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r27 = r0;
-        r27 = r27 - r21;
-        r25 = java.lang.Math.max(r26, r27);
-        r0 = r29;
-        r0 = r0.mAdapter;
-        r26 = r0;
-        r4 = r26.getCount();
-        r26 = r4 + -1;
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r27 = r0;
-        r27 = r27 + r21;
-        r12 = java.lang.Math.min(r26, r27);
-        r0 = r29;
-        r0 = r0.mExpectedAdapterCount;
-        r26 = r0;
-        r0 = r26;
-        if (r4 == r0) goto L_0x00f4;
-    L_0x0083:
-        r26 = r29.getResources();	 Catch:{ NotFoundException -> 0x00ea }
-        r27 = r29.getId();	 Catch:{ NotFoundException -> 0x00ea }
-        r23 = r26.getResourceName(r27);	 Catch:{ NotFoundException -> 0x00ea }
-    L_0x008f:
-        r26 = new java.lang.IllegalStateException;
-        r27 = new java.lang.StringBuilder;
-        r27.<init>();
-        r28 = "The application's PagerAdapter changed the adapter's contents without calling PagerAdapter#notifyDataSetChanged! Expected adapter item count: ";
-        r27 = r27.append(r28);
-        r0 = r29;
-        r0 = r0.mExpectedAdapterCount;
-        r28 = r0;
-        r27 = r27.append(r28);
-        r28 = ", found: ";
-        r27 = r27.append(r28);
-        r0 = r27;
-        r27 = r0.append(r4);
-        r28 = " Pager id: ";
-        r27 = r27.append(r28);
-        r0 = r27;
-        r1 = r23;
-        r27 = r0.append(r1);
-        r28 = " Pager class: ";
-        r27 = r27.append(r28);
-        r28 = r29.getClass();
-        r27 = r27.append(r28);
-        r28 = " Problematic adapter: ";
-        r27 = r27.append(r28);
-        r0 = r29;
-        r0 = r0.mAdapter;
-        r28 = r0;
-        r28 = r28.getClass();
-        r27 = r27.append(r28);
-        r27 = r27.toString();
-        r26.<init>(r27);
-        throw r26;
-    L_0x00ea:
-        r11 = move-exception;
-        r26 = r29.getId();
-        r23 = java.lang.Integer.toHexString(r26);
-        goto L_0x008f;
-    L_0x00f4:
-        r8 = -1;
-        r9 = 0;
-        r8 = 0;
-    L_0x00f7:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r26 = r26.size();
-        r0 = r26;
-        if (r8 >= r0) goto L_0x0139;
-    L_0x0105:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r16 = r0.get(r8);
-        r16 = (android.support.v4.view.ViewPager.ItemInfo) r16;
-        r0 = r16;
-        r0 = r0.position;
-        r26 = r0;
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r27 = r0;
-        r0 = r26;
-        r1 = r27;
-        if (r0 < r1) goto L_0x0247;
-    L_0x0125:
-        r0 = r16;
-        r0 = r0.position;
-        r26 = r0;
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r27 = r0;
-        r0 = r26;
-        r1 = r27;
-        if (r0 != r1) goto L_0x0139;
-    L_0x0137:
-        r9 = r16;
-    L_0x0139:
-        if (r9 != 0) goto L_0x014b;
-    L_0x013b:
-        if (r4 <= 0) goto L_0x014b;
-    L_0x013d:
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r26 = r0;
-        r0 = r29;
-        r1 = r26;
-        r9 = r0.addNewItem(r1, r8);
-    L_0x014b:
-        if (r9 == 0) goto L_0x01cf;
-    L_0x014d:
-        r13 = 0;
-        r17 = r8 + -1;
-        if (r17 < 0) goto L_0x024b;
-    L_0x0152:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r1 = r17;
-        r26 = r0.get(r1);
-        r26 = (android.support.v4.view.ViewPager.ItemInfo) r26;
-        r16 = r26;
-    L_0x0164:
-        r7 = r29.getClientWidth();
-        if (r7 > 0) goto L_0x024f;
-    L_0x016a:
-        r18 = 0;
-    L_0x016c:
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r26 = r0;
-        r22 = r26 + -1;
-    L_0x0174:
-        if (r22 < 0) goto L_0x0182;
-    L_0x0176:
-        r26 = (r13 > r18 ? 1 : (r13 == r18 ? 0 : -1));
-        if (r26 < 0) goto L_0x02c0;
-    L_0x017a:
-        r0 = r22;
-        r1 = r25;
-        if (r0 >= r1) goto L_0x02c0;
-    L_0x0180:
-        if (r16 != 0) goto L_0x0269;
-    L_0x0182:
-        r14 = r9.widthFactor;
-        r17 = r8 + 1;
-        r26 = 1073741824; // 0x40000000 float:2.0 double:5.304989477E-315;
-        r26 = (r14 > r26 ? 1 : (r14 == r26 ? 0 : -1));
-        if (r26 >= 0) goto L_0x01c8;
-    L_0x018c:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r26 = r26.size();
-        r0 = r17;
-        r1 = r26;
-        if (r0 >= r1) goto L_0x031e;
-    L_0x019c:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r1 = r17;
-        r26 = r0.get(r1);
-        r26 = (android.support.v4.view.ViewPager.ItemInfo) r26;
-        r16 = r26;
-    L_0x01ae:
-        if (r7 > 0) goto L_0x0322;
-    L_0x01b0:
-        r24 = 0;
-    L_0x01b2:
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r26 = r0;
-        r22 = r26 + 1;
-    L_0x01ba:
-        r0 = r22;
-        if (r0 >= r4) goto L_0x01c8;
-    L_0x01be:
-        r26 = (r14 > r24 ? 1 : (r14 == r24 ? 0 : -1));
-        if (r26 < 0) goto L_0x0397;
-    L_0x01c2:
-        r0 = r22;
-        if (r0 <= r12) goto L_0x0397;
-    L_0x01c6:
-        if (r16 != 0) goto L_0x0336;
-    L_0x01c8:
-        r0 = r29;
-        r1 = r20;
-        r0.calculatePageOffsets(r9, r8, r1);
-    L_0x01cf:
-        r0 = r29;
-        r0 = r0.mAdapter;
-        r27 = r0;
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r28 = r0;
-        if (r9 == 0) goto L_0x040f;
-    L_0x01dd:
-        r0 = r9.object;
-        r26 = r0;
-    L_0x01e1:
-        r0 = r27;
-        r1 = r29;
-        r2 = r28;
-        r3 = r26;
-        r0.setPrimaryItem(r1, r2, r3);
-        r0 = r29;
-        r0 = r0.mAdapter;
-        r26 = r0;
-        r0 = r26;
-        r1 = r29;
-        r0.finishUpdate(r1);
-        r6 = r29.getChildCount();
-        r15 = 0;
-    L_0x01fe:
-        if (r15 >= r6) goto L_0x0413;
-    L_0x0200:
-        r0 = r29;
-        r5 = r0.getChildAt(r15);
-        r19 = r5.getLayoutParams();
-        r19 = (android.support.v4.view.ViewPager.LayoutParams) r19;
-        r0 = r19;
-        r0.childIndex = r15;
-        r0 = r19;
-        r0 = r0.isDecor;
-        r26 = r0;
-        if (r26 != 0) goto L_0x0244;
-    L_0x0218:
-        r0 = r19;
-        r0 = r0.widthFactor;
-        r26 = r0;
-        r27 = 0;
-        r26 = (r26 > r27 ? 1 : (r26 == r27 ? 0 : -1));
-        if (r26 != 0) goto L_0x0244;
-    L_0x0224:
-        r0 = r29;
-        r16 = r0.infoForChild(r5);
-        if (r16 == 0) goto L_0x0244;
-    L_0x022c:
-        r0 = r16;
-        r0 = r0.widthFactor;
-        r26 = r0;
-        r0 = r26;
-        r1 = r19;
-        r1.widthFactor = r0;
-        r0 = r16;
-        r0 = r0.position;
-        r26 = r0;
-        r0 = r26;
-        r1 = r19;
-        r1.position = r0;
-    L_0x0244:
-        r15 = r15 + 1;
-        goto L_0x01fe;
-    L_0x0247:
-        r8 = r8 + 1;
-        goto L_0x00f7;
-    L_0x024b:
-        r16 = 0;
-        goto L_0x0164;
-    L_0x024f:
-        r26 = 1073741824; // 0x40000000 float:2.0 double:5.304989477E-315;
-        r0 = r9.widthFactor;
-        r27 = r0;
-        r26 = r26 - r27;
-        r27 = r29.getPaddingLeft();
-        r0 = r27;
-        r0 = (float) r0;
-        r27 = r0;
-        r0 = (float) r7;
-        r28 = r0;
-        r27 = r27 / r28;
-        r18 = r26 + r27;
-        goto L_0x016c;
-    L_0x0269:
-        r0 = r16;
-        r0 = r0.position;
-        r26 = r0;
-        r0 = r22;
-        r1 = r26;
-        if (r0 != r1) goto L_0x02b9;
-    L_0x0275:
-        r0 = r16;
-        r0 = r0.scrolling;
-        r26 = r0;
-        if (r26 != 0) goto L_0x02b9;
-    L_0x027d:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r1 = r17;
-        r0.remove(r1);
-        r0 = r29;
-        r0 = r0.mAdapter;
-        r26 = r0;
-        r0 = r16;
-        r0 = r0.object;
-        r27 = r0;
-        r0 = r26;
-        r1 = r29;
-        r2 = r22;
-        r3 = r27;
-        r0.destroyItem(r1, r2, r3);
-        r17 = r17 + -1;
-        r8 = r8 + -1;
-        if (r17 < 0) goto L_0x02bd;
-    L_0x02a7:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r1 = r17;
-        r26 = r0.get(r1);
-        r26 = (android.support.v4.view.ViewPager.ItemInfo) r26;
-        r16 = r26;
-    L_0x02b9:
-        r22 = r22 + -1;
-        goto L_0x0174;
-    L_0x02bd:
-        r16 = 0;
-        goto L_0x02b9;
-    L_0x02c0:
-        if (r16 == 0) goto L_0x02f0;
-    L_0x02c2:
-        r0 = r16;
-        r0 = r0.position;
-        r26 = r0;
-        r0 = r22;
-        r1 = r26;
-        if (r0 != r1) goto L_0x02f0;
-    L_0x02ce:
-        r0 = r16;
-        r0 = r0.widthFactor;
-        r26 = r0;
-        r13 = r13 + r26;
-        r17 = r17 + -1;
-        if (r17 < 0) goto L_0x02ed;
-    L_0x02da:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r1 = r17;
-        r26 = r0.get(r1);
-        r26 = (android.support.v4.view.ViewPager.ItemInfo) r26;
-        r16 = r26;
-    L_0x02ec:
-        goto L_0x02b9;
-    L_0x02ed:
-        r16 = 0;
-        goto L_0x02ec;
-    L_0x02f0:
-        r26 = r17 + 1;
-        r0 = r29;
-        r1 = r22;
-        r2 = r26;
-        r16 = r0.addNewItem(r1, r2);
-        r0 = r16;
-        r0 = r0.widthFactor;
-        r26 = r0;
-        r13 = r13 + r26;
-        r8 = r8 + 1;
-        if (r17 < 0) goto L_0x031b;
-    L_0x0308:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r1 = r17;
-        r26 = r0.get(r1);
-        r26 = (android.support.v4.view.ViewPager.ItemInfo) r26;
-        r16 = r26;
-    L_0x031a:
-        goto L_0x02b9;
-    L_0x031b:
-        r16 = 0;
-        goto L_0x031a;
-    L_0x031e:
-        r16 = 0;
-        goto L_0x01ae;
-    L_0x0322:
-        r26 = r29.getPaddingRight();
-        r0 = r26;
-        r0 = (float) r0;
-        r26 = r0;
-        r0 = (float) r7;
-        r27 = r0;
-        r26 = r26 / r27;
-        r27 = 1073741824; // 0x40000000 float:2.0 double:5.304989477E-315;
-        r24 = r26 + r27;
-        goto L_0x01b2;
-    L_0x0336:
-        r0 = r16;
-        r0 = r0.position;
-        r26 = r0;
-        r0 = r22;
-        r1 = r26;
-        if (r0 != r1) goto L_0x0390;
-    L_0x0342:
-        r0 = r16;
-        r0 = r0.scrolling;
-        r26 = r0;
-        if (r26 != 0) goto L_0x0390;
-    L_0x034a:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r1 = r17;
-        r0.remove(r1);
-        r0 = r29;
-        r0 = r0.mAdapter;
-        r26 = r0;
-        r0 = r16;
-        r0 = r0.object;
-        r27 = r0;
-        r0 = r26;
-        r1 = r29;
-        r2 = r22;
-        r3 = r27;
-        r0.destroyItem(r1, r2, r3);
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r26 = r26.size();
-        r0 = r17;
-        r1 = r26;
-        if (r0 >= r1) goto L_0x0394;
-    L_0x037e:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r1 = r17;
-        r26 = r0.get(r1);
-        r26 = (android.support.v4.view.ViewPager.ItemInfo) r26;
-        r16 = r26;
-    L_0x0390:
-        r22 = r22 + 1;
-        goto L_0x01ba;
-    L_0x0394:
-        r16 = 0;
-        goto L_0x0390;
-    L_0x0397:
-        if (r16 == 0) goto L_0x03d5;
-    L_0x0399:
-        r0 = r16;
-        r0 = r0.position;
-        r26 = r0;
-        r0 = r22;
-        r1 = r26;
-        if (r0 != r1) goto L_0x03d5;
-    L_0x03a5:
-        r0 = r16;
-        r0 = r0.widthFactor;
-        r26 = r0;
-        r14 = r14 + r26;
-        r17 = r17 + 1;
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r26 = r26.size();
-        r0 = r17;
-        r1 = r26;
-        if (r0 >= r1) goto L_0x03d2;
-    L_0x03bf:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r1 = r17;
-        r26 = r0.get(r1);
-        r26 = (android.support.v4.view.ViewPager.ItemInfo) r26;
-        r16 = r26;
-    L_0x03d1:
-        goto L_0x0390;
-    L_0x03d2:
-        r16 = 0;
-        goto L_0x03d1;
-    L_0x03d5:
-        r0 = r29;
-        r1 = r22;
-        r2 = r17;
-        r16 = r0.addNewItem(r1, r2);
-        r17 = r17 + 1;
-        r0 = r16;
-        r0 = r0.widthFactor;
-        r26 = r0;
-        r14 = r14 + r26;
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r26 = r26.size();
-        r0 = r17;
-        r1 = r26;
-        if (r0 >= r1) goto L_0x040c;
-    L_0x03f9:
-        r0 = r29;
-        r0 = r0.mItems;
-        r26 = r0;
-        r0 = r26;
-        r1 = r17;
-        r26 = r0.get(r1);
-        r26 = (android.support.v4.view.ViewPager.ItemInfo) r26;
-        r16 = r26;
-    L_0x040b:
-        goto L_0x0390;
-    L_0x040c:
-        r16 = 0;
-        goto L_0x040b;
-    L_0x040f:
-        r26 = 0;
-        goto L_0x01e1;
-    L_0x0413:
-        r29.sortChildDrawingOrder();
-        r26 = r29.hasFocus();
-        if (r26 == 0) goto L_0x002d;
-    L_0x041c:
-        r10 = r29.findFocus();
-        if (r10 == 0) goto L_0x0472;
-    L_0x0422:
-        r0 = r29;
-        r16 = r0.infoForAnyChild(r10);
-    L_0x0428:
-        if (r16 == 0) goto L_0x043c;
-    L_0x042a:
-        r0 = r16;
-        r0 = r0.position;
-        r26 = r0;
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r27 = r0;
-        r0 = r26;
-        r1 = r27;
-        if (r0 == r1) goto L_0x002d;
-    L_0x043c:
-        r15 = 0;
-    L_0x043d:
-        r26 = r29.getChildCount();
-        r0 = r26;
-        if (r15 >= r0) goto L_0x002d;
-    L_0x0445:
-        r0 = r29;
-        r5 = r0.getChildAt(r15);
-        r0 = r29;
-        r16 = r0.infoForChild(r5);
-        if (r16 == 0) goto L_0x046f;
-    L_0x0453:
-        r0 = r16;
-        r0 = r0.position;
-        r26 = r0;
-        r0 = r29;
-        r0 = r0.mCurItem;
-        r27 = r0;
-        r0 = r26;
-        r1 = r27;
-        if (r0 != r1) goto L_0x046f;
-    L_0x0465:
-        r26 = 2;
-        r0 = r26;
-        r26 = r5.requestFocus(r0);
-        if (r26 != 0) goto L_0x002d;
-    L_0x046f:
-        r15 = r15 + 1;
-        goto L_0x043d;
-    L_0x0472:
-        r16 = 0;
-        goto L_0x0428;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.view.ViewPager.populate(int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    void populate(int newCurrentItem) {
+        ItemInfo oldCurInfo = null;
+        if (this.mCurItem != newCurrentItem) {
+            oldCurInfo = infoForPosition(this.mCurItem);
+            this.mCurItem = newCurrentItem;
+        }
+        if (this.mAdapter == null) {
+            sortChildDrawingOrder();
+        } else if (this.mPopulatePending) {
+            sortChildDrawingOrder();
+        } else if (getWindowToken() != null) {
+            this.mAdapter.startUpdate((ViewGroup) this);
+            int pageLimit = this.mOffscreenPageLimit;
+            int startPos = Math.max(0, this.mCurItem - pageLimit);
+            int N = this.mAdapter.getCount();
+            int endPos = Math.min(N - 1, this.mCurItem + pageLimit);
+            if (N != this.mExpectedAdapterCount) {
+                String resName;
+                try {
+                    resName = getResources().getResourceName(getId());
+                } catch (NotFoundException e) {
+                    resName = Integer.toHexString(getId());
+                }
+                throw new IllegalStateException("The application's PagerAdapter changed the adapter's contents without calling PagerAdapter#notifyDataSetChanged! Expected adapter item count: " + this.mExpectedAdapterCount + ", found: " + N + " Pager id: " + resName + " Pager class: " + getClass() + " Problematic adapter: " + this.mAdapter.getClass());
+            }
+            int childCount;
+            int i;
+            ItemInfo curItem = null;
+            int curIndex = 0;
+            while (curIndex < this.mItems.size()) {
+                ItemInfo ii = (ItemInfo) this.mItems.get(curIndex);
+                if (ii.position >= this.mCurItem) {
+                    View child;
+                    if (ii.position == this.mCurItem) {
+                        curItem = ii;
+                    }
+                    if (curItem == null && N > 0) {
+                        curItem = addNewItem(this.mCurItem, curIndex);
+                    }
+                    if (curItem != null) {
+                        float leftWidthNeeded;
+                        float extraWidthLeft = 0.0f;
+                        int itemIndex = curIndex - 1;
+                        ii = itemIndex >= 0 ? (ItemInfo) this.mItems.get(itemIndex) : null;
+                        int clientWidth = getClientWidth();
+                        if (clientWidth <= 0) {
+                            leftWidthNeeded = 0.0f;
+                        } else {
+                            leftWidthNeeded = (2.0f - curItem.widthFactor) + (((float) getPaddingLeft()) / ((float) clientWidth));
+                        }
+                        int pos = this.mCurItem - 1;
+                        while (pos >= 0) {
+                            if (extraWidthLeft < leftWidthNeeded || pos >= startPos) {
+                                if (ii == null || pos != ii.position) {
+                                    extraWidthLeft += addNewItem(pos, itemIndex + 1).widthFactor;
+                                    curIndex++;
+                                    ii = itemIndex >= 0 ? (ItemInfo) this.mItems.get(itemIndex) : null;
+                                } else {
+                                    extraWidthLeft += ii.widthFactor;
+                                    itemIndex--;
+                                    ii = itemIndex >= 0 ? (ItemInfo) this.mItems.get(itemIndex) : null;
+                                }
+                            } else if (ii == null) {
+                                break;
+                            } else {
+                                if (pos == ii.position && !ii.scrolling) {
+                                    this.mItems.remove(itemIndex);
+                                    this.mAdapter.destroyItem((ViewGroup) this, pos, ii.object);
+                                    itemIndex--;
+                                    curIndex--;
+                                    ii = itemIndex >= 0 ? (ItemInfo) this.mItems.get(itemIndex) : null;
+                                }
+                            }
+                            pos--;
+                        }
+                        float extraWidthRight = curItem.widthFactor;
+                        itemIndex = curIndex + 1;
+                        if (extraWidthRight < 2.0f) {
+                            float rightWidthNeeded;
+                            ii = itemIndex < this.mItems.size() ? (ItemInfo) this.mItems.get(itemIndex) : null;
+                            if (clientWidth <= 0) {
+                                rightWidthNeeded = 0.0f;
+                            } else {
+                                rightWidthNeeded = (((float) getPaddingRight()) / ((float) clientWidth)) + 2.0f;
+                            }
+                            pos = this.mCurItem + 1;
+                            while (pos < N) {
+                                if (extraWidthRight < rightWidthNeeded || pos <= endPos) {
+                                    if (ii == null || pos != ii.position) {
+                                        itemIndex++;
+                                        extraWidthRight += addNewItem(pos, itemIndex).widthFactor;
+                                        ii = itemIndex < this.mItems.size() ? (ItemInfo) this.mItems.get(itemIndex) : null;
+                                    } else {
+                                        extraWidthRight += ii.widthFactor;
+                                        itemIndex++;
+                                        ii = itemIndex < this.mItems.size() ? (ItemInfo) this.mItems.get(itemIndex) : null;
+                                    }
+                                } else if (ii == null) {
+                                    break;
+                                } else {
+                                    if (pos == ii.position && !ii.scrolling) {
+                                        this.mItems.remove(itemIndex);
+                                        this.mAdapter.destroyItem((ViewGroup) this, pos, ii.object);
+                                        ii = itemIndex < this.mItems.size() ? (ItemInfo) this.mItems.get(itemIndex) : null;
+                                    }
+                                }
+                                pos++;
+                            }
+                        }
+                        calculatePageOffsets(curItem, curIndex, oldCurInfo);
+                    }
+                    this.mAdapter.setPrimaryItem((ViewGroup) this, this.mCurItem, curItem == null ? curItem.object : null);
+                    this.mAdapter.finishUpdate((ViewGroup) this);
+                    childCount = getChildCount();
+                    for (i = 0; i < childCount; i++) {
+                        child = getChildAt(i);
+                        LayoutParams lp = (LayoutParams) child.getLayoutParams();
+                        lp.childIndex = i;
+                        if (!lp.isDecor && lp.widthFactor == 0.0f) {
+                            ii = infoForChild(child);
+                            if (ii != null) {
+                                lp.widthFactor = ii.widthFactor;
+                                lp.position = ii.position;
+                            }
+                        }
+                    }
+                    sortChildDrawingOrder();
+                    if (!hasFocus()) {
+                        View currentFocused = findFocus();
+                        ii = currentFocused != null ? infoForAnyChild(currentFocused) : null;
+                        if (ii == null || ii.position != this.mCurItem) {
+                            i = 0;
+                            while (i < getChildCount()) {
+                                child = getChildAt(i);
+                                ii = infoForChild(child);
+                                if (ii == null || ii.position != this.mCurItem || !child.requestFocus(2)) {
+                                    i++;
+                                } else {
+                                    return;
+                                }
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                curIndex++;
+            }
+            curItem = addNewItem(this.mCurItem, curIndex);
+            if (curItem != null) {
+            }
+            if (curItem == null) {
+            }
+            this.mAdapter.setPrimaryItem((ViewGroup) this, this.mCurItem, curItem == null ? curItem.object : null);
+            this.mAdapter.finishUpdate((ViewGroup) this);
+            childCount = getChildCount();
+            while (i < childCount) {
+            }
+            sortChildDrawingOrder();
+            if (!hasFocus()) {
+            }
+        }
     }
 
     private void sortChildDrawingOrder() {
@@ -1373,237 +910,106 @@ public class ViewPager extends ViewGroup {
 
     /* JADX WARNING: Removed duplicated region for block: B:20:0x005e A:{LOOP_END, LOOP:2: B:18:0x005a->B:20:0x005e} */
     /* JADX WARNING: Removed duplicated region for block: B:35:0x00a8 A:{LOOP_END, LOOP:5: B:33:0x00a4->B:35:0x00a8} */
-    private void calculatePageOffsets(android.support.v4.view.ViewPager.ItemInfo r15, int r16, android.support.v4.view.ViewPager.ItemInfo r17) {
-        /*
-        r14 = this;
-        r12 = r14.mAdapter;
-        r1 = r12.getCount();
-        r11 = r14.getClientWidth();
-        if (r11 <= 0) goto L_0x0058;
-    L_0x000c:
-        r12 = r14.mPageMargin;
-        r12 = (float) r12;
-        r13 = (float) r11;
-        r6 = r12 / r13;
-    L_0x0012:
-        if (r17 == 0) goto L_0x00bc;
-    L_0x0014:
-        r0 = r17;
-        r8 = r0.position;
-        r12 = r15.position;
-        if (r8 >= r12) goto L_0x0072;
-    L_0x001c:
-        r5 = 0;
-        r3 = 0;
-        r0 = r17;
-        r12 = r0.offset;
-        r0 = r17;
-        r13 = r0.widthFactor;
-        r12 = r12 + r13;
-        r7 = r12 + r6;
-        r9 = r8 + 1;
-    L_0x002b:
-        r12 = r15.position;
-        if (r9 > r12) goto L_0x00bc;
-    L_0x002f:
-        r12 = r14.mItems;
-        r12 = r12.size();
-        if (r5 >= r12) goto L_0x00bc;
-    L_0x0037:
-        r12 = r14.mItems;
-        r3 = r12.get(r5);
-        r3 = (android.support.v4.view.ViewPager.ItemInfo) r3;
-    L_0x003f:
-        r12 = r3.position;
-        if (r9 <= r12) goto L_0x005a;
-    L_0x0043:
-        r12 = r14.mItems;
-        r12 = r12.size();
-        r12 = r12 + -1;
-        if (r5 >= r12) goto L_0x005a;
-    L_0x004d:
-        r5 = r5 + 1;
-        r12 = r14.mItems;
-        r3 = r12.get(r5);
-        r3 = (android.support.v4.view.ViewPager.ItemInfo) r3;
-        goto L_0x003f;
-    L_0x0058:
-        r6 = 0;
-        goto L_0x0012;
-    L_0x005a:
-        r12 = r3.position;
-        if (r9 >= r12) goto L_0x0069;
-    L_0x005e:
-        r12 = r14.mAdapter;
-        r12 = r12.getPageWidth(r9);
-        r12 = r12 + r6;
-        r7 = r7 + r12;
-        r9 = r9 + 1;
-        goto L_0x005a;
-    L_0x0069:
-        r3.offset = r7;
-        r12 = r3.widthFactor;
-        r12 = r12 + r6;
-        r7 = r7 + r12;
-        r9 = r9 + 1;
-        goto L_0x002b;
-    L_0x0072:
-        r12 = r15.position;
-        if (r8 <= r12) goto L_0x00bc;
-    L_0x0076:
-        r12 = r14.mItems;
-        r12 = r12.size();
-        r5 = r12 + -1;
-        r3 = 0;
-        r0 = r17;
-        r7 = r0.offset;
-        r9 = r8 + -1;
-    L_0x0085:
-        r12 = r15.position;
-        if (r9 < r12) goto L_0x00bc;
-    L_0x0089:
-        if (r5 < 0) goto L_0x00bc;
-    L_0x008b:
-        r12 = r14.mItems;
-        r3 = r12.get(r5);
-        r3 = (android.support.v4.view.ViewPager.ItemInfo) r3;
-    L_0x0093:
-        r12 = r3.position;
-        if (r9 >= r12) goto L_0x00a4;
-    L_0x0097:
-        if (r5 <= 0) goto L_0x00a4;
-    L_0x0099:
-        r5 = r5 + -1;
-        r12 = r14.mItems;
-        r3 = r12.get(r5);
-        r3 = (android.support.v4.view.ViewPager.ItemInfo) r3;
-        goto L_0x0093;
-    L_0x00a4:
-        r12 = r3.position;
-        if (r9 <= r12) goto L_0x00b3;
-    L_0x00a8:
-        r12 = r14.mAdapter;
-        r12 = r12.getPageWidth(r9);
-        r12 = r12 + r6;
-        r7 = r7 - r12;
-        r9 = r9 + -1;
-        goto L_0x00a4;
-    L_0x00b3:
-        r12 = r3.widthFactor;
-        r12 = r12 + r6;
-        r7 = r7 - r12;
-        r3.offset = r7;
-        r9 = r9 + -1;
-        goto L_0x0085;
-    L_0x00bc:
-        r12 = r14.mItems;
-        r4 = r12.size();
-        r7 = r15.offset;
-        r12 = r15.position;
-        r9 = r12 + -1;
-        r12 = r15.position;
-        if (r12 != 0) goto L_0x00fc;
-    L_0x00cc:
-        r12 = r15.offset;
-    L_0x00ce:
-        r14.mFirstOffset = r12;
-        r12 = r15.position;
-        r13 = r1 + -1;
-        if (r12 != r13) goto L_0x0100;
-    L_0x00d6:
-        r12 = r15.offset;
-        r13 = r15.widthFactor;
-        r12 = r12 + r13;
-        r13 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r12 = r12 - r13;
-    L_0x00de:
-        r14.mLastOffset = r12;
-        r2 = r16 + -1;
-    L_0x00e2:
-        if (r2 < 0) goto L_0x0115;
-    L_0x00e4:
-        r12 = r14.mItems;
-        r3 = r12.get(r2);
-        r3 = (android.support.v4.view.ViewPager.ItemInfo) r3;
-    L_0x00ec:
-        r12 = r3.position;
-        if (r9 <= r12) goto L_0x0104;
-    L_0x00f0:
-        r12 = r14.mAdapter;
-        r10 = r9 + -1;
-        r12 = r12.getPageWidth(r9);
-        r12 = r12 + r6;
-        r7 = r7 - r12;
-        r9 = r10;
-        goto L_0x00ec;
-    L_0x00fc:
-        r12 = -8388609; // 0xffffffffff7fffff float:-3.4028235E38 double:NaN;
-        goto L_0x00ce;
-    L_0x0100:
-        r12 = 2139095039; // 0x7f7fffff float:3.4028235E38 double:1.056853372E-314;
-        goto L_0x00de;
-    L_0x0104:
-        r12 = r3.widthFactor;
-        r12 = r12 + r6;
-        r7 = r7 - r12;
-        r3.offset = r7;
-        r12 = r3.position;
-        if (r12 != 0) goto L_0x0110;
-    L_0x010e:
-        r14.mFirstOffset = r7;
-    L_0x0110:
-        r2 = r2 + -1;
-        r9 = r9 + -1;
-        goto L_0x00e2;
-    L_0x0115:
-        r12 = r15.offset;
-        r13 = r15.widthFactor;
-        r12 = r12 + r13;
-        r7 = r12 + r6;
-        r12 = r15.position;
-        r9 = r12 + 1;
-        r2 = r16 + 1;
-    L_0x0122:
-        if (r2 >= r4) goto L_0x0155;
-    L_0x0124:
-        r12 = r14.mItems;
-        r3 = r12.get(r2);
-        r3 = (android.support.v4.view.ViewPager.ItemInfo) r3;
-    L_0x012c:
-        r12 = r3.position;
-        if (r9 >= r12) goto L_0x013c;
-    L_0x0130:
-        r12 = r14.mAdapter;
-        r10 = r9 + 1;
-        r12 = r12.getPageWidth(r9);
-        r12 = r12 + r6;
-        r7 = r7 + r12;
-        r9 = r10;
-        goto L_0x012c;
-    L_0x013c:
-        r12 = r3.position;
-        r13 = r1 + -1;
-        if (r12 != r13) goto L_0x014a;
-    L_0x0142:
-        r12 = r3.widthFactor;
-        r12 = r12 + r7;
-        r13 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r12 = r12 - r13;
-        r14.mLastOffset = r12;
-    L_0x014a:
-        r3.offset = r7;
-        r12 = r3.widthFactor;
-        r12 = r12 + r6;
-        r7 = r7 + r12;
-        r2 = r2 + 1;
-        r9 = r9 + 1;
-        goto L_0x0122;
-    L_0x0155:
-        r12 = 0;
-        r14.mNeedCalculatePageOffsets = r12;
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.view.ViewPager.calculatePageOffsets(android.support.v4.view.ViewPager$ItemInfo, int, android.support.v4.view.ViewPager$ItemInfo):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void calculatePageOffsets(ItemInfo curItem, int curIndex, ItemInfo oldCurInfo) {
+        float offset;
+        int pos;
+        ItemInfo ii;
+        int N = this.mAdapter.getCount();
+        int width = getClientWidth();
+        float marginOffset = width > 0 ? ((float) this.mPageMargin) / ((float) width) : 0.0f;
+        if (oldCurInfo != null) {
+            int oldCurPosition = oldCurInfo.position;
+            int itemIndex;
+            Object ii2;
+            if (oldCurPosition < curItem.position) {
+                itemIndex = 0;
+                offset = (oldCurInfo.offset + oldCurInfo.widthFactor) + marginOffset;
+                pos = oldCurPosition + 1;
+                while (pos <= curItem.position && itemIndex < this.mItems.size()) {
+                    ii2 = this.mItems.get(itemIndex);
+                    while (true) {
+                        ii = (ItemInfo) ii2;
+                        if (pos <= ii.position || itemIndex >= this.mItems.size() - 1) {
+                            while (pos < ii.position) {
+                                offset += this.mAdapter.getPageWidth(pos) + marginOffset;
+                                pos++;
+                            }
+                        } else {
+                            itemIndex++;
+                            ii2 = this.mItems.get(itemIndex);
+                        }
+                    }
+                    while (pos < ii.position) {
+                    }
+                    ii.offset = offset;
+                    offset += ii.widthFactor + marginOffset;
+                    pos++;
+                }
+            } else if (oldCurPosition > curItem.position) {
+                itemIndex = this.mItems.size() - 1;
+                offset = oldCurInfo.offset;
+                pos = oldCurPosition - 1;
+                while (pos >= curItem.position && itemIndex >= 0) {
+                    ii2 = this.mItems.get(itemIndex);
+                    while (true) {
+                        ii = (ItemInfo) ii2;
+                        if (pos >= ii.position || itemIndex <= 0) {
+                            while (pos > ii.position) {
+                                offset -= this.mAdapter.getPageWidth(pos) + marginOffset;
+                                pos--;
+                            }
+                        } else {
+                            itemIndex--;
+                            ii2 = this.mItems.get(itemIndex);
+                        }
+                    }
+                    while (pos > ii.position) {
+                    }
+                    offset -= ii.widthFactor + marginOffset;
+                    ii.offset = offset;
+                    pos--;
+                }
+            }
+        }
+        int itemCount = this.mItems.size();
+        offset = curItem.offset;
+        pos = curItem.position - 1;
+        this.mFirstOffset = curItem.position == 0 ? curItem.offset : -3.4028235E38f;
+        this.mLastOffset = curItem.position == N + -1 ? (curItem.offset + curItem.widthFactor) - 1.0f : Float.MAX_VALUE;
+        int i = curIndex - 1;
+        while (i >= 0) {
+            ii = (ItemInfo) this.mItems.get(i);
+            while (pos > ii.position) {
+                offset -= this.mAdapter.getPageWidth(pos) + marginOffset;
+                pos--;
+            }
+            offset -= ii.widthFactor + marginOffset;
+            ii.offset = offset;
+            if (ii.position == 0) {
+                this.mFirstOffset = offset;
+            }
+            i--;
+            pos--;
+        }
+        offset = (curItem.offset + curItem.widthFactor) + marginOffset;
+        pos = curItem.position + 1;
+        i = curIndex + 1;
+        while (i < itemCount) {
+            ii = (ItemInfo) this.mItems.get(i);
+            while (pos < ii.position) {
+                offset += this.mAdapter.getPageWidth(pos) + marginOffset;
+                pos++;
+            }
+            if (ii.position == N - 1) {
+                this.mLastOffset = (ii.widthFactor + offset) - 1.0f;
+            }
+            ii.offset = offset;
+            offset += ii.widthFactor + marginOffset;
+            i++;
+            pos++;
+        }
+        this.mNeedCalculatePageOffsets = false;
     }
 
     public Parcelable onSaveInstanceState() {

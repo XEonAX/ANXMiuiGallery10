@@ -41,48 +41,23 @@ public class SimpleTaskExecutor implements TaskExecutor<Job>, FutureListener {
     /* JADX WARNING: Missing block: B:20:?, code:
             return;
      */
-    public void cancel(com.miui.gallery.threadpool.ThreadPool.Job r6) {
-        /*
-        r5 = this;
-        r3 = r5.mLock;
-        monitor-enter(r3);
-        r2 = r5.mRunningQueue;	 Catch:{ all -> 0x003f }
-        r2 = r2.iterator();	 Catch:{ all -> 0x003f }
-    L_0x0009:
-        r4 = r2.hasNext();	 Catch:{ all -> 0x003f }
-        if (r4 == 0) goto L_0x002e;
-    L_0x000f:
-        r0 = r2.next();	 Catch:{ all -> 0x003f }
-        r0 = (com.miui.gallery.threadpool.Future) r0;	 Catch:{ all -> 0x003f }
-        r4 = r0.getJob();	 Catch:{ all -> 0x003f }
-        r4 = r5.isSameTask(r4, r6);	 Catch:{ all -> 0x003f }
-        if (r4 == 0) goto L_0x0009;
-    L_0x001f:
-        r2 = "SimpleTaskExecutor";
-        r4 = "Cancel running task [%s]";
-        com.miui.gallery.search.utils.SearchLog.d(r2, r4, r6);	 Catch:{ all -> 0x003f }
-        r0.cancel();	 Catch:{ all -> 0x003f }
-        r5.onFutureDone(r0);	 Catch:{ all -> 0x003f }
-        monitor-exit(r3);	 Catch:{ all -> 0x003f }
-    L_0x002d:
-        return;
-    L_0x002e:
-        r2 = r5.mWaitQueue;	 Catch:{ all -> 0x003f }
-        r1 = r2.remove(r6);	 Catch:{ all -> 0x003f }
-        if (r1 == 0) goto L_0x003d;
-    L_0x0036:
-        r2 = "SimpleTaskExecutor";
-        r4 = "Remove task from waiting queue [%s]";
-        com.miui.gallery.search.utils.SearchLog.d(r2, r4, r6);	 Catch:{ all -> 0x003f }
-    L_0x003d:
-        monitor-exit(r3);	 Catch:{ all -> 0x003f }
-        goto L_0x002d;
-    L_0x003f:
-        r2 = move-exception;
-        monitor-exit(r3);	 Catch:{ all -> 0x003f }
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.search.core.context.SimpleTaskExecutor.cancel(com.miui.gallery.threadpool.ThreadPool$Job):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void cancel(Job task) {
+        synchronized (this.mLock) {
+            Iterator it = this.mRunningQueue.iterator();
+            while (it.hasNext()) {
+                Future future = (Future) it.next();
+                if (isSameTask(future.getJob(), task)) {
+                    SearchLog.d("SimpleTaskExecutor", "Cancel running task [%s]", task);
+                    future.cancel();
+                    onFutureDone(future);
+                    return;
+                }
+            }
+            if (this.mWaitQueue.remove(task)) {
+                SearchLog.d("SimpleTaskExecutor", "Remove task from waiting queue [%s]", task);
+            }
+        }
     }
 
     private boolean contains(Job task) {

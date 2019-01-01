@@ -1,6 +1,7 @@
 package com.nexstreaming.nexeditorsdk;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
@@ -8,6 +9,7 @@ import android.graphics.Rect;
 import android.util.Log;
 import android.util.SparseArray;
 import com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader;
+import com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader.EncryptedException;
 import com.nexstreaming.app.common.nexasset.assetpackage.InstallSourceType;
 import com.nexstreaming.app.common.nexasset.assetpackage.ItemCategory;
 import com.nexstreaming.app.common.nexasset.assetpackage.ItemType;
@@ -21,6 +23,7 @@ import com.nexstreaming.app.common.task.Task.OnFailListener;
 import com.nexstreaming.app.common.task.Task.OnProgressListener;
 import com.nexstreaming.app.common.task.Task.OnTaskEventListener;
 import com.nexstreaming.app.common.task.Task.TaskError;
+import com.nexstreaming.app.common.util.FileType;
 import com.nexstreaming.app.common.util.n;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -938,268 +941,138 @@ public class nexAssetPackageManager {
 
     /* JADX WARNING: Removed duplicated region for block: B:18:0x0093  */
     /* JADX WARNING: Removed duplicated region for block: B:10:0x0058  */
-    public static java.lang.String getAssetPackageMediaPath(android.content.Context r10, java.lang.String r11) {
-        /*
-        r1 = 0;
-        r0 = 0;
-        com.nexstreaming.app.common.nexasset.store.AssetLocalInstallDB.getInstance(r10);
-        r2 = com.nexstreaming.app.common.nexasset.assetpackage.c.a();
-        r4 = r2.c(r11);
-        if (r4 == 0) goto L_0x0235;
-    L_0x000f:
-        r2 = com.nexstreaming.app.common.nexasset.assetpackage.c.a();
-        r3 = r4.getAssetPackage();
-        r2 = r2.a(r3);
-        if (r2 == 0) goto L_0x0037;
-    L_0x001d:
-        r0 = "nexAssetPackageMan";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "getAssetPackageMediaPath expire id=";
-        r2 = r2.append(r3);
-        r2 = r2.append(r11);
-        r2 = r2.toString();
-        android.util.Log.d(r0, r2);
-        r0 = r1;
-    L_0x0036:
-        return r0;
-    L_0x0037:
-        r2 = com.nexstreaming.kminternal.kinemaster.config.a.a();	 Catch:{ IOException -> 0x008d }
-        r2 = r2.b();	 Catch:{ IOException -> 0x008d }
-        r3 = r4.getPackageURI();	 Catch:{ IOException -> 0x008d }
-        r5 = r4.getAssetPackage();	 Catch:{ IOException -> 0x008d }
-        r5 = r5.getAssetId();	 Catch:{ IOException -> 0x008d }
-        r3 = com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader.a(r2, r3, r5);	 Catch:{ IOException -> 0x008d }
-        r2 = r4.getFilePath();	 Catch:{ EncryptedException -> 0x0072, IOException -> 0x023b }
-        r3.c(r2);	 Catch:{ EncryptedException -> 0x0072, IOException -> 0x023b }
-    L_0x0056:
-        if (r3 != 0) goto L_0x0093;
-    L_0x0058:
-        r0 = "nexAssetPackageMan";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "getAssetPackageMediaPath file not found!=";
-        r2 = r2.append(r3);
-        r2 = r2.append(r11);
-        r2 = r2.toString();
-        android.util.Log.d(r0, r2);
-        r0 = r1;
-        goto L_0x0036;
-    L_0x0072:
-        r2 = move-exception;
-        r2 = "nexAssetPackageMan";
-        r5 = new java.lang.StringBuilder;	 Catch:{ IOException -> 0x0238 }
-        r5.<init>();	 Catch:{ IOException -> 0x0238 }
-        r6 = "getAssetPackageMediaPath encrypted item id=";
-        r5 = r5.append(r6);	 Catch:{ IOException -> 0x0238 }
-        r5 = r5.append(r11);	 Catch:{ IOException -> 0x0238 }
-        r5 = r5.toString();	 Catch:{ IOException -> 0x0238 }
-        android.util.Log.d(r2, r5);	 Catch:{ IOException -> 0x0238 }
-        r0 = 1;
-        goto L_0x0056;
-    L_0x008d:
-        r2 = move-exception;
-        r3 = r1;
-    L_0x008f:
-        r2.printStackTrace();
-        goto L_0x0056;
-    L_0x0093:
-        if (r0 != 0) goto L_0x01bc;
-    L_0x0095:
-        r0 = r4.getPackageURI();
-        if (r0 == 0) goto L_0x0145;
-    L_0x009b:
-        r1 = 58;
-        r1 = r0.indexOf(r1);
-        r1 = r1 + 1;
-        r1 = r0.substring(r1);
-        r2 = "file:";
-        r2 = r0.startsWith(r2);
-        if (r2 == 0) goto L_0x00cc;
-    L_0x00af:
-        r0 = new java.io.File;
-        r2 = r4.getFilePath();
-        r0.<init>(r1, r2);
-        r1 = r0.isFile();
-        if (r1 == 0) goto L_0x0145;
-    L_0x00be:
-        r3.close();	 Catch:{ IOException -> 0x00c7 }
-    L_0x00c1:
-        r0 = r0.getAbsolutePath();
-        goto L_0x0036;
-    L_0x00c7:
-        r1 = move-exception;
-        r1.printStackTrace();
-        goto L_0x00c1;
-    L_0x00cc:
-        r2 = "assets:";
-        r0 = r0.startsWith(r2);
-        if (r0 == 0) goto L_0x0145;
-    L_0x00d4:
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r0 = r0.append(r1);
-        r1 = "/";
-        r0 = r0.append(r1);
-        r1 = r4.getFilePath();
-        r0 = r0.append(r1);
-        r0 = r0.toString();
-        r1 = com.nexstreaming.app.common.util.FileType.fromExtension(r0);
-        r1 = r1.isImage();
-        if (r1 != 0) goto L_0x0145;
-    L_0x00f9:
-        r1 = r10.getAssets();	 Catch:{ IOException -> 0x0141 }
-        r0 = r1.openFd(r0);	 Catch:{ IOException -> 0x0141 }
-        r6 = r0.getStartOffset();	 Catch:{ IOException -> 0x0141 }
-        r8 = r0.getLength();	 Catch:{ IOException -> 0x0141 }
-        r0.close();	 Catch:{ IOException -> 0x0141 }
-        r3.close();	 Catch:{ IOException -> 0x013c }
-    L_0x010f:
-        r0 = new java.lang.StringBuilder;	 Catch:{ IOException -> 0x0141 }
-        r0.<init>();	 Catch:{ IOException -> 0x0141 }
-        r1 = "nexasset://";
-        r0 = r0.append(r1);	 Catch:{ IOException -> 0x0141 }
-        r1 = r11.hashCode();	 Catch:{ IOException -> 0x0141 }
-        r0 = r0.append(r1);	 Catch:{ IOException -> 0x0141 }
-        r1 = ":";
-        r0 = r0.append(r1);	 Catch:{ IOException -> 0x0141 }
-        r0 = r0.append(r6);	 Catch:{ IOException -> 0x0141 }
-        r1 = ":";
-        r0 = r0.append(r1);	 Catch:{ IOException -> 0x0141 }
-        r0 = r0.append(r8);	 Catch:{ IOException -> 0x0141 }
-        r0 = r0.toString();	 Catch:{ IOException -> 0x0141 }
-        goto L_0x0036;
-    L_0x013c:
-        r0 = move-exception;
-        r0.printStackTrace();	 Catch:{ IOException -> 0x0141 }
-        goto L_0x010f;
-    L_0x0141:
-        r0 = move-exception;
-        r0.printStackTrace();
-    L_0x0145:
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r1 = r10.getCacheDir();
-        r1 = r1.getAbsolutePath();
-        r0 = r0.append(r1);
-        r1 = java.io.File.separator;
-        r0 = r0.append(r1);
-        r1 = "media";
-        r0 = r0.append(r1);
-        r0 = r0.toString();
-        r1 = new java.io.File;
-        r1.<init>(r0);
-        r2 = r1.exists();
-        if (r2 != 0) goto L_0x0174;
-    L_0x0171:
-        r1.mkdirs();
-    L_0x0174:
-        r1 = "nexAssetPackageMan";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r5 = "media path=";
-        r2 = r2.append(r5);
-        r5 = r4.getFilePath();
-        r2 = r2.append(r5);
-        r2 = r2.toString();
-        android.util.Log.d(r1, r2);
-        r1 = new java.io.File;
-        r2 = r4.getId();
-        r1.<init>(r0, r2);
-        r0 = r1.isFile();
-        if (r0 != 0) goto L_0x0227;
-    L_0x019f:
-        if (r3 == 0) goto L_0x0227;
-    L_0x01a1:
-        r0 = r4.getFilePath();	 Catch:{ IOException -> 0x0209 }
-        r0 = r3.a(r0);	 Catch:{ IOException -> 0x0209 }
-        if (r0 == 0) goto L_0x01b1;
-    L_0x01ab:
-        com.nexstreaming.app.common.util.d.a(r0, r1);	 Catch:{ IOException -> 0x0209 }
-        r0.close();	 Catch:{ IOException -> 0x0209 }
-    L_0x01b1:
-        if (r3 == 0) goto L_0x01b6;
-    L_0x01b3:
-        r3.close();	 Catch:{ IOException -> 0x0204 }
-    L_0x01b6:
-        r0 = r1.getAbsolutePath();
-        goto L_0x0036;
-    L_0x01bc:
-        r0 = r4.getPackageURI();
-        if (r0 == 0) goto L_0x0145;
-    L_0x01c2:
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r0 = r1.append(r0);
-        r1 = "/";
-        r0 = r0.append(r1);
-        r1 = r4.getFilePath();
-        r0 = r0.append(r1);
-        r0 = r0.toString();
-        r0 = com.nexstreaming.app.common.util.FileType.fromExtension(r0);
-        r0 = r0.isImage();
-        if (r0 == 0) goto L_0x0145;
-    L_0x01e7:
-        r3.close();	 Catch:{ IOException -> 0x01ff }
-    L_0x01ea:
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r1 = "@assetItem:";
-        r0 = r0.append(r1);
-        r0 = r0.append(r11);
-        r0 = r0.toString();
-        goto L_0x0036;
-    L_0x01ff:
-        r0 = move-exception;
-        r0.printStackTrace();
-        goto L_0x01ea;
-    L_0x0204:
-        r0 = move-exception;
-        r0.printStackTrace();
-        goto L_0x01b6;
-    L_0x0209:
-        r0 = move-exception;
-        r0.printStackTrace();	 Catch:{ all -> 0x021b }
-        r1.delete();	 Catch:{ all -> 0x021b }
-        if (r3 == 0) goto L_0x01b6;
-    L_0x0212:
-        r3.close();	 Catch:{ IOException -> 0x0216 }
-        goto L_0x01b6;
-    L_0x0216:
-        r0 = move-exception;
-        r0.printStackTrace();
-        goto L_0x01b6;
-    L_0x021b:
-        r0 = move-exception;
-        if (r3 == 0) goto L_0x0221;
-    L_0x021e:
-        r3.close();	 Catch:{ IOException -> 0x0222 }
-    L_0x0221:
-        throw r0;
-    L_0x0222:
-        r1 = move-exception;
-        r1.printStackTrace();
-        goto L_0x0221;
-    L_0x0227:
-        r3.close();	 Catch:{ IOException -> 0x0230 }
-    L_0x022a:
-        r0 = r1.getAbsolutePath();
-        goto L_0x0036;
-    L_0x0230:
-        r0 = move-exception;
-        r0.printStackTrace();
-        goto L_0x022a;
-    L_0x0235:
-        r0 = r1;
-        goto L_0x0036;
-    L_0x0238:
-        r2 = move-exception;
-        goto L_0x008f;
-    L_0x023b:
-        r2 = move-exception;
-        goto L_0x0056;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.nexAssetPackageManager.getAssetPackageMediaPath(android.content.Context, java.lang.String):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static String getAssetPackageMediaPath(Context context, String str) {
+        IOException e;
+        Object obj = null;
+        AssetLocalInstallDB.getInstance(context);
+        f c = com.nexstreaming.app.common.nexasset.assetpackage.c.a().c(str);
+        if (c == null) {
+            return null;
+        }
+        if (com.nexstreaming.app.common.nexasset.assetpackage.c.a().a(c.getAssetPackage())) {
+            Log.d(TAG, "getAssetPackageMediaPath expire id=" + str);
+            return null;
+        }
+        AssetPackageReader a;
+        try {
+            a = AssetPackageReader.a(com.nexstreaming.kminternal.kinemaster.config.a.a().b(), c.getPackageURI(), c.getAssetPackage().getAssetId());
+            try {
+                a.c(c.getFilePath());
+            } catch (EncryptedException e2) {
+                try {
+                    Log.d(TAG, "getAssetPackageMediaPath encrypted item id=" + str);
+                    obj = 1;
+                } catch (IOException e3) {
+                    e = e3;
+                    e.printStackTrace();
+                    if (a != null) {
+                    }
+                }
+            } catch (IOException e4) {
+            }
+        } catch (IOException e5) {
+            e = e5;
+            a = null;
+        }
+        if (a != null) {
+            Log.d(TAG, "getAssetPackageMediaPath file not found!=" + str);
+            return null;
+        }
+        String packageURI;
+        if (obj == null) {
+            packageURI = c.getPackageURI();
+            if (packageURI != null) {
+                String substring = packageURI.substring(packageURI.indexOf(58) + 1);
+                if (packageURI.startsWith("file:")) {
+                    File file = new File(substring, c.getFilePath());
+                    if (file.isFile()) {
+                        try {
+                            a.close();
+                        } catch (IOException e6) {
+                            e6.printStackTrace();
+                        }
+                        return file.getAbsolutePath();
+                    }
+                } else if (packageURI.startsWith("assets:")) {
+                    packageURI = substring + "/" + c.getFilePath();
+                    if (!FileType.fromExtension(packageURI).isImage()) {
+                        try {
+                            AssetFileDescriptor openFd = context.getAssets().openFd(packageURI);
+                            long startOffset = openFd.getStartOffset();
+                            long length = openFd.getLength();
+                            openFd.close();
+                            try {
+                                a.close();
+                            } catch (IOException e7) {
+                                e7.printStackTrace();
+                            }
+                            return "nexasset://" + str.hashCode() + ":" + startOffset + ":" + length;
+                        } catch (IOException e72) {
+                            e72.printStackTrace();
+                        }
+                    }
+                }
+            }
+        } else {
+            packageURI = c.getPackageURI();
+            if (packageURI != null && FileType.fromExtension(packageURI + "/" + c.getFilePath()).isImage()) {
+                try {
+                    a.close();
+                } catch (IOException e722) {
+                    e722.printStackTrace();
+                }
+                return "@assetItem:" + str;
+            }
+        }
+        packageURI = context.getCacheDir().getAbsolutePath() + File.separator + "media";
+        File file2 = new File(packageURI);
+        if (!file2.exists()) {
+            file2.mkdirs();
+        }
+        Log.d(TAG, "media path=" + c.getFilePath());
+        file2 = new File(packageURI, c.getId());
+        if (file2.isFile() || a == null) {
+            try {
+                a.close();
+            } catch (IOException e7222) {
+                e7222.printStackTrace();
+            }
+            return file2.getAbsolutePath();
+        }
+        try {
+            InputStream a2 = a.a(c.getFilePath());
+            if (a2 != null) {
+                com.nexstreaming.app.common.util.d.a(a2, file2);
+                a2.close();
+            }
+            if (a != null) {
+                try {
+                    a.close();
+                } catch (IOException e72222) {
+                    e72222.printStackTrace();
+                }
+            }
+        } catch (IOException e722222) {
+            e722222.printStackTrace();
+            file2.delete();
+            if (a != null) {
+                try {
+                    a.close();
+                } catch (IOException e7222222) {
+                    e7222222.printStackTrace();
+                }
+            }
+        } catch (Throwable th) {
+            if (a != null) {
+                try {
+                    a.close();
+                } catch (IOException e62) {
+                    e62.printStackTrace();
+                }
+            }
+        }
+        return file2.getAbsolutePath();
     }
 
     static Rect getAssetPackageMediaOptions(String str) {

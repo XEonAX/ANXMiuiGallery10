@@ -4,22 +4,33 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 import com.miui.gallery.GalleryApp;
 import com.miui.gallery.R;
+import com.miui.gallery.scanner.MediaScannerUtil;
 import com.miui.gallery.threadpool.Future;
 import com.miui.gallery.threadpool.FutureListener;
 import com.miui.gallery.threadpool.ThreadManager;
 import com.miui.gallery.threadpool.ThreadPool.Job;
 import com.miui.gallery.threadpool.ThreadPool.JobContext;
+import com.miui.gallery.util.FileUtils;
 import com.miui.gallery.util.Log;
+import com.miui.gallery.util.MediaFileUtils;
+import com.miui.gallery.util.MediaFileUtils.FileType;
+import com.miui.gallery.util.MiscUtil;
+import com.miui.gallery.util.StorageUtils;
 import com.miui.gallery.widget.GalleryDialogFragment;
 import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import miui.app.ProgressDialog;
+import miui.net.MimeUtils;
 
 public class SaveUriDialogFragment extends GalleryDialogFragment {
     private OnCompleteListener mListener;
@@ -90,128 +101,93 @@ public class SaveUriDialogFragment extends GalleryDialogFragment {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:30:0x00a4 A:{SYNTHETIC, Splitter: B:30:0x00a4} */
-    private java.lang.String saveInternal(android.net.Uri r15) {
-        /*
-        r14 = this;
-        r10 = 0;
-        r7 = 0;
-        r4 = 0;
-        r8 = 0;
-        r11 = com.miui.gallery.GalleryApp.sGetAndroidContext();	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r11 = r11.getContentResolver();	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r12 = "r";
-        r7 = r11.openFileDescriptor(r15, r12);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r3 = r7.getFileDescriptor();	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r6 = r14.getMimeType(r15);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r2 = miui.net.MimeUtils.guessExtensionFromMimeType(r6);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r11 = android.text.TextUtils.isEmpty(r2);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        if (r11 == 0) goto L_0x0033;
-    L_0x0024:
-        r11 = "SaveUriDialogFragment";
-        r12 = "fail to save [%s] because of can't get right file extension";
-        com.miui.gallery.util.Log.e(r11, r12, r15);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        com.miui.gallery.util.MiscUtil.closeSilently(r7);
-        com.miui.gallery.util.MiscUtil.closeSilently(r4);
-        r9 = r10;
-    L_0x0032:
-        return r9;
-    L_0x0033:
-        r11 = "DCIM/Camera";
-        r0 = com.miui.gallery.util.StorageUtils.getSafePathInPriorStorageForUnadapted(r11);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r11 = new java.io.File;	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r11.<init>(r0);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r12 = 0;
-        r11 = com.miui.gallery.util.FileUtils.createFolder(r11, r12);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        if (r11 != 0) goto L_0x004d;
-    L_0x0045:
-        com.miui.gallery.util.MiscUtil.closeSilently(r7);
-        com.miui.gallery.util.MiscUtil.closeSilently(r4);
-        r9 = r10;
-        goto L_0x0032;
-    L_0x004d:
-        r8 = generateFileForSaving(r0, r2);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        if (r8 != 0) goto L_0x005b;
-    L_0x0053:
-        com.miui.gallery.util.MiscUtil.closeSilently(r7);
-        com.miui.gallery.util.MiscUtil.closeSilently(r4);
-        r9 = r10;
-        goto L_0x0032;
-    L_0x005b:
-        r5 = new java.io.FileInputStream;	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r5.<init>(r3);	 Catch:{ FileNotFoundException -> 0x0091, Exception -> 0x00a1 }
-        r11 = miui.os.FileUtils.copyToFile(r5, r8);	 Catch:{ FileNotFoundException -> 0x00cb, Exception -> 0x00c8, all -> 0x00c5 }
-        if (r11 != 0) goto L_0x006f;
-    L_0x0066:
-        com.miui.gallery.util.MiscUtil.closeSilently(r7);
-        com.miui.gallery.util.MiscUtil.closeSilently(r5);
-        r4 = r5;
-        r9 = r10;
-        goto L_0x0032;
-    L_0x006f:
-        r9 = r8.getAbsolutePath();	 Catch:{ FileNotFoundException -> 0x00cb, Exception -> 0x00c8, all -> 0x00c5 }
-        r11 = r14.getActivity();	 Catch:{ FileNotFoundException -> 0x00cb, Exception -> 0x00c8, all -> 0x00c5 }
-        r11 = r11.getApplicationContext();	 Catch:{ FileNotFoundException -> 0x00cb, Exception -> 0x00c8, all -> 0x00c5 }
-        r12 = 0;
-        com.miui.gallery.scanner.MediaScannerUtil.scanSingleFile(r11, r9, r12);	 Catch:{ FileNotFoundException -> 0x00cb, Exception -> 0x00c8, all -> 0x00c5 }
-        r11 = 1;
-        r12 = 1;
-        r12 = new java.io.File[r12];	 Catch:{ FileNotFoundException -> 0x00cb, Exception -> 0x00c8, all -> 0x00c5 }
-        r13 = 0;
-        r12[r13] = r8;	 Catch:{ FileNotFoundException -> 0x00cb, Exception -> 0x00c8, all -> 0x00c5 }
-        com.miui.gallery.util.MediaFileUtils.triggerMediaScan(r11, r12);	 Catch:{ FileNotFoundException -> 0x00cb, Exception -> 0x00c8, all -> 0x00c5 }
-        com.miui.gallery.util.MiscUtil.closeSilently(r7);
-        com.miui.gallery.util.MiscUtil.closeSilently(r5);
-        r4 = r5;
-        goto L_0x0032;
-    L_0x0091:
-        r1 = move-exception;
-    L_0x0092:
-        r11 = "SaveUriDialogFragment";
-        r12 = "fail to open %s %s";
-        com.miui.gallery.util.Log.e(r11, r12, r15, r1);	 Catch:{ all -> 0x00bd }
-        com.miui.gallery.util.MiscUtil.closeSilently(r7);
-        com.miui.gallery.util.MiscUtil.closeSilently(r4);
-    L_0x009f:
-        r9 = r10;
-        goto L_0x0032;
-    L_0x00a1:
-        r1 = move-exception;
-    L_0x00a2:
-        if (r8 == 0) goto L_0x00af;
-    L_0x00a4:
-        r11 = com.miui.gallery.util.MediaFileUtils.FileType.TEMP;	 Catch:{ all -> 0x00bd }
-        r12 = 1;
-        r12 = new java.io.File[r12];	 Catch:{ all -> 0x00bd }
-        r13 = 0;
-        r12[r13] = r8;	 Catch:{ all -> 0x00bd }
-        com.miui.gallery.util.MediaFileUtils.deleteFileType(r11, r12);	 Catch:{ all -> 0x00bd }
-    L_0x00af:
-        r11 = "SaveUriDialogFragment";
-        r12 = "fail to save %s %s";
-        com.miui.gallery.util.Log.e(r11, r12, r15, r1);	 Catch:{ all -> 0x00bd }
-        com.miui.gallery.util.MiscUtil.closeSilently(r7);
-        com.miui.gallery.util.MiscUtil.closeSilently(r4);
-        goto L_0x009f;
-    L_0x00bd:
-        r10 = move-exception;
-    L_0x00be:
-        com.miui.gallery.util.MiscUtil.closeSilently(r7);
-        com.miui.gallery.util.MiscUtil.closeSilently(r4);
-        throw r10;
-    L_0x00c5:
-        r10 = move-exception;
-        r4 = r5;
-        goto L_0x00be;
-    L_0x00c8:
-        r1 = move-exception;
-        r4 = r5;
-        goto L_0x00a2;
-    L_0x00cb:
-        r1 = move-exception;
-        r4 = r5;
-        goto L_0x0092;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.ui.SaveUriDialogFragment.saveInternal(android.net.Uri):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private String saveInternal(Uri uri) {
+        FileNotFoundException e;
+        Exception e2;
+        Throwable th;
+        ParcelFileDescriptor parcelFileDescriptor = null;
+        FileInputStream inputStream = null;
+        File saveFile = null;
+        try {
+            parcelFileDescriptor = GalleryApp.sGetAndroidContext().getContentResolver().openFileDescriptor(uri, "r");
+            FileDescriptor fd = parcelFileDescriptor.getFileDescriptor();
+            String extension = MimeUtils.guessExtensionFromMimeType(getMimeType(uri));
+            if (TextUtils.isEmpty(extension)) {
+                Log.e("SaveUriDialogFragment", "fail to save [%s] because of can't get right file extension", (Object) uri);
+                MiscUtil.closeSilently(parcelFileDescriptor);
+                MiscUtil.closeSilently(null);
+                return null;
+            }
+            String destFolder = StorageUtils.getSafePathInPriorStorageForUnadapted("DCIM/Camera");
+            if (FileUtils.createFolder(new File(destFolder), false)) {
+                saveFile = generateFileForSaving(destFolder, extension);
+                if (saveFile == null) {
+                    MiscUtil.closeSilently(parcelFileDescriptor);
+                    MiscUtil.closeSilently(null);
+                    return null;
+                }
+                FileInputStream inputStream2 = new FileInputStream(fd);
+                try {
+                    if (miui.os.FileUtils.copyToFile(inputStream2, saveFile)) {
+                        String savePath = saveFile.getAbsolutePath();
+                        MediaScannerUtil.scanSingleFile(getActivity().getApplicationContext(), savePath, 0);
+                        MediaFileUtils.triggerMediaScan(true, saveFile);
+                        MiscUtil.closeSilently(parcelFileDescriptor);
+                        MiscUtil.closeSilently(inputStream2);
+                        inputStream = inputStream2;
+                        return savePath;
+                    }
+                    MiscUtil.closeSilently(parcelFileDescriptor);
+                    MiscUtil.closeSilently(inputStream2);
+                    inputStream = inputStream2;
+                    return null;
+                } catch (FileNotFoundException e3) {
+                    e = e3;
+                    inputStream = inputStream2;
+                } catch (Exception e4) {
+                    e2 = e4;
+                    inputStream = inputStream2;
+                    if (saveFile != null) {
+                        MediaFileUtils.deleteFileType(FileType.TEMP, saveFile);
+                    }
+                    Log.e("SaveUriDialogFragment", "fail to save %s %s", uri, e2);
+                    MiscUtil.closeSilently(parcelFileDescriptor);
+                    MiscUtil.closeSilently(inputStream);
+                    return null;
+                } catch (Throwable th2) {
+                    th = th2;
+                    inputStream = inputStream2;
+                    MiscUtil.closeSilently(parcelFileDescriptor);
+                    MiscUtil.closeSilently(inputStream);
+                    throw th;
+                }
+            }
+            MiscUtil.closeSilently(parcelFileDescriptor);
+            MiscUtil.closeSilently(null);
+            return null;
+        } catch (FileNotFoundException e5) {
+            e = e5;
+        } catch (Exception e6) {
+            e2 = e6;
+            if (saveFile != null) {
+            }
+            Log.e("SaveUriDialogFragment", "fail to save %s %s", uri, e2);
+            MiscUtil.closeSilently(parcelFileDescriptor);
+            MiscUtil.closeSilently(inputStream);
+            return null;
+        }
+        try {
+            Log.e("SaveUriDialogFragment", "fail to open %s %s", uri, e);
+            MiscUtil.closeSilently(parcelFileDescriptor);
+            MiscUtil.closeSilently(inputStream);
+            return null;
+        } catch (Throwable th3) {
+            th = th3;
+            MiscUtil.closeSilently(parcelFileDescriptor);
+            MiscUtil.closeSilently(inputStream);
+            throw th;
+        }
     }
 
     private String getMimeType(Uri uri) {

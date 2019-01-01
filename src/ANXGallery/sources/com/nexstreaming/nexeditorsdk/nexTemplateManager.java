@@ -727,65 +727,31 @@ public class nexTemplateManager {
     /* JADX WARNING: Missing block: B:29:?, code:
             return r0;
      */
-    boolean updateTemplate(boolean r8, com.nexstreaming.nexeditorsdk.nexAssetPackageManager.Item r9) {
-        /*
-        r7 = this;
-        r2 = 1;
-        r3 = r7.m_templateEntryLock;
-        monitor-enter(r3);
-        r1 = 0;
-        if (r8 == 0) goto L_0x0034;
-    L_0x0007:
-        r0 = r9.hidden();	 Catch:{ all -> 0x0031 }
-        if (r0 == 0) goto L_0x0010;
-    L_0x000d:
-        monitor-exit(r3);	 Catch:{ all -> 0x0031 }
-        r0 = r1;
-    L_0x000f:
-        return r0;
-    L_0x0010:
-        r0 = r9.packageInfo();	 Catch:{ all -> 0x0031 }
-        r0 = r0.assetId();	 Catch:{ all -> 0x0031 }
-        r0 = r7.getAssetTemplate(r0);	 Catch:{ all -> 0x0031 }
-        if (r0 != 0) goto L_0x0027;
-    L_0x001e:
-        r0 = com.nexstreaming.nexeditorsdk.nexTemplateManager.Template.promote(r9);	 Catch:{ all -> 0x0031 }
-        r1 = r7.templateEntries;	 Catch:{ all -> 0x0031 }
-        r1.add(r0);	 Catch:{ all -> 0x0031 }
-    L_0x0027:
-        r1 = r9.id();	 Catch:{ all -> 0x0031 }
-        r0.setAspect(r1);	 Catch:{ all -> 0x0031 }
-        r0 = r2;
-    L_0x002f:
-        monitor-exit(r3);	 Catch:{ all -> 0x0031 }
-        goto L_0x000f;
-    L_0x0031:
-        r0 = move-exception;
-        monitor-exit(r3);	 Catch:{ all -> 0x0031 }
-        throw r0;
-    L_0x0034:
-        r0 = r7.templateEntries;	 Catch:{ all -> 0x0031 }
-        r4 = r0.iterator();	 Catch:{ all -> 0x0031 }
-    L_0x003a:
-        r0 = r4.hasNext();	 Catch:{ all -> 0x0031 }
-        if (r0 == 0) goto L_0x005f;
-    L_0x0040:
-        r0 = r4.next();	 Catch:{ all -> 0x0031 }
-        r0 = (com.nexstreaming.nexeditorsdk.nexTemplateManager.Template) r0;	 Catch:{ all -> 0x0031 }
-        r5 = r0.packageInfo();	 Catch:{ all -> 0x0031 }
-        r5 = r5.assetIdx();	 Catch:{ all -> 0x0031 }
-        r6 = r9.packageInfo();	 Catch:{ all -> 0x0031 }
-        r6 = r6.assetIdx();	 Catch:{ all -> 0x0031 }
-        if (r5 != r6) goto L_0x003a;
-    L_0x0058:
-        r1 = r7.templateEntries;	 Catch:{ all -> 0x0031 }
-        r1.remove(r0);	 Catch:{ all -> 0x0031 }
-        r0 = r2;
-        goto L_0x002f;
-    L_0x005f:
-        r0 = r1;
-        goto L_0x002f;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.nexTemplateManager.updateTemplate(boolean, com.nexstreaming.nexeditorsdk.nexAssetPackageManager$Item):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    boolean updateTemplate(boolean z, Item item) {
+        synchronized (this.m_templateEntryLock) {
+            Template assetTemplate;
+            boolean z2;
+            if (!z) {
+                for (Template assetTemplate2 : this.templateEntries) {
+                    if (assetTemplate2.packageInfo().assetIdx() == item.packageInfo().assetIdx()) {
+                        this.templateEntries.remove(assetTemplate2);
+                        z2 = true;
+                        break;
+                    }
+                }
+                z2 = false;
+            } else if (item.hidden()) {
+                return false;
+            } else {
+                assetTemplate2 = getAssetTemplate(item.packageInfo().assetId());
+                if (assetTemplate2 == null) {
+                    assetTemplate2 = Template.promote(item);
+                    this.templateEntries.add(assetTemplate2);
+                }
+                assetTemplate2.setAspect(item.id());
+                z2 = true;
+            }
+        }
     }
 }

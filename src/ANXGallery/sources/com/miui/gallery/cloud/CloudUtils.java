@@ -72,6 +72,7 @@ import com.miui.os.Rom;
 import com.miui.settings.Settings;
 import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -681,59 +682,44 @@ public class CloudUtils {
 
     /* JADX WARNING: Removed duplicated region for block: B:18:0x0056  */
     /* JADX WARNING: Removed duplicated region for block: B:7:0x0012 A:{SYNTHETIC, Splitter: B:7:0x0012} */
-    public static java.lang.String collectMediaDescription(com.miui.gallery.data.DBImage r8) {
-        /*
-        r2 = 0;
-        r0 = r8.getDescription();	 Catch:{ JSONException -> 0x004d }
-        r4 = android.text.TextUtils.isEmpty(r0);	 Catch:{ JSONException -> 0x004d }
-        if (r4 != 0) goto L_0x004b;
-    L_0x000b:
-        r3 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x002f }
-        r3.<init>(r0);	 Catch:{ JSONException -> 0x002f }
-    L_0x0010:
-        if (r3 != 0) goto L_0x0056;
-    L_0x0012:
-        r2 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x0053 }
-        r2.<init>();	 Catch:{ JSONException -> 0x0053 }
-    L_0x0017:
-        r4 = "isFavorite";
-        r5 = r8.isFavorite();	 Catch:{ JSONException -> 0x004d }
-        r2.put(r4, r5);	 Catch:{ JSONException -> 0x004d }
-        r4 = "specialTypeFlags";
-        r6 = r8.getSpecialTypeFlags();	 Catch:{ JSONException -> 0x004d }
-        r2.put(r4, r6);	 Catch:{ JSONException -> 0x004d }
-        r4 = r2.toString();	 Catch:{ JSONException -> 0x004d }
-    L_0x002e:
-        return r4;
-    L_0x002f:
-        r1 = move-exception;
-        r4 = "CloudUtils";
-        r5 = new java.lang.StringBuilder;	 Catch:{ JSONException -> 0x004d }
-        r5.<init>();	 Catch:{ JSONException -> 0x004d }
-        r6 = "failed to parse: ";
-        r5 = r5.append(r6);	 Catch:{ JSONException -> 0x004d }
-        r5 = r5.append(r0);	 Catch:{ JSONException -> 0x004d }
-        r5 = r5.toString();	 Catch:{ JSONException -> 0x004d }
-        com.miui.gallery.util.Log.w(r4, r5);	 Catch:{ JSONException -> 0x004d }
-        r1.printStackTrace();	 Catch:{ JSONException -> 0x004d }
-    L_0x004b:
-        r3 = r2;
-        goto L_0x0010;
-    L_0x004d:
-        r1 = move-exception;
-    L_0x004e:
-        r1.printStackTrace();
-        r4 = 0;
-        goto L_0x002e;
-    L_0x0053:
-        r1 = move-exception;
-        r2 = r3;
-        goto L_0x004e;
-    L_0x0056:
-        r2 = r3;
-        goto L_0x0017;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloud.CloudUtils.collectMediaDescription(com.miui.gallery.data.DBImage):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static String collectMediaDescription(DBImage dbImage) {
+        JSONException e;
+        try {
+            JSONObject json;
+            JSONObject json2;
+            String description = dbImage.getDescription();
+            if (!TextUtils.isEmpty(description)) {
+                try {
+                    json = new JSONObject(description);
+                } catch (JSONException e2) {
+                    Log.w("CloudUtils", "failed to parse: " + description);
+                    e2.printStackTrace();
+                }
+                if (json != null) {
+                    try {
+                        json2 = new JSONObject();
+                    } catch (JSONException e3) {
+                        e2 = e3;
+                        json2 = json;
+                        e2.printStackTrace();
+                        return null;
+                    }
+                }
+                json2 = json;
+                json2.put("isFavorite", dbImage.isFavorite());
+                json2.put("specialTypeFlags", dbImage.getSpecialTypeFlags());
+                return json2.toString();
+            }
+            json = null;
+            if (json != null) {
+            }
+            json2.put("isFavorite", dbImage.isFavorite());
+            json2.put("specialTypeFlags", dbImage.getSpecialTypeFlags());
+            return json2.toString();
+        } catch (JSONException e4) {
+            e2 = e4;
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:34:0x00a1  */
@@ -746,112 +732,66 @@ public class CloudUtils {
     /* JADX WARNING: Removed duplicated region for block: B:18:0x0049 A:{Catch:{ JSONException -> 0x0098 }} */
     /* JADX WARNING: Removed duplicated region for block: B:29:0x0096  */
     /* JADX WARNING: Removed duplicated region for block: B:21:0x0057 A:{Catch:{ JSONException -> 0x0098 }} */
-    public static java.lang.String collectAlbumDescription(com.miui.gallery.data.DBImage r14) {
-        /*
-        r3 = 0;
-        r1 = r14.getDescription();	 Catch:{ JSONException -> 0x0098 }
-        r9 = android.text.TextUtils.isEmpty(r1);	 Catch:{ JSONException -> 0x0098 }
-        if (r9 != 0) goto L_0x008e;
-    L_0x000b:
-        r4 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x0072 }
-        r4.<init>(r1);	 Catch:{ JSONException -> 0x0072 }
-    L_0x0010:
-        if (r4 != 0) goto L_0x00a1;
-    L_0x0012:
-        r3 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x009e }
-        r3.<init>();	 Catch:{ JSONException -> 0x009e }
-    L_0x0017:
-        r5 = r14.getLocalFile();	 Catch:{ JSONException -> 0x0098 }
-        r9 = "localFile";
-        r3.put(r9, r5);	 Catch:{ JSONException -> 0x0098 }
-        r10 = r14.getAttributes();	 Catch:{ JSONException -> 0x0098 }
-        r12 = 1;
-        r10 = r10 & r12;
-        r12 = 0;
-        r9 = (r10 > r12 ? 1 : (r10 == r12 ? 0 : -1));
-        if (r9 == 0) goto L_0x0090;
-    L_0x002d:
-        r0 = 1;
-    L_0x002e:
-        r10 = r14.getAttributes();	 Catch:{ JSONException -> 0x0098 }
-        r12 = 2;
-        r10 = r10 & r12;
-        r12 = 0;
-        r9 = (r10 > r12 ? 1 : (r10 == r12 ? 0 : -1));
-        if (r9 == 0) goto L_0x0092;
-    L_0x003b:
-        r7 = 1;
-    L_0x003c:
-        r10 = r14.getAttributes();	 Catch:{ JSONException -> 0x0098 }
-        r12 = 64;
-        r10 = r10 & r12;
-        r12 = 0;
-        r9 = (r10 > r12 ? 1 : (r10 == r12 ? 0 : -1));
-        if (r9 == 0) goto L_0x0094;
-    L_0x0049:
-        r8 = 1;
-    L_0x004a:
-        r10 = r14.getAttributes();	 Catch:{ JSONException -> 0x0098 }
-        r12 = 128; // 0x80 float:1.794E-43 double:6.32E-322;
-        r10 = r10 & r12;
-        r12 = 0;
-        r9 = (r10 > r12 ? 1 : (r10 == r12 ? 0 : -1));
-        if (r9 == 0) goto L_0x0096;
-    L_0x0057:
-        r6 = 1;
-    L_0x0058:
-        r9 = "autoUpload";
-        r3.put(r9, r0);	 Catch:{ JSONException -> 0x0098 }
-        r9 = "manualSetUpload";
-        r3.put(r9, r7);	 Catch:{ JSONException -> 0x0098 }
-        r9 = "showInOtherAlbums";
-        r3.put(r9, r8);	 Catch:{ JSONException -> 0x0098 }
-        r9 = "manualShowInOtherAlbums";
-        r3.put(r9, r6);	 Catch:{ JSONException -> 0x0098 }
-        r9 = r3.toString();	 Catch:{ JSONException -> 0x0098 }
-    L_0x0071:
-        return r9;
-    L_0x0072:
-        r2 = move-exception;
-        r9 = "CloudUtils";
-        r10 = new java.lang.StringBuilder;	 Catch:{ JSONException -> 0x0098 }
-        r10.<init>();	 Catch:{ JSONException -> 0x0098 }
-        r11 = "failed to parse: ";
-        r10 = r10.append(r11);	 Catch:{ JSONException -> 0x0098 }
-        r10 = r10.append(r1);	 Catch:{ JSONException -> 0x0098 }
-        r10 = r10.toString();	 Catch:{ JSONException -> 0x0098 }
-        com.miui.gallery.util.Log.w(r9, r10);	 Catch:{ JSONException -> 0x0098 }
-        r2.printStackTrace();	 Catch:{ JSONException -> 0x0098 }
-    L_0x008e:
-        r4 = r3;
-        goto L_0x0010;
-    L_0x0090:
-        r0 = 0;
-        goto L_0x002e;
-    L_0x0092:
-        r7 = 0;
-        goto L_0x003c;
-    L_0x0094:
-        r8 = 0;
-        goto L_0x004a;
-    L_0x0096:
-        r6 = 0;
-        goto L_0x0058;
-    L_0x0098:
-        r2 = move-exception;
-    L_0x0099:
-        r2.printStackTrace();
-        r9 = 0;
-        goto L_0x0071;
-    L_0x009e:
-        r2 = move-exception;
-        r3 = r4;
-        goto L_0x0099;
-    L_0x00a1:
-        r3 = r4;
-        goto L_0x0017;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloud.CloudUtils.collectAlbumDescription(com.miui.gallery.data.DBImage):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static String collectAlbumDescription(DBImage dbImage) {
+        JSONException e;
+        try {
+            JSONObject json;
+            JSONObject json2;
+            boolean autoUpload;
+            boolean manualUpload;
+            boolean showInOtherAlbums;
+            boolean manualShowInOtherAlbums;
+            String description = dbImage.getDescription();
+            if (!TextUtils.isEmpty(description)) {
+                try {
+                    json = new JSONObject(description);
+                } catch (JSONException e2) {
+                    Log.w("CloudUtils", "failed to parse: " + description);
+                    e2.printStackTrace();
+                }
+                if (json != null) {
+                    try {
+                        json2 = new JSONObject();
+                    } catch (JSONException e3) {
+                        e2 = e3;
+                        json2 = json;
+                        e2.printStackTrace();
+                        return null;
+                    }
+                }
+                json2 = json;
+                json2.put("localFile", dbImage.getLocalFile());
+                autoUpload = (dbImage.getAttributes() & 1) == 0;
+                manualUpload = (dbImage.getAttributes() & 2) == 0;
+                showInOtherAlbums = (dbImage.getAttributes() & 64) == 0;
+                manualShowInOtherAlbums = (dbImage.getAttributes() & 128) == 0;
+                json2.put("autoUpload", autoUpload);
+                json2.put("manualSetUpload", manualUpload);
+                json2.put("showInOtherAlbums", showInOtherAlbums);
+                json2.put("manualShowInOtherAlbums", manualShowInOtherAlbums);
+                return json2.toString();
+            }
+            json = null;
+            if (json != null) {
+            }
+            json2.put("localFile", dbImage.getLocalFile());
+            if ((dbImage.getAttributes() & 1) == 0) {
+            }
+            if ((dbImage.getAttributes() & 2) == 0) {
+            }
+            if ((dbImage.getAttributes() & 64) == 0) {
+            }
+            if ((dbImage.getAttributes() & 128) == 0) {
+            }
+            json2.put("autoUpload", autoUpload);
+            json2.put("manualSetUpload", manualUpload);
+            json2.put("showInOtherAlbums", showInOtherAlbums);
+            json2.put("manualShowInOtherAlbums", manualShowInOtherAlbums);
+            return json2.toString();
+        } catch (JSONException e4) {
+            e2 = e4;
+        }
     }
 
     public static ContentValues getContentValuesForAllAndThumbNull(JSONObject schemaJson) throws JSONException {
@@ -989,144 +929,91 @@ public class CloudUtils {
     /* JADX WARNING: Removed duplicated region for block: B:30:0x00b8 A:{SYNTHETIC, Splitter: B:30:0x00b8} */
     /* JADX WARNING: Removed duplicated region for block: B:37:0x00ef  */
     /* JADX WARNING: Removed duplicated region for block: B:33:0x00bd  */
-    public static java.lang.String copyImage(java.lang.String r12, final java.lang.String r13, boolean r14) {
-        /*
-        r10 = 1;
-        r11 = 0;
-        r0 = com.miui.gallery.util.FileUtils.getParentFolderPath(r13);
-        r8 = com.miui.gallery.util.FileUtils.createFolder(r0, r14);
-        if (r8 != 0) goto L_0x000d;
-    L_0x000c:
-        return r12;
-    L_0x000d:
-        r6 = java.lang.System.currentTimeMillis();
-        r3 = 0;
-        r2 = 0;
-        r4 = new java.io.FileInputStream;	 Catch:{ IOException -> 0x0069 }
-        r4.<init>(r12);	 Catch:{ IOException -> 0x0069 }
-        r8 = new java.io.File;	 Catch:{ IOException -> 0x00fc, all -> 0x00f9 }
-        r8.<init>(r13);	 Catch:{ IOException -> 0x00fc, all -> 0x00f9 }
-        r9 = new com.miui.gallery.cloud.CloudUtils$1;	 Catch:{ IOException -> 0x00fc, all -> 0x00f9 }
-        r9.<init>(r13, r6);	 Catch:{ IOException -> 0x00fc, all -> 0x00f9 }
-        com.miui.gallery.util.DocumentProviderUtils.safeWriteFile(r4, r8, r9);	 Catch:{ IOException -> 0x00fc, all -> 0x00f9 }
-        if (r4 == 0) goto L_0x002a;
-    L_0x0027:
-        r4.close();	 Catch:{ IOException -> 0x0058 }
-    L_0x002a:
-        if (r2 != 0) goto L_0x005f;
-    L_0x002c:
-        r8 = new java.io.File;
-        r8.<init>(r13);
-        r9 = new java.io.File;
-        r9.<init>(r12);
-        r10 = r9.lastModified();
-        r5 = r8.setLastModified(r10);
-        r8 = "moveimage";
-        r9 = new java.lang.StringBuilder;
-        r9.<init>();
-        r10 = "change mtime ret:";
-        r9 = r9.append(r10);
-        r9 = r9.append(r5);
-        r9 = r9.toString();
-        com.miui.gallery.util.Log.d(r8, r9);
-    L_0x0056:
-        r12 = r13;
-        goto L_0x000c;
-    L_0x0058:
-        r1 = move-exception;
-        r8 = "CloudUtils";
-        com.miui.gallery.util.Log.w(r8, r1);
-        goto L_0x002a;
-    L_0x005f:
-        r8 = com.miui.gallery.util.MediaFileUtils.FileType.NORMAL;
-        r9 = new java.lang.String[r10];
-        r9[r11] = r13;
-        com.miui.gallery.util.MediaFileUtils.deleteFileType(r8, r9);
-        goto L_0x0056;
-    L_0x0069:
-        r1 = move-exception;
-    L_0x006a:
-        r8 = "CloudUtils";
-        com.miui.gallery.util.Log.w(r8, r1);	 Catch:{ all -> 0x00b5 }
-        r2 = 1;
-        if (r3 == 0) goto L_0x0075;
-    L_0x0072:
-        r3.close();	 Catch:{ IOException -> 0x00a3 }
-    L_0x0075:
-        if (r2 != 0) goto L_0x00aa;
-    L_0x0077:
-        r8 = new java.io.File;
-        r8.<init>(r13);
-        r9 = new java.io.File;
-        r9.<init>(r12);
-        r10 = r9.lastModified();
-        r5 = r8.setLastModified(r10);
-        r8 = "moveimage";
-        r9 = new java.lang.StringBuilder;
-        r9.<init>();
-        r10 = "change mtime ret:";
-        r9 = r9.append(r10);
-        r9 = r9.append(r5);
-        r9 = r9.toString();
-        com.miui.gallery.util.Log.d(r8, r9);
-        goto L_0x000c;
-    L_0x00a3:
-        r1 = move-exception;
-        r8 = "CloudUtils";
-        com.miui.gallery.util.Log.w(r8, r1);
-        goto L_0x0075;
-    L_0x00aa:
-        r8 = com.miui.gallery.util.MediaFileUtils.FileType.NORMAL;
-        r9 = new java.lang.String[r10];
-        r9[r11] = r13;
-        com.miui.gallery.util.MediaFileUtils.deleteFileType(r8, r9);
-        goto L_0x000c;
-    L_0x00b5:
-        r8 = move-exception;
-    L_0x00b6:
-        if (r3 == 0) goto L_0x00bb;
-    L_0x00b8:
-        r3.close();	 Catch:{ IOException -> 0x00e8 }
-    L_0x00bb:
-        if (r2 != 0) goto L_0x00ef;
-    L_0x00bd:
-        r9 = new java.io.File;
-        r9.<init>(r13);
-        r10 = new java.io.File;
-        r10.<init>(r12);
-        r10 = r10.lastModified();
-        r5 = r9.setLastModified(r10);
-        r9 = "moveimage";
-        r10 = new java.lang.StringBuilder;
-        r10.<init>();
-        r11 = "change mtime ret:";
-        r10 = r10.append(r11);
-        r10 = r10.append(r5);
-        r10 = r10.toString();
-        com.miui.gallery.util.Log.d(r9, r10);
-    L_0x00e7:
-        throw r8;
-    L_0x00e8:
-        r1 = move-exception;
-        r9 = "CloudUtils";
-        com.miui.gallery.util.Log.w(r9, r1);
-        goto L_0x00bb;
-    L_0x00ef:
-        r9 = com.miui.gallery.util.MediaFileUtils.FileType.NORMAL;
-        r10 = new java.lang.String[r10];
-        r10[r11] = r13;
-        com.miui.gallery.util.MediaFileUtils.deleteFileType(r9, r10);
-        goto L_0x00e7;
-    L_0x00f9:
-        r8 = move-exception;
-        r3 = r4;
-        goto L_0x00b6;
-    L_0x00fc:
-        r1 = move-exception;
-        r3 = r4;
-        goto L_0x006a;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloud.CloudUtils.copyImage(java.lang.String, java.lang.String, boolean):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static String copyImage(String sourceFilePath, final String destFilePath, boolean hideFolder) {
+        Throwable e;
+        Throwable th;
+        if (!FileUtils.createFolder(FileUtils.getParentFolderPath(destFilePath), hideFolder)) {
+            return sourceFilePath;
+        }
+        final long startTime = System.currentTimeMillis();
+        InputStream is = null;
+        try {
+            InputStream is2 = new FileInputStream(sourceFilePath);
+            try {
+                DocumentProviderUtils.safeWriteFile(is2, new File(destFilePath), new WriteHandler<Boolean>() {
+                    public Boolean handle(InputStream is, FileOutputStream os) {
+                        if (GalleryUtils.copyFile(is, os)) {
+                            Utils.setPermissions(destFilePath, 438, -1, -1);
+                        }
+                        Log.d("CloudUtils", "copy image finish, time:" + (System.currentTimeMillis() - startTime));
+                        return Boolean.valueOf(true);
+                    }
+                });
+                if (is2 != null) {
+                    try {
+                        is2.close();
+                    } catch (Throwable e2) {
+                        Log.w("CloudUtils", e2);
+                    }
+                }
+                if (null == null) {
+                    Log.d("moveimage", "change mtime ret:" + new File(destFilePath).setLastModified(new File(sourceFilePath).lastModified()));
+                } else {
+                    MediaFileUtils.deleteFileType(FileType.NORMAL, destFilePath);
+                }
+                return destFilePath;
+            } catch (IOException e3) {
+                e2 = e3;
+                is = is2;
+                try {
+                    Log.w("CloudUtils", e2);
+                    if (is != null) {
+                    }
+                    if (true) {
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (is != null) {
+                        try {
+                            is.close();
+                        } catch (Throwable e22) {
+                            Log.w("CloudUtils", e22);
+                        }
+                    }
+                    if (null != null) {
+                        Log.d("moveimage", "change mtime ret:" + new File(destFilePath).setLastModified(new File(sourceFilePath).lastModified()));
+                    } else {
+                        MediaFileUtils.deleteFileType(FileType.NORMAL, destFilePath);
+                    }
+                    throw th;
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                is = is2;
+                if (is != null) {
+                }
+                if (null != null) {
+                }
+                throw th;
+            }
+        } catch (IOException e4) {
+            e22 = e4;
+            Log.w("CloudUtils", e22);
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Throwable e222) {
+                    Log.w("CloudUtils", e222);
+                }
+            }
+            if (true) {
+                Log.d("moveimage", "change mtime ret:" + new File(destFilePath).setLastModified(new File(sourceFilePath).lastModified()));
+                return sourceFilePath;
+            }
+            MediaFileUtils.deleteFileType(FileType.NORMAL, destFilePath);
+            return sourceFilePath;
+        }
     }
 
     public static void deleteDirty(DBImage dbImage) {

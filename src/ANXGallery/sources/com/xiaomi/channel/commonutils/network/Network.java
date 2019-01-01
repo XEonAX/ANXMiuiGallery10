@@ -16,6 +16,7 @@ import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
@@ -466,174 +467,73 @@ public class Network {
         return httpRequest(context, url, "POST", null, fromParamsMapToString(paramsMap));
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:40:0x014b A:{PHI: r10 r11 , ExcHandler: all (r5_2 'e' java.lang.Throwable), Splitter: B:1:0x0008} */
+    /* JADX WARNING: Removed duplicated region for block: B:40:0x014b A:{Splitter: B:1:0x0008, ExcHandler: all (r5_2 'e' java.lang.Throwable), PHI: r10 r11 } */
     /* JADX WARNING: Missing block: B:40:0x014b, code:
             r5 = move-exception;
      */
     /* JADX WARNING: Missing block: B:42:?, code:
             r16 = new java.io.IOException(r5.getMessage());
      */
-    public static com.xiaomi.channel.commonutils.network.HttpResponse httpRequest(android.content.Context r19, java.lang.String r20, java.lang.String r21, java.util.Map<java.lang.String, java.lang.String> r22, java.lang.String r23) throws java.io.IOException {
-        /*
-        r6 = new com.xiaomi.channel.commonutils.network.HttpResponse;
-        r6.<init>();
-        r3 = 0;
-        r10 = 0;
-        r11 = 0;
-        r16 = getDefaultStreamHandlerURL(r20);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r0 = r19;
-        r1 = r16;
-        r3 = getHttpUrlConnection(r0, r1);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r16 = 10000; // 0x2710 float:1.4013E-41 double:4.9407E-320;
-        r0 = r16;
-        r3.setConnectTimeout(r0);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r16 = 15000; // 0x3a98 float:2.102E-41 double:7.411E-320;
-        r0 = r16;
-        r3.setReadTimeout(r0);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        if (r21 != 0) goto L_0x0026;
-    L_0x0024:
-        r21 = "GET";
-    L_0x0026:
-        r0 = r21;
-        r3.setRequestMethod(r0);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        if (r22 == 0) goto L_0x0087;
-    L_0x002d:
-        r16 = r22.keySet();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r17 = r16.iterator();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-    L_0x0035:
-        r16 = r17.hasNext();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        if (r16 == 0) goto L_0x0087;
-    L_0x003b:
-        r8 = r17.next();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r8 = (java.lang.String) r8;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r0 = r22;
-        r16 = r0.get(r8);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r16 = (java.lang.String) r16;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r0 = r16;
-        r3.setRequestProperty(r8, r0);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        goto L_0x0035;
-    L_0x004f:
-        r5 = move-exception;
-        r16 = new java.io.IOException;	 Catch:{ all -> 0x007f }
-        r17 = new java.lang.StringBuilder;	 Catch:{ all -> 0x007f }
-        r17.<init>();	 Catch:{ all -> 0x007f }
-        r18 = "err while request ";
-        r17 = r17.append(r18);	 Catch:{ all -> 0x007f }
-        r0 = r17;
-        r1 = r20;
-        r17 = r0.append(r1);	 Catch:{ all -> 0x007f }
-        r18 = ":";
-        r17 = r17.append(r18);	 Catch:{ all -> 0x007f }
-        r18 = r5.getClass();	 Catch:{ all -> 0x007f }
-        r18 = r18.getSimpleName();	 Catch:{ all -> 0x007f }
-        r17 = r17.append(r18);	 Catch:{ all -> 0x007f }
-        r17 = r17.toString();	 Catch:{ all -> 0x007f }
-        r16.<init>(r17);	 Catch:{ all -> 0x007f }
-        throw r16;	 Catch:{ all -> 0x007f }
-    L_0x007f:
-        r16 = move-exception;
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r10);
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r11);
-        throw r16;
-    L_0x0087:
-        r16 = android.text.TextUtils.isEmpty(r23);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        if (r16 != 0) goto L_0x00af;
-    L_0x008d:
-        r16 = 1;
-        r0 = r16;
-        r3.setDoOutput(r0);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r2 = r23.getBytes();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r10 = r3.getOutputStream();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r16 = 0;
-        r0 = r2.length;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r17 = r0;
-        r0 = r16;
-        r1 = r17;
-        r10.write(r2, r0, r1);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r10.flush();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r10.close();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r10 = 0;
-    L_0x00af:
-        r16 = r3.getResponseCode();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r0 = r16;
-        r6.responseCode = r0;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r16 = "com.xiaomi.common.Network";
-        r17 = new java.lang.StringBuilder;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r17.<init>();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r18 = "Http POST Response Code: ";
-        r17 = r17.append(r18);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r0 = r6.responseCode;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r18 = r0;
-        r17 = r17.append(r18);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r17 = r17.toString();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        android.util.Log.d(r16, r17);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r7 = 0;
-    L_0x00d4:
-        r9 = r3.getHeaderFieldKey(r7);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r15 = r3.getHeaderField(r7);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        if (r9 != 0) goto L_0x0112;
-    L_0x00de:
-        if (r15 != 0) goto L_0x0112;
-    L_0x00e0:
-        r12 = new java.io.BufferedReader;	 Catch:{ IOException -> 0x0120, Throwable -> 0x014b }
-        r16 = new java.io.InputStreamReader;	 Catch:{ IOException -> 0x0120, Throwable -> 0x014b }
-        r17 = new com.xiaomi.channel.commonutils.network.Network$DoneHandlerInputStream;	 Catch:{ IOException -> 0x0120, Throwable -> 0x014b }
-        r18 = r3.getInputStream();	 Catch:{ IOException -> 0x0120, Throwable -> 0x014b }
-        r17.<init>(r18);	 Catch:{ IOException -> 0x0120, Throwable -> 0x014b }
-        r16.<init>(r17);	 Catch:{ IOException -> 0x0120, Throwable -> 0x014b }
-        r0 = r16;
-        r12.<init>(r0);	 Catch:{ IOException -> 0x0120, Throwable -> 0x014b }
-        r11 = r12;
-    L_0x00f6:
-        r13 = r11.readLine();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r14 = new java.lang.StringBuffer;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r14.<init>();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r16 = "line.separator";
-        r4 = java.lang.System.getProperty(r16);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-    L_0x0105:
-        if (r13 == 0) goto L_0x0138;
-    L_0x0107:
-        r14.append(r13);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r14.append(r4);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r13 = r11.readLine();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        goto L_0x0105;
-    L_0x0112:
-        r0 = r6.headers;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r16 = r0;
-        r0 = r16;
-        r0.put(r9, r15);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r7 = r7 + 1;
-        r7 = r7 + 1;
-        goto L_0x00d4;
-    L_0x0120:
-        r5 = move-exception;
-        r12 = new java.io.BufferedReader;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r16 = new java.io.InputStreamReader;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r17 = new com.xiaomi.channel.commonutils.network.Network$DoneHandlerInputStream;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r18 = r3.getErrorStream();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r17.<init>(r18);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r16.<init>(r17);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r0 = r16;
-        r12.<init>(r0);	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r11 = r12;
-        goto L_0x00f6;
-    L_0x0138:
-        r16 = r14.toString();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r0 = r16;
-        r6.responseString = r0;	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r11.close();	 Catch:{ IOException -> 0x004f, Throwable -> 0x014b }
-        r11 = 0;
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r10);
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r11);
-        return r6;
-    L_0x014b:
-        r5 = move-exception;
-        r16 = new java.io.IOException;	 Catch:{ all -> 0x007f }
-        r17 = r5.getMessage();	 Catch:{ all -> 0x007f }
-        r16.<init>(r17);	 Catch:{ all -> 0x007f }
-        throw r16;	 Catch:{ all -> 0x007f }
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.channel.commonutils.network.Network.httpRequest(android.content.Context, java.lang.String, java.lang.String, java.util.Map, java.lang.String):com.xiaomi.channel.commonutils.network.HttpResponse");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static HttpResponse httpRequest(Context context, String url, String httpMethod, Map<String, String> headers, String body) throws IOException {
+        HttpResponse httpResponse = new HttpResponse();
+        OutputStream outputStream = null;
+        BufferedReader rd = null;
+        HttpURLConnection conn;
+        try {
+            conn = getHttpUrlConnection(context, getDefaultStreamHandlerURL(url));
+            conn.setConnectTimeout(10000);
+            conn.setReadTimeout(15000);
+            if (httpMethod == null) {
+                httpMethod = "GET";
+            }
+            conn.setRequestMethod(httpMethod);
+            if (headers != null) {
+                for (String key : headers.keySet()) {
+                    conn.setRequestProperty(key, (String) headers.get(key));
+                }
+            }
+            if (!TextUtils.isEmpty(body)) {
+                conn.setDoOutput(true);
+                byte[] b = body.getBytes();
+                outputStream = conn.getOutputStream();
+                outputStream.write(b, 0, b.length);
+                outputStream.flush();
+                outputStream.close();
+                outputStream = null;
+            }
+            httpResponse.responseCode = conn.getResponseCode();
+            Log.d("com.xiaomi.common.Network", "Http POST Response Code: " + httpResponse.responseCode);
+            int i = 0;
+            while (true) {
+                String name = conn.getHeaderFieldKey(i);
+                String value = conn.getHeaderField(i);
+                if (name == null && value == null) {
+                    break;
+                }
+                httpResponse.headers.put(name, value);
+                i = (i + 1) + 1;
+            }
+            rd = new BufferedReader(new InputStreamReader(new DoneHandlerInputStream(conn.getInputStream())));
+        } catch (IOException e) {
+            rd = new BufferedReader(new InputStreamReader(new DoneHandlerInputStream(conn.getErrorStream())));
+        } catch (IOException e2) {
+            throw new IOException("err while request " + url + ":" + e2.getClass().getSimpleName());
+        } catch (Throwable th) {
+            IOUtils.closeQuietly(outputStream);
+            IOUtils.closeQuietly(rd);
+        }
+        StringBuffer tempStr = new StringBuffer();
+        String crlf = System.getProperty("line.separator");
+        for (String tempLine = rd.readLine(); tempLine != null; tempLine = rd.readLine()) {
+            tempStr.append(tempLine);
+            tempStr.append(crlf);
+        }
+        httpResponse.responseString = tempStr.toString();
+        rd.close();
+        IOUtils.closeQuietly(outputStream);
+        IOUtils.closeQuietly(null);
+        return httpResponse;
     }
 
     public static String fromParamsMapToString(Map<String, String> paramsMap) {

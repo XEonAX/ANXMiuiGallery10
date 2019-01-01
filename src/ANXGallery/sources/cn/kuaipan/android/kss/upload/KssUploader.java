@@ -8,6 +8,7 @@ import cn.kuaipan.android.exception.ErrorHelper;
 import cn.kuaipan.android.exception.KscException;
 import cn.kuaipan.android.exception.KscRuntimeException;
 import cn.kuaipan.android.exception.ServerException;
+import cn.kuaipan.android.exception.ServerMsgException;
 import cn.kuaipan.android.http.DecoderInputStream;
 import cn.kuaipan.android.http.IKscTransferListener;
 import cn.kuaipan.android.http.KscHttpRequest;
@@ -30,6 +31,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.CRC32;
@@ -90,262 +92,106 @@ public class KssUploader implements KssDef {
     /* JADX WARNING: Missing block: B:86:?, code:
             return;
      */
-    private void uploadBlock(int r30, java.io.File r31, cn.kuaipan.android.kss.FileTranceListener r32, cn.kuaipan.android.kss.upload.KssUploadInfo r33, int r34) throws cn.kuaipan.android.exception.KscException, java.lang.InterruptedException {
-        /*
-        r29 = this;
-        r27 = r29.getUploadPos(r30);
-        r10 = 0;
-        r22 = 0;
-        if (r27 == 0) goto L_0x0019;
-    L_0x0009:
-        r0 = r27;
-        r10 = r0.upload_id;
-        r6 = android.text.TextUtils.isEmpty(r10);
-        if (r6 != 0) goto L_0x0019;
-    L_0x0013:
-        r0 = r27;
-        r0 = r0.pos;
-        r22 = r0;
-    L_0x0019:
-        r6 = 65536; // 0x10000 float:9.18355E-41 double:3.2379E-319;
-        r6 = r22 % r6;
-        r22 = r22 - r6;
-        r6 = r34 + 1;
-        r6 = (long) r6;
-        r8 = 4194304; // 0x400000 float:5.877472E-39 double:2.0722615E-317;
-        r6 = r6 * r8;
-        r6 = (r22 > r6 ? 1 : (r22 == r6 ? 0 : -1));
-        if (r6 >= 0) goto L_0x0036;
-    L_0x002b:
-        r0 = r34;
-        r6 = (long) r0;
-        r8 = 4194304; // 0x400000 float:5.877472E-39 double:2.0722615E-317;
-        r6 = r6 * r8;
-        r6 = (r22 > r6 ? 1 : (r22 == r6 ? 0 : -1));
-        if (r6 >= 0) goto L_0x003e;
-    L_0x0036:
-        r0 = r34;
-        r6 = (long) r0;
-        r8 = 4194304; // 0x400000 float:5.877472E-39 double:2.0722615E-317;
-        r22 = r6 * r8;
-    L_0x003e:
-        r6 = r31.length();
-        r8 = r34 + 1;
-        r8 = (long) r8;
-        r16 = 4194304; // 0x400000 float:5.877472E-39 double:2.0722615E-317;
-        r8 = r8 * r16;
-        r18 = java.lang.Math.min(r6, r8);
-        r24 = r33.getRequestResult();
-        r6 = "KssUploader";
-        r7 = new java.lang.StringBuilder;
-        r7.<init>();
-        r8 = "RC4 key:";
-        r7 = r7.append(r8);
-        r8 = r24.getSecureKey();
-        r8 = java.util.Arrays.toString(r8);
-        r7 = r7.append(r8);
-        r7 = r7.toString();
-        android.util.Log.d(r6, r7);
-        r12 = 0;
-        r25 = new java.util.concurrent.atomic.AtomicInteger;	 Catch:{ Throwable -> 0x00c7 }
-        r6 = 3;
-        r0 = r25;
-        r0.<init>(r6);	 Catch:{ Throwable -> 0x00c7 }
-        r21 = r12;
-    L_0x007d:
-        r6 = r25.get();	 Catch:{ Throwable -> 0x01d5, all -> 0x01d0 }
-        if (r6 < 0) goto L_0x01da;
-    L_0x0083:
-        r13 = new cn.kuaipan.android.kss.RC4Encoder;	 Catch:{ Throwable -> 0x01d5, all -> 0x01d0 }
-        r6 = r24.getSecureKey();	 Catch:{ Throwable -> 0x01d5, all -> 0x01d0 }
-        r13.<init>(r6);	 Catch:{ Throwable -> 0x01d5, all -> 0x01d0 }
-        r12 = new cn.kuaipan.android.utils.RandomFileInputStream;	 Catch:{ Throwable -> 0x01d5, all -> 0x01d0 }
-        r0 = r31;
-        r12.<init>(r0);	 Catch:{ Throwable -> 0x01d5, all -> 0x01d0 }
-        r0 = r22;
-        r12.moveToPos(r0);	 Catch:{ Throwable -> 0x00c7 }
-        if (r32 == 0) goto L_0x00a1;
-    L_0x009a:
-        r0 = r32;
-        r1 = r22;
-        r0.setSendPos(r1);	 Catch:{ Throwable -> 0x00c7 }
-    L_0x00a1:
-        r5 = new cn.kuaipan.android.kss.upload.UploadChunkInfo;	 Catch:{ Throwable -> 0x00c7 }
-        r6 = 4194304; // 0x400000 float:5.877472E-39 double:2.0722615E-317;
-        r6 = r22 % r6;
-        r8 = r18 - r22;
-        r5.<init>(r6, r8, r10);	 Catch:{ Throwable -> 0x00c7 }
-    L_0x00ad:
-        r6 = r5.next_pos;	 Catch:{ Throwable -> 0x00c7 }
-        r6 = (r6 > r18 ? 1 : (r6 == r18 ? 0 : -1));
-        if (r6 >= 0) goto L_0x016c;
-    L_0x00b3:
-        r6 = r5.left_bytes;	 Catch:{ Throwable -> 0x00c7 }
-        r8 = 0;
-        r6 = (r6 > r8 ? 1 : (r6 == r8 ? 0 : -1));
-        if (r6 <= 0) goto L_0x016c;
-    L_0x00bb:
-        r6 = java.lang.Thread.interrupted();	 Catch:{ Throwable -> 0x00c7 }
-        if (r6 == 0) goto L_0x00d5;
-    L_0x00c1:
-        r6 = new java.lang.InterruptedException;	 Catch:{ Throwable -> 0x00c7 }
-        r6.<init>();	 Catch:{ Throwable -> 0x00c7 }
-        throw r6;	 Catch:{ Throwable -> 0x00c7 }
-    L_0x00c7:
-        r26 = move-exception;
-    L_0x00c8:
-        r6 = 0;
-        r0 = r26;
-        r6 = cn.kuaipan.android.exception.KscException.newException(r0, r6);	 Catch:{ all -> 0x00d0 }
-        throw r6;	 Catch:{ all -> 0x00d0 }
-    L_0x00d0:
-        r6 = move-exception;
-    L_0x00d1:
-        r12.close();	 Catch:{ Throwable -> 0x01cd }
-    L_0x00d4:
-        throw r6;
-    L_0x00d5:
-        if (r32 != 0) goto L_0x0123;
-    L_0x00d7:
-        r14 = 0;
-    L_0x00d8:
-        r11 = r29;
-        r15 = r33;
-        r16 = r34;
-        r17 = r5;
-        r5 = r11.uploadChunk(r12, r13, r14, r15, r16, r17);	 Catch:{ Throwable -> 0x00c7 }
-        if (r5 == 0) goto L_0x0176;
-    L_0x00e6:
-        r6 = r5.isContinue();	 Catch:{ Throwable -> 0x00c7 }
-        if (r6 == 0) goto L_0x012e;
-    L_0x00ec:
-        r28 = new cn.kuaipan.android.kss.upload.UploadChunkInfoPersist;	 Catch:{ Throwable -> 0x00c7 }
-        r28.<init>();	 Catch:{ Throwable -> 0x00c7 }
-        r0 = r34;
-        r6 = (long) r0;	 Catch:{ Throwable -> 0x00c7 }
-        r8 = 4194304; // 0x400000 float:5.877472E-39 double:2.0722615E-317;
-        r6 = r6 * r8;
-        r8 = r5.next_pos;	 Catch:{ Throwable -> 0x00c7 }
-        r6 = r6 + r8;
-        r0 = r28;
-        r0.pos = r6;	 Catch:{ Throwable -> 0x00c7 }
-        r6 = r5.upload_id;	 Catch:{ Throwable -> 0x00c7 }
-        r0 = r28;
-        r0.upload_id = r6;	 Catch:{ Throwable -> 0x00c7 }
-        r0 = r29;
-        r1 = r30;
-        r2 = r33;
-        r3 = r28;
-        r0.updateUploadInfo(r1, r2, r3);	 Catch:{ Throwable -> 0x00c7 }
-        r6 = sBreakForUT;	 Catch:{ Throwable -> 0x00c7 }
-        if (r6 == 0) goto L_0x00ad;
-    L_0x0114:
-        r6 = "KssUploader";
-        r7 = "break for UT";
-        android.util.Log.d(r6, r7);	 Catch:{ Throwable -> 0x00c7 }
-        r6 = java.lang.Thread.currentThread();	 Catch:{ Throwable -> 0x00c7 }
-        r6.interrupt();	 Catch:{ Throwable -> 0x00c7 }
-        goto L_0x00ad;
-    L_0x0123:
-        r6 = r5.next_pos;	 Catch:{ Throwable -> 0x00c7 }
-        r6 = r6 + r22;
-        r0 = r32;
-        r14 = r0.getChunkListaner(r6);	 Catch:{ Throwable -> 0x00c7 }
-        goto L_0x00d8;
-    L_0x012e:
-        r6 = r5.isComplete();	 Catch:{ Throwable -> 0x00c7 }
-        if (r6 == 0) goto L_0x016c;
-    L_0x0134:
-        r28 = new cn.kuaipan.android.kss.upload.UploadChunkInfoPersist;	 Catch:{ Throwable -> 0x00c7 }
-        r28.<init>();	 Catch:{ Throwable -> 0x00c7 }
-        r6 = r34 + 1;
-        r6 = (long) r6;	 Catch:{ Throwable -> 0x00c7 }
-        r8 = 4194304; // 0x400000 float:5.877472E-39 double:2.0722615E-317;
-        r6 = r6 * r8;
-        r8 = r31.length();	 Catch:{ Throwable -> 0x00c7 }
-        r6 = java.lang.Math.min(r6, r8);	 Catch:{ Throwable -> 0x00c7 }
-        r0 = r28;
-        r0.pos = r6;	 Catch:{ Throwable -> 0x00c7 }
-        r6 = "";
-        r0 = r28;
-        r0.upload_id = r6;	 Catch:{ Throwable -> 0x00c7 }
-        r0 = r24;
-        r1 = r34;
-        r4 = r0.getBlock(r1);	 Catch:{ Throwable -> 0x00c7 }
-        r6 = r5.commit_meta;	 Catch:{ Throwable -> 0x00c7 }
-        r4.meta = r6;	 Catch:{ Throwable -> 0x00c7 }
-        r6 = 1;
-        r4.exist = r6;	 Catch:{ Throwable -> 0x00c7 }
-        r0 = r29;
-        r1 = r30;
-        r2 = r33;
-        r3 = r28;
-        r0.updateUploadInfo(r1, r2, r3);	 Catch:{ Throwable -> 0x00c7 }
-    L_0x016c:
-        r6 = r5.isComplete();	 Catch:{ Throwable -> 0x00c7 }
-        if (r6 == 0) goto L_0x0181;
-    L_0x0172:
-        r12.close();	 Catch:{ Throwable -> 0x01cb }
-    L_0x0175:
-        return;
-    L_0x0176:
-        r6 = new cn.kuaipan.android.exception.KscRuntimeException;	 Catch:{ Throwable -> 0x00c7 }
-        r7 = 500008; // 0x7a128 float:7.0066E-40 double:2.47037E-318;
-        r8 = "Return chunkInfo is null";
-        r6.<init>(r7, r8);	 Catch:{ Throwable -> 0x00c7 }
-        throw r6;	 Catch:{ Throwable -> 0x00c7 }
-    L_0x0181:
-        r6 = r5.needBlockRetry();	 Catch:{ Throwable -> 0x00c7 }
-        if (r6 == 0) goto L_0x01b0;
-    L_0x0187:
-        r6 = r25.decrementAndGet();	 Catch:{ Throwable -> 0x00c7 }
-        if (r6 <= 0) goto L_0x01b0;
-    L_0x018d:
-        r22 = 0;
-        r10 = "";
-        r6 = "KssUploader";
-        r7 = new java.lang.StringBuilder;	 Catch:{ Throwable -> 0x00c7 }
-        r7.<init>();	 Catch:{ Throwable -> 0x00c7 }
-        r8 = "upload needBlockRetry: ";
-        r7 = r7.append(r8);	 Catch:{ Throwable -> 0x00c7 }
-        r8 = r5.stat;	 Catch:{ Throwable -> 0x00c7 }
-        r7 = r7.append(r8);	 Catch:{ Throwable -> 0x00c7 }
-        r7 = r7.toString();	 Catch:{ Throwable -> 0x00c7 }
-        android.util.Log.d(r6, r7);	 Catch:{ Throwable -> 0x00c7 }
-        r21 = r12;
-        goto L_0x007d;
-    L_0x01b0:
-        r20 = new cn.kuaipan.android.exception.ServerMsgException;	 Catch:{ Throwable -> 0x00c7 }
-        r6 = 200; // 0xc8 float:2.8E-43 double:9.9E-322;
-        r7 = r5.stat;	 Catch:{ Throwable -> 0x00c7 }
-        r0 = r20;
-        r0.<init>(r6, r7);	 Catch:{ Throwable -> 0x00c7 }
-        r6 = "KssUploader";
-        r7 = "Exception in uploadBlock";
-        r0 = r20;
-        android.util.Log.w(r6, r7, r0);	 Catch:{ Throwable -> 0x00c7 }
-        r33.markBroken();	 Catch:{ Throwable -> 0x00c7 }
-        r29.deleteUploadInfo(r30);	 Catch:{ Throwable -> 0x00c7 }
-        throw r20;	 Catch:{ Throwable -> 0x00c7 }
-    L_0x01cb:
-        r6 = move-exception;
-        goto L_0x0175;
-    L_0x01cd:
-        r7 = move-exception;
-        goto L_0x00d4;
-    L_0x01d0:
-        r6 = move-exception;
-        r12 = r21;
-        goto L_0x00d1;
-    L_0x01d5:
-        r26 = move-exception;
-        r12 = r21;
-        goto L_0x00c8;
-    L_0x01da:
-        r12 = r21;
-        goto L_0x0172;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: cn.kuaipan.android.kss.upload.KssUploader.uploadBlock(int, java.io.File, cn.kuaipan.android.kss.FileTranceListener, cn.kuaipan.android.kss.upload.KssUploadInfo, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void uploadBlock(int taskHash, File file, FileTranceListener listenerGroup, KssUploadInfo info, int blockIndex) throws KscException, InterruptedException {
+        Throwable t;
+        Throwable th;
+        UploadChunkInfoPersist uploadChunkInfoP = getUploadPos(taskHash);
+        String upload_id = null;
+        long pos = 0;
+        if (uploadChunkInfoP != null) {
+            upload_id = uploadChunkInfoP.upload_id;
+            if (!TextUtils.isEmpty(upload_id)) {
+                pos = uploadChunkInfoP.pos;
+            }
+        }
+        pos -= pos % 65536;
+        if (pos >= ((long) (blockIndex + 1)) * 4194304 || pos < ((long) blockIndex) * 4194304) {
+            pos = ((long) blockIndex) * 4194304;
+        }
+        long blockEnd = Math.min(file.length(), ((long) (blockIndex + 1)) * 4194304);
+        IKssUploadRequestResult request = info.getRequestResult();
+        Log.d("KssUploader", "RC4 key:" + Arrays.toString(request.getSecureKey()));
+        RandomFileInputStream in = null;
+        try {
+            UploadChunkInfo chunkInfo;
+            Throwable serverMsgException;
+            AtomicInteger atomicInteger = new AtomicInteger(3);
+            while (true) {
+                RandomFileInputStream in2;
+                try {
+                    in2 = in;
+                    if (atomicInteger.get() < 0) {
+                        in = in2;
+                        break;
+                    }
+                    RC4Encoder rc4Decoder = new RC4Encoder(request.getSecureKey());
+                    in = new RandomFileInputStream(file);
+                    in.moveToPos(pos);
+                    if (listenerGroup != null) {
+                        listenerGroup.setSendPos(pos);
+                    }
+                    chunkInfo = new UploadChunkInfo(pos % 4194304, blockEnd - pos, upload_id);
+                    while (chunkInfo.next_pos < blockEnd && chunkInfo.left_bytes > 0) {
+                        if (Thread.interrupted()) {
+                            throw new InterruptedException();
+                        }
+                        IKscTransferListener listener;
+                        if (listenerGroup == null) {
+                            listener = null;
+                        } else {
+                            listener = listenerGroup.getChunkListaner(chunkInfo.next_pos + pos);
+                        }
+                        chunkInfo = uploadChunk(in, rc4Decoder, listener, info, blockIndex, chunkInfo);
+                        UploadChunkInfoPersist uploadChunkInfoPersist;
+                        if (chunkInfo == null) {
+                            throw new KscRuntimeException(500008, "Return chunkInfo is null");
+                        } else if (chunkInfo.isContinue()) {
+                            uploadChunkInfoPersist = new UploadChunkInfoPersist();
+                            uploadChunkInfoPersist.pos = (((long) blockIndex) * 4194304) + chunkInfo.next_pos;
+                            uploadChunkInfoPersist.upload_id = chunkInfo.upload_id;
+                            updateUploadInfo(taskHash, info, uploadChunkInfoPersist);
+                            if (sBreakForUT) {
+                                Log.d("KssUploader", "break for UT");
+                                Thread.currentThread().interrupt();
+                            }
+                        } else if (chunkInfo.isComplete()) {
+                            uploadChunkInfoPersist = new UploadChunkInfoPersist();
+                            uploadChunkInfoPersist.pos = Math.min(((long) (blockIndex + 1)) * 4194304, file.length());
+                            uploadChunkInfoPersist.upload_id = "";
+                            Block block = request.getBlock(blockIndex);
+                            block.meta = chunkInfo.commit_meta;
+                            block.exist = true;
+                            updateUploadInfo(taskHash, info, uploadChunkInfoPersist);
+                        }
+                    }
+                    if (!chunkInfo.isComplete()) {
+                        if (!chunkInfo.needBlockRetry() || atomicInteger.decrementAndGet() <= 0) {
+                            serverMsgException = new ServerMsgException(200, chunkInfo.stat);
+                            Log.w("KssUploader", "Exception in uploadBlock", serverMsgException);
+                            info.markBroken();
+                            deleteUploadInfo(taskHash);
+                        } else {
+                            pos = 0;
+                            upload_id = "";
+                            Log.d("KssUploader", "upload needBlockRetry: " + chunkInfo.stat);
+                        }
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    in = in2;
+                    in.close();
+                    throw th;
+                }
+            }
+            serverMsgException = new ServerMsgException(200, chunkInfo.stat);
+            Log.w("KssUploader", "Exception in uploadBlock", serverMsgException);
+            info.markBroken();
+            deleteUploadInfo(taskHash);
+            throw serverMsgException;
+        } catch (Throwable th3) {
+            t = th3;
+        }
     }
 
     private UploadChunkInfo uploadChunk(RandomFileInputStream in, RC4Encoder rc4Decoder, IKscTransferListener listener, KssUploadInfo info, int blockIndex, UploadChunkInfo chunkInfo) throws KscException, InterruptedException {

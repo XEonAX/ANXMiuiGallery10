@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
 import java.util.regex.Pattern;
+import java.util.zip.CRC32;
+import java.util.zip.CheckedInputStream;
 import org.keyczar.Keyczar;
 
 public class FileUtils {
@@ -231,47 +233,39 @@ public class FileUtils {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:18:0x002d A:{SYNTHETIC, Splitter: B:18:0x002d} */
-    public static long checksumCrc32(java.io.File r4) throws java.io.IOException {
-        /*
-        r0 = new java.util.zip.CRC32;
-        r0.<init>();
-        r1 = 0;
-        r2 = new java.util.zip.CheckedInputStream;	 Catch:{ all -> 0x002a }
-        r3 = new java.io.FileInputStream;	 Catch:{ all -> 0x002a }
-        r3.<init>(r4);	 Catch:{ all -> 0x002a }
-        r2.<init>(r3, r0);	 Catch:{ all -> 0x002a }
-        r4 = 128; // 0x80 float:1.794E-43 double:6.32E-322;
-        r4 = new byte[r4];	 Catch:{ all -> 0x0027 }
-    L_0x0015:
-        r1 = r2.read(r4);	 Catch:{ all -> 0x0027 }
-        if (r1 < 0) goto L_0x001c;
-    L_0x001b:
-        goto L_0x0015;
-    L_0x001c:
-        r0 = r0.getValue();	 Catch:{ all -> 0x0027 }
-        r2.close();	 Catch:{ IOException -> 0x0025 }
-        goto L_0x0026;
-    L_0x0025:
-        r4 = move-exception;
-    L_0x0026:
-        return r0;
-    L_0x0027:
-        r4 = move-exception;
-        r1 = r2;
-        goto L_0x002b;
-    L_0x002a:
-        r4 = move-exception;
-    L_0x002b:
-        if (r1 == 0) goto L_0x0032;
-    L_0x002d:
-        r1.close();	 Catch:{ IOException -> 0x0031 }
-        goto L_0x0032;
-    L_0x0031:
-        r0 = move-exception;
-    L_0x0032:
-        throw r4;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: miui.os.FileUtils.checksumCrc32(java.io.File):long");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static long checksumCrc32(File file) throws IOException {
+        Throwable th;
+        Object crc32 = new CRC32();
+        CheckedInputStream checkedInputStream = null;
+        try {
+            CheckedInputStream checkedInputStream2 = new CheckedInputStream(new FileInputStream(file), crc32);
+            try {
+                while (checkedInputStream2.read(new byte[128]) >= 0) {
+                }
+                long value = crc32.getValue();
+                try {
+                    checkedInputStream2.close();
+                } catch (IOException e) {
+                }
+                return value;
+            } catch (Throwable th2) {
+                th = th2;
+                checkedInputStream = checkedInputStream2;
+                if (checkedInputStream != null) {
+                    try {
+                        checkedInputStream.close();
+                    } catch (IOException e2) {
+                    }
+                }
+                throw th;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            if (checkedInputStream != null) {
+            }
+            throw th;
+        }
     }
 
     public static boolean mkdirs(File file, int i, int i2, int i3) {

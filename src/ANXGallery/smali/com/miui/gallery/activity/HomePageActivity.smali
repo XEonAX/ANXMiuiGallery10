@@ -382,6 +382,12 @@
     const/4 v5, 0x0
 
     .line 198
+    invoke-virtual {p0}, Lcom/miui/gallery/activity/HomePageActivity;->getActionBar()Landroid/app/ActionBar;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+
     iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
 
     const-string v1, "HomePageFragment"
@@ -771,6 +777,12 @@
     invoke-super {p0, p1}, Lcom/miui/gallery/activity/BaseActivity;->onCreate(Landroid/os/Bundle;)V
 
     .line 60
+    invoke-virtual {p0}, Lcom/miui/gallery/activity/HomePageActivity;->getActionBar()Landroid/app/ActionBar;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+
     iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
 
     invoke-virtual {p0}, Lcom/miui/gallery/activity/HomePageActivity;->getFragmentManager()Landroid/app/FragmentManager;

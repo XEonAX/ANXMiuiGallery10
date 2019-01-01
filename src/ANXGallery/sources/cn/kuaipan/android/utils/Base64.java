@@ -30,265 +30,159 @@ public class Base64 {
         /* JADX WARNING: Removed duplicated region for block: B:64:0x005c A:{SYNTHETIC} */
         /* JADX WARNING: Removed duplicated region for block: B:53:0x0102  */
         /* JADX WARNING: Removed duplicated region for block: B:14:0x005f  */
-        public boolean process(byte[] r12, int r13, int r14, boolean r15) {
-            /*
-            r11 = this;
-            r9 = r11.state;
-            r10 = 6;
-            if (r9 != r10) goto L_0x0007;
-        L_0x0005:
-            r9 = 0;
-        L_0x0006:
-            return r9;
-        L_0x0007:
-            r5 = r13;
-            r14 = r14 + r13;
-            r7 = r11.state;
-            r8 = r11.value;
-            r2 = 0;
-            r4 = r11.output;
-            r0 = r11.alphabet;
-        L_0x0012:
-            if (r5 >= r14) goto L_0x0133;
-        L_0x0014:
-            if (r7 != 0) goto L_0x0067;
-        L_0x0016:
-            r9 = r5 + 4;
-            if (r9 > r14) goto L_0x005a;
-        L_0x001a:
-            r9 = r12[r5];
-            r9 = r9 & 255;
-            r9 = r0[r9];
-            r9 = r9 << 18;
-            r10 = r5 + 1;
-            r10 = r12[r10];
-            r10 = r10 & 255;
-            r10 = r0[r10];
-            r10 = r10 << 12;
-            r9 = r9 | r10;
-            r10 = r5 + 2;
-            r10 = r12[r10];
-            r10 = r10 & 255;
-            r10 = r0[r10];
-            r10 = r10 << 6;
-            r9 = r9 | r10;
-            r10 = r5 + 3;
-            r10 = r12[r10];
-            r10 = r10 & 255;
-            r10 = r0[r10];
-            r8 = r9 | r10;
-            if (r8 < 0) goto L_0x005a;
-        L_0x0044:
-            r9 = r2 + 2;
-            r10 = (byte) r8;
-            r4[r9] = r10;
-            r9 = r2 + 1;
-            r10 = r8 >> 8;
-            r10 = (byte) r10;
-            r4[r9] = r10;
-            r9 = r8 >> 16;
-            r9 = (byte) r9;
-            r4[r2] = r9;
-            r2 = r2 + 3;
-            r5 = r5 + 4;
-            goto L_0x0016;
-        L_0x005a:
-            if (r5 < r14) goto L_0x0067;
-        L_0x005c:
-            r3 = r2;
-        L_0x005d:
-            if (r15 != 0) goto L_0x0102;
-        L_0x005f:
-            r11.state = r7;
-            r11.value = r8;
-            r11.op = r3;
-            r9 = 1;
-            goto L_0x0006;
-        L_0x0067:
-            r6 = r5 + 1;
-            r9 = r12[r5];
-            r9 = r9 & 255;
-            r1 = r0[r9];
-            switch(r7) {
-                case 0: goto L_0x0074;
-                case 1: goto L_0x0082;
-                case 2: goto L_0x0094;
-                case 3: goto L_0x00b3;
-                case 4: goto L_0x00ea;
-                case 5: goto L_0x00f9;
-                default: goto L_0x0072;
-            };
-        L_0x0072:
-            r5 = r6;
-            goto L_0x0012;
-        L_0x0074:
-            if (r1 < 0) goto L_0x007a;
-        L_0x0076:
-            r8 = r1;
-            r7 = r7 + 1;
-            goto L_0x0072;
-        L_0x007a:
-            r9 = -1;
-            if (r1 == r9) goto L_0x0072;
-        L_0x007d:
-            r9 = 6;
-            r11.state = r9;
-            r9 = 0;
-            goto L_0x0006;
-        L_0x0082:
-            if (r1 < 0) goto L_0x008b;
-        L_0x0084:
-            r9 = r8 << 6;
-            r8 = r9 | r1;
-            r7 = r7 + 1;
-            goto L_0x0072;
-        L_0x008b:
-            r9 = -1;
-            if (r1 == r9) goto L_0x0072;
-        L_0x008e:
-            r9 = 6;
-            r11.state = r9;
-            r9 = 0;
-            goto L_0x0006;
-        L_0x0094:
-            if (r1 < 0) goto L_0x009d;
-        L_0x0096:
-            r9 = r8 << 6;
-            r8 = r9 | r1;
-            r7 = r7 + 1;
-            goto L_0x0072;
-        L_0x009d:
-            r9 = -2;
-            if (r1 != r9) goto L_0x00aa;
-        L_0x00a0:
-            r3 = r2 + 1;
-            r9 = r8 >> 4;
-            r9 = (byte) r9;
-            r4[r2] = r9;
-            r7 = 4;
-            r2 = r3;
-            goto L_0x0072;
-        L_0x00aa:
-            r9 = -1;
-            if (r1 == r9) goto L_0x0072;
-        L_0x00ad:
-            r9 = 6;
-            r11.state = r9;
-            r9 = 0;
-            goto L_0x0006;
-        L_0x00b3:
-            if (r1 < 0) goto L_0x00ce;
-        L_0x00b5:
-            r9 = r8 << 6;
-            r8 = r9 | r1;
-            r9 = r2 + 2;
-            r10 = (byte) r8;
-            r4[r9] = r10;
-            r9 = r2 + 1;
-            r10 = r8 >> 8;
-            r10 = (byte) r10;
-            r4[r9] = r10;
-            r9 = r8 >> 16;
-            r9 = (byte) r9;
-            r4[r2] = r9;
-            r2 = r2 + 3;
-            r7 = 0;
-            goto L_0x0072;
-        L_0x00ce:
-            r9 = -2;
-            if (r1 != r9) goto L_0x00e1;
-        L_0x00d1:
-            r9 = r2 + 1;
-            r10 = r8 >> 2;
-            r10 = (byte) r10;
-            r4[r9] = r10;
-            r9 = r8 >> 10;
-            r9 = (byte) r9;
-            r4[r2] = r9;
-            r2 = r2 + 2;
-            r7 = 5;
-            goto L_0x0072;
-        L_0x00e1:
-            r9 = -1;
-            if (r1 == r9) goto L_0x0072;
-        L_0x00e4:
-            r9 = 6;
-            r11.state = r9;
-            r9 = 0;
-            goto L_0x0006;
-        L_0x00ea:
-            r9 = -2;
-            if (r1 != r9) goto L_0x00f0;
-        L_0x00ed:
-            r7 = r7 + 1;
-            goto L_0x0072;
-        L_0x00f0:
-            r9 = -1;
-            if (r1 == r9) goto L_0x0072;
-        L_0x00f3:
-            r9 = 6;
-            r11.state = r9;
-            r9 = 0;
-            goto L_0x0006;
-        L_0x00f9:
-            r9 = -1;
-            if (r1 == r9) goto L_0x0072;
-        L_0x00fc:
-            r9 = 6;
-            r11.state = r9;
-            r9 = 0;
-            goto L_0x0006;
-        L_0x0102:
-            switch(r7) {
-                case 0: goto L_0x010d;
-                case 1: goto L_0x010f;
-                case 2: goto L_0x0115;
-                case 3: goto L_0x011d;
-                case 4: goto L_0x012d;
-                default: goto L_0x0105;
-            };
-        L_0x0105:
-            r2 = r3;
-        L_0x0106:
-            r11.state = r7;
-            r11.op = r2;
-            r9 = 1;
-            goto L_0x0006;
-        L_0x010d:
-            r2 = r3;
-            goto L_0x0106;
-        L_0x010f:
-            r9 = 6;
-            r11.state = r9;
-            r9 = 0;
-            goto L_0x0006;
-        L_0x0115:
-            r2 = r3 + 1;
-            r9 = r8 >> 4;
-            r9 = (byte) r9;
-            r4[r3] = r9;
-            goto L_0x0106;
-        L_0x011d:
-            r2 = r3 + 1;
-            r9 = r8 >> 10;
-            r9 = (byte) r9;
-            r4[r3] = r9;
-            r3 = r2 + 1;
-            r9 = r8 >> 2;
-            r9 = (byte) r9;
-            r4[r2] = r9;
-            r2 = r3;
-            goto L_0x0106;
-        L_0x012d:
-            r9 = 6;
-            r11.state = r9;
-            r9 = 0;
-            goto L_0x0006;
-        L_0x0133:
-            r3 = r2;
-            goto L_0x005d;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: cn.kuaipan.android.utils.Base64.Decoder.process(byte[], int, int, boolean):boolean");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public boolean process(byte[] input, int offset, int len, boolean finish) {
+            if (this.state == 6) {
+                return false;
+            }
+            int op;
+            int p = offset;
+            len += offset;
+            int state = this.state;
+            int value = this.value;
+            int op2 = 0;
+            byte[] output = this.output;
+            int[] alphabet = this.alphabet;
+            while (p < len) {
+                if (state == 0) {
+                    while (p + 4 <= len) {
+                        value = (((alphabet[input[p] & 255] << 18) | (alphabet[input[p + 1] & 255] << 12)) | (alphabet[input[p + 2] & 255] << 6)) | alphabet[input[p + 3] & 255];
+                        if (value >= 0) {
+                            output[op2 + 2] = (byte) value;
+                            output[op2 + 1] = (byte) (value >> 8);
+                            output[op2] = (byte) (value >> 16);
+                            op2 += 3;
+                            p += 4;
+                        } else if (p >= len) {
+                            op = op2;
+                            if (finish) {
+                                this.state = state;
+                                this.value = value;
+                                this.op = op;
+                                return true;
+                            }
+                            switch (state) {
+                                case 0:
+                                    op2 = op;
+                                    break;
+                                case 1:
+                                    this.state = 6;
+                                    return false;
+                                case 2:
+                                    op2 = op + 1;
+                                    output[op] = (byte) (value >> 4);
+                                    break;
+                                case 3:
+                                    op2 = op + 1;
+                                    output[op] = (byte) (value >> 10);
+                                    op = op2 + 1;
+                                    output[op2] = (byte) (value >> 2);
+                                    op2 = op;
+                                    break;
+                                case 4:
+                                    this.state = 6;
+                                    return false;
+                                default:
+                                    op2 = op;
+                                    break;
+                            }
+                            this.state = state;
+                            this.op = op2;
+                            return true;
+                        }
+                    }
+                    if (p >= len) {
+                    }
+                }
+                int p2 = p + 1;
+                int d = alphabet[input[p] & 255];
+                switch (state) {
+                    case 0:
+                        if (d < 0) {
+                            if (d == -1) {
+                                break;
+                            }
+                            this.state = 6;
+                            return false;
+                        }
+                        value = d;
+                        state++;
+                        break;
+                    case 1:
+                        if (d < 0) {
+                            if (d == -1) {
+                                break;
+                            }
+                            this.state = 6;
+                            return false;
+                        }
+                        value = (value << 6) | d;
+                        state++;
+                        break;
+                    case 2:
+                        if (d < 0) {
+                            if (d != -2) {
+                                if (d == -1) {
+                                    break;
+                                }
+                                this.state = 6;
+                                return false;
+                            }
+                            op = op2 + 1;
+                            output[op2] = (byte) (value >> 4);
+                            state = 4;
+                            op2 = op;
+                            break;
+                        }
+                        value = (value << 6) | d;
+                        state++;
+                        break;
+                    case 3:
+                        if (d < 0) {
+                            if (d != -2) {
+                                if (d == -1) {
+                                    break;
+                                }
+                                this.state = 6;
+                                return false;
+                            }
+                            output[op2 + 1] = (byte) (value >> 2);
+                            output[op2] = (byte) (value >> 10);
+                            op2 += 2;
+                            state = 5;
+                            break;
+                        }
+                        value = (value << 6) | d;
+                        output[op2 + 2] = (byte) value;
+                        output[op2 + 1] = (byte) (value >> 8);
+                        output[op2] = (byte) (value >> 16);
+                        op2 += 3;
+                        state = 0;
+                        break;
+                    case 4:
+                        if (d != -2) {
+                            if (d == -1) {
+                                break;
+                            }
+                            this.state = 6;
+                            return false;
+                        }
+                        state++;
+                        break;
+                    case 5:
+                        if (d == -1) {
+                            break;
+                        }
+                        this.state = 6;
+                        return false;
+                    default:
+                        break;
+                }
+                p = p2;
+            }
+            op = op2;
+            if (finish) {
+            }
         }
     }
 
@@ -339,394 +233,222 @@ public class Base64 {
         /* JADX WARNING: Removed duplicated region for block: B:12:0x0058  */
         /* JADX WARNING: Removed duplicated region for block: B:82:0x020c  */
         /* JADX WARNING: Removed duplicated region for block: B:25:0x00fe  */
-        public boolean process(byte[] r15, int r16, int r17, boolean r18) {
-            /*
-            r14 = this;
-            r1 = r14.alphabet;
-            r5 = r14.output;
-            r3 = 0;
-            r2 = r14.count;
-            r6 = r16;
-            r17 = r17 + r16;
-            r10 = -1;
-            r11 = r14.tailLen;
-            switch(r11) {
-                case 0: goto L_0x0011;
-                case 1: goto L_0x00b0;
-                case 2: goto L_0x00d5;
-                default: goto L_0x0011;
-            };
-        L_0x0011:
-            r11 = -1;
-            if (r10 == r11) goto L_0x0247;
-        L_0x0014:
-            r4 = r3 + 1;
-            r11 = r10 >> 18;
-            r11 = r11 & 63;
-            r11 = r1[r11];
-            r5[r3] = r11;
-            r3 = r4 + 1;
-            r11 = r10 >> 12;
-            r11 = r11 & 63;
-            r11 = r1[r11];
-            r5[r4] = r11;
-            r4 = r3 + 1;
-            r11 = r10 >> 6;
-            r11 = r11 & 63;
-            r11 = r1[r11];
-            r5[r3] = r11;
-            r3 = r4 + 1;
-            r11 = r10 & 63;
-            r11 = r1[r11];
-            r5[r4] = r11;
-            r2 = r2 + -1;
-            if (r2 != 0) goto L_0x0247;
-        L_0x003e:
-            r11 = r14.do_cr;
-            if (r11 == 0) goto L_0x0049;
-        L_0x0042:
-            r4 = r3 + 1;
-            r11 = 13;
-            r5[r3] = r11;
-            r3 = r4;
-        L_0x0049:
-            r4 = r3 + 1;
-            r11 = 10;
-            r5[r3] = r11;
-            r2 = 19;
-            r7 = r6;
-        L_0x0052:
-            r11 = r7 + 3;
-            r0 = r17;
-            if (r11 > r0) goto L_0x00fc;
-        L_0x0058:
-            r11 = r15[r7];
-            r11 = r11 & 255;
-            r11 = r11 << 16;
-            r12 = r7 + 1;
-            r12 = r15[r12];
-            r12 = r12 & 255;
-            r12 = r12 << 8;
-            r11 = r11 | r12;
-            r12 = r7 + 2;
-            r12 = r15[r12];
-            r12 = r12 & 255;
-            r10 = r11 | r12;
-            r11 = r10 >> 18;
-            r11 = r11 & 63;
-            r11 = r1[r11];
-            r5[r4] = r11;
-            r11 = r4 + 1;
-            r12 = r10 >> 12;
-            r12 = r12 & 63;
-            r12 = r1[r12];
-            r5[r11] = r12;
-            r11 = r4 + 2;
-            r12 = r10 >> 6;
-            r12 = r12 & 63;
-            r12 = r1[r12];
-            r5[r11] = r12;
-            r11 = r4 + 3;
-            r12 = r10 & 63;
-            r12 = r1[r12];
-            r5[r11] = r12;
-            r6 = r7 + 3;
-            r3 = r4 + 4;
-            r2 = r2 + -1;
-            if (r2 != 0) goto L_0x0247;
-        L_0x009b:
-            r11 = r14.do_cr;
-            if (r11 == 0) goto L_0x00a6;
-        L_0x009f:
-            r4 = r3 + 1;
-            r11 = 13;
-            r5[r3] = r11;
-            r3 = r4;
-        L_0x00a6:
-            r4 = r3 + 1;
-            r11 = 10;
-            r5[r3] = r11;
-            r2 = 19;
-            r7 = r6;
-            goto L_0x0052;
-        L_0x00b0:
-            r11 = r6 + 2;
-            r0 = r17;
-            if (r11 > r0) goto L_0x0011;
-        L_0x00b6:
-            r11 = r14.tail;
-            r12 = 0;
-            r11 = r11[r12];
-            r11 = r11 & 255;
-            r11 = r11 << 16;
-            r7 = r6 + 1;
-            r12 = r15[r6];
-            r12 = r12 & 255;
-            r12 = r12 << 8;
-            r11 = r11 | r12;
-            r6 = r7 + 1;
-            r12 = r15[r7];
-            r12 = r12 & 255;
-            r10 = r11 | r12;
-            r11 = 0;
-            r14.tailLen = r11;
-            goto L_0x0011;
-        L_0x00d5:
-            r11 = r6 + 1;
-            r0 = r17;
-            if (r11 > r0) goto L_0x0011;
-        L_0x00db:
-            r11 = r14.tail;
-            r12 = 0;
-            r11 = r11[r12];
-            r11 = r11 & 255;
-            r11 = r11 << 16;
-            r12 = r14.tail;
-            r13 = 1;
-            r12 = r12[r13];
-            r12 = r12 & 255;
-            r12 = r12 << 8;
-            r11 = r11 | r12;
-            r7 = r6 + 1;
-            r12 = r15[r6];
-            r12 = r12 & 255;
-            r10 = r11 | r12;
-            r11 = 0;
-            r14.tailLen = r11;
-            r6 = r7;
-            goto L_0x0011;
-        L_0x00fc:
-            if (r18 == 0) goto L_0x020c;
-        L_0x00fe:
-            r11 = r14.tailLen;
-            r11 = r7 - r11;
-            r12 = r17 + -1;
-            if (r11 != r12) goto L_0x0168;
-        L_0x0106:
-            r8 = 0;
-            r11 = r14.tailLen;
-            if (r11 <= 0) goto L_0x0163;
-        L_0x010b:
-            r11 = r14.tail;
-            r9 = r8 + 1;
-            r11 = r11[r8];
-            r8 = r9;
-            r6 = r7;
-        L_0x0113:
-            r11 = r11 & 255;
-            r10 = r11 << 4;
-            r11 = r14.tailLen;
-            r11 = r11 - r8;
-            r14.tailLen = r11;
-            r3 = r4 + 1;
-            r11 = r10 >> 6;
-            r11 = r11 & 63;
-            r11 = r1[r11];
-            r5[r4] = r11;
-            r4 = r3 + 1;
-            r11 = r10 & 63;
-            r11 = r1[r11];
-            r5[r3] = r11;
-            r11 = r14.do_padding;
-            if (r11 == 0) goto L_0x013e;
-        L_0x0132:
-            r3 = r4 + 1;
-            r11 = 61;
-            r5[r4] = r11;
-            r4 = r3 + 1;
-            r11 = 61;
-            r5[r3] = r11;
-        L_0x013e:
-            r3 = r4;
-            r11 = r14.do_newline;
-            if (r11 == 0) goto L_0x0155;
-        L_0x0143:
-            r11 = r14.do_cr;
-            if (r11 == 0) goto L_0x014e;
-        L_0x0147:
-            r4 = r3 + 1;
-            r11 = 13;
-            r5[r3] = r11;
-            r3 = r4;
-        L_0x014e:
-            r4 = r3 + 1;
-            r11 = 10;
-            r5[r3] = r11;
-        L_0x0154:
-            r3 = r4;
-        L_0x0155:
-            r11 = $assertionsDisabled;
-            if (r11 != 0) goto L_0x01fe;
-        L_0x0159:
-            r11 = r14.tailLen;
-            if (r11 == 0) goto L_0x01fe;
-        L_0x015d:
-            r11 = new java.lang.AssertionError;
-            r11.<init>();
-            throw r11;
-        L_0x0163:
-            r6 = r7 + 1;
-            r11 = r15[r7];
-            goto L_0x0113;
-        L_0x0168:
-            r11 = r14.tailLen;
-            r11 = r7 - r11;
-            r12 = r17 + -2;
-            if (r11 != r12) goto L_0x01e0;
-        L_0x0170:
-            r8 = 0;
-            r11 = r14.tailLen;
-            r12 = 1;
-            if (r11 <= r12) goto L_0x01d5;
-        L_0x0176:
-            r11 = r14.tail;
-            r9 = r8 + 1;
-            r11 = r11[r8];
-            r8 = r9;
-            r6 = r7;
-        L_0x017e:
-            r11 = r11 & 255;
-            r12 = r11 << 10;
-            r11 = r14.tailLen;
-            if (r11 <= 0) goto L_0x01da;
-        L_0x0186:
-            r11 = r14.tail;
-            r9 = r8 + 1;
-            r11 = r11[r8];
-            r8 = r9;
-        L_0x018d:
-            r11 = r11 & 255;
-            r11 = r11 << 2;
-            r10 = r12 | r11;
-            r11 = r14.tailLen;
-            r11 = r11 - r8;
-            r14.tailLen = r11;
-            r3 = r4 + 1;
-            r11 = r10 >> 12;
-            r11 = r11 & 63;
-            r11 = r1[r11];
-            r5[r4] = r11;
-            r4 = r3 + 1;
-            r11 = r10 >> 6;
-            r11 = r11 & 63;
-            r11 = r1[r11];
-            r5[r3] = r11;
-            r3 = r4 + 1;
-            r11 = r10 & 63;
-            r11 = r1[r11];
-            r5[r4] = r11;
-            r11 = r14.do_padding;
-            if (r11 == 0) goto L_0x01bf;
-        L_0x01b8:
-            r4 = r3 + 1;
-            r11 = 61;
-            r5[r3] = r11;
-            r3 = r4;
-        L_0x01bf:
-            r11 = r14.do_newline;
-            if (r11 == 0) goto L_0x0155;
-        L_0x01c3:
-            r11 = r14.do_cr;
-            if (r11 == 0) goto L_0x01ce;
-        L_0x01c7:
-            r4 = r3 + 1;
-            r11 = 13;
-            r5[r3] = r11;
-            r3 = r4;
-        L_0x01ce:
-            r4 = r3 + 1;
-            r11 = 10;
-            r5[r3] = r11;
-            goto L_0x0154;
-        L_0x01d5:
-            r6 = r7 + 1;
-            r11 = r15[r7];
-            goto L_0x017e;
-        L_0x01da:
-            r7 = r6 + 1;
-            r11 = r15[r6];
-            r6 = r7;
-            goto L_0x018d;
-        L_0x01e0:
-            r11 = r14.do_newline;
-            if (r11 == 0) goto L_0x01fa;
-        L_0x01e4:
-            if (r4 <= 0) goto L_0x01fa;
-        L_0x01e6:
-            r11 = 19;
-            if (r2 == r11) goto L_0x01fa;
-        L_0x01ea:
-            r11 = r14.do_cr;
-            if (r11 == 0) goto L_0x0245;
-        L_0x01ee:
-            r3 = r4 + 1;
-            r11 = 13;
-            r5[r4] = r11;
-        L_0x01f4:
-            r4 = r3 + 1;
-            r11 = 10;
-            r5[r3] = r11;
-        L_0x01fa:
-            r6 = r7;
-            r3 = r4;
-            goto L_0x0155;
-        L_0x01fe:
-            r11 = $assertionsDisabled;
-            if (r11 != 0) goto L_0x021e;
-        L_0x0202:
-            r0 = r17;
-            if (r6 == r0) goto L_0x021e;
-        L_0x0206:
-            r11 = new java.lang.AssertionError;
-            r11.<init>();
-            throw r11;
-        L_0x020c:
-            r11 = r17 + -1;
-            if (r7 != r11) goto L_0x0224;
-        L_0x0210:
-            r11 = r14.tail;
-            r12 = r14.tailLen;
-            r13 = r12 + 1;
-            r14.tailLen = r13;
-            r13 = r15[r7];
-            r11[r12] = r13;
-            r6 = r7;
-            r3 = r4;
-        L_0x021e:
-            r14.op = r3;
-            r14.count = r2;
-            r11 = 1;
-            return r11;
-        L_0x0224:
-            r11 = r17 + -2;
-            if (r7 != r11) goto L_0x0242;
-        L_0x0228:
-            r11 = r14.tail;
-            r12 = r14.tailLen;
-            r13 = r12 + 1;
-            r14.tailLen = r13;
-            r13 = r15[r7];
-            r11[r12] = r13;
-            r11 = r14.tail;
-            r12 = r14.tailLen;
-            r13 = r12 + 1;
-            r14.tailLen = r13;
-            r13 = r7 + 1;
-            r13 = r15[r13];
-            r11[r12] = r13;
-        L_0x0242:
-            r6 = r7;
-            r3 = r4;
-            goto L_0x021e;
-        L_0x0245:
-            r3 = r4;
-            goto L_0x01f4;
-        L_0x0247:
-            r7 = r6;
-            r4 = r3;
-            goto L_0x0052;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: cn.kuaipan.android.utils.Base64.Encoder.process(byte[], int, int, boolean):boolean");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public boolean process(byte[] input, int offset, int len, boolean finish) {
+            int p;
+            int i;
+            byte[] alphabet = this.alphabet;
+            byte[] output = this.output;
+            int op = 0;
+            int count = this.count;
+            int p2 = offset;
+            len += offset;
+            int v = -1;
+            switch (this.tailLen) {
+                case 1:
+                    if (p2 + 2 <= len) {
+                        p = p2 + 1;
+                        p2 = p + 1;
+                        v = (((this.tail[0] & 255) << 16) | ((input[p2] & 255) << 8)) | (input[p] & 255);
+                        this.tailLen = 0;
+                        break;
+                    }
+                    break;
+                case 2:
+                    if (p2 + 1 <= len) {
+                        p = p2 + 1;
+                        v = (((this.tail[0] & 255) << 16) | ((this.tail[1] & 255) << 8)) | (input[p2] & 255);
+                        this.tailLen = 0;
+                        p2 = p;
+                        break;
+                    }
+                    break;
+            }
+            if (v != -1) {
+                i = 0 + 1;
+                output[0] = alphabet[(v >> 18) & 63];
+                op = i + 1;
+                output[i] = alphabet[(v >> 12) & 63];
+                i = op + 1;
+                output[op] = alphabet[(v >> 6) & 63];
+                op = i + 1;
+                output[i] = alphabet[v & 63];
+                count--;
+                if (count == 0) {
+                    if (this.do_cr) {
+                        i = op + 1;
+                        output[op] = (byte) 13;
+                        op = i;
+                    }
+                    i = op + 1;
+                    output[op] = (byte) 10;
+                    count = 19;
+                    p = p2;
+                    while (p + 3 <= len) {
+                        v = (((input[p] & 255) << 16) | ((input[p + 1] & 255) << 8)) | (input[p + 2] & 255);
+                        output[i] = alphabet[(v >> 18) & 63];
+                        output[i + 1] = alphabet[(v >> 12) & 63];
+                        output[i + 2] = alphabet[(v >> 6) & 63];
+                        output[i + 3] = alphabet[v & 63];
+                        p2 = p + 3;
+                        op = i + 4;
+                        count--;
+                        if (count == 0) {
+                        }
+                        if (this.do_cr) {
+                            i = op + 1;
+                            output[op] = (byte) 13;
+                            op = i;
+                        }
+                        i = op + 1;
+                        output[op] = (byte) 10;
+                        count = 19;
+                        p = p2;
+                    }
+                    int i2;
+                    byte[] bArr;
+                    if (!finish) {
+                        int t;
+                        int t2;
+                        int i3;
+                        if (p - this.tailLen == len - 1) {
+                            t = 0;
+                            if (this.tailLen > 0) {
+                                t2 = 0 + 1;
+                                i3 = this.tail[0];
+                                t = t2;
+                                p2 = p;
+                            } else {
+                                p2 = p + 1;
+                                i3 = input[p];
+                            }
+                            v = (i3 & 255) << 4;
+                            this.tailLen -= t;
+                            op = i + 1;
+                            output[i] = alphabet[(v >> 6) & 63];
+                            i = op + 1;
+                            output[op] = alphabet[v & 63];
+                            if (this.do_padding) {
+                                op = i + 1;
+                                output[i] = (byte) 61;
+                                i = op + 1;
+                                output[op] = (byte) 61;
+                            }
+                            op = i;
+                            if (this.do_newline) {
+                                if (this.do_cr) {
+                                    i = op + 1;
+                                    output[op] = (byte) 13;
+                                    op = i;
+                                }
+                                i = op + 1;
+                                output[op] = (byte) 10;
+                            }
+                            if ($assertionsDisabled && this.tailLen != 0) {
+                                throw new AssertionError();
+                            } else if (!($assertionsDisabled || p == len)) {
+                                throw new AssertionError();
+                            }
+                        }
+                        if (p - this.tailLen == len - 2) {
+                            t = 0;
+                            if (this.tailLen > 1) {
+                                t2 = 0 + 1;
+                                i3 = this.tail[0];
+                                t = t2;
+                                p2 = p;
+                            } else {
+                                p2 = p + 1;
+                                i3 = input[p];
+                            }
+                            i2 = (i3 & 255) << 10;
+                            if (this.tailLen > 0) {
+                                t2 = t + 1;
+                                i3 = this.tail[t];
+                                t = t2;
+                            } else {
+                                p = p2 + 1;
+                                i3 = input[p2];
+                                p2 = p;
+                            }
+                            v = i2 | ((i3 & 255) << 2);
+                            this.tailLen -= t;
+                            op = i + 1;
+                            output[i] = alphabet[(v >> 12) & 63];
+                            i = op + 1;
+                            output[op] = alphabet[(v >> 6) & 63];
+                            op = i + 1;
+                            output[i] = alphabet[v & 63];
+                            if (this.do_padding) {
+                                i = op + 1;
+                                output[op] = (byte) 61;
+                                op = i;
+                            }
+                            if (this.do_newline) {
+                                if (this.do_cr) {
+                                    i = op + 1;
+                                    output[op] = (byte) 13;
+                                    op = i;
+                                }
+                                i = op + 1;
+                                output[op] = (byte) 10;
+                            }
+                        } else {
+                            if (this.do_newline && i > 0 && count != 19) {
+                                if (this.do_cr) {
+                                    op = i + 1;
+                                    output[i] = (byte) 13;
+                                } else {
+                                    op = i;
+                                }
+                                i = op + 1;
+                                output[op] = (byte) 10;
+                            }
+                            p2 = p;
+                            op = i;
+                        }
+                        if ($assertionsDisabled) {
+                        }
+                        throw new AssertionError();
+                        op = i;
+                        if ($assertionsDisabled) {
+                        }
+                        throw new AssertionError();
+                    } else if (p == len - 1) {
+                        bArr = this.tail;
+                        i2 = this.tailLen;
+                        this.tailLen = i2 + 1;
+                        bArr[i2] = input[p];
+                        p2 = p;
+                        op = i;
+                    } else {
+                        if (p == len - 2) {
+                            bArr = this.tail;
+                            i2 = this.tailLen;
+                            this.tailLen = i2 + 1;
+                            bArr[i2] = input[p];
+                            bArr = this.tail;
+                            i2 = this.tailLen;
+                            this.tailLen = i2 + 1;
+                            bArr[i2] = input[p + 1];
+                        }
+                        p2 = p;
+                        op = i;
+                    }
+                    this.op = op;
+                    this.count = count;
+                    return true;
+                }
+            }
+            p = p2;
+            i = op;
+            while (p + 3 <= len) {
+            }
+            if (!finish) {
+            }
+            this.op = op;
+            this.count = count;
+            return true;
         }
     }
 

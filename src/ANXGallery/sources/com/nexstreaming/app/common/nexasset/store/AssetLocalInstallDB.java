@@ -2,6 +2,11 @@ package com.nexstreaming.app.common.nexasset.store;
 
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.os.AsyncTask;
 import android.os.Process;
 import android.util.Log;
@@ -22,6 +27,7 @@ import com.nexstreaming.app.common.task.Task.Event;
 import com.nexstreaming.app.common.task.Task.TaskError;
 import com.nexstreaming.app.common.util.p;
 import com.nexstreaming.kminternal.kinemaster.config.EditorGlobal;
+import com.nexstreaming.nexeditorsdk.nexClip;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -300,319 +306,269 @@ public class AssetLocalInstallDB {
     /* JADX WARNING: Removed duplicated region for block: B:43:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:24:0x004b A:{SYNTHETIC, Splitter: B:24:0x004b} */
     /* JADX WARNING: Removed duplicated region for block: B:29:0x0054 A:{SYNTHETIC, Splitter: B:29:0x0054} */
-    private void createDummyIcon(java.lang.String r7) {
-        /*
-        r6 = this;
-        r3 = new java.io.File;
-        r0 = r6.getThumbnailOutputPath(r7);
-        r3.<init>(r0);
-        r1 = 32;
-        r4 = 18;
-        r0 = 576; // 0x240 float:8.07E-43 double:2.846E-321;
-        r5 = new int[r0];
-        r0 = 0;
-    L_0x0012:
-        r2 = r5.length;
-        if (r0 >= r2) goto L_0x001c;
-    L_0x0015:
-        r2 = -16777216; // 0xffffffffff000000 float:-1.7014118E38 double:NaN;
-        r5[r0] = r2;
-        r0 = r0 + 1;
-        goto L_0x0012;
-    L_0x001c:
-        r2 = 0;
-        r0 = android.graphics.Bitmap.Config.ARGB_8888;
-        r0 = android.graphics.Bitmap.createBitmap(r5, r1, r4, r0);
-        r3.createNewFile();	 Catch:{ FileNotFoundException -> 0x0038, IOException -> 0x0045 }
-        r1 = new java.io.FileOutputStream;	 Catch:{ FileNotFoundException -> 0x0038, IOException -> 0x0045 }
-        r1.<init>(r3);	 Catch:{ FileNotFoundException -> 0x0038, IOException -> 0x0045 }
-        r2 = android.graphics.Bitmap.CompressFormat.PNG;	 Catch:{ FileNotFoundException -> 0x0062, IOException -> 0x005f }
-        r3 = 100;
-        r0.compress(r2, r3, r1);	 Catch:{ FileNotFoundException -> 0x0062, IOException -> 0x005f }
-        if (r1 == 0) goto L_0x0037;
-    L_0x0034:
-        r1.close();	 Catch:{ IOException -> 0x0058 }
-    L_0x0037:
-        return;
-    L_0x0038:
-        r0 = move-exception;
-        r1 = r2;
-    L_0x003a:
-        r0.printStackTrace();	 Catch:{ all -> 0x005c }
-        if (r1 == 0) goto L_0x0037;
-    L_0x003f:
-        r1.close();	 Catch:{ IOException -> 0x0043 }
-        goto L_0x0037;
-    L_0x0043:
-        r0 = move-exception;
-        goto L_0x0037;
-    L_0x0045:
-        r0 = move-exception;
-    L_0x0046:
-        r0.printStackTrace();	 Catch:{ all -> 0x0051 }
-        if (r2 == 0) goto L_0x0037;
-    L_0x004b:
-        r2.close();	 Catch:{ IOException -> 0x004f }
-        goto L_0x0037;
-    L_0x004f:
-        r0 = move-exception;
-        goto L_0x0037;
-    L_0x0051:
-        r0 = move-exception;
-    L_0x0052:
-        if (r2 == 0) goto L_0x0057;
-    L_0x0054:
-        r2.close();	 Catch:{ IOException -> 0x005a }
-    L_0x0057:
-        throw r0;
-    L_0x0058:
-        r0 = move-exception;
-        goto L_0x0037;
-    L_0x005a:
-        r1 = move-exception;
-        goto L_0x0057;
-    L_0x005c:
-        r0 = move-exception;
-        r2 = r1;
-        goto L_0x0052;
-    L_0x005f:
-        r0 = move-exception;
-        r2 = r1;
-        goto L_0x0046;
-    L_0x0062:
-        r0 = move-exception;
-        goto L_0x003a;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.nexasset.store.AssetLocalInstallDB.createDummyIcon(java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void createDummyIcon(String str) {
+        FileNotFoundException e;
+        Throwable th;
+        IOException e2;
+        File file = new File(getThumbnailOutputPath(str));
+        int[] iArr = new int[576];
+        for (int i = 0; i < iArr.length; i++) {
+            iArr[i] = -16777216;
+        }
+        FileOutputStream fileOutputStream = null;
+        Bitmap createBitmap = Bitmap.createBitmap(iArr, 32, 18, Config.ARGB_8888);
+        FileOutputStream fileOutputStream2;
+        try {
+            file.createNewFile();
+            fileOutputStream2 = new FileOutputStream(file);
+            try {
+                createBitmap.compress(CompressFormat.PNG, 100, fileOutputStream2);
+                if (fileOutputStream2 != null) {
+                    try {
+                        fileOutputStream2.close();
+                    } catch (IOException e3) {
+                    }
+                }
+            } catch (FileNotFoundException e4) {
+                e = e4;
+                try {
+                    e.printStackTrace();
+                    if (fileOutputStream2 == null) {
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    fileOutputStream = fileOutputStream2;
+                    if (fileOutputStream != null) {
+                    }
+                    throw th;
+                }
+            } catch (IOException e5) {
+                e2 = e5;
+                fileOutputStream = fileOutputStream2;
+                try {
+                    e2.printStackTrace();
+                    if (fileOutputStream == null) {
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    if (fileOutputStream != null) {
+                        try {
+                            fileOutputStream.close();
+                        } catch (IOException e6) {
+                        }
+                    }
+                    throw th;
+                }
+            }
+        } catch (FileNotFoundException e7) {
+            e = e7;
+            fileOutputStream2 = null;
+            e.printStackTrace();
+            if (fileOutputStream2 == null) {
+                try {
+                    fileOutputStream2.close();
+                } catch (IOException e8) {
+                }
+            }
+        } catch (IOException e9) {
+            e2 = e9;
+            e2.printStackTrace();
+            if (fileOutputStream == null) {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e10) {
+                }
+            }
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:14:0x0039 A:{SYNTHETIC, Splitter: B:14:0x0039} */
     /* JADX WARNING: Removed duplicated region for block: B:21:0x0045 A:{SYNTHETIC, Splitter: B:21:0x0045} */
     /* JADX WARNING: Removed duplicated region for block: B:26:0x004e A:{SYNTHETIC, Splitter: B:26:0x004e} */
-    public java.io.File makeThumbnail(android.graphics.Bitmap r5, int r6) {
-        /*
-        r4 = this;
-        r3 = new java.io.File;
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r1 = "";
-        r0 = r0.append(r1);
-        r0 = r0.append(r6);
-        r0 = r0.toString();
-        r0 = r4.getThumbnailOutputPath(r0);
-        r3.<init>(r0);
-        r2 = 0;
-        r3.createNewFile();	 Catch:{ FileNotFoundException -> 0x0032, IOException -> 0x003f }
-        r1 = new java.io.FileOutputStream;	 Catch:{ FileNotFoundException -> 0x0032, IOException -> 0x003f }
-        r1.<init>(r3);	 Catch:{ FileNotFoundException -> 0x0032, IOException -> 0x003f }
-        r0 = android.graphics.Bitmap.CompressFormat.PNG;	 Catch:{ FileNotFoundException -> 0x005c, IOException -> 0x0059 }
-        r2 = 100;
-        r5.compress(r0, r2, r1);	 Catch:{ FileNotFoundException -> 0x005c, IOException -> 0x0059 }
-        if (r1 == 0) goto L_0x0031;
-    L_0x002e:
-        r1.close();	 Catch:{ IOException -> 0x0052 }
-    L_0x0031:
-        return r3;
-    L_0x0032:
-        r0 = move-exception;
-        r1 = r2;
-    L_0x0034:
-        r0.printStackTrace();	 Catch:{ all -> 0x0056 }
-        if (r1 == 0) goto L_0x0031;
-    L_0x0039:
-        r1.close();	 Catch:{ IOException -> 0x003d }
-        goto L_0x0031;
-    L_0x003d:
-        r0 = move-exception;
-        goto L_0x0031;
-    L_0x003f:
-        r0 = move-exception;
-    L_0x0040:
-        r0.printStackTrace();	 Catch:{ all -> 0x004b }
-        if (r2 == 0) goto L_0x0031;
-    L_0x0045:
-        r2.close();	 Catch:{ IOException -> 0x0049 }
-        goto L_0x0031;
-    L_0x0049:
-        r0 = move-exception;
-        goto L_0x0031;
-    L_0x004b:
-        r0 = move-exception;
-    L_0x004c:
-        if (r2 == 0) goto L_0x0051;
-    L_0x004e:
-        r2.close();	 Catch:{ IOException -> 0x0054 }
-    L_0x0051:
-        throw r0;
-    L_0x0052:
-        r0 = move-exception;
-        goto L_0x0031;
-    L_0x0054:
-        r1 = move-exception;
-        goto L_0x0051;
-    L_0x0056:
-        r0 = move-exception;
-        r2 = r1;
-        goto L_0x004c;
-    L_0x0059:
-        r0 = move-exception;
-        r2 = r1;
-        goto L_0x0040;
-    L_0x005c:
-        r0 = move-exception;
-        goto L_0x0034;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.nexasset.store.AssetLocalInstallDB.makeThumbnail(android.graphics.Bitmap, int):java.io.File");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public File makeThumbnail(Bitmap bitmap, int i) {
+        FileNotFoundException e;
+        Throwable th;
+        IOException e2;
+        File file = new File(getThumbnailOutputPath("" + i));
+        FileOutputStream fileOutputStream = null;
+        FileOutputStream fileOutputStream2;
+        try {
+            file.createNewFile();
+            fileOutputStream2 = new FileOutputStream(file);
+            try {
+                bitmap.compress(CompressFormat.PNG, 100, fileOutputStream2);
+                if (fileOutputStream2 != null) {
+                    try {
+                        fileOutputStream2.close();
+                    } catch (IOException e3) {
+                    }
+                }
+            } catch (FileNotFoundException e4) {
+                e = e4;
+                try {
+                    e.printStackTrace();
+                    if (fileOutputStream2 != null) {
+                    }
+                    return file;
+                } catch (Throwable th2) {
+                    th = th2;
+                    fileOutputStream = fileOutputStream2;
+                    if (fileOutputStream != null) {
+                        try {
+                            fileOutputStream.close();
+                        } catch (IOException e5) {
+                        }
+                    }
+                    throw th;
+                }
+            } catch (IOException e6) {
+                e2 = e6;
+                fileOutputStream = fileOutputStream2;
+                try {
+                    e2.printStackTrace();
+                    if (fileOutputStream != null) {
+                    }
+                    return file;
+                } catch (Throwable th3) {
+                    th = th3;
+                    if (fileOutputStream != null) {
+                    }
+                    throw th;
+                }
+            }
+        } catch (FileNotFoundException e7) {
+            e = e7;
+            fileOutputStream2 = null;
+            e.printStackTrace();
+            if (fileOutputStream2 != null) {
+                try {
+                    fileOutputStream2.close();
+                } catch (IOException e8) {
+                }
+            }
+            return file;
+        } catch (IOException e9) {
+            e2 = e9;
+            e2.printStackTrace();
+            if (fileOutputStream != null) {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e10) {
+                }
+            }
+            return file;
+        }
+        return file;
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:30:0x00d1 A:{SYNTHETIC, Splitter: B:30:0x00d1} */
     /* JADX WARNING: Removed duplicated region for block: B:37:0x00dd A:{SYNTHETIC, Splitter: B:37:0x00dd} */
     /* JADX WARNING: Removed duplicated region for block: B:42:0x00e6 A:{SYNTHETIC, Splitter: B:42:0x00e6} */
-    private java.io.File copyThumbnail(java.lang.String r7) {
-        /*
-        r6 = this;
-        r1 = 1;
-        r0 = r6.isSamePath();
-        if (r0 == 0) goto L_0x004e;
-    L_0x0007:
-        r0 = new java.io.File;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = assetStoreRootPath;
-        r1 = r1.append(r2);
-        r2 = java.io.File.separator;
-        r1 = r1.append(r2);
-        r1 = r1.append(r7);
-        r2 = ".jpg";
-        r1 = r1.append(r2);
-        r1 = r1.toString();
-        r0.<init>(r1);
-        r1 = r0.isFile();
-        if (r1 != 0) goto L_0x004d;
-    L_0x0031:
-        r1 = "AssetLocalInstallDB";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "copyThumbnail() file not found=";
-        r2 = r2.append(r3);
-        r3 = r0.getAbsolutePath();
-        r2 = r2.append(r3);
-        r2 = r2.toString();
-        android.util.Log.d(r1, r2);
-    L_0x004d:
-        return r0;
-    L_0x004e:
-        r4 = new java.io.File;
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r2 = assetStoreRootPath;
-        r0 = r0.append(r2);
-        r2 = java.io.File.separator;
-        r0 = r0.append(r2);
-        r0 = r0.append(r7);
-        r2 = ".jpg";
-        r0 = r0.append(r2);
-        r0 = r0.toString();
-        r4.<init>(r0);
-        r0 = new java.io.File;
-        r2 = r6.getThumbnailOutputPath(r7);
-        r0.<init>(r2);
-        r2 = r4.isFile();
-        if (r2 == 0) goto L_0x00ea;
-    L_0x0081:
-        r2 = new android.graphics.BitmapFactory$Options;
-        r2.<init>();
-        r2.inJustDecodeBounds = r1;
-        r3 = r4.getAbsolutePath();
-        android.graphics.BitmapFactory.decodeFile(r3, r2);
-        r3 = 0;
-        r2.inJustDecodeBounds = r3;
-    L_0x0092:
-        r3 = 8;
-        if (r1 >= r3) goto L_0x00a7;
-    L_0x0096:
-        r3 = r2.outWidth;
-        r3 = r3 / r1;
-        r5 = 320; // 0x140 float:4.48E-43 double:1.58E-321;
-        if (r3 <= r5) goto L_0x00a7;
-    L_0x009d:
-        r3 = r2.outHeight;
-        r3 = r3 / r1;
-        r5 = 180; // 0xb4 float:2.52E-43 double:8.9E-322;
-        if (r3 <= r5) goto L_0x00a7;
-    L_0x00a4:
-        r1 = r1 * 2;
-        goto L_0x0092;
-    L_0x00a7:
-        r2.inSampleSize = r1;
-        r1 = r4.getAbsolutePath();
-        r1 = android.graphics.BitmapFactory.decodeFile(r1, r2);
-        r3 = 0;
-        r0.createNewFile();	 Catch:{ FileNotFoundException -> 0x00ca, IOException -> 0x00d7 }
-        r2 = new java.io.FileOutputStream;	 Catch:{ FileNotFoundException -> 0x00ca, IOException -> 0x00d7 }
-        r2.<init>(r0);	 Catch:{ FileNotFoundException -> 0x00ca, IOException -> 0x00d7 }
-        r3 = android.graphics.Bitmap.CompressFormat.PNG;	 Catch:{ FileNotFoundException -> 0x00f9, IOException -> 0x00f6 }
-        r5 = 100;
-        r1.compress(r3, r5, r2);	 Catch:{ FileNotFoundException -> 0x00f9, IOException -> 0x00f6 }
-        if (r2 == 0) goto L_0x00c6;
-    L_0x00c3:
-        r2.close();	 Catch:{ IOException -> 0x00ef }
-    L_0x00c6:
-        r4.delete();
-        goto L_0x004d;
-    L_0x00ca:
-        r1 = move-exception;
-        r2 = r3;
-    L_0x00cc:
-        r1.printStackTrace();	 Catch:{ all -> 0x00f3 }
-        if (r2 == 0) goto L_0x00c6;
-    L_0x00d1:
-        r2.close();	 Catch:{ IOException -> 0x00d5 }
-        goto L_0x00c6;
-    L_0x00d5:
-        r1 = move-exception;
-        goto L_0x00c6;
-    L_0x00d7:
-        r1 = move-exception;
-    L_0x00d8:
-        r1.printStackTrace();	 Catch:{ all -> 0x00e3 }
-        if (r3 == 0) goto L_0x00c6;
-    L_0x00dd:
-        r3.close();	 Catch:{ IOException -> 0x00e1 }
-        goto L_0x00c6;
-    L_0x00e1:
-        r1 = move-exception;
-        goto L_0x00c6;
-    L_0x00e3:
-        r0 = move-exception;
-    L_0x00e4:
-        if (r3 == 0) goto L_0x00e9;
-    L_0x00e6:
-        r3.close();	 Catch:{ IOException -> 0x00f1 }
-    L_0x00e9:
-        throw r0;
-    L_0x00ea:
-        r6.createDummyIcon(r7);
-        goto L_0x004d;
-    L_0x00ef:
-        r1 = move-exception;
-        goto L_0x00c6;
-    L_0x00f1:
-        r1 = move-exception;
-        goto L_0x00e9;
-    L_0x00f3:
-        r0 = move-exception;
-        r3 = r2;
-        goto L_0x00e4;
-    L_0x00f6:
-        r1 = move-exception;
-        r3 = r2;
-        goto L_0x00d8;
-    L_0x00f9:
-        r1 = move-exception;
-        goto L_0x00cc;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.nexasset.store.AssetLocalInstallDB.copyThumbnail(java.lang.String):java.io.File");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private File copyThumbnail(String str) {
+        File file;
+        FileNotFoundException e;
+        Throwable th;
+        IOException e2;
+        int i = 1;
+        if (isSamePath()) {
+            file = new File(assetStoreRootPath + File.separator + str + ".jpg");
+            if (!file.isFile()) {
+                Log.d(TAG, "copyThumbnail() file not found=" + file.getAbsolutePath());
+            }
+        } else {
+            File file2 = new File(assetStoreRootPath + File.separator + str + ".jpg");
+            file = new File(getThumbnailOutputPath(str));
+            if (file2.isFile()) {
+                Options options = new Options();
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(file2.getAbsolutePath(), options);
+                options.inJustDecodeBounds = false;
+                while (i < 8 && options.outWidth / i > 320 && options.outHeight / i > nexClip.kClip_Rotate_180) {
+                    i *= 2;
+                }
+                options.inSampleSize = i;
+                Bitmap decodeFile = BitmapFactory.decodeFile(file2.getAbsolutePath(), options);
+                FileOutputStream fileOutputStream = null;
+                FileOutputStream fileOutputStream2;
+                try {
+                    file.createNewFile();
+                    fileOutputStream2 = new FileOutputStream(file);
+                    try {
+                        decodeFile.compress(CompressFormat.PNG, 100, fileOutputStream2);
+                        if (fileOutputStream2 != null) {
+                            try {
+                                fileOutputStream2.close();
+                            } catch (IOException e3) {
+                            }
+                        }
+                    } catch (FileNotFoundException e4) {
+                        e = e4;
+                        try {
+                            e.printStackTrace();
+                            if (fileOutputStream2 != null) {
+                            }
+                            file2.delete();
+                            return file;
+                        } catch (Throwable th2) {
+                            th = th2;
+                            fileOutputStream = fileOutputStream2;
+                            if (fileOutputStream != null) {
+                            }
+                            throw th;
+                        }
+                    } catch (IOException e5) {
+                        e2 = e5;
+                        fileOutputStream = fileOutputStream2;
+                        try {
+                            e2.printStackTrace();
+                            if (fileOutputStream != null) {
+                            }
+                            file2.delete();
+                            return file;
+                        } catch (Throwable th3) {
+                            th = th3;
+                            if (fileOutputStream != null) {
+                                try {
+                                    fileOutputStream.close();
+                                } catch (IOException e6) {
+                                }
+                            }
+                            throw th;
+                        }
+                    }
+                } catch (FileNotFoundException e7) {
+                    e = e7;
+                    fileOutputStream2 = null;
+                    e.printStackTrace();
+                    if (fileOutputStream2 != null) {
+                        try {
+                            fileOutputStream2.close();
+                        } catch (IOException e8) {
+                        }
+                    }
+                    file2.delete();
+                    return file;
+                } catch (IOException e9) {
+                    e2 = e9;
+                    e2.printStackTrace();
+                    if (fileOutputStream != null) {
+                        try {
+                            fileOutputStream.close();
+                        } catch (IOException e10) {
+                        }
+                    }
+                    file2.delete();
+                    return file;
+                }
+                file2.delete();
+            } else {
+                createDummyIcon(str);
+            }
+        }
+        return file;
     }
 
     private void createDummy(String str) throws IOException {
@@ -911,278 +867,138 @@ public class AssetLocalInstallDB {
     /* JADX WARNING: Removed duplicated region for block: B:46:0x01b7  */
     /* JADX WARNING: Removed duplicated region for block: B:17:0x0122  */
     /* JADX WARNING: Removed duplicated region for block: B:50:0x0204  */
-    public boolean installPackageSync(int r12) {
-        /*
-        r11 = this;
-        r2 = 1;
-        r1 = 0;
-        r0 = assetStoreRootPath;
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = "";
-        r3 = r3.append(r4);
-        r3 = r3.append(r12);
-        r4 = r3.toString();
-        r3 = r11.installing;
-        if (r3 == 0) goto L_0x003a;
-    L_0x001b:
-        r0 = "AssetLocalInstallDB";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "installPackageSync(";
-        r2 = r2.append(r3);
-        r2 = r2.append(r12);
-        r3 = "): installing retry";
-        r2 = r2.append(r3);
-        r2 = r2.toString();
-        android.util.Log.d(r0, r2);
-    L_0x0039:
-        return r1;
-    L_0x003a:
-        r11.installing = r2;
-        r5 = new java.io.File;
-        r5.<init>(r0);
-        r6 = new java.io.File;
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r3 = r3.append(r4);
-        r7 = ".json";
-        r3 = r3.append(r7);
-        r3 = r3.toString();
-        r6.<init>(r0, r3);
-        r7 = new java.io.File;
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r3 = r3.append(r4);
-        r8 = ".jpg";
-        r3 = r3.append(r8);
-        r3 = r3.toString();
-        r7.<init>(r0, r3);
-        r8 = new java.io.File;
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r3 = r3.append(r4);
-        r9 = ".zip";
-        r3 = r3.append(r9);
-        r3 = r3.toString();
-        r8.<init>(r0, r3);
-        r3 = 0;
-        r5 = r5.isDirectory();
-        if (r5 == 0) goto L_0x01de;
-    L_0x0090:
-        r0 = r6.isFile();
-        if (r0 != 0) goto L_0x0141;
-    L_0x0096:
-        r0 = "AssetLocalInstallDB";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r9 = "installPackageSync(";
-        r5 = r5.append(r9);
-        r5 = r5.append(r12);
-        r9 = "): info json not found!";
-        r5 = r5.append(r9);
-        r5 = r5.toString();
-        android.util.Log.d(r0, r5);
-        r0 = r1;
-    L_0x00b5:
-        if (r3 != 0) goto L_0x018c;
-    L_0x00b7:
-        r0 = "AssetLocalInstallDB";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r9 = "installPackageSync(";
-        r5 = r5.append(r9);
-        r5 = r5.append(r12);
-        r9 = "): json parsing fail!";
-        r5 = r5.append(r9);
-        r5 = r5.toString();
-        android.util.Log.d(r0, r5);
-        r0 = r1;
-    L_0x00d6:
-        r5 = r7.isFile();
-        if (r5 != 0) goto L_0x00fb;
-    L_0x00dc:
-        r0 = "AssetLocalInstallDB";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r9 = "installPackageSync(";
-        r5 = r5.append(r9);
-        r5 = r5.append(r12);
-        r9 = "): thumbnail not found!";
-        r5 = r5.append(r9);
-        r5 = r5.toString();
-        android.util.Log.d(r0, r5);
-        r0 = r1;
-    L_0x00fb:
-        r5 = r8.isFile();
-        if (r5 != 0) goto L_0x01b7;
-    L_0x0101:
-        r0 = "AssetLocalInstallDB";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r9 = "installPackageSync(";
-        r5 = r5.append(r9);
-        r5 = r5.append(r12);
-        r9 = "): package not found!";
-        r5 = r5.append(r9);
-        r5 = r5.toString();
-        android.util.Log.d(r0, r5);
-        r0 = r1;
-    L_0x0120:
-        if (r0 != 0) goto L_0x0204;
-    L_0x0122:
-        r0 = r6.isFile();
-        if (r0 == 0) goto L_0x012b;
-    L_0x0128:
-        r6.delete();
-    L_0x012b:
-        r0 = r8.isFile();
-        if (r0 == 0) goto L_0x0134;
-    L_0x0131:
-        r8.delete();
-    L_0x0134:
-        r0 = r7.isFile();
-        if (r0 == 0) goto L_0x013d;
-    L_0x013a:
-        r7.delete();
-    L_0x013d:
-        r11.installing = r1;
-        goto L_0x0039;
-    L_0x0141:
-        r5 = new java.io.FileInputStream;	 Catch:{ FileNotFoundException -> 0x0164, IOException -> 0x016a }
-        r5.<init>(r6);	 Catch:{ FileNotFoundException -> 0x0164, IOException -> 0x016a }
-        r0 = new com.google.gson_nex.Gson;	 Catch:{ all -> 0x015f }
-        r0.<init>();	 Catch:{ all -> 0x015f }
-        r9 = new java.io.InputStreamReader;	 Catch:{ all -> 0x015f }
-        r9.<init>(r5);	 Catch:{ all -> 0x015f }
-        r10 = com.nexstreaming.app.common.nexasset.store.json.AssetStoreAPIData.AssetInfo.class;
-        r0 = r0.fromJson(r9, r10);	 Catch:{ all -> 0x015f }
-        r0 = (com.nexstreaming.app.common.nexasset.store.json.AssetStoreAPIData.AssetInfo) r0;	 Catch:{ all -> 0x015f }
-        r5.close();	 Catch:{ FileNotFoundException -> 0x026c, IOException -> 0x0268 }
-        r3 = r0;
-        r0 = r2;
-        goto L_0x00b5;
-    L_0x015f:
-        r0 = move-exception;
-        r5.close();	 Catch:{ FileNotFoundException -> 0x0164, IOException -> 0x016a }
-        throw r0;	 Catch:{ FileNotFoundException -> 0x0164, IOException -> 0x016a }
-    L_0x0164:
-        r0 = move-exception;
-        r0 = r3;
-    L_0x0166:
-        r3 = r0;
-        r0 = r1;
-        goto L_0x00b5;
-    L_0x016a:
-        r0 = move-exception;
-    L_0x016b:
-        r0 = "AssetLocalInstallDB";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r9 = "installPackageSync(";
-        r5 = r5.append(r9);
-        r5 = r5.append(r12);
-        r9 = "): info json parse fail!";
-        r5 = r5.append(r9);
-        r5 = r5.toString();
-        android.util.Log.d(r0, r5);
-        r0 = r1;
-        goto L_0x00b5;
-    L_0x018c:
-        r5 = r3.idx;
-        if (r5 == r12) goto L_0x00d6;
-    L_0x0190:
-        r0 = "AssetLocalInstallDB";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r9 = "installPackageSync(";
-        r5 = r5.append(r9);
-        r5 = r5.append(r12);
-        r9 = "): invalidation idx=";
-        r5 = r5.append(r9);
-        r9 = r3.idx;
-        r5 = r5.append(r9);
-        r5 = r5.toString();
-        android.util.Log.d(r0, r5);
-        r0 = r1;
-        goto L_0x00d6;
-    L_0x01b7:
-        r5 = com.nexstreaming.app.common.util.p.a(r8);
-        if (r5 != 0) goto L_0x0120;
-    L_0x01bd:
-        r0 = "AssetLocalInstallDB";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r9 = "installPackageSync(";
-        r5 = r5.append(r9);
-        r5 = r5.append(r12);
-        r9 = "): package is not zip!";
-        r5 = r5.append(r9);
-        r5 = r5.toString();
-        android.util.Log.d(r0, r5);
-        r0 = r1;
-        goto L_0x0120;
-    L_0x01de:
-        r2 = "AssetLocalInstallDB";
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = "installPackageSync(";
-        r3 = r3.append(r4);
-        r3 = r3.append(r12);
-        r4 = "): store path not found=";
-        r3 = r3.append(r4);
-        r0 = r3.append(r0);
-        r0 = r0.toString();
-        android.util.Log.d(r2, r0);
-        r11.installing = r1;
-        goto L_0x0039;
-    L_0x0204:
-        r5 = new java.io.File;
-        r0 = localRootPath;
-        r5.<init>(r0, r4);
-        r0 = new java.io.File;	 Catch:{ IOException -> 0x023a }
-        r4 = r11.getThumbnailOutputPath(r4);	 Catch:{ IOException -> 0x023a }
-        r0.<init>(r4);	 Catch:{ IOException -> 0x023a }
-        r4 = r0.getAbsolutePath();	 Catch:{ IOException -> 0x023a }
-        r11.copyFile(r7, r4);	 Catch:{ IOException -> 0x023a }
-        com.nexstreaming.app.common.util.p.a(r8, r5);	 Catch:{ IOException -> 0x023a }
-        r4 = r11.mContext;	 Catch:{ IOException -> 0x023a }
-        r4 = com.nexstreaming.app.common.nexasset.assetpackage.c.a(r4);	 Catch:{ IOException -> 0x023a }
-        r9 = new com.nexstreaming.app.common.nexasset.store.AssetLocalInstallDB$internalStoreAssetInfo;	 Catch:{ IOException -> 0x023a }
-        r9.<init>(r3);	 Catch:{ IOException -> 0x023a }
-        r4.a(r5, r0, r9);	 Catch:{ IOException -> 0x023a }
-        r7.delete();
-        r6.delete();
-        r8.delete();
-        r11.installing = r1;
-        r1 = r2;
-        goto L_0x0039;
-    L_0x023a:
-        r0 = move-exception;
-        r0.printStackTrace();
-        r0 = "AssetLocalInstallDB";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "installPackageSync(";
-        r2 = r2.append(r3);
-        r2 = r2.append(r12);
-        r3 = "): unzip fail=";
-        r2 = r2.append(r3);
-        r3 = r5.getAbsolutePath();
-        r2 = r2.append(r3);
-        r2 = r2.toString();
-        android.util.Log.d(r0, r2);
-        r11.installing = r1;
-        goto L_0x0039;
-    L_0x0268:
-        r3 = move-exception;
-        r3 = r0;
-        goto L_0x016b;
-    L_0x026c:
-        r3 = move-exception;
-        goto L_0x0166;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.nexasset.store.AssetLocalInstallDB.installPackageSync(int):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean installPackageSync(int i) {
+        boolean z;
+        String str = assetStoreRootPath;
+        String str2 = "" + i;
+        if (this.installing) {
+            Log.d(TAG, "installPackageSync(" + i + "): installing retry");
+            return false;
+        }
+        this.installing = true;
+        File file = new File(str);
+        File file2 = new File(str, str2 + ".json");
+        File file3 = new File(str, str2 + ".jpg");
+        File file4 = new File(str, str2 + ".zip");
+        AssetInfo assetInfo = null;
+        if (file.isDirectory()) {
+            if (file2.isFile()) {
+                InputStream fileInputStream;
+                AssetInfo assetInfo2;
+                try {
+                    fileInputStream = new FileInputStream(file2);
+                    assetInfo2 = (AssetInfo) new Gson().fromJson(new InputStreamReader(fileInputStream), AssetInfo.class);
+                    try {
+                        fileInputStream.close();
+                        assetInfo = assetInfo2;
+                        z = true;
+                    } catch (FileNotFoundException e) {
+                        assetInfo = assetInfo2;
+                        z = false;
+                        if (assetInfo == null) {
+                        }
+                        if (!file3.isFile()) {
+                        }
+                        if (file4.isFile()) {
+                        }
+                        if (z) {
+                        }
+                    } catch (IOException e2) {
+                        assetInfo = assetInfo2;
+                        Log.d(TAG, "installPackageSync(" + i + "): info json parse fail!");
+                        z = false;
+                        if (assetInfo == null) {
+                        }
+                        if (file3.isFile()) {
+                        }
+                        if (file4.isFile()) {
+                        }
+                        if (z) {
+                        }
+                    }
+                } catch (FileNotFoundException e3) {
+                    assetInfo2 = null;
+                    assetInfo = assetInfo2;
+                    z = false;
+                    if (assetInfo == null) {
+                    }
+                    if (file3.isFile()) {
+                    }
+                    if (file4.isFile()) {
+                    }
+                    if (z) {
+                    }
+                } catch (IOException e4) {
+                    Log.d(TAG, "installPackageSync(" + i + "): info json parse fail!");
+                    z = false;
+                    if (assetInfo == null) {
+                    }
+                    if (file3.isFile()) {
+                    }
+                    if (file4.isFile()) {
+                    }
+                    if (z) {
+                    }
+                } catch (Throwable th) {
+                    fileInputStream.close();
+                }
+            } else {
+                Log.d(TAG, "installPackageSync(" + i + "): info json not found!");
+                z = false;
+            }
+            if (assetInfo == null) {
+                Log.d(TAG, "installPackageSync(" + i + "): json parsing fail!");
+                z = false;
+            } else if (assetInfo.idx != i) {
+                Log.d(TAG, "installPackageSync(" + i + "): invalidation idx=" + assetInfo.idx);
+                z = false;
+            }
+            if (file3.isFile()) {
+                Log.d(TAG, "installPackageSync(" + i + "): thumbnail not found!");
+                z = false;
+            }
+            if (file4.isFile()) {
+                Log.d(TAG, "installPackageSync(" + i + "): package not found!");
+                z = false;
+            } else if (!p.a(file4)) {
+                Log.d(TAG, "installPackageSync(" + i + "): package is not zip!");
+                z = false;
+            }
+            if (z) {
+                if (file2.isFile()) {
+                    file2.delete();
+                }
+                if (file4.isFile()) {
+                    file4.delete();
+                }
+                if (file3.isFile()) {
+                    file3.delete();
+                }
+                this.installing = false;
+                return false;
+            }
+            file = new File(localRootPath, str2);
+            try {
+                File file5 = new File(getThumbnailOutputPath(str2));
+                copyFile(file3, file5.getAbsolutePath());
+                p.a(file4, file);
+                c.a(this.mContext).a(file, file5, new internalStoreAssetInfo(assetInfo));
+                file3.delete();
+                file2.delete();
+                file4.delete();
+                this.installing = false;
+                return true;
+            } catch (IOException e5) {
+                e5.printStackTrace();
+                Log.d(TAG, "installPackageSync(" + i + "): unzip fail=" + file.getAbsolutePath());
+                this.installing = false;
+                return false;
+            }
+        }
+        Log.d(TAG, "installPackageSync(" + i + "): store path not found=" + str);
+        this.installing = false;
+        return false;
     }
 
     private void installPackage(String str, String str2, File file, Task task, boolean z, String str3) throws IOException {
@@ -1636,120 +1452,107 @@ public class AssetLocalInstallDB {
     /* JADX WARNING: Removed duplicated region for block: B:30:0x0072 A:{SYNTHETIC, Splitter: B:30:0x0072} */
     /* JADX WARNING: Removed duplicated region for block: B:37:0x007e A:{SYNTHETIC, Splitter: B:37:0x007e} */
     /* JADX WARNING: Removed duplicated region for block: B:42:0x0087 A:{SYNTHETIC, Splitter: B:42:0x0087} */
-    private boolean copyThumbnail(java.lang.String r9, java.lang.String r10) {
-        /*
-        r8 = this;
-        r1 = 1;
-        r0 = 0;
-        r4 = new java.io.File;
-        r4.<init>(r9);
-        r5 = new java.io.File;
-        r5.<init>(r10);
-        r2 = r5.isFile();
-        if (r2 == 0) goto L_0x0015;
-    L_0x0012:
-        r5.delete();
-    L_0x0015:
-        r2 = r4.isFile();
-        if (r2 == 0) goto L_0x0050;
-    L_0x001b:
-        r3 = new android.graphics.BitmapFactory$Options;
-        r3.<init>();
-        r3.inJustDecodeBounds = r1;
-        r2 = r4.getAbsolutePath();
-        android.graphics.BitmapFactory.decodeFile(r2, r3);
-        r3.inJustDecodeBounds = r0;
-        r2 = r1;
-    L_0x002c:
-        r6 = 8;
-        if (r2 >= r6) goto L_0x0041;
-    L_0x0030:
-        r6 = r3.outWidth;
-        r6 = r6 / r2;
-        r7 = 320; // 0x140 float:4.48E-43 double:1.58E-321;
-        if (r6 <= r7) goto L_0x0041;
-    L_0x0037:
-        r6 = r3.outHeight;
-        r6 = r6 / r2;
-        r7 = 180; // 0xb4 float:2.52E-43 double:8.9E-322;
-        if (r6 <= r7) goto L_0x0041;
-    L_0x003e:
-        r2 = r2 * 2;
-        goto L_0x002c;
-    L_0x0041:
-        r3.inSampleSize = r2;
-        r2 = r4.getAbsolutePath();
-        r6 = android.graphics.BitmapFactory.decodeFile(r2, r3);
-        if (r6 != 0) goto L_0x0051;
-    L_0x004d:
-        r4.delete();
-    L_0x0050:
-        return r0;
-    L_0x0051:
-        r3 = 0;
-        r5.createNewFile();	 Catch:{ FileNotFoundException -> 0x006b, IOException -> 0x0078 }
-        r2 = new java.io.FileOutputStream;	 Catch:{ FileNotFoundException -> 0x006b, IOException -> 0x0078 }
-        r2.<init>(r5);	 Catch:{ FileNotFoundException -> 0x006b, IOException -> 0x0078 }
-        r0 = android.graphics.Bitmap.CompressFormat.PNG;	 Catch:{ FileNotFoundException -> 0x0095, IOException -> 0x0092 }
-        r3 = 100;
-        r6.compress(r0, r3, r2);	 Catch:{ FileNotFoundException -> 0x0095, IOException -> 0x0092 }
-        if (r2 == 0) goto L_0x0066;
-    L_0x0063:
-        r2.close();	 Catch:{ IOException -> 0x008b }
-    L_0x0066:
-        r4.delete();
-        r0 = r1;
-        goto L_0x0050;
-    L_0x006b:
-        r0 = move-exception;
-        r2 = r3;
-    L_0x006d:
-        r0.printStackTrace();	 Catch:{ all -> 0x008f }
-        if (r2 == 0) goto L_0x0066;
-    L_0x0072:
-        r2.close();	 Catch:{ IOException -> 0x0076 }
-        goto L_0x0066;
-    L_0x0076:
-        r0 = move-exception;
-        goto L_0x0066;
-    L_0x0078:
-        r0 = move-exception;
-    L_0x0079:
-        r0.printStackTrace();	 Catch:{ all -> 0x0084 }
-        if (r3 == 0) goto L_0x0066;
-    L_0x007e:
-        r3.close();	 Catch:{ IOException -> 0x0082 }
-        goto L_0x0066;
-    L_0x0082:
-        r0 = move-exception;
-        goto L_0x0066;
-    L_0x0084:
-        r0 = move-exception;
-    L_0x0085:
-        if (r3 == 0) goto L_0x008a;
-    L_0x0087:
-        r3.close();	 Catch:{ IOException -> 0x008d }
-    L_0x008a:
-        throw r0;
-    L_0x008b:
-        r0 = move-exception;
-        goto L_0x0066;
-    L_0x008d:
-        r1 = move-exception;
-        goto L_0x008a;
-    L_0x008f:
-        r0 = move-exception;
-        r3 = r2;
-        goto L_0x0085;
-    L_0x0092:
-        r0 = move-exception;
-        r3 = r2;
-        goto L_0x0079;
-    L_0x0095:
-        r0 = move-exception;
-        goto L_0x006d;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.nexasset.store.AssetLocalInstallDB.copyThumbnail(java.lang.String, java.lang.String):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private boolean copyThumbnail(String str, String str2) {
+        FileNotFoundException e;
+        Throwable th;
+        IOException e2;
+        File file = new File(str);
+        File file2 = new File(str2);
+        if (file2.isFile()) {
+            file2.delete();
+        }
+        if (!file.isFile()) {
+            return false;
+        }
+        Options options = new Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+        options.inJustDecodeBounds = false;
+        int i = 1;
+        while (i < 8 && options.outWidth / i > 320 && options.outHeight / i > nexClip.kClip_Rotate_180) {
+            i *= 2;
+        }
+        options.inSampleSize = i;
+        Bitmap decodeFile = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+        if (decodeFile == null) {
+            file.delete();
+            return false;
+        }
+        FileOutputStream fileOutputStream = null;
+        FileOutputStream fileOutputStream2;
+        try {
+            file2.createNewFile();
+            fileOutputStream2 = new FileOutputStream(file2);
+            try {
+                decodeFile.compress(CompressFormat.PNG, 100, fileOutputStream2);
+                if (fileOutputStream2 != null) {
+                    try {
+                        fileOutputStream2.close();
+                    } catch (IOException e3) {
+                    }
+                }
+            } catch (FileNotFoundException e4) {
+                e = e4;
+                try {
+                    e.printStackTrace();
+                    if (fileOutputStream2 != null) {
+                    }
+                    file.delete();
+                    return true;
+                } catch (Throwable th2) {
+                    th = th2;
+                    fileOutputStream = fileOutputStream2;
+                    if (fileOutputStream != null) {
+                    }
+                    throw th;
+                }
+            } catch (IOException e5) {
+                e2 = e5;
+                fileOutputStream = fileOutputStream2;
+                try {
+                    e2.printStackTrace();
+                    if (fileOutputStream != null) {
+                    }
+                    file.delete();
+                    return true;
+                } catch (Throwable th3) {
+                    th = th3;
+                    if (fileOutputStream != null) {
+                        try {
+                            fileOutputStream.close();
+                        } catch (IOException e6) {
+                        }
+                    }
+                    throw th;
+                }
+            }
+        } catch (FileNotFoundException e7) {
+            e = e7;
+            fileOutputStream2 = null;
+            e.printStackTrace();
+            if (fileOutputStream2 != null) {
+                try {
+                    fileOutputStream2.close();
+                } catch (IOException e8) {
+                }
+            }
+            file.delete();
+            return true;
+        } catch (IOException e9) {
+            e2 = e9;
+            e2.printStackTrace();
+            if (fileOutputStream != null) {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e10) {
+                }
+            }
+            file.delete();
+            return true;
+        }
+        file.delete();
+        return true;
     }
 
     public static boolean isUpdatedFeaturedList(int i, String str) {
@@ -1804,126 +1607,87 @@ public class AssetLocalInstallDB {
     /* JADX WARNING: Removed duplicated region for block: B:46:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:27:0x00be A:{SYNTHETIC, Splitter: B:27:0x00be} */
     /* JADX WARNING: Removed duplicated region for block: B:32:0x00c7 A:{SYNTHETIC, Splitter: B:32:0x00c7} */
-    public static void saveFeaturedThumbnail(int r6, android.graphics.Bitmap r7) {
-        /*
-        r0 = new java.io.File;
-        r1 = localFeaturedPath;
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "";
-        r2 = r2.append(r3);
-        r2 = r2.append(r6);
-        r2 = r2.toString();
-        r0.<init>(r1, r2);
-        r2 = 0;
-        r1 = r0.isFile();
-        if (r1 == 0) goto L_0x0069;
-    L_0x0021:
-        r1 = new android.graphics.BitmapFactory$Options;
-        r1.<init>();
-        r3 = 1;
-        r1.inJustDecodeBounds = r3;
-        r3 = r0.getAbsolutePath();
-        android.graphics.BitmapFactory.decodeFile(r3, r1);
-        r3 = r1.outWidth;
-        r4 = r7.getWidth();
-        if (r3 == r4) goto L_0x007e;
-    L_0x0038:
-        r1 = r1.outHeight;
-        r3 = r7.getHeight();
-        if (r1 == r3) goto L_0x007e;
-    L_0x0040:
-        r1 = "AssetLocalInstallDB";
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = "saveFeaturedThumbnail assetIdx=";
-        r3 = r3.append(r4);
-        r3 = r3.append(r6);
-        r4 = ", is not bmp . size=";
-        r3 = r3.append(r4);
-        r4 = r0.length();
-        r3 = r3.append(r4);
-        r3 = r3.toString();
-        android.util.Log.d(r1, r3);
-        r0.delete();
-    L_0x0069:
-        r0.createNewFile();	 Catch:{ FileNotFoundException -> 0x00ab, IOException -> 0x00b8 }
-        r1 = new java.io.FileOutputStream;	 Catch:{ FileNotFoundException -> 0x00ab, IOException -> 0x00b8 }
-        r1.<init>(r0);	 Catch:{ FileNotFoundException -> 0x00ab, IOException -> 0x00b8 }
-        r0 = android.graphics.Bitmap.CompressFormat.PNG;	 Catch:{ FileNotFoundException -> 0x00d5, IOException -> 0x00d2 }
-        r2 = 100;
-        r7.compress(r0, r2, r1);	 Catch:{ FileNotFoundException -> 0x00d5, IOException -> 0x00d2 }
-        if (r1 == 0) goto L_0x007d;
-    L_0x007a:
-        r1.close();	 Catch:{ IOException -> 0x00cb }
-    L_0x007d:
-        return;
-    L_0x007e:
-        r2 = java.lang.System.currentTimeMillis();
-        r0 = r0.lastModified();
-        r0 = r2 - r0;
-        r2 = "AssetLocalInstallDB";
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = "saveFeaturedThumbnail assetIdx=";
-        r3 = r3.append(r4);
-        r3 = r3.append(r6);
-        r4 = ", exists. lastModified=";
-        r3 = r3.append(r4);
-        r0 = r3.append(r0);
-        r0 = r0.toString();
-        android.util.Log.d(r2, r0);
-        goto L_0x007d;
-    L_0x00ab:
-        r0 = move-exception;
-        r1 = r2;
-    L_0x00ad:
-        r0.printStackTrace();	 Catch:{ all -> 0x00cf }
-        if (r1 == 0) goto L_0x007d;
-    L_0x00b2:
-        r1.close();	 Catch:{ IOException -> 0x00b6 }
-        goto L_0x007d;
-    L_0x00b6:
-        r0 = move-exception;
-        goto L_0x007d;
-    L_0x00b8:
-        r0 = move-exception;
-    L_0x00b9:
-        r0.printStackTrace();	 Catch:{ all -> 0x00c4 }
-        if (r2 == 0) goto L_0x007d;
-    L_0x00be:
-        r2.close();	 Catch:{ IOException -> 0x00c2 }
-        goto L_0x007d;
-    L_0x00c2:
-        r0 = move-exception;
-        goto L_0x007d;
-    L_0x00c4:
-        r0 = move-exception;
-    L_0x00c5:
-        if (r2 == 0) goto L_0x00ca;
-    L_0x00c7:
-        r2.close();	 Catch:{ IOException -> 0x00cd }
-    L_0x00ca:
-        throw r0;
-    L_0x00cb:
-        r0 = move-exception;
-        goto L_0x007d;
-    L_0x00cd:
-        r1 = move-exception;
-        goto L_0x00ca;
-    L_0x00cf:
-        r0 = move-exception;
-        r2 = r1;
-        goto L_0x00c5;
-    L_0x00d2:
-        r0 = move-exception;
-        r2 = r1;
-        goto L_0x00b9;
-    L_0x00d5:
-        r0 = move-exception;
-        goto L_0x00ad;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.nexasset.store.AssetLocalInstallDB.saveFeaturedThumbnail(int, android.graphics.Bitmap):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void saveFeaturedThumbnail(int i, Bitmap bitmap) {
+        FileNotFoundException e;
+        Throwable th;
+        IOException e2;
+        File file = new File(localFeaturedPath, "" + i);
+        FileOutputStream fileOutputStream = null;
+        if (file.isFile()) {
+            Options options = new Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+            if (options.outWidth == bitmap.getWidth() || options.outHeight == bitmap.getHeight()) {
+                Log.d(TAG, "saveFeaturedThumbnail assetIdx=" + i + ", exists. lastModified=" + (System.currentTimeMillis() - file.lastModified()));
+                return;
+            }
+            Log.d(TAG, "saveFeaturedThumbnail assetIdx=" + i + ", is not bmp . size=" + file.length());
+            file.delete();
+        }
+        FileOutputStream fileOutputStream2;
+        try {
+            file.createNewFile();
+            fileOutputStream2 = new FileOutputStream(file);
+            try {
+                bitmap.compress(CompressFormat.PNG, 100, fileOutputStream2);
+                if (fileOutputStream2 != null) {
+                    try {
+                        fileOutputStream2.close();
+                    } catch (IOException e3) {
+                    }
+                }
+            } catch (FileNotFoundException e4) {
+                e = e4;
+                try {
+                    e.printStackTrace();
+                    if (fileOutputStream2 == null) {
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    fileOutputStream = fileOutputStream2;
+                    if (fileOutputStream != null) {
+                    }
+                    throw th;
+                }
+            } catch (IOException e5) {
+                e2 = e5;
+                fileOutputStream = fileOutputStream2;
+                try {
+                    e2.printStackTrace();
+                    if (fileOutputStream == null) {
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    if (fileOutputStream != null) {
+                        try {
+                            fileOutputStream.close();
+                        } catch (IOException e6) {
+                        }
+                    }
+                    throw th;
+                }
+            }
+        } catch (FileNotFoundException e7) {
+            e = e7;
+            fileOutputStream2 = null;
+            e.printStackTrace();
+            if (fileOutputStream2 == null) {
+                try {
+                    fileOutputStream2.close();
+                } catch (IOException e8) {
+                }
+            }
+        } catch (IOException e9) {
+            e2 = e9;
+            e2.printStackTrace();
+            if (fileOutputStream == null) {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e10) {
+                }
+            }
+        }
     }
 
     private void moveFeaturedList(String str) {

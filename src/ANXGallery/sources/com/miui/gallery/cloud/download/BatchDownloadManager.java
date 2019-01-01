@@ -462,127 +462,49 @@ public final class BatchDownloadManager implements Callback {
     /* JADX WARNING: Missing block: B:18:?, code:
             return;
      */
-    private void onItemDownloadSuccess(android.net.Uri r5, com.miui.gallery.sdk.download.DownloadType r6) {
-        /*
-        r4 = this;
-        r1 = r4.mCollectionLock;
-        monitor-enter(r1);
-        r0 = r4.isValidItem(r5, r6);	 Catch:{ all -> 0x002e }
-        if (r0 != 0) goto L_0x000b;
-    L_0x0009:
-        monitor-exit(r1);	 Catch:{ all -> 0x002e }
-    L_0x000a:
-        return;
-    L_0x000b:
-        r0 = r4.mSuccessItems;	 Catch:{ all -> 0x002e }
-        r2 = new com.miui.gallery.cloud.download.BatchDownloadManager$BatchItem;	 Catch:{ all -> 0x002e }
-        r2.<init>(r5, r6);	 Catch:{ all -> 0x002e }
-        r0.add(r2);	 Catch:{ all -> 0x002e }
-        r0 = r4.getAutoDownloadType();	 Catch:{ all -> 0x002e }
-        r0 = r4.isDownloadEnd(r0);	 Catch:{ all -> 0x002e }
-        if (r0 == 0) goto L_0x0031;
-    L_0x001f:
-        r0 = r4.mStatus;	 Catch:{ all -> 0x002e }
-        r2 = 1;
-        r3 = 4;
-        r0 = r0.compareAndSet(r2, r3);	 Catch:{ all -> 0x002e }
-        if (r0 == 0) goto L_0x002c;
-    L_0x0029:
-        r4.callbackBatchEnd();	 Catch:{ all -> 0x002e }
-    L_0x002c:
-        monitor-exit(r1);	 Catch:{ all -> 0x002e }
-        goto L_0x000a;
-    L_0x002e:
-        r0 = move-exception;
-        monitor-exit(r1);	 Catch:{ all -> 0x002e }
-        throw r0;
-    L_0x0031:
-        r4.callbackBatchProgress();	 Catch:{ all -> 0x002e }
-        goto L_0x002c;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloud.download.BatchDownloadManager.onItemDownloadSuccess(android.net.Uri, com.miui.gallery.sdk.download.DownloadType):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void onItemDownloadSuccess(Uri uri, DownloadType type) {
+        synchronized (this.mCollectionLock) {
+            if (isValidItem(uri, type)) {
+                this.mSuccessItems.add(new BatchItem(uri, type));
+                if (!isDownloadEnd(getAutoDownloadType())) {
+                    callbackBatchProgress();
+                } else if (this.mStatus.compareAndSet(1, 4)) {
+                    callbackBatchEnd();
+                }
+            }
+        }
     }
 
     /* JADX WARNING: Missing block: B:16:?, code:
             return;
      */
-    private void onItemDownloadFail(android.net.Uri r5, com.miui.gallery.sdk.download.DownloadType r6, com.miui.gallery.sdk.download.assist.DownloadFailReason r7) {
-        /*
-        r4 = this;
-        r1 = r4.mCollectionLock;
-        monitor-enter(r1);
-        r0 = r4.isValidItem(r5, r6);	 Catch:{ all -> 0x0031 }
-        if (r0 != 0) goto L_0x000b;
-    L_0x0009:
-        monitor-exit(r1);	 Catch:{ all -> 0x0031 }
-    L_0x000a:
-        return;
-    L_0x000b:
-        r4.updateFailReason(r7);	 Catch:{ all -> 0x0031 }
-        r0 = r4.mFailItems;	 Catch:{ all -> 0x0031 }
-        r2 = new com.miui.gallery.cloud.download.BatchDownloadManager$BatchItem;	 Catch:{ all -> 0x0031 }
-        r2.<init>(r5, r6);	 Catch:{ all -> 0x0031 }
-        r0.add(r2);	 Catch:{ all -> 0x0031 }
-        r0 = r4.getAutoDownloadType();	 Catch:{ all -> 0x0031 }
-        r0 = r4.isDownloadEnd(r0);	 Catch:{ all -> 0x0031 }
-        if (r0 == 0) goto L_0x002f;
-    L_0x0022:
-        r0 = r4.mStatus;	 Catch:{ all -> 0x0031 }
-        r2 = 1;
-        r3 = 4;
-        r0 = r0.compareAndSet(r2, r3);	 Catch:{ all -> 0x0031 }
-        if (r0 == 0) goto L_0x002f;
-    L_0x002c:
-        r4.callbackBatchEnd();	 Catch:{ all -> 0x0031 }
-    L_0x002f:
-        monitor-exit(r1);	 Catch:{ all -> 0x0031 }
-        goto L_0x000a;
-    L_0x0031:
-        r0 = move-exception;
-        monitor-exit(r1);	 Catch:{ all -> 0x0031 }
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloud.download.BatchDownloadManager.onItemDownloadFail(android.net.Uri, com.miui.gallery.sdk.download.DownloadType, com.miui.gallery.sdk.download.assist.DownloadFailReason):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void onItemDownloadFail(Uri uri, DownloadType type, DownloadFailReason reason) {
+        synchronized (this.mCollectionLock) {
+            if (isValidItem(uri, type)) {
+                updateFailReason(reason);
+                this.mFailItems.add(new BatchItem(uri, type));
+                if (isDownloadEnd(getAutoDownloadType()) && this.mStatus.compareAndSet(1, 4)) {
+                    callbackBatchEnd();
+                }
+            }
+        }
     }
 
     /* JADX WARNING: Missing block: B:16:?, code:
             return;
      */
-    private void onItemDownloadCancel(android.net.Uri r5, com.miui.gallery.sdk.download.DownloadType r6) {
-        /*
-        r4 = this;
-        r1 = r4.mCollectionLock;
-        monitor-enter(r1);
-        r0 = r4.isValidItem(r5, r6);	 Catch:{ all -> 0x002a }
-        if (r0 != 0) goto L_0x000b;
-    L_0x0009:
-        monitor-exit(r1);	 Catch:{ all -> 0x002a }
-    L_0x000a:
-        return;
-    L_0x000b:
-        r0 = r4.mFailItems;	 Catch:{ all -> 0x002a }
-        r2 = new com.miui.gallery.cloud.download.BatchDownloadManager$BatchItem;	 Catch:{ all -> 0x002a }
-        r2.<init>(r5, r6);	 Catch:{ all -> 0x002a }
-        r0.add(r2);	 Catch:{ all -> 0x002a }
-        r0 = r4.isDownloadEnd(r6);	 Catch:{ all -> 0x002a }
-        if (r0 == 0) goto L_0x0028;
-    L_0x001b:
-        r0 = r4.mStatus;	 Catch:{ all -> 0x002a }
-        r2 = 1;
-        r3 = 4;
-        r0 = r0.compareAndSet(r2, r3);	 Catch:{ all -> 0x002a }
-        if (r0 == 0) goto L_0x0028;
-    L_0x0025:
-        r4.callbackBatchEnd();	 Catch:{ all -> 0x002a }
-    L_0x0028:
-        monitor-exit(r1);	 Catch:{ all -> 0x002a }
-        goto L_0x000a;
-    L_0x002a:
-        r0 = move-exception;
-        monitor-exit(r1);	 Catch:{ all -> 0x002a }
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloud.download.BatchDownloadManager.onItemDownloadCancel(android.net.Uri, com.miui.gallery.sdk.download.DownloadType):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void onItemDownloadCancel(Uri uri, DownloadType type) {
+        synchronized (this.mCollectionLock) {
+            if (isValidItem(uri, type)) {
+                this.mFailItems.add(new BatchItem(uri, type));
+                if (isDownloadEnd(type) && this.mStatus.compareAndSet(1, 4)) {
+                    callbackBatchEnd();
+                }
+            }
+        }
     }
 
     private void updateFailReason(DownloadFailReason reason) {

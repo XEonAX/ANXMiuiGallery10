@@ -1,6 +1,7 @@
 package com.miui.gallery.provider.deprecated;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.text.TextUtils;
 import com.miui.gallery.cloud.peopleface.FaceDataManager;
 import com.miui.gallery.provider.FaceManager;
@@ -33,55 +34,28 @@ public class PeopleRecommendMediaSet {
     /* JADX WARNING: Missing block: B:19:?, code:
             return;
      */
-    private void queryTableOfPeopleRecommendInfo(java.lang.String r6) {
-        /*
-        r5 = this;
-        r0 = 0;
-        r1 = 1;
-        r1 = new java.lang.String[r1];	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-        r2 = 0;
-        r3 = " * ";
-        r1[r2] = r3;	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-        r2 = "peopleServerId = ? ";
-        r3 = 1;
-        r3 = new java.lang.String[r3];	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-        r4 = 0;
-        r3[r4] = r6;	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-        r4 = 0;
-        r0 = com.miui.gallery.cloud.peopleface.FaceDataManager.queryPeopleRecommondTableToCursor(r1, r2, r3, r4);	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-        if (r0 == 0) goto L_0x0031;
-    L_0x0018:
-        r1 = r0.getCount();	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-        if (r1 <= 0) goto L_0x0031;
-    L_0x001e:
-        r0.moveToNext();	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-        r1 = 2;
-        r1 = r0.getString(r1);	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-        r5.fillMapGroupIdOfFace(r1);	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-        r1 = 3;
-        r1 = r0.getString(r1);	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-        r5.fillMapPeopleRecommondHistory(r1);	 Catch:{ Exception -> 0x0037, all -> 0x003e }
-    L_0x0031:
-        if (r0 == 0) goto L_0x0036;
-    L_0x0033:
-        r0.close();
-    L_0x0036:
-        return;
-    L_0x0037:
-        r1 = move-exception;
-        if (r0 == 0) goto L_0x0036;
-    L_0x003a:
-        r0.close();
-        goto L_0x0036;
-    L_0x003e:
-        r1 = move-exception;
-        if (r0 == 0) goto L_0x0044;
-    L_0x0041:
-        r0.close();
-    L_0x0044:
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.provider.deprecated.PeopleRecommendMediaSet.queryTableOfPeopleRecommendInfo(java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void queryTableOfPeopleRecommendInfo(String serverId) {
+        Cursor cursor = null;
+        try {
+            cursor = FaceDataManager.queryPeopleRecommondTableToCursor(new String[]{" * "}, "peopleServerId = ? ", new String[]{serverId}, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToNext();
+                fillMapGroupIdOfFace(cursor.getString(2));
+                fillMapPeopleRecommondHistory(cursor.getString(3));
+            }
+            if (cursor != null) {
+                cursor.close();
+            }
+        } catch (Exception e) {
+            if (cursor != null) {
+                cursor.close();
+            }
+        } catch (Throwable th) {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 
     private void fillMapPeopleRecommondHistory(String historyJsonStr) {

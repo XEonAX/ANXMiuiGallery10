@@ -7,11 +7,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.Build;
+import com.miui.gallery.util.GallerySamplingStatHelper;
 import com.miui.gallery.util.Log;
 import com.miui.gallery3d.exif.ExifInterface;
 import com.nexstreaming.nexeditorsdk.nexClip;
+import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.HashMap;
 
 public final class Bitmaps {
     public static Bitmap decodeUri(Context context, Uri uri, Options opt) throws FileNotFoundException {
@@ -106,57 +110,36 @@ public final class Bitmaps {
     }
 
     /* JADX WARNING: Failed to extract finally block: empty outs */
-    public static android.graphics.Bitmap copyBitmap(android.graphics.Bitmap r6) {
-        /*
-        if (r6 != 0) goto L_0x0004;
-    L_0x0002:
-        r0 = 0;
-    L_0x0003:
-        return r0;
-    L_0x0004:
-        r0 = 0;
-        r3 = android.graphics.Bitmap.Config.ARGB_8888;	 Catch:{ OutOfMemoryError -> 0x0012 }
-        r4 = 1;
-        r0 = r6.copy(r3, r4);	 Catch:{ OutOfMemoryError -> 0x0012 }
-        if (r6 == 0) goto L_0x0003;
-    L_0x000e:
-        r6.recycle();
-        goto L_0x0003;
-    L_0x0012:
-        r1 = move-exception;
-        r3 = "Graphics";
-        r4 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0050 }
-        r4.<init>();	 Catch:{ all -> 0x0050 }
-        r5 = "ensureBitmapSize error:";
-        r4 = r4.append(r5);	 Catch:{ all -> 0x0050 }
-        r5 = r1.toString();	 Catch:{ all -> 0x0050 }
-        r4 = r4.append(r5);	 Catch:{ all -> 0x0050 }
-        r4 = r4.toString();	 Catch:{ all -> 0x0050 }
-        com.miui.gallery.util.Log.e(r3, r4);	 Catch:{ all -> 0x0050 }
-        r2 = new java.util.HashMap;	 Catch:{ all -> 0x0050 }
-        r2.<init>();	 Catch:{ all -> 0x0050 }
-        r3 = "type";
-        r4 = "copy";
-        r2.put(r3, r4);	 Catch:{ all -> 0x0050 }
-        r3 = "model";
-        r4 = android.os.Build.MODEL;	 Catch:{ all -> 0x0050 }
-        r2.put(r3, r4);	 Catch:{ all -> 0x0050 }
-        r3 = "photo_editor";
-        r4 = "memory_error";
-        com.miui.gallery.util.GallerySamplingStatHelper.recordCountEvent(r3, r4, r2);	 Catch:{ all -> 0x0050 }
-        if (r6 == 0) goto L_0x0003;
-    L_0x004c:
-        r6.recycle();
-        goto L_0x0003;
-    L_0x0050:
-        r3 = move-exception;
-        if (r6 == 0) goto L_0x0056;
-    L_0x0053:
-        r6.recycle();
-    L_0x0056:
-        throw r3;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.editor.photo.utils.Bitmaps.copyBitmap(android.graphics.Bitmap):android.graphics.Bitmap");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Bitmap copyBitmap(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        }
+        Bitmap copyBitmap = null;
+        try {
+            copyBitmap = bitmap.copy(Config.ARGB_8888, true);
+            if (bitmap == null) {
+                return copyBitmap;
+            }
+            bitmap.recycle();
+            return copyBitmap;
+        } catch (OutOfMemoryError error) {
+            Log.e("Graphics", "ensureBitmapSize error:" + error.toString());
+            HashMap<String, String> params = new HashMap();
+            params.put(nexExportFormat.TAG_FORMAT_TYPE, "copy");
+            params.put("model", Build.MODEL);
+            GallerySamplingStatHelper.recordCountEvent("photo_editor", "memory_error", params);
+            if (bitmap == null) {
+                return copyBitmap;
+            }
+            bitmap.recycle();
+            return copyBitmap;
+        } catch (Throwable th) {
+            if (bitmap != null) {
+                bitmap.recycle();
+            }
+            throw th;
+        }
     }
 
     public static Bitmap copyBitmapInCaseOfRecycle(Bitmap bitmap) {

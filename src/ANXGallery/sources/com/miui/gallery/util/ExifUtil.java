@@ -1,5 +1,6 @@
 package com.miui.gallery.util;
 
+import android.graphics.RectF;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.text.TextUtils;
@@ -269,104 +270,50 @@ public class ExifUtil {
             r5 = r11.height();
             r0 = r11.width();
      */
-    public static android.graphics.RectF adjustRectOrientation(int r9, int r10, android.graphics.RectF r11, int r12, boolean r13) {
-        /*
-        r2 = r11.left;
-        r4 = r11.top;
-        r5 = r11.width();
-        r0 = r11.height();
-        r3 = r9;
-        if (r13 != 0) goto L_0x0012;
-    L_0x000f:
-        switch(r12) {
-            case 5: goto L_0x002b;
-            case 6: goto L_0x0028;
-            case 7: goto L_0x0026;
-            case 8: goto L_0x002d;
-            default: goto L_0x0012;
-        };
-    L_0x0012:
-        r1 = 0;
-        switch(r12) {
-            case 1: goto L_0x0016;
-            case 2: goto L_0x002f;
-            case 3: goto L_0x0049;
-            case 4: goto L_0x0048;
-            case 5: goto L_0x005e;
-            case 6: goto L_0x0032;
-            case 7: goto L_0x0031;
-            case 8: goto L_0x005f;
-            default: goto L_0x0016;
-        };
-    L_0x0016:
-        if (r1 == 0) goto L_0x001c;
-    L_0x0018:
-        r6 = (float) r3;
-        r6 = r6 - r2;
-        r2 = r6 - r5;
-    L_0x001c:
-        r6 = new android.graphics.RectF;
-        r7 = r2 + r5;
-        r8 = r4 + r0;
-        r6.<init>(r2, r4, r7, r8);
-        return r6;
-    L_0x0026:
-        r12 = 5;
-        goto L_0x0012;
-    L_0x0028:
-        r12 = 8;
-        goto L_0x0012;
-    L_0x002b:
-        r12 = 7;
-        goto L_0x0012;
-    L_0x002d:
-        r12 = 6;
-        goto L_0x0012;
-    L_0x002f:
-        r1 = 1;
-        goto L_0x0016;
-    L_0x0031:
-        r1 = 1;
-    L_0x0032:
-        r3 = r10;
-        r6 = (float) r10;
-        r7 = r11.top;
-        r6 = r6 - r7;
-        r7 = r11.height();
-        r2 = r6 - r7;
-        r4 = r11.left;
-        r5 = r11.height();
-        r0 = r11.width();
-        goto L_0x0016;
-    L_0x0048:
-        r1 = 1;
-    L_0x0049:
-        r6 = (float) r9;
-        r7 = r11.left;
-        r6 = r6 - r7;
-        r7 = r11.width();
-        r2 = r6 - r7;
-        r6 = (float) r10;
-        r7 = r11.top;
-        r6 = r6 - r7;
-        r7 = r11.height();
-        r4 = r6 - r7;
-        goto L_0x0016;
-    L_0x005e:
-        r1 = 1;
-    L_0x005f:
-        r3 = r10;
-        r2 = r11.top;
-        r6 = (float) r9;
-        r7 = r11.left;
-        r6 = r6 - r7;
-        r7 = r11.width();
-        r4 = r6 - r7;
-        r5 = r11.height();
-        r0 = r11.width();
-        goto L_0x0016;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.util.ExifUtil.adjustRectOrientation(int, int, android.graphics.RectF, int, boolean):android.graphics.RectF");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static RectF adjustRectOrientation(int imageWidth, int imageHeight, RectF rect, int orientation, boolean revert) {
+        float left = rect.left;
+        float top = rect.top;
+        float width = rect.width();
+        float height = rect.height();
+        int targetImageWidth = imageWidth;
+        if (!revert) {
+            switch (orientation) {
+                case 5:
+                    orientation = 7;
+                    break;
+                case 6:
+                    orientation = 8;
+                    break;
+                case 7:
+                    orientation = 5;
+                    break;
+                case 8:
+                    orientation = 6;
+                    break;
+            }
+        }
+        boolean isFlip = false;
+        switch (orientation) {
+            case 2:
+                isFlip = true;
+                break;
+            case 3:
+                break;
+            case 4:
+                isFlip = true;
+                break;
+            case 5:
+                isFlip = true;
+                break;
+            case 6:
+                break;
+            case 7:
+                isFlip = true;
+                break;
+            case 8:
+                break;
+        }
     }
 
     public static ExifInfo parseRotationInfo(String path, byte[] secretKey) {
@@ -432,47 +379,32 @@ public class ExifUtil {
     /* JADX WARNING: Missing block: B:11:0x0017, code:
             r1 = com.nexstreaming.nexeditorsdk.nexClip.kClip_Rotate_270;
      */
-    public static com.miui.gallery.util.ExifUtil.ExifInfo parseRotationInfo(int r3) {
-        /*
-        r0 = 0;
-        r1 = 0;
-        switch(r3) {
-            case 1: goto L_0x000c;
-            case 2: goto L_0x000b;
-            case 3: goto L_0x0013;
-            case 4: goto L_0x0012;
-            case 5: goto L_0x0016;
-            case 6: goto L_0x000f;
-            case 7: goto L_0x000e;
-            case 8: goto L_0x0017;
-            default: goto L_0x0005;
-        };
-    L_0x0005:
-        r2 = new com.miui.gallery.util.ExifUtil$ExifInfo;
-        r2.<init>(r3, r1, r0);
-        return r2;
-    L_0x000b:
-        r0 = 1;
-    L_0x000c:
-        r1 = 0;
-        goto L_0x0005;
-    L_0x000e:
-        r0 = 1;
-    L_0x000f:
-        r1 = 90;
-        goto L_0x0005;
-    L_0x0012:
-        r0 = 1;
-    L_0x0013:
-        r1 = 180; // 0xb4 float:2.52E-43 double:8.9E-322;
-        goto L_0x0005;
-    L_0x0016:
-        r0 = 1;
-    L_0x0017:
-        r1 = 270; // 0x10e float:3.78E-43 double:1.334E-321;
-        goto L_0x0005;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.util.ExifUtil.parseRotationInfo(int):com.miui.gallery.util.ExifUtil$ExifInfo");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static ExifInfo parseRotationInfo(int orientation) {
+        boolean isFlip = false;
+        int rotation = 0;
+        switch (orientation) {
+            case 1:
+                break;
+            case 2:
+                isFlip = true;
+                break;
+            case 3:
+                break;
+            case 4:
+                isFlip = true;
+                break;
+            case 5:
+                isFlip = true;
+                break;
+            case 6:
+                break;
+            case 7:
+                isFlip = true;
+                break;
+            case 8:
+                break;
+        }
     }
 
     public static boolean isWidthHeightRotated(int orientation) {

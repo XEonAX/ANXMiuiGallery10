@@ -673,345 +673,110 @@ public class ViewPager extends ViewGroup implements ISlipAnimView {
     /* JADX WARNING: Removed duplicated region for block: B:56:0x01e3  */
     /* JADX WARNING: Removed duplicated region for block: B:96:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:72:0x0234  */
-    void populate(int r21) {
-        /*
-        r20 = this;
-        r15 = 0;
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r17 = r0;
-        r0 = r17;
-        r1 = r21;
-        if (r0 == r1) goto L_0x0024;
-    L_0x000d:
-        r20.calculatePageLimits(r21);
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r17 = r0;
-        r0 = r20;
-        r1 = r17;
-        r15 = r0.infoForPosition(r1);
-        r0 = r21;
-        r1 = r20;
-        r1.mCurItem = r0;
-    L_0x0024:
-        r0 = r20;
-        r0 = r0.mAdapter;
-        r17 = r0;
-        if (r17 != 0) goto L_0x002d;
-    L_0x002c:
-        return;
-    L_0x002d:
-        r0 = r20;
-        r0 = r0.mPopulatePending;
-        r17 = r0;
-        if (r17 == 0) goto L_0x0041;
-    L_0x0035:
-        r17 = DEBUG;
-        if (r17 == 0) goto L_0x002c;
-    L_0x0039:
-        r17 = "ViewPager";
-        r18 = "populate is pending, skipping for now...";
-        android.util.Log.i(r17, r18);
-        goto L_0x002c;
-    L_0x0041:
-        r17 = r20.getWindowToken();
-        if (r17 == 0) goto L_0x002c;
-    L_0x0047:
-        r0 = r20;
-        r0 = r0.mAdapter;
-        r17 = r0;
-        r0 = r17;
-        r1 = r20;
-        r0.startUpdate(r1);
-        r17 = 0;
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r18 = r0;
-        r19 = r20.getLeftOffscreenPageLimit();
-        r18 = r18 - r19;
-        r16 = java.lang.Math.max(r17, r18);
-        r0 = r20;
-        r0 = r0.mAdapter;
-        r17 = r0;
-        r4 = r17.getCount();
-        r17 = r4 + -1;
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r18 = r0;
-        r19 = r20.getRightOffscreenPageLimit();
-        r18 = r18 + r19;
-        r10 = java.lang.Math.min(r17, r18);
-        if (r4 <= 0) goto L_0x016e;
-    L_0x0084:
-        r0 = r20;
-        r0 = r0.mItems;
-        r17 = r0;
-        r17 = r17.isEmpty();
-        if (r17 == 0) goto L_0x016e;
-    L_0x0090:
-        r13 = 1;
-    L_0x0091:
-        r8 = 0;
-        r7 = 0;
-    L_0x0093:
-        r0 = r20;
-        r0 = r0.mItems;
-        r17 = r0;
-        r17 = r17.size();
-        r0 = r17;
-        if (r7 >= r0) goto L_0x00d0;
-    L_0x00a1:
-        r0 = r20;
-        r0 = r0.mItems;
-        r17 = r0;
-        r0 = r17;
-        r12 = r0.get(r7);
-        r12 = (com.miui.gallery.widget.ViewPager.ItemInfo) r12;
-        r0 = r12.position;
-        r17 = r0;
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r18 = r0;
-        r0 = r17;
-        r1 = r18;
-        if (r0 < r1) goto L_0x0171;
-    L_0x00bf:
-        r0 = r12.position;
-        r17 = r0;
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r18 = r0;
-        r0 = r17;
-        r1 = r18;
-        if (r0 != r1) goto L_0x00d0;
-    L_0x00cf:
-        r8 = r12;
-    L_0x00d0:
-        if (r8 != 0) goto L_0x00e2;
-    L_0x00d2:
-        if (r4 <= 0) goto L_0x00e2;
-    L_0x00d4:
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r17 = r0;
-        r0 = r20;
-        r1 = r17;
-        r8 = r0.addNewItem(r1, r7);
-    L_0x00e2:
-        if (r8 == 0) goto L_0x0109;
-    L_0x00e4:
-        r0 = r20;
-        r0 = r0.mLeftOffscreenPageLimit;
-        r17 = r0;
-        r0 = r20;
-        r0 = r0.mRightOffscreenPageLimit;
-        r18 = r0;
-        r0 = r17;
-        r1 = r18;
-        if (r0 > r1) goto L_0x0175;
-    L_0x00f6:
-        r0 = r20;
-        r1 = r16;
-        r7 = r0.populateLeft(r8, r7, r1);
-        r0 = r20;
-        r7 = r0.populateRight(r8, r7, r10);
-    L_0x0104:
-        r0 = r20;
-        r0.calculatePageOffsets(r8, r7, r15);
-    L_0x0109:
-        r17 = DEBUG;
-        if (r17 == 0) goto L_0x0184;
-    L_0x010d:
-        r17 = "ViewPager";
-        r18 = "Current page list:";
-        android.util.Log.i(r17, r18);
-        r11 = 0;
-    L_0x0115:
-        r0 = r20;
-        r0 = r0.mItems;
-        r17 = r0;
-        r17 = r17.size();
-        r0 = r17;
-        if (r11 >= r0) goto L_0x0184;
-    L_0x0123:
-        r18 = "ViewPager";
-        r17 = new java.lang.StringBuilder;
-        r17.<init>();
-        r19 = "#";
-        r0 = r17;
-        r1 = r19;
-        r17 = r0.append(r1);
-        r0 = r17;
-        r17 = r0.append(r11);
-        r19 = ": page ";
-        r0 = r17;
-        r1 = r19;
-        r19 = r0.append(r1);
-        r0 = r20;
-        r0 = r0.mItems;
-        r17 = r0;
-        r0 = r17;
-        r17 = r0.get(r11);
-        r17 = (com.miui.gallery.widget.ViewPager.ItemInfo) r17;
-        r0 = r17;
-        r0 = r0.position;
-        r17 = r0;
-        r0 = r19;
-        r1 = r17;
-        r17 = r0.append(r1);
-        r17 = r17.toString();
-        r0 = r18;
-        r1 = r17;
-        android.util.Log.i(r0, r1);
-        r11 = r11 + 1;
-        goto L_0x0115;
-    L_0x016e:
-        r13 = 0;
-        goto L_0x0091;
-    L_0x0171:
-        r7 = r7 + 1;
-        goto L_0x0093;
-    L_0x0175:
-        r0 = r20;
-        r7 = r0.populateRight(r8, r7, r10);
-        r0 = r20;
-        r1 = r16;
-        r7 = r0.populateLeft(r8, r7, r1);
-        goto L_0x0104;
-    L_0x0184:
-        r0 = r20;
-        r0 = r0.mAdapter;
-        r18 = r0;
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r19 = r0;
-        if (r8 == 0) goto L_0x01da;
-    L_0x0192:
-        r0 = r8.object;
-        r17 = r0;
-    L_0x0196:
-        r0 = r18;
-        r1 = r20;
-        r2 = r19;
-        r3 = r17;
-        r0.setPrimaryItem(r1, r2, r3);
-        r0 = r20;
-        r0 = r0.mAdapter;
-        r17 = r0;
-        r0 = r17;
-        r1 = r20;
-        r0.finishUpdate(r1);
-        r6 = r20.getChildCount();
-        r11 = 0;
-    L_0x01b3:
-        if (r11 >= r6) goto L_0x01dd;
-    L_0x01b5:
-        r0 = r20;
-        r5 = r0.getChildAt(r11);
-        r14 = r5.getLayoutParams();
-        r14 = (com.miui.gallery.widget.ViewPager.LayoutParams) r14;
-        r0 = r14.isDecor;
-        r17 = r0;
-        if (r17 != 0) goto L_0x01d7;
-    L_0x01c7:
-        r0 = r20;
-        r12 = r0.infoForChild(r5);
-        if (r12 == 0) goto L_0x01d7;
-    L_0x01cf:
-        r0 = r12.widthFactor;
-        r17 = r0;
-        r0 = r17;
-        r14.widthFactor = r0;
-    L_0x01d7:
-        r11 = r11 + 1;
-        goto L_0x01b3;
-    L_0x01da:
-        r17 = 0;
-        goto L_0x0196;
-    L_0x01dd:
-        r17 = r20.hasFocus();
-        if (r17 == 0) goto L_0x0232;
-    L_0x01e3:
-        r9 = r20.findFocus();
-        if (r9 == 0) goto L_0x0264;
-    L_0x01e9:
-        r0 = r20;
-        r12 = r0.infoForAnyChild(r9);
-    L_0x01ef:
-        if (r12 == 0) goto L_0x0201;
-    L_0x01f1:
-        r0 = r12.position;
-        r17 = r0;
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r18 = r0;
-        r0 = r17;
-        r1 = r18;
-        if (r0 == r1) goto L_0x0232;
-    L_0x0201:
-        r11 = 0;
-    L_0x0202:
-        r17 = r20.getChildCount();
-        r0 = r17;
-        if (r11 >= r0) goto L_0x0232;
-    L_0x020a:
-        r0 = r20;
-        r5 = r0.getChildAt(r11);
-        r0 = r20;
-        r12 = r0.infoForChild(r5);
-        if (r12 == 0) goto L_0x0266;
-    L_0x0218:
-        r0 = r12.position;
-        r17 = r0;
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r18 = r0;
-        r0 = r17;
-        r1 = r18;
-        if (r0 != r1) goto L_0x0266;
-    L_0x0228:
-        r17 = 2;
-        r0 = r17;
-        r17 = r5.requestFocus(r0);
-        if (r17 == 0) goto L_0x0266;
-    L_0x0232:
-        if (r13 == 0) goto L_0x002c;
-    L_0x0234:
-        r0 = r20;
-        r0 = r0.mOnPageChangeListener;
-        r17 = r0;
-        if (r17 == 0) goto L_0x024b;
-    L_0x023c:
-        r0 = r20;
-        r0 = r0.mOnPageChangeListener;
-        r17 = r0;
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r18 = r0;
-        r17.onPageSelected(r18);
-    L_0x024b:
-        r0 = r20;
-        r0 = r0.mPageSettledListener;
-        r17 = r0;
-        if (r17 == 0) goto L_0x002c;
-    L_0x0253:
-        r0 = r20;
-        r0 = r0.mPageSettledListener;
-        r17 = r0;
-        r0 = r20;
-        r0 = r0.mCurItem;
-        r18 = r0;
-        r17.onPageSettled(r18);
-        goto L_0x002c;
-    L_0x0264:
-        r12 = 0;
-        goto L_0x01ef;
-    L_0x0266:
-        r11 = r11 + 1;
-        goto L_0x0202;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.widget.ViewPager.populate(int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    void populate(int newCurrentItem) {
+        ItemInfo oldCurInfo = null;
+        if (this.mCurItem != newCurrentItem) {
+            calculatePageLimits(newCurrentItem);
+            oldCurInfo = infoForPosition(this.mCurItem);
+            this.mCurItem = newCurrentItem;
+        }
+        if (this.mAdapter != null) {
+            if (this.mPopulatePending) {
+                if (DEBUG) {
+                    Log.i("ViewPager", "populate is pending, skipping for now...");
+                }
+            } else if (getWindowToken() != null) {
+                int curIndex;
+                int i;
+                int childCount;
+                this.mAdapter.startUpdate((ViewGroup) this);
+                int startPos = Math.max(0, this.mCurItem - getLeftOffscreenPageLimit());
+                int N = this.mAdapter.getCount();
+                int endPos = Math.min(N - 1, this.mCurItem + getRightOffscreenPageLimit());
+                boolean isFirstPupolate = N > 0 && this.mItems.isEmpty();
+                ItemInfo curItem = null;
+                for (curIndex = 0; curIndex < this.mItems.size(); curIndex++) {
+                    ItemInfo ii = (ItemInfo) this.mItems.get(curIndex);
+                    if (ii.position >= this.mCurItem) {
+                        View child;
+                        if (ii.position == this.mCurItem) {
+                            curItem = ii;
+                        }
+                        if (curItem == null && N > 0) {
+                            curItem = addNewItem(this.mCurItem, curIndex);
+                        }
+                        if (curItem != null) {
+                            if (this.mLeftOffscreenPageLimit <= this.mRightOffscreenPageLimit) {
+                                curIndex = populateRight(curItem, populateLeft(curItem, curIndex, startPos), endPos);
+                            } else {
+                                curIndex = populateLeft(curItem, populateRight(curItem, curIndex, endPos), startPos);
+                            }
+                            calculatePageOffsets(curItem, curIndex, oldCurInfo);
+                        }
+                        if (DEBUG) {
+                            Log.i("ViewPager", "Current page list:");
+                            for (i = 0; i < this.mItems.size(); i++) {
+                                Log.i("ViewPager", "#" + i + ": page " + ((ItemInfo) this.mItems.get(i)).position);
+                            }
+                        }
+                        this.mAdapter.setPrimaryItem((ViewGroup) this, this.mCurItem, curItem == null ? curItem.object : null);
+                        this.mAdapter.finishUpdate((ViewGroup) this);
+                        childCount = getChildCount();
+                        for (i = 0; i < childCount; i++) {
+                            child = getChildAt(i);
+                            LayoutParams lp = (LayoutParams) child.getLayoutParams();
+                            if (!lp.isDecor) {
+                                ii = infoForChild(child);
+                                if (ii != null) {
+                                    lp.widthFactor = ii.widthFactor;
+                                }
+                            }
+                        }
+                        if (hasFocus()) {
+                            View currentFocused = findFocus();
+                            ii = currentFocused != null ? infoForAnyChild(currentFocused) : null;
+                            if (ii == null || ii.position != this.mCurItem) {
+                                for (i = 0; i < getChildCount(); i++) {
+                                    child = getChildAt(i);
+                                    ii = infoForChild(child);
+                                    if (ii != null && ii.position == this.mCurItem && child.requestFocus(2)) {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (!isFirstPupolate) {
+                            if (this.mOnPageChangeListener != null) {
+                                this.mOnPageChangeListener.onPageSelected(this.mCurItem);
+                            }
+                            if (this.mPageSettledListener != null) {
+                                this.mPageSettledListener.onPageSettled(this.mCurItem);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                }
+                curItem = addNewItem(this.mCurItem, curIndex);
+                if (curItem != null) {
+                }
+                if (DEBUG) {
+                }
+                if (curItem == null) {
+                }
+                this.mAdapter.setPrimaryItem((ViewGroup) this, this.mCurItem, curItem == null ? curItem.object : null);
+                this.mAdapter.finishUpdate((ViewGroup) this);
+                childCount = getChildCount();
+                while (i < childCount) {
+                }
+                if (hasFocus()) {
+                }
+                if (!isFirstPupolate) {
+                }
+            }
+        }
     }
 
     private int populateLeft(ItemInfo curItem, int curIndex, int startPos) {
@@ -1149,251 +914,110 @@ public class ViewPager extends ViewGroup implements ISlipAnimView {
 
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0060 A:{LOOP_END, LOOP:2: B:18:0x005c->B:20:0x0060} */
     /* JADX WARNING: Removed duplicated region for block: B:35:0x00a9 A:{LOOP_END, LOOP:5: B:33:0x00a5->B:35:0x00a9} */
-    private void calculatePageOffsets(com.miui.gallery.widget.ViewPager.ItemInfo r15, int r16, com.miui.gallery.widget.ViewPager.ItemInfo r17) {
-        /*
-        r14 = this;
-        r14.calculatePageWidthFactor(r15);
-        r12 = r14.mAdapter;
-        r1 = r12.getCount();
-        r11 = r14.getWidth();
-        if (r11 <= 0) goto L_0x005a;
-    L_0x000f:
-        r12 = r14.mPageMargin;
-        r12 = (float) r12;
-        r13 = (float) r11;
-        r6 = r12 / r13;
-    L_0x0015:
-        if (r17 == 0) goto L_0x00bd;
-    L_0x0017:
-        r0 = r17;
-        r8 = r0.position;
-        r12 = r15.position;
-        if (r8 >= r12) goto L_0x0074;
-    L_0x001f:
-        r5 = 0;
-        r0 = r17;
-        r12 = r0.offset;
-        r0 = r17;
-        r13 = r0.widthFactor;
-        r12 = r12 + r13;
-        r7 = r12 + r6;
-        r9 = r8 + 1;
-    L_0x002d:
-        r12 = r15.position;
-        if (r9 > r12) goto L_0x00bd;
-    L_0x0031:
-        r12 = r14.mItems;
-        r12 = r12.size();
-        if (r5 >= r12) goto L_0x00bd;
-    L_0x0039:
-        r12 = r14.mItems;
-        r3 = r12.get(r5);
-        r3 = (com.miui.gallery.widget.ViewPager.ItemInfo) r3;
-    L_0x0041:
-        r12 = r3.position;
-        if (r9 <= r12) goto L_0x005c;
-    L_0x0045:
-        r12 = r14.mItems;
-        r12 = r12.size();
-        r12 = r12 + -1;
-        if (r5 >= r12) goto L_0x005c;
-    L_0x004f:
-        r5 = r5 + 1;
-        r12 = r14.mItems;
-        r3 = r12.get(r5);
-        r3 = (com.miui.gallery.widget.ViewPager.ItemInfo) r3;
-        goto L_0x0041;
-    L_0x005a:
-        r6 = 0;
-        goto L_0x0015;
-    L_0x005c:
-        r12 = r3.position;
-        if (r9 >= r12) goto L_0x006b;
-    L_0x0060:
-        r12 = r14.mAdapter;
-        r12 = r12.getPageWidth(r9);
-        r12 = r12 + r6;
-        r7 = r7 + r12;
-        r9 = r9 + 1;
-        goto L_0x005c;
-    L_0x006b:
-        r3.offset = r7;
-        r12 = r3.widthFactor;
-        r12 = r12 + r6;
-        r7 = r7 + r12;
-        r9 = r9 + 1;
-        goto L_0x002d;
-    L_0x0074:
-        r12 = r15.position;
-        if (r8 <= r12) goto L_0x00bd;
-    L_0x0078:
-        r12 = r14.mItems;
-        r12 = r12.size();
-        r5 = r12 + -1;
-        r0 = r17;
-        r7 = r0.offset;
-        r9 = r8 + -1;
-    L_0x0086:
-        r12 = r15.position;
-        if (r9 < r12) goto L_0x00bd;
-    L_0x008a:
-        if (r5 < 0) goto L_0x00bd;
-    L_0x008c:
-        r12 = r14.mItems;
-        r3 = r12.get(r5);
-        r3 = (com.miui.gallery.widget.ViewPager.ItemInfo) r3;
-    L_0x0094:
-        r12 = r3.position;
-        if (r9 >= r12) goto L_0x00a5;
-    L_0x0098:
-        if (r5 <= 0) goto L_0x00a5;
-    L_0x009a:
-        r5 = r5 + -1;
-        r12 = r14.mItems;
-        r3 = r12.get(r5);
-        r3 = (com.miui.gallery.widget.ViewPager.ItemInfo) r3;
-        goto L_0x0094;
-    L_0x00a5:
-        r12 = r3.position;
-        if (r9 <= r12) goto L_0x00b4;
-    L_0x00a9:
-        r12 = r14.mAdapter;
-        r12 = r12.getPageWidth(r9);
-        r12 = r12 + r6;
-        r7 = r7 - r12;
-        r9 = r9 + -1;
-        goto L_0x00a5;
-    L_0x00b4:
-        r12 = r3.widthFactor;
-        r12 = r12 + r6;
-        r7 = r7 - r12;
-        r3.offset = r7;
-        r9 = r9 + -1;
-        goto L_0x0086;
-    L_0x00bd:
-        r12 = r14.mItems;
-        r4 = r12.size();
-        r7 = r15.offset;
-        r12 = r15.position;
-        r9 = r12 + -1;
-        r12 = r15.position;
-        if (r12 != 0) goto L_0x0109;
-    L_0x00cd:
-        r12 = r15.offset;
-    L_0x00cf:
-        r14.mFirstOffset = r12;
-        r12 = r15.position;
-        if (r12 != 0) goto L_0x010d;
-    L_0x00d5:
-        r12 = r15.offsetLeftScreen;
-    L_0x00d7:
-        r14.mFirstOffsetLeftScreen = r12;
-        r12 = r15.position;
-        r13 = r1 + -1;
-        if (r12 != r13) goto L_0x010f;
-    L_0x00df:
-        r12 = r15.offset;
-    L_0x00e1:
-        r14.mLastOffset = r12;
-        r12 = r15.position;
-        r13 = r1 + -1;
-        if (r12 != r13) goto L_0x0113;
-    L_0x00e9:
-        r12 = r15.offsetLeftScreen;
-    L_0x00eb:
-        r14.mLastOffsetLeftScreen = r12;
-        r2 = r16 + -1;
-    L_0x00ef:
-        if (r2 < 0) goto L_0x012a;
-    L_0x00f1:
-        r12 = r14.mItems;
-        r3 = r12.get(r2);
-        r3 = (com.miui.gallery.widget.ViewPager.ItemInfo) r3;
-    L_0x00f9:
-        r12 = r3.position;
-        if (r9 <= r12) goto L_0x0115;
-    L_0x00fd:
-        r12 = r14.mAdapter;
-        r10 = r9 + -1;
-        r12 = r12.getPageWidth(r9);
-        r12 = r12 + r6;
-        r7 = r7 - r12;
-        r9 = r10;
-        goto L_0x00f9;
-    L_0x0109:
-        r12 = -8388609; // 0xffffffffff7fffff float:-3.4028235E38 double:NaN;
-        goto L_0x00cf;
-    L_0x010d:
-        r12 = 0;
-        goto L_0x00d7;
-    L_0x010f:
-        r12 = 2139095039; // 0x7f7fffff float:3.4028235E38 double:1.056853372E-314;
-        goto L_0x00e1;
-    L_0x0113:
-        r12 = 0;
-        goto L_0x00eb;
-    L_0x0115:
-        r12 = r3.widthFactor;
-        r12 = r12 + r6;
-        r7 = r7 - r12;
-        r3.offset = r7;
-        r12 = r3.position;
-        if (r12 != 0) goto L_0x0125;
-    L_0x011f:
-        r14.mFirstOffset = r7;
-        r12 = r3.offsetLeftScreen;
-        r14.mFirstOffsetLeftScreen = r12;
-    L_0x0125:
-        r2 = r2 + -1;
-        r9 = r9 + -1;
-        goto L_0x00ef;
-    L_0x012a:
-        r12 = r15.offset;
-        r13 = r15.widthFactor;
-        r12 = r12 + r13;
-        r7 = r12 + r6;
-        r12 = r15.position;
-        r9 = r12 + 1;
-        r2 = r16 + 1;
-    L_0x0137:
-        if (r2 >= r4) goto L_0x0168;
-    L_0x0139:
-        r12 = r14.mItems;
-        r3 = r12.get(r2);
-        r3 = (com.miui.gallery.widget.ViewPager.ItemInfo) r3;
-    L_0x0141:
-        r12 = r3.position;
-        if (r9 >= r12) goto L_0x0151;
-    L_0x0145:
-        r12 = r14.mAdapter;
-        r10 = r9 + 1;
-        r12 = r12.getPageWidth(r9);
-        r12 = r12 + r6;
-        r7 = r7 + r12;
-        r9 = r10;
-        goto L_0x0141;
-    L_0x0151:
-        r12 = r3.position;
-        r13 = r1 + -1;
-        if (r12 != r13) goto L_0x015d;
-    L_0x0157:
-        r14.mLastOffset = r7;
-        r12 = r3.offsetLeftScreen;
-        r14.mLastOffsetLeftScreen = r12;
-    L_0x015d:
-        r3.offset = r7;
-        r12 = r3.widthFactor;
-        r12 = r12 + r6;
-        r7 = r7 + r12;
-        r2 = r2 + 1;
-        r9 = r9 + 1;
-        goto L_0x0137;
-    L_0x0168:
-        r12 = 0;
-        r14.mNeedCalculatePageOffsets = r12;
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.widget.ViewPager.calculatePageOffsets(com.miui.gallery.widget.ViewPager$ItemInfo, int, com.miui.gallery.widget.ViewPager$ItemInfo):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void calculatePageOffsets(ItemInfo curItem, int curIndex, ItemInfo oldCurInfo) {
+        float offset;
+        int pos;
+        ItemInfo ii;
+        calculatePageWidthFactor(curItem);
+        int N = this.mAdapter.getCount();
+        int width = getWidth();
+        float marginOffset = width > 0 ? ((float) this.mPageMargin) / ((float) width) : 0.0f;
+        if (oldCurInfo != null) {
+            int oldCurPosition = oldCurInfo.position;
+            int itemIndex;
+            if (oldCurPosition < curItem.position) {
+                itemIndex = 0;
+                offset = (oldCurInfo.offset + oldCurInfo.widthFactor) + marginOffset;
+                pos = oldCurPosition + 1;
+                while (pos <= curItem.position && itemIndex < this.mItems.size()) {
+                    ii = this.mItems.get(itemIndex);
+                    while (true) {
+                        ii = ii;
+                        if (pos <= ii.position || itemIndex >= this.mItems.size() - 1) {
+                            while (pos < ii.position) {
+                                offset += this.mAdapter.getPageWidth(pos) + marginOffset;
+                                pos++;
+                            }
+                        } else {
+                            itemIndex++;
+                            ii = this.mItems.get(itemIndex);
+                        }
+                    }
+                    while (pos < ii.position) {
+                    }
+                    ii.offset = offset;
+                    offset += ii.widthFactor + marginOffset;
+                    pos++;
+                }
+            } else if (oldCurPosition > curItem.position) {
+                itemIndex = this.mItems.size() - 1;
+                offset = oldCurInfo.offset;
+                pos = oldCurPosition - 1;
+                while (pos >= curItem.position && itemIndex >= 0) {
+                    Object ii2 = this.mItems.get(itemIndex);
+                    while (true) {
+                        ii = (ItemInfo) ii2;
+                        if (pos >= ii.position || itemIndex <= 0) {
+                            while (pos > ii.position) {
+                                offset -= this.mAdapter.getPageWidth(pos) + marginOffset;
+                                pos--;
+                            }
+                        } else {
+                            itemIndex--;
+                            ii2 = this.mItems.get(itemIndex);
+                        }
+                    }
+                    while (pos > ii.position) {
+                    }
+                    offset -= ii.widthFactor + marginOffset;
+                    ii.offset = offset;
+                    pos--;
+                }
+            }
+        }
+        int itemCount = this.mItems.size();
+        offset = curItem.offset;
+        pos = curItem.position - 1;
+        this.mFirstOffset = curItem.position == 0 ? curItem.offset : -3.4028235E38f;
+        this.mFirstOffsetLeftScreen = curItem.position == 0 ? curItem.offsetLeftScreen : 0.0f;
+        this.mLastOffset = curItem.position == N + -1 ? curItem.offset : Float.MAX_VALUE;
+        this.mLastOffsetLeftScreen = curItem.position == N + -1 ? curItem.offsetLeftScreen : 0.0f;
+        int i = curIndex - 1;
+        while (i >= 0) {
+            ii = (ItemInfo) this.mItems.get(i);
+            while (pos > ii.position) {
+                offset -= this.mAdapter.getPageWidth(pos) + marginOffset;
+                pos--;
+            }
+            offset -= ii.widthFactor + marginOffset;
+            ii.offset = offset;
+            if (ii.position == 0) {
+                this.mFirstOffset = offset;
+                this.mFirstOffsetLeftScreen = ii.offsetLeftScreen;
+            }
+            i--;
+            pos--;
+        }
+        offset = (curItem.offset + curItem.widthFactor) + marginOffset;
+        pos = curItem.position + 1;
+        i = curIndex + 1;
+        while (i < itemCount) {
+            ii = (ItemInfo) this.mItems.get(i);
+            while (pos < ii.position) {
+                offset += this.mAdapter.getPageWidth(pos) + marginOffset;
+                pos++;
+            }
+            if (ii.position == N - 1) {
+                this.mLastOffset = offset;
+                this.mLastOffsetLeftScreen = ii.offsetLeftScreen;
+            }
+            ii.offset = offset;
+            offset += ii.widthFactor + marginOffset;
+            i++;
+            pos++;
+        }
+        this.mNeedCalculatePageOffsets = false;
     }
 
     public Parcelable onSaveInstanceState() {

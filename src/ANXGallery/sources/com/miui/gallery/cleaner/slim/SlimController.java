@@ -232,56 +232,23 @@ public class SlimController {
                 /* JADX WARNING: Missing block: B:17:?, code:
             return;
      */
-                public void onSlimDone(long r10) {
-                    /*
-                    r9 = this;
-                    r2 = com.miui.gallery.cleaner.slim.SlimController.SlimWorkerPool.this;
-                    monitor-enter(r2);
-                    r1 = com.miui.gallery.cleaner.slim.SlimController.SlimWorkerPool.this;	 Catch:{ all -> 0x0046 }
-                    r1 = r1.mSlimWorkers;	 Catch:{ all -> 0x0046 }
-                    if (r1 != 0) goto L_0x000d;
-                L_0x000b:
-                    monitor-exit(r2);	 Catch:{ all -> 0x0046 }
-                L_0x000c:
-                    return;
-                L_0x000d:
-                    r4 = r9.mTimeCost;	 Catch:{ all -> 0x0046 }
-                    r1 = (r4 > r10 ? 1 : (r4 == r10 ? 0 : -1));
-                    if (r1 >= 0) goto L_0x0015;
-                L_0x0013:
-                    r9.mTimeCost = r10;	 Catch:{ all -> 0x0046 }
-                L_0x0015:
-                    r1 = r9.mDoneCount;	 Catch:{ all -> 0x0046 }
-                    r1 = r1 + 1;
-                    r9.mDoneCount = r1;	 Catch:{ all -> 0x0046 }
-                    r1 = r9.mDoneCount;	 Catch:{ all -> 0x0046 }
-                    r3 = 4;
-                    if (r1 != r3) goto L_0x0044;
-                L_0x0020:
-                    r1 = com.miui.gallery.cleaner.slim.SlimController.SlimWorkerPool.this;	 Catch:{ all -> 0x0046 }
-                    r1.stop();	 Catch:{ all -> 0x0046 }
-                    r0 = new java.util.HashMap;	 Catch:{ all -> 0x0046 }
-                    r0.<init>();	 Catch:{ all -> 0x0046 }
-                    r1 = "timeCost";
-                    r4 = r9.mTimeCost;	 Catch:{ all -> 0x0046 }
-                    r6 = 1000; // 0x3e8 float:1.401E-42 double:4.94E-321;
-                    r4 = r4 / r6;
-                    r3 = (float) r4;	 Catch:{ all -> 0x0046 }
-                    r4 = com.miui.gallery.cleaner.slim.SlimController.TIME_COST_STAGE;	 Catch:{ all -> 0x0046 }
-                    r3 = com.miui.gallery.util.GallerySamplingStatHelper.formatValueStage(r3, r4);	 Catch:{ all -> 0x0046 }
-                    r0.put(r1, r3);	 Catch:{ all -> 0x0046 }
-                    r1 = "cleaner";
-                    r3 = "slim_finish";
-                    com.miui.gallery.util.GallerySamplingStatHelper.recordCountEvent(r1, r3, r0);	 Catch:{ all -> 0x0046 }
-                L_0x0044:
-                    monitor-exit(r2);	 Catch:{ all -> 0x0046 }
-                    goto L_0x000c;
-                L_0x0046:
-                    r1 = move-exception;
-                    monitor-exit(r2);	 Catch:{ all -> 0x0046 }
-                    throw r1;
-                    */
-                    throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cleaner.slim.SlimController.SlimWorkerPool.1.onSlimDone(long):void");
+                /* Code decompiled incorrectly, please refer to instructions dump. */
+                public void onSlimDone(long timeCost) {
+                    synchronized (SlimWorkerPool.this) {
+                        if (SlimWorkerPool.this.mSlimWorkers == null) {
+                            return;
+                        }
+                        if (this.mTimeCost < timeCost) {
+                            this.mTimeCost = timeCost;
+                        }
+                        this.mDoneCount++;
+                        if (this.mDoneCount == 4) {
+                            SlimWorkerPool.this.stop();
+                            HashMap<String, String> params = new HashMap();
+                            params.put("timeCost", GallerySamplingStatHelper.formatValueStage((float) (this.mTimeCost / 1000), SlimController.TIME_COST_STAGE));
+                            GallerySamplingStatHelper.recordCountEvent("cleaner", "slim_finish", params);
+                        }
+                    }
                 }
             };
         }

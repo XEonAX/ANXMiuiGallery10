@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.util.Log;
+import com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader;
 import com.nexstreaming.app.common.nexasset.assetpackage.ItemCategory;
 import com.nexstreaming.app.common.nexasset.assetpackage.f;
 import com.nexstreaming.app.common.nexasset.store.AssetLocalInstallDB;
@@ -102,69 +103,58 @@ public final class nexFont {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:23:0x0053 A:{SYNTHETIC, Splitter: B:23:0x0053} */
-    private static java.lang.String getLocalPath(com.nexstreaming.app.common.nexasset.assetpackage.f r5) {
-        /*
-        r0 = 0;
-        r1 = com.nexstreaming.kminternal.kinemaster.config.a.a();	 Catch:{ Exception -> 0x0032, all -> 0x004e }
-        r1 = r1.b();	 Catch:{ Exception -> 0x0032, all -> 0x004e }
-        r2 = r5.getPackageURI();	 Catch:{ Exception -> 0x0032, all -> 0x004e }
-        r3 = r5.getId();	 Catch:{ Exception -> 0x0032, all -> 0x004e }
-        r2 = com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader.a(r1, r2, r3);	 Catch:{ Exception -> 0x0032, all -> 0x004e }
-        r1 = r5.getFilePath();	 Catch:{ Exception -> 0x0064 }
-        r1 = r2.c(r1);	 Catch:{ Exception -> 0x0064 }
-        r0 = r1.getAbsolutePath();	 Catch:{ Exception -> 0x0064 }
-        if (r2 == 0) goto L_0x0026;
-    L_0x0023:
-        r2.close();	 Catch:{ IOException -> 0x0027 }
-    L_0x0026:
-        return r0;
-    L_0x0027:
-        r1 = move-exception;
-        r2 = "nexFont";
-        r3 = r1.getMessage();
-        android.util.Log.e(r2, r3, r1);
-        goto L_0x0026;
-    L_0x0032:
-        r1 = move-exception;
-        r2 = r0;
-    L_0x0034:
-        r3 = "nexFont";
-        r4 = r1.getMessage();	 Catch:{ all -> 0x0062 }
-        android.util.Log.e(r3, r4, r1);	 Catch:{ all -> 0x0062 }
-        if (r2 == 0) goto L_0x0026;
-    L_0x003f:
-        r2.close();	 Catch:{ IOException -> 0x0043 }
-        goto L_0x0026;
-    L_0x0043:
-        r1 = move-exception;
-        r2 = "nexFont";
-        r3 = r1.getMessage();
-        android.util.Log.e(r2, r3, r1);
-        goto L_0x0026;
-    L_0x004e:
-        r1 = move-exception;
-        r2 = r0;
-        r0 = r1;
-    L_0x0051:
-        if (r2 == 0) goto L_0x0056;
-    L_0x0053:
-        r2.close();	 Catch:{ IOException -> 0x0057 }
-    L_0x0056:
-        throw r0;
-    L_0x0057:
-        r1 = move-exception;
-        r2 = "nexFont";
-        r3 = r1.getMessage();
-        android.util.Log.e(r2, r3, r1);
-        goto L_0x0056;
-    L_0x0062:
-        r0 = move-exception;
-        goto L_0x0051;
-    L_0x0064:
-        r1 = move-exception;
-        goto L_0x0034;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.nexFont.getLocalPath(com.nexstreaming.app.common.nexasset.assetpackage.f):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static String getLocalPath(f fVar) {
+        AssetPackageReader a;
+        Throwable e;
+        Throwable th;
+        String str = null;
+        try {
+            a = AssetPackageReader.a(a.a().b(), fVar.getPackageURI(), fVar.getId());
+            try {
+                str = a.c(fVar.getFilePath()).getAbsolutePath();
+                if (a != null) {
+                    try {
+                        a.close();
+                    } catch (Throwable e2) {
+                        Log.e(LOG_TAG, e2.getMessage(), e2);
+                    }
+                }
+            } catch (Exception e3) {
+                e2 = e3;
+            }
+        } catch (Exception e4) {
+            e2 = e4;
+            a = str;
+        } catch (Throwable e22) {
+            a = str;
+            th = e22;
+            if (a != null) {
+            }
+            throw th;
+        }
+        return str;
+        try {
+            Log.e(LOG_TAG, e22.getMessage(), e22);
+            if (a != null) {
+                try {
+                    a.close();
+                } catch (Throwable e222) {
+                    Log.e(LOG_TAG, e222.getMessage(), e222);
+                }
+            }
+            return str;
+        } catch (Throwable th2) {
+            th = th2;
+            if (a != null) {
+                try {
+                    a.close();
+                } catch (Throwable e2222) {
+                    Log.e(LOG_TAG, e2222.getMessage(), e2222);
+                }
+            }
+            throw th;
+        }
     }
 
     public static String[] getFontIds() {

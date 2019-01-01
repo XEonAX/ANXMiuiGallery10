@@ -1,3 +1,4 @@
+call .\version.bat
 call .\recompile.bat
 call .\sign.bat
 REM call .\reinstall.bat

@@ -2,8 +2,11 @@ package com.nexstreaming.nexeditorsdk;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.media.ExifInterface;
 import android.util.Log;
 import com.nexstreaming.kminternal.kinemaster.config.a;
+import com.nexstreaming.nexeditorsdk.nexCrop.CropMode;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -202,206 +205,98 @@ final class d {
         }
     }
 
-    java.lang.String a(com.nexstreaming.nexeditorsdk.nexClip r13, float r14) {
-        /*
-        r12 = this;
-        r7 = 3;
-        r6 = 2;
-        r9 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r3 = 1;
-        r5 = 0;
-        r0 = r12.h;
-        r1 = r13.getClipType();
-        r2 = 4;
-        if (r1 != r2) goto L_0x0019;
-    L_0x000f:
-        r1 = r12.i;
-        r1 = r1.length();
-        if (r1 <= 0) goto L_0x0019;
-    L_0x0017:
-        r0 = r12.i;
-    L_0x0019:
-        r1 = -1;
-        r2 = r0.hashCode();
-        switch(r2) {
-            case 101393: goto L_0x00b0;
-            case 3143043: goto L_0x0090;
-            case 1054849215: goto L_0x00a5;
-            case 1055207047: goto L_0x009a;
-            default: goto L_0x0021;
-        };
-    L_0x0021:
-        r0 = r1;
-    L_0x0022:
-        switch(r0) {
-            case 0: goto L_0x00bb;
-            case 1: goto L_0x00c5;
-            case 2: goto L_0x00cf;
-            case 3: goto L_0x00d9;
-            default: goto L_0x0025;
-        };
-    L_0x0025:
-        r0 = 0;
-        r0 = (r14 > r0 ? 1 : (r14 == r0 ? 0 : -1));
-        if (r0 == 0) goto L_0x0134;
-    L_0x002a:
-        r0 = r13.getWidth();
-        r0 = (float) r0;
-        r1 = r13.getHeight();
-        r1 = (float) r1;
-        r1 = r1 * r9;
-        r1 = r0 / r1;
-        r0 = r13.getRotateDegree();
-        r2 = r13.getClipType();
-        r4 = 4;
-        if (r2 != r4) goto L_0x00e3;
-    L_0x0042:
-        r2 = 90;
-        if (r0 == r2) goto L_0x004a;
-    L_0x0046:
-        r2 = 270; // 0x10e float:3.78E-43 double:1.334E-321;
-        if (r0 != r2) goto L_0x0056;
-    L_0x004a:
-        r1 = r13.getHeight();
-        r1 = (float) r1;
-        r2 = r13.getWidth();
-        r2 = (float) r2;
-        r2 = r2 * r9;
-        r1 = r1 / r2;
-    L_0x0056:
-        r2 = r14 - r1;
-        r2 = java.lang.Math.abs(r2);
-        r8 = (double) r2;
-        r10 = 4587366580439587226; // 0x3fa999999999999a float:-1.5881868E-23 double:0.05;
-        r2 = (r8 > r10 ? 1 : (r8 == r10 ? 0 : -1));
-        if (r2 <= 0) goto L_0x0129;
-    L_0x0066:
-        r2 = r13.getCrop();
-        r4 = com.nexstreaming.nexeditorsdk.nexCrop.CropMode.PAN_RAND;
-        r2.randomizeStartEndPosition(r5, r4, r14);
-    L_0x006f:
-        r2 = r;
-        r4 = "Apply default crop mode(%f %f) (%d)";
-        r7 = new java.lang.Object[r7];
-        r8 = java.lang.Float.valueOf(r14);
-        r7[r5] = r8;
-        r1 = java.lang.Float.valueOf(r1);
-        r7[r3] = r1;
-        r0 = java.lang.Integer.valueOf(r0);
-        r7[r6] = r0;
-        r0 = java.lang.String.format(r4, r7);
-        android.util.Log.d(r2, r0);
-    L_0x008e:
-        r0 = 0;
-        return r0;
-    L_0x0090:
-        r2 = "fill";
-        r0 = r0.equals(r2);
-        if (r0 == 0) goto L_0x0021;
-    L_0x0098:
-        r0 = r5;
-        goto L_0x0022;
-    L_0x009a:
-        r2 = "pan_rand";
-        r0 = r0.equals(r2);
-        if (r0 == 0) goto L_0x0021;
-    L_0x00a2:
-        r0 = r3;
-        goto L_0x0022;
-    L_0x00a5:
-        r2 = "pan_face";
-        r0 = r0.equals(r2);
-        if (r0 == 0) goto L_0x0021;
-    L_0x00ad:
-        r0 = r6;
-        goto L_0x0022;
-    L_0x00b0:
-        r2 = "fit";
-        r0 = r0.equals(r2);
-        if (r0 == 0) goto L_0x0021;
-    L_0x00b8:
-        r0 = r7;
-        goto L_0x0022;
-    L_0x00bb:
-        r0 = r13.getCrop();
-        r1 = com.nexstreaming.nexeditorsdk.nexCrop.CropMode.FILL;
-        r0.randomizeStartEndPosition(r5, r1, r14);
-        goto L_0x008e;
-    L_0x00c5:
-        r0 = r13.getCrop();
-        r1 = com.nexstreaming.nexeditorsdk.nexCrop.CropMode.PAN_RAND;
-        r0.randomizeStartEndPosition(r5, r1, r14);
-        goto L_0x008e;
-    L_0x00cf:
-        r0 = r13.getCrop();
-        r1 = com.nexstreaming.nexeditorsdk.nexCrop.CropMode.PAN_FACE;
-        r0.randomizeStartEndPosition(r5, r1, r14);
-        goto L_0x008e;
-    L_0x00d9:
-        r0 = r13.getCrop();
-        r1 = com.nexstreaming.nexeditorsdk.nexCrop.CropMode.FIT;
-        r0.randomizeStartEndPosition(r5, r1, r14);
-        goto L_0x008e;
-    L_0x00e3:
-        r2 = r13.getClipType();
-        if (r2 != r3) goto L_0x0056;
-    L_0x00e9:
-        r4 = 0;
-        r2 = new android.media.ExifInterface;	 Catch:{ IOException -> 0x0121 }
-        r8 = r13.getRealPath();	 Catch:{ IOException -> 0x0121 }
-        r2.<init>(r8);	 Catch:{ IOException -> 0x0121 }
-    L_0x00f3:
-        if (r2 == 0) goto L_0x0056;
-    L_0x00f5:
-        r4 = "Orientation";
-        r2 = r2.getAttribute(r4);
-        if (r2 == 0) goto L_0x0127;
-    L_0x00fd:
-        r2 = java.lang.Integer.parseInt(r2);
-    L_0x0101:
-        r4 = 6;
-        if (r2 == r4) goto L_0x0108;
-    L_0x0104:
-        r4 = 8;
-        if (r2 != r4) goto L_0x0056;
-    L_0x0108:
-        r1 = 6;
-        if (r2 != r1) goto L_0x010d;
-    L_0x010b:
-        r0 = 90;
-    L_0x010d:
-        r1 = 8;
-        if (r2 != r1) goto L_0x0113;
-    L_0x0111:
-        r0 = 270; // 0x10e float:3.78E-43 double:1.334E-321;
-    L_0x0113:
-        r1 = r13.getHeight();
-        r1 = (float) r1;
-        r2 = r13.getWidth();
-        r2 = (float) r2;
-        r2 = r2 * r9;
-        r1 = r1 / r2;
-        goto L_0x0056;
-    L_0x0121:
-        r2 = move-exception;
-        r2.printStackTrace();
-        r2 = r4;
-        goto L_0x00f3;
-    L_0x0127:
-        r2 = r3;
-        goto L_0x0101;
-    L_0x0129:
-        r2 = r13.getCrop();
-        r4 = com.nexstreaming.nexeditorsdk.nexCrop.CropMode.FIT;
-        r2.randomizeStartEndPosition(r5, r4, r14);
-        goto L_0x006f;
-    L_0x0134:
-        r0 = r13.getCrop();
-        r1 = com.nexstreaming.nexeditorsdk.nexCrop.CropMode.FIT;
-        r0.randomizeStartEndPosition(r5, r1, r14);
-        goto L_0x008e;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.d.a(com.nexstreaming.nexeditorsdk.nexClip, float):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    String a(nexClip nexclip, float f) {
+        boolean z;
+        String str = this.h;
+        if (nexclip.getClipType() == 4 && this.i.length() > 0) {
+            str = this.i;
+        }
+        switch (str.hashCode()) {
+            case 101393:
+                if (str.equals("fit")) {
+                    z = true;
+                    break;
+                }
+            case 3143043:
+                if (str.equals("fill")) {
+                    z = false;
+                    break;
+                }
+            case 1054849215:
+                if (str.equals("pan_face")) {
+                    z = true;
+                    break;
+                }
+            case 1055207047:
+                if (str.equals("pan_rand")) {
+                    z = true;
+                    break;
+                }
+            default:
+                z = true;
+                break;
+        }
+        switch (z) {
+            case false:
+                nexclip.getCrop().randomizeStartEndPosition(false, CropMode.FILL, f);
+                break;
+            case true:
+                nexclip.getCrop().randomizeStartEndPosition(false, CropMode.PAN_RAND, f);
+                break;
+            case true:
+                nexclip.getCrop().randomizeStartEndPosition(false, CropMode.PAN_FACE, f);
+                break;
+            case true:
+                nexclip.getCrop().randomizeStartEndPosition(false, CropMode.FIT, f);
+                break;
+            default:
+                if (f == 0.0f) {
+                    nexclip.getCrop().randomizeStartEndPosition(false, CropMode.FIT, f);
+                    break;
+                }
+                float width = ((float) nexclip.getWidth()) / (((float) nexclip.getHeight()) * 1.0f);
+                int rotateDegree = nexclip.getRotateDegree();
+                if (nexclip.getClipType() == 4) {
+                    if (rotateDegree == 90 || rotateDegree == nexClip.kClip_Rotate_270) {
+                        width = ((float) nexclip.getHeight()) / (((float) nexclip.getWidth()) * 1.0f);
+                    }
+                } else if (nexclip.getClipType() == 1) {
+                    ExifInterface exifInterface;
+                    try {
+                        exifInterface = new ExifInterface(nexclip.getRealPath());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        exifInterface = null;
+                    }
+                    if (exifInterface != null) {
+                        int parseInt;
+                        String attribute = exifInterface.getAttribute("Orientation");
+                        if (attribute != null) {
+                            parseInt = Integer.parseInt(attribute);
+                        } else {
+                            parseInt = 1;
+                        }
+                        if (parseInt == 6 || parseInt == 8) {
+                            if (parseInt == 6) {
+                                rotateDegree = 90;
+                            }
+                            if (parseInt == 8) {
+                                rotateDegree = nexClip.kClip_Rotate_270;
+                            }
+                            width = ((float) nexclip.getHeight()) / (((float) nexclip.getWidth()) * 1.0f);
+                        }
+                    }
+                }
+                if (((double) Math.abs(f - width)) > 0.05d) {
+                    nexclip.getCrop().randomizeStartEndPosition(false, CropMode.PAN_RAND, f);
+                } else {
+                    nexclip.getCrop().randomizeStartEndPosition(false, CropMode.FIT, f);
+                }
+                Log.d(r, String.format("Apply default crop mode(%f %f) (%d)", new Object[]{Float.valueOf(f), Float.valueOf(width), Integer.valueOf(rotateDegree)}));
+                break;
+        }
+        return null;
     }
 
     protected String a(nexProject nexproject, int i, int i2) {

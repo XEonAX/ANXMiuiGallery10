@@ -130,205 +130,101 @@ final class PDF417HighLevelEncoder {
         return sb.toString();
     }
 
-    private static int encodeText(java.lang.CharSequence r11, int r12, int r13, java.lang.StringBuilder r14, int r15) {
-        /*
-        r8 = new java.lang.StringBuilder;
-        r8.<init>(r13);
-        r7 = r15;
-        r3 = 0;
-    L_0x0007:
-        r9 = r12 + r3;
-        r0 = r11.charAt(r9);
-        switch(r7) {
-            case 0: goto L_0x0037;
-            case 1: goto L_0x0076;
-            case 2: goto L_0x00bc;
-            default: goto L_0x0010;
-        };
-    L_0x0010:
-        r9 = isPunctuation(r0);
-        if (r9 == 0) goto L_0x0113;
-    L_0x0016:
-        r9 = PUNCTUATION;
-        r9 = r9[r0];
-        r9 = (char) r9;
-        r8.append(r9);
-    L_0x001e:
-        r3 = r3 + 1;
-        if (r3 < r13) goto L_0x0007;
-    L_0x0022:
-        r1 = 0;
-        r4 = r8.length();
-        r2 = 0;
-    L_0x0028:
-        if (r2 < r4) goto L_0x011b;
-    L_0x002a:
-        r9 = r4 % 2;
-        if (r9 == 0) goto L_0x0036;
-    L_0x002e:
-        r9 = r1 * 30;
-        r9 = r9 + 29;
-        r9 = (char) r9;
-        r14.append(r9);
-    L_0x0036:
-        return r7;
-    L_0x0037:
-        r9 = isAlphaUpper(r0);
-        if (r9 == 0) goto L_0x004e;
-    L_0x003d:
-        r9 = 32;
-        if (r0 != r9) goto L_0x0047;
-    L_0x0041:
-        r9 = 26;
-        r8.append(r9);
-        goto L_0x001e;
-    L_0x0047:
-        r9 = r0 + -65;
-        r9 = (char) r9;
-        r8.append(r9);
-        goto L_0x001e;
-    L_0x004e:
-        r9 = isAlphaLower(r0);
-        if (r9 == 0) goto L_0x005b;
-    L_0x0054:
-        r7 = 1;
-        r9 = 27;
-        r8.append(r9);
-        goto L_0x0007;
-    L_0x005b:
-        r9 = isMixed(r0);
-        if (r9 == 0) goto L_0x0068;
-    L_0x0061:
-        r7 = 2;
-        r9 = 28;
-        r8.append(r9);
-        goto L_0x0007;
-    L_0x0068:
-        r9 = 29;
-        r8.append(r9);
-        r9 = PUNCTUATION;
-        r9 = r9[r0];
-        r9 = (char) r9;
-        r8.append(r9);
-        goto L_0x001e;
-    L_0x0076:
-        r9 = isAlphaLower(r0);
-        if (r9 == 0) goto L_0x008d;
-    L_0x007c:
-        r9 = 32;
-        if (r0 != r9) goto L_0x0086;
-    L_0x0080:
-        r9 = 26;
-        r8.append(r9);
-        goto L_0x001e;
-    L_0x0086:
-        r9 = r0 + -97;
-        r9 = (char) r9;
-        r8.append(r9);
-        goto L_0x001e;
-    L_0x008d:
-        r9 = isAlphaUpper(r0);
-        if (r9 == 0) goto L_0x009f;
-    L_0x0093:
-        r9 = 27;
-        r8.append(r9);
-        r9 = r0 + -65;
-        r9 = (char) r9;
-        r8.append(r9);
-        goto L_0x001e;
-    L_0x009f:
-        r9 = isMixed(r0);
-        if (r9 == 0) goto L_0x00ad;
-    L_0x00a5:
-        r7 = 2;
-        r9 = 28;
-        r8.append(r9);
-        goto L_0x0007;
-    L_0x00ad:
-        r9 = 29;
-        r8.append(r9);
-        r9 = PUNCTUATION;
-        r9 = r9[r0];
-        r9 = (char) r9;
-        r8.append(r9);
-        goto L_0x001e;
-    L_0x00bc:
-        r9 = isMixed(r0);
-        if (r9 == 0) goto L_0x00cc;
-    L_0x00c2:
-        r9 = MIXED;
-        r9 = r9[r0];
-        r9 = (char) r9;
-        r8.append(r9);
-        goto L_0x001e;
-    L_0x00cc:
-        r9 = isAlphaUpper(r0);
-        if (r9 == 0) goto L_0x00da;
-    L_0x00d2:
-        r7 = 0;
-        r9 = 28;
-        r8.append(r9);
-        goto L_0x0007;
-    L_0x00da:
-        r9 = isAlphaLower(r0);
-        if (r9 == 0) goto L_0x00e8;
-    L_0x00e0:
-        r7 = 1;
-        r9 = 27;
-        r8.append(r9);
-        goto L_0x0007;
-    L_0x00e8:
-        r9 = r12 + r3;
-        r9 = r9 + 1;
-        if (r9 >= r13) goto L_0x0104;
-    L_0x00ee:
-        r9 = r12 + r3;
-        r9 = r9 + 1;
-        r5 = r11.charAt(r9);
-        r9 = isPunctuation(r5);
-        if (r9 == 0) goto L_0x0104;
-    L_0x00fc:
-        r7 = 3;
-        r9 = 25;
-        r8.append(r9);
-        goto L_0x0007;
-    L_0x0104:
-        r9 = 29;
-        r8.append(r9);
-        r9 = PUNCTUATION;
-        r9 = r9[r0];
-        r9 = (char) r9;
-        r8.append(r9);
-        goto L_0x001e;
-    L_0x0113:
-        r7 = 0;
-        r9 = 29;
-        r8.append(r9);
-        goto L_0x0007;
-    L_0x011b:
-        r9 = r2 % 2;
-        if (r9 == 0) goto L_0x0131;
-    L_0x011f:
-        r6 = 1;
-    L_0x0120:
-        if (r6 == 0) goto L_0x0133;
-    L_0x0122:
-        r9 = r1 * 30;
-        r10 = r8.charAt(r2);
-        r9 = r9 + r10;
-        r1 = (char) r9;
-        r14.append(r1);
-    L_0x012d:
-        r2 = r2 + 1;
-        goto L_0x0028;
-    L_0x0131:
-        r6 = 0;
-        goto L_0x0120;
-    L_0x0133:
-        r1 = r8.charAt(r2);
-        goto L_0x012d;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.zxing.pdf417.encoder.PDF417HighLevelEncoder.encodeText(java.lang.CharSequence, int, int, java.lang.StringBuilder, int):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static int encodeText(CharSequence msg, int startpos, int count, StringBuilder sb, int initialSubmode) {
+        StringBuilder tmp = new StringBuilder(count);
+        int submode = initialSubmode;
+        int idx = 0;
+        while (true) {
+            char ch = msg.charAt(startpos + idx);
+            switch (submode) {
+                case 0:
+                    if (isAlphaUpper(ch)) {
+                        if (ch == ' ') {
+                            tmp.append(26);
+                        } else {
+                            tmp.append((char) (ch - 65));
+                        }
+                    } else if (isAlphaLower(ch)) {
+                        submode = 1;
+                        tmp.append(27);
+                        break;
+                    } else if (isMixed(ch)) {
+                        submode = 2;
+                        tmp.append(28);
+                        break;
+                    } else {
+                        tmp.append(29);
+                        tmp.append((char) PUNCTUATION[ch]);
+                    }
+                case 1:
+                    if (isAlphaLower(ch)) {
+                        if (ch == ' ') {
+                            tmp.append(26);
+                        } else {
+                            tmp.append((char) (ch - 97));
+                        }
+                    } else if (isAlphaUpper(ch)) {
+                        tmp.append(27);
+                        tmp.append((char) (ch - 65));
+                    } else if (isMixed(ch)) {
+                        submode = 2;
+                        tmp.append(28);
+                        break;
+                    } else {
+                        tmp.append(29);
+                        tmp.append((char) PUNCTUATION[ch]);
+                    }
+                case 2:
+                    if (!isMixed(ch)) {
+                        if (!isAlphaUpper(ch)) {
+                            if (!isAlphaLower(ch)) {
+                                if ((startpos + idx) + 1 < count && isPunctuation(msg.charAt((startpos + idx) + 1))) {
+                                    submode = 3;
+                                    tmp.append(25);
+                                    break;
+                                }
+                                tmp.append(29);
+                                tmp.append((char) PUNCTUATION[ch]);
+                            } else {
+                                submode = 1;
+                                tmp.append(27);
+                                break;
+                            }
+                        }
+                        submode = 0;
+                        tmp.append(28);
+                        break;
+                    }
+                    tmp.append((char) MIXED[ch]);
+                    break;
+                default:
+                    if (!isPunctuation(ch)) {
+                        submode = 0;
+                        tmp.append(29);
+                        break;
+                    }
+                    tmp.append((char) PUNCTUATION[ch]);
+                    idx++;
+                    if (idx < count) {
+                        break;
+                    }
+                    char h = 0;
+                    int len = tmp.length();
+                    for (int i = 0; i < len; i++) {
+                        if (i % 2 != 0) {
+                            h = (char) ((h * 30) + tmp.charAt(i));
+                            sb.append(h);
+                        } else {
+                            h = tmp.charAt(i);
+                        }
+                    }
+                    if (len % 2 != 0) {
+                        sb.append((char) ((h * 30) + 29));
+                    }
+                    return submode;
+            }
+        }
     }
 
     private static void encodeBinary(byte[] bytes, int startpos, int count, int startmode, StringBuilder sb) {

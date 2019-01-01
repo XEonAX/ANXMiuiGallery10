@@ -1,7 +1,10 @@
 package com.nexstreaming.app.common.util;
 
+import android.util.Log;
 import com.miui.gallery.assistant.jni.filter.BaiduSceneResult;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -208,206 +211,118 @@ public enum FileType {
     /* JADX WARNING: Removed duplicated region for block: B:34:0x008a  */
     /* JADX WARNING: Removed duplicated region for block: B:82:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:42:0x00da  */
-    public static com.nexstreaming.app.common.util.FileType fromFile(java.io.File r13) {
-        /*
-        r12 = 32;
-        r3 = 0;
-        r2 = 0;
-        if (r13 != 0) goto L_0x0008;
-    L_0x0006:
-        r0 = r2;
-    L_0x0007:
-        return r0;
-    L_0x0008:
-        r0 = r13.getName();
-        r1 = 46;
-        r1 = r0.lastIndexOf(r1);
-        if (r1 < 0) goto L_0x0056;
-    L_0x0014:
-        r1 = r1 + 1;
-        r0 = r0.substring(r1);
-        r6 = r0;
-    L_0x001b:
-        if (r6 == 0) goto L_0x005f;
-    L_0x001d:
-        r5 = values();
-        r7 = r5.length;
-        r4 = r3;
-    L_0x0023:
-        if (r4 >= r7) goto L_0x005f;
-    L_0x0025:
-        r0 = r5[r4];
-        r8 = r0.extensions;
-        r9 = r8.length;
-        r1 = r3;
-    L_0x002b:
-        if (r1 >= r9) goto L_0x005b;
-    L_0x002d:
-        r10 = r8[r1];
-        r11 = r0.extensionOnly;
-        if (r11 == 0) goto L_0x0058;
-    L_0x0033:
-        r10 = r10.equalsIgnoreCase(r6);
-        if (r10 == 0) goto L_0x0058;
-    L_0x0039:
-        r1 = "FileType";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "FileType extension match: ";
-        r2 = r2.append(r3);
-        r3 = r0.name();
-        r2 = r2.append(r3);
-        r2 = r2.toString();
-        android.util.Log.d(r1, r2);
-        goto L_0x0007;
-    L_0x0056:
-        r6 = r2;
-        goto L_0x001b;
-    L_0x0058:
-        r1 = r1 + 1;
-        goto L_0x002b;
-    L_0x005b:
-        r0 = r4 + 1;
-        r4 = r0;
-        goto L_0x0023;
-    L_0x005f:
-        r0 = r13.exists();
-        if (r0 == 0) goto L_0x0149;
-    L_0x0065:
-        r0 = r13.length();
-        r4 = 32;
-        r0 = (r0 > r4 ? 1 : (r0 == r4 ? 0 : -1));
-        if (r0 < 0) goto L_0x0149;
-    L_0x006f:
-        r4 = new byte[r12];
-        r1 = new java.io.FileInputStream;	 Catch:{ IOException -> 0x012a }
-        r1.<init>(r13);	 Catch:{ IOException -> 0x012a }
-        r0 = r1.read(r4);	 Catch:{ all -> 0x0125 }
-        r1.close();	 Catch:{ IOException -> 0x0145 }
-    L_0x007d:
-        if (r4 == 0) goto L_0x00d7;
-    L_0x007f:
-        if (r0 < r12) goto L_0x00d7;
-    L_0x0081:
-        r7 = values();
-        r8 = r7.length;
-        r5 = r3;
-        r1 = r2;
-    L_0x0088:
-        if (r5 >= r8) goto L_0x0147;
-    L_0x008a:
-        r0 = r7[r5];
-        r9 = r0.imp;
-        r9 = r9.a(r4);
-        if (r9 == 0) goto L_0x012f;
-    L_0x0094:
-        r9 = "FileType";
-        r10 = new java.lang.StringBuilder;
-        r10.<init>();
-        r11 = "FileType analysis match: ";
-        r10 = r10.append(r11);
-        r11 = r0.name();
-        r10 = r10.append(r11);
-        r10 = r10.toString();
-        android.util.Log.d(r9, r10);
-        if (r1 == 0) goto L_0x0130;
-    L_0x00b2:
-        r1 = "FileType";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r7 = "FileType analysis MULTIPLE match: ";
-        r5 = r5.append(r7);
-        r0 = r0.name();
-        r0 = r5.append(r0);
-        r5 = " (fall back to file extension)";
-        r0 = r0.append(r5);
-        r0 = r0.toString();
-        android.util.Log.d(r1, r0);
-        r0 = r2;
-    L_0x00d5:
-        if (r0 != 0) goto L_0x0007;
-    L_0x00d7:
-        r5 = r4;
-    L_0x00d8:
-        if (r6 == 0) goto L_0x0142;
-    L_0x00da:
-        r7 = values();
-        r8 = r7.length;
-        r4 = r3;
-    L_0x00e0:
-        if (r4 >= r8) goto L_0x0142;
-    L_0x00e2:
-        r1 = r7[r4];
-        r9 = r1.extensions;
-        r10 = r9.length;
-        r0 = r3;
-    L_0x00e8:
-        if (r0 >= r10) goto L_0x013e;
-    L_0x00ea:
-        r11 = r9[r0];
-        r11 = r11.equalsIgnoreCase(r6);
-        if (r11 == 0) goto L_0x013b;
-    L_0x00f2:
-        r2 = "FileType";
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r3 = "FileType extension match: ";
-        r0 = r0.append(r3);
-        r3 = r1.name();
-        r0 = r0.append(r3);
-        r3 = " [";
-        r3 = r0.append(r3);
-        if (r5 != 0) goto L_0x0136;
-    L_0x010f:
-        r0 = "null";
-    L_0x0111:
-        r0 = r3.append(r0);
-        r3 = "]";
-        r0 = r0.append(r3);
-        r0 = r0.toString();
-        android.util.Log.d(r2, r0);
-        r0 = r1;
-        goto L_0x0007;
-    L_0x0125:
-        r0 = move-exception;
-        r1.close();	 Catch:{ IOException -> 0x012a }
-        throw r0;	 Catch:{ IOException -> 0x012a }
-    L_0x012a:
-        r0 = move-exception;
-        r0 = r3;
-    L_0x012c:
-        r4 = r2;
-        goto L_0x007d;
-    L_0x012f:
-        r0 = r1;
-    L_0x0130:
-        r1 = r5 + 1;
-        r5 = r1;
-        r1 = r0;
-        goto L_0x0088;
-    L_0x0136:
-        r0 = com.nexstreaming.app.common.util.n.a(r5);
-        goto L_0x0111;
-    L_0x013b:
-        r0 = r0 + 1;
-        goto L_0x00e8;
-    L_0x013e:
-        r0 = r4 + 1;
-        r4 = r0;
-        goto L_0x00e0;
-    L_0x0142:
-        r0 = r2;
-        goto L_0x0007;
-    L_0x0145:
-        r1 = move-exception;
-        goto L_0x012c;
-    L_0x0147:
-        r0 = r1;
-        goto L_0x00d5;
-    L_0x0149:
-        r5 = r2;
-        goto L_0x00d8;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.util.FileType.fromFile(java.io.File):com.nexstreaming.app.common.util.FileType");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static FileType fromFile(File file) {
+        FileType[] values;
+        int length;
+        int i;
+        FileType fileType;
+        if (file == null) {
+            return null;
+        }
+        String substring;
+        FileType fileType2;
+        byte[] bArr;
+        int read;
+        String name = file.getName();
+        int lastIndexOf = name.lastIndexOf(46);
+        if (lastIndexOf >= 0) {
+            substring = name.substring(lastIndexOf + 1);
+        } else {
+            substring = null;
+        }
+        if (substring != null) {
+            for (FileType fileType22 : values()) {
+                for (String str : fileType22.extensions) {
+                    if (fileType22.extensionOnly && str.equalsIgnoreCase(substring)) {
+                        Log.d(LOG_TAG, "FileType extension match: " + fileType22.name());
+                        return fileType22;
+                    }
+                }
+            }
+        }
+        if (!file.exists() || file.length() < 32) {
+            bArr = null;
+        } else {
+            byte[] bArr2 = new byte[32];
+            FileInputStream fileInputStream;
+            try {
+                fileInputStream = new FileInputStream(file);
+                read = fileInputStream.read(bArr2);
+                try {
+                    fileInputStream.close();
+                } catch (IOException e) {
+                    bArr2 = null;
+                    values = values();
+                    length = values.length;
+                    i = 0;
+                    fileType = null;
+                    while (i < length) {
+                    }
+                    fileType22 = fileType;
+                    if (fileType22 != null) {
+                    }
+                    bArr = bArr2;
+                    if (substring != null) {
+                    }
+                    return null;
+                }
+            } catch (IOException e2) {
+                read = 0;
+                bArr2 = null;
+                values = values();
+                length = values.length;
+                i = 0;
+                fileType = null;
+                while (i < length) {
+                }
+                fileType22 = fileType;
+                if (fileType22 != null) {
+                }
+                bArr = bArr2;
+                if (substring != null) {
+                }
+                return null;
+            } catch (Throwable th) {
+                fileInputStream.close();
+            }
+            if (bArr2 != null && read >= 32) {
+                values = values();
+                length = values.length;
+                i = 0;
+                fileType = null;
+                while (i < length) {
+                    fileType22 = values[i];
+                    if (fileType22.imp.a(bArr2)) {
+                        Log.d(LOG_TAG, "FileType analysis match: " + fileType22.name());
+                        if (fileType != null) {
+                            Log.d(LOG_TAG, "FileType analysis MULTIPLE match: " + fileType22.name() + " (fall back to file extension)");
+                            fileType22 = null;
+                            break;
+                        }
+                    } else {
+                        fileType22 = fileType;
+                    }
+                    i++;
+                    fileType = fileType22;
+                }
+                fileType22 = fileType;
+                if (fileType22 != null) {
+                    return fileType22;
+                }
+            }
+            bArr = bArr2;
+        }
+        if (substring != null) {
+            for (FileType fileType3 : values()) {
+                for (String equalsIgnoreCase : fileType3.extensions) {
+                    if (equalsIgnoreCase.equalsIgnoreCase(substring)) {
+                        Log.d(LOG_TAG, "FileType extension match: " + fileType3.name() + " [" + (bArr == null ? "null" : n.a(bArr)) + "]");
+                        return fileType3;
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

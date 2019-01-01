@@ -9,6 +9,7 @@ import android.media.MediaFormat;
 import android.os.Build.VERSION;
 import android.util.Log;
 import com.miui.gallery.assistant.jni.filter.BaiduSceneResult;
+import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.nio.ByteBuffer;
 
 public class NvAndroidVideoFileReaderSW {
@@ -397,152 +398,85 @@ public class NvAndroidVideoFileReaderSW {
     /* JADX WARNING: Removed duplicated region for block: B:34:0x00ae  */
     /* JADX WARNING: Removed duplicated region for block: B:45:0x00e4  */
     /* JADX WARNING: Removed duplicated region for block: B:37:0x00bc  */
-    private void ParseMediaFormat(android.media.MediaFormat r15) {
-        /*
-        r14 = this;
-        r7 = 18;
-        r4 = 0;
-        r0 = "width";
-        r0 = r15.containsKey(r0);
-        if (r0 == 0) goto L_0x001c;
-    L_0x000c:
-        r0 = "height";
-        r0 = r15.containsKey(r0);
-        if (r0 == 0) goto L_0x001c;
-    L_0x0014:
-        r0 = "color-format";
-        r0 = r15.containsKey(r0);
-        if (r0 != 0) goto L_0x001d;
-    L_0x001c:
-        return;
-    L_0x001d:
-        r0 = "width";
-        r3 = r15.getInteger(r0);
-        r0 = "height";
-        r1 = r15.getInteger(r0);
-        r0 = "color-format";
-        r6 = r15.getInteger(r0);
-        r0 = android.os.Build.VERSION.SDK_INT;
-        if (r0 < r7) goto L_0x0049;
-    L_0x0034:
-        r0 = r14.m_decoder;
-        r0 = r0.getName();
-        r2 = 25;
-        if (r6 != r2) goto L_0x0049;
-    L_0x003e:
-        r2 = "OMX.k3.video.decoder.avc";
-        r0 = r0.equals(r2);
-        if (r0 == 0) goto L_0x0049;
-    L_0x0046:
-        r6 = 2130706688; // 0x7f000100 float:1.7014638E38 double:1.052708976E-314;
-    L_0x0049:
-        r0 = android.os.Build.VERSION.SDK_INT;
-        r2 = 23;
-        if (r0 < r2) goto L_0x00f0;
-    L_0x004f:
-        r0 = "slice-height";
-        r0 = r15.containsKey(r0);
-        if (r0 == 0) goto L_0x00ed;
-    L_0x0058:
-        r0 = "slice-height";
-        r0 = r15.getInteger(r0);
-    L_0x005f:
-        r2 = "stride";
-        r2 = r15.containsKey(r2);
-        if (r2 == 0) goto L_0x00ea;
-    L_0x0068:
-        r2 = "stride";
-        r2 = r15.getInteger(r2);
-        r13 = r2;
-        r2 = r0;
-        r0 = r13;
-    L_0x0072:
-        r5 = android.os.Build.VERSION.SDK_INT;
-        if (r5 < r7) goto L_0x00e7;
-    L_0x0076:
-        r5 = r14.m_decoder;
-        r5 = r5.getName();
-        r7 = "OMX.Nvidia.";
-        r7 = r5.startsWith(r7);
-        if (r7 == 0) goto L_0x00d2;
-    L_0x0084:
-        r2 = r2 + 15;
-        r2 = r2 & -16;
-        r8 = r0;
-        r7 = r2;
-    L_0x008a:
-        r0 = "crop-left";
-        r0 = r15.containsKey(r0);
-        if (r0 == 0) goto L_0x00dd;
-    L_0x0092:
-        r0 = "crop-left";
-        r9 = r15.getInteger(r0);
-    L_0x0098:
-        r0 = "crop-right";
-        r0 = r15.containsKey(r0);
-        if (r0 == 0) goto L_0x00df;
-    L_0x00a0:
-        r0 = "crop-right";
-        r10 = r15.getInteger(r0);
-    L_0x00a6:
-        r0 = "crop-top";
-        r0 = r15.containsKey(r0);
-        if (r0 == 0) goto L_0x00e2;
-    L_0x00ae:
-        r0 = "crop-top";
-        r11 = r15.getInteger(r0);
-    L_0x00b4:
-        r0 = "crop-bottom";
-        r0 = r15.containsKey(r0);
-        if (r0 == 0) goto L_0x00e4;
-    L_0x00bc:
-        r0 = "crop-bottom";
-        r12 = r15.getInteger(r0);
-    L_0x00c2:
-        r0 = r10 + 1;
-        r4 = r0 - r9;
-        r0 = r12 + 1;
-        r5 = r0 - r11;
-        r2 = r14.m_owner;
-        r1 = r14;
-        r1.nativeSetFormatInfo(r2, r4, r5, r6, r7, r8, r9, r10, r11, r12);
-        goto L_0x001c;
-    L_0x00d2:
-        r7 = "OMX.SEC.avc.dec";
-        r5 = r5.startsWith(r7);
-        if (r5 == 0) goto L_0x00e7;
-    L_0x00da:
-        r8 = r3;
-        r7 = r1;
-        goto L_0x008a;
-    L_0x00dd:
-        r9 = r4;
-        goto L_0x0098;
-    L_0x00df:
-        r10 = r3 + -1;
-        goto L_0x00a6;
-    L_0x00e2:
-        r11 = r4;
-        goto L_0x00b4;
-    L_0x00e4:
-        r12 = r1 + -1;
-        goto L_0x00c2;
-    L_0x00e7:
-        r8 = r0;
-        r7 = r2;
-        goto L_0x008a;
-    L_0x00ea:
-        r2 = r0;
-        r0 = r3;
-        goto L_0x0072;
-    L_0x00ed:
-        r0 = r1;
-        goto L_0x005f;
-    L_0x00f0:
-        r0 = r3;
-        r2 = r1;
-        goto L_0x0072;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.cdv.io.NvAndroidVideoFileReaderSW.ParseMediaFormat(android.media.MediaFormat):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void ParseMediaFormat(MediaFormat mediaFormat) {
+        if (mediaFormat.containsKey(nexExportFormat.TAG_FORMAT_WIDTH) && mediaFormat.containsKey(nexExportFormat.TAG_FORMAT_HEIGHT) && mediaFormat.containsKey("color-format")) {
+            int integer;
+            int i;
+            int i2;
+            int i3;
+            int i4;
+            int i5;
+            int i6;
+            int i7;
+            int integer2 = mediaFormat.getInteger(nexExportFormat.TAG_FORMAT_WIDTH);
+            int integer3 = mediaFormat.getInteger(nexExportFormat.TAG_FORMAT_HEIGHT);
+            int integer4 = mediaFormat.getInteger("color-format");
+            if (VERSION.SDK_INT >= 18) {
+                String name = this.m_decoder.getName();
+                if (integer4 == 25 && name.equals("OMX.k3.video.decoder.avc")) {
+                    integer4 = 2130706688;
+                }
+            }
+            if (VERSION.SDK_INT >= 23) {
+                if (mediaFormat.containsKey("slice-height")) {
+                    integer = mediaFormat.getInteger("slice-height");
+                } else {
+                    integer = integer3;
+                }
+                if (mediaFormat.containsKey("stride")) {
+                    i = integer;
+                    integer = mediaFormat.getInteger("stride");
+                } else {
+                    i = integer;
+                    integer = integer2;
+                }
+            } else {
+                integer = integer2;
+                i = integer3;
+            }
+            if (VERSION.SDK_INT >= 18) {
+                String name2 = this.m_decoder.getName();
+                if (name2.startsWith("OMX.Nvidia.")) {
+                    i2 = integer;
+                    i3 = (i + 15) & -16;
+                } else if (name2.startsWith("OMX.SEC.avc.dec")) {
+                    i2 = integer2;
+                    i3 = integer3;
+                }
+                if (mediaFormat.containsKey("crop-left")) {
+                    i4 = 0;
+                } else {
+                    i4 = mediaFormat.getInteger("crop-left");
+                }
+                if (mediaFormat.containsKey("crop-right")) {
+                    i5 = integer2 - 1;
+                } else {
+                    i5 = mediaFormat.getInteger("crop-right");
+                }
+                if (mediaFormat.containsKey("crop-top")) {
+                    i6 = 0;
+                } else {
+                    i6 = mediaFormat.getInteger("crop-top");
+                }
+                if (mediaFormat.containsKey("crop-bottom")) {
+                    i7 = integer3 - 1;
+                } else {
+                    i7 = mediaFormat.getInteger("crop-bottom");
+                }
+                nativeSetFormatInfo(this.m_owner, (i5 + 1) - i4, (i7 + 1) - i6, integer4, i3, i2, i4, i5, i6, i7);
+            }
+            i2 = integer;
+            i3 = i;
+            if (mediaFormat.containsKey("crop-left")) {
+            }
+            if (mediaFormat.containsKey("crop-right")) {
+            }
+            if (mediaFormat.containsKey("crop-top")) {
+            }
+            if (mediaFormat.containsKey("crop-bottom")) {
+            }
+            nativeSetFormatInfo(this.m_owner, (i5 + 1) - i4, (i7 + 1) - i6, integer4, i3, i2, i4, i5, i6, i7);
+        }
     }
 }

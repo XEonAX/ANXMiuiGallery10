@@ -1,5 +1,6 @@
 package com.nexstreaming.app.common.nexasset.assetpackage;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.util.Log;
@@ -568,72 +569,26 @@ public class AssetPackageReader implements Closeable {
     /* JADX WARNING: Missing block: B:3:0x0015, code:
             if (r0 != null) goto L_0x0017;
      */
-    public static com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader a(android.content.Context r6, java.lang.String r7, java.lang.String r8) throws java.io.IOException {
-        /*
-        r5 = 0;
-        r4 = 1;
-        com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader.a.b();
-        r0 = h;
-        r0 = r0.get(r7);
-        r0 = (java.lang.ref.WeakReference) r0;
-        if (r0 == 0) goto L_0x0018;
-    L_0x000f:
-        r0 = r0.get();
-        r0 = (com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader) r0;
-        if (r0 == 0) goto L_0x0018;
-    L_0x0017:
-        return r0;
-    L_0x0018:
-        r0 = 58;
-        r0 = r7.indexOf(r0);
-        r0 = r0 + 1;
-        r1 = r7.substring(r0);
-        r0 = "assets:";
-        r0 = r7.startsWith(r0);
-        if (r0 == 0) goto L_0x0049;
-    L_0x002c:
-        r0 = new com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader;
-        r2 = new com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader$b;
-        r3 = r6.getApplicationContext();
-        r3 = r3.getAssets();
-        r2.<init>(r3, r1);
-        r0.<init>(r2, r8, r4);
-    L_0x003e:
-        r1 = h;
-        r2 = new com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader$a;
-        r2.<init>(r0);
-        r1.put(r7, r2);
-        goto L_0x0017;
-    L_0x0049:
-        r0 = "file:";
-        r0 = r7.startsWith(r0);
-        if (r0 == 0) goto L_0x0061;
-    L_0x0051:
-        r0 = new com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader;
-        r2 = new com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader$e;
-        r3 = new java.io.File;
-        r3.<init>(r1);
-        r2.<init>(r3);
-        r0.<init>(r2, r8, r4);
-        goto L_0x003e;
-    L_0x0061:
-        r0 = "zipfile:";
-        r0 = r7.startsWith(r0);
-        if (r0 == 0) goto L_0x007a;
-    L_0x006a:
-        r0 = new com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader;
-        r2 = new com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader$g;
-        r3 = new java.io.File;
-        r3.<init>(r1);
-        r2.<init>(r3);
-        r0.<init>(r2, r8, r4);
-        goto L_0x003e;
-    L_0x007a:
-        r0 = new com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader$PackageReaderException;
-        r0.<init>();
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader.a(android.content.Context, java.lang.String, java.lang.String):com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static AssetPackageReader a(Context context, String str, String str2) throws IOException {
+        AssetPackageReader assetPackageReader;
+        a.b();
+        WeakReference weakReference = (WeakReference) h.get(str);
+        if (weakReference != null) {
+            assetPackageReader = (AssetPackageReader) weakReference.get();
+        }
+        String substring = str.substring(str.indexOf(58) + 1);
+        if (str.startsWith("assets:")) {
+            assetPackageReader = new AssetPackageReader(new b(context.getApplicationContext().getAssets(), substring), str2, true);
+        } else if (str.startsWith("file:")) {
+            assetPackageReader = new AssetPackageReader(new e(new File(substring)), str2, true);
+        } else if (str.startsWith("zipfile:")) {
+            assetPackageReader = new AssetPackageReader(new g(new File(substring)), str2, true);
+        } else {
+            throw new PackageReaderException();
+        }
+        h.put(str, new a(assetPackageReader));
+        return assetPackageReader;
     }
 
     private AssetPackageReader(c cVar, String str, boolean z) throws IOException {

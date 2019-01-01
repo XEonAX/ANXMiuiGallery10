@@ -1,11 +1,15 @@
 package com.miui.gallery.video.editor.net;
 
+import android.text.TextUtils;
 import com.miui.gallery.R;
 import com.miui.gallery.video.editor.factory.VideoEditorModuleFactory;
 import com.miui.gallery.video.editor.model.LocalResource;
 import com.miui.gallery.video.editor.model.SmartEffectLocalResource;
 import com.miui.gallery.video.editor.model.VideoEditorBaseLocalResource;
 import com.miui.gallery.video.editor.model.WaterMarkLocalResource;
+import com.miui.gallery.video.editor.util.ToolsUtil;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class VideoEditorResourceRequest extends VideoEditorBaseResourceRequest {
     private final long RESOURCE_AUDIO_PARENT_ID = 9507179096834080L;
@@ -45,115 +49,69 @@ public class VideoEditorResourceRequest extends VideoEditorBaseResourceRequest {
     /* JADX WARNING: Removed duplicated region for block: B:9:0x0069  */
     /* JADX WARNING: Removed duplicated region for block: B:9:0x0069  */
     /* JADX WARNING: Removed duplicated region for block: B:36:? A:{SYNTHETIC, RETURN} */
-    protected void setResult(com.miui.gallery.video.editor.model.LocalResource r15) {
-        /*
-        r14 = this;
-        r13 = r15 instanceof com.miui.gallery.video.editor.model.SmartEffectLocalResource;
-        if (r13 == 0) goto L_0x0065;
-    L_0x0004:
-        r10 = r15;
-        r10 = (com.miui.gallery.video.editor.model.SmartEffectLocalResource) r10;
-        r5 = 0;
-        r6 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x00b6 }
-        r13 = r15.extra;	 Catch:{ JSONException -> 0x00b6 }
-        r6.<init>(r13);	 Catch:{ JSONException -> 0x00b6 }
-        r13 = "assetid";
-        r0 = r6.optString(r13);	 Catch:{ JSONException -> 0x00d2 }
-        r13 = "update";
-        r11 = r6.optString(r13);	 Catch:{ JSONException -> 0x00d2 }
-        r13 = "assetName";
-        r1 = r6.optString(r13);	 Catch:{ JSONException -> 0x00d2 }
-        r13 = "longTime";
-        r8 = r6.optString(r13);	 Catch:{ JSONException -> 0x00d2 }
-        r13 = "shortTime";
-        r9 = r6.optString(r13);	 Catch:{ JSONException -> 0x00d2 }
-        r13 = "hasSpeedChange";
-        r7 = r6.optString(r13);	 Catch:{ JSONException -> 0x00d2 }
-        r13 = "enName";
-        r4 = r6.optString(r13);	 Catch:{ JSONException -> 0x00d2 }
-        r13 = com.miui.gallery.video.editor.util.ToolsUtil.getTrimedString(r0);	 Catch:{ JSONException -> 0x00d2 }
-        r10.assetId = r13;	 Catch:{ JSONException -> 0x00d2 }
-        r13 = com.miui.gallery.video.editor.util.ToolsUtil.getTrimedString(r11);	 Catch:{ JSONException -> 0x00d2 }
-        r10.update = r13;	 Catch:{ JSONException -> 0x00d2 }
-        r13 = com.miui.gallery.video.editor.util.ToolsUtil.getTrimedString(r1);	 Catch:{ JSONException -> 0x00d2 }
-        r10.assetName = r13;	 Catch:{ JSONException -> 0x00d2 }
-        r13 = com.miui.gallery.video.editor.util.ToolsUtil.getTrimedString(r8);	 Catch:{ JSONException -> 0x00d2 }
-        r10.longTime = r13;	 Catch:{ JSONException -> 0x00d2 }
-        r13 = com.miui.gallery.video.editor.util.ToolsUtil.getTrimedString(r9);	 Catch:{ JSONException -> 0x00d2 }
-        r10.shortTime = r13;	 Catch:{ JSONException -> 0x00d2 }
-        r13 = com.miui.gallery.video.editor.util.ToolsUtil.getTrimedString(r7);	 Catch:{ JSONException -> 0x00d2 }
-        r10.hasSpeedChange = r13;	 Catch:{ JSONException -> 0x00d2 }
-        r13 = com.miui.gallery.video.editor.util.ToolsUtil.getTrimedString(r4);	 Catch:{ JSONException -> 0x00d2 }
-        r10.enName = r13;	 Catch:{ JSONException -> 0x00d2 }
-    L_0x0065:
-        r13 = r15 instanceof com.miui.gallery.video.editor.model.WaterMarkLocalResource;
-        if (r13 == 0) goto L_0x00b5;
-    L_0x0069:
-        r12 = r15;
-        r12 = (com.miui.gallery.video.editor.model.WaterMarkLocalResource) r12;
-        r5 = 0;
-        r6 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x00ca }
-        r13 = r15.extra;	 Catch:{ JSONException -> 0x00ca }
-        r6.<init>(r13);	 Catch:{ JSONException -> 0x00ca }
-        r13 = "assetid";
-        r0 = r6.optString(r13);	 Catch:{ JSONException -> 0x00cf }
-        r13 = "update";
-        r11 = r6.optString(r13);	 Catch:{ JSONException -> 0x00cf }
-        r13 = "assetName";
-        r1 = r6.optString(r13);	 Catch:{ JSONException -> 0x00cf }
-        r13 = "cn";
-        r2 = r6.optString(r13);	 Catch:{ JSONException -> 0x00cf }
-        r13 = android.text.TextUtils.isEmpty(r0);	 Catch:{ JSONException -> 0x00cf }
-        if (r13 == 0) goto L_0x00bb;
-    L_0x0093:
-        r13 = "";
-    L_0x0095:
-        r12.assetId = r13;	 Catch:{ JSONException -> 0x00cf }
-        r13 = android.text.TextUtils.isEmpty(r11);	 Catch:{ JSONException -> 0x00cf }
-        if (r13 == 0) goto L_0x00c0;
-    L_0x009d:
-        r13 = "";
-    L_0x009f:
-        r12.update = r13;	 Catch:{ JSONException -> 0x00cf }
-        r13 = android.text.TextUtils.isEmpty(r1);	 Catch:{ JSONException -> 0x00cf }
-        if (r13 == 0) goto L_0x00c5;
-    L_0x00a7:
-        r13 = "";
-    L_0x00a9:
-        r12.assetName = r13;	 Catch:{ JSONException -> 0x00cf }
-        r13 = com.miui.gallery.video.editor.util.ToolsUtil.getTrimedString(r2);	 Catch:{ JSONException -> 0x00cf }
-        r13 = com.miui.gallery.video.editor.util.ToolsUtil.parseIntFromStr(r13);	 Catch:{ JSONException -> 0x00cf }
-        r12.isInternational = r13;	 Catch:{ JSONException -> 0x00cf }
-    L_0x00b5:
-        return;
-    L_0x00b6:
-        r3 = move-exception;
-    L_0x00b7:
-        r3.printStackTrace();
-        goto L_0x0065;
-    L_0x00bb:
-        r13 = r0.trim();	 Catch:{ JSONException -> 0x00cf }
-        goto L_0x0095;
-    L_0x00c0:
-        r13 = r11.trim();	 Catch:{ JSONException -> 0x00cf }
-        goto L_0x009f;
-    L_0x00c5:
-        r13 = r1.trim();	 Catch:{ JSONException -> 0x00cf }
-        goto L_0x00a9;
-    L_0x00ca:
-        r3 = move-exception;
-    L_0x00cb:
-        r3.printStackTrace();
-        goto L_0x00b5;
-    L_0x00cf:
-        r3 = move-exception;
-        r5 = r6;
-        goto L_0x00cb;
-    L_0x00d2:
-        r3 = move-exception;
-        r5 = r6;
-        goto L_0x00b7;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.video.editor.net.VideoEditorResourceRequest.setResult(com.miui.gallery.video.editor.model.LocalResource):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    protected void setResult(LocalResource resource) {
+        JSONObject extraObject;
+        String assetId;
+        String update;
+        String assetName;
+        JSONException e;
+        JSONObject jSONObject;
+        if (resource instanceof SmartEffectLocalResource) {
+            SmartEffectLocalResource smartEffectLocalResource = (SmartEffectLocalResource) resource;
+            try {
+                extraObject = new JSONObject(resource.extra);
+                try {
+                    assetId = extraObject.optString("assetid");
+                    update = extraObject.optString("update");
+                    assetName = extraObject.optString("assetName");
+                    String longTime = extraObject.optString("longTime");
+                    String shortTime = extraObject.optString("shortTime");
+                    String hasSpeedChange = extraObject.optString("hasSpeedChange");
+                    String enName = extraObject.optString("enName");
+                    smartEffectLocalResource.assetId = ToolsUtil.getTrimedString(assetId);
+                    smartEffectLocalResource.update = ToolsUtil.getTrimedString(update);
+                    smartEffectLocalResource.assetName = ToolsUtil.getTrimedString(assetName);
+                    smartEffectLocalResource.longTime = ToolsUtil.getTrimedString(longTime);
+                    smartEffectLocalResource.shortTime = ToolsUtil.getTrimedString(shortTime);
+                    smartEffectLocalResource.hasSpeedChange = ToolsUtil.getTrimedString(hasSpeedChange);
+                    smartEffectLocalResource.enName = ToolsUtil.getTrimedString(enName);
+                } catch (JSONException e2) {
+                    e = e2;
+                    jSONObject = extraObject;
+                    e.printStackTrace();
+                    if (resource instanceof WaterMarkLocalResource) {
+                    }
+                }
+            } catch (JSONException e3) {
+                e = e3;
+                e.printStackTrace();
+                if (resource instanceof WaterMarkLocalResource) {
+                }
+            }
+        }
+        if (resource instanceof WaterMarkLocalResource) {
+            WaterMarkLocalResource waterMarkLocalResource = (WaterMarkLocalResource) resource;
+            try {
+                extraObject = new JSONObject(resource.extra);
+                try {
+                    assetId = extraObject.optString("assetid");
+                    update = extraObject.optString("update");
+                    assetName = extraObject.optString("assetName");
+                    String cn = extraObject.optString("cn");
+                    waterMarkLocalResource.assetId = TextUtils.isEmpty(assetId) ? "" : assetId.trim();
+                    waterMarkLocalResource.update = TextUtils.isEmpty(update) ? "" : update.trim();
+                    waterMarkLocalResource.assetName = TextUtils.isEmpty(assetName) ? "" : assetName.trim();
+                    waterMarkLocalResource.isInternational = ToolsUtil.parseIntFromStr(ToolsUtil.getTrimedString(cn));
+                } catch (JSONException e4) {
+                    e = e4;
+                    jSONObject = extraObject;
+                    e.printStackTrace();
+                }
+            } catch (JSONException e5) {
+                e = e5;
+                e.printStackTrace();
+            }
+        }
     }
 }

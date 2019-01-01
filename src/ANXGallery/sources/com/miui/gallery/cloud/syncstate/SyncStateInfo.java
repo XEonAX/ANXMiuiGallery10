@@ -328,70 +328,24 @@ public class SyncStateInfo {
     /* JADX WARNING: Missing block: B:30:?, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void tryRefreshSyncType() {
-        /*
-        r5 = this;
-        r1 = r5.mLock;
-        monitor-enter(r1);
-        r0 = r5.mSyncType;	 Catch:{ all -> 0x0038 }
-        r2 = com.miui.gallery.cloud.syncstate.SyncType.GPRS_FORCE;	 Catch:{ all -> 0x0038 }
-        if (r0 != r2) goto L_0x003b;
-    L_0x0009:
-        r0 = com.miui.gallery.preference.GalleryPreferences.Sync.getBackupOnlyInWifi();	 Catch:{ all -> 0x0038 }
-        if (r0 == 0) goto L_0x001b;
-    L_0x000f:
-        r0 = com.miui.gallery.cloud.NetworkUtils.isNetworkConnected();	 Catch:{ all -> 0x0038 }
-        if (r0 == 0) goto L_0x003b;
-    L_0x0015:
-        r0 = com.miui.gallery.cloud.NetworkUtils.isActiveNetworkMetered();	 Catch:{ all -> 0x0038 }
-        if (r0 != 0) goto L_0x003b;
-    L_0x001b:
-        r0 = r5.mIsBatteryLow;	 Catch:{ all -> 0x0038 }
-        if (r0 == 0) goto L_0x0033;
-    L_0x001f:
-        r0 = com.miui.gallery.cloud.syncstate.SyncType.POWER_FORCE;	 Catch:{ all -> 0x0038 }
-        r5.mSyncType = r0;	 Catch:{ all -> 0x0038 }
-    L_0x0023:
-        r0 = "SyncStateInfo";
-        r2 = "refresh sync type %s to %s";
-        r3 = com.miui.gallery.cloud.syncstate.SyncType.GPRS_FORCE;	 Catch:{ all -> 0x0038 }
-        r4 = r5.mSyncType;	 Catch:{ all -> 0x0038 }
-        com.miui.gallery.util.Log.d(r0, r2, r3, r4);	 Catch:{ all -> 0x0038 }
-        r5.notifyObservers();	 Catch:{ all -> 0x0038 }
-        monitor-exit(r1);	 Catch:{ all -> 0x0038 }
-    L_0x0032:
-        return;
-    L_0x0033:
-        r0 = com.miui.gallery.cloud.syncstate.SyncType.NORMAL;	 Catch:{ all -> 0x0038 }
-        r5.mSyncType = r0;	 Catch:{ all -> 0x0038 }
-        goto L_0x0023;
-    L_0x0038:
-        r0 = move-exception;
-        monitor-exit(r1);	 Catch:{ all -> 0x0038 }
-        throw r0;
-    L_0x003b:
-        r0 = r5.mSyncType;	 Catch:{ all -> 0x0038 }
-        r2 = com.miui.gallery.cloud.syncstate.SyncType.POWER_FORCE;	 Catch:{ all -> 0x0038 }
-        if (r0 != r2) goto L_0x0059;
-    L_0x0041:
-        r0 = r5.mIsBatteryLow;	 Catch:{ all -> 0x0038 }
-        if (r0 != 0) goto L_0x0059;
-    L_0x0045:
-        r0 = com.miui.gallery.cloud.syncstate.SyncType.NORMAL;	 Catch:{ all -> 0x0038 }
-        r5.mSyncType = r0;	 Catch:{ all -> 0x0038 }
-        r0 = "SyncStateInfo";
-        r2 = "refresh sync type %s to %s";
-        r3 = com.miui.gallery.cloud.syncstate.SyncType.POWER_FORCE;	 Catch:{ all -> 0x0038 }
-        r4 = r5.mSyncType;	 Catch:{ all -> 0x0038 }
-        com.miui.gallery.util.Log.d(r0, r2, r3, r4);	 Catch:{ all -> 0x0038 }
-        r5.notifyObservers();	 Catch:{ all -> 0x0038 }
-        monitor-exit(r1);	 Catch:{ all -> 0x0038 }
-        goto L_0x0032;
-    L_0x0059:
-        monitor-exit(r1);	 Catch:{ all -> 0x0038 }
-        goto L_0x0032;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.cloud.syncstate.SyncStateInfo.tryRefreshSyncType():void");
+        synchronized (this.mLock) {
+            if (this.mSyncType == SyncType.GPRS_FORCE && (!Sync.getBackupOnlyInWifi() || (NetworkUtils.isNetworkConnected() && !NetworkUtils.isActiveNetworkMetered()))) {
+                if (this.mIsBatteryLow) {
+                    this.mSyncType = SyncType.POWER_FORCE;
+                } else {
+                    this.mSyncType = SyncType.NORMAL;
+                }
+                Log.d("SyncStateInfo", "refresh sync type %s to %s", SyncType.GPRS_FORCE, this.mSyncType);
+                notifyObservers();
+            } else if (this.mSyncType != SyncType.POWER_FORCE || this.mIsBatteryLow) {
+            } else {
+                this.mSyncType = SyncType.NORMAL;
+                Log.d("SyncStateInfo", "refresh sync type %s to %s", SyncType.POWER_FORCE, this.mSyncType);
+                notifyObservers();
+            }
+        }
     }
 
     private void updateDirtyCount(Context context) {

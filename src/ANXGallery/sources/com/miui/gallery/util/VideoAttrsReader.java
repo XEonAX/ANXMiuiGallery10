@@ -1,7 +1,9 @@
 package com.miui.gallery.util;
 
+import android.media.MediaMetadataRetriever;
 import android.text.TextUtils;
 import android.text.format.Time;
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,87 +53,59 @@ public class VideoAttrsReader {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:22:0x0079 A:{SYNTHETIC, Splitter: B:22:0x0079} */
-    private void initByMediaMediaPlayer(java.lang.String r9) throws java.io.IOException {
-        /*
-        r8 = this;
-        r0 = 0;
-        r1 = new android.media.MediaMetadataRetriever;	 Catch:{ RuntimeException -> 0x006f }
-        r1.<init>();	 Catch:{ RuntimeException -> 0x006f }
-        r1.setDataSource(r9);	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r4 = 7;
-        r4 = r1.extractMetadata(r4);	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r8.mTitle = r4;	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r4 = 18;
-        r4 = r1.extractMetadata(r4);	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r4 = r8.parseIntSafely(r4);	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r8.mWidth = r4;	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r4 = 19;
-        r4 = r1.extractMetadata(r4);	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r4 = r8.parseIntSafely(r4);	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r8.mHeight = r4;	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r4 = 9;
-        r4 = r1.extractMetadata(r4);	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r4 = r8.parseLongSafely(r4);	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r8.mDuration = r4;	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r4 = 5;
-        r3 = r1.extractMetadata(r4);	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r4 = r8.calculateTaken(r3);	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        r8.mDateTaken = r4;	 Catch:{ RuntimeException -> 0x0084, all -> 0x0081 }
-        if (r1 == 0) goto L_0x0044;
-    L_0x0041:
-        r1.release();	 Catch:{ RuntimeException -> 0x007d }
-    L_0x0044:
-        r4 = r8.mTitle;
-        r4 = android.text.TextUtils.isEmpty(r4);
-        if (r4 == 0) goto L_0x0056;
-    L_0x004c:
-        r4 = com.miui.gallery.util.FileUtils.getFileName(r9);
-        r4 = com.miui.gallery.util.FileUtils.getFileTitle(r4);
-        r8.mTitle = r4;
-    L_0x0056:
-        r4 = r8.mDateTaken;
-        r6 = 0;
-        r4 = (r4 > r6 ? 1 : (r4 == r6 ? 0 : -1));
-        if (r4 > 0) goto L_0x0069;
-    L_0x005e:
-        r4 = new java.io.File;
-        r4.<init>(r9);
-        r4 = r4.lastModified();
-        r8.mDateTaken = r4;
-    L_0x0069:
-        r4 = "final result";
-        r8.dump(r4);
-        return;
-    L_0x006f:
-        r2 = move-exception;
-    L_0x0070:
-        r4 = new com.miui.gallery.util.VideoAttrsReader$VideoAttrsUnretrivableException;	 Catch:{ all -> 0x0076 }
-        r4.<init>(r9, r2);	 Catch:{ all -> 0x0076 }
-        throw r4;	 Catch:{ all -> 0x0076 }
-    L_0x0076:
-        r4 = move-exception;
-    L_0x0077:
-        if (r0 == 0) goto L_0x007c;
-    L_0x0079:
-        r0.release();	 Catch:{ RuntimeException -> 0x007f }
-    L_0x007c:
-        throw r4;
-    L_0x007d:
-        r4 = move-exception;
-        goto L_0x0044;
-    L_0x007f:
-        r5 = move-exception;
-        goto L_0x007c;
-    L_0x0081:
-        r4 = move-exception;
-        r0 = r1;
-        goto L_0x0077;
-    L_0x0084:
-        r2 = move-exception;
-        r0 = r1;
-        goto L_0x0070;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.util.VideoAttrsReader.initByMediaMediaPlayer(java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void initByMediaMediaPlayer(String path) throws IOException {
+        RuntimeException e;
+        Throwable th;
+        MediaMetadataRetriever attrsRetriver = null;
+        try {
+            MediaMetadataRetriever attrsRetriver2 = new MediaMetadataRetriever();
+            try {
+                attrsRetriver2.setDataSource(path);
+                this.mTitle = attrsRetriver2.extractMetadata(7);
+                this.mWidth = parseIntSafely(attrsRetriver2.extractMetadata(18));
+                this.mHeight = parseIntSafely(attrsRetriver2.extractMetadata(19));
+                this.mDuration = parseLongSafely(attrsRetriver2.extractMetadata(9));
+                this.mDateTaken = calculateTaken(attrsRetriver2.extractMetadata(5));
+                if (attrsRetriver2 != null) {
+                    try {
+                        attrsRetriver2.release();
+                    } catch (RuntimeException e2) {
+                    }
+                }
+                if (TextUtils.isEmpty(this.mTitle)) {
+                    this.mTitle = FileUtils.getFileTitle(FileUtils.getFileName(path));
+                }
+                if (this.mDateTaken <= 0) {
+                    this.mDateTaken = new File(path).lastModified();
+                }
+                dump("final result");
+            } catch (RuntimeException e3) {
+                e = e3;
+                attrsRetriver = attrsRetriver2;
+                try {
+                    throw new VideoAttrsUnretrivableException(path, e);
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (attrsRetriver != null) {
+                        try {
+                            attrsRetriver.release();
+                        } catch (RuntimeException e4) {
+                        }
+                    }
+                    throw th;
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                attrsRetriver = attrsRetriver2;
+                if (attrsRetriver != null) {
+                }
+                throw th;
+            }
+        } catch (RuntimeException e5) {
+            e = e5;
+            throw new VideoAttrsUnretrivableException(path, e);
+        }
     }
 
     private long calculateTaken(String dateStr) {

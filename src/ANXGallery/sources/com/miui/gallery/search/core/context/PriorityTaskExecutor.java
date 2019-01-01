@@ -105,47 +105,22 @@ public class PriorityTaskExecutor<E extends PriorityTask> implements TaskExecuto
     /* JADX WARNING: Missing block: B:20:?, code:
             return;
      */
-    public void cancel(E r6) {
-        /*
-        r5 = this;
-        r3 = r5.mLock;
-        monitor-enter(r3);
-        r2 = r5.mRunningQueue;	 Catch:{ all -> 0x003c }
-        r2 = r2.iterator();	 Catch:{ all -> 0x003c }
-    L_0x0009:
-        r4 = r2.hasNext();	 Catch:{ all -> 0x003c }
-        if (r4 == 0) goto L_0x002b;
-    L_0x000f:
-        r0 = r2.next();	 Catch:{ all -> 0x003c }
-        r0 = (com.miui.gallery.threadpool.Future) r0;	 Catch:{ all -> 0x003c }
-        r4 = r0.getJob();	 Catch:{ all -> 0x003c }
-        r4 = r5.isSameTask(r4, r6);	 Catch:{ all -> 0x003c }
-        if (r4 == 0) goto L_0x0009;
-    L_0x001f:
-        r2 = "PriorityTaskExecutor";
-        r4 = "Cancel running task [%s]";
-        com.miui.gallery.search.utils.SearchLog.d(r2, r4, r6);	 Catch:{ all -> 0x003c }
-        r0.cancel();	 Catch:{ all -> 0x003c }
-        monitor-exit(r3);	 Catch:{ all -> 0x003c }
-    L_0x002a:
-        return;
-    L_0x002b:
-        r2 = r5.mWaitQueue;	 Catch:{ all -> 0x003c }
-        r1 = r2.remove(r6);	 Catch:{ all -> 0x003c }
-        if (r1 == 0) goto L_0x003a;
-    L_0x0033:
-        r2 = "PriorityTaskExecutor";
-        r4 = "Remove task from waiting queue [%s]";
-        com.miui.gallery.search.utils.SearchLog.d(r2, r4, r6);	 Catch:{ all -> 0x003c }
-    L_0x003a:
-        monitor-exit(r3);	 Catch:{ all -> 0x003c }
-        goto L_0x002a;
-    L_0x003c:
-        r2 = move-exception;
-        monitor-exit(r3);	 Catch:{ all -> 0x003c }
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.search.core.context.PriorityTaskExecutor.cancel(com.miui.gallery.search.core.context.PriorityTaskExecutor$PriorityTask):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void cancel(E task) {
+        synchronized (this.mLock) {
+            Iterator it = this.mRunningQueue.iterator();
+            while (it.hasNext()) {
+                Future future = (Future) it.next();
+                if (isSameTask(future.getJob(), task)) {
+                    SearchLog.d("PriorityTaskExecutor", "Cancel running task [%s]", task);
+                    future.cancel();
+                    return;
+                }
+            }
+            if (this.mWaitQueue.remove(task)) {
+                SearchLog.d("PriorityTaskExecutor", "Remove task from waiting queue [%s]", task);
+            }
+        }
     }
 
     public void cancelAll() {

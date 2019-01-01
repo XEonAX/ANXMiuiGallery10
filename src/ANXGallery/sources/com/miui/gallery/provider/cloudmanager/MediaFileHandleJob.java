@@ -107,52 +107,30 @@ class MediaFileHandleJob {
     /* JADX WARNING: Missing block: B:13:?, code:
             return false;
      */
-    public boolean run(android.content.Context r5) {
-        /*
-        r4 = this;
-        r2 = 0;
-        r1 = 1;
-        r0 = 0;
-        r3 = r4.mLocalFlag;
-        switch(r3) {
-            case -2: goto L_0x000a;
-            case -1: goto L_0x000f;
-            case 0: goto L_0x0008;
-            case 1: goto L_0x0008;
-            case 2: goto L_0x0010;
-            case 3: goto L_0x0008;
-            case 4: goto L_0x0008;
-            case 5: goto L_0x0017;
-            case 6: goto L_0x000b;
-            case 7: goto L_0x0017;
-            case 8: goto L_0x0017;
-            case 9: goto L_0x000b;
-            case 10: goto L_0x0008;
-            case 11: goto L_0x0010;
-            default: goto L_0x0008;
-        };
-    L_0x0008:
-        r1 = r2;
-    L_0x0009:
-        return r1;
-    L_0x000a:
-        r0 = 1;
-    L_0x000b:
-        r4.doCopy(r5, r0);
-        goto L_0x0009;
-    L_0x000f:
-        r0 = 1;
-    L_0x0010:
-        r4.doDelete(r5, r0);
-        if (r0 == 0) goto L_0x0009;
-    L_0x0015:
-        r1 = r2;
-        goto L_0x0009;
-    L_0x0017:
-        r4.doMove(r5);
-        goto L_0x0009;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.provider.cloudmanager.MediaFileHandleJob.run(android.content.Context):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean run(Context context) {
+        boolean local = false;
+        switch (this.mLocalFlag) {
+            case -2:
+                local = true;
+                break;
+            case -1:
+                local = true;
+                break;
+            case 2:
+            case 11:
+                break;
+            case 5:
+            case 7:
+            case 8:
+                doMove(context);
+                return true;
+            case 6:
+            case 9:
+                break;
+            default:
+                return false;
+        }
     }
 
     private void doMove(Context context) {

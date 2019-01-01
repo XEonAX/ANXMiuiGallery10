@@ -7,15 +7,21 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
 import android.os.Build.VERSION;
 import android.os.IBinder;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 import com.xiaomi.mistatistic.sdk.BuildSetting;
 import com.xiaomi.mistatistic.sdk.CustomSettings;
+import java.io.BufferedReader;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
@@ -130,184 +136,120 @@ public abstract class l {
     /* JADX WARNING: Removed duplicated region for block: B:22:0x0078 A:{Catch:{ IOException -> 0x0114 }} */
     /* JADX WARNING: Removed duplicated region for block: B:19:0x0073 A:{SYNTHETIC, Splitter: B:19:0x0073} */
     /* JADX WARNING: Removed duplicated region for block: B:22:0x0078 A:{Catch:{ IOException -> 0x0114 }} */
-    public static void a(android.content.Context r10, java.lang.String r11, java.util.Map<java.lang.String, java.lang.String> r12, com.xiaomi.mistatistic.sdk.controller.l.b r13) throws java.io.IOException {
-        /*
-        r1 = 0;
-        r0 = b();
-        if (r0 != 0) goto L_0x000f;
-    L_0x0007:
-        r0 = "NET";
-        r1 = "Network connection is disabled.";
-        com.xiaomi.mistatistic.sdk.controller.j.d(r0, r1);
-    L_0x000e:
-        return;
-    L_0x000f:
-        r0 = android.text.TextUtils.isEmpty(r11);
-        if (r0 == 0) goto L_0x001d;
-    L_0x0015:
-        r0 = new java.lang.IllegalArgumentException;
-        r1 = "The url is empty.";
-        r0.<init>(r1);
-        throw r0;
-    L_0x001d:
-        r0 = com.xiaomi.mistatistic.sdk.controller.t.a(r10, r11);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2 = new java.net.URL;	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2.<init>(r0);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r3 = a(r10, r2);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2 = 10000; // 0x2710 float:1.4013E-41 double:4.9407E-320;
-        r3.setConnectTimeout(r2);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2 = 15000; // 0x3a98 float:2.102E-41 double:7.411E-320;
-        r3.setReadTimeout(r2);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2 = "POST";
-        r3.setRequestMethod(r2);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2 = "Connection";
-        r4 = "close";
-        r3.setRequestProperty(r2, r4);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2 = "NET";
-        r4 = "paramsMap:%s";
-        r5 = 1;
-        r5 = new java.lang.Object[r5];	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r6 = 0;
-        r5[r6] = r12;	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r4 = java.lang.String.format(r4, r5);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        com.xiaomi.mistatistic.sdk.controller.j.b(r2, r4);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        a(r12);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2 = b(r12);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r4 = r2.isEmpty();	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        if (r4 == 0) goto L_0x007c;
-    L_0x005e:
-        r0 = new java.lang.IllegalArgumentException;	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2 = "The content being uploaded is empty.";
-        r0.<init>(r2);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        throw r0;	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-    L_0x0066:
-        r0 = move-exception;
-        r2 = r1;
-    L_0x0068:
-        r3 = "NET";
-        r4 = "IOException:";
-        android.util.Log.d(r3, r4, r0);	 Catch:{ all -> 0x0070 }
-        throw r0;	 Catch:{ all -> 0x0070 }
-    L_0x0070:
-        r0 = move-exception;
-    L_0x0071:
-        if (r2 == 0) goto L_0x0076;
-    L_0x0073:
-        r2.close();	 Catch:{ IOException -> 0x0114 }
-    L_0x0076:
-        if (r1 == 0) goto L_0x007b;
-    L_0x0078:
-        r1.close();	 Catch:{ IOException -> 0x0114 }
-    L_0x007b:
-        throw r0;
-    L_0x007c:
-        r4 = 1;
-        r3.setDoOutput(r4);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r4 = r2.getBytes();	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2 = r3.getOutputStream();	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r5 = 0;
-        r6 = r4.length;	 Catch:{ IOException -> 0x012f, Throwable -> 0x0128 }
-        r2.write(r4, r5, r6);	 Catch:{ IOException -> 0x012f, Throwable -> 0x0128 }
-        r2.flush();	 Catch:{ IOException -> 0x012f, Throwable -> 0x0128 }
-        r2.close();	 Catch:{ IOException -> 0x012f, Throwable -> 0x0128 }
-        r4 = 0;
-        r2 = r3.getResponseCode();	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r5 = "NET";
-        r6 = "url:%s, responseCode:%d";
-        r7 = 2;
-        r7 = new java.lang.Object[r7];	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r8 = 0;
-        r7[r8] = r0;	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r0 = 1;
-        r2 = java.lang.Integer.valueOf(r2);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r7[r0] = r2;	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r0 = java.lang.String.format(r6, r7);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        com.xiaomi.mistatistic.sdk.controller.j.b(r5, r0);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2 = new java.io.BufferedReader;	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r0 = new java.io.InputStreamReader;	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r5 = new com.xiaomi.mistatistic.sdk.controller.l$a;	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r3 = r3.getInputStream();	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r5.<init>(r3);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r0.<init>(r5);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r2.<init>(r0);	 Catch:{ IOException -> 0x0066, Throwable -> 0x0101, all -> 0x011e }
-        r0 = r2.readLine();	 Catch:{ IOException -> 0x0132, Throwable -> 0x012a, all -> 0x0122 }
-        r3 = new java.lang.StringBuffer;	 Catch:{ IOException -> 0x0132, Throwable -> 0x012a, all -> 0x0122 }
-        r3.<init>();	 Catch:{ IOException -> 0x0132, Throwable -> 0x012a, all -> 0x0122 }
-        r5 = "line.separator";
-        r5 = java.lang.System.getProperty(r5);	 Catch:{ IOException -> 0x0132, Throwable -> 0x012a, all -> 0x0122 }
-    L_0x00d3:
-        if (r0 == 0) goto L_0x00e0;
-    L_0x00d5:
-        r3.append(r0);	 Catch:{ IOException -> 0x0132, Throwable -> 0x012a, all -> 0x0122 }
-        r3.append(r5);	 Catch:{ IOException -> 0x0132, Throwable -> 0x012a, all -> 0x0122 }
-        r0 = r2.readLine();	 Catch:{ IOException -> 0x0132, Throwable -> 0x012a, all -> 0x0122 }
-        goto L_0x00d3;
-    L_0x00e0:
-        r0 = r3.toString();	 Catch:{ IOException -> 0x0132, Throwable -> 0x012a, all -> 0x0122 }
-        r13.a(r0);	 Catch:{ IOException -> 0x0132, Throwable -> 0x012a, all -> 0x0122 }
-        r2.close();	 Catch:{ IOException -> 0x0132, Throwable -> 0x012a, all -> 0x0122 }
-        r0 = 0;
-        if (r1 == 0) goto L_0x00f0;
-    L_0x00ed:
-        r4.close();	 Catch:{ IOException -> 0x00f7 }
-    L_0x00f0:
-        if (r1 == 0) goto L_0x000e;
-    L_0x00f2:
-        r0.close();	 Catch:{ IOException -> 0x00f7 }
-        goto L_0x000e;
-    L_0x00f7:
-        r0 = move-exception;
-        r1 = "NET";
-        r2 = "doHttpPost final exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r1, r2, r0);
-        goto L_0x000e;
-    L_0x0101:
-        r0 = move-exception;
-        r2 = r1;
-    L_0x0103:
-        r3 = "NET";
-        r4 = "Throwable:";
-        android.util.Log.d(r3, r4, r0);	 Catch:{ all -> 0x0070 }
-        r3 = new java.io.IOException;	 Catch:{ all -> 0x0070 }
-        r0 = r0.getMessage();	 Catch:{ all -> 0x0070 }
-        r3.<init>(r0);	 Catch:{ all -> 0x0070 }
-        throw r3;	 Catch:{ all -> 0x0070 }
-    L_0x0114:
-        r1 = move-exception;
-        r2 = "NET";
-        r3 = "doHttpPost final exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r1);
-        goto L_0x007b;
-    L_0x011e:
-        r0 = move-exception;
-        r2 = r1;
-        goto L_0x0071;
-    L_0x0122:
-        r0 = move-exception;
-        r9 = r2;
-        r2 = r1;
-        r1 = r9;
-        goto L_0x0071;
-    L_0x0128:
-        r0 = move-exception;
-        goto L_0x0103;
-    L_0x012a:
-        r0 = move-exception;
-        r9 = r2;
-        r2 = r1;
-        r1 = r9;
-        goto L_0x0103;
-    L_0x012f:
-        r0 = move-exception;
-        goto L_0x0068;
-    L_0x0132:
-        r0 = move-exception;
-        r9 = r2;
-        r2 = r1;
-        r1 = r9;
-        goto L_0x0068;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.mistatistic.sdk.controller.l.a(android.content.Context, java.lang.String, java.util.Map, com.xiaomi.mistatistic.sdk.controller.l$b):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void a(Context context, String str, Map<String, String> map, b bVar) throws IOException {
+        Throwable e;
+        BufferedReader bufferedReader;
+        BufferedReader bufferedReader2 = null;
+        if (!b()) {
+            j.d("NET", "Network connection is disabled.");
+        } else if (TextUtils.isEmpty(str)) {
+            throw new IllegalArgumentException("The url is empty.");
+        } else {
+            OutputStream outputStream;
+            try {
+                HttpURLConnection a = a(context, new URL(t.a(context, str)));
+                a.setConnectTimeout(10000);
+                a.setReadTimeout(15000);
+                a.setRequestMethod("POST");
+                a.setRequestProperty("Connection", "close");
+                j.b("NET", String.format("paramsMap:%s", new Object[]{map}));
+                a((Map) map);
+                String b = b((Map) map);
+                if (b.isEmpty()) {
+                    throw new IllegalArgumentException("The content being uploaded is empty.");
+                }
+                a.setDoOutput(true);
+                byte[] bytes = b.getBytes();
+                outputStream = a.getOutputStream();
+                try {
+                    String readLine;
+                    outputStream.write(bytes, 0, bytes.length);
+                    outputStream.flush();
+                    outputStream.close();
+                    OutputStream outputStream2 = null;
+                    int responseCode = a.getResponseCode();
+                    j.b("NET", String.format("url:%s, responseCode:%d", new Object[]{readLine, Integer.valueOf(responseCode)}));
+                    BufferedReader bufferedReader3 = new BufferedReader(new InputStreamReader(new a(a.getInputStream())));
+                    try {
+                        StringBuffer stringBuffer = new StringBuffer();
+                        String property = System.getProperty("line.separator");
+                        for (readLine = bufferedReader3.readLine(); readLine != null; readLine = bufferedReader3.readLine()) {
+                            stringBuffer.append(readLine);
+                            stringBuffer.append(property);
+                        }
+                        bVar.a(stringBuffer.toString());
+                        bufferedReader3.close();
+                        BufferedReader bufferedReader4 = null;
+                        if (null != null) {
+                            try {
+                                outputStream2.close();
+                            } catch (Throwable e2) {
+                                j.a("NET", "doHttpPost final exception", e2);
+                                return;
+                            }
+                        }
+                        if (null != null) {
+                            bufferedReader4.close();
+                        }
+                    } catch (IOException e3) {
+                        e2 = e3;
+                        bufferedReader = bufferedReader3;
+                        outputStream = null;
+                        bufferedReader2 = bufferedReader;
+                        try {
+                            Log.d("NET", "IOException:", e2);
+                            throw e2;
+                        } catch (Throwable th) {
+                            e2 = th;
+                            if (outputStream != null) {
+                            }
+                            if (bufferedReader2 != null) {
+                            }
+                            throw e2;
+                        }
+                    } catch (Throwable th2) {
+                        e2 = th2;
+                        bufferedReader = bufferedReader3;
+                        outputStream = null;
+                        bufferedReader2 = bufferedReader;
+                        if (outputStream != null) {
+                        }
+                        if (bufferedReader2 != null) {
+                        }
+                        throw e2;
+                    }
+                } catch (IOException e4) {
+                    e2 = e4;
+                    Log.d("NET", "IOException:", e2);
+                    throw e2;
+                } catch (Throwable th3) {
+                    e2 = th3;
+                    Log.d("NET", "Throwable:", e2);
+                    throw new IOException(e2.getMessage());
+                }
+            } catch (IOException e5) {
+                e2 = e5;
+                outputStream = null;
+                Log.d("NET", "IOException:", e2);
+                throw e2;
+            } catch (Throwable th4) {
+                e2 = th4;
+                outputStream = null;
+                if (outputStream != null) {
+                    try {
+                        outputStream.close();
+                    } catch (Throwable e6) {
+                        j.a("NET", "doHttpPost final exception", e6);
+                        throw e2;
+                    }
+                }
+                if (bufferedReader2 != null) {
+                    bufferedReader2.close();
+                }
+                throw e2;
+            }
+        }
     }
 
     protected static void a(Map<String, String> map) {
@@ -590,110 +532,60 @@ public abstract class l {
 
     /* JADX WARNING: Removed duplicated region for block: B:33:0x0099 A:{Catch:{ Exception -> 0x009e }} */
     /* JADX WARNING: Removed duplicated region for block: B:29:0x008c A:{Catch:{ Exception -> 0x009e }} */
-    public static java.lang.String h(android.content.Context r8) {
-        /*
-        r2 = 2;
-        r3 = 1;
-        r1 = "";
-        r0 = android.os.Build.VERSION.SDK_INT;
-        r4 = 22;
-        if (r0 < r4) goto L_0x0040;
-    L_0x000a:
-        r0 = "wifi";
-        r0 = r8.getSystemService(r0);	 Catch:{ NoSuchMethodError -> 0x002e, Exception -> 0x0037 }
-        r0 = (android.net.wifi.WifiManager) r0;	 Catch:{ NoSuchMethodError -> 0x002e, Exception -> 0x0037 }
-        r0 = r0.getConnectionInfo();	 Catch:{ NoSuchMethodError -> 0x002e, Exception -> 0x0037 }
-        r0 = r0.getFrequency();	 Catch:{ NoSuchMethodError -> 0x002e, Exception -> 0x0037 }
-        r2 = a(r0);	 Catch:{ NoSuchMethodError -> 0x002e, Exception -> 0x0037 }
-        if (r2 == 0) goto L_0x0025;
-    L_0x0021:
-        r0 = "5G";
-    L_0x0023:
-        r1 = r0;
-    L_0x0024:
-        return r1;
-    L_0x0025:
-        r0 = b(r0);	 Catch:{ NoSuchMethodError -> 0x002e, Exception -> 0x0037 }
-        if (r0 == 0) goto L_0x00aa;
-    L_0x002b:
-        r0 = "2G";
-        goto L_0x0023;
-    L_0x002e:
-        r0 = move-exception;
-        r2 = "NET";
-        r3 = "getWififreband NoSuchMethodError";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r0);
-        goto L_0x0024;
-    L_0x0037:
-        r0 = move-exception;
-        r2 = "NET";
-        r3 = "getWififreband exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r0);
-        goto L_0x0024;
-    L_0x0040:
-        r4 = -1;
-        r0 = "wifi";
-        r0 = r8.getSystemService(r0);	 Catch:{ Exception -> 0x009e }
-        r0 = (android.net.wifi.WifiManager) r0;	 Catch:{ Exception -> 0x009e }
-        r5 = r0.getConnectionInfo();	 Catch:{ Exception -> 0x009e }
-        r5 = r5.getSSID();	 Catch:{ Exception -> 0x009e }
-        r6 = 1;
-        r7 = r5.length();	 Catch:{ Exception -> 0x009e }
-        r7 = r7 + -1;
-        r6 = r5.substring(r6, r7);	 Catch:{ Exception -> 0x009e }
-        if (r5 == 0) goto L_0x00a8;
-    L_0x005f:
-        r5 = r5.length();	 Catch:{ Exception -> 0x009e }
-        if (r5 <= r2) goto L_0x00a8;
-    L_0x0065:
-        r0 = r0.getScanResults();	 Catch:{ Exception -> 0x009e }
-        r5 = r0.iterator();	 Catch:{ Exception -> 0x009e }
-    L_0x006d:
-        r0 = r5.hasNext();	 Catch:{ Exception -> 0x009e }
-        if (r0 == 0) goto L_0x00a8;
-    L_0x0073:
-        r0 = r5.next();	 Catch:{ Exception -> 0x009e }
-        r0 = (android.net.wifi.ScanResult) r0;	 Catch:{ Exception -> 0x009e }
-        r7 = r0.SSID;	 Catch:{ Exception -> 0x009e }
-        r7 = r7.equals(r6);	 Catch:{ Exception -> 0x009e }
-        if (r7 == 0) goto L_0x006d;
-    L_0x0081:
-        r5 = r0.frequency;	 Catch:{ Exception -> 0x009e }
-        r5 = a(r5);	 Catch:{ Exception -> 0x009e }
-        if (r5 == 0) goto L_0x008f;
-    L_0x0089:
-        r0 = r2;
-    L_0x008a:
-        if (r0 != r2) goto L_0x0099;
-    L_0x008c:
-        r1 = "5G";
-        goto L_0x0024;
-    L_0x008f:
-        r0 = r0.frequency;	 Catch:{ Exception -> 0x009e }
-        r0 = b(r0);	 Catch:{ Exception -> 0x009e }
-        if (r0 == 0) goto L_0x00a8;
-    L_0x0097:
-        r0 = r3;
-        goto L_0x008a;
-    L_0x0099:
-        if (r0 != r3) goto L_0x0024;
-    L_0x009b:
-        r1 = "2G";
-        goto L_0x0024;
-    L_0x009e:
-        r0 = move-exception;
-        r2 = "NET";
-        r3 = "getWififreband exception";
-        com.xiaomi.mistatistic.sdk.controller.j.a(r2, r3, r0);
-        goto L_0x0024;
-    L_0x00a8:
-        r0 = r4;
-        goto L_0x008a;
-    L_0x00aa:
-        r0 = r1;
-        goto L_0x0023;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.mistatistic.sdk.controller.l.h(android.content.Context):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static String h(Context context) {
+        String str = "";
+        int frequency;
+        if (VERSION.SDK_INT >= 22) {
+            try {
+                String str2;
+                frequency = ((WifiManager) context.getSystemService("wifi")).getConnectionInfo().getFrequency();
+                if (a(frequency)) {
+                    str2 = "5G";
+                } else if (b(frequency)) {
+                    str2 = "2G";
+                } else {
+                    str2 = str;
+                }
+                return str2;
+            } catch (Throwable e) {
+                j.a("NET", "getWififreband NoSuchMethodError", e);
+                return str;
+            } catch (Throwable e2) {
+                j.a("NET", "getWififreband exception", e2);
+                return str;
+            }
+        }
+        try {
+            Object obj;
+            WifiManager wifiManager = (WifiManager) context.getSystemService("wifi");
+            String ssid = wifiManager.getConnectionInfo().getSSID();
+            String substring = ssid.substring(1, ssid.length() - 1);
+            if (ssid != null && ssid.length() > 2) {
+                for (ScanResult scanResult : wifiManager.getScanResults()) {
+                    if (scanResult.SSID.equals(substring)) {
+                        if (a(scanResult.frequency)) {
+                            obj = 2;
+                        } else if (b(scanResult.frequency)) {
+                            frequency = 1;
+                        }
+                        if (obj != 2) {
+                            return "5G";
+                        }
+                        if (obj == 1) {
+                            return "2G";
+                        }
+                        return str;
+                    }
+                }
+            }
+            frequency = -1;
+            if (obj != 2) {
+            }
+        } catch (Throwable e22) {
+            j.a("NET", "getWififreband exception", e22);
+            return str;
+        }
     }
 
     private static boolean a(int i) {

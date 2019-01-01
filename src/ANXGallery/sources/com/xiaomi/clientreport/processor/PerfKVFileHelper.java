@@ -1,5 +1,6 @@
 package com.xiaomi.clientreport.processor;
 
+import android.content.Context;
 import android.text.TextUtils;
 import com.xiaomi.channel.commonutils.file.IOUtils;
 import com.xiaomi.channel.commonutils.logger.MyLog;
@@ -12,7 +13,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileLock;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class PerfKVFileHelper {
     public static void put(String fileName, BaseClientReport[] baseClientReports) {
@@ -201,174 +204,158 @@ public class PerfKVFileHelper {
     /* JADX WARNING: Removed duplicated region for block: B:58:0x00e2  */
     /* JADX WARNING: Removed duplicated region for block: B:37:0x00a4  */
     /* JADX WARNING: Removed duplicated region for block: B:58:0x00e2  */
-    public static java.util.List<java.lang.String> extractToDatas(android.content.Context r14, java.lang.String r15) {
-        /*
-        r0 = 0;
-        r10 = new java.util.ArrayList;
-        r10.<init>();
-        r12 = android.text.TextUtils.isEmpty(r15);
-        if (r12 != 0) goto L_0x0017;
-    L_0x000c:
-        r12 = new java.io.File;
-        r12.<init>(r15);
-        r12 = r12.exists();
-        if (r12 != 0) goto L_0x0018;
-    L_0x0017:
-        return r10;
-    L_0x0018:
-        r7 = 0;
-        r4 = 0;
-        r5 = 0;
-        r6 = new java.io.File;	 Catch:{ Exception -> 0x00f7 }
-        r12 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x00f7 }
-        r12.<init>();	 Catch:{ Exception -> 0x00f7 }
-        r12 = r12.append(r15);	 Catch:{ Exception -> 0x00f7 }
-        r13 = ".lock";
-        r12 = r12.append(r13);	 Catch:{ Exception -> 0x00f7 }
-        r12 = r12.toString();	 Catch:{ Exception -> 0x00f7 }
-        r6.<init>(r12);	 Catch:{ Exception -> 0x00f7 }
-        com.xiaomi.channel.commonutils.file.IOUtils.createFileQuietly(r6);	 Catch:{ Exception -> 0x00f9, all -> 0x00eb }
-        r8 = new java.io.RandomAccessFile;	 Catch:{ Exception -> 0x00f9, all -> 0x00eb }
-        r12 = "rw";
-        r8.<init>(r6, r12);	 Catch:{ Exception -> 0x00f9, all -> 0x00eb }
-        r12 = r8.getChannel();	 Catch:{ Exception -> 0x00fc, all -> 0x00ee }
-        r4 = r12.lock();	 Catch:{ Exception -> 0x00fc, all -> 0x00ee }
-        r1 = new java.io.BufferedReader;	 Catch:{ Exception -> 0x00fc, all -> 0x00ee }
-        r12 = new java.io.FileReader;	 Catch:{ Exception -> 0x00fc, all -> 0x00ee }
-        r12.<init>(r15);	 Catch:{ Exception -> 0x00fc, all -> 0x00ee }
-        r1.<init>(r12);	 Catch:{ Exception -> 0x00fc, all -> 0x00ee }
-        r3 = 0;
-    L_0x0050:
-        r3 = r1.readLine();	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        if (r3 == 0) goto L_0x00a9;
-    L_0x0056:
-        r12 = "%%%";
-        r11 = r3.split(r12);	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        r12 = r11.length;	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        r13 = 2;
-        if (r12 < r13) goto L_0x0050;
-    L_0x0060:
-        r12 = 0;
-        r12 = r11[r12];	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        r12 = android.text.TextUtils.isEmpty(r12);	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        if (r12 != 0) goto L_0x0050;
-    L_0x0069:
-        r12 = 1;
-        r12 = r11[r12];	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        r12 = android.text.TextUtils.isEmpty(r12);	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        if (r12 != 0) goto L_0x0050;
-    L_0x0072:
-        r12 = 0;
-        r12 = r11[r12];	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        r9 = spiltKeyForModel(r12);	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        r12 = 1;
-        r12 = r11[r12];	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        r9 = buildPerfClientReport(r9, r12);	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        if (r9 == 0) goto L_0x0050;
-    L_0x0082:
-        r12 = r9.toJsonString();	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        r10.add(r12);	 Catch:{ Exception -> 0x008a, all -> 0x00f2 }
-        goto L_0x0050;
-    L_0x008a:
-        r2 = move-exception;
-        r5 = r6;
-        r7 = r8;
-        r0 = r1;
-    L_0x008e:
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r2);	 Catch:{ all -> 0x00ce }
-        if (r4 == 0) goto L_0x009c;
-    L_0x0093:
-        r12 = r4.isValid();
-        if (r12 == 0) goto L_0x009c;
-    L_0x0099:
-        r4.release();	 Catch:{ IOException -> 0x00c9 }
-    L_0x009c:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r7);
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r0);
-        if (r5 == 0) goto L_0x0017;
-    L_0x00a4:
-        r5.delete();
-        goto L_0x0017;
-    L_0x00a9:
-        if (r4 == 0) goto L_0x00b4;
-    L_0x00ab:
-        r12 = r4.isValid();
-        if (r12 == 0) goto L_0x00b4;
-    L_0x00b1:
-        r4.release();	 Catch:{ IOException -> 0x00c4 }
-    L_0x00b4:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r8);
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r1);
-        if (r6 == 0) goto L_0x0100;
-    L_0x00bc:
-        r6.delete();
-        r5 = r6;
-        r7 = r8;
-        r0 = r1;
-        goto L_0x0017;
-    L_0x00c4:
-        r2 = move-exception;
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r2);
-        goto L_0x00b4;
-    L_0x00c9:
-        r2 = move-exception;
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r2);
-        goto L_0x009c;
-    L_0x00ce:
-        r12 = move-exception;
-    L_0x00cf:
-        if (r4 == 0) goto L_0x00da;
-    L_0x00d1:
-        r13 = r4.isValid();
-        if (r13 == 0) goto L_0x00da;
-    L_0x00d7:
-        r4.release();	 Catch:{ IOException -> 0x00e6 }
-    L_0x00da:
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r7);
-        com.xiaomi.channel.commonutils.file.IOUtils.closeQuietly(r0);
-        if (r5 == 0) goto L_0x00e5;
-    L_0x00e2:
-        r5.delete();
-    L_0x00e5:
-        throw r12;
-    L_0x00e6:
-        r2 = move-exception;
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r2);
-        goto L_0x00da;
-    L_0x00eb:
-        r12 = move-exception;
-        r5 = r6;
-        goto L_0x00cf;
-    L_0x00ee:
-        r12 = move-exception;
-        r5 = r6;
-        r7 = r8;
-        goto L_0x00cf;
-    L_0x00f2:
-        r12 = move-exception;
-        r5 = r6;
-        r7 = r8;
-        r0 = r1;
-        goto L_0x00cf;
-    L_0x00f7:
-        r2 = move-exception;
-        goto L_0x008e;
-    L_0x00f9:
-        r2 = move-exception;
-        r5 = r6;
-        goto L_0x008e;
-    L_0x00fc:
-        r2 = move-exception;
-        r5 = r6;
-        r7 = r8;
-        goto L_0x008e;
-    L_0x0100:
-        r5 = r6;
-        r7 = r8;
-        r0 = r1;
-        goto L_0x0017;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.clientreport.processor.PerfKVFileHelper.extractToDatas(android.content.Context, java.lang.String):java.util.List<java.lang.String>");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static List<String> extractToDatas(Context context, String fileName) {
+        Throwable e;
+        Throwable th;
+        BufferedReader bufferedReader = null;
+        List<String> result = new ArrayList();
+        if (!TextUtils.isEmpty(fileName) && new File(fileName).exists()) {
+            RandomAccessFile lockRandomFile = null;
+            FileLock lock = null;
+            File lockFile = null;
+            try {
+                File lockFile2 = new File(fileName + ".lock");
+                try {
+                    IOUtils.createFileQuietly(lockFile2);
+                    RandomAccessFile lockRandomFile2 = new RandomAccessFile(lockFile2, "rw");
+                    try {
+                        lock = lockRandomFile2.getChannel().lock();
+                        BufferedReader bufferedReader2 = new BufferedReader(new FileReader(fileName));
+                        while (true) {
+                            try {
+                                String line = bufferedReader2.readLine();
+                                if (line == null) {
+                                    break;
+                                }
+                                String[] strs = line.split("%%%");
+                                if (!(strs.length < 2 || TextUtils.isEmpty(strs[0]) || TextUtils.isEmpty(strs[1]))) {
+                                    PerfClientReport perfClientReport = buildPerfClientReport(spiltKeyForModel(strs[0]), strs[1]);
+                                    if (perfClientReport != null) {
+                                        result.add(perfClientReport.toJsonString());
+                                    }
+                                }
+                            } catch (Exception e2) {
+                                e = e2;
+                                lockFile = lockFile2;
+                                lockRandomFile = lockRandomFile2;
+                                bufferedReader = bufferedReader2;
+                                try {
+                                    MyLog.e(e);
+                                    if (lock != null && lock.isValid()) {
+                                        try {
+                                            lock.release();
+                                        } catch (Throwable e3) {
+                                            MyLog.e(e3);
+                                        }
+                                    }
+                                    IOUtils.closeQuietly(lockRandomFile);
+                                    IOUtils.closeQuietly(bufferedReader);
+                                    if (lockFile != null) {
+                                        lockFile.delete();
+                                    }
+                                    return result;
+                                } catch (Throwable th2) {
+                                    th = th2;
+                                    try {
+                                        lock.release();
+                                    } catch (Throwable e32) {
+                                        MyLog.e(e32);
+                                    }
+                                    IOUtils.closeQuietly(lockRandomFile);
+                                    IOUtils.closeQuietly(bufferedReader);
+                                    if (lockFile != null) {
+                                    }
+                                    throw th;
+                                }
+                            } catch (Throwable th3) {
+                                th = th3;
+                                lockFile = lockFile2;
+                                lockRandomFile = lockRandomFile2;
+                                bufferedReader = bufferedReader2;
+                                if (lock != null && lock.isValid()) {
+                                    lock.release();
+                                }
+                                IOUtils.closeQuietly(lockRandomFile);
+                                IOUtils.closeQuietly(bufferedReader);
+                                if (lockFile != null) {
+                                    lockFile.delete();
+                                }
+                                throw th;
+                            }
+                        }
+                        if (lock != null && lock.isValid()) {
+                            try {
+                                lock.release();
+                            } catch (Throwable e322) {
+                                MyLog.e(e322);
+                            }
+                        }
+                        IOUtils.closeQuietly(lockRandomFile2);
+                        IOUtils.closeQuietly(bufferedReader2);
+                        if (lockFile2 != null) {
+                            lockFile2.delete();
+                            lockFile = lockFile2;
+                            lockRandomFile = lockRandomFile2;
+                            bufferedReader = bufferedReader2;
+                        } else {
+                            lockRandomFile = lockRandomFile2;
+                            bufferedReader = bufferedReader2;
+                        }
+                    } catch (Exception e4) {
+                        e322 = e4;
+                        lockFile = lockFile2;
+                        lockRandomFile = lockRandomFile2;
+                        MyLog.e(e322);
+                        lock.release();
+                        IOUtils.closeQuietly(lockRandomFile);
+                        IOUtils.closeQuietly(bufferedReader);
+                        if (lockFile != null) {
+                        }
+                        return result;
+                    } catch (Throwable th4) {
+                        th = th4;
+                        lockFile = lockFile2;
+                        lockRandomFile = lockRandomFile2;
+                        lock.release();
+                        IOUtils.closeQuietly(lockRandomFile);
+                        IOUtils.closeQuietly(bufferedReader);
+                        if (lockFile != null) {
+                        }
+                        throw th;
+                    }
+                } catch (Exception e5) {
+                    e322 = e5;
+                    lockFile = lockFile2;
+                    MyLog.e(e322);
+                    lock.release();
+                    IOUtils.closeQuietly(lockRandomFile);
+                    IOUtils.closeQuietly(bufferedReader);
+                    if (lockFile != null) {
+                    }
+                    return result;
+                } catch (Throwable th5) {
+                    th = th5;
+                    lockFile = lockFile2;
+                    lock.release();
+                    IOUtils.closeQuietly(lockRandomFile);
+                    IOUtils.closeQuietly(bufferedReader);
+                    if (lockFile != null) {
+                    }
+                    throw th;
+                }
+            } catch (Exception e6) {
+                e322 = e6;
+                MyLog.e(e322);
+                lock.release();
+                IOUtils.closeQuietly(lockRandomFile);
+                IOUtils.closeQuietly(bufferedReader);
+                if (lockFile != null) {
+                }
+                return result;
+            }
+        }
+        return result;
     }
 
     private static String[] spiltKey(String key) {

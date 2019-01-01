@@ -219,167 +219,62 @@ public class JobScheduler {
         /* JADX WARNING: Missing block: B:114:0x0000, code:
             continue;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         public void run() {
-            /*
-            r14 = this;
-        L_0x0000:
-            monitor-enter(r14);
-            r5 = r14.cancelled;	 Catch:{ all -> 0x0015 }
-            if (r5 == 0) goto L_0x0007;
-        L_0x0005:
-            monitor-exit(r14);	 Catch:{ all -> 0x0015 }
-        L_0x0006:
-            return;
-        L_0x0007:
-            r5 = r14.tasks;	 Catch:{ all -> 0x0015 }
-            r5 = r5.isEmpty();	 Catch:{ all -> 0x0015 }
-            if (r5 == 0) goto L_0x001d;
-        L_0x000f:
-            r5 = r14.finished;	 Catch:{ all -> 0x0015 }
-            if (r5 == 0) goto L_0x0018;
-        L_0x0013:
-            monitor-exit(r14);	 Catch:{ all -> 0x0015 }
-            goto L_0x0006;
-        L_0x0015:
-            r5 = move-exception;
-            monitor-exit(r14);	 Catch:{ all -> 0x0015 }
-            throw r5;
-        L_0x0018:
-            r14.wait();	 Catch:{ InterruptedException -> 0x00cf }
-        L_0x001b:
-            monitor-exit(r14);	 Catch:{ all -> 0x0015 }
-            goto L_0x0000;
-        L_0x001d:
-            r0 = com.xiaomi.push.service.JobScheduler.getCurrentTime();	 Catch:{ all -> 0x0015 }
-            r5 = r14.tasks;	 Catch:{ all -> 0x0015 }
-            r3 = r5.minimum();	 Catch:{ all -> 0x0015 }
-            r8 = r3.lock;	 Catch:{ all -> 0x0015 }
-            monitor-enter(r8);	 Catch:{ all -> 0x0015 }
-            r5 = r3.cancelled;	 Catch:{ all -> 0x0062 }
-            if (r5 == 0) goto L_0x0037;
-        L_0x002e:
-            r5 = r14.tasks;	 Catch:{ all -> 0x0062 }
-            r9 = 0;
-            r5.delete(r9);	 Catch:{ all -> 0x0062 }
-            monitor-exit(r8);	 Catch:{ all -> 0x0062 }
-            monitor-exit(r14);	 Catch:{ all -> 0x0015 }
-            goto L_0x0000;
-        L_0x0037:
-            r10 = r3.when;	 Catch:{ all -> 0x0062 }
-            r6 = r10 - r0;
-            monitor-exit(r8);	 Catch:{ all -> 0x0062 }
-            r8 = 0;
-            r5 = (r6 > r8 ? 1 : (r6 == r8 ? 0 : -1));
-            if (r5 <= 0) goto L_0x0065;
-        L_0x0042:
-            r8 = r14.current_sleep_duration;	 Catch:{ all -> 0x0015 }
-            r5 = (r6 > r8 ? 1 : (r6 == r8 ? 0 : -1));
-            if (r5 <= 0) goto L_0x004a;
-        L_0x0048:
-            r6 = r14.current_sleep_duration;	 Catch:{ all -> 0x0015 }
-        L_0x004a:
-            r8 = r14.current_sleep_duration;	 Catch:{ all -> 0x0015 }
-            r10 = 50;
-            r8 = r8 + r10;
-            r14.current_sleep_duration = r8;	 Catch:{ all -> 0x0015 }
-            r8 = r14.current_sleep_duration;	 Catch:{ all -> 0x0015 }
-            r10 = 500; // 0x1f4 float:7.0E-43 double:2.47E-321;
-            r5 = (r8 > r10 ? 1 : (r8 == r10 ? 0 : -1));
-            if (r5 <= 0) goto L_0x005d;
-        L_0x0059:
-            r8 = 500; // 0x1f4 float:7.0E-43 double:2.47E-321;
-            r14.current_sleep_duration = r8;	 Catch:{ all -> 0x0015 }
-        L_0x005d:
-            r14.wait(r6);	 Catch:{ InterruptedException -> 0x00d2 }
-        L_0x0060:
-            monitor-exit(r14);	 Catch:{ all -> 0x0015 }
-            goto L_0x0000;
-        L_0x0062:
-            r5 = move-exception;
-            monitor-exit(r8);	 Catch:{ all -> 0x0062 }
-            throw r5;	 Catch:{ all -> 0x0015 }
-        L_0x0065:
-            r8 = 50;
-            r14.current_sleep_duration = r8;	 Catch:{ all -> 0x0015 }
-            r8 = r3.lock;	 Catch:{ all -> 0x0015 }
-            monitor-enter(r8);	 Catch:{ all -> 0x0015 }
-            r2 = 0;
-            r5 = r14.tasks;	 Catch:{ all -> 0x00c3 }
-            r5 = r5.minimum();	 Catch:{ all -> 0x00c3 }
-            r10 = r5.when;	 Catch:{ all -> 0x00c3 }
-            r12 = r3.when;	 Catch:{ all -> 0x00c3 }
-            r5 = (r10 > r12 ? 1 : (r10 == r12 ? 0 : -1));
-            if (r5 == 0) goto L_0x0081;
-        L_0x007b:
-            r5 = r14.tasks;	 Catch:{ all -> 0x00c3 }
-            r2 = r5.getTask(r3);	 Catch:{ all -> 0x00c3 }
-        L_0x0081:
-            r5 = r3.cancelled;	 Catch:{ all -> 0x00c3 }
-            if (r5 == 0) goto L_0x0094;
-        L_0x0085:
-            r5 = r14.tasks;	 Catch:{ all -> 0x00c3 }
-            r9 = r14.tasks;	 Catch:{ all -> 0x00c3 }
-            r9 = r9.getTask(r3);	 Catch:{ all -> 0x00c3 }
-            r5.delete(r9);	 Catch:{ all -> 0x00c3 }
-            monitor-exit(r8);	 Catch:{ all -> 0x00c3 }
-            monitor-exit(r14);	 Catch:{ all -> 0x0015 }
-            goto L_0x0000;
-        L_0x0094:
-            r10 = r3.when;	 Catch:{ all -> 0x00c3 }
-            r3.setScheduledTime(r10);	 Catch:{ all -> 0x00c3 }
-            r5 = r14.tasks;	 Catch:{ all -> 0x00c3 }
-            r5.delete(r2);	 Catch:{ all -> 0x00c3 }
-            r10 = 0;
-            r3.when = r10;	 Catch:{ all -> 0x00c3 }
-            monitor-exit(r8);	 Catch:{ all -> 0x00c3 }
-            monitor-exit(r14);	 Catch:{ all -> 0x0015 }
-            r4 = 0;
-            r8 = android.os.SystemClock.uptimeMillis();	 Catch:{ all -> 0x00c6 }
-            r14.lastJob = r8;	 Catch:{ all -> 0x00c6 }
-            r5 = 1;
-            r14.executing = r5;	 Catch:{ all -> 0x00c6 }
-            r5 = r3.job;	 Catch:{ all -> 0x00c6 }
-            r5.run();	 Catch:{ all -> 0x00c6 }
-            r5 = 0;
-            r14.executing = r5;	 Catch:{ all -> 0x00c6 }
-            r4 = 1;
-            if (r4 != 0) goto L_0x0000;
-        L_0x00b9:
-            monitor-enter(r14);
-            r5 = 1;
-            r14.cancelled = r5;	 Catch:{ all -> 0x00c0 }
-            monitor-exit(r14);	 Catch:{ all -> 0x00c0 }
-            goto L_0x0000;
-        L_0x00c0:
-            r5 = move-exception;
-            monitor-exit(r14);	 Catch:{ all -> 0x00c0 }
-            throw r5;
-        L_0x00c3:
-            r5 = move-exception;
-            monitor-exit(r8);	 Catch:{ all -> 0x00c3 }
-            throw r5;	 Catch:{ all -> 0x0015 }
-        L_0x00c6:
-            r5 = move-exception;
-            if (r4 != 0) goto L_0x00ce;
-        L_0x00c9:
-            monitor-enter(r14);
-            r8 = 1;
-            r14.cancelled = r8;	 Catch:{ all -> 0x00d4 }
-            monitor-exit(r14);	 Catch:{ all -> 0x00d4 }
-        L_0x00ce:
-            throw r5;
-        L_0x00cf:
-            r5 = move-exception;
-            goto L_0x001b;
-        L_0x00d2:
-            r5 = move-exception;
-            goto L_0x0060;
-        L_0x00d4:
-            r5 = move-exception;
-            monitor-exit(r14);	 Catch:{ all -> 0x00d4 }
-            throw r5;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.push.service.JobScheduler.SchedulerImpl.run():void");
+            while (true) {
+                synchronized (this) {
+                    if (this.cancelled) {
+                        return;
+                    } else if (!this.tasks.isEmpty()) {
+                        long currentTime = JobScheduler.getCurrentTime();
+                        TaskWraper task = this.tasks.minimum();
+                        synchronized (task.lock) {
+                            if (task.cancelled) {
+                                this.tasks.delete(0);
+                            } else {
+                                long timeToSleep = task.when - currentTime;
+                                if (timeToSleep > 0) {
+                                    if (timeToSleep > this.current_sleep_duration) {
+                                        timeToSleep = this.current_sleep_duration;
+                                    }
+                                    this.current_sleep_duration += 50;
+                                    if (this.current_sleep_duration > 500) {
+                                        this.current_sleep_duration = 500;
+                                    }
+                                    try {
+                                        wait(timeToSleep);
+                                    } catch (InterruptedException e) {
+                                    }
+                                } else {
+                                    this.current_sleep_duration = 50;
+                                    synchronized (task.lock) {
+                                        int pos = 0;
+                                        if (this.tasks.minimum().when != task.when) {
+                                            pos = this.tasks.getTask(task);
+                                        }
+                                        if (task.cancelled) {
+                                            this.tasks.delete(this.tasks.getTask(task));
+                                        } else {
+                                            task.setScheduledTime(task.when);
+                                            this.tasks.delete(pos);
+                                            task.when = 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else if (this.finished) {
+                        return;
+                    } else {
+                        try {
+                            wait();
+                        } catch (InterruptedException e2) {
+                        }
+                    }
+                }
+            }
+            while (true) {
+            }
         }
 
         private void insertTask(TaskWraper newTask) {

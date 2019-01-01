@@ -391,255 +391,114 @@ final class nexCollage {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:30:0x0146  */
-    public boolean a(com.nexstreaming.nexeditorsdk.a r22, com.nexstreaming.nexeditorsdk.a r23) {
-        /*
-        r21 = this;
-        if (r22 == 0) goto L_0x0004;
-    L_0x0002:
-        if (r23 != 0) goto L_0x0006;
-    L_0x0004:
-        r2 = 0;
-    L_0x0005:
-        return r2;
-    L_0x0006:
-        r4 = r22.getBindSource();
-        r5 = r23.getBindSource();
-        if (r4 == 0) goto L_0x0012;
-    L_0x0010:
-        if (r5 != 0) goto L_0x0014;
-    L_0x0012:
-        r2 = 0;
-        goto L_0x0005;
-    L_0x0014:
-        r6 = com.nexstreaming.nexeditorsdk.nexClip.dup(r4);
-        r7 = com.nexstreaming.nexeditorsdk.nexClip.dup(r5);
-        r2 = r6.getClipType();
-        r3 = 4;
-        if (r2 != r3) goto L_0x0027;
-    L_0x0023:
-        r2 = 0;
-        r6.setAudioOnOff(r2);
-    L_0x0027:
-        r2 = r7.getClipType();
-        r3 = 4;
-        if (r2 != r3) goto L_0x0032;
-    L_0x002e:
-        r2 = 0;
-        r7.setAudioOnOff(r2);
-    L_0x0032:
-        r2 = r4.getDrawInfos();
-        r3 = 0;
-        r2 = r2.get(r3);
-        r2 = (com.nexstreaming.nexeditorsdk.nexDrawInfo) r2;
-        r3 = r5.getDrawInfos();
-        r8 = 0;
-        r3 = r3.get(r8);
-        r3 = (com.nexstreaming.nexeditorsdk.nexDrawInfo) r3;
-        r8 = r2.getRotateState();
-        r9 = r2.getUserTranslateX();
-        r10 = r2.getUserTranslateY();
-        r11 = r2.getUserRotateState();
-        r12 = r2.getRealScale();
-        r13 = r2.getLUT();
-        r14 = r2.getCustomLUTA();
-        r15 = r2.getCustomLUTB();
-        r16 = r2.getCustomLUTPower();
-        r17 = r2.getUserLUT();
-        r18 = r2.getBrightness();
-        r19 = r3.getRotateState();
-        r0 = r19;
-        r2.setRotateState(r0);
-        r19 = r3.getUserTranslateX();
-        r20 = r3.getUserTranslateY();
-        r0 = r19;
-        r1 = r20;
-        r2.setUserTranslate(r0, r1);
-        r19 = r3.getUserRotateState();
-        r0 = r19;
-        r2.setUserRotateState(r0);
-        r19 = r3.getRealScale();
-        r0 = r19;
-        r2.setRealScale(r0);
-        r19 = 0;
-        r0 = r19;
-        r2.setLUT(r0);
-        r19 = r3.getUserLUT();
-        if (r19 == 0) goto L_0x0199;
-    L_0x00ab:
-        r20 = "none";
-        r20 = r19.compareTo(r20);
-        if (r20 == 0) goto L_0x0199;
-    L_0x00b3:
-        r20 = "null";
-        r19 = r19.compareTo(r20);
-        if (r19 == 0) goto L_0x0199;
-    L_0x00bb:
-        r19 = r3.getLUT();
-        r0 = r19;
-        r2.setLUT(r0);
-    L_0x00c4:
-        r19 = r3.getCustomLUTA();
-        r0 = r19;
-        r2.setCustomLUTA(r0);
-        r19 = r3.getCustomLUTB();
-        r0 = r19;
-        r2.setCustomLUTB(r0);
-        r19 = r3.getCustomLUTPower();
-        r0 = r19;
-        r2.setCustomLUTPower(r0);
-        r19 = r3.getUserLUT();
-        r0 = r19;
-        r2.setUserLUT(r0);
-        r19 = r3.getBrightness();
-        r0 = r19;
-        r2.setBrightness(r0);
-        r0 = r22;
-        r0.a(r7, r2);
-        r3.setRotateState(r8);
-        r3.setUserTranslate(r9, r10);
-        r3.setUserRotateState(r11);
-        r3.setRealScale(r12);
-        r2 = 0;
-        r3.setLUT(r2);
-        if (r17 == 0) goto L_0x01cc;
-    L_0x0108:
-        r2 = "none";
-        r0 = r17;
-        r2 = r0.compareTo(r2);
-        if (r2 == 0) goto L_0x01cc;
-    L_0x0112:
-        r2 = "null";
-        r0 = r17;
-        r2 = r0.compareTo(r2);
-        if (r2 == 0) goto L_0x01cc;
-    L_0x011c:
-        r3.setLUT(r13);
-    L_0x011f:
-        r3.setCustomLUTA(r14);
-        r3.setCustomLUTB(r15);
-        r0 = r16;
-        r3.setCustomLUTPower(r0);
-        r0 = r17;
-        r3.setUserLUT(r0);
-        r0 = r18;
-        r3.setBrightness(r0);
-        r0 = r23;
-        r0.a(r6, r3);
-        r3 = 1;
-        r2 = 0;
-    L_0x013b:
-        r0 = r21;
-        r8 = r0.v;
-        r9 = 1;
-        r8 = r8.getTotalClipCount(r9);
-        if (r2 >= r8) goto L_0x01fd;
-    L_0x0146:
-        r0 = r21;
-        r8 = r0.v;
-        r9 = 1;
-        r8 = r8.getClip(r2, r9);
-        r8 = r8.equals(r4);
-        if (r8 == 0) goto L_0x016d;
-    L_0x0155:
-        r0 = r21;
-        r8 = r0.v;
-        r9 = r3 + -1;
-        r10 = 1;
-        r8.add(r9, r10, r7);
-        r0 = r21;
-        r8 = r0.v;
-        r8.remove(r4);
-        r0 = r21;
-        r8 = r0.w;
-        r8.removeClip(r3);
-    L_0x016d:
-        r0 = r21;
-        r8 = r0.v;
-        r9 = 1;
-        r8 = r8.getClip(r2, r9);
-        r8 = r8.equals(r5);
-        if (r8 == 0) goto L_0x0194;
-    L_0x017c:
-        r0 = r21;
-        r8 = r0.v;
-        r9 = r3 + -1;
-        r10 = 1;
-        r8.add(r9, r10, r6);
-        r0 = r21;
-        r8 = r0.v;
-        r8.remove(r5);
-        r0 = r21;
-        r8 = r0.w;
-        r8.removeClip(r3);
-    L_0x0194:
-        r3 = r3 + 1;
-        r2 = r2 + 1;
-        goto L_0x013b;
-    L_0x0199:
-        r19 = r22.e();
-        if (r19 == 0) goto L_0x00c4;
-    L_0x019f:
-        r19 = r22.e();
-        r20 = "none";
-        r19 = r19.compareTo(r20);
-        if (r19 == 0) goto L_0x00c4;
-    L_0x01ab:
-        r19 = r22.e();
-        r20 = "null";
-        r19 = r19.compareTo(r20);
-        if (r19 == 0) goto L_0x00c4;
-    L_0x01b7:
-        r19 = r22.e();
-        r19 = com.nexstreaming.nexeditorsdk.nexColorEffect.getLutColorEffect(r19);
-        if (r19 == 0) goto L_0x00c4;
-    L_0x01c1:
-        r19 = r19.getLUTId();
-        r0 = r19;
-        r2.setLUT(r0);
-        goto L_0x00c4;
-    L_0x01cc:
-        r2 = r23.e();
-        if (r2 == 0) goto L_0x011f;
-    L_0x01d2:
-        r2 = r23.e();
-        r8 = "none";
-        r2 = r2.compareTo(r8);
-        if (r2 == 0) goto L_0x011f;
-    L_0x01de:
-        r2 = r23.e();
-        r8 = "null";
-        r2 = r2.compareTo(r8);
-        if (r2 == 0) goto L_0x011f;
-    L_0x01ea:
-        r2 = r23.e();
-        r2 = com.nexstreaming.nexeditorsdk.nexColorEffect.getLutColorEffect(r2);
-        if (r2 == 0) goto L_0x011f;
-    L_0x01f4:
-        r2 = r2.getLUTId();
-        r3.setLUT(r2);
-        goto L_0x011f;
-    L_0x01fd:
-        r0 = r21;
-        r2 = r0.w;
-        r2.updateProject();
-        r0 = r21;
-        r2 = r0.w;
-        r3 = 2;
-        r2.setThumbnailRoutine(r3);
-        r0 = r21;
-        r2 = r0.w;
-        r0 = r21;
-        r3 = r0.h;
-        r3 = (float) r3;
-        r0 = r21;
-        r4 = r0.i;
-        r3 = r3 * r4;
-        r3 = (int) r3;
-        r2.seek(r3);
-        r2 = 1;
-        goto L_0x0005;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.nexCollage.a(com.nexstreaming.nexeditorsdk.a, com.nexstreaming.nexeditorsdk.a):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean a(a aVar, a aVar2) {
+        if (aVar == null || aVar2 == null) {
+            return false;
+        }
+        nexClip bindSource = aVar.getBindSource();
+        nexClip bindSource2 = aVar2.getBindSource();
+        if (bindSource == null || bindSource2 == null) {
+            return false;
+        }
+        int i;
+        int i2;
+        nexClip dup = nexClip.dup(bindSource);
+        nexClip dup2 = nexClip.dup(bindSource2);
+        if (dup.getClipType() == 4) {
+            dup.setAudioOnOff(false);
+        }
+        if (dup2.getClipType() == 4) {
+            dup2.setAudioOnOff(false);
+        }
+        nexDrawInfo nexdrawinfo = (nexDrawInfo) bindSource.getDrawInfos().get(0);
+        nexDrawInfo nexdrawinfo2 = (nexDrawInfo) bindSource2.getDrawInfos().get(0);
+        int rotateState = nexdrawinfo.getRotateState();
+        int userTranslateX = nexdrawinfo.getUserTranslateX();
+        int userTranslateY = nexdrawinfo.getUserTranslateY();
+        int userRotateState = nexdrawinfo.getUserRotateState();
+        float realScale = nexdrawinfo.getRealScale();
+        int lut = nexdrawinfo.getLUT();
+        int customLUTA = nexdrawinfo.getCustomLUTA();
+        int customLUTB = nexdrawinfo.getCustomLUTB();
+        int customLUTPower = nexdrawinfo.getCustomLUTPower();
+        String userLUT = nexdrawinfo.getUserLUT();
+        int brightness = nexdrawinfo.getBrightness();
+        nexdrawinfo.setRotateState(nexdrawinfo2.getRotateState());
+        nexdrawinfo.setUserTranslate(nexdrawinfo2.getUserTranslateX(), nexdrawinfo2.getUserTranslateY());
+        nexdrawinfo.setUserRotateState(nexdrawinfo2.getUserRotateState());
+        nexdrawinfo.setRealScale(nexdrawinfo2.getRealScale());
+        nexdrawinfo.setLUT(0);
+        String userLUT2 = nexdrawinfo2.getUserLUT();
+        if (userLUT2 != null && userLUT2.compareTo("none") != 0 && userLUT2.compareTo("null") != 0) {
+            nexdrawinfo.setLUT(nexdrawinfo2.getLUT());
+        } else if (!(aVar.e() == null || aVar.e().compareTo("none") == 0 || aVar.e().compareTo("null") == 0)) {
+            nexColorEffect lutColorEffect = nexColorEffect.getLutColorEffect(aVar.e());
+            if (lutColorEffect != null) {
+                nexdrawinfo.setLUT(lutColorEffect.getLUTId());
+            }
+        }
+        nexdrawinfo.setCustomLUTA(nexdrawinfo2.getCustomLUTA());
+        nexdrawinfo.setCustomLUTB(nexdrawinfo2.getCustomLUTB());
+        nexdrawinfo.setCustomLUTPower(nexdrawinfo2.getCustomLUTPower());
+        nexdrawinfo.setUserLUT(nexdrawinfo2.getUserLUT());
+        nexdrawinfo.setBrightness(nexdrawinfo2.getBrightness());
+        aVar.a(dup2, nexdrawinfo);
+        nexdrawinfo2.setRotateState(rotateState);
+        nexdrawinfo2.setUserTranslate(userTranslateX, userTranslateY);
+        nexdrawinfo2.setUserRotateState(userRotateState);
+        nexdrawinfo2.setRealScale(realScale);
+        nexdrawinfo2.setLUT(0);
+        if (userLUT != null) {
+            if (userLUT.compareTo("none") != 0) {
+                if (userLUT.compareTo("null") != 0) {
+                    nexdrawinfo2.setLUT(lut);
+                    nexdrawinfo2.setCustomLUTA(customLUTA);
+                    nexdrawinfo2.setCustomLUTB(customLUTB);
+                    nexdrawinfo2.setCustomLUTPower(customLUTPower);
+                    nexdrawinfo2.setUserLUT(userLUT);
+                    nexdrawinfo2.setBrightness(brightness);
+                    aVar2.a(dup, nexdrawinfo2);
+                    i = 1;
+                    for (i2 = 0; i2 < this.v.getTotalClipCount(true); i2++) {
+                        if (this.v.getClip(i2, true).equals(bindSource)) {
+                            this.v.add(i - 1, true, dup2);
+                            this.v.remove(bindSource);
+                            this.w.removeClip(i);
+                        }
+                        if (this.v.getClip(i2, true).equals(bindSource2)) {
+                            this.v.add(i - 1, true, dup);
+                            this.v.remove(bindSource2);
+                            this.w.removeClip(i);
+                        }
+                        i++;
+                    }
+                    this.w.updateProject();
+                    this.w.setThumbnailRoutine(2);
+                    this.w.seek((int) (((float) this.h) * this.i));
+                    return true;
+                }
+            }
+        }
+        if (!(aVar2.e() == null || aVar2.e().compareTo("none") == 0 || aVar2.e().compareTo("null") == 0)) {
+            nexColorEffect lutColorEffect2 = nexColorEffect.getLutColorEffect(aVar2.e());
+            if (lutColorEffect2 != null) {
+                nexdrawinfo2.setLUT(lutColorEffect2.getLUTId());
+            }
+        }
+        nexdrawinfo2.setCustomLUTA(customLUTA);
+        nexdrawinfo2.setCustomLUTB(customLUTB);
+        nexdrawinfo2.setCustomLUTPower(customLUTPower);
+        nexdrawinfo2.setUserLUT(userLUT);
+        nexdrawinfo2.setBrightness(brightness);
+        aVar2.a(dup, nexdrawinfo2);
+        i = 1;
+        while (i2 < this.v.getTotalClipCount(true)) {
+        }
+        this.w.updateProject();
+        this.w.setThumbnailRoutine(2);
+        this.w.seek((int) (((float) this.h) * this.i));
+        return true;
     }
 
     protected boolean i() {

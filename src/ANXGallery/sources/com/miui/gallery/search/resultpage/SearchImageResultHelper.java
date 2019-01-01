@@ -305,245 +305,78 @@ public class SearchImageResultHelper extends SearchResultHelper {
         }
 
         /* JADX WARNING: Removed duplicated region for block: B:31:0x0139  */
-        private com.miui.gallery.search.resultpage.ImageResultSuggestionCursor doExpandableSecondStepQuery(com.miui.gallery.search.core.QueryInfo r31, com.miui.gallery.search.core.suggestion.RankInfo r32, java.util.List<java.lang.Integer> r33, java.util.ArrayList<java.lang.String> r34, java.util.List<java.lang.Long> r35) {
-            /*
-            r30 = this;
-            r24 = java.lang.System.currentTimeMillis();
-            r26 = 0;
-            r4 = "%s IN (%s)";
-            r5 = 2;
-            r5 = new java.lang.Object[r5];
-            r7 = 0;
-            r8 = "alias_create_date";
-            r5[r7] = r8;
-            r7 = 1;
-            r8 = ",";
-            r9 = r33.toArray();
-            r8 = android.text.TextUtils.join(r8, r9);
-            r5[r7] = r8;
-            r23 = java.lang.String.format(r4, r5);
-            r14 = 0;
-            r0 = r30;
-            r4 = com.miui.gallery.search.resultpage.SearchImageResultHelper.this;	 Catch:{ all -> 0x0136 }
-            r4 = r4.mContext;	 Catch:{ all -> 0x0136 }
-            r4 = r4.getContentResolver();	 Catch:{ all -> 0x0136 }
-            r5 = 1;
-            r0 = r30;
-            r5 = r0.getQueryUri(r5);	 Catch:{ all -> 0x0136 }
-            r6 = com.miui.gallery.search.resultpage.SearchImageResultHelper.QUERY_PROJECTION;	 Catch:{ all -> 0x0136 }
-            r0 = r30;
-            r1 = r23;
-            r7 = r0.appendNotInSecretSelection(r1);	 Catch:{ all -> 0x0136 }
-            r8 = 0;
-            r9 = "alias_create_time DESC ";
-            r14 = r4.query(r5, r6, r7, r8, r9);	 Catch:{ all -> 0x0136 }
-            if (r14 == 0) goto L_0x01d0;
-        L_0x004a:
-            r4 = r14.getCount();	 Catch:{ all -> 0x0136 }
-            if (r4 <= 0) goto L_0x01d0;
-        L_0x0050:
-            r4 = r14.getExtras();	 Catch:{ all -> 0x0136 }
-            r5 = "extra_timeline_group_start_locations";
-            r15 = r4.getStringArrayList(r5);	 Catch:{ all -> 0x0136 }
-            r4 = r14.getExtras();	 Catch:{ all -> 0x0136 }
-            r5 = "extra_timeline_group_start_pos";
-            r17 = r4.getIntegerArrayList(r5);	 Catch:{ all -> 0x0136 }
-            r18 = new java.util.ArrayList;	 Catch:{ all -> 0x0136 }
-            r4 = r17.size();	 Catch:{ all -> 0x0136 }
-            r0 = r18;
-            r0.<init>(r4);	 Catch:{ all -> 0x0136 }
-            r6 = new android.database.MatrixCursor;	 Catch:{ all -> 0x0136 }
-            r4 = com.miui.gallery.search.resultpage.SearchImageResultHelper.OUT_PROJECTION;	 Catch:{ all -> 0x0136 }
-            r6.<init>(r4);	 Catch:{ all -> 0x0136 }
-            r12 = new java.util.ArrayList;	 Catch:{ all -> 0x0136 }
-            r12.<init>();	 Catch:{ all -> 0x0136 }
-            r13 = new java.util.ArrayList;	 Catch:{ all -> 0x0136 }
-            r13.<init>();	 Catch:{ all -> 0x0136 }
-            r19 = 0;
-        L_0x0084:
-            r4 = r14.getCount();	 Catch:{ all -> 0x0136 }
-            r0 = r19;
-            if (r0 >= r4) goto L_0x0165;
-        L_0x008c:
-            r0 = r19;
-            r14.moveToPosition(r0);	 Catch:{ all -> 0x0136 }
-            r4 = 0;
-            r28 = r14.getLong(r4);	 Catch:{ all -> 0x0136 }
-            r4 = java.lang.Long.valueOf(r28);	 Catch:{ all -> 0x0136 }
-            r13.add(r4);	 Catch:{ all -> 0x0136 }
-            r4 = java.lang.Long.valueOf(r28);	 Catch:{ all -> 0x0136 }
-            r0 = r35;
-            r4 = r0.contains(r4);	 Catch:{ all -> 0x0136 }
-            if (r4 == 0) goto L_0x00b0;
-        L_0x00a9:
-            r4 = java.lang.Long.valueOf(r28);	 Catch:{ all -> 0x0136 }
-            r12.add(r4);	 Catch:{ all -> 0x0136 }
-        L_0x00b0:
-            r4 = java.lang.Long.valueOf(r28);	 Catch:{ all -> 0x0136 }
-            r0 = r35;
-            r4 = r0.contains(r4);	 Catch:{ all -> 0x0136 }
-            if (r4 == 0) goto L_0x0150;
-        L_0x00bc:
-            r4 = "visible";
-        L_0x00bf:
-            r0 = r30;
-            r4 = r0.toRow(r14, r4);	 Catch:{ all -> 0x0136 }
-            r6.addRow(r4);	 Catch:{ all -> 0x0136 }
-            r19 = r19 + 1;
-            r4 = java.lang.Integer.valueOf(r19);	 Catch:{ all -> 0x0136 }
-            r0 = r17;
-            r4 = r0.contains(r4);	 Catch:{ all -> 0x0136 }
-            if (r4 != 0) goto L_0x00de;
-        L_0x00d6:
-            r4 = r14.getCount();	 Catch:{ all -> 0x0136 }
-            r0 = r19;
-            if (r0 != r4) goto L_0x0084;
-        L_0x00de:
-            r4 = r14.getCount();	 Catch:{ all -> 0x0136 }
-            r0 = r19;
-            if (r0 != r4) goto L_0x0154;
-        L_0x00e6:
-            r4 = r17.size();	 Catch:{ all -> 0x0136 }
-            r16 = r4 + -1;
-        L_0x00ec:
-            r4 = 3;
-            r4 = r14.getLong(r4);	 Catch:{ all -> 0x0136 }
-            r7 = java.lang.Long.valueOf(r4);	 Catch:{ all -> 0x0136 }
-            r0 = r33;
-            r1 = r16;
-            r8 = r0.get(r1);	 Catch:{ all -> 0x0136 }
-            r8 = (java.lang.Integer) r8;	 Catch:{ all -> 0x0136 }
-            if (r34 == 0) goto L_0x0161;
-        L_0x0101:
-            r0 = r34;
-            r1 = r16;
-            r4 = r0.get(r1);	 Catch:{ all -> 0x0136 }
-            r4 = (java.lang.String) r4;	 Catch:{ all -> 0x0136 }
-            r9 = r4;
-        L_0x010c:
-            if (r15 == 0) goto L_0x0163;
-        L_0x010e:
-            r4 = r15.get(r16);	 Catch:{ all -> 0x0136 }
-            r4 = (java.lang.String) r4;	 Catch:{ all -> 0x0136 }
-            r10 = r4;
-        L_0x0115:
-            r11 = 0;
-            r4 = r30;
-            r5 = r31;
-            r22 = r4.toSection(r5, r6, r7, r8, r9, r10, r11, r12, r13);	 Catch:{ all -> 0x0136 }
-            r0 = r18;
-            r1 = r22;
-            r0.add(r1);	 Catch:{ all -> 0x0136 }
-            r6 = new android.database.MatrixCursor;	 Catch:{ all -> 0x0136 }
-            r4 = com.miui.gallery.search.resultpage.SearchImageResultHelper.OUT_PROJECTION;	 Catch:{ all -> 0x0136 }
-            r6.<init>(r4);	 Catch:{ all -> 0x0136 }
-            r12.clear();	 Catch:{ all -> 0x0136 }
-            r13.clear();	 Catch:{ all -> 0x0136 }
-            goto L_0x0084;
-        L_0x0136:
-            r4 = move-exception;
-        L_0x0137:
-            if (r14 == 0) goto L_0x013c;
-        L_0x0139:
-            r14.close();
-        L_0x013c:
-            r5 = "ImageResultProcessor";
-            r7 = "[%d]ms: second step query time for [%s]";
-            r8 = java.lang.System.currentTimeMillis();
-            r8 = r8 - r24;
-            r8 = java.lang.Long.valueOf(r8);
-            r0 = r23;
-            com.miui.gallery.search.utils.SearchLog.d(r5, r7, r8, r0);
-            throw r4;
-        L_0x0150:
-            r4 = "invisible";
-            goto L_0x00bf;
-        L_0x0154:
-            r4 = java.lang.Integer.valueOf(r19);	 Catch:{ all -> 0x0136 }
-            r0 = r17;
-            r4 = r0.indexOf(r4);	 Catch:{ all -> 0x0136 }
-            r16 = r4 + -1;
-            goto L_0x00ec;
-        L_0x0161:
-            r9 = 0;
-            goto L_0x010c;
-        L_0x0163:
-            r10 = 0;
-            goto L_0x0115;
-        L_0x0165:
-            r21 = 0;
-            r0 = r30;
-            r4 = com.miui.gallery.search.resultpage.SearchImageResultHelper.this;	 Catch:{ all -> 0x0136 }
-            r4 = r4.getResult();	 Catch:{ all -> 0x0136 }
-            if (r4 == 0) goto L_0x01e9;
-        L_0x0171:
-            r0 = r30;
-            r4 = com.miui.gallery.search.resultpage.SearchImageResultHelper.this;	 Catch:{ all -> 0x0136 }
-            r4 = r4.getResult();	 Catch:{ all -> 0x0136 }
-            r20 = r4.getData();	 Catch:{ all -> 0x0136 }
-        L_0x017d:
-            if (r20 == 0) goto L_0x0185;
-        L_0x017f:
-            r20 = (com.miui.gallery.search.resultpage.ImageResultSuggestionCursor) r20;	 Catch:{ all -> 0x0136 }
-            r21 = r20.getGroupExpandStateArray();	 Catch:{ all -> 0x0136 }
-        L_0x0185:
-            if (r21 != 0) goto L_0x018d;
-        L_0x0187:
-            r0 = r30;
-            r0 = r0.mCachedGroupExpandState;	 Catch:{ all -> 0x0136 }
-            r21 = r0;
-        L_0x018d:
-            r0 = r21;
-            r1 = r30;
-            r1.mCachedGroupExpandState = r0;	 Catch:{ all -> 0x0136 }
-            r27 = new com.miui.gallery.search.resultpage.ImageResultSuggestionCursor;	 Catch:{ all -> 0x0136 }
-            r0 = r30;
-            r4 = com.miui.gallery.search.resultpage.SearchImageResultHelper.this;	 Catch:{ all -> 0x0136 }
-            r4 = r4.mSupportExpand;	 Catch:{ all -> 0x0136 }
-            r0 = r30;
-            r5 = r0.mCachedGroupExpandState;	 Catch:{ all -> 0x0136 }
-            r0 = r27;
-            r1 = r31;
-            r2 = r18;
-            r0.<init>(r1, r2, r4, r5);	 Catch:{ all -> 0x0136 }
-            r0 = r30;
-            r4 = com.miui.gallery.search.resultpage.SearchImageResultHelper.this;	 Catch:{ all -> 0x01ec }
-            r4 = r4.mContext;	 Catch:{ all -> 0x01ec }
-            r4 = r4.getContentResolver();	 Catch:{ all -> 0x01ec }
-            r5 = r14.getNotificationUri();	 Catch:{ all -> 0x01ec }
-            r0 = r27;
-            r0.setNotificationUri(r4, r5);	 Catch:{ all -> 0x01ec }
-            if (r32 == 0) goto L_0x01ce;
-        L_0x01c1:
-            r0 = r30;
-            r1 = r32;
-            r4 = r0.createRankInfoBundle(r1);	 Catch:{ all -> 0x01ec }
-            r0 = r27;
-            r0.setExtras(r4);	 Catch:{ all -> 0x01ec }
-        L_0x01ce:
-            r26 = r27;
-        L_0x01d0:
-            if (r14 == 0) goto L_0x01d5;
-        L_0x01d2:
-            r14.close();
-        L_0x01d5:
-            r4 = "ImageResultProcessor";
-            r5 = "[%d]ms: second step query time for [%s]";
-            r8 = java.lang.System.currentTimeMillis();
-            r8 = r8 - r24;
-            r7 = java.lang.Long.valueOf(r8);
-            r0 = r23;
-            com.miui.gallery.search.utils.SearchLog.d(r4, r5, r7, r0);
-            return r26;
-        L_0x01e9:
-            r20 = 0;
-            goto L_0x017d;
-        L_0x01ec:
-            r4 = move-exception;
-            r26 = r27;
-            goto L_0x0137;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.search.resultpage.SearchImageResultHelper.ImageResultProcessor.doExpandableSecondStepQuery(com.miui.gallery.search.core.QueryInfo, com.miui.gallery.search.core.suggestion.RankInfo, java.util.List, java.util.ArrayList, java.util.List):com.miui.gallery.search.resultpage.ImageResultSuggestionCursor");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        private ImageResultSuggestionCursor doExpandableSecondStepQuery(QueryInfo queryInfo, RankInfo rankInfo, List<Integer> createDates, ArrayList<String> collapsedGroupLocations, List<Long> collapsedVisibleIds) {
+            Throwable th;
+            long startTime = System.currentTimeMillis();
+            ImageResultSuggestionCursor suggestionCursor = null;
+            String selection = String.format("%s IN (%s)", new Object[]{"alias_create_date", TextUtils.join(",", createDates.toArray())});
+            Cursor cursor = null;
+            try {
+                cursor = SearchImageResultHelper.this.mContext.getContentResolver().query(getQueryUri(true), SearchImageResultHelper.QUERY_PROJECTION, appendNotInSecretSelection(selection), null, "alias_create_time DESC ");
+                if (cursor != null && cursor.getCount() > 0) {
+                    ArrayList<String> expandedGroupLocations = cursor.getExtras().getStringArrayList("extra_timeline_group_start_locations");
+                    ArrayList<Integer> groupStartPos = cursor.getExtras().getIntegerArrayList("extra_timeline_group_start_pos");
+                    List<SuggestionSection> arrayList = new ArrayList(groupStartPos.size());
+                    MatrixCursor imageGroupCursor = new MatrixCursor(SearchImageResultHelper.OUT_PROJECTION);
+                    List<Long> groupVisibleIds = new ArrayList();
+                    List<Long> groupAllIds = new ArrayList();
+                    int i = 0;
+                    while (i < cursor.getCount()) {
+                        cursor.moveToPosition(i);
+                        long tempId = cursor.getLong(0);
+                        groupAllIds.add(Long.valueOf(tempId));
+                        if (collapsedVisibleIds.contains(Long.valueOf(tempId))) {
+                            groupVisibleIds.add(Long.valueOf(tempId));
+                        }
+                        imageGroupCursor.addRow(toRow(cursor, collapsedVisibleIds.contains(Long.valueOf(tempId)) ? "visible" : "invisible"));
+                        i++;
+                        if (groupStartPos.contains(Integer.valueOf(i)) || i == cursor.getCount()) {
+                            int groupIndex = i == cursor.getCount() ? groupStartPos.size() - 1 : groupStartPos.indexOf(Integer.valueOf(i)) - 1;
+                            arrayList.add(toSection(queryInfo, imageGroupCursor, Long.valueOf(cursor.getLong(3)), (Integer) createDates.get(groupIndex), collapsedGroupLocations != null ? (String) collapsedGroupLocations.get(groupIndex) : null, expandedGroupLocations != null ? (String) expandedGroupLocations.get(groupIndex) : null, null, groupVisibleIds, groupAllIds));
+                            imageGroupCursor = new MatrixCursor(SearchImageResultHelper.OUT_PROJECTION);
+                            groupVisibleIds.clear();
+                            groupAllIds.clear();
+                        }
+                    }
+                    SparseBooleanArray oldExpandStates = null;
+                    SuggestionCursor oldCursor = SearchImageResultHelper.this.getResult() != null ? SearchImageResultHelper.this.getResult().getData() : null;
+                    if (oldCursor != null) {
+                        oldExpandStates = ((ImageResultSuggestionCursor) oldCursor).getGroupExpandStateArray();
+                    }
+                    if (oldExpandStates == null) {
+                        oldExpandStates = this.mCachedGroupExpandState;
+                    }
+                    this.mCachedGroupExpandState = oldExpandStates;
+                    ImageResultSuggestionCursor imageResultSuggestionCursor = new ImageResultSuggestionCursor(queryInfo, arrayList, SearchImageResultHelper.this.mSupportExpand, this.mCachedGroupExpandState);
+                    try {
+                        imageResultSuggestionCursor.setNotificationUri(SearchImageResultHelper.this.mContext.getContentResolver(), cursor.getNotificationUri());
+                        if (rankInfo != null) {
+                            imageResultSuggestionCursor.setExtras(createRankInfoBundle(rankInfo));
+                        }
+                        suggestionCursor = imageResultSuggestionCursor;
+                    } catch (Throwable th2) {
+                        th = th2;
+                        suggestionCursor = imageResultSuggestionCursor;
+                        if (cursor != null) {
+                        }
+                        SearchLog.d("ImageResultProcessor", "[%d]ms: second step query time for [%s]", Long.valueOf(System.currentTimeMillis() - startTime), selection);
+                        throw th;
+                    }
+                }
+                if (cursor != null) {
+                    cursor.close();
+                }
+                SearchLog.d("ImageResultProcessor", "[%d]ms: second step query time for [%s]", Long.valueOf(System.currentTimeMillis() - startTime), selection);
+                return suggestionCursor;
+            } catch (Throwable th3) {
+                th = th3;
+                if (cursor != null) {
+                    cursor.close();
+                }
+                SearchLog.d("ImageResultProcessor", "[%d]ms: second step query time for [%s]", Long.valueOf(System.currentTimeMillis() - startTime), selection);
+                throw th;
+            }
         }
 
         private Uri getQueryUri(boolean generateHeader) {

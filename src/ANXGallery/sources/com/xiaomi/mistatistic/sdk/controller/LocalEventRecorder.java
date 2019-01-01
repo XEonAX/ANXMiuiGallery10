@@ -13,7 +13,9 @@ import com.xiaomi.mistatistic.sdk.data.f;
 import com.xiaomi.mistatistic.sdk.data.g;
 import com.xiaomi.xmsf.push.service.b;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import org.json.JSONException;
 
 public class LocalEventRecorder {
     private static volatile b a = null;
@@ -32,7 +34,7 @@ public class LocalEventRecorder {
             LocalEventRecorder.a = com.xiaomi.xmsf.push.service.b.a.a(iBinder);
             if (LocalEventRecorder.a != null) {
                 r.b.execute(new Runnable() {
-                    /* JADX WARNING: Removed duplicated region for block: B:27:0x00c7 A:{ExcHandler: android.os.RemoteException (r0_17 'e' java.lang.Throwable), Splitter: B:3:0x0006} */
+                    /* JADX WARNING: Removed duplicated region for block: B:27:0x00c7 A:{Splitter: B:3:0x0006, ExcHandler: android.os.RemoteException (r0_17 'e' java.lang.Throwable)} */
                     /* JADX WARNING: Failed to process nested try/catch */
                     /* JADX WARNING: Missing block: B:27:0x00c7, code:
             r0 = move-exception;
@@ -56,127 +58,33 @@ public class LocalEventRecorder {
             r1 = r0;
             r0 = r5;
      */
+                    /* Code decompiled incorrectly, please refer to instructions dump. */
                     public void run() {
-                        /*
-                        r6 = this;
-                        r2 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.d;
-                        monitor-enter(r2);
-                        r1 = 0;
-                        r0 = "LER";
-                        r3 = new java.lang.StringBuilder;	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r3.<init>();	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r4 = "start insert event to IStatService and eventList size: ";
-                        r3 = r3.append(r4);	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r4 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c;	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r4 = r4.size();	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r3 = r3.append(r4);	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r3 = r3.toString();	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        com.xiaomi.mistatistic.sdk.controller.j.a(r0, r3);	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r0 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c;	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        if (r0 == 0) goto L_0x0066;
-                    L_0x002d:
-                        r0 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c;	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r0 = r0.isEmpty();	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        if (r0 != 0) goto L_0x0066;
-                    L_0x0037:
-                        r0 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c;	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r3 = r0.iterator();	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                    L_0x003f:
-                        r0 = r3.hasNext();	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        if (r0 == 0) goto L_0x0066;
-                    L_0x0045:
-                        r0 = r3.next();	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r0 = (com.xiaomi.mistatistic.sdk.data.AbstractEvent) r0;	 Catch:{ JSONException -> 0x008f, RemoteException -> 0x00c7 }
-                        r1 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.a;	 Catch:{ JSONException -> 0x011e, RemoteException -> 0x00c7 }
-                        r4 = r0.valueToJSon();	 Catch:{ JSONException -> 0x011e, RemoteException -> 0x00c7 }
-                        r4 = r4.toString();	 Catch:{ JSONException -> 0x011e, RemoteException -> 0x00c7 }
-                        r1.a(r4);	 Catch:{ JSONException -> 0x011e, RemoteException -> 0x00c7 }
-                        r1 = "LER";
-                        r4 = "insert a reserved event into IStatService";
-                        com.xiaomi.mistatistic.sdk.controller.j.a(r1, r4);	 Catch:{ JSONException -> 0x011e, RemoteException -> 0x00c7 }
-                        r3.remove();	 Catch:{ JSONException -> 0x011e, RemoteException -> 0x00c7 }
-                        r1 = r0;
-                        goto L_0x003f;
-                    L_0x0066:
-                        r0 = "LER";
-                        r1 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00c4 }
-                        r1.<init>();	 Catch:{ all -> 0x00c4 }
-                        r3 = "pending eventList size: ";
-                        r1 = r1.append(r3);	 Catch:{ all -> 0x00c4 }
-                        r3 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c;	 Catch:{ all -> 0x00c4 }
-                        r3 = r3.size();	 Catch:{ all -> 0x00c4 }
-                        r1 = r1.append(r3);	 Catch:{ all -> 0x00c4 }
-                        r1 = r1.toString();	 Catch:{ all -> 0x00c4 }
-                        com.xiaomi.mistatistic.sdk.controller.j.a(r0, r1);	 Catch:{ all -> 0x00c4 }
-                        r0 = com.xiaomi.mistatistic.sdk.controller.d.a();	 Catch:{ all -> 0x00c4 }
-                        com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c(r0);	 Catch:{ all -> 0x00c4 }
-                    L_0x008d:
-                        monitor-exit(r2);	 Catch:{ all -> 0x00c4 }
-                        return;
-                    L_0x008f:
-                        r0 = move-exception;
-                    L_0x0090:
-                        r3 = "dispatch event to IStatService exception";
-                        com.xiaomi.mistatistic.sdk.controller.j.a(r3, r0);	 Catch:{ all -> 0x00f5 }
-                        r0 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c;	 Catch:{ all -> 0x00f5 }
-                        r0.remove(r1);	 Catch:{ all -> 0x00f5 }
-                        r0 = "LER";
-                        r1 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00c4 }
-                        r1.<init>();	 Catch:{ all -> 0x00c4 }
-                        r3 = "pending eventList size: ";
-                        r1 = r1.append(r3);	 Catch:{ all -> 0x00c4 }
-                        r3 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c;	 Catch:{ all -> 0x00c4 }
-                        r3 = r3.size();	 Catch:{ all -> 0x00c4 }
-                        r1 = r1.append(r3);	 Catch:{ all -> 0x00c4 }
-                        r1 = r1.toString();	 Catch:{ all -> 0x00c4 }
-                        com.xiaomi.mistatistic.sdk.controller.j.a(r0, r1);	 Catch:{ all -> 0x00c4 }
-                        r0 = com.xiaomi.mistatistic.sdk.controller.d.a();	 Catch:{ all -> 0x00c4 }
-                        com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c(r0);	 Catch:{ all -> 0x00c4 }
-                        goto L_0x008d;
-                    L_0x00c4:
-                        r0 = move-exception;
-                        monitor-exit(r2);	 Catch:{ all -> 0x00c4 }
-                        throw r0;
-                    L_0x00c7:
-                        r0 = move-exception;
-                        r1 = "dispatch event to IStatService exception";
-                        com.xiaomi.mistatistic.sdk.controller.j.a(r1, r0);	 Catch:{ all -> 0x00f5 }
-                        r0 = "LER";
-                        r1 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00c4 }
-                        r1.<init>();	 Catch:{ all -> 0x00c4 }
-                        r3 = "pending eventList size: ";
-                        r1 = r1.append(r3);	 Catch:{ all -> 0x00c4 }
-                        r3 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c;	 Catch:{ all -> 0x00c4 }
-                        r3 = r3.size();	 Catch:{ all -> 0x00c4 }
-                        r1 = r1.append(r3);	 Catch:{ all -> 0x00c4 }
-                        r1 = r1.toString();	 Catch:{ all -> 0x00c4 }
-                        com.xiaomi.mistatistic.sdk.controller.j.a(r0, r1);	 Catch:{ all -> 0x00c4 }
-                        r0 = com.xiaomi.mistatistic.sdk.controller.d.a();	 Catch:{ all -> 0x00c4 }
-                        com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c(r0);	 Catch:{ all -> 0x00c4 }
-                        goto L_0x008d;
-                    L_0x00f5:
-                        r0 = move-exception;
-                        r1 = "LER";
-                        r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00c4 }
-                        r3.<init>();	 Catch:{ all -> 0x00c4 }
-                        r4 = "pending eventList size: ";
-                        r3 = r3.append(r4);	 Catch:{ all -> 0x00c4 }
-                        r4 = com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c;	 Catch:{ all -> 0x00c4 }
-                        r4 = r4.size();	 Catch:{ all -> 0x00c4 }
-                        r3 = r3.append(r4);	 Catch:{ all -> 0x00c4 }
-                        r3 = r3.toString();	 Catch:{ all -> 0x00c4 }
-                        com.xiaomi.mistatistic.sdk.controller.j.a(r1, r3);	 Catch:{ all -> 0x00c4 }
-                        r1 = com.xiaomi.mistatistic.sdk.controller.d.a();	 Catch:{ all -> 0x00c4 }
-                        com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.c(r1);	 Catch:{ all -> 0x00c4 }
-                        throw r0;	 Catch:{ all -> 0x00c4 }
-                    L_0x011e:
-                        r1 = move-exception;
-                        r5 = r1;
-                        r1 = r0;
-                        r0 = r5;
-                        goto L_0x0090;
-                        */
-                        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.mistatistic.sdk.controller.LocalEventRecorder.4.1.run():void");
+                        synchronized (LocalEventRecorder.d) {
+                            Object obj = null;
+                            try {
+                                j.a("LER", "start insert event to IStatService and eventList size: " + LocalEventRecorder.c.size());
+                                if (!(LocalEventRecorder.c == null || LocalEventRecorder.c.isEmpty())) {
+                                    Iterator it = LocalEventRecorder.c.iterator();
+                                    while (it.hasNext()) {
+                                        AbstractEvent abstractEvent = (AbstractEvent) it.next();
+                                        LocalEventRecorder.a.a(abstractEvent.valueToJSon().toString());
+                                        j.a("LER", "insert a reserved event into IStatService");
+                                        it.remove();
+                                        AbstractEvent abstractEvent2 = abstractEvent;
+                                    }
+                                }
+                                j.a("LER", "pending eventList size: " + LocalEventRecorder.c.size());
+                                LocalEventRecorder.c(d.a());
+                            } catch (JSONException e) {
+                                Throwable e2 = e;
+                                j.a("dispatch event to IStatService exception", e2);
+                                LocalEventRecorder.c.remove(obj);
+                                j.a("LER", "pending eventList size: " + LocalEventRecorder.c.size());
+                                LocalEventRecorder.c(d.a());
+                            } catch (Throwable e3) {
+                            }
+                        }
                     }
                 });
             }

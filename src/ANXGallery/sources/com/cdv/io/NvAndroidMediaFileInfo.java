@@ -1,5 +1,11 @@
 package com.cdv.io;
 
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.media.MediaExtractor;
+import android.media.MediaFormat;
+import com.nexstreaming.nexeditorsdk.nexExportFormat;
+
 public class NvAndroidMediaFileInfo {
 
     public static class MediaInfo {
@@ -21,140 +27,94 @@ public class NvAndroidMediaFileInfo {
     /* JADX WARNING: Removed duplicated region for block: B:40:0x00cd  */
     /* JADX WARNING: Removed duplicated region for block: B:18:0x004c  */
     /* JADX WARNING: Removed duplicated region for block: B:40:0x00cd  */
-    public static com.cdv.io.NvAndroidMediaFileInfo.MediaInfo getMediaInfoFromFile(java.lang.String r10, android.content.res.AssetManager r11) {
-        /*
-        r6 = 0;
-        r7 = -1;
-        r0 = new android.media.MediaExtractor;	 Catch:{ Exception -> 0x00d8, all -> 0x00ca }
-        r0.<init>();	 Catch:{ Exception -> 0x00d8, all -> 0x00ca }
-        if (r11 != 0) goto L_0x002c;
-    L_0x0009:
-        r0.setDataSource(r10);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-    L_0x000c:
-        r4 = r0.getTrackCount();	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2 = 0;
-        r1 = r7;
-        r3 = r7;
-    L_0x0013:
-        if (r2 >= r4) goto L_0x005b;
-    L_0x0015:
-        r5 = r0.getTrackFormat(r2);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r7 = "mime";
-        r5 = r5.getString(r7);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r7 = "video/";
-        r7 = r5.startsWith(r7);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        if (r7 == 0) goto L_0x0051;
-    L_0x0028:
-        r3 = r2;
-    L_0x0029:
-        r2 = r2 + 1;
-        goto L_0x0013;
-    L_0x002c:
-        r8 = r11.openFd(r10);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r1 = r8.getFileDescriptor();	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2 = r8.getStartOffset();	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r4 = r8.getLength();	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r0.setDataSource(r1, r2, r4);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r8.close();	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        goto L_0x000c;
-    L_0x0043:
-        r1 = move-exception;
-        r9 = r1;
-        r1 = r0;
-        r0 = r9;
-    L_0x0047:
-        r0.printStackTrace();	 Catch:{ all -> 0x00d5 }
-        if (r1 == 0) goto L_0x004f;
-    L_0x004c:
-        r1.release();
-    L_0x004f:
-        r0 = r6;
-    L_0x0050:
-        return r0;
-    L_0x0051:
-        r7 = "audio/";
-        r5 = r5.startsWith(r7);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        if (r5 == 0) goto L_0x0029;
-    L_0x0059:
-        r1 = r2;
-        goto L_0x0029;
-    L_0x005b:
-        r2 = new com.cdv.io.NvAndroidMediaFileInfo$MediaInfo;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2.<init>();	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        if (r3 < 0) goto L_0x00a2;
-    L_0x0062:
-        r3 = r0.getTrackFormat(r3);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r4 = "durationUs";
-        r4 = r3.getLong(r4);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2.videoStreamDurationUs = r4;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r4 = "width";
-        r4 = r3.getInteger(r4);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2.width = r4;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r4 = "height";
-        r4 = r3.getInteger(r4);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2.height = r4;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r4 = "rotation-degrees";
-        r4 = r3.containsKey(r4);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        if (r4 == 0) goto L_0x008f;
-    L_0x0087:
-        r4 = "rotation-degrees";
-        r4 = r3.getInteger(r4);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2.rotation = r4;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-    L_0x008f:
-        r4 = "frame-rate";
-        r4 = r3.containsKey(r4);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        if (r4 == 0) goto L_0x009f;
-    L_0x0097:
-        r4 = "frame-rate";
-        r3 = r3.getInteger(r4);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2.frameRate = r3;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-    L_0x009f:
-        r3 = 1;
-        r2.hasVideoStream = r3;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-    L_0x00a2:
-        if (r1 < 0) goto L_0x00c3;
-    L_0x00a4:
-        r1 = r0.getTrackFormat(r1);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r3 = "durationUs";
-        r4 = r1.getLong(r3);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2.audioStreamDurationUs = r4;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r3 = "channel-count";
-        r3 = r1.getInteger(r3);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2.channelCount = r3;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r3 = "sample-rate";
-        r1 = r1.getInteger(r3);	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r2.sampleRate = r1;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-        r1 = 1;
-        r2.hasAudioStream = r1;	 Catch:{ Exception -> 0x0043, all -> 0x00d1 }
-    L_0x00c3:
-        if (r0 == 0) goto L_0x00c8;
-    L_0x00c5:
-        r0.release();
-    L_0x00c8:
-        r0 = r2;
-        goto L_0x0050;
-    L_0x00ca:
-        r0 = move-exception;
-    L_0x00cb:
-        if (r6 == 0) goto L_0x00d0;
-    L_0x00cd:
-        r6.release();
-    L_0x00d0:
-        throw r0;
-    L_0x00d1:
-        r1 = move-exception;
-        r6 = r0;
-        r0 = r1;
-        goto L_0x00cb;
-    L_0x00d5:
-        r0 = move-exception;
-        r6 = r1;
-        goto L_0x00cb;
-    L_0x00d8:
-        r0 = move-exception;
-        r1 = r6;
-        goto L_0x0047;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.cdv.io.NvAndroidMediaFileInfo.getMediaInfoFromFile(java.lang.String, android.content.res.AssetManager):com.cdv.io.NvAndroidMediaFileInfo$MediaInfo");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static MediaInfo getMediaInfoFromFile(String str, AssetManager assetManager) {
+        MediaExtractor mediaExtractor;
+        Exception e;
+        Throwable th;
+        MediaExtractor mediaExtractor2 = null;
+        try {
+            MediaExtractor mediaExtractor3 = new MediaExtractor();
+            if (assetManager == null) {
+                try {
+                    mediaExtractor3.setDataSource(str);
+                } catch (Exception e2) {
+                    Exception exception = e2;
+                    mediaExtractor = mediaExtractor3;
+                    e = exception;
+                    try {
+                        e.printStackTrace();
+                        if (mediaExtractor != null) {
+                            mediaExtractor.release();
+                        }
+                        return null;
+                    } catch (Throwable th2) {
+                        th = th2;
+                        mediaExtractor2 = mediaExtractor;
+                        if (mediaExtractor2 != null) {
+                            mediaExtractor2.release();
+                        }
+                        throw th;
+                    }
+                } catch (Throwable th3) {
+                    mediaExtractor2 = mediaExtractor3;
+                    th = th3;
+                    if (mediaExtractor2 != null) {
+                    }
+                    throw th;
+                }
+            }
+            AssetFileDescriptor openFd = assetManager.openFd(str);
+            mediaExtractor3.setDataSource(openFd.getFileDescriptor(), openFd.getStartOffset(), openFd.getLength());
+            openFd.close();
+            int trackCount = mediaExtractor3.getTrackCount();
+            int i = -1;
+            int i2 = -1;
+            for (int i3 = 0; i3 < trackCount; i3++) {
+                String string = mediaExtractor3.getTrackFormat(i3).getString("mime");
+                if (string.startsWith("video/")) {
+                    i2 = i3;
+                } else if (string.startsWith("audio/")) {
+                    i = i3;
+                }
+            }
+            MediaInfo mediaInfo = new MediaInfo();
+            if (i2 >= 0) {
+                MediaFormat trackFormat = mediaExtractor3.getTrackFormat(i2);
+                mediaInfo.videoStreamDurationUs = trackFormat.getLong("durationUs");
+                mediaInfo.width = trackFormat.getInteger(nexExportFormat.TAG_FORMAT_WIDTH);
+                mediaInfo.height = trackFormat.getInteger(nexExportFormat.TAG_FORMAT_HEIGHT);
+                if (trackFormat.containsKey("rotation-degrees")) {
+                    mediaInfo.rotation = trackFormat.getInteger("rotation-degrees");
+                }
+                if (trackFormat.containsKey("frame-rate")) {
+                    mediaInfo.frameRate = trackFormat.getInteger("frame-rate");
+                }
+                mediaInfo.hasVideoStream = true;
+            }
+            if (i >= 0) {
+                MediaFormat trackFormat2 = mediaExtractor3.getTrackFormat(i);
+                mediaInfo.audioStreamDurationUs = trackFormat2.getLong("durationUs");
+                mediaInfo.channelCount = trackFormat2.getInteger("channel-count");
+                mediaInfo.sampleRate = trackFormat2.getInteger("sample-rate");
+                mediaInfo.hasAudioStream = true;
+            }
+            if (mediaExtractor3 != null) {
+                mediaExtractor3.release();
+            }
+            return mediaInfo;
+        } catch (Exception e3) {
+            e = e3;
+            mediaExtractor = null;
+            e.printStackTrace();
+            if (mediaExtractor != null) {
+            }
+            return null;
+        } catch (Throwable th4) {
+            th = th4;
+            if (mediaExtractor2 != null) {
+            }
+            throw th;
+        }
     }
 }

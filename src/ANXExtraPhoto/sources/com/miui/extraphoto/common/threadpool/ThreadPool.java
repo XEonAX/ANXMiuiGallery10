@@ -100,46 +100,19 @@ public class ThreadPool {
         /* JADX WARNING: Missing block: B:23:0x0025, code:
             return;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         public synchronized void cancel() {
-            /*
-            r2 = this;
-            monitor-enter(r2);
-            r0 = r2.mIsCancelled;	 Catch:{ all -> 0x0026 }
-            if (r0 == 0) goto L_0x0007;
-        L_0x0005:
-            monitor-exit(r2);
-            return;
-        L_0x0007:
-            r0 = 1;
-            r2.mIsCancelled = r0;	 Catch:{ all -> 0x0026 }
-            r0 = r2.mWaitOnResource;	 Catch:{ all -> 0x0026 }
-            if (r0 == 0) goto L_0x001b;
-        L_0x000e:
-            r0 = r2.mWaitOnResource;	 Catch:{ all -> 0x0026 }
-            monitor-enter(r0);	 Catch:{ all -> 0x0026 }
-            r1 = r2.mWaitOnResource;	 Catch:{ all -> 0x0018 }
-            r1.notifyAll();	 Catch:{ all -> 0x0018 }
-            monitor-exit(r0);	 Catch:{ all -> 0x0018 }
-            goto L_0x001b;
-        L_0x0018:
-            r1 = move-exception;
-            monitor-exit(r0);	 Catch:{ all -> 0x0018 }
-            throw r1;	 Catch:{ all -> 0x0026 }
-        L_0x001b:
-            r0 = r2.mCancelListener;	 Catch:{ all -> 0x0026 }
-            if (r0 == 0) goto L_0x0024;
-        L_0x001f:
-            r0 = r2.mCancelListener;	 Catch:{ all -> 0x0026 }
-            r0.onCancel();	 Catch:{ all -> 0x0026 }
-        L_0x0024:
-            monitor-exit(r2);
-            return;
-        L_0x0026:
-            r0 = move-exception;
-            monitor-exit(r2);
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.miui.extraphoto.common.threadpool.ThreadPool.Worker.cancel():void");
+            if (!this.mIsCancelled) {
+                this.mIsCancelled = true;
+                if (this.mWaitOnResource != null) {
+                    synchronized (this.mWaitOnResource) {
+                        this.mWaitOnResource.notifyAll();
+                    }
+                }
+                if (this.mCancelListener != null) {
+                    this.mCancelListener.onCancel();
+                }
+            }
         }
 
         public synchronized void cancel(int type) {
@@ -238,57 +211,19 @@ public class ThreadPool {
         /* JADX WARNING: Missing block: B:24:?, code:
             r4.wait();
      */
-        private boolean acquireResource(com.miui.extraphoto.common.threadpool.ThreadPool.ResourceCounter r4) {
-            /*
-            r3 = this;
-        L_0x0000:
-            monitor-enter(r3);
-            r0 = r3.mIsCancelled;	 Catch:{ all -> 0x002c }
-            r1 = 0;
-            if (r0 == 0) goto L_0x000b;
-        L_0x0006:
-            r3.mWaitOnResource = r1;	 Catch:{ all -> 0x002c }
-            r0 = 0;
-            monitor-exit(r3);	 Catch:{ all -> 0x002c }
-            return r0;
-        L_0x000b:
-            r3.mWaitOnResource = r4;	 Catch:{ all -> 0x002c }
-            monitor-exit(r3);	 Catch:{ all -> 0x002c }
-            monitor-enter(r4);
-            r0 = r4.value;	 Catch:{ all -> 0x0029 }
-            if (r0 <= 0) goto L_0x0022;
-        L_0x0013:
-            r0 = r4.value;	 Catch:{ all -> 0x0029 }
-            r2 = 1;
-            r0 = r0 - r2;
-            r4.value = r0;	 Catch:{ all -> 0x0029 }
-            monitor-exit(r4);	 Catch:{ all -> 0x0029 }
-            monitor-enter(r3);
-            r3.mWaitOnResource = r1;	 Catch:{ all -> 0x001f }
-            monitor-exit(r3);	 Catch:{ all -> 0x001f }
-            return r2;
-        L_0x001f:
-            r0 = move-exception;
-            monitor-exit(r3);	 Catch:{ all -> 0x001f }
-            throw r0;
-        L_0x0022:
-            r4.wait();	 Catch:{ InterruptedException -> 0x0026 }
-            goto L_0x0027;
-        L_0x0026:
-            r0 = move-exception;
-        L_0x0027:
-            monitor-exit(r4);	 Catch:{ all -> 0x0029 }
-            goto L_0x0000;
-        L_0x0029:
-            r0 = move-exception;
-            monitor-exit(r4);	 Catch:{ all -> 0x0029 }
-            throw r0;
-        L_0x002c:
-            r0 = move-exception;
-            monitor-exit(r3);	 Catch:{ all -> 0x002c }
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.miui.extraphoto.common.threadpool.ThreadPool.Worker.acquireResource(com.miui.extraphoto.common.threadpool.ThreadPool$ResourceCounter):boolean");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        private boolean acquireResource(ResourceCounter counter) {
+            while (true) {
+                synchronized (this) {
+                    if (this.mIsCancelled) {
+                        this.mWaitOnResource = null;
+                        return false;
+                    }
+                    this.mWaitOnResource = counter;
+                }
+            }
+            while (true) {
+            }
         }
 
         private void releaseResource(ResourceCounter counter) {

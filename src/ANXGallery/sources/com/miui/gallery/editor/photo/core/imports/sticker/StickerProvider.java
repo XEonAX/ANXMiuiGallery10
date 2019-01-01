@@ -24,6 +24,7 @@ import com.miui.settings.Settings;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -288,80 +289,61 @@ class StickerProvider extends AbstractStickerProvider {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:17:0x0029 A:{SYNTHETIC, Splitter: B:17:0x0029} */
-    private java.lang.String loadPackageInfo() throws com.miui.gallery.editor.photo.core.imports.sticker.StickerProvider.InitializeException {
-        /*
-        r8 = this;
-        r4 = 0;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r5 = new java.io.FileReader;	 Catch:{ FileNotFoundException -> 0x005b, IOException -> 0x0045 }
-        r6 = r8.mIndexFile;	 Catch:{ FileNotFoundException -> 0x005b, IOException -> 0x0045 }
-        r5.<init>(r6);	 Catch:{ FileNotFoundException -> 0x005b, IOException -> 0x0045 }
-        r6 = 1024; // 0x400 float:1.435E-42 double:5.06E-321;
-        r0 = new char[r6];	 Catch:{ FileNotFoundException -> 0x001c, IOException -> 0x0058, all -> 0x0055 }
-    L_0x0011:
-        r6 = r5.read(r0);	 Catch:{ FileNotFoundException -> 0x001c, IOException -> 0x0058, all -> 0x0055 }
-        r7 = -1;
-        if (r6 == r7) goto L_0x002d;
-    L_0x0018:
-        r1.append(r0);	 Catch:{ FileNotFoundException -> 0x001c, IOException -> 0x0058, all -> 0x0055 }
-        goto L_0x0011;
-    L_0x001c:
-        r2 = move-exception;
-        r4 = r5;
-    L_0x001e:
-        r6 = new com.miui.gallery.editor.photo.core.imports.sticker.StickerProvider$InitializeException;	 Catch:{ all -> 0x0026 }
-        r7 = "index file is not found";
-        r6.<init>(r7);	 Catch:{ all -> 0x0026 }
-        throw r6;	 Catch:{ all -> 0x0026 }
-    L_0x0026:
-        r6 = move-exception;
-    L_0x0027:
-        if (r4 == 0) goto L_0x002c;
-    L_0x0029:
-        r4.close();	 Catch:{ IOException -> 0x004e }
-    L_0x002c:
-        throw r6;
-    L_0x002d:
-        r3 = r1.toString();	 Catch:{ FileNotFoundException -> 0x001c, IOException -> 0x0058, all -> 0x0055 }
-        r6 = "StickerProvider";
-        r7 = "load pkg info finished";
-        com.miui.gallery.util.Log.d(r6, r7);	 Catch:{ FileNotFoundException -> 0x001c, IOException -> 0x0058, all -> 0x0055 }
-        if (r5 == 0) goto L_0x003d;
-    L_0x003a:
-        r5.close();	 Catch:{ IOException -> 0x003e }
-    L_0x003d:
-        return r3;
-    L_0x003e:
-        r2 = move-exception;
-        r6 = "StickerProvider";
-        com.miui.gallery.util.Log.w(r6, r2);
-        goto L_0x003d;
-    L_0x0045:
-        r2 = move-exception;
-    L_0x0046:
-        r6 = new com.miui.gallery.editor.photo.core.imports.sticker.StickerProvider$InitializeException;	 Catch:{ all -> 0x0026 }
-        r7 = "read index file failed";
-        r6.<init>(r7, r2);	 Catch:{ all -> 0x0026 }
-        throw r6;	 Catch:{ all -> 0x0026 }
-    L_0x004e:
-        r2 = move-exception;
-        r7 = "StickerProvider";
-        com.miui.gallery.util.Log.w(r7, r2);
-        goto L_0x002c;
-    L_0x0055:
-        r6 = move-exception;
-        r4 = r5;
-        goto L_0x0027;
-    L_0x0058:
-        r2 = move-exception;
-        r4 = r5;
-        goto L_0x0046;
-    L_0x005b:
-        r2 = move-exception;
-        goto L_0x001e;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.editor.photo.core.imports.sticker.StickerProvider.loadPackageInfo():java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private String loadPackageInfo() throws InitializeException {
+        Throwable th;
+        IOException e;
+        FileReader reader = null;
+        StringBuilder builder = new StringBuilder();
+        try {
+            FileReader reader2 = new FileReader(this.mIndexFile);
+            try {
+                char[] buff = new char[1024];
+                while (reader2.read(buff) != -1) {
+                    builder.append(buff);
+                }
+                String info = builder.toString();
+                Log.d("StickerProvider", "load pkg info finished");
+                if (reader2 != null) {
+                    try {
+                        reader2.close();
+                    } catch (Throwable e2) {
+                        Log.w("StickerProvider", e2);
+                    }
+                }
+                return info;
+            } catch (FileNotFoundException e3) {
+                reader = reader2;
+                try {
+                    throw new InitializeException("index file is not found");
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (reader != null) {
+                    }
+                    throw th;
+                }
+            } catch (IOException e4) {
+                e = e4;
+                reader = reader2;
+                throw new InitializeException("read index file failed", e);
+            } catch (Throwable th3) {
+                th = th3;
+                reader = reader2;
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (Throwable e22) {
+                        Log.w("StickerProvider", e22);
+                    }
+                }
+                throw th;
+            }
+        } catch (FileNotFoundException e5) {
+            throw new InitializeException("index file is not found");
+        } catch (IOException e6) {
+            e = e6;
+            throw new InitializeException("read index file failed", e);
+        }
     }
 
     private void loadData(JSONObject json) throws InitializeException {

@@ -5,6 +5,8 @@ import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Rect;
+import android.media.Image;
+import android.media.Image.Plane;
 import android.media.ImageReader;
 import android.media.ImageReader.OnImageAvailableListener;
 import android.os.Build.VERSION;
@@ -1828,146 +1830,92 @@ public class NexEditor {
         this.as.setOnImageAvailableListener(new OnImageAvailableListener() {
             /* JADX WARNING: Removed duplicated region for block: B:30:0x00ef  */
             /* JADX WARNING: Removed duplicated region for block: B:30:0x00ef  */
-            public void onImageAvailable(android.media.ImageReader r11) {
-                /*
-                r10 = this;
-                r0 = 0;
-                r7 = 0;
-                r1 = "NexEditor";
-                r2 = "image Capture setOnImageAvailableListener jpeg == ";
-                android.util.Log.d(r1, r2);
-                r6 = r11.acquireLatestImage();	 Catch:{ Exception -> 0x00a7, all -> 0x00eb }
-                if (r6 == 0) goto L_0x0099;
-            L_0x000f:
-                r3 = r6.getPlanes();	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r1 = 0;
-                r1 = r3[r1];	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r1 = r1.getBuffer();	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                if (r1 != 0) goto L_0x0031;
-            L_0x001c:
-                r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r1 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.ErrorCode.UNKNOWN;	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r0.e(r1);	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                if (r6 == 0) goto L_0x0028;
-            L_0x0025:
-                r6.close();
-            L_0x0028:
-                r11.close();
-                r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;
-                r0.as = r7;
-            L_0x0030:
-                return;
-            L_0x0031:
-                r1 = r6.getWidth();	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r2 = r6.getHeight();	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r4 = 0;
-                r4 = r3[r4];	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r5 = r4.getRowStride();	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r4 = r1 * 4;
-                r4 = r5 - r4;
-                r4 = r1 * r2;
-                r4 = r4 * 4;
-                r4 = new byte[r4];	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r8 = 0;
-                r3 = r3[r8];	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r3 = r3.getBuffer();	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-            L_0x0051:
-                if (r0 >= r2) goto L_0x0065;
-            L_0x0053:
-                r8 = r1 * r0;
-                r8 = r8 * 4;
-                r9 = r1 * 4;
-                r3.get(r4, r8, r9);	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r8 = r0 + 1;
-                r8 = r8 * r5;
-                r3.position(r8);	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r0 = r0 + 1;
-                goto L_0x0051;
-            L_0x0065:
-                r0 = "NexEditor";
-                r3 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r3.<init>();	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r5 = "image Capture prepareSurface = ";
-                r3 = r3.append(r5);	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r5 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r5 = r5.L;	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r3 = r3.append(r5);	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r3 = r3.toString();	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                android.util.Log.d(r0, r3);	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r3 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r3 = r3.L;	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r0.prepareSurface(r3);	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r3 = r4.length;	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r5 = 0;
-                r0.a(r1, r2, r3, r4, r5);	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r6.close();	 Catch:{ Exception -> 0x0100, all -> 0x00fb }
-                r6 = r7;
-            L_0x0099:
-                if (r6 == 0) goto L_0x009e;
-            L_0x009b:
-                r6.close();
-            L_0x009e:
-                r11.close();
-                r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;
-                r0.as = r7;
-                goto L_0x0030;
-            L_0x00a7:
-                r0 = move-exception;
-                r1 = r7;
-            L_0x00a9:
-                r0.printStackTrace();	 Catch:{ all -> 0x00fd }
-                r0 = "NexEditor";
-                r2 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00fd }
-                r2.<init>();	 Catch:{ all -> 0x00fd }
-                r3 = "image Capture prepareSurface(exception) = ";
-                r2 = r2.append(r3);	 Catch:{ all -> 0x00fd }
-                r3 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;	 Catch:{ all -> 0x00fd }
-                r3 = r3.L;	 Catch:{ all -> 0x00fd }
-                r2 = r2.append(r3);	 Catch:{ all -> 0x00fd }
-                r2 = r2.toString();	 Catch:{ all -> 0x00fd }
-                android.util.Log.d(r0, r2);	 Catch:{ all -> 0x00fd }
-                r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;	 Catch:{ all -> 0x00fd }
-                r2 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;	 Catch:{ all -> 0x00fd }
-                r2 = r2.L;	 Catch:{ all -> 0x00fd }
-                r0.prepareSurface(r2);	 Catch:{ all -> 0x00fd }
-                r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;	 Catch:{ all -> 0x00fd }
-                r2 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.ErrorCode.UNKNOWN;	 Catch:{ all -> 0x00fd }
-                r0.e(r2);	 Catch:{ all -> 0x00fd }
-                if (r1 == 0) goto L_0x00e1;
-            L_0x00de:
-                r1.close();
-            L_0x00e1:
-                r11.close();
-                r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;
-                r0.as = r7;
-                goto L_0x0030;
-            L_0x00eb:
-                r0 = move-exception;
-                r6 = r7;
-            L_0x00ed:
-                if (r6 == 0) goto L_0x00f2;
-            L_0x00ef:
-                r6.close();
-            L_0x00f2:
-                r11.close();
-                r1 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.this;
-                r1.as = r7;
-                throw r0;
-            L_0x00fb:
-                r0 = move-exception;
-                goto L_0x00ed;
-            L_0x00fd:
-                r0 = move-exception;
-                r6 = r1;
-                goto L_0x00ed;
-            L_0x0100:
-                r0 = move-exception;
-                r1 = r6;
-                goto L_0x00a9;
-                */
-                throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.kminternal.nexvideoeditor.NexEditor.5.onImageAvailable(android.media.ImageReader):void");
+            /* Code decompiled incorrectly, please refer to instructions dump. */
+            public void onImageAvailable(ImageReader imageReader) {
+                Exception e;
+                Image image;
+                Throwable th;
+                Log.d("NexEditor", "image Capture setOnImageAvailableListener jpeg == ");
+                Image acquireLatestImage;
+                try {
+                    acquireLatestImage = imageReader.acquireLatestImage();
+                    if (acquireLatestImage != null) {
+                        try {
+                            Plane[] planes = acquireLatestImage.getPlanes();
+                            if (planes[0].getBuffer() == null) {
+                                NexEditor.this.e(ErrorCode.UNKNOWN);
+                                if (acquireLatestImage != null) {
+                                    acquireLatestImage.close();
+                                }
+                                imageReader.close();
+                                NexEditor.this.as = null;
+                                return;
+                            }
+                            int width = acquireLatestImage.getWidth();
+                            int height = acquireLatestImage.getHeight();
+                            int rowStride = planes[0].getRowStride();
+                            int i = rowStride - (width * 4);
+                            byte[] bArr = new byte[((width * height) * 4)];
+                            ByteBuffer buffer = planes[0].getBuffer();
+                            for (int i2 = 0; i2 < height; i2++) {
+                                buffer.get(bArr, (width * i2) * 4, width * 4);
+                                buffer.position((i2 + 1) * rowStride);
+                            }
+                            Log.d("NexEditor", "image Capture prepareSurface = " + NexEditor.this.L);
+                            NexEditor.this.prepareSurface(NexEditor.this.L);
+                            NexEditor.this.a(width, height, bArr.length, bArr, false);
+                            acquireLatestImage.close();
+                            acquireLatestImage = null;
+                        } catch (Exception e2) {
+                            e = e2;
+                            image = acquireLatestImage;
+                            try {
+                                e.printStackTrace();
+                                Log.d("NexEditor", "image Capture prepareSurface(exception) = " + NexEditor.this.L);
+                                NexEditor.this.prepareSurface(NexEditor.this.L);
+                                NexEditor.this.e(ErrorCode.UNKNOWN);
+                                if (image != null) {
+                                    image.close();
+                                }
+                                imageReader.close();
+                                NexEditor.this.as = null;
+                                return;
+                            } catch (Throwable th2) {
+                                th = th2;
+                                acquireLatestImage = image;
+                                if (acquireLatestImage != null) {
+                                }
+                                imageReader.close();
+                                NexEditor.this.as = null;
+                                throw th;
+                            }
+                        } catch (Throwable th3) {
+                            th = th3;
+                            if (acquireLatestImage != null) {
+                            }
+                            imageReader.close();
+                            NexEditor.this.as = null;
+                            throw th;
+                        }
+                    }
+                    if (acquireLatestImage != null) {
+                        acquireLatestImage.close();
+                    }
+                    imageReader.close();
+                    NexEditor.this.as = null;
+                } catch (Exception e3) {
+                    e = e3;
+                    image = null;
+                } catch (Throwable th4) {
+                    th = th4;
+                    acquireLatestImage = null;
+                    if (acquireLatestImage != null) {
+                        acquireLatestImage.close();
+                    }
+                    imageReader.close();
+                    NexEditor.this.as = null;
+                    throw th;
+                }
             }
         }, null);
         if (encodeProjectJpeg(this.as.getSurface(), " ", i, i2, 0, i3) == 0) {
@@ -2039,108 +1987,16 @@ public class NexEditor {
     /* JADX WARNING: Missing block: B:33:?, code:
             return com.nexstreaming.kminternal.nexvideoeditor.NexEditor.ErrorCode.NONE;
      */
-    public com.nexstreaming.kminternal.nexvideoeditor.NexEditor.ErrorCode a(int r6, int r7, final int r8, final int r9, final int r10, com.nexstreaming.kminternal.nexvideoeditor.NexEditor.v r11) {
-        /*
-        r5 = this;
-        r4 = 1;
-        r3 = 0;
-        r1 = r5.ax;
-        monitor-enter(r1);
-        r0 = r5.aj;	 Catch:{ all -> 0x0026 }
-        if (r0 == 0) goto L_0x0014;
-    L_0x0009:
-        r0 = "NexEditor.java";
-        r2 = "exportImageFormat already exporting";
-        android.util.Log.d(r0, r2);	 Catch:{ all -> 0x0026 }
-        r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.ErrorCode.INVALID_STATE;	 Catch:{ all -> 0x0026 }
-        monitor-exit(r1);	 Catch:{ all -> 0x0026 }
-    L_0x0013:
-        return r0;
-    L_0x0014:
-        r0 = 1;
-        r5.aj = r0;	 Catch:{ all -> 0x0026 }
-        monitor-exit(r1);	 Catch:{ all -> 0x0026 }
-        if (r11 != 0) goto L_0x0029;
-    L_0x001a:
-        r0 = "NexEditor.java";
-        r1 = "exportImageFormat ExportImageCollback is null ";
-        android.util.Log.d(r0, r1);
-        r5.aj = r3;
-        r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.ErrorCode.INVALID_STATE;
-        goto L_0x0013;
-    L_0x0026:
-        r0 = move-exception;
-        monitor-exit(r1);	 Catch:{ all -> 0x0026 }
-        throw r0;
-    L_0x0029:
-        r5.aw = r11;
-        r0 = r5.ak;
-        if (r0 != 0) goto L_0x003b;
-    L_0x002f:
-        r0 = r5.az;
-        if (r0 != 0) goto L_0x0037;
-    L_0x0033:
-        r0 = r5.ay;
-        if (r0 == 0) goto L_0x00b1;
-    L_0x0037:
-        r0 = r5.aA;
-    L_0x0039:
-        r5.al = r0;
-    L_0x003b:
-        r0 = "NexEditor.java";
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "  exportImageFormat mCaptureOriginalTime=";
-        r1 = r1.append(r2);
-        r2 = r5.al;
-        r1 = r1.append(r2);
-        r1 = r1.toString();
-        android.util.Log.d(r0, r1);
-        r0 = r5.au;
-        r0.poll();
-        r0 = r5.au;
-        r0.poll();
-        r0 = r5.au;
-        r0.poll();
-        r0 = r5.as;
-        if (r0 != 0) goto L_0x006f;
-    L_0x0068:
-        r0 = 2;
-        r0 = android.media.ImageReader.newInstance(r6, r7, r4, r0);
-        r5.as = r0;
-    L_0x006f:
-        r0 = new android.os.HandlerThread;
-        r1 = "exportImageFormat";
-        r0.<init>(r1);
-        r0.start();
-        r1 = new android.os.Handler;
-        r0 = r0.getLooper();
-        r1.<init>(r0);
-        r0 = "NexEditor.java";
-        r2 = "  exportImageFormat 1";
-        android.util.Log.d(r0, r2);
-        r0 = r5.as;
-        r2 = new com.nexstreaming.kminternal.nexvideoeditor.NexEditor$6;
-        r2.<init>();
-        r0.setOnImageAvailableListener(r2, r1);
-        r0 = "NexEditor.java";
-        r1 = "  exportImageFormat 2";
-        android.util.Log.d(r0, r1);
-        r0 = new com.nexstreaming.kminternal.nexvideoeditor.NexEditor$7;
-        r0.<init>(r9, r10, r8);
-        r1 = at;
-        r2 = new java.lang.Void[r3];
-        r0.executeOnExecutor(r1, r2);
-        r0 = "NexEditor.java";
-        r1 = "  exportImageFormat 3";
-        android.util.Log.d(r0, r1);
-        r0 = com.nexstreaming.kminternal.nexvideoeditor.NexEditor.ErrorCode.NONE;
-        goto L_0x0013;
-    L_0x00b1:
-        r0 = r5.A;
-        goto L_0x0039;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.kminternal.nexvideoeditor.NexEditor.a(int, int, int, int, int, com.nexstreaming.kminternal.nexvideoeditor.NexEditor$v):com.nexstreaming.kminternal.nexvideoeditor.NexEditor$ErrorCode");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public ErrorCode a(int i, int i2, final int i3, final int i4, final int i5, v vVar) {
+        synchronized (this.ax) {
+            if (this.aj) {
+                Log.d("NexEditor.java", "exportImageFormat already exporting");
+                ErrorCode errorCode = ErrorCode.INVALID_STATE;
+                return errorCode;
+            }
+            this.aj = true;
+        }
     }
 
     public void j(int i) {

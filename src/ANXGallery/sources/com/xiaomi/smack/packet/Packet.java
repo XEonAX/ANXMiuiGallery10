@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import com.xiaomi.smack.util.StringUtils;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -215,212 +217,133 @@ public abstract class Packet {
     /* JADX WARNING: Removed duplicated region for block: B:58:0x012c A:{SYNTHETIC, Splitter: B:58:0x012c} */
     /* JADX WARNING: Removed duplicated region for block: B:96:0x007e A:{SYNTHETIC} */
     /* JADX WARNING: Removed duplicated region for block: B:66:0x013c A:{SYNTHETIC, Splitter: B:66:0x013c} */
-    protected synchronized java.lang.String getExtensionsXML() {
-        /*
-        r13 = this;
-        monitor-enter(r13);
-        r0 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0022 }
-        r0.<init>();	 Catch:{ all -> 0x0022 }
-        r10 = r13.getExtensions();	 Catch:{ all -> 0x0022 }
-        r10 = r10.iterator();	 Catch:{ all -> 0x0022 }
-    L_0x000e:
-        r11 = r10.hasNext();	 Catch:{ all -> 0x0022 }
-        if (r11 == 0) goto L_0x0025;
-    L_0x0014:
-        r5 = r10.next();	 Catch:{ all -> 0x0022 }
-        r5 = (com.xiaomi.smack.packet.PacketExtension) r5;	 Catch:{ all -> 0x0022 }
-        r11 = r5.toXML();	 Catch:{ all -> 0x0022 }
-        r0.append(r11);	 Catch:{ all -> 0x0022 }
-        goto L_0x000e;
-    L_0x0022:
-        r10 = move-exception;
-        monitor-exit(r13);
-        throw r10;
-    L_0x0025:
-        r10 = r13.properties;	 Catch:{ all -> 0x0022 }
-        if (r10 == 0) goto L_0x0145;
-    L_0x0029:
-        r10 = r13.properties;	 Catch:{ all -> 0x0022 }
-        r10 = r10.isEmpty();	 Catch:{ all -> 0x0022 }
-        if (r10 != 0) goto L_0x0145;
-    L_0x0031:
-        r10 = "<properties xmlns=\"http://www.jivesoftware.com/xmlns/xmpp/properties\">";
-        r0.append(r10);	 Catch:{ all -> 0x0022 }
-        r10 = r13.getPropertyNames();	 Catch:{ all -> 0x0022 }
-        r10 = r10.iterator();	 Catch:{ all -> 0x0022 }
-    L_0x003e:
-        r11 = r10.hasNext();	 Catch:{ all -> 0x0022 }
-        if (r11 == 0) goto L_0x0140;
-    L_0x0044:
-        r6 = r10.next();	 Catch:{ all -> 0x0022 }
-        r6 = (java.lang.String) r6;	 Catch:{ all -> 0x0022 }
-        r9 = r13.getProperty(r6);	 Catch:{ all -> 0x0022 }
-        r11 = "<property>";
-        r0.append(r11);	 Catch:{ all -> 0x0022 }
-        r11 = "<name>";
-        r11 = r0.append(r11);	 Catch:{ all -> 0x0022 }
-        r12 = com.xiaomi.smack.util.StringUtils.escapeForXML(r6);	 Catch:{ all -> 0x0022 }
-        r11 = r11.append(r12);	 Catch:{ all -> 0x0022 }
-        r12 = "</name>";
-        r11.append(r12);	 Catch:{ all -> 0x0022 }
-        r11 = "<value type=\"";
-        r0.append(r11);	 Catch:{ all -> 0x0022 }
-        r11 = r9 instanceof java.lang.Integer;	 Catch:{ all -> 0x0022 }
-        if (r11 == 0) goto L_0x0084;
-    L_0x006f:
-        r11 = "integer\">";
-        r11 = r0.append(r11);	 Catch:{ all -> 0x0022 }
-        r11 = r11.append(r9);	 Catch:{ all -> 0x0022 }
-        r12 = "</value>";
-        r11.append(r12);	 Catch:{ all -> 0x0022 }
-    L_0x007e:
-        r11 = "</property>";
-        r0.append(r11);	 Catch:{ all -> 0x0022 }
-        goto L_0x003e;
-    L_0x0084:
-        r11 = r9 instanceof java.lang.Long;	 Catch:{ all -> 0x0022 }
-        if (r11 == 0) goto L_0x0098;
-    L_0x0088:
-        r11 = "long\">";
-        r11 = r0.append(r11);	 Catch:{ all -> 0x0022 }
-        r11 = r11.append(r9);	 Catch:{ all -> 0x0022 }
-        r12 = "</value>";
-        r11.append(r12);	 Catch:{ all -> 0x0022 }
-        goto L_0x007e;
-    L_0x0098:
-        r11 = r9 instanceof java.lang.Float;	 Catch:{ all -> 0x0022 }
-        if (r11 == 0) goto L_0x00ac;
-    L_0x009c:
-        r11 = "float\">";
-        r11 = r0.append(r11);	 Catch:{ all -> 0x0022 }
-        r11 = r11.append(r9);	 Catch:{ all -> 0x0022 }
-        r12 = "</value>";
-        r11.append(r12);	 Catch:{ all -> 0x0022 }
-        goto L_0x007e;
-    L_0x00ac:
-        r11 = r9 instanceof java.lang.Double;	 Catch:{ all -> 0x0022 }
-        if (r11 == 0) goto L_0x00c0;
-    L_0x00b0:
-        r11 = "double\">";
-        r11 = r0.append(r11);	 Catch:{ all -> 0x0022 }
-        r11 = r11.append(r9);	 Catch:{ all -> 0x0022 }
-        r12 = "</value>";
-        r11.append(r12);	 Catch:{ all -> 0x0022 }
-        goto L_0x007e;
-    L_0x00c0:
-        r11 = r9 instanceof java.lang.Boolean;	 Catch:{ all -> 0x0022 }
-        if (r11 == 0) goto L_0x00d4;
-    L_0x00c4:
-        r11 = "boolean\">";
-        r11 = r0.append(r11);	 Catch:{ all -> 0x0022 }
-        r11 = r11.append(r9);	 Catch:{ all -> 0x0022 }
-        r12 = "</value>";
-        r11.append(r12);	 Catch:{ all -> 0x0022 }
-        goto L_0x007e;
-    L_0x00d4:
-        r11 = r9 instanceof java.lang.String;	 Catch:{ all -> 0x0022 }
-        if (r11 == 0) goto L_0x00ed;
-    L_0x00d8:
-        r11 = "string\">";
-        r0.append(r11);	 Catch:{ all -> 0x0022 }
-        r9 = (java.lang.String) r9;	 Catch:{ all -> 0x0022 }
-        r11 = com.xiaomi.smack.util.StringUtils.escapeForXML(r9);	 Catch:{ all -> 0x0022 }
-        r0.append(r11);	 Catch:{ all -> 0x0022 }
-        r11 = "</value>";
-        r0.append(r11);	 Catch:{ all -> 0x0022 }
-        goto L_0x007e;
-    L_0x00ed:
-        r1 = 0;
-        r7 = 0;
-        r2 = new java.io.ByteArrayOutputStream;	 Catch:{ Exception -> 0x0121 }
-        r2.<init>();	 Catch:{ Exception -> 0x0121 }
-        r8 = new java.io.ObjectOutputStream;	 Catch:{ Exception -> 0x015a, all -> 0x0153 }
-        r8.<init>(r2);	 Catch:{ Exception -> 0x015a, all -> 0x0153 }
-        r8.writeObject(r9);	 Catch:{ Exception -> 0x015d, all -> 0x0156 }
-        r11 = "java-object\">";
-        r0.append(r11);	 Catch:{ Exception -> 0x015d, all -> 0x0156 }
-        r11 = r2.toByteArray();	 Catch:{ Exception -> 0x015d, all -> 0x0156 }
-        r4 = com.xiaomi.smack.util.StringUtils.encodeBase64(r11);	 Catch:{ Exception -> 0x015d, all -> 0x0156 }
-        r11 = r0.append(r4);	 Catch:{ Exception -> 0x015d, all -> 0x0156 }
-        r12 = "</value>";
-        r11.append(r12);	 Catch:{ Exception -> 0x015d, all -> 0x0156 }
-        if (r8 == 0) goto L_0x0117;
-    L_0x0114:
-        r8.close();	 Catch:{ Exception -> 0x014b }
-    L_0x0117:
-        if (r2 == 0) goto L_0x007e;
-    L_0x0119:
-        r2.close();	 Catch:{ Exception -> 0x011e }
-        goto L_0x007e;
-    L_0x011e:
-        r11 = move-exception;
-        goto L_0x007e;
-    L_0x0121:
-        r3 = move-exception;
-    L_0x0122:
-        r3.printStackTrace();	 Catch:{ all -> 0x0134 }
-        if (r7 == 0) goto L_0x012a;
-    L_0x0127:
-        r7.close();	 Catch:{ Exception -> 0x014d }
-    L_0x012a:
-        if (r1 == 0) goto L_0x007e;
-    L_0x012c:
-        r1.close();	 Catch:{ Exception -> 0x0131 }
-        goto L_0x007e;
-    L_0x0131:
-        r11 = move-exception;
-        goto L_0x007e;
-    L_0x0134:
-        r10 = move-exception;
-    L_0x0135:
-        if (r7 == 0) goto L_0x013a;
-    L_0x0137:
-        r7.close();	 Catch:{ Exception -> 0x014f }
-    L_0x013a:
-        if (r1 == 0) goto L_0x013f;
-    L_0x013c:
-        r1.close();	 Catch:{ Exception -> 0x0151 }
-    L_0x013f:
-        throw r10;	 Catch:{ all -> 0x0022 }
-    L_0x0140:
-        r10 = "</properties>";
-        r0.append(r10);	 Catch:{ all -> 0x0022 }
-    L_0x0145:
-        r10 = r0.toString();	 Catch:{ all -> 0x0022 }
-        monitor-exit(r13);
-        return r10;
-    L_0x014b:
-        r11 = move-exception;
-        goto L_0x0117;
-    L_0x014d:
-        r11 = move-exception;
-        goto L_0x012a;
-    L_0x014f:
-        r11 = move-exception;
-        goto L_0x013a;
-    L_0x0151:
-        r11 = move-exception;
-        goto L_0x013f;
-    L_0x0153:
-        r10 = move-exception;
-        r1 = r2;
-        goto L_0x0135;
-    L_0x0156:
-        r10 = move-exception;
-        r7 = r8;
-        r1 = r2;
-        goto L_0x0135;
-    L_0x015a:
-        r3 = move-exception;
-        r1 = r2;
-        goto L_0x0122;
-    L_0x015d:
-        r3 = move-exception;
-        r7 = r8;
-        r1 = r2;
-        goto L_0x0122;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.smack.packet.Packet.getExtensionsXML():java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    protected synchronized String getExtensionsXML() {
+        StringBuilder buf;
+        ByteArrayOutputStream byteStream;
+        ObjectOutputStream out;
+        Exception e;
+        Throwable th;
+        buf = new StringBuilder();
+        for (PacketExtension extension : getExtensions()) {
+            buf.append(extension.toXML());
+        }
+        if (!(this.properties == null || this.properties.isEmpty())) {
+            buf.append("<properties xmlns=\"http://www.jivesoftware.com/xmlns/xmpp/properties\">");
+            for (String name : getPropertyNames()) {
+                Object value = getProperty(name);
+                buf.append("<property>");
+                buf.append("<name>").append(StringUtils.escapeForXML(name)).append("</name>");
+                buf.append("<value type=\"");
+                if (value instanceof Integer) {
+                    buf.append("integer\">").append(value).append("</value>");
+                } else if (value instanceof Long) {
+                    buf.append("long\">").append(value).append("</value>");
+                } else if (value instanceof Float) {
+                    buf.append("float\">").append(value).append("</value>");
+                } else if (value instanceof Double) {
+                    buf.append("double\">").append(value).append("</value>");
+                } else if (value instanceof Boolean) {
+                    buf.append("boolean\">").append(value).append("</value>");
+                } else if (value instanceof String) {
+                    buf.append("string\">");
+                    buf.append(StringUtils.escapeForXML((String) value));
+                    buf.append("</value>");
+                } else {
+                    byteStream = null;
+                    out = null;
+                    try {
+                        ByteArrayOutputStream byteStream2 = new ByteArrayOutputStream();
+                        try {
+                            ObjectOutputStream out2 = new ObjectOutputStream(byteStream2);
+                            try {
+                                out2.writeObject(value);
+                                buf.append("java-object\">");
+                                buf.append(StringUtils.encodeBase64(byteStream2.toByteArray())).append("</value>");
+                                if (out2 != null) {
+                                    try {
+                                        out2.close();
+                                    } catch (Exception e2) {
+                                    }
+                                }
+                                if (byteStream2 != null) {
+                                    try {
+                                        byteStream2.close();
+                                    } catch (Exception e3) {
+                                    }
+                                }
+                            } catch (Exception e4) {
+                                e = e4;
+                                out = out2;
+                                byteStream = byteStream2;
+                                try {
+                                    e.printStackTrace();
+                                    if (out != null) {
+                                    }
+                                    if (byteStream != null) {
+                                    }
+                                    buf.append("</property>");
+                                } catch (Throwable th2) {
+                                    th = th2;
+                                }
+                            } catch (Throwable th3) {
+                                th = th3;
+                                out = out2;
+                                byteStream = byteStream2;
+                            }
+                        } catch (Exception e5) {
+                            e = e5;
+                            byteStream = byteStream2;
+                            e.printStackTrace();
+                            if (out != null) {
+                            }
+                            if (byteStream != null) {
+                            }
+                            buf.append("</property>");
+                        } catch (Throwable th4) {
+                            th = th4;
+                            byteStream = byteStream2;
+                        }
+                    } catch (Exception e6) {
+                        e = e6;
+                        e.printStackTrace();
+                        if (out != null) {
+                            try {
+                                out.close();
+                            } catch (Exception e7) {
+                            }
+                        }
+                        if (byteStream != null) {
+                            try {
+                                byteStream.close();
+                            } catch (Exception e8) {
+                            }
+                        }
+                        buf.append("</property>");
+                    }
+                }
+                buf.append("</property>");
+            }
+            buf.append("</properties>");
+        }
+        return buf.toString();
+        if (out != null) {
+            try {
+                out.close();
+            } catch (Exception e9) {
+            }
+        }
+        if (byteStream != null) {
+            try {
+                byteStream.close();
+            } catch (Exception e10) {
+            }
+        }
+        throw th;
+        if (byteStream != null) {
+        }
+        throw th;
+        throw th;
     }
 
     public String getXmlns() {

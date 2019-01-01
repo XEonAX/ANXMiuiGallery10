@@ -259,64 +259,44 @@ public abstract class EntityManager {
     /* JADX WARNING: Failed to extract finally block: empty outs */
     /* JADX WARNING: Removed duplicated region for block: B:27:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:15:0x003e  */
-    public <T extends com.miui.gallery.dao.base.Entity> java.util.List<T> query(java.lang.Class<T> r14, java.lang.String[] r15, java.lang.String r16, java.lang.String[] r17, java.lang.String r18, java.lang.String r19, java.lang.String r20, java.lang.String r21) {
-        /*
-        r13 = this;
-        r1 = getTableName(r14);
-        if (r1 != 0) goto L_0x0008;
-    L_0x0006:
-        r12 = 0;
-    L_0x0007:
-        return r12;
-    L_0x0008:
-        r9 = 0;
-        r12 = new java.util.ArrayList;
-        r12.<init>();
-        r0 = r13.dbHelper;	 Catch:{ Exception -> 0x0042 }
-        r0 = r0.getReadableDatabase();	 Catch:{ Exception -> 0x0042 }
-        r2 = r15;
-        r3 = r16;
-        r4 = r17;
-        r5 = r18;
-        r6 = r19;
-        r7 = r20;
-        r8 = r21;
-        r9 = r0.query(r1, r2, r3, r4, r5, r6, r7, r8);	 Catch:{ Exception -> 0x0042 }
-        if (r9 == 0) goto L_0x003c;
-    L_0x0027:
-        r0 = r9.moveToFirst();	 Catch:{ Exception -> 0x0042 }
-        if (r0 == 0) goto L_0x003c;
-    L_0x002d:
-        r11 = r13.cursorToEntity(r14, r9);	 Catch:{ Exception -> 0x0042 }
-        if (r11 == 0) goto L_0x0036;
-    L_0x0033:
-        r12.add(r11);	 Catch:{ Exception -> 0x0042 }
-    L_0x0036:
-        r0 = r9.moveToNext();	 Catch:{ Exception -> 0x0042 }
-        if (r0 != 0) goto L_0x002d;
-    L_0x003c:
-        if (r9 == 0) goto L_0x0007;
-    L_0x003e:
-        r9.close();
-        goto L_0x0007;
-    L_0x0042:
-        r10 = move-exception;
-        r0 = "EntityManager";
-        r2 = "query error.\n";
-        com.miui.gallery.util.Log.e(r0, r2, r10);	 Catch:{ all -> 0x0050 }
-        if (r9 == 0) goto L_0x0007;
-    L_0x004c:
-        r9.close();
-        goto L_0x0007;
-    L_0x0050:
-        r0 = move-exception;
-        if (r9 == 0) goto L_0x0056;
-    L_0x0053:
-        r9.close();
-    L_0x0056:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.dao.base.EntityManager.query(java.lang.Class, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String, java.lang.String, java.lang.String, java.lang.String):java.util.List<T>");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public <T extends Entity> List<T> query(Class<T> clazz, String[] projection, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+        String tableName = getTableName(clazz);
+        if (tableName == null) {
+            return null;
+        }
+        Cursor cursor = null;
+        List<T> list = new ArrayList();
+        try {
+            cursor = this.dbHelper.getReadableDatabase().query(tableName, projection, selection, selectionArgs, groupBy, having, orderBy, limit);
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    T entity = cursorToEntity(clazz, cursor);
+                    if (entity != null) {
+                        list.add(entity);
+                    }
+                } while (cursor.moveToNext());
+                if (cursor != null) {
+                }
+            } else if (cursor != null) {
+                return list;
+            } else {
+                cursor.close();
+                return list;
+            }
+        } catch (Object e) {
+            Log.e("EntityManager", "query error.\n", e);
+            if (cursor == null) {
+                return list;
+            }
+            cursor.close();
+            return list;
+        } catch (Throwable th) {
+            if (cursor != null) {
+                cursor.close();
+            }
+            throw th;
+        }
     }
 
     public Cursor rawQuery(Class<? extends Entity> clazz, String[] projection, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {

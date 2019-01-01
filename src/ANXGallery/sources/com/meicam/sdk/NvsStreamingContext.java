@@ -2,17 +2,22 @@ package com.meicam.sdk;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.os.Build.VERSION;
+import android.text.TextUtils;
 import android.util.Log;
 import com.cdv.io.NvAndroidVirtualCameraSurfaceTexture;
 import com.meicam.sdk.NvsCustomVideoFx.Renderer;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+import org.json.JSONObject;
 
 public class NvsStreamingContext {
     public static final int BUFFER_IMAGE_ROTATION_0 = 0;
@@ -479,181 +484,117 @@ public class NvsStreamingContext {
     /* JADX WARNING: Missing block: B:50:0x0126, code:
             if (r3 <= 24) goto L_0x0128;
      */
-    public static com.meicam.sdk.NvsStreamingContext init(final android.content.Context r6, java.lang.String r7, int r8) {
-        /*
-        r1 = 0;
-        r0 = 0;
-        r2 = 1;
-        com.meicam.sdk.NvsUtils.checkFunctionInMainThread();
-        r3 = m_instance;
-        if (r3 == 0) goto L_0x000d;
-    L_0x000a:
-        r0 = m_instance;
-    L_0x000c:
-        return r0;
-    L_0x000d:
-        r3 = r6.getApplicationInfo();
-        r4 = m_nativeLibraryDirPath;
-        if (r4 != 0) goto L_0x002c;
-    L_0x0015:
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r3 = r3.nativeLibraryDir;
-        r3 = r4.append(r3);
-        r4 = "/";
-        r3 = r3.append(r4);
-        r3 = r3.toString();
-        m_nativeLibraryDirPath = r3;
-    L_0x002c:
-        r3 = "QT_BLOCK_EVENT_LOOPS_WHEN_SUSPENDED=0";
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r3 = r4.append(r3);
-        r4 = "\tHOME=";
-        r3 = r3.append(r4);
-        r4 = r6.getFilesDir();
-        r4 = r4.getAbsolutePath();
-        r3 = r3.append(r4);
-        r3 = r3.toString();
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r3 = r4.append(r3);
-        r4 = "\tTMPDIR=";
-        r3 = r3.append(r4);
-        r4 = r6.getFilesDir();
-        r4 = r4.getAbsolutePath();
-        r3 = r3.append(r4);
-        r4 = r3.toString();
-        r3 = r6.getAssets();	 Catch:{ Exception -> 0x00ae }
-        m_assetManager = r3;	 Catch:{ Exception -> 0x00ae }
-        m_context = r6;	 Catch:{ Exception -> 0x00ae }
-        r3 = m_context;	 Catch:{ Exception -> 0x00ae }
-        r3 = r3.getClassLoader();	 Catch:{ Exception -> 0x00ae }
-        m_classLoader = r3;	 Catch:{ Exception -> 0x00ae }
-        r3 = m_initializedOnce;	 Catch:{ Exception -> 0x00ae }
-        if (r3 != 0) goto L_0x00a0;
-    L_0x0080:
-        r3 = "com.meicam.sdk.NvsFaceEffectV1Detector";
-        java.lang.Class.forName(r3);	 Catch:{ Exception -> 0x00d6 }
-        r3 = r2;
-    L_0x0086:
-        if (r3 == 0) goto L_0x008d;
-    L_0x0088:
-        r3 = "nama";
-        loadNativeLibrary(r3);	 Catch:{ Exception -> 0x00ae }
-    L_0x008d:
-        r3 = "com.meicam.sdk.NvsFaceEffect2Init";
-        java.lang.Class.forName(r3);	 Catch:{ Exception -> 0x00d9 }
-        r3 = r2;
-    L_0x0093:
-        if (r3 == 0) goto L_0x009b;
-    L_0x0095:
-        r3 = "st_mobile";
-        loadNativeLibrary(r3);	 Catch:{ Exception -> 0x00ae }
-    L_0x009b:
-        r3 = "NvStreamingSdkCore";
-        loadNativeLibrary(r3);	 Catch:{ Exception -> 0x00ae }
-    L_0x00a0:
-        r3 = nativeInitJNI();	 Catch:{ Exception -> 0x00ae }
-        if (r3 != 0) goto L_0x00dc;
-    L_0x00a6:
-        r1 = new java.lang.Exception;	 Catch:{ Exception -> 0x00ae }
-        r2 = "nativeInitJNI() failed!";
-        r1.<init>(r2);	 Catch:{ Exception -> 0x00ae }
-        throw r1;	 Catch:{ Exception -> 0x00ae }
-    L_0x00ae:
-        r1 = move-exception;
-        r2 = "Meicam";
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = "";
-        r3 = r3.append(r4);
-        r4 = r1.getMessage();
-        r3 = r3.append(r4);
-        r3 = r3.toString();
-        android.util.Log.e(r2, r3);
-        r1.printStackTrace();
-        m_context = r0;
-        m_classLoader = r0;
-        m_assetManager = r0;
-        goto L_0x000c;
-    L_0x00d6:
-        r3 = move-exception;
-        r3 = r1;
-        goto L_0x0086;
-    L_0x00d9:
-        r3 = move-exception;
-        r3 = r1;
-        goto L_0x0093;
-    L_0x00dc:
-        r3 = m_assetManager;	 Catch:{ Exception -> 0x00ae }
-        nativeSetAssetManager(r3);	 Catch:{ Exception -> 0x00ae }
-        r3 = m_maxReaderFlag;	 Catch:{ Exception -> 0x00ae }
-        if (r3 == 0) goto L_0x00ea;
-    L_0x00e5:
-        r3 = m_maxReaderCount;	 Catch:{ Exception -> 0x00ae }
-        nativeSetMaxReaderCount(r3);	 Catch:{ Exception -> 0x00ae }
-    L_0x00ea:
-        r3 = m_debugLevel;	 Catch:{ Exception -> 0x00ae }
-        nativeSetDebugLevel(r3);	 Catch:{ Exception -> 0x00ae }
-        r3 = m_saveDebugMessagesToFile;	 Catch:{ Exception -> 0x00ae }
-        nativeSetSaveDebugMessagesToFile(r3);	 Catch:{ Exception -> 0x00ae }
-        r3 = "isExpired";
-        r3 = com.meicam.sdk.NvsSystemVariableManager.getSystemVariableInt(r6, r3);	 Catch:{ Exception -> 0x00ae }
-        if (r3 != r2) goto L_0x0153;
-    L_0x00fc:
-        r3 = r2;
-    L_0x00fd:
-        r2 = new com.meicam.sdk.NvsStreamingContext$VerifyLicenseResult;	 Catch:{ Exception -> 0x00ae }
-        r2.<init>();	 Catch:{ Exception -> 0x00ae }
-        r5 = m_initializedOnce;	 Catch:{ Exception -> 0x00ae }
-        if (r5 != 0) goto L_0x010a;
-    L_0x0106:
-        r2 = nativeVerifySdkLicenseFile(r6, r7, r3);	 Catch:{ Exception -> 0x00ae }
-    L_0x010a:
-        r2 = r2.needCheckExpiration;	 Catch:{ Exception -> 0x00ae }
-        if (r2 == 0) goto L_0x0151;
-    L_0x010e:
-        r3 = "lastTime";
-        r3 = com.meicam.sdk.NvsSystemVariableManager.getSystemVariableString(r6, r3);	 Catch:{ Exception -> 0x00ae }
-        r5 = android.text.TextUtils.isEmpty(r3);	 Catch:{ Exception -> 0x00ae }
-        if (r5 != 0) goto L_0x0151;
-    L_0x011a:
-        r5 = com.meicam.sdk.NvsTimeUtil.getCurrentTime();	 Catch:{ Exception -> 0x00ae }
-        r3 = com.meicam.sdk.NvsTimeUtil.getHourRange(r3, r5);	 Catch:{ Exception -> 0x00ae }
-        if (r3 < 0) goto L_0x0151;
-    L_0x0124:
-        r5 = 24;
-        if (r3 > r5) goto L_0x0151;
-    L_0x0128:
-        if (r1 == 0) goto L_0x013b;
-    L_0x012a:
-        r1 = 30000; // 0x7530 float:4.2039E-41 double:1.4822E-319;
-        r2 = 60000; // 0xea60 float:8.4078E-41 double:2.9644E-319;
-        r1 = com.meicam.sdk.NvsTimeUtil.getRandomTime(r1, r2);	 Catch:{ Exception -> 0x00ae }
-        r2 = new com.meicam.sdk.NvsStreamingContext$1;	 Catch:{ Exception -> 0x00ae }
-        r2.<init>(r1, r6);	 Catch:{ Exception -> 0x00ae }
-        r2.start();	 Catch:{ Exception -> 0x00ae }
-    L_0x013b:
-        r1 = "<meishesdk>";
-        r1 = nativeInit(r1, r4, r8);	 Catch:{ Exception -> 0x00ae }
-        if (r1 == 0) goto L_0x000c;
-    L_0x0143:
-        r1 = new com.meicam.sdk.NvsStreamingContext;	 Catch:{ Exception -> 0x00ae }
-        r1.<init>(r6);	 Catch:{ Exception -> 0x00ae }
-        m_instance = r1;	 Catch:{ Exception -> 0x00ae }
-        r1 = 1;
-        m_initializedOnce = r1;	 Catch:{ Exception -> 0x00ae }
-        r0 = m_instance;	 Catch:{ Exception -> 0x00ae }
-        goto L_0x000c;
-    L_0x0151:
-        r1 = r2;
-        goto L_0x0128;
-    L_0x0153:
-        r3 = r1;
-        goto L_0x00fd;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.meicam.sdk.NvsStreamingContext.init(android.content.Context, java.lang.String, int):com.meicam.sdk.NvsStreamingContext");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static NvsStreamingContext init(final Context context, String str, int i) {
+        boolean z = false;
+        NvsUtils.checkFunctionInMainThread();
+        if (m_instance != null) {
+            return m_instance;
+        }
+        ApplicationInfo applicationInfo = context.getApplicationInfo();
+        if (m_nativeLibraryDirPath == null) {
+            m_nativeLibraryDirPath = applicationInfo.nativeLibraryDir + "/";
+        }
+        String str2 = ("QT_BLOCK_EVENT_LOOPS_WHEN_SUSPENDED=0" + "\tHOME=" + context.getFilesDir().getAbsolutePath()) + "\tTMPDIR=" + context.getFilesDir().getAbsolutePath();
+        try {
+            Object obj;
+            m_assetManager = context.getAssets();
+            m_context = context;
+            m_classLoader = m_context.getClassLoader();
+            if (!m_initializedOnce) {
+                try {
+                    Class.forName("com.meicam.sdk.NvsFaceEffectV1Detector");
+                    obj = 1;
+                } catch (Exception e) {
+                    obj = null;
+                }
+                if (obj != null) {
+                    loadNativeLibrary("nama");
+                }
+                try {
+                    Class.forName("com.meicam.sdk.NvsFaceEffect2Init");
+                    obj = 1;
+                } catch (Exception e2) {
+                    obj = null;
+                }
+                if (obj != null) {
+                    loadNativeLibrary("st_mobile");
+                }
+                loadNativeLibrary("NvStreamingSdkCore");
+            }
+            if (nativeInitJNI()) {
+                boolean z2;
+                nativeSetAssetManager(m_assetManager);
+                if (m_maxReaderFlag) {
+                    nativeSetMaxReaderCount(m_maxReaderCount);
+                }
+                nativeSetDebugLevel(m_debugLevel);
+                nativeSetSaveDebugMessagesToFile(m_saveDebugMessagesToFile);
+                if (NvsSystemVariableManager.getSystemVariableInt(context, "isExpired") == 1) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+                VerifyLicenseResult verifyLicenseResult = new VerifyLicenseResult();
+                if (!m_initializedOnce) {
+                    verifyLicenseResult = nativeVerifySdkLicenseFile(context, str, z2);
+                }
+                boolean z3 = verifyLicenseResult.needCheckExpiration;
+                if (z3) {
+                    obj = NvsSystemVariableManager.getSystemVariableString(context, "lastTime");
+                    if (!TextUtils.isEmpty(obj)) {
+                        int hourRange = NvsTimeUtil.getHourRange(obj, NvsTimeUtil.getCurrentTime());
+                        if (hourRange >= 0) {
+                        }
+                    }
+                }
+                z = z3;
+                if (z) {
+                    final int randomTime = NvsTimeUtil.getRandomTime(30000, 60000);
+                    new Thread() {
+                        public void run() {
+                            try {
+                                Thread.sleep((long) randomTime);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            NvsHttpsRequest nvsHttpsRequest = new NvsHttpsRequest();
+                            Map hashMap = new HashMap();
+                            hashMap.put("command", "isExpired");
+                            hashMap.put("appId", context.getPackageName());
+                            try {
+                                JSONObject jSONObject = new JSONObject(nvsHttpsRequest.httpsRequest("https://api.meishesdk.com/license/index.php", hashMap));
+                                if (jSONObject.getInt("errNo") != 0) {
+                                    Log.e(NvsStreamingContext.TAG, "" + jSONObject.getString("errString"));
+                                } else if (jSONObject.getBoolean("isExpired")) {
+                                    NvsSystemVariableManager.setSystemVariableInt(context, "isExpired", 1);
+                                    NvsSystemVariableManager.setSystemVariableString(context, "lastTime", NvsTimeUtil.getCurrentTime());
+                                } else {
+                                    NvsSystemVariableManager.setSystemVariableInt(context, "isExpired", 0);
+                                    NvsSystemVariableManager.setSystemVariableString(context, "lastTime", NvsTimeUtil.getCurrentTime());
+                                }
+                            } catch (Exception e2) {
+                                e2.printStackTrace();
+                            }
+                        }
+                    }.start();
+                }
+                if (!nativeInit("<meishesdk>", str2, i)) {
+                    return null;
+                }
+                m_instance = new NvsStreamingContext(context);
+                m_initializedOnce = true;
+                return m_instance;
+            }
+            throw new Exception("nativeInitJNI() failed!");
+        } catch (Exception e3) {
+            Log.e(TAG, "" + e3.getMessage());
+            e3.printStackTrace();
+            m_context = null;
+            m_classLoader = null;
+            m_assetManager = null;
+            return null;
+        }
     }
 
     public static NvsStreamingContext init(Activity activity, String str, int i) {

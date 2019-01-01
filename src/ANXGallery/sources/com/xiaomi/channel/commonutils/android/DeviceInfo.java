@@ -68,81 +68,45 @@ public class DeviceInfo {
     }
 
     /* JADX WARNING: Failed to extract finally block: empty outs */
-    public static java.lang.String getVirtDevId(android.content.Context r8) {
-        /*
-        r6 = isSupportVDevid(r8);
-        if (r6 != 0) goto L_0x0008;
-    L_0x0006:
-        r6 = 0;
-    L_0x0007:
-        return r6;
-    L_0x0008:
-        r6 = sVirtDevId;
-        r6 = android.text.TextUtils.isEmpty(r6);
-        if (r6 != 0) goto L_0x0013;
-    L_0x0010:
-        r6 = sVirtDevId;
-        goto L_0x0007;
-    L_0x0013:
-        r0 = new java.io.File;
-        r6 = r8.getFilesDir();
-        r7 = ".vdevid";
-        r0.<init>(r6, r7);
-        r6 = com.xiaomi.channel.commonutils.file.IOUtils.fileToStr(r0);
-        sVirtDevId = r6;
-        r6 = sVirtDevId;
-        r6 = android.text.TextUtils.isEmpty(r6);
-        if (r6 != 0) goto L_0x002f;
-    L_0x002c:
-        r6 = sVirtDevId;
-        goto L_0x0007;
-    L_0x002f:
-        r5 = 0;
-        r2 = new java.io.File;	 Catch:{ IOException -> 0x005a }
-        r6 = android.os.Environment.getExternalStorageDirectory();	 Catch:{ IOException -> 0x005a }
-        r7 = "/Xiaomi/";
-        r2.<init>(r6, r7);	 Catch:{ IOException -> 0x005a }
-        r1 = new java.io.File;	 Catch:{ IOException -> 0x005a }
-        r6 = ".vdevid";
-        r1.<init>(r2, r6);	 Catch:{ IOException -> 0x005a }
-        r5 = com.xiaomi.channel.commonutils.file.FileLocker.lock(r8, r1);	 Catch:{ IOException -> 0x005a }
-        r6 = "";
-        sVirtDevId = r6;	 Catch:{ IOException -> 0x005a }
-        r4 = com.xiaomi.channel.commonutils.file.IOUtils.fileToStr(r1);	 Catch:{ IOException -> 0x005a }
-        if (r4 == 0) goto L_0x0052;
-    L_0x0050:
-        sVirtDevId = r4;	 Catch:{ IOException -> 0x005a }
-    L_0x0052:
-        r6 = sVirtDevId;	 Catch:{ IOException -> 0x005a }
-        if (r5 == 0) goto L_0x0007;
-    L_0x0056:
-        r5.unlock();
-        goto L_0x0007;
-    L_0x005a:
-        r3 = move-exception;
-        r6 = new java.lang.StringBuilder;	 Catch:{ all -> 0x007d }
-        r6.<init>();	 Catch:{ all -> 0x007d }
-        r7 = "getVDevID failure :";
-        r6 = r6.append(r7);	 Catch:{ all -> 0x007d }
-        r7 = r3.getMessage();	 Catch:{ all -> 0x007d }
-        r6 = r6.append(r7);	 Catch:{ all -> 0x007d }
-        r6 = r6.toString();	 Catch:{ all -> 0x007d }
-        com.xiaomi.channel.commonutils.logger.MyLog.w(r6);	 Catch:{ all -> 0x007d }
-        if (r5 == 0) goto L_0x007a;
-    L_0x0077:
-        r5.unlock();
-    L_0x007a:
-        r6 = sVirtDevId;
-        goto L_0x0007;
-    L_0x007d:
-        r6 = move-exception;
-        if (r5 == 0) goto L_0x0083;
-    L_0x0080:
-        r5.unlock();
-    L_0x0083:
-        throw r6;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.channel.commonutils.android.DeviceInfo.getVirtDevId(android.content.Context):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static String getVirtDevId(Context context) {
+        if (!isSupportVDevid(context)) {
+            return null;
+        }
+        if (!TextUtils.isEmpty(sVirtDevId)) {
+            return sVirtDevId;
+        }
+        sVirtDevId = IOUtils.fileToStr(new File(context.getFilesDir(), ".vdevid"));
+        if (!TextUtils.isEmpty(sVirtDevId)) {
+            return sVirtDevId;
+        }
+        FileLocker lock = null;
+        try {
+            File deviceFile = new File(new File(Environment.getExternalStorageDirectory(), "/Xiaomi/"), ".vdevid");
+            lock = FileLocker.lock(context, deviceFile);
+            sVirtDevId = "";
+            String id = IOUtils.fileToStr(deviceFile);
+            if (id != null) {
+                sVirtDevId = id;
+            }
+            String str = sVirtDevId;
+            if (lock == null) {
+                return str;
+            }
+            lock.unlock();
+            return str;
+        } catch (IOException e) {
+            MyLog.w("getVDevID failure :" + e.getMessage());
+            if (lock != null) {
+                lock.unlock();
+            }
+            return sVirtDevId;
+        } catch (Throwable th) {
+            if (lock != null) {
+                lock.unlock();
+            }
+            throw th;
+        }
     }
 
     public static String checkVirtDevId(Context ctx) {
@@ -188,78 +152,39 @@ public class DeviceInfo {
 
     /* JADX WARNING: Failed to extract finally block: empty outs */
     /* JADX WARNING: Failed to extract finally block: empty outs */
-    public static void updateVirtDevId(android.content.Context r7, java.lang.String r8) {
-        /*
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r6 = "update vdevid = ";
-        r5 = r5.append(r6);
-        r5 = r5.append(r8);
-        r5 = r5.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.v(r5);
-        r5 = android.text.TextUtils.isEmpty(r8);
-        if (r5 == 0) goto L_0x001e;
-    L_0x001d:
-        return;
-    L_0x001e:
-        sVirtDevId = r8;
-        r4 = 0;
-        r5 = isSupportVDevid(r7);	 Catch:{ IOException -> 0x006a }
-        if (r5 == 0) goto L_0x0054;
-    L_0x0027:
-        r1 = new java.io.File;	 Catch:{ IOException -> 0x006a }
-        r5 = android.os.Environment.getExternalStorageDirectory();	 Catch:{ IOException -> 0x006a }
-        r6 = "/Xiaomi/";
-        r1.<init>(r5, r6);	 Catch:{ IOException -> 0x006a }
-        r5 = r1.exists();	 Catch:{ IOException -> 0x006a }
-        if (r5 == 0) goto L_0x0041;
-    L_0x0038:
-        r5 = r1.isFile();	 Catch:{ IOException -> 0x006a }
-        if (r5 == 0) goto L_0x0041;
-    L_0x003e:
-        r1.delete();	 Catch:{ IOException -> 0x006a }
-    L_0x0041:
-        r0 = new java.io.File;	 Catch:{ IOException -> 0x006a }
-        r5 = ".vdevid";
-        r0.<init>(r1, r5);	 Catch:{ IOException -> 0x006a }
-        r4 = com.xiaomi.channel.commonutils.file.FileLocker.lock(r7, r0);	 Catch:{ IOException -> 0x006a }
-        com.xiaomi.channel.commonutils.file.IOUtils.remove(r0);	 Catch:{ IOException -> 0x006a }
-        r5 = sVirtDevId;	 Catch:{ IOException -> 0x006a }
-        com.xiaomi.channel.commonutils.file.IOUtils.strToFile(r0, r5);	 Catch:{ IOException -> 0x006a }
-    L_0x0054:
-        r3 = new java.io.File;	 Catch:{ IOException -> 0x006a }
-        r5 = r7.getFilesDir();	 Catch:{ IOException -> 0x006a }
-        r6 = ".vdevid";
-        r3.<init>(r5, r6);	 Catch:{ IOException -> 0x006a }
-        r5 = sVirtDevId;	 Catch:{ IOException -> 0x006a }
-        com.xiaomi.channel.commonutils.file.IOUtils.strToFile(r3, r5);	 Catch:{ IOException -> 0x006a }
-        if (r4 == 0) goto L_0x001d;
-    L_0x0066:
-        r4.unlock();
-        goto L_0x001d;
-    L_0x006a:
-        r2 = move-exception;
-        r5 = new java.lang.StringBuilder;	 Catch:{ all -> 0x008c }
-        r5.<init>();	 Catch:{ all -> 0x008c }
-        r6 = "update vdevid failure :";
-        r5 = r5.append(r6);	 Catch:{ all -> 0x008c }
-        r6 = r2.getMessage();	 Catch:{ all -> 0x008c }
-        r5 = r5.append(r6);	 Catch:{ all -> 0x008c }
-        r5 = r5.toString();	 Catch:{ all -> 0x008c }
-        com.xiaomi.channel.commonutils.logger.MyLog.w(r5);	 Catch:{ all -> 0x008c }
-        if (r4 == 0) goto L_0x001d;
-    L_0x0088:
-        r4.unlock();
-        goto L_0x001d;
-    L_0x008c:
-        r5 = move-exception;
-        if (r4 == 0) goto L_0x0092;
-    L_0x008f:
-        r4.unlock();
-    L_0x0092:
-        throw r5;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.channel.commonutils.android.DeviceInfo.updateVirtDevId(android.content.Context, java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void updateVirtDevId(Context context, String vdevid) {
+        MyLog.v("update vdevid = " + vdevid);
+        if (!TextUtils.isEmpty(vdevid)) {
+            sVirtDevId = vdevid;
+            FileLocker lock = null;
+            try {
+                if (isSupportVDevid(context)) {
+                    File dir = new File(Environment.getExternalStorageDirectory(), "/Xiaomi/");
+                    if (dir.exists() && dir.isFile()) {
+                        dir.delete();
+                    }
+                    File deviceFile = new File(dir, ".vdevid");
+                    lock = FileLocker.lock(context, deviceFile);
+                    IOUtils.remove(deviceFile);
+                    IOUtils.strToFile(deviceFile, sVirtDevId);
+                }
+                IOUtils.strToFile(new File(context.getFilesDir(), ".vdevid"), sVirtDevId);
+                if (lock != null) {
+                    lock.unlock();
+                }
+            } catch (IOException e) {
+                MyLog.w("update vdevid failure :" + e.getMessage());
+                if (lock != null) {
+                    lock.unlock();
+                }
+            } catch (Throwable th) {
+                if (lock != null) {
+                    lock.unlock();
+                }
+                throw th;
+            }
+        }
     }
 
     public static String getSerialNum() {

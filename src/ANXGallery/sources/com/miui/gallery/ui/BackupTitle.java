@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.miui.gallery.R;
 import com.miui.gallery.cloud.syncstate.SyncStateInfo;
 import com.miui.gallery.cloud.syncstate.SyncStateManager;
+import com.miui.gallery.cloud.syncstate.SyncStateUtil;
 import com.miui.gallery.cloud.syncstate.SyncStatus;
 import com.miui.gallery.cloud.syncstate.SyncType;
 import com.miui.gallery.util.DialogUtil;
@@ -561,391 +562,66 @@ public class BackupTitle extends LinearLayout {
     /* JADX WARNING: Missing block: B:30:0x0102, code:
             r4.setBtnTxt(r5.getString(com.miui.gallery.R.string.backup_pause));
      */
-    private void addSyncItem(com.miui.gallery.ui.BackupTitle.TitleData r17, com.miui.gallery.cloud.syncstate.SyncStateInfo r18) {
-        /*
-        r16 = this;
-        r4 = new com.miui.gallery.ui.BackupTitle$TitleItemData;
-        r9 = 0;
-        r0 = r16;
-        r4.<init>(r0, r9);
-        r9 = r16.getContext();
-        r5 = r9.getResources();
-        r3 = r18.getDirtyCount();
-        r9 = 0;
-        r9 = r3[r9];
-        r10 = 1;
-        r10 = r3[r10];
-        r2 = r9 + r10;
-        r9 = "BackupTitle";
-        r10 = "refresh status: %s";
-        r11 = r18.getSyncStatus();
-        com.miui.gallery.util.Log.i(r9, r10, r11);
-        r6 = r18.getSyncStatus();
-        r9 = com.miui.gallery.ui.BackupTitle.AnonymousClass2.$SwitchMap$com$miui$gallery$cloud$syncstate$SyncStatus;
-        r10 = r6.ordinal();
-        r9 = r9[r10];
-        switch(r9) {
-            case 1: goto L_0x0049;
-            case 2: goto L_0x0069;
-            case 3: goto L_0x005d;
-            case 4: goto L_0x010d;
-            case 5: goto L_0x012b;
-            case 6: goto L_0x0184;
-            case 7: goto L_0x01c0;
-            case 8: goto L_0x01fc;
-            case 9: goto L_0x01fc;
-            case 10: goto L_0x01fc;
-            case 11: goto L_0x0238;
-            case 12: goto L_0x0274;
-            case 13: goto L_0x02b0;
-            case 14: goto L_0x02ec;
-            case 15: goto L_0x0328;
-            case 16: goto L_0x0364;
-            default: goto L_0x0036;
-        };
-    L_0x0036:
-        r9 = com.miui.gallery.cloud.syncstate.SyncStatus.UNAVAILABLE;
-        if (r6 == r9) goto L_0x0041;
-    L_0x003a:
-        r0 = r17;
-        r9 = r0.mItems;
-        r9.add(r4);
-    L_0x0041:
-        r0 = r16;
-        r1 = r18;
-        r0.tryStatSyncStateError(r1);
-        return;
-    L_0x0049:
-        r9 = 2131624098; // 0x7f0e00a2 float:1.8875366E38 double:1.0531622367E-314;
-        r9 = r5.getString(r9);
-        r4.setTitle(r9);
-        r9 = 2131624084; // 0x7f0e0094 float:1.8875338E38 double:1.0531622298E-314;
-        r9 = r5.getString(r9);
-        r4.setBtnTxt(r9);
-    L_0x005d:
-        if (r2 != 0) goto L_0x0069;
-    L_0x005f:
-        r9 = 2131625133; // 0x7f0e04ad float:1.8877465E38 double:1.053162748E-314;
-        r9 = r5.getString(r9);
-        r4.setTitle(r9);
-    L_0x0069:
-        r9 = 2130837599; // 0x7f02005f float:1.7280157E38 double:1.0527736545E-314;
-        r9 = r4.setIconRes(r9);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        r7 = r18.getSyncType();
-        r9 = com.miui.gallery.cloud.syncstate.SyncType.GPRS_FORCE;
-        if (r7 != r9) goto L_0x00dd;
-    L_0x0083:
-        r9 = r4.mTitle;
-        if (r9 != 0) goto L_0x0091;
-    L_0x0087:
-        r9 = 2131624114; // 0x7f0e00b2 float:1.8875399E38 double:1.0531622446E-314;
-        r9 = r5.getString(r9);
-        r4.setTitle(r9);
-    L_0x0091:
-        if (r2 <= 0) goto L_0x00b6;
-    L_0x0093:
-        r9 = 2131558416; // 0x7f0d0010 float:1.8742147E38 double:1.0531297854E-314;
-        r10 = 2;
-        r10 = new java.lang.Object[r10];
-        r11 = 0;
-        r12 = java.lang.Integer.valueOf(r2);
-        r10[r11] = r12;
-        r11 = 1;
-        r12 = r16.getContext();
-        r14 = r18.getDirtySize();
-        r12 = com.miui.gallery.util.FormatUtil.formatFileSize(r12, r14);
-        r10[r11] = r12;
-        r9 = r5.getQuantityString(r9, r2, r10);
-        r4.setDesc(r9);
-    L_0x00b6:
-        r9 = r4.mBtnTxt;
-        if (r9 != 0) goto L_0x00ca;
-    L_0x00ba:
-        r9 = r7.isForce();
-        if (r9 == 0) goto L_0x0102;
-    L_0x00c0:
-        r9 = 2131624099; // 0x7f0e00a3 float:1.8875368E38 double:1.053162237E-314;
-        r9 = r5.getString(r9);
-        r4.setBtnTxt(r9);
-    L_0x00ca:
-        r9 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r4.setBtnBgRes(r9);
-        r9 = com.miui.gallery.cloud.syncstate.SyncStatus.SYNC_PENDING;
-        if (r6 == r9) goto L_0x0036;
-    L_0x00d4:
-        r9 = r16.getSyncingAnim();
-        r4.setIconAnim(r9);
-        goto L_0x0036;
-    L_0x00dd:
-        r9 = r4.mTitle;
-        if (r9 != 0) goto L_0x00eb;
-    L_0x00e1:
-        r9 = 2131624115; // 0x7f0e00b3 float:1.88754E38 double:1.053162245E-314;
-        r9 = r5.getString(r9);
-        r4.setTitle(r9);
-    L_0x00eb:
-        if (r2 <= 0) goto L_0x00b6;
-    L_0x00ed:
-        r9 = 2131558417; // 0x7f0d0011 float:1.874215E38 double:1.053129786E-314;
-        r10 = 1;
-        r10 = new java.lang.Object[r10];
-        r11 = 0;
-        r12 = java.lang.Integer.valueOf(r2);
-        r10[r11] = r12;
-        r9 = r5.getQuantityString(r9, r2, r10);
-        r4.setDesc(r9);
-        goto L_0x00b6;
-    L_0x0102:
-        r9 = 2131624096; // 0x7f0e00a0 float:1.8875362E38 double:1.0531622357E-314;
-        r9 = r5.getString(r9);
-        r4.setBtnTxt(r9);
-        goto L_0x00ca;
-    L_0x010d:
-        r9 = 2130837598; // 0x7f02005e float:1.7280155E38 double:1.052773654E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131624113; // 0x7f0e00b1 float:1.8875397E38 double:1.053162244E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setTitle(r10);
-        r10 = 2131624112; // 0x7f0e00b0 float:1.8875395E38 double:1.0531622436E-314;
-        r10 = r5.getString(r10);
-        r9.setDesc(r10);
-        goto L_0x0036;
-    L_0x012b:
-        r9 = 2130837599; // 0x7f02005f float:1.7280157E38 double:1.0527736545E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131558415; // 0x7f0d000f float:1.8742145E38 double:1.053129785E-314;
-        r11 = 1;
-        r11 = new java.lang.Object[r11];
-        r12 = 0;
-        r13 = java.lang.Integer.valueOf(r2);
-        r11[r12] = r13;
-        r10 = r5.getQuantityString(r10, r2, r11);
-        r9 = r9.setDesc(r10);
-        r10 = 2131624084; // 0x7f0e0094 float:1.8875338E38 double:1.0531622298E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setBtnTxt(r10);
-        r10 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r9 = r9.setBtnBgRes(r10);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        r9 = 2131624097; // 0x7f0e00a1 float:1.8875364E38 double:1.053162236E-314;
-        r10 = 1;
-        r10 = new java.lang.Object[r10];
-        r11 = 0;
-        r12 = r16.getContext();
-        r0 = r18;
-        r12 = r0.getResumeInterval(r12);
-        r12 = com.miui.gallery.util.FormatUtil.formatHourMinutes(r12);
-        r10[r11] = r12;
-        r8 = r5.getString(r9, r10);
-        r4.setTitle(r8);
-        goto L_0x0036;
-    L_0x0184:
-        r9 = 2130837596; // 0x7f02005c float:1.728015E38 double:1.052773653E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131624105; // 0x7f0e00a9 float:1.887538E38 double:1.05316224E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setTitle(r10);
-        r10 = 2131624104; // 0x7f0e00a8 float:1.8875378E38 double:1.0531622396E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setDesc(r10);
-        r10 = 2131624103; // 0x7f0e00a7 float:1.8875376E38 double:1.053162239E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setBtnTxt(r10);
-        r10 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r9 = r9.setBtnBgRes(r10);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        goto L_0x0036;
-    L_0x01c0:
-        r9 = 2130837596; // 0x7f02005c float:1.728015E38 double:1.052773653E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131624086; // 0x7f0e0096 float:1.8875342E38 double:1.0531622307E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setTitle(r10);
-        r10 = 2131624085; // 0x7f0e0095 float:1.887534E38 double:1.05316223E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setDesc(r10);
-        r10 = 2131624084; // 0x7f0e0094 float:1.8875338E38 double:1.0531622298E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setBtnTxt(r10);
-        r10 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r9 = r9.setBtnBgRes(r10);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        goto L_0x0036;
-    L_0x01fc:
-        r9 = 2130837597; // 0x7f02005d float:1.7280153E38 double:1.0527736535E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131624108; // 0x7f0e00ac float:1.8875386E38 double:1.0531622416E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setTitle(r10);
-        r10 = 2131624107; // 0x7f0e00ab float:1.8875384E38 double:1.053162241E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setDesc(r10);
-        r10 = 2131624106; // 0x7f0e00aa float:1.8875382E38 double:1.0531622406E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setBtnTxt(r10);
-        r10 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r9 = r9.setBtnBgRes(r10);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        goto L_0x0036;
-    L_0x0238:
-        r9 = 2130837593; // 0x7f020059 float:1.7280144E38 double:1.0527736516E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131624075; // 0x7f0e008b float:1.887532E38 double:1.0531622253E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setTitle(r10);
-        r10 = 2131624074; // 0x7f0e008a float:1.8875317E38 double:1.053162225E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setDesc(r10);
-        r10 = 2131624073; // 0x7f0e0089 float:1.8875315E38 double:1.0531622243E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setBtnTxt(r10);
-        r10 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r9 = r9.setBtnBgRes(r10);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        goto L_0x0036;
-    L_0x0274:
-        r9 = 2130837595; // 0x7f02005b float:1.7280149E38 double:1.0527736526E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131624089; // 0x7f0e0099 float:1.8875348E38 double:1.053162232E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setTitle(r10);
-        r10 = 2131624088; // 0x7f0e0098 float:1.8875346E38 double:1.0531622317E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setDesc(r10);
-        r10 = 2131624087; // 0x7f0e0097 float:1.8875344E38 double:1.053162231E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setBtnTxt(r10);
-        r10 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r9 = r9.setBtnBgRes(r10);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        goto L_0x0036;
-    L_0x02b0:
-        r9 = 2130837595; // 0x7f02005b float:1.7280149E38 double:1.0527736526E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131624092; // 0x7f0e009c float:1.8875354E38 double:1.0531622337E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setTitle(r10);
-        r10 = 2131624091; // 0x7f0e009b float:1.8875352E38 double:1.053162233E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setDesc(r10);
-        r10 = 2131624090; // 0x7f0e009a float:1.887535E38 double:1.0531622327E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setBtnTxt(r10);
-        r10 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r9 = r9.setBtnBgRes(r10);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        goto L_0x0036;
-    L_0x02ec:
-        r9 = 2130837591; // 0x7f020057 float:1.728014E38 double:1.0527736506E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131624068; // 0x7f0e0084 float:1.8875305E38 double:1.053162222E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setTitle(r10);
-        r10 = 2131624067; // 0x7f0e0083 float:1.8875303E38 double:1.0531622214E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setDesc(r10);
-        r10 = 2131624084; // 0x7f0e0094 float:1.8875338E38 double:1.0531622298E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setBtnTxt(r10);
-        r10 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r9 = r9.setBtnBgRes(r10);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        goto L_0x0036;
-    L_0x0328:
-        r9 = 2130837594; // 0x7f02005a float:1.7280146E38 double:1.052773652E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131624080; // 0x7f0e0090 float:1.887533E38 double:1.053162228E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setTitle(r10);
-        r10 = 2131624079; // 0x7f0e008f float:1.8875328E38 double:1.0531622273E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setDesc(r10);
-        r10 = 2131624078; // 0x7f0e008e float:1.8875326E38 double:1.053162227E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setBtnTxt(r10);
-        r10 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r9 = r9.setBtnBgRes(r10);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        goto L_0x0036;
-    L_0x0364:
-        r9 = 2130837592; // 0x7f020058 float:1.7280142E38 double:1.052773651E-314;
-        r9 = r4.setIconRes(r9);
-        r10 = 2131624072; // 0x7f0e0088 float:1.8875313E38 double:1.053162224E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setTitle(r10);
-        r10 = 2131624071; // 0x7f0e0087 float:1.8875311E38 double:1.0531622233E-314;
-        r11 = 2;
-        r11 = new java.lang.Object[r11];
-        r12 = 0;
-        r13 = r16.getContext();
-        r14 = r18.getCloudSpaceTotalSize();
-        r13 = com.miui.gallery.cloud.syncstate.SyncStateUtil.getQuantityStringWithUnit(r13, r14);
-        r11[r12] = r13;
-        r12 = 1;
-        r13 = r16.getContext();
-        r14 = r18.getCloudSpaceRemainingSize();
-        r13 = com.miui.gallery.cloud.syncstate.SyncStateUtil.getQuantityStringWithUnit(r13, r14);
-        r11[r12] = r13;
-        r10 = r5.getString(r10, r11);
-        r9 = r9.setDesc(r10);
-        r10 = 2131624070; // 0x7f0e0086 float:1.887531E38 double:1.053162223E-314;
-        r10 = r5.getString(r10);
-        r9 = r9.setBtnTxt(r10);
-        r10 = 2130837939; // 0x7f0201b3 float:1.7280846E38 double:1.0527738225E-314;
-        r9 = r9.setBtnBgRes(r10);
-        r0 = r16;
-        r1 = r18;
-        r10 = r0.genClickListener(r1);
-        r9.setBtnClickListener(r10);
-        r10 = r18.getCloudSpaceTotalSize();
-        r12 = 0;
-        r9 = (r10 > r12 ? 1 : (r10 == r12 ? 0 : -1));
-        if (r9 <= 0) goto L_0x0036;
-    L_0x03c9:
-        r9 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r10 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r12 = r18.getCloudSpaceRemainingSize();
-        r11 = (float) r12;
-        r10 = r10 * r11;
-        r12 = r18.getCloudSpaceTotalSize();
-        r11 = (float) r12;
-        r10 = r10 / r11;
-        r9 = r9 - r10;
-        r4.setProgress(r9);
-        goto L_0x0036;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.ui.BackupTitle.addSyncItem(com.miui.gallery.ui.BackupTitle$TitleData, com.miui.gallery.cloud.syncstate.SyncStateInfo):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void addSyncItem(TitleData data, SyncStateInfo syncState) {
+        TitleItemData item = new TitleItemData(this, null);
+        Resources res = getContext().getResources();
+        int[] dirtys = syncState.getDirtyCount();
+        int dirtyCount = dirtys[0] + dirtys[1];
+        Log.i("BackupTitle", "refresh status: %s", syncState.getSyncStatus());
+        SyncStatus syncStatus = syncState.getSyncStatus();
+        switch (syncStatus) {
+            case SYNC_PENDING:
+                item.setTitle(res.getString(R.string.backup_pending));
+                item.setBtnTxt(res.getString(R.string.backup_immediately));
+                break;
+            case SYNCING:
+                break;
+            case SYNCING_METADATA:
+                break;
+            case SYNCED:
+                item.setIconRes(R.drawable.backup_icon_synced).setTitle(res.getString(R.string.backuped_title)).setDesc(res.getString(R.string.backuped_desc));
+                break;
+            case SYNC_PAUSE:
+                item.setIconRes(R.drawable.backup_icon_syncing).setDesc(res.getQuantityString(R.plurals.backup_pause_desc, dirtyCount, new Object[]{Integer.valueOf(dirtyCount)})).setBtnTxt(res.getString(R.string.backup_immediately)).setBtnBgRes(R.drawable.list_item_btn_bg_light).setBtnClickListener(genClickListener(syncState));
+                Object[] objArr = new Object[1];
+                objArr[0] = FormatUtil.formatHourMinutes(syncState.getResumeInterval(getContext()));
+                item.setTitle(res.getString(R.string.backup_pause_title, objArr));
+                break;
+            case SYNC_ERROR:
+                item.setIconRes(R.drawable.backup_icon_sync_error).setTitle(res.getString(R.string.backup_sync_error_title)).setDesc(res.getString(R.string.backup_sync_error_desc)).setBtnTxt(res.getString(R.string.backup_sync_error_btn_text)).setBtnBgRes(R.drawable.list_item_btn_bg_light).setBtnClickListener(genClickListener(syncState));
+                break;
+            case UNKNOWN_ERROR:
+                item.setIconRes(R.drawable.backup_icon_sync_error).setTitle(res.getString(R.string.backup_need_sync_title)).setDesc(res.getString(R.string.backup_need_sync_desc)).setBtnTxt(res.getString(R.string.backup_immediately)).setBtnBgRes(R.drawable.list_item_btn_bg_light).setBtnClickListener(genClickListener(syncState));
+                break;
+            case NO_ACCOUNT:
+            case MASTER_SYNC_OFF:
+            case SYNC_OFF:
+                item.setIconRes(R.drawable.backup_icon_sync_setting_off).setTitle(res.getString(R.string.backup_sync_off_title)).setDesc(res.getString(R.string.backup_sync_off_desc)).setBtnTxt(res.getString(R.string.backup_sync_off_btn_text)).setBtnBgRes(R.drawable.list_item_btn_bg_light).setBtnClickListener(genClickListener(syncState));
+                break;
+            case CTA_NOT_ALLOW:
+                item.setIconRes(R.drawable.backup_icon_cta_not_allow).setTitle(res.getString(R.string.backup_cta_not_allow_title)).setDesc(res.getString(R.string.backup_cta_not_allow_desc)).setBtnTxt(res.getString(R.string.backup_cta_not_allow_btn_text)).setBtnBgRes(R.drawable.list_item_btn_bg_light).setBtnClickListener(genClickListener(syncState));
+                break;
+            case DISCONNECTED:
+                item.setIconRes(R.drawable.backup_icon_net_error).setTitle(res.getString(R.string.backup_no_network_title)).setDesc(res.getString(R.string.backup_no_network_desc)).setBtnTxt(res.getString(R.string.backup_no_network_btn_text)).setBtnBgRes(R.drawable.list_item_btn_bg_light).setBtnClickListener(genClickListener(syncState));
+                break;
+            case NO_WIFI:
+                item.setIconRes(R.drawable.backup_icon_net_error).setTitle(res.getString(R.string.backup_no_wifi_title)).setDesc(res.getString(R.string.backup_no_wifi_desc)).setBtnTxt(res.getString(R.string.backup_no_wifi_btn_text)).setBtnBgRes(R.drawable.list_item_btn_bg_light).setBtnClickListener(genClickListener(syncState));
+                break;
+            case BATTERY_LOW:
+                item.setIconRes(R.drawable.backup_icon_battery_low).setTitle(res.getString(R.string.backup_battery_low_title)).setDesc(res.getString(R.string.backup_battery_low_desc)).setBtnTxt(res.getString(R.string.backup_immediately)).setBtnBgRes(R.drawable.list_item_btn_bg_light).setBtnClickListener(genClickListener(syncState));
+                break;
+            case SYSTEM_SPACE_LOW:
+                item.setIconRes(R.drawable.backup_icon_device_storage_low).setTitle(res.getString(R.string.backup_device_space_low_title)).setDesc(res.getString(R.string.backup_device_space_low_desc)).setBtnTxt(res.getString(R.string.backup_device_space_low_btn_text)).setBtnBgRes(R.drawable.list_item_btn_bg_light).setBtnClickListener(genClickListener(syncState));
+                break;
+            case CLOUD_SPACE_FULL:
+                item.setIconRes(R.drawable.backup_icon_cloud_storage_low).setTitle(res.getString(R.string.backup_cloud_space_low_title)).setDesc(res.getString(R.string.backup_cloud_space_low_desc, new Object[]{SyncStateUtil.getQuantityStringWithUnit(getContext(), syncState.getCloudSpaceTotalSize()), SyncStateUtil.getQuantityStringWithUnit(getContext(), syncState.getCloudSpaceRemainingSize())})).setBtnTxt(res.getString(R.string.backup_cloud_space_low_btn_text)).setBtnBgRes(R.drawable.list_item_btn_bg_light).setBtnClickListener(genClickListener(syncState));
+                if (syncState.getCloudSpaceTotalSize() > 0) {
+                    item.setProgress(1.0f - ((1.0f * ((float) syncState.getCloudSpaceRemainingSize())) / ((float) syncState.getCloudSpaceTotalSize())));
+                    break;
+                }
+                break;
+        }
     }
 
     private boolean isNormalSyncStatus(SyncStatus syncStatus) {

@@ -1,6 +1,9 @@
 package com.nexstreaming.nexeditorsdk;
 
 import android.animation.TimeInterpolator;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint.Align;
 import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
@@ -15,6 +18,9 @@ import com.nexstreaming.app.common.nexasset.assetpackage.ItemCategory;
 import com.nexstreaming.app.common.nexasset.assetpackage.ItemType;
 import com.nexstreaming.app.common.nexasset.assetpackage.c;
 import com.nexstreaming.app.common.nexasset.assetpackage.f;
+import com.nexstreaming.app.common.util.q;
+import com.nexstreaming.nexeditorsdk.nexAnimate.MoveTrackingPath;
+import com.nexstreaming.nexeditorsdk.nexOverlayImage.runTimeMakeBitMap;
 import com.nexstreaming.nexeditorsdk.nexOverlayManager.nexTitleInfo;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -236,912 +242,456 @@ final class nexOverlayTitle {
     /* JADX WARNING: Removed duplicated region for block: B:102:0x0391  */
     /* JADX WARNING: Removed duplicated region for block: B:118:0x0458  */
     /* JADX WARNING: Removed duplicated region for block: B:33:0x011b  */
-    public java.lang.String a(android.content.Context r33, com.nexstreaming.nexeditorsdk.nexProject r34, java.util.List<com.nexstreaming.nexeditorsdk.nexOverlayManager.nexTitleInfo> r35) {
-        /*
-        r32 = this;
-        r0 = r32;
-        r1 = r34;
-        r0.a(r1);
-        r0 = r32;
-        r1 = r34;
-        r24 = r0.b(r1);
-        r6 = 0;
-        r5 = 0;
-        r4 = 0;
-        r3 = 0;
-        r0 = r32;
-        r7 = r0.g;
-        r25 = r7.iterator();
-        r7 = r4;
-        r8 = r6;
-        r6 = r3;
-    L_0x001e:
-        r3 = r25.hasNext();
-        if (r3 == 0) goto L_0x06ee;
-    L_0x0024:
-        r3 = r25.next();
-        r11 = r3;
-        r11 = (java.util.HashMap) r11;
-        r9 = 0;
-        r3 = "type";
-        r3 = r11.get(r3);
-        r4 = r3;
-        r4 = (java.lang.String) r4;
-        r3 = "title";
-        r3 = r4.equals(r3);
-        if (r3 == 0) goto L_0x06fe;
-    L_0x003f:
-        r3 = "group";
-        r3 = r11.containsKey(r3);
-        if (r3 == 0) goto L_0x06fe;
-    L_0x0047:
-        r3 = "group";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r10 = "_1";
-        r3 = r3.endsWith(r10);
-        if (r3 == 0) goto L_0x06fe;
-    L_0x0057:
-        if (r8 != 0) goto L_0x00bb;
-    L_0x0059:
-        r3 = "group";
-        r3 = r11.get(r3);
-        r5 = r3;
-        r5 = (java.lang.String) r5;
-        r0 = r32;
-        r1 = r35;
-        r14 = r0.a(r1, r5);
-        if (r14 == 0) goto L_0x0704;
-    L_0x006c:
-        r3 = "adjust_pos_non_sub";
-        r3 = r11.containsKey(r3);
-        if (r3 == 0) goto L_0x0704;
-    L_0x0074:
-        r3 = "adjust_pos_non_sub";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r6 = " ";
-        r7 = "";
-        r3 = r3.replace(r6, r7);
-        r6 = ",";
-        r3 = r3.split(r6);
-        r6 = 0;
-        r6 = r3[r6];
-        r7 = java.lang.Integer.parseInt(r6);
-        r6 = 1;
-        r3 = r3[r6];
-        r6 = java.lang.Integer.parseInt(r3);
-        r12 = r6;
-        r13 = r7;
-        r15 = r5;
-    L_0x009b:
-        if (r14 == 0) goto L_0x010c;
-    L_0x009d:
-        r3 = "group";
-        r3 = r11.containsKey(r3);
-        if (r3 == 0) goto L_0x010c;
-    L_0x00a5:
-        r3 = "group";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r5 = "_2";
-        r3 = r3.endsWith(r5);
-        if (r3 == 0) goto L_0x010c;
-    L_0x00b5:
-        r6 = r12;
-        r7 = r13;
-        r5 = r14;
-        r8 = r15;
-        goto L_0x001e;
-    L_0x00bb:
-        r3 = "group";
-        r3 = r11.get(r3);
-        r3 = r8.equals(r3);
-        if (r3 != 0) goto L_0x06fe;
-    L_0x00c7:
-        r3 = "group";
-        r3 = r11.get(r3);
-        r5 = r3;
-        r5 = (java.lang.String) r5;
-        r7 = 0;
-        r6 = 0;
-        r0 = r32;
-        r1 = r35;
-        r14 = r0.a(r1, r5);
-        if (r14 == 0) goto L_0x0704;
-    L_0x00dc:
-        r3 = "adjust_pos_non_sub";
-        r3 = r11.containsKey(r3);
-        if (r3 == 0) goto L_0x0704;
-    L_0x00e4:
-        r3 = "adjust_pos_non_sub";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r6 = " ";
-        r7 = "";
-        r3 = r3.replace(r6, r7);
-        r6 = ",";
-        r3 = r3.split(r6);
-        r6 = 0;
-        r6 = r3[r6];
-        r7 = java.lang.Integer.parseInt(r6);
-        r6 = 1;
-        r3 = r3[r6];
-        r6 = java.lang.Integer.parseInt(r3);
-        r12 = r6;
-        r13 = r7;
-        r15 = r5;
-        goto L_0x009b;
-    L_0x010c:
-        r3 = -1;
-        r5 = r4.hashCode();
-        switch(r5) {
-            case 100313435: goto L_0x012c;
-            case 110371416: goto L_0x0121;
-            default: goto L_0x0114;
-        };
-    L_0x0114:
-        switch(r3) {
-            case 0: goto L_0x0136;
-            case 1: goto L_0x0391;
-            default: goto L_0x0117;
-        };
-    L_0x0117:
-        r16 = r9;
-    L_0x0119:
-        if (r16 != 0) goto L_0x0458;
-    L_0x011b:
-        r6 = r12;
-        r7 = r13;
-        r5 = r14;
-        r8 = r15;
-        goto L_0x001e;
-    L_0x0121:
-        r5 = "title";
-        r4 = r4.equals(r5);
-        if (r4 == 0) goto L_0x0114;
-    L_0x012a:
-        r3 = 0;
-        goto L_0x0114;
-    L_0x012c:
-        r5 = "image";
-        r4 = r4.equals(r5);
-        if (r4 == 0) goto L_0x0114;
-    L_0x0134:
-        r3 = 1;
-        goto L_0x0114;
-    L_0x0136:
-        r3 = "id";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r26 = java.lang.Integer.parseInt(r3);
-        r3 = "text";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r4 = "text_max_len";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        java.lang.Integer.parseInt(r4);
-        r4 = "position";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r5 = " ";
-        r6 = "";
-        r4 = r4.replace(r5, r6);
-        r5 = ",";
-        r4 = r4.split(r5);
-        if (r4 != 0) goto L_0x0172;
-    L_0x016f:
-        r3 = "Wrong position data of title";
-    L_0x0171:
-        return r3;
-    L_0x0172:
-        r5 = 0;
-        r5 = r4[r5];
-        r5 = java.lang.Integer.parseInt(r5);
-        r6 = 1;
-        r6 = r4[r6];
-        r7 = java.lang.Integer.parseInt(r6);
-        r6 = 2;
-        r6 = r4[r6];
-        r6 = java.lang.Integer.parseInt(r6);
-        r8 = 3;
-        r4 = r4[r8];
-        r4 = java.lang.Integer.parseInt(r4);
-        r8 = r5 + r6;
-        r22 = r8 / 2;
-        r8 = r7 + r4;
-        r21 = r8 / 2;
-        r6 = r6 - r5;
-        r7 = r4 - r7;
-        r4 = "start_time";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r20 = java.lang.Integer.parseInt(r4);
-        r4 = "duration";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r9 = java.lang.Integer.parseInt(r4);
-        r4 = com.nexstreaming.nexeditorsdk.nexOverlayTitle.Priority.START;
-        r0 = r24;
-        if (r0 != r4) goto L_0x01ba;
-    L_0x01b8:
-        if (r20 < 0) goto L_0x01c2;
-    L_0x01ba:
-        r4 = com.nexstreaming.nexeditorsdk.nexOverlayTitle.Priority.END;
-        r0 = r24;
-        if (r0 != r4) goto L_0x01e4;
-    L_0x01c0:
-        if (r20 < 0) goto L_0x01e4;
-    L_0x01c2:
-        r3 = a;
-        r4 = "Apply title skip(%s %d)";
-        r5 = 2;
-        r5 = new java.lang.Object[r5];
-        r6 = 0;
-        r7 = r24.name();
-        r5[r6] = r7;
-        r6 = 1;
-        r7 = java.lang.Integer.valueOf(r20);
-        r5[r6] = r7;
-        r4 = java.lang.String.format(r4, r5);
-        android.util.Log.d(r3, r4);
-        r6 = r12;
-        r7 = r13;
-        r5 = r14;
-        r8 = r15;
-        goto L_0x001e;
-    L_0x01e4:
-        r4 = "font";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r0 = r32;
-        r1 = r26;
-        r2 = r35;
-        r27 = r0.a(r1, r2, r4);
-        r4 = "font_size";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r4 = java.lang.Integer.parseInt(r4);
-        r0 = r32;
-        r1 = r26;
-        r2 = r35;
-        r5 = r0.a(r1, r2, r4);
-        r4 = "text_color";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r28 = android.graphics.Color.parseColor(r4);
-        if (r5 <= r7) goto L_0x021e;
-    L_0x021b:
-        r4 = r7 + -4;
-        r5 = r4;
-    L_0x021e:
-        r4 = "shadow_visible";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r4 = java.lang.Integer.parseInt(r4);
-        r8 = 1;
-        if (r4 != r8) goto L_0x02d7;
-    L_0x022e:
-        r4 = 1;
-        r16 = r4;
-    L_0x0231:
-        r4 = "shadow_color";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r29 = android.graphics.Color.parseColor(r4);
-        r4 = "glow_visible";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r4 = java.lang.Integer.parseInt(r4);
-        r8 = 1;
-        if (r4 != r8) goto L_0x02dc;
-    L_0x024d:
-        r4 = 1;
-        r17 = r4;
-    L_0x0250:
-        r4 = "glow_color";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r30 = android.graphics.Color.parseColor(r4);
-        r4 = "outline_visible";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r4 = java.lang.Integer.parseInt(r4);
-        r8 = 1;
-        if (r4 != r8) goto L_0x02e1;
-    L_0x026b:
-        r4 = 1;
-        r18 = r4;
-    L_0x026e:
-        r4 = "outline_color";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        r31 = android.graphics.Color.parseColor(r4);
-        r4 = "align";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-        if (r14 == 0) goto L_0x0294;
-    L_0x0284:
-        r8 = "adjust_align_non_sub";
-        r8 = r11.containsKey(r8);
-        if (r8 == 0) goto L_0x0294;
-    L_0x028c:
-        r4 = "adjust_align_non_sub";
-        r4 = r11.get(r4);
-        r4 = (java.lang.String) r4;
-    L_0x0294:
-        r8 = android.graphics.Paint.Align.CENTER;
-        r10 = "LEFT";
-        r10 = r4.contains(r10);
-        if (r10 == 0) goto L_0x02e5;
-    L_0x029e:
-        r8 = android.graphics.Paint.Align.LEFT;
-        r19 = r8;
-    L_0x02a2:
-        r10 = 1;
-        r8 = "MIDDLE";
-        r8 = r4.contains(r8);
-        if (r8 == 0) goto L_0x02f2;
-    L_0x02ab:
-        r10 = 2;
-    L_0x02ac:
-        if (r14 == 0) goto L_0x02fc;
-    L_0x02ae:
-        r0 = r32;
-        r1 = r35;
-        r3 = r0.a(r15, r1);
-        r0 = r32;
-        r1 = r35;
-        r5 = r0.a(r15, r1, r5);
-        r8 = r22 + r13;
-        r4 = r21 + r12;
-        r21 = r5;
-        r22 = r4;
-        r23 = r8;
-        r5 = r3;
-    L_0x02c9:
-        if (r5 == 0) goto L_0x06f4;
-    L_0x02cb:
-        r3 = r5.length();
-        if (r3 > 0) goto L_0x030e;
-    L_0x02d1:
-        r6 = r12;
-        r7 = r13;
-        r5 = r14;
-        r8 = r15;
-        goto L_0x001e;
-    L_0x02d7:
-        r4 = 0;
-        r16 = r4;
-        goto L_0x0231;
-    L_0x02dc:
-        r4 = 0;
-        r17 = r4;
-        goto L_0x0250;
-    L_0x02e1:
-        r4 = 0;
-        r18 = r4;
-        goto L_0x026e;
-    L_0x02e5:
-        r10 = "RIGHT";
-        r10 = r4.contains(r10);
-        if (r10 == 0) goto L_0x06fa;
-    L_0x02ed:
-        r8 = android.graphics.Paint.Align.RIGHT;
-        r19 = r8;
-        goto L_0x02a2;
-    L_0x02f2:
-        r8 = "BOTTOM";
-        r4 = r4.contains(r8);
-        if (r4 == 0) goto L_0x02ac;
-    L_0x02fa:
-        r10 = 3;
-        goto L_0x02ac;
-    L_0x02fc:
-        r0 = r32;
-        r1 = r26;
-        r2 = r35;
-        r3 = r0.b(r1, r2, r3);
-        r23 = r22;
-        r22 = r21;
-        r21 = r5;
-        r5 = r3;
-        goto L_0x02c9;
-    L_0x030e:
-        if (r20 >= 0) goto L_0x031e;
-    L_0x0310:
-        r3 = r34.getTotalTime();
-        if (r3 >= r9) goto L_0x0389;
-    L_0x0316:
-        r4 = 0;
-        r3 = r34.getTotalTime();
-        r9 = r3;
-        r20 = r4;
-    L_0x031e:
-        r3 = new com.nexstreaming.app.common.util.q;
-        r8 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r4 = r33;
-        r3.<init>(r4, r5, r6, r7, r8);
-        r4 = new com.nexstreaming.nexeditorsdk.nexOverlayItem;
-        r5 = new com.nexstreaming.nexeditorsdk.nexOverlayImage;
-        r6 = new java.lang.StringBuilder;
-        r6.<init>();
-        r7 = "";
-        r6 = r6.append(r7);
-        r0 = r26;
-        r6 = r6.append(r0);
-        r6 = r6.toString();
-        r5.<init>(r6, r3);
-        r9 = r9 + r20;
-        r6 = r23;
-        r7 = r22;
-        r8 = r20;
-        r4.<init>(r5, r6, r7, r8, r9);
-        r0 = r21;
-        r6 = (float) r0;
-        r5 = r3;
-        r7 = r28;
-        r8 = r19;
-        r9 = r27;
-        r5.a(r6, r7, r8, r9, r10);
-        if (r16 == 0) goto L_0x036a;
-    L_0x035d:
-        r8 = 1084227584; // 0x40a00000 float:5.0 double:5.356796015E-315;
-        r9 = 1077936128; // 0x40400000 float:3.0 double:5.325712093E-315;
-        r10 = 1077936128; // 0x40400000 float:3.0 double:5.325712093E-315;
-        r6 = 1;
-        r5 = r3;
-        r7 = r29;
-        r5.a(r6, r7, r8, r9, r10);
-    L_0x036a:
-        if (r17 == 0) goto L_0x0374;
-    L_0x036c:
-        r5 = 1090519040; // 0x41000000 float:8.0 double:5.38787994E-315;
-        r6 = 1;
-        r0 = r30;
-        r3.b(r6, r0, r5);
-    L_0x0374:
-        if (r18 == 0) goto L_0x037e;
-    L_0x0376:
-        r5 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r6 = 1;
-        r0 = r31;
-        r3.a(r6, r0, r5);
-    L_0x037e:
-        r5 = r4.getId();
-        r3.a(r5);
-        r16 = r4;
-        goto L_0x0119;
-    L_0x0389:
-        r3 = r34.getTotalTime();
-        r3 = r3 - r9;
-        r20 = r3;
-        goto L_0x031e;
-    L_0x0391:
-        r3 = "id";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        java.lang.Integer.parseInt(r3);
-        r3 = "position";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r4 = " ";
-        r5 = "";
-        r3 = r3.replace(r4, r5);
-        r4 = ",";
-        r3 = r3.split(r4);
-        if (r3 != 0) goto L_0x03b8;
-    L_0x03b4:
-        r3 = "Wrong position data of title";
-        goto L_0x0171;
-    L_0x03b8:
-        r4 = 0;
-        r4 = r3[r4];
-        r4 = java.lang.Integer.parseInt(r4);
-        r5 = 1;
-        r5 = r3[r5];
-        r7 = java.lang.Integer.parseInt(r5);
-        r5 = 2;
-        r5 = r3[r5];
-        r8 = java.lang.Integer.parseInt(r5);
-        r5 = 3;
-        r3 = r3[r5];
-        r3 = java.lang.Integer.parseInt(r3);
-        r5 = r4 + r8;
-        r5 = r5 / 2;
-        r6 = r7 + r3;
-        r6 = r6 / 2;
-        r4 = r8 - r4;
-        r3 = r3 - r7;
-        r3 = "start_time";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r7 = java.lang.Integer.parseInt(r3);
-        r3 = "duration";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r3 = java.lang.Integer.parseInt(r3);
-        r4 = com.nexstreaming.nexeditorsdk.nexOverlayTitle.Priority.START;
-        r0 = r24;
-        if (r0 != r4) goto L_0x0400;
-    L_0x03fe:
-        if (r7 < 0) goto L_0x0408;
-    L_0x0400:
-        r4 = com.nexstreaming.nexeditorsdk.nexOverlayTitle.Priority.END;
-        r0 = r24;
-        if (r0 != r4) goto L_0x042a;
-    L_0x0406:
-        if (r7 < 0) goto L_0x042a;
-    L_0x0408:
-        r3 = a;
-        r4 = "Apply image res skip(%s %d)";
-        r5 = 2;
-        r5 = new java.lang.Object[r5];
-        r6 = 0;
-        r8 = r24.name();
-        r5[r6] = r8;
-        r6 = 1;
-        r7 = java.lang.Integer.valueOf(r7);
-        r5[r6] = r7;
-        r4 = java.lang.String.format(r4, r5);
-        android.util.Log.d(r3, r4);
-        r6 = r12;
-        r7 = r13;
-        r5 = r14;
-        r8 = r15;
-        goto L_0x001e;
-    L_0x042a:
-        if (r7 >= 0) goto L_0x06f1;
-    L_0x042c:
-        r4 = r34.getTotalTime();
-        if (r4 >= r3) goto L_0x0450;
-    L_0x0432:
-        r7 = 0;
-        r3 = r34.getTotalTime();
-        r8 = r3;
-    L_0x0438:
-        r3 = "image_res";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r0 = r32;
-        r4 = r0.b(r3);
-        r3 = new com.nexstreaming.nexeditorsdk.nexOverlayItem;
-        r8 = r8 + r7;
-        r3.<init>(r4, r5, r6, r7, r8);
-        r16 = r3;
-        goto L_0x0119;
-    L_0x0450:
-        r4 = r34.getTotalTime();
-        r7 = r4 - r3;
-        r8 = r3;
-        goto L_0x0438;
-    L_0x0458:
-        r3 = "rotate";
-        r3 = r11.containsKey(r3);
-        if (r3 == 0) goto L_0x0471;
-    L_0x0460:
-        r3 = "rotate";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r3 = java.lang.Float.parseFloat(r3);
-        r0 = r16;
-        r0.setRotate(r3);
-    L_0x0471:
-        r3 = "scale";
-        r3 = r11.containsKey(r3);
-        if (r3 == 0) goto L_0x04ab;
-    L_0x0479:
-        r3 = "scale";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        r4 = " ";
-        r5 = "";
-        r3 = r3.replace(r4, r5);
-        r4 = ",";
-        r3 = r3.split(r4);
-        if (r3 == 0) goto L_0x04ab;
-    L_0x0491:
-        r4 = 0;
-        r4 = r3[r4];
-        r4 = java.lang.Float.parseFloat(r4);
-        r5 = 1;
-        r5 = r3[r5];
-        r5 = java.lang.Float.parseFloat(r5);
-        r6 = 2;
-        r3 = r3[r6];
-        r3 = java.lang.Float.parseFloat(r3);
-        r0 = r16;
-        r0.setScale(r4, r5, r3);
-    L_0x04ab:
-        r16.clearAnimate();
-        r3 = "animation";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-        if (r14 == 0) goto L_0x04c8;
-    L_0x04b8:
-        r4 = "adjust_animation_non_sub";
-        r4 = r11.containsKey(r4);
-        if (r4 == 0) goto L_0x04c8;
-    L_0x04c0:
-        r3 = "adjust_animation_non_sub";
-        r3 = r11.get(r3);
-        r3 = (java.lang.String) r3;
-    L_0x04c8:
-        r11 = new org.json.JSONArray;	 Catch:{ JSONException -> 0x06b5 }
-        r11.<init>(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = 0;
-        r10 = r3;
-    L_0x04cf:
-        r3 = r11.length();	 Catch:{ JSONException -> 0x06b5 }
-        if (r10 >= r3) goto L_0x06db;
-    L_0x04d5:
-        r3 = r11.getJSONObject(r10);	 Catch:{ JSONException -> 0x06b5 }
-        r4 = "type";
-        r4 = r3.getString(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r5 = "values";
-        r17 = r3.getJSONArray(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = -1;
-        r5 = r4.hashCode();	 Catch:{ JSONException -> 0x06b5 }
-        switch(r5) {
-            case -925180581: goto L_0x0514;
-            case 3357649: goto L_0x04f6;
-            case 92909918: goto L_0x0500;
-            case 109250890: goto L_0x050a;
-            default: goto L_0x04ef;
-        };	 Catch:{ JSONException -> 0x06b5 }
-    L_0x04ef:
-        switch(r3) {
-            case 0: goto L_0x051e;
-            case 1: goto L_0x0597;
-            case 2: goto L_0x05eb;
-            case 3: goto L_0x0659;
-            default: goto L_0x04f2;
-        };	 Catch:{ JSONException -> 0x06b5 }
-    L_0x04f2:
-        r3 = r10 + 1;
-        r10 = r3;
-        goto L_0x04cf;
-    L_0x04f6:
-        r5 = "move";
-        r4 = r4.equals(r5);	 Catch:{ JSONException -> 0x06b5 }
-        if (r4 == 0) goto L_0x04ef;
-    L_0x04fe:
-        r3 = 0;
-        goto L_0x04ef;
-    L_0x0500:
-        r5 = "alpha";
-        r4 = r4.equals(r5);	 Catch:{ JSONException -> 0x06b5 }
-        if (r4 == 0) goto L_0x04ef;
-    L_0x0508:
-        r3 = 1;
-        goto L_0x04ef;
-    L_0x050a:
-        r5 = "scale";
-        r4 = r4.equals(r5);	 Catch:{ JSONException -> 0x06b5 }
-        if (r4 == 0) goto L_0x04ef;
-    L_0x0512:
-        r3 = 2;
-        goto L_0x04ef;
-    L_0x0514:
-        r5 = "rotate";
-        r4 = r4.equals(r5);	 Catch:{ JSONException -> 0x06b5 }
-        if (r4 == 0) goto L_0x04ef;
-    L_0x051c:
-        r3 = 3;
-        goto L_0x04ef;
-    L_0x051e:
-        r3 = 0;
-        r9 = r3;
-    L_0x0520:
-        r3 = r17.length();	 Catch:{ JSONException -> 0x06b5 }
-        if (r9 >= r3) goto L_0x04f2;
-    L_0x0526:
-        r0 = r17;
-        r3 = r0.getJSONObject(r9);	 Catch:{ JSONException -> 0x06b5 }
-        r4 = "motion_type";
-        r4 = r3.getString(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r32;
-        r18 = r0.a(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r4 = "start_time";
-        r4 = r3.getString(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r19 = java.lang.Integer.parseInt(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r4 = "end_time";
-        r4 = r3.getString(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r4 = java.lang.Integer.parseInt(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r5 = "start_x";
-        r5 = r3.getString(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r5 = java.lang.Float.parseFloat(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r6 = "end_x";
-        r6 = r3.getString(r6);	 Catch:{ JSONException -> 0x06b5 }
-        r6 = java.lang.Float.parseFloat(r6);	 Catch:{ JSONException -> 0x06b5 }
-        r7 = "start_y";
-        r7 = r3.getString(r7);	 Catch:{ JSONException -> 0x06b5 }
-        r7 = java.lang.Float.parseFloat(r7);	 Catch:{ JSONException -> 0x06b5 }
-        r8 = "end_y";
-        r3 = r3.getString(r8);	 Catch:{ JSONException -> 0x06b5 }
-        r8 = java.lang.Float.parseFloat(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r20 = r4 - r19;
-        r3 = new com.nexstreaming.nexeditorsdk.nexOverlayTitle$1;	 Catch:{ JSONException -> 0x06b5 }
-        r4 = r32;
-        r3.<init>(r5, r6, r7, r8);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r19;
-        r1 = r20;
-        r3 = com.nexstreaming.nexeditorsdk.nexAnimate.getMove(r0, r1, r3);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r18;
-        r3 = r3.setInterpolator(r0);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r16;
-        r0.addAnimate(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = r9 + 1;
-        r9 = r3;
-        goto L_0x0520;
-    L_0x0597:
-        r3 = 0;
-    L_0x0598:
-        r4 = r17.length();	 Catch:{ JSONException -> 0x06b5 }
-        if (r3 >= r4) goto L_0x04f2;
-    L_0x059e:
-        r0 = r17;
-        r4 = r0.getJSONObject(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r5 = "motion_type";
-        r5 = r4.getString(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r32;
-        r5 = r0.a(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r6 = "start_time";
-        r6 = r4.getString(r6);	 Catch:{ JSONException -> 0x06b5 }
-        r6 = java.lang.Integer.parseInt(r6);	 Catch:{ JSONException -> 0x06b5 }
-        r7 = "end_time";
-        r7 = r4.getString(r7);	 Catch:{ JSONException -> 0x06b5 }
-        r7 = java.lang.Integer.parseInt(r7);	 Catch:{ JSONException -> 0x06b5 }
-        r8 = "start";
-        r8 = r4.getString(r8);	 Catch:{ JSONException -> 0x06b5 }
-        r8 = java.lang.Float.parseFloat(r8);	 Catch:{ JSONException -> 0x06b5 }
-        r9 = "end";
-        r4 = r4.getString(r9);	 Catch:{ JSONException -> 0x06b5 }
-        r4 = java.lang.Float.parseFloat(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r7 = r7 - r6;
-        r4 = com.nexstreaming.nexeditorsdk.nexAnimate.getAlpha(r6, r7, r8, r4);	 Catch:{ JSONException -> 0x06b5 }
-        r4 = r4.setInterpolator(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r16;
-        r0.addAnimate(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = r3 + 1;
-        goto L_0x0598;
-    L_0x05eb:
-        r3 = 0;
-        r9 = r3;
-    L_0x05ed:
-        r3 = r17.length();	 Catch:{ JSONException -> 0x06b5 }
-        if (r9 >= r3) goto L_0x04f2;
-    L_0x05f3:
-        r0 = r17;
-        r4 = r0.getJSONObject(r9);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = "motion_type";
-        r3 = r4.getString(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r32;
-        r18 = r0.a(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = "start_time";
-        r3 = r4.getString(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = java.lang.Integer.parseInt(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r5 = "end_time";
-        r5 = r4.getString(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r19 = java.lang.Integer.parseInt(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r5 = "start_x";
-        r5 = r4.getString(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r5 = java.lang.Float.parseFloat(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r6 = "end_x";
-        r6 = r4.getString(r6);	 Catch:{ JSONException -> 0x06b5 }
-        r7 = java.lang.Float.parseFloat(r6);	 Catch:{ JSONException -> 0x06b5 }
-        r6 = "start_y";
-        r6 = r4.getString(r6);	 Catch:{ JSONException -> 0x06b5 }
-        r6 = java.lang.Float.parseFloat(r6);	 Catch:{ JSONException -> 0x06b5 }
-        r8 = "end_y";
-        r4 = r4.getString(r8);	 Catch:{ JSONException -> 0x06b5 }
-        r8 = java.lang.Float.parseFloat(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r4 = r19 - r3;
-        r3 = com.nexstreaming.nexeditorsdk.nexAnimate.getScale(r3, r4, r5, r6, r7, r8);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r18;
-        r3 = r3.setInterpolator(r0);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r16;
-        r0.addAnimate(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = r9 + 1;
-        r9 = r3;
-        goto L_0x05ed;
-    L_0x0659:
-        r3 = 0;
-        r4 = r3;
-    L_0x065b:
-        r3 = r17.length();	 Catch:{ JSONException -> 0x06b5 }
-        if (r4 >= r3) goto L_0x04f2;
-    L_0x0661:
-        r0 = r17;
-        r5 = r0.getJSONObject(r4);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = "motion_type";
-        r3 = r5.getString(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r32;
-        r6 = r0.a(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = "start_time";
-        r3 = r5.getString(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r7 = java.lang.Integer.parseInt(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = "end_time";
-        r3 = r5.getString(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r8 = java.lang.Integer.parseInt(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = "clockwise";
-        r3 = r5.getString(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = java.lang.Integer.parseInt(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r9 = 1;
-        if (r3 != r9) goto L_0x06b3;
-    L_0x0695:
-        r3 = 1;
-    L_0x0696:
-        r9 = "rotatedegree";
-        r5 = r5.getString(r9);	 Catch:{ JSONException -> 0x06b5 }
-        r5 = java.lang.Float.parseFloat(r5);	 Catch:{ JSONException -> 0x06b5 }
-        r8 = r8 - r7;
-        r9 = 0;
-        r3 = com.nexstreaming.nexeditorsdk.nexAnimate.getRotate(r7, r8, r3, r5, r9);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = r3.setInterpolator(r6);	 Catch:{ JSONException -> 0x06b5 }
-        r0 = r16;
-        r0.addAnimate(r3);	 Catch:{ JSONException -> 0x06b5 }
-        r3 = r4 + 1;
-        r4 = r3;
-        goto L_0x065b;
-    L_0x06b3:
-        r3 = 0;
-        goto L_0x0696;
-    L_0x06b5:
-        r3 = move-exception;
-        r3.printStackTrace();
-        r4 = a;
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r6 = "applyOverlayAsset failed";
-        r5 = r5.append(r6);
-        r6 = r3.getMessage();
-        r5 = r5.append(r6);
-        r5 = r5.toString();
-        android.util.Log.d(r4, r5);
-        r3 = r3.getMessage();
-        goto L_0x0171;
-    L_0x06db:
-        r3 = 1;
-        r0 = r16;
-        r0.setOverlayTitle(r3);
-        r0 = r34;
-        r1 = r16;
-        r0.addOverlay(r1);
-        r6 = r12;
-        r7 = r13;
-        r5 = r14;
-        r8 = r15;
-        goto L_0x001e;
-    L_0x06ee:
-        r3 = 0;
-        goto L_0x0171;
-    L_0x06f1:
-        r8 = r3;
-        goto L_0x0438;
-    L_0x06f4:
-        r6 = r12;
-        r7 = r13;
-        r5 = r14;
-        r8 = r15;
-        goto L_0x001e;
-    L_0x06fa:
-        r19 = r8;
-        goto L_0x02a2;
-    L_0x06fe:
-        r12 = r6;
-        r13 = r7;
-        r14 = r5;
-        r15 = r8;
-        goto L_0x009b;
-    L_0x0704:
-        r12 = r6;
-        r13 = r7;
-        r15 = r5;
-        goto L_0x009b;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.nexeditorsdk.nexOverlayTitle.a(android.content.Context, com.nexstreaming.nexeditorsdk.nexProject, java.util.List):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public String a(Context context, nexProject nexproject, List<nexTitleInfo> list) {
+        a(nexproject);
+        Priority b = b(nexproject);
+        boolean z = false;
+        Iterator it = this.g.iterator();
+        int i = 0;
+        String str = null;
+        int i2 = 0;
+        while (it.hasNext()) {
+            boolean a;
+            int parseInt;
+            int i3;
+            String str2;
+            Object obj;
+            nexOverlayItem nexoverlayitem;
+            HashMap hashMap = (HashMap) it.next();
+            String str3 = (String) hashMap.get(nexExportFormat.TAG_FORMAT_TYPE);
+            if (str3.equals("title") && hashMap.containsKey("group") && ((String) hashMap.get("group")).endsWith("_1")) {
+                String str4;
+                String[] split;
+                if (str == null) {
+                    str4 = (String) hashMap.get("group");
+                    a = a((List) list, str4);
+                    if (a && hashMap.containsKey("adjust_pos_non_sub")) {
+                        split = ((String) hashMap.get("adjust_pos_non_sub")).replace(" ", "").split(",");
+                        i = Integer.parseInt(split[0]);
+                        parseInt = Integer.parseInt(split[1]);
+                        i3 = i;
+                        str2 = str4;
+                        if (!a && hashMap.containsKey("group") && ((String) hashMap.get("group")).endsWith("_2")) {
+                            i2 = parseInt;
+                            i = i3;
+                            z = a;
+                            str = str2;
+                        } else {
+                            String str5;
+                            int parseInt2;
+                            int parseInt3;
+                            int i4;
+                            int parseInt4;
+                            obj = -1;
+                            switch (str3.hashCode()) {
+                                case 100313435:
+                                    if (str3.equals("image")) {
+                                        obj = 1;
+                                        break;
+                                    }
+                                    break;
+                                case 110371416:
+                                    if (str3.equals("title")) {
+                                        obj = null;
+                                        break;
+                                    }
+                                    break;
+                            }
+                            int parseInt5;
+                            int i5;
+                            switch (obj) {
+                                case null:
+                                    int parseInt6 = Integer.parseInt((String) hashMap.get("id"));
+                                    str5 = (String) hashMap.get("text");
+                                    Integer.parseInt((String) hashMap.get("text_max_len"));
+                                    String[] split2 = ((String) hashMap.get("position")).replace(" ", "").split(",");
+                                    if (split2 == null) {
+                                        return "Wrong position data of title";
+                                    }
+                                    parseInt5 = Integer.parseInt(split2[0]);
+                                    i = Integer.parseInt(split2[1]);
+                                    i2 = Integer.parseInt(split2[2]);
+                                    parseInt2 = Integer.parseInt(split2[3]);
+                                    int i6 = (parseInt5 + i2) / 2;
+                                    int i7 = (i + parseInt2) / 2;
+                                    i2 -= parseInt5;
+                                    i = parseInt2 - i;
+                                    int parseInt7 = Integer.parseInt((String) hashMap.get("start_time"));
+                                    parseInt3 = Integer.parseInt((String) hashMap.get("duration"));
+                                    if ((b != Priority.START || parseInt7 >= 0) && (b != Priority.END || parseInt7 < 0)) {
+                                        Object obj2;
+                                        Align align;
+                                        int i8;
+                                        String a2 = a(parseInt6, (List) list, (String) hashMap.get("font"));
+                                        parseInt5 = a(parseInt6, (List) list, Integer.parseInt((String) hashMap.get("font_size")));
+                                        int parseColor = Color.parseColor((String) hashMap.get("text_color"));
+                                        if (parseInt5 > i) {
+                                            parseInt5 = i - 4;
+                                        }
+                                        Object obj3 = Integer.parseInt((String) hashMap.get("shadow_visible")) == 1 ? 1 : null;
+                                        int parseColor2 = Color.parseColor((String) hashMap.get("shadow_color"));
+                                        Object obj4 = Integer.parseInt((String) hashMap.get("glow_visible")) == 1 ? 1 : null;
+                                        int parseColor3 = Color.parseColor((String) hashMap.get("glow_color"));
+                                        if (Integer.parseInt((String) hashMap.get("outline_visible")) == 1) {
+                                            obj2 = 1;
+                                        } else {
+                                            obj2 = null;
+                                        }
+                                        int parseColor4 = Color.parseColor((String) hashMap.get("outline_color"));
+                                        str3 = (String) hashMap.get("align");
+                                        if (a && hashMap.containsKey("adjust_align_non_sub")) {
+                                            str3 = (String) hashMap.get("adjust_align_non_sub");
+                                        }
+                                        Align align2 = Align.CENTER;
+                                        if (str3.contains("LEFT")) {
+                                            align = Align.LEFT;
+                                        } else if (str3.contains("RIGHT")) {
+                                            align = Align.RIGHT;
+                                        } else {
+                                            align = align2;
+                                        }
+                                        i4 = 1;
+                                        if (str3.contains("MIDDLE")) {
+                                            i4 = 2;
+                                        } else if (str3.contains("BOTTOM")) {
+                                            i4 = 3;
+                                        }
+                                        if (a) {
+                                            str5 = a(str2, (List) list);
+                                            i5 = i6 + i3;
+                                            parseInt2 = i7 + parseInt;
+                                            i7 = a(str2, (List) list, parseInt5);
+                                            i6 = parseInt2;
+                                            i8 = i5;
+                                            str4 = str5;
+                                        } else {
+                                            i8 = i6;
+                                            i6 = i7;
+                                            i7 = parseInt5;
+                                            str4 = b(parseInt6, list, str5);
+                                        }
+                                        if (str4 == null) {
+                                            i2 = parseInt;
+                                            i = i3;
+                                            z = a;
+                                            str = str2;
+                                            break;
+                                        } else if (str4.length() <= 0) {
+                                            i2 = parseInt;
+                                            i = i3;
+                                            z = a;
+                                            str = str2;
+                                            break;
+                                        } else {
+                                            if (parseInt7 < 0) {
+                                                if (nexproject.getTotalTime() < parseInt3) {
+                                                    parseInt3 = nexproject.getTotalTime();
+                                                    parseInt7 = 0;
+                                                } else {
+                                                    parseInt7 = nexproject.getTotalTime() - parseInt3;
+                                                }
+                                            }
+                                            runTimeMakeBitMap qVar = new q(context, str4, i2, i, 1.0f);
+                                            nexOverlayItem nexoverlayitem2 = new nexOverlayItem(new nexOverlayImage("" + parseInt6, qVar), i8, i6, parseInt7, parseInt3 + parseInt7);
+                                            qVar.a((float) i7, parseColor, align, a2, i4);
+                                            if (obj3 != null) {
+                                                qVar.a(true, parseColor2, 5.0f, 3.0f, 3.0f);
+                                            }
+                                            if (obj4 != null) {
+                                                qVar.b(true, parseColor3, 8.0f);
+                                            }
+                                            if (obj2 != null) {
+                                                qVar.a(true, parseColor4, 1.0f);
+                                            }
+                                            qVar.a(nexoverlayitem2.getId());
+                                            nexoverlayitem = nexoverlayitem2;
+                                        }
+                                    } else {
+                                        Log.d(a, String.format("Apply title skip(%s %d)", new Object[]{b.name(), Integer.valueOf(parseInt7)}));
+                                        i2 = parseInt;
+                                        i = i3;
+                                        z = a;
+                                        str = str2;
+                                        continue;
+                                        continue;
+                                        continue;
+                                        continue;
+                                    }
+                                    break;
+                                case 1:
+                                    Integer.parseInt((String) hashMap.get("id"));
+                                    split = ((String) hashMap.get("position")).replace(" ", "").split(",");
+                                    if (split == null) {
+                                        return "Wrong position data of title";
+                                    }
+                                    parseInt2 = Integer.parseInt(split[0]);
+                                    i = Integer.parseInt(split[1]);
+                                    i5 = Integer.parseInt(split[2]);
+                                    parseInt4 = Integer.parseInt(split[3]);
+                                    parseInt5 = (parseInt2 + i5) / 2;
+                                    i2 = (i + parseInt4) / 2;
+                                    parseInt2 = i5 - parseInt2;
+                                    parseInt4 -= i;
+                                    i = Integer.parseInt((String) hashMap.get("start_time"));
+                                    parseInt4 = Integer.parseInt((String) hashMap.get("duration"));
+                                    if ((b != Priority.START || i >= 0) && (b != Priority.END || i < 0)) {
+                                        if (i >= 0) {
+                                            i5 = parseInt4;
+                                        } else if (nexproject.getTotalTime() < parseInt4) {
+                                            i = 0;
+                                            i5 = nexproject.getTotalTime();
+                                        } else {
+                                            i = nexproject.getTotalTime() - parseInt4;
+                                            i5 = parseInt4;
+                                        }
+                                        nexoverlayitem = new nexOverlayItem(b((String) hashMap.get("image_res")), parseInt5, i2, i, i5 + i);
+                                    } else {
+                                        Log.d(a, String.format("Apply image res skip(%s %d)", new Object[]{b.name(), Integer.valueOf(i)}));
+                                        i2 = parseInt;
+                                        i = i3;
+                                        z = a;
+                                        str = str2;
+                                        continue;
+                                        continue;
+                                        continue;
+                                        continue;
+                                    }
+                                    break;
+                                default:
+                                    nexoverlayitem = null;
+                            }
+                            if (nexoverlayitem != null) {
+                                i2 = parseInt;
+                                i = i3;
+                                z = a;
+                                str = str2;
+                            } else {
+                                if (hashMap.containsKey("rotate")) {
+                                    nexoverlayitem.setRotate(Float.parseFloat((String) hashMap.get("rotate")));
+                                }
+                                if (hashMap.containsKey("scale")) {
+                                    split = ((String) hashMap.get("scale")).replace(" ", "").split(",");
+                                    if (split != null) {
+                                        nexoverlayitem.setScale(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Float.parseFloat(split[2]));
+                                    }
+                                }
+                                nexoverlayitem.clearAnimate();
+                                str5 = (String) hashMap.get("animation");
+                                if (a && hashMap.containsKey("adjust_animation_non_sub")) {
+                                    str5 = (String) hashMap.get("adjust_animation_non_sub");
+                                }
+                                try {
+                                    JSONArray jSONArray = new JSONArray(str5);
+                                    parseInt4 = 0;
+                                    while (true) {
+                                        i4 = parseInt4;
+                                        if (i4 < jSONArray.length()) {
+                                            JSONObject jSONObject = jSONArray.getJSONObject(i4);
+                                            str3 = jSONObject.getString(nexExportFormat.TAG_FORMAT_TYPE);
+                                            JSONArray jSONArray2 = jSONObject.getJSONArray("values");
+                                            obj = -1;
+                                            switch (str3.hashCode()) {
+                                                case -925180581:
+                                                    if (str3.equals("rotate")) {
+                                                        obj = 3;
+                                                        break;
+                                                    }
+                                                    break;
+                                                case 3357649:
+                                                    if (str3.equals("move")) {
+                                                        obj = null;
+                                                        break;
+                                                    }
+                                                    break;
+                                                case 92909918:
+                                                    if (str3.equals("alpha")) {
+                                                        obj = 1;
+                                                        break;
+                                                    }
+                                                    break;
+                                                case 109250890:
+                                                    if (str3.equals("scale")) {
+                                                        obj = 2;
+                                                        break;
+                                                    }
+                                                    break;
+                                            }
+                                            TimeInterpolator a3;
+                                            JSONObject jSONObject2;
+                                            switch (obj) {
+                                                case null:
+                                                    parseInt4 = 0;
+                                                    while (true) {
+                                                        parseInt3 = parseInt4;
+                                                        if (parseInt3 >= jSONArray2.length()) {
+                                                            break;
+                                                        }
+                                                        jSONObject = jSONArray2.getJSONObject(parseInt3);
+                                                        a3 = a(jSONObject.getString("motion_type"));
+                                                        int parseInt8 = Integer.parseInt(jSONObject.getString("start_time"));
+                                                        parseInt2 = Integer.parseInt(jSONObject.getString("end_time"));
+                                                        final float parseFloat = Float.parseFloat(jSONObject.getString("start_x"));
+                                                        final float parseFloat2 = Float.parseFloat(jSONObject.getString("end_x"));
+                                                        final float parseFloat3 = Float.parseFloat(jSONObject.getString("start_y"));
+                                                        final float parseFloat4 = Float.parseFloat(jSONObject.getString("end_y"));
+                                                        nexoverlayitem.addAnimate(nexAnimate.getMove(parseInt8, parseInt2 - parseInt8, new MoveTrackingPath() {
+                                                            public float getTranslatePosition(int i, float f) {
+                                                                float abs;
+                                                                if (i == 1) {
+                                                                    abs = Math.abs(parseFloat - parseFloat2) * f;
+                                                                    if (parseFloat >= parseFloat2) {
+                                                                        abs = -abs;
+                                                                    }
+                                                                    return abs + parseFloat;
+                                                                } else if (i != 2) {
+                                                                    return 0.0f;
+                                                                } else {
+                                                                    abs = Math.abs(parseFloat3 - parseFloat4) * f;
+                                                                    if (parseFloat3 >= parseFloat4) {
+                                                                        abs = -abs;
+                                                                    }
+                                                                    return abs + parseFloat3;
+                                                                }
+                                                            }
+                                                        }).setInterpolator(a3));
+                                                        parseInt4 = parseInt3 + 1;
+                                                    }
+                                                case 1:
+                                                    for (parseInt4 = 0; parseInt4 < jSONArray2.length(); parseInt4++) {
+                                                        jSONObject2 = jSONArray2.getJSONObject(parseInt4);
+                                                        TimeInterpolator a4 = a(jSONObject2.getString("motion_type"));
+                                                        i2 = Integer.parseInt(jSONObject2.getString("start_time"));
+                                                        nexoverlayitem.addAnimate(nexAnimate.getAlpha(i2, Integer.parseInt(jSONObject2.getString("end_time")) - i2, Float.parseFloat(jSONObject2.getString("start")), Float.parseFloat(jSONObject2.getString("end"))).setInterpolator(a4));
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    parseInt4 = 0;
+                                                    while (true) {
+                                                        parseInt3 = parseInt4;
+                                                        if (parseInt3 >= jSONArray2.length()) {
+                                                            break;
+                                                        }
+                                                        jSONObject2 = jSONArray2.getJSONObject(parseInt3);
+                                                        a3 = a(jSONObject2.getString("motion_type"));
+                                                        parseInt4 = Integer.parseInt(jSONObject2.getString("start_time"));
+                                                        nexoverlayitem.addAnimate(nexAnimate.getScale(parseInt4, Integer.parseInt(jSONObject2.getString("end_time")) - parseInt4, Float.parseFloat(jSONObject2.getString("start_x")), Float.parseFloat(jSONObject2.getString("start_y")), Float.parseFloat(jSONObject2.getString("end_x")), Float.parseFloat(jSONObject2.getString("end_y"))).setInterpolator(a3));
+                                                        parseInt4 = parseInt3 + 1;
+                                                    }
+                                                case 3:
+                                                    parseInt4 = 0;
+                                                    while (true) {
+                                                        parseInt2 = parseInt4;
+                                                        if (parseInt2 >= jSONArray2.length()) {
+                                                            break;
+                                                        }
+                                                        JSONObject jSONObject3 = jSONArray2.getJSONObject(parseInt2);
+                                                        TimeInterpolator a5 = a(jSONObject3.getString("motion_type"));
+                                                        i = Integer.parseInt(jSONObject3.getString("start_time"));
+                                                        nexoverlayitem.addAnimate(nexAnimate.getRotate(i, Integer.parseInt(jSONObject3.getString("end_time")) - i, Integer.parseInt(jSONObject3.getString("clockwise")) == 1, Float.parseFloat(jSONObject3.getString("rotatedegree")), null).setInterpolator(a5));
+                                                        parseInt4 = parseInt2 + 1;
+                                                    }
+                                                default:
+                                                    break;
+                                            }
+                                            parseInt4 = i4 + 1;
+                                        } else {
+                                            nexoverlayitem.setOverlayTitle(true);
+                                            nexproject.addOverlay(nexoverlayitem);
+                                            i2 = parseInt;
+                                            i = i3;
+                                            z = a;
+                                            str = str2;
+                                        }
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Log.d(a, "applyOverlayAsset failed" + e.getMessage());
+                                    return e.getMessage();
+                                }
+                            }
+                        }
+                    }
+                } else if (!str.equals(hashMap.get("group"))) {
+                    str4 = (String) hashMap.get("group");
+                    i = 0;
+                    i2 = 0;
+                    a = a((List) list, str4);
+                    if (a && hashMap.containsKey("adjust_pos_non_sub")) {
+                        split = ((String) hashMap.get("adjust_pos_non_sub")).replace(" ", "").split(",");
+                        i = Integer.parseInt(split[0]);
+                        parseInt = Integer.parseInt(split[1]);
+                        i3 = i;
+                        str2 = str4;
+                        if (!a) {
+                        }
+                        obj = -1;
+                        switch (str3.hashCode()) {
+                            case 100313435:
+                                break;
+                            case 110371416:
+                                break;
+                        }
+                        switch (obj) {
+                            case null:
+                                break;
+                            case 1:
+                                break;
+                            default:
+                                break;
+                        }
+                        if (nexoverlayitem != null) {
+                        }
+                    }
+                }
+                parseInt = i2;
+                i3 = i;
+                str2 = str4;
+                if (!a) {
+                }
+                obj = -1;
+                switch (str3.hashCode()) {
+                    case 100313435:
+                        break;
+                    case 110371416:
+                        break;
+                }
+                switch (obj) {
+                    case null:
+                        break;
+                    case 1:
+                        break;
+                    default:
+                        break;
+                }
+                if (nexoverlayitem != null) {
+                }
+            }
+            parseInt = i2;
+            i3 = i;
+            a = z;
+            str2 = str;
+            if (!a) {
+            }
+            obj = -1;
+            switch (str3.hashCode()) {
+                case 100313435:
+                    break;
+                case 110371416:
+                    break;
+            }
+            switch (obj) {
+                case null:
+                    break;
+                case 1:
+                    break;
+                default:
+                    break;
+            }
+            if (nexoverlayitem != null) {
+            }
+        }
+        return null;
     }
 
     public String a(nexProject nexproject) {

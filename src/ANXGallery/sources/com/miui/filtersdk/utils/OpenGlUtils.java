@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.util.Log;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.Buffer;
@@ -167,60 +168,59 @@ public class OpenGlUtils {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:22:0x002a A:{SYNTHETIC, Splitter: B:22:0x002a} */
-    public static android.graphics.Bitmap getImageFromPath(java.lang.String r5) {
-        /*
-        r1 = 0;
-        r2 = 0;
-        r3 = new java.io.FileInputStream;	 Catch:{ IOException -> 0x0018 }
-        r3.<init>(r5);	 Catch:{ IOException -> 0x0018 }
-        r1 = android.graphics.BitmapFactory.decodeStream(r3);	 Catch:{ IOException -> 0x0036, all -> 0x0033 }
-        if (r3 == 0) goto L_0x0039;
-    L_0x000d:
-        r3.close();	 Catch:{ IOException -> 0x0012 }
-        r2 = r3;
-    L_0x0011:
-        return r1;
-    L_0x0012:
-        r0 = move-exception;
-        r0.printStackTrace();
-        r2 = r3;
-        goto L_0x0011;
-    L_0x0018:
-        r0 = move-exception;
-    L_0x0019:
-        r0.printStackTrace();	 Catch:{ all -> 0x0027 }
-        if (r2 == 0) goto L_0x0011;
-    L_0x001e:
-        r2.close();	 Catch:{ IOException -> 0x0022 }
-        goto L_0x0011;
-    L_0x0022:
-        r0 = move-exception;
-        r0.printStackTrace();
-        goto L_0x0011;
-    L_0x0027:
-        r4 = move-exception;
-    L_0x0028:
-        if (r2 == 0) goto L_0x002d;
-    L_0x002a:
-        r2.close();	 Catch:{ IOException -> 0x002e }
-    L_0x002d:
-        throw r4;
-    L_0x002e:
-        r0 = move-exception;
-        r0.printStackTrace();
-        goto L_0x002d;
-    L_0x0033:
-        r4 = move-exception;
-        r2 = r3;
-        goto L_0x0028;
-    L_0x0036:
-        r0 = move-exception;
-        r2 = r3;
-        goto L_0x0019;
-    L_0x0039:
-        r2 = r3;
-        goto L_0x0011;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.filtersdk.utils.OpenGlUtils.getImageFromPath(java.lang.String):android.graphics.Bitmap");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Bitmap getImageFromPath(String fileName) {
+        IOException e;
+        Throwable th;
+        Bitmap image = null;
+        InputStream is = null;
+        try {
+            InputStream is2 = new FileInputStream(fileName);
+            try {
+                image = BitmapFactory.decodeStream(is2);
+                if (is2 != null) {
+                    try {
+                        is2.close();
+                        is = is2;
+                    } catch (IOException e2) {
+                        e2.printStackTrace();
+                        is = is2;
+                    }
+                }
+            } catch (IOException e3) {
+                e2 = e3;
+                is = is2;
+            } catch (Throwable th2) {
+                th = th2;
+                is = is2;
+                if (is != null) {
+                }
+                throw th;
+            }
+        } catch (IOException e4) {
+            e2 = e4;
+            try {
+                e2.printStackTrace();
+                if (is != null) {
+                    try {
+                        is.close();
+                    } catch (IOException e22) {
+                        e22.printStackTrace();
+                    }
+                }
+                return image;
+            } catch (Throwable th3) {
+                th = th3;
+                if (is != null) {
+                    try {
+                        is.close();
+                    } catch (IOException e222) {
+                        e222.printStackTrace();
+                    }
+                }
+                throw th;
+            }
+        }
+        return image;
     }
 }

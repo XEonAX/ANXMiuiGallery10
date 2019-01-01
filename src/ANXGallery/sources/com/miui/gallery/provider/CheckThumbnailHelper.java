@@ -3,6 +3,8 @@ package com.miui.gallery.provider;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.net.Uri;
 import android.text.TextUtils;
 import com.miui.gallery.cloud.CloudUtils;
 import com.miui.gallery.cloud.DownloadPathHelper;
@@ -10,8 +12,10 @@ import com.miui.gallery.provider.GalleryContract.Cloud;
 import com.miui.gallery.provider.GalleryContract.ShareImage;
 import com.miui.gallery.util.ExifUtil;
 import com.miui.gallery.util.FileUtils;
+import com.miui.gallery.util.Log;
 import com.miui.gallery.util.MiscUtil;
 import com.miui.gallery.util.StorageUtils;
+import java.util.HashMap;
 import java.util.Map;
 
 public class CheckThumbnailHelper {
@@ -24,76 +28,30 @@ public class CheckThumbnailHelper {
     /* JADX WARNING: Missing block: B:16:0x004f, code:
             r5 = 1;
      */
-    public static android.database.Cursor checkThumbnail(android.content.Context r14, java.lang.String[] r15, boolean r16) {
-        /*
-        if (r15 != 0) goto L_0x0004;
-    L_0x0002:
-        r2 = 0;
-    L_0x0003:
-        return r2;
-    L_0x0004:
-        r6 = java.lang.System.currentTimeMillis();
-        r2 = new android.database.MatrixCursor;
-        r8 = 1;
-        r8 = new java.lang.String[r8];
-        r9 = 0;
-        r10 = "check_thumbnail_result";
-        r8[r9] = r10;
-        r9 = r15.length;
-        r2.<init>(r8, r9);
-        r0 = new java.util.HashMap;
-        r0.<init>();
-        r9 = r15.length;
-        r8 = 0;
-    L_0x001d:
-        if (r8 >= r9) goto L_0x005a;
-    L_0x001f:
-        r3 = r15[r8];
-        r5 = 1;
-        r4 = android.net.Uri.parse(r3);	 Catch:{ Exception -> 0x0051 }
-        if (r4 == 0) goto L_0x0035;
-    L_0x0028:
-        if (r16 == 0) goto L_0x0045;
-    L_0x002a:
-        r10 = r4.getPath();	 Catch:{ Exception -> 0x0051 }
-        r10 = checkOriginalRecordExist(r14, r10, r0);	 Catch:{ Exception -> 0x0051 }
-        if (r10 == 0) goto L_0x004f;
-    L_0x0034:
-        r5 = 0;
-    L_0x0035:
-        r10 = 1;
-        r10 = new java.lang.Integer[r10];
-        r11 = 0;
-        r12 = java.lang.Integer.valueOf(r5);
-        r10[r11] = r12;
-        r2.addRow(r10);
-        r8 = r8 + 1;
-        goto L_0x001d;
-    L_0x0045:
-        r10 = r4.getPath();	 Catch:{ Exception -> 0x0051 }
-        r10 = checkUserCommentSha1Exist(r10);	 Catch:{ Exception -> 0x0051 }
-        if (r10 != 0) goto L_0x0034;
-    L_0x004f:
-        r5 = 1;
-        goto L_0x0035;
-    L_0x0051:
-        r1 = move-exception;
-        r10 = "CheckThumbnailHelper";
-        r11 = "Failed checking file %s\n %s";
-        com.miui.gallery.util.Log.e(r10, r11, r3, r1);
-        goto L_0x0035;
-    L_0x005a:
-        r8 = "CheckThumbnailHelper";
-        r9 = "Checked %d files, cost %ss";
-        r10 = r15.length;
-        r10 = java.lang.Integer.valueOf(r10);
-        r12 = java.lang.System.currentTimeMillis();
-        r12 = r12 - r6;
-        r11 = java.lang.String.valueOf(r12);
-        com.miui.gallery.util.Log.d(r8, r9, r10, r11);
-        goto L_0x0003;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.provider.CheckThumbnailHelper.checkThumbnail(android.content.Context, java.lang.String[], boolean):android.database.Cursor");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Cursor checkThumbnail(Context context, String[] filePaths, boolean strictMode) {
+        if (filePaths == null) {
+            return null;
+        }
+        long startTime = System.currentTimeMillis();
+        Cursor matrixCursor = new MatrixCursor(new String[]{"check_thumbnail_result"}, filePaths.length);
+        Map<String, Long> cachedAlbumMap = new HashMap();
+        for (String mediaFile : filePaths) {
+            int result = 1;
+            try {
+                Uri mediaFileUri = Uri.parse(mediaFile);
+                if (mediaFileUri != null) {
+                    if (strictMode) {
+                    }
+                    result = 0;
+                }
+            } catch (Exception e) {
+                Log.e("CheckThumbnailHelper", "Failed checking file %s\n %s", mediaFile, e);
+            }
+            matrixCursor.addRow(new Integer[]{Integer.valueOf(result)});
+        }
+        Log.d("CheckThumbnailHelper", "Checked %d files, cost %ss", Integer.valueOf(filePaths.length), String.valueOf(System.currentTimeMillis() - startTime));
+        return matrixCursor;
     }
 
     private static boolean checkUserCommentSha1Exist(String filePath) {

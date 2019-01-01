@@ -1,15 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="28" android:compileSdkVersionCodename="9" package="com.miui.extraphoto" platformBuildVersionCode="28" platformBuildVersionName="9">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:compileSdkVersion="28" 
+    android:compileSdkVersionCodename="9" 
+    android:versionCode="1" 
+    android:versionName="AlarmingQuaintCockatiel"
+    package="com.miui.extraphoto" 
+    platformBuildVersionCode="28" 
+    platformBuildVersionName="9">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_ALL_EXTERNAL_STORAGE"/>
     <uses-permission android:name="com.xiaomi.gallery.permission.CLOUD"/>
-    <application android:largeHeap="true" android:name="com.miui.extraphoto.refocus.ExtraPhotoApp" android:supportsRtl="true">
-        <uses-library android:name="android-support-v13.jar" android:required="false"/>
-        <uses-library android:name="android-support-v7-recyclerview.jar" android:required="false"/>
-        <uses-library android:name="gson.jar" android:required="false"/>
-        <meta-data android:name="notch.config" android:value="portrait"/>
-        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name=".refocus.RefocusActivity" android:screenOrientation="portrait" android:theme="@style/Theme.Dark.NoTitle">
+    <application android:largeHeap="true" 
+        android:name="com.miui.extraphoto.refocus.ExtraPhotoApp" 
+        android:supportsRtl="true">
+        <uses-library android:name="android-support-v13.jar" 
+            android:required="false"/>
+        <uses-library android:name="android-support-v7-recyclerview.jar" 
+            android:required="false"/>
+        <uses-library android:name="gson.jar" 
+            android:required="false"/>
+        <meta-data android:name="notch.config" 
+            android:value="portrait"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" 
+            android:name=".refocus.RefocusActivity" 
+            android:screenOrientation="portrait" 
+            android:theme="@style/Theme.Dark.NoTitle">
             <intent-filter>
                 <action android:name="com.miui.extraphoto.action.VIEW_ADVANCED_REFOCUS"/>
                 <category android:name="android.intent.category.DEFAULT"/>

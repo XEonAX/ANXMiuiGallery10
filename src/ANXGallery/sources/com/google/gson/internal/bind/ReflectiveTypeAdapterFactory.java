@@ -7,6 +7,7 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.internal.C$Gson$Types;
 import com.google.gson.internal.ConstructorConstructor;
 import com.google.gson.internal.Excluder;
 import com.google.gson.internal.ObjectConstructor;
@@ -17,8 +18,10 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -188,103 +191,47 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
             r22 = com.google.gson.reflect.TypeToken.get(com.google.gson.internal.C$Gson$Types.resolve(r22.getType(), r23, r23.getGenericSuperclass()));
             r23 = r22.getRawType();
      */
-    private java.util.Map<java.lang.String, com.google.gson.internal.bind.ReflectiveTypeAdapterFactory.BoundField> getBoundFields(com.google.gson.Gson r21, com.google.gson.reflect.TypeToken<?> r22, java.lang.Class<?> r23) {
-        /*
-        r20 = this;
-        r17 = new java.util.LinkedHashMap;
-        r17.<init>();
-        r2 = r23.isInterface();
-        if (r2 == 0) goto L_0x000c;
-    L_0x000b:
-        return r17;
-    L_0x000c:
-        r10 = r22.getType();
-    L_0x0010:
-        r2 = java.lang.Object.class;
-        r0 = r23;
-        if (r0 == r2) goto L_0x000b;
-    L_0x0016:
-        r13 = r23.getDeclaredFields();
-        r0 = r13.length;
-        r19 = r0;
-        r2 = 0;
-        r18 = r2;
-    L_0x0020:
-        r0 = r18;
-        r1 = r19;
-        if (r0 >= r1) goto L_0x00a4;
-    L_0x0026:
-        r4 = r13[r18];
-        r2 = 1;
-        r0 = r20;
-        r7 = r0.excludeField(r4, r2);
-        r2 = 0;
-        r0 = r20;
-        r8 = r0.excludeField(r4, r2);
-        if (r7 != 0) goto L_0x003f;
-    L_0x0038:
-        if (r8 != 0) goto L_0x003f;
-    L_0x003a:
-        r2 = r18 + 1;
-        r18 = r2;
-        goto L_0x0020;
-    L_0x003f:
-        r2 = 1;
-        r4.setAccessible(r2);
-        r2 = r22.getType();
-        r3 = r4.getGenericType();
-        r0 = r23;
-        r12 = com.google.gson.internal.C$Gson$Types.resolve(r2, r0, r3);
-        r0 = r20;
-        r11 = r0.getFieldNames(r4);
-        r15 = 0;
-        r14 = 0;
-    L_0x0059:
-        r2 = r11.size();
-        if (r14 >= r2) goto L_0x0083;
-    L_0x005f:
-        r5 = r11.get(r14);
-        r5 = (java.lang.String) r5;
-        if (r14 == 0) goto L_0x0068;
-    L_0x0067:
-        r7 = 0;
-    L_0x0068:
-        r6 = com.google.gson.reflect.TypeToken.get(r12);
-        r2 = r20;
-        r3 = r21;
-        r9 = r2.createBoundField(r3, r4, r5, r6, r7, r8);
-        r0 = r17;
-        r16 = r0.put(r5, r9);
-        r16 = (com.google.gson.internal.bind.ReflectiveTypeAdapterFactory.BoundField) r16;
-        if (r15 != 0) goto L_0x0080;
-    L_0x007e:
-        r15 = r16;
-    L_0x0080:
-        r14 = r14 + 1;
-        goto L_0x0059;
-    L_0x0083:
-        if (r15 == 0) goto L_0x003a;
-    L_0x0085:
-        r2 = new java.lang.IllegalArgumentException;
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r3 = r3.append(r10);
-        r6 = " declares multiple JSON fields named ";
-        r3 = r3.append(r6);
-        r6 = r15.name;
-        r3 = r3.append(r6);
-        r3 = r3.toString();
-        r2.<init>(r3);
-        throw r2;
-    L_0x00a4:
-        r2 = r22.getType();
-        r3 = r23.getGenericSuperclass();
-        r0 = r23;
-        r2 = com.google.gson.internal.C$Gson$Types.resolve(r2, r0, r3);
-        r22 = com.google.gson.reflect.TypeToken.get(r2);
-        r23 = r22.getRawType();
-        goto L_0x0010;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.gson.internal.bind.ReflectiveTypeAdapterFactory.getBoundFields(com.google.gson.Gson, com.google.gson.reflect.TypeToken, java.lang.Class):java.util.Map<java.lang.String, com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$BoundField>");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private Map<String, BoundField> getBoundFields(Gson context, TypeToken<?> type, Class<?> raw) {
+        Map<String, BoundField> result = new LinkedHashMap();
+        if (!raw.isInterface()) {
+            Type declaredType = type.getType();
+            while (raw != Object.class) {
+                Field[] fields = raw.getDeclaredFields();
+                int length = fields.length;
+                int i = 0;
+                while (true) {
+                    int i2 = i;
+                    if (i2 >= length) {
+                        break;
+                    }
+                    Field field = fields[i2];
+                    boolean serialize = excludeField(field, true);
+                    boolean deserialize = excludeField(field, false);
+                    if (serialize || deserialize) {
+                        field.setAccessible(true);
+                        Type fieldType = C$Gson$Types.resolve(type.getType(), raw, field.getGenericType());
+                        List<String> fieldNames = getFieldNames(field);
+                        BoundField previous = null;
+                        for (int i3 = 0; i3 < fieldNames.size(); i3++) {
+                            String name = (String) fieldNames.get(i3);
+                            if (i3 != 0) {
+                                serialize = false;
+                            }
+                            Map<String, BoundField> map = result;
+                            BoundField replaced = (BoundField) map.put(name, createBoundField(context, field, name, TypeToken.get(fieldType), serialize, deserialize));
+                            if (previous == null) {
+                                previous = replaced;
+                            }
+                        }
+                        if (previous != null) {
+                            throw new IllegalArgumentException(declaredType + " declares multiple JSON fields named " + previous.name);
+                        }
+                    }
+                    i = i2 + 1;
+                }
+            }
+        }
+        return result;
     }
 }

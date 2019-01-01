@@ -113,6 +113,7 @@ public class HomePageActivity extends BaseActivity implements Attacher, OnAppFoc
         this.mHomePageStartupHelper = new HomePageStartupHelper(this, this);
         this.mHomePageStartupHelper.onActivityCreate();
         super.onCreate(savedInstanceState);
+        this.mActionBar = getActionBar();
         this.mActionBar.setFragmentViewPagerMode(this, getFragmentManager());
         setupHomePageFragment();
         this.mAppFocusedCheckHelper = new AppFocusedCheckHelper(this);
@@ -224,6 +225,7 @@ public class HomePageActivity extends BaseActivity implements Attacher, OnAppFoc
     }
 
     private void setupHomePageFragment() {
+        this.mActionBar = getActionBar();
         this.mActionBar.addFragmentTab("HomePageFragment", this.mActionBar.newTab().setText(R.string.home_page_label), HomePageFragment.class, null, false);
         this.mActionBar.addFragmentTab("Empty", this.mActionBar.newTab().setText(R.string.album_page_label), Fragment.class, null, false);
         if (CardManager.isStoryFunctionEnable()) {

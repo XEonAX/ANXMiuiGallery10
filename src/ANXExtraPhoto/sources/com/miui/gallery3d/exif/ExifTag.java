@@ -125,34 +125,14 @@ public class ExifTag {
     /* JADX WARNING: Missing block: B:9:0x001c, code:
             return false;
      */
-    public boolean setValue(long[] r4) {
-        /*
-        r3 = this;
-        r0 = r4.length;
-        r0 = r3.checkBadComponentCount(r0);
-        r1 = 0;
-        if (r0 != 0) goto L_0x001c;
-    L_0x0008:
-        r0 = r3.mDataType;
-        r2 = 4;
-        if (r0 == r2) goto L_0x000e;
-    L_0x000d:
-        goto L_0x001c;
-    L_0x000e:
-        r0 = r3.checkOverflowForUnsignedLong(r4);
-        if (r0 == 0) goto L_0x0015;
-    L_0x0014:
-        return r1;
-    L_0x0015:
-        r3.mValue = r4;
-        r0 = r4.length;
-        r3.mComponentCountActual = r0;
-        r0 = 1;
-        return r0;
-    L_0x001c:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery3d.exif.ExifTag.setValue(long[]):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean setValue(long[] value) {
+        if (checkBadComponentCount(value.length) || this.mDataType != (short) 4 || checkOverflowForUnsignedLong(value)) {
+            return false;
+        }
+        this.mValue = value;
+        this.mComponentCountActual = value.length;
+        return true;
     }
 
     public boolean setValue(long value) {

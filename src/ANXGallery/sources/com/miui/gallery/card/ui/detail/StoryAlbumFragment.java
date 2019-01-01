@@ -35,6 +35,8 @@ import com.miui.gallery.Config.ThumbConfig;
 import com.miui.gallery.R;
 import com.miui.gallery.adapter.BaseViewHolder;
 import com.miui.gallery.adapter.HeaderFooterRecyclerAdapterWrapper;
+import com.miui.gallery.assistant.cache.ImageFeatureCacheManager;
+import com.miui.gallery.assistant.model.TinyImageFeature;
 import com.miui.gallery.card.Card;
 import com.miui.gallery.card.CardManager;
 import com.miui.gallery.card.CardUtil;
@@ -906,68 +908,39 @@ public class StoryAlbumFragment extends BaseMediaFragment {
     /* JADX WARNING: Removed duplicated region for block: B:11:0x0050  */
     /* JADX WARNING: Removed duplicated region for block: B:15:0x0079  */
     /* JADX WARNING: Removed duplicated region for block: B:14:0x0067  */
-    private boolean updateImages(android.database.Cursor r9) {
-        /*
-        r8 = this;
-        r4 = r8.mImageInfos;
-        r1 = r4.size();
-        r4 = r8.mImageInfos;
-        r4.clear();
-        r4 = r8.mSelectedPhotoSha1s;
-        r4.clear();
-        if (r9 == 0) goto L_0x0048;
-    L_0x0012:
-        r4 = r9.moveToFirst();
-        if (r4 == 0) goto L_0x0048;
-    L_0x0018:
-        r0 = new com.miui.gallery.card.model.MediaInfo;
-        r0.<init>(r9);
-        r4 = com.miui.gallery.assistant.cache.ImageFeatureCacheManager.getInstance();
-        r6 = r0.getId();
-        r3 = r4.getImageFeature(r6);
-        if (r3 == 0) goto L_0x0032;
-    L_0x002b:
-        r4 = r3.getScore();
-        r0.setScore(r4);
-    L_0x0032:
-        r4 = r8.mImageInfos;
-        r4.add(r0);
-        r4 = 15;
-        r2 = r9.getString(r4);
-        r4 = r8.mSelectedPhotoSha1s;
-        r4.add(r2);
-        r4 = r9.moveToNext();
-        if (r4 != 0) goto L_0x0018;
-    L_0x0048:
-        r4 = r8.mSelectedPhotoSha1s;
-        r4 = r4.isEmpty();
-        if (r4 == 0) goto L_0x005f;
-    L_0x0050:
-        r4 = "StoryAlbumFragment";
-        r5 = "empty selected ids after data updated";
-        com.miui.gallery.util.Log.d(r4, r5);
-        r4 = r8.mActivity;
-        r4.finish();
-        r8.updateCardIds();
-    L_0x005f:
-        r4 = r8.mImageInfos;
-        r4 = r4.size();
-        if (r1 == r4) goto L_0x0079;
-    L_0x0067:
-        r8.updateFlexboxLayoutParamHelper();
-        r4 = r8.mSlideShowHeaderView;
-        r5 = r8.mImageInfos;
-        r4.updateMedias(r5);
-        r8.updateSlideHeaderPlayStatus();
-        r8.updateCardIds();
-        r4 = 1;
-    L_0x0078:
-        return r4;
-    L_0x0079:
-        r4 = 0;
-        goto L_0x0078;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.card.ui.detail.StoryAlbumFragment.updateImages(android.database.Cursor):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private boolean updateImages(Cursor cursor) {
+        int old = this.mImageInfos.size();
+        this.mImageInfos.clear();
+        this.mSelectedPhotoSha1s.clear();
+        if (cursor == null || !cursor.moveToFirst()) {
+            if (this.mSelectedPhotoSha1s.isEmpty()) {
+                Log.d("StoryAlbumFragment", "empty selected ids after data updated");
+                this.mActivity.finish();
+                updateCardIds();
+            }
+            if (old != this.mImageInfos.size()) {
+                return false;
+            }
+            updateFlexboxLayoutParamHelper();
+            this.mSlideShowHeaderView.updateMedias(this.mImageInfos);
+            updateSlideHeaderPlayStatus();
+            updateCardIds();
+            return true;
+        }
+        do {
+            MediaInfo mediaInfo = new MediaInfo(cursor);
+            TinyImageFeature tinyImageFeature = ImageFeatureCacheManager.getInstance().getImageFeature(mediaInfo.getId());
+            if (tinyImageFeature != null) {
+                mediaInfo.setScore(tinyImageFeature.getScore());
+            }
+            this.mImageInfos.add(mediaInfo);
+            this.mSelectedPhotoSha1s.add(cursor.getString(15));
+        } while (cursor.moveToNext());
+        if (this.mSelectedPhotoSha1s.isEmpty()) {
+        }
+        if (old != this.mImageInfos.size()) {
+        }
     }
 
     private void updateFlexboxLayoutParamHelper() {

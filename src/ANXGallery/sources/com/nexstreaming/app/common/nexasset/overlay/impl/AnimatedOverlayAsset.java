@@ -13,6 +13,7 @@ import com.larvalabs.svgandroid.SVGParser;
 import com.nexstreaming.app.common.nexasset.assetpackage.AssetPackageReader;
 import com.nexstreaming.app.common.nexasset.assetpackage.f;
 import com.nexstreaming.app.common.nexasset.overlay.AwakeAsset;
+import com.nexstreaming.app.common.nexasset.overlay.OverlayMotion;
 import com.nexstreaming.app.common.nexasset.overlay.OverlaySpec;
 import com.nexstreaming.app.common.nexasset.overlay.OverlaySpec.Frame;
 import com.nexstreaming.app.common.nexasset.overlay.OverlaySpec.Layer;
@@ -60,146 +61,67 @@ public class AnimatedOverlayAsset extends AbstractOverlayAsset {
 
         /* JADX WARNING: Removed duplicated region for block: B:39:0x0090 A:{SYNTHETIC} */
         /* JADX WARNING: Removed duplicated region for block: B:24:0x007c  */
-        public void onRender(com.nexstreaming.kminternal.nexvideoeditor.LayerRenderer r13, com.nexstreaming.app.common.nexasset.overlay.OverlayMotion r14, int r15, int r16) {
-            /*
-            r12 = this;
-            r0 = r12.overlaySpec;
-            if (r0 != 0) goto L_0x0005;
-        L_0x0004:
-            return;
-        L_0x0005:
-            r0 = r13.g();
-            r0 = r0 - r15;
-            r1 = r12.overlaySpec;
-            r1 = r1.fps;
-            r0 = r0 * r1;
-            r6 = r0 / 1000;
-            r0 = r12.overlaySpec;
-            r0 = r0.layers;
-            r8 = r0.size();
-            r0 = 0;
-            r7 = r0;
-        L_0x001b:
-            if (r7 >= r8) goto L_0x0004;
-        L_0x001d:
-            r0 = r12.overlaySpec;
-            r0 = r0.layers;
-            r0 = r0.get(r7);
-            r0 = (com.nexstreaming.app.common.nexasset.overlay.OverlaySpec.Layer) r0;
-            r1 = r0.iterationCount;
-            if (r1 < 0) goto L_0x0094;
-        L_0x002b:
-            r1 = r0.iterationCount;
-            r2 = r0.duration;
-            r1 = r1 * r2;
-            r1 = r1 + -1;
-            if (r6 <= r1) goto L_0x0094;
-        L_0x0034:
-            r1 = r0.iterationCount;
-            r2 = r0.duration;
-            r1 = r1 * r2;
-            r1 = r1 + -1;
-        L_0x003b:
-            r2 = r0.duration;
-            r2 = r1 / r2;
-            r2 = r2 % 2;
-            if (r2 != 0) goto L_0x0096;
-        L_0x0043:
-            r2 = 1;
-        L_0x0044:
-            r3 = r0.duration;
-            r1 = r1 % r3;
-            r3 = com.nexstreaming.app.common.nexasset.overlay.impl.AnimatedOverlayAsset.AnonymousClass1.$SwitchMap$com$nexstreaming$app$common$nexasset$overlay$OverlaySpec$AnimDirection;
-            r4 = r0.direction;
-            r4 = r4.ordinal();
-            r3 = r3[r4];
-            switch(r3) {
-                case 1: goto L_0x0098;
-                case 2: goto L_0x009a;
-                case 3: goto L_0x00a0;
-                case 4: goto L_0x00a8;
-                default: goto L_0x0054;
-            };
-        L_0x0054:
-            r2 = r1;
-        L_0x0055:
-            r1 = r0.frames;
-            r5 = r1.size();
-            r4 = 0;
-            r3 = 0;
-            r1 = 0;
-            r11 = r1;
-            r1 = r4;
-            r4 = r3;
-            r3 = r11;
-        L_0x0062:
-            if (r3 >= r5) goto L_0x006e;
-        L_0x0064:
-            r1 = r0.frames;
-            r1 = r1.get(r3);
-            r1 = (com.nexstreaming.app.common.nexasset.overlay.OverlaySpec.Frame) r1;
-            if (r2 > r4) goto L_0x00b0;
-        L_0x006e:
-            if (r1 == 0) goto L_0x0090;
-        L_0x0070:
-            r0 = r1.blank;
-            if (r0 != 0) goto L_0x0090;
-        L_0x0074:
-            r0 = r1.src;
-            r1 = r12.getImage(r0);
-            if (r1 == 0) goto L_0x0090;
-        L_0x007c:
-            r0 = r12.bounds;
-            r2 = r0.left;
-            r0 = r12.bounds;
-            r3 = r0.top;
-            r0 = r12.bounds;
-            r4 = r0.right;
-            r0 = r12.bounds;
-            r5 = r0.bottom;
-            r0 = r13;
-            r0.a(r1, r2, r3, r4, r5);
-        L_0x0090:
-            r0 = r7 + 1;
-            r7 = r0;
-            goto L_0x001b;
-        L_0x0094:
-            r1 = r6;
-            goto L_0x003b;
-        L_0x0096:
-            r2 = 0;
-            goto L_0x0044;
-        L_0x0098:
-            r2 = r1;
-            goto L_0x0055;
-        L_0x009a:
-            r2 = r0.duration;
-            r1 = r2 - r1;
-            r2 = r1;
-            goto L_0x0055;
-        L_0x00a0:
-            if (r2 != 0) goto L_0x0054;
-        L_0x00a2:
-            r2 = r0.duration;
-            r1 = r2 - r1;
-            r2 = r1;
-            goto L_0x0055;
-        L_0x00a8:
-            if (r2 == 0) goto L_0x0054;
-        L_0x00aa:
-            r2 = r0.duration;
-            r1 = r2 - r1;
-            r2 = r1;
-            goto L_0x0055;
-        L_0x00b0:
-            r9 = 1;
-            r10 = r1.hold;
-            r9 = java.lang.Math.max(r9, r10);
-            r4 = r4 + r9;
-            r3 = r3 + 1;
-            goto L_0x0062;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.nexstreaming.app.common.nexasset.overlay.impl.AnimatedOverlayAsset.AwakeAssetImpl.onRender(com.nexstreaming.kminternal.nexvideoeditor.LayerRenderer, com.nexstreaming.app.common.nexasset.overlay.OverlayMotion, int, int):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void onRender(LayerRenderer layerRenderer, OverlayMotion overlayMotion, int i, int i2) {
+            if (this.overlaySpec != null) {
+                int g = ((layerRenderer.g() - i) * this.overlaySpec.fps) / 1000;
+                int size = this.overlaySpec.layers.size();
+                for (int i3 = 0; i3 < size; i3++) {
+                    int i4;
+                    int i5;
+                    Bitmap image;
+                    Layer layer = (Layer) this.overlaySpec.layers.get(i3);
+                    if (layer.iterationCount < 0 || g <= (layer.iterationCount * layer.duration) - 1) {
+                        i4 = g;
+                    } else {
+                        i4 = (layer.iterationCount * layer.duration) - 1;
+                    }
+                    Object obj = (i4 / layer.duration) % 2 == 0 ? 1 : null;
+                    i4 %= layer.duration;
+                    switch (layer.direction) {
+                        case NORMAL:
+                            i5 = i4;
+                            break;
+                        case REVERSE:
+                            i5 = layer.duration - i4;
+                            break;
+                        case ALTERNATE:
+                            if (obj == null) {
+                                i5 = layer.duration - i4;
+                                break;
+                            }
+                        case ALTERNATE_REVERSE:
+                            if (obj != null) {
+                                i5 = layer.duration - i4;
+                                break;
+                            }
+                        default:
+                            i5 = i4;
+                            break;
+                    }
+                    int size2 = layer.frames.size();
+                    Frame frame = null;
+                    int i6 = 0;
+                    int i7 = 0;
+                    while (i7 < size2) {
+                        frame = (Frame) layer.frames.get(i7);
+                        if (i5 <= i6) {
+                            if (!(frame == null || frame.blank)) {
+                                image = getImage(frame.src);
+                                if (image == null) {
+                                    layerRenderer.a(image, this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.bottom);
+                                }
+                            }
+                        } else {
+                            i6 += Math.max(1, frame.hold);
+                            i7++;
+                        }
+                    }
+                    image = getImage(frame.src);
+                    if (image == null) {
+                    }
+                }
+            }
         }
 
         public boolean needRendererReawakeOnEditResize() {

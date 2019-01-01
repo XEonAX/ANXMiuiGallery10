@@ -7,11 +7,15 @@ import android.support.v4.provider.DocumentFile;
 import android.text.TextUtils;
 import android.util.Base64;
 import com.miui.gallery.GalleryApp;
+import com.miui.gallery.cloud.CheckResult;
+import com.miui.gallery.cloud.CheckResult.GallerySyncResult;
 import com.miui.gallery.cloud.CloudUtils;
 import com.miui.gallery.cloud.GalleryExtendedAuthToken;
 import com.miui.gallery.cloud.GalleryMiCloudServerException;
 import com.miui.gallery.cloud.HostManager.OwnerMedia;
 import com.miui.gallery.cloud.HostManager.ShareMedia;
+import com.miui.gallery.cloud.NetworkUtils;
+import com.miui.gallery.cloud.NetworkUtils.RequestType;
 import com.miui.gallery.cloudcontrol.CloudControlStrategyHelper;
 import com.miui.gallery.data.DBImage;
 import com.miui.gallery.error.core.ErrorCode;
@@ -27,14 +31,18 @@ import com.miui.gallery.sdk.download.util.DownloadUtil;
 import com.miui.gallery.util.DocumentProviderUtils;
 import com.miui.gallery.util.FileUtils;
 import com.miui.gallery.util.GalleryAes;
+import com.miui.gallery.util.GallerySamplingStatHelper;
 import com.miui.gallery.util.Log;
 import com.miui.gallery.util.MediaFileUtils;
 import com.miui.gallery.util.MediaFileUtils.FileType;
 import com.miui.gallery.util.MiscUtil;
 import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -344,756 +352,217 @@ abstract class AbsThumbnailDownloader implements IDownloader {
     /* JADX WARNING: Removed duplicated region for block: B:100:0x05ee A:{SYNTHETIC, Splitter: B:100:0x05ee} */
     /* JADX WARNING: Removed duplicated region for block: B:95:0x056c A:{Catch:{ all -> 0x05fd }} */
     /* JADX WARNING: Removed duplicated region for block: B:98:0x059f  */
-    private java.lang.String downloadFile(com.miui.gallery.sdk.download.assist.RequestItem r37, java.lang.String r38) {
-        /*
-        r36 = this;
-        r5 = 0;
-        r12 = 0;
-        r16 = 0;
-        r19 = 0;
-        r10 = new java.io.File;
-        r0 = r37;
-        r0 = r0.mDBItem;
-        r28 = r0;
-        r0 = r37;
-        r0 = r0.mDownloadItem;
-        r29 = r0;
-        r29 = r29.getType();
-        r28 = com.miui.gallery.sdk.download.util.DownloadUtil.getDownloadTempFilePath(r28, r29);
-        r0 = r28;
-        r10.<init>(r0);
-        r6 = 0;
-        r15 = 1;
-        r17 = r16;
-    L_0x0025:
-        if (r15 == 0) goto L_0x0666;
-    L_0x0027:
-        r28 = MAX_TRY_COUNT;
-        r0 = r28;
-        if (r6 >= r0) goto L_0x0666;
-    L_0x002d:
-        r15 = 0;
-        r22 = java.lang.System.currentTimeMillis();
-        r28 = com.miui.gallery.cloud.NetworkUtils.RequestType.GET;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r38;
-        r1 = r28;
-        r5 = com.miui.gallery.cloud.NetworkUtils.getHttpConn(r0, r1);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r37;
-        r0 = r0.mDownloadItem;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = r0;
-        r28 = r28.getType();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r20 = com.miui.gallery.preference.GalleryPreferences.FileDownload.getConnTimeout(r28);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r37;
-        r0 = r0.mDBItem;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = r0;
-        r28 = r28.isVideoType();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        if (r28 == 0) goto L_0x005c;
-    L_0x0056:
-        r28 = r20 * 2;
-        r20 = com.miui.gallery.preference.GalleryPreferences.FileDownload.clampConnTimeout(r28);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-    L_0x005c:
-        r0 = r20;
-        r5.setConnectTimeout(r0);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r20;
-        r5.setReadTimeout(r0);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r5.connect();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r21 = r5.getResponseCode();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = 200; // 0xc8 float:2.8E-43 double:9.9E-322;
-        r0 = r21;
-        r1 = r28;
-        if (r0 < r1) goto L_0x007d;
-    L_0x0075:
-        r28 = 300; // 0x12c float:4.2E-43 double:1.48E-321;
-        r0 = r21;
-        r1 = r28;
-        if (r0 < r1) goto L_0x0206;
-    L_0x007d:
-        r28 = com.miui.gallery.cloud.CheckResult.checkKSSThumbnailResult(r21);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r29 = com.miui.gallery.cloud.CheckResult.GallerySyncResult.NotRetryError;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r28;
-        r1 = r29;
-        if (r0 != r1) goto L_0x0178;
-    L_0x0089:
-        r0 = r37;
-        r0 = r0.mDBItem;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = r0;
-        r28 = r28.getSha1();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        com.miui.gallery.preference.ThumbnailPreference.putThumbnailKey(r28);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = r36.getTag();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r29 = "thumbnail can't be download forever, just add sha1 to preference %d, %s";
-        r30 = java.lang.Integer.valueOf(r21);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r37;
-        r0 = r0.mDBItem;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r31 = r0;
-        r31 = r31.getSha1();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        com.miui.gallery.util.Log.e(r28, r29, r30, r31);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r18 = new java.util.HashMap;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r18.<init>();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = "statusCode";
-        r29 = java.lang.String.valueOf(r21);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r18;
-        r1 = r28;
-        r2 = r29;
-        r0.put(r1, r2);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = "downloadType";
-        r0 = r37;
-        r0 = r0.mDownloadItem;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r29 = r0;
-        r29 = r29.getType();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r29 = java.lang.String.valueOf(r29);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r18;
-        r1 = r28;
-        r2 = r29;
-        r0.put(r1, r2);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = "Sync";
-        r29 = "sync_thumbnail_build_error";
-        r0 = r28;
-        r1 = r29;
-        r2 = r18;
-        com.miui.gallery.util.GallerySamplingStatHelper.recordErrorEvent(r0, r1, r2);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = new com.miui.gallery.sdk.download.assist.DownloadFailReason;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r29 = com.miui.gallery.error.core.ErrorCode.THUMBNAIL_BUILD_ERROR;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r30 = "thumbnail can't build: %s";
-        r31 = 1;
-        r0 = r31;
-        r0 = new java.lang.Object[r0];	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r31 = r0;
-        r32 = 0;
-        r0 = r37;
-        r0 = r0.mDBItem;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r33 = r0;
-        r33 = r33.getFileName();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r31[r32] = r33;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r30 = java.lang.String.format(r30, r31);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r31 = 0;
-        r28.<init>(r29, r30, r31);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r36;
-        r1 = r37;
-        r2 = r38;
-        r3 = r28;
-        r0.fireFailEvent(r1, r2, r3);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = 0;
-        com.miui.gallery.util.MiscUtil.closeSilently(r12);
-        com.miui.gallery.util.MiscUtil.closeSilently(r17);
-        com.miui.gallery.util.MiscUtil.closeSilently(r19);
-        if (r5 == 0) goto L_0x012c;
-    L_0x0128:
-        r5.disconnect();
-        r5 = 0;
-    L_0x012c:
-        r29 = r36.getTag();
-        r30 = "download %s, origin file %s, cost %d, success %s";
-        r31 = 4;
-        r0 = r31;
-        r0 = new java.lang.Object[r0];
-        r31 = r0;
-        r32 = 0;
-        r0 = r37;
-        r0 = r0.mDownloadItem;
-        r33 = r0;
-        r31[r32] = r33;
-        r32 = 1;
-        r0 = r37;
-        r0 = r0.mDBItem;
-        r33 = r0;
-        r33 = r33.getFileName();
-        r31[r32] = r33;
-        r32 = 2;
-        r34 = java.lang.System.currentTimeMillis();
-        r34 = r34 - r22;
-        r33 = java.lang.Long.valueOf(r34);
-        r31[r32] = r33;
-        r32 = 3;
-        r33 = r10.getAbsolutePath();
-        r33 = com.miui.gallery.util.FileUtils.isFileExist(r33);
-        r33 = java.lang.Boolean.valueOf(r33);
-        r31[r32] = r33;
-        com.miui.gallery.util.Log.d(r29, r30, r31);
-        r6 = r6 + 1;
-        r16 = r17;
-    L_0x0177:
-        return r28;
-    L_0x0178:
-        r28 = com.miui.gallery.cloud.CheckResult.isNotRetryCode(r21);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        if (r28 == 0) goto L_0x0206;
-    L_0x017e:
-        r28 = new com.miui.gallery.sdk.download.assist.DownloadFailReason;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r29 = com.miui.gallery.error.core.ErrorCode.SERVER_ERROR;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r30 = "server ret: %s";
-        r31 = 1;
-        r0 = r31;
-        r0 = new java.lang.Object[r0];	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r31 = r0;
-        r32 = 0;
-        r33 = java.lang.Integer.valueOf(r21);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r31[r32] = r33;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r30 = java.lang.String.format(r30, r31);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r31 = 0;
-        r28.<init>(r29, r30, r31);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r36;
-        r1 = r37;
-        r2 = r38;
-        r3 = r28;
-        r0.fireFailEvent(r1, r2, r3);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = 0;
-        com.miui.gallery.util.MiscUtil.closeSilently(r12);
-        com.miui.gallery.util.MiscUtil.closeSilently(r17);
-        com.miui.gallery.util.MiscUtil.closeSilently(r19);
-        if (r5 == 0) goto L_0x01b9;
-    L_0x01b5:
-        r5.disconnect();
-        r5 = 0;
-    L_0x01b9:
-        r29 = r36.getTag();
-        r30 = "download %s, origin file %s, cost %d, success %s";
-        r31 = 4;
-        r0 = r31;
-        r0 = new java.lang.Object[r0];
-        r31 = r0;
-        r32 = 0;
-        r0 = r37;
-        r0 = r0.mDownloadItem;
-        r33 = r0;
-        r31[r32] = r33;
-        r32 = 1;
-        r0 = r37;
-        r0 = r0.mDBItem;
-        r33 = r0;
-        r33 = r33.getFileName();
-        r31[r32] = r33;
-        r32 = 2;
-        r34 = java.lang.System.currentTimeMillis();
-        r34 = r34 - r22;
-        r33 = java.lang.Long.valueOf(r34);
-        r31[r32] = r33;
-        r32 = 3;
-        r33 = r10.getAbsolutePath();
-        r33 = com.miui.gallery.util.FileUtils.isFileExist(r33);
-        r33 = java.lang.Boolean.valueOf(r33);
-        r31[r32] = r33;
-        com.miui.gallery.util.Log.d(r29, r30, r31);
-        r6 = r6 + 1;
-        r16 = r17;
-        goto L_0x0177;
-    L_0x0206:
-        r28 = r5.getContentLength();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r28;
-        r0 = (long) r0;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r26 = r0;
-        r28 = 0;
-        r28 = (r26 > r28 ? 1 : (r26 == r28 ? 0 : -1));
-        if (r28 > 0) goto L_0x021f;
-    L_0x0215:
-        r0 = r37;
-        r0 = r0.mDBItem;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = r0;
-        r26 = r28.getSize();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-    L_0x021f:
-        r12 = r5.getInputStream();	 Catch:{ FileNotFoundException -> 0x0297 }
-        r28 = r10.getAbsolutePath();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = com.miui.gallery.util.DocumentProviderUtils.needUseDocumentProvider(r28);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        if (r28 == 0) goto L_0x042a;
-    L_0x022d:
-        r28 = com.miui.gallery.GalleryApp.sGetAndroidContext();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r28;
-        r7 = com.miui.gallery.util.DocumentProviderUtils.getDocumentFile(r0, r10);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        if (r7 != 0) goto L_0x0334;
-    L_0x0239:
-        r28 = 0;
-        com.miui.gallery.util.MiscUtil.closeSilently(r12);
-        com.miui.gallery.util.MiscUtil.closeSilently(r17);
-        com.miui.gallery.util.MiscUtil.closeSilently(r19);
-        if (r5 == 0) goto L_0x024a;
-    L_0x0246:
-        r5.disconnect();
-        r5 = 0;
-    L_0x024a:
-        r29 = r36.getTag();
-        r30 = "download %s, origin file %s, cost %d, success %s";
-        r31 = 4;
-        r0 = r31;
-        r0 = new java.lang.Object[r0];
-        r31 = r0;
-        r32 = 0;
-        r0 = r37;
-        r0 = r0.mDownloadItem;
-        r33 = r0;
-        r31[r32] = r33;
-        r32 = 1;
-        r0 = r37;
-        r0 = r0.mDBItem;
-        r33 = r0;
-        r33 = r33.getFileName();
-        r31[r32] = r33;
-        r32 = 2;
-        r34 = java.lang.System.currentTimeMillis();
-        r34 = r34 - r22;
-        r33 = java.lang.Long.valueOf(r34);
-        r31[r32] = r33;
-        r32 = 3;
-        r33 = r10.getAbsolutePath();
-        r33 = com.miui.gallery.util.FileUtils.isFileExist(r33);
-        r33 = java.lang.Boolean.valueOf(r33);
-        r31[r32] = r33;
-        com.miui.gallery.util.Log.d(r29, r30, r31);
-        r6 = r6 + 1;
-        r16 = r17;
-        goto L_0x0177;
-    L_0x0297:
-        r11 = move-exception;
-        r0 = r37;
-        r0 = r0.mDBItem;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = r0;
-        r28 = r28.getSha1();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        com.miui.gallery.preference.ThumbnailPreference.putThumbnailKey(r28);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = new com.miui.gallery.sdk.download.assist.DownloadFailReason;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r29 = com.miui.gallery.error.core.ErrorCode.THUMBNAIL_BUILD_ERROR;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r30 = java.util.Locale.US;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r31 = "thumbnail build error, ret %s";
-        r32 = 1;
-        r0 = r32;
-        r0 = new java.lang.Object[r0];	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r32 = r0;
-        r33 = 0;
-        r34 = java.lang.Integer.valueOf(r21);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r32[r33] = r34;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r30 = java.lang.String.format(r30, r31, r32);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r28;
-        r1 = r29;
-        r2 = r30;
-        r0.<init>(r1, r2, r11);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r36;
-        r1 = r37;
-        r2 = r38;
-        r3 = r28;
-        r0.fireFailEvent(r1, r2, r3);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = 0;
-        com.miui.gallery.util.MiscUtil.closeSilently(r12);
-        com.miui.gallery.util.MiscUtil.closeSilently(r17);
-        com.miui.gallery.util.MiscUtil.closeSilently(r19);
-        if (r5 == 0) goto L_0x02e7;
-    L_0x02e3:
-        r5.disconnect();
-        r5 = 0;
-    L_0x02e7:
-        r29 = r36.getTag();
-        r30 = "download %s, origin file %s, cost %d, success %s";
-        r31 = 4;
-        r0 = r31;
-        r0 = new java.lang.Object[r0];
-        r31 = r0;
-        r32 = 0;
-        r0 = r37;
-        r0 = r0.mDownloadItem;
-        r33 = r0;
-        r31[r32] = r33;
-        r32 = 1;
-        r0 = r37;
-        r0 = r0.mDBItem;
-        r33 = r0;
-        r33 = r33.getFileName();
-        r31[r32] = r33;
-        r32 = 2;
-        r34 = java.lang.System.currentTimeMillis();
-        r34 = r34 - r22;
-        r33 = java.lang.Long.valueOf(r34);
-        r31[r32] = r33;
-        r32 = 3;
-        r33 = r10.getAbsolutePath();
-        r33 = com.miui.gallery.util.FileUtils.isFileExist(r33);
-        r33 = java.lang.Boolean.valueOf(r33);
-        r31[r32] = r33;
-        com.miui.gallery.util.Log.d(r29, r30, r31);
-        r6 = r6 + 1;
-        r16 = r17;
-        goto L_0x0177;
-    L_0x0334:
-        r25 = r7.getUri();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = com.miui.gallery.GalleryApp.sGetAndroidContext();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = r28.getContentResolver();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r29 = "w";
-        r0 = r28;
-        r1 = r25;
-        r2 = r29;
-        r19 = r0.openFileDescriptor(r1, r2);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r16 = new java.io.FileOutputStream;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = r19.getFileDescriptor();	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r0 = r16;
-        r1 = r28;
-        r0.<init>(r1);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-    L_0x035a:
-        r4 = 8192; // 0x2000 float:1.14794E-41 double:4.0474E-320;
-        r14 = new byte[r4];	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        r13 = 0;
-        r8 = 0;
-    L_0x0361:
-        r28 = 0;
-        r0 = r28;
-        r13 = r12.read(r14, r0, r4);	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        if (r13 < 0) goto L_0x0437;
-    L_0x036b:
-        r28 = 0;
-        r0 = r16;
-        r1 = r28;
-        r0.write(r14, r1, r13);	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        r0 = (long) r13;	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        r28 = r0;
-        r8 = r8 + r28;
-        r0 = r37;
-        r0 = r0.mDownloadItem;	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        r28 = r0;
-        r0 = r28;
-        r1 = r26;
-        com.miui.gallery.sdk.download.assist.DownloadItem.callbackProgress(r0, r8, r1);	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        goto L_0x0361;
-    L_0x0387:
-        r11 = move-exception;
-    L_0x0388:
-        r15 = 1;
-        r0 = r37;
-        r0 = r0.mDownloadItem;	 Catch:{ all -> 0x05fd }
-        r28 = r0;
-        r28 = r28.getType();	 Catch:{ all -> 0x05fd }
-        r0 = r36;
-        r1 = r28;
-        r0.increaseConnTimeout(r1);	 Catch:{ all -> 0x05fd }
-        r28 = r6 + 1;
-        r29 = MAX_TRY_COUNT;	 Catch:{ all -> 0x05fd }
-        r0 = r28;
-        r1 = r29;
-        if (r0 < r1) goto L_0x03ce;
-    L_0x03a4:
-        r28 = new com.miui.gallery.sdk.download.assist.DownloadFailReason;	 Catch:{ all -> 0x05fd }
-        r29 = com.miui.gallery.error.core.ErrorCode.CONNECT_TIMEOUT;	 Catch:{ all -> 0x05fd }
-        r30 = "connect timeout: %s";
-        r31 = 1;
-        r0 = r31;
-        r0 = new java.lang.Object[r0];	 Catch:{ all -> 0x05fd }
-        r31 = r0;
-        r32 = 0;
-        r31[r32] = r38;	 Catch:{ all -> 0x05fd }
-        r30 = java.lang.String.format(r30, r31);	 Catch:{ all -> 0x05fd }
-        r0 = r28;
-        r1 = r29;
-        r2 = r30;
-        r0.<init>(r1, r2, r11);	 Catch:{ all -> 0x05fd }
-        r0 = r36;
-        r1 = r37;
-        r2 = r38;
-        r3 = r28;
-        r0.fireFailEvent(r1, r2, r3);	 Catch:{ all -> 0x05fd }
-    L_0x03ce:
-        com.miui.gallery.util.MiscUtil.closeSilently(r12);
-        com.miui.gallery.util.MiscUtil.closeSilently(r16);
-        com.miui.gallery.util.MiscUtil.closeSilently(r19);
-        if (r5 == 0) goto L_0x03dd;
-    L_0x03d9:
-        r5.disconnect();
-        r5 = 0;
-    L_0x03dd:
-        r28 = r36.getTag();
-        r29 = "download %s, origin file %s, cost %d, success %s";
-        r30 = 4;
-        r0 = r30;
-        r0 = new java.lang.Object[r0];
-        r30 = r0;
-        r31 = 0;
-        r0 = r37;
-        r0 = r0.mDownloadItem;
-        r32 = r0;
-        r30[r31] = r32;
-        r31 = 1;
-        r0 = r37;
-        r0 = r0.mDBItem;
-        r32 = r0;
-        r32 = r32.getFileName();
-        r30[r31] = r32;
-        r31 = 2;
-        r32 = java.lang.System.currentTimeMillis();
-        r32 = r32 - r22;
-        r32 = java.lang.Long.valueOf(r32);
-        r30[r31] = r32;
-        r31 = 3;
-        r32 = r10.getAbsolutePath();
-        r32 = com.miui.gallery.util.FileUtils.isFileExist(r32);
-        r32 = java.lang.Boolean.valueOf(r32);
-        r30[r31] = r32;
-        com.miui.gallery.util.Log.d(r28, r29, r30);
-        r6 = r6 + 1;
-    L_0x0426:
-        r17 = r16;
-        goto L_0x0025;
-    L_0x042a:
-        r16 = new java.io.FileOutputStream;	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        r28 = 0;
-        r0 = r16;
-        r1 = r28;
-        r0.<init>(r10, r1);	 Catch:{ ConnectTimeoutException -> 0x0661, SocketTimeoutException -> 0x04b5, Throwable -> 0x0559, all -> 0x0657 }
-        goto L_0x035a;
-    L_0x0437:
-        r16.flush();	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        r0 = r37;
-        r0 = r0.mDownloadItem;	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        r28 = r0;
-        r28 = r28.getType();	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        r0 = r36;
-        r1 = r28;
-        r0.decreaseConnTimeout(r1);	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        com.miui.gallery.sdk.download.util.DownloadUtil.statDownloadSuccess(r37);	 Catch:{ ConnectTimeoutException -> 0x0387, SocketTimeoutException -> 0x065e, Throwable -> 0x065b }
-        com.miui.gallery.util.MiscUtil.closeSilently(r12);
-        com.miui.gallery.util.MiscUtil.closeSilently(r16);
-        com.miui.gallery.util.MiscUtil.closeSilently(r19);
-        if (r5 == 0) goto L_0x045d;
-    L_0x0459:
-        r5.disconnect();
-        r5 = 0;
-    L_0x045d:
-        r28 = r36.getTag();
-        r29 = "download %s, origin file %s, cost %d, success %s";
-        r30 = 4;
-        r0 = r30;
-        r0 = new java.lang.Object[r0];
-        r30 = r0;
-        r31 = 0;
-        r0 = r37;
-        r0 = r0.mDownloadItem;
-        r32 = r0;
-        r30[r31] = r32;
-        r31 = 1;
-        r0 = r37;
-        r0 = r0.mDBItem;
-        r32 = r0;
-        r32 = r32.getFileName();
-        r30[r31] = r32;
-        r31 = 2;
-        r32 = java.lang.System.currentTimeMillis();
-        r32 = r32 - r22;
-        r32 = java.lang.Long.valueOf(r32);
-        r30[r31] = r32;
-        r31 = 3;
-        r32 = r10.getAbsolutePath();
-        r32 = com.miui.gallery.util.FileUtils.isFileExist(r32);
-        r32 = java.lang.Boolean.valueOf(r32);
-        r30[r31] = r32;
-        com.miui.gallery.util.Log.d(r28, r29, r30);
-        r6 = r6 + 1;
-    L_0x04a6:
-        r28 = MAX_TRY_COUNT;
-        r0 = r37;
-        r1 = r28;
-        com.miui.gallery.sdk.download.util.DownloadUtil.statDownloadRetryTimes(r0, r6, r1);
-        r28 = r10.getAbsolutePath();
-        goto L_0x0177;
-    L_0x04b5:
-        r11 = move-exception;
-        r16 = r17;
-    L_0x04b8:
-        r15 = 1;
-        r0 = r37;
-        r0 = r0.mDownloadItem;	 Catch:{ all -> 0x05fd }
-        r28 = r0;
-        r28 = r28.getType();	 Catch:{ all -> 0x05fd }
-        r0 = r36;
-        r1 = r28;
-        r0.increaseConnTimeout(r1);	 Catch:{ all -> 0x05fd }
-        r28 = r6 + 1;
-        r29 = MAX_TRY_COUNT;	 Catch:{ all -> 0x05fd }
-        r0 = r28;
-        r1 = r29;
-        if (r0 < r1) goto L_0x04ff;
-    L_0x04d4:
-        r28 = new com.miui.gallery.sdk.download.assist.DownloadFailReason;	 Catch:{ all -> 0x05fd }
-        r29 = com.miui.gallery.error.core.ErrorCode.SOCKET_TIMEOUT;	 Catch:{ all -> 0x05fd }
-        r30 = "socket timeout: %s";
-        r31 = 1;
-        r0 = r31;
-        r0 = new java.lang.Object[r0];	 Catch:{ all -> 0x05fd }
-        r31 = r0;
-        r32 = 0;
-        r31[r32] = r38;	 Catch:{ all -> 0x05fd }
-        r30 = java.lang.String.format(r30, r31);	 Catch:{ all -> 0x05fd }
-        r0 = r28;
-        r1 = r29;
-        r2 = r30;
-        r0.<init>(r1, r2, r11);	 Catch:{ all -> 0x05fd }
-        r0 = r36;
-        r1 = r37;
-        r2 = r38;
-        r3 = r28;
-        r0.fireFailEvent(r1, r2, r3);	 Catch:{ all -> 0x05fd }
-    L_0x04ff:
-        com.miui.gallery.util.MiscUtil.closeSilently(r12);
-        com.miui.gallery.util.MiscUtil.closeSilently(r16);
-        com.miui.gallery.util.MiscUtil.closeSilently(r19);
-        if (r5 == 0) goto L_0x050e;
-    L_0x050a:
-        r5.disconnect();
-        r5 = 0;
-    L_0x050e:
-        r28 = r36.getTag();
-        r29 = "download %s, origin file %s, cost %d, success %s";
-        r30 = 4;
-        r0 = r30;
-        r0 = new java.lang.Object[r0];
-        r30 = r0;
-        r31 = 0;
-        r0 = r37;
-        r0 = r0.mDownloadItem;
-        r32 = r0;
-        r30[r31] = r32;
-        r31 = 1;
-        r0 = r37;
-        r0 = r0.mDBItem;
-        r32 = r0;
-        r32 = r32.getFileName();
-        r30[r31] = r32;
-        r31 = 2;
-        r32 = java.lang.System.currentTimeMillis();
-        r32 = r32 - r22;
-        r32 = java.lang.Long.valueOf(r32);
-        r30[r31] = r32;
-        r31 = 3;
-        r32 = r10.getAbsolutePath();
-        r32 = com.miui.gallery.util.FileUtils.isFileExist(r32);
-        r32 = java.lang.Boolean.valueOf(r32);
-        r30[r31] = r32;
-        com.miui.gallery.util.Log.d(r28, r29, r30);
-        r6 = r6 + 1;
-        goto L_0x0426;
-    L_0x0559:
-        r24 = move-exception;
-        r16 = r17;
-    L_0x055c:
-        r0 = r37;
-        r0 = r0.mDownloadItem;	 Catch:{ all -> 0x05fd }
-        r28 = r0;
-        r0 = r36;
-        r1 = r28;
-        r28 = r0.checkConditionPermitted(r1);	 Catch:{ all -> 0x05fd }
-        if (r28 == 0) goto L_0x05ee;
-    L_0x056c:
-        r28 = new com.miui.gallery.sdk.download.assist.DownloadFailReason;	 Catch:{ all -> 0x05fd }
-        r29 = r10.getAbsolutePath();	 Catch:{ all -> 0x05fd }
-        r0 = r24;
-        r1 = r29;
-        r29 = com.miui.gallery.error.util.ErrorParseUtil.parseError(r0, r1);	 Catch:{ all -> 0x05fd }
-        r30 = r24.getMessage();	 Catch:{ all -> 0x05fd }
-        r0 = r28;
-        r1 = r29;
-        r2 = r30;
-        r3 = r24;
-        r0.<init>(r1, r2, r3);	 Catch:{ all -> 0x05fd }
-        r0 = r36;
-        r1 = r37;
-        r2 = r38;
-        r3 = r28;
-        r0.fireFailEvent(r1, r2, r3);	 Catch:{ all -> 0x05fd }
-    L_0x0594:
-        com.miui.gallery.util.MiscUtil.closeSilently(r12);
-        com.miui.gallery.util.MiscUtil.closeSilently(r16);
-        com.miui.gallery.util.MiscUtil.closeSilently(r19);
-        if (r5 == 0) goto L_0x05a3;
-    L_0x059f:
-        r5.disconnect();
-        r5 = 0;
-    L_0x05a3:
-        r28 = r36.getTag();
-        r29 = "download %s, origin file %s, cost %d, success %s";
-        r30 = 4;
-        r0 = r30;
-        r0 = new java.lang.Object[r0];
-        r30 = r0;
-        r31 = 0;
-        r0 = r37;
-        r0 = r0.mDownloadItem;
-        r32 = r0;
-        r30[r31] = r32;
-        r31 = 1;
-        r0 = r37;
-        r0 = r0.mDBItem;
-        r32 = r0;
-        r32 = r32.getFileName();
-        r30[r31] = r32;
-        r31 = 2;
-        r32 = java.lang.System.currentTimeMillis();
-        r32 = r32 - r22;
-        r32 = java.lang.Long.valueOf(r32);
-        r30[r31] = r32;
-        r31 = 3;
-        r32 = r10.getAbsolutePath();
-        r32 = com.miui.gallery.util.FileUtils.isFileExist(r32);
-        r32 = java.lang.Boolean.valueOf(r32);
-        r30[r31] = r32;
-        com.miui.gallery.util.Log.d(r28, r29, r30);
-        r6 = r6 + 1;
-        goto L_0x0426;
-    L_0x05ee:
-        r28 = r36.getTag();	 Catch:{ all -> 0x05fd }
-        r0 = r28;
-        r1 = r24;
-        com.miui.gallery.util.Log.e(r0, r1);	 Catch:{ all -> 0x05fd }
-        r36.deleteTempFile(r37);	 Catch:{ all -> 0x05fd }
-        goto L_0x0594;
-    L_0x05fd:
-        r28 = move-exception;
-    L_0x05fe:
-        com.miui.gallery.util.MiscUtil.closeSilently(r12);
-        com.miui.gallery.util.MiscUtil.closeSilently(r16);
-        com.miui.gallery.util.MiscUtil.closeSilently(r19);
-        if (r5 == 0) goto L_0x060d;
-    L_0x0609:
-        r5.disconnect();
-        r5 = 0;
-    L_0x060d:
-        r29 = r36.getTag();
-        r30 = "download %s, origin file %s, cost %d, success %s";
-        r31 = 4;
-        r0 = r31;
-        r0 = new java.lang.Object[r0];
-        r31 = r0;
-        r32 = 0;
-        r0 = r37;
-        r0 = r0.mDownloadItem;
-        r33 = r0;
-        r31[r32] = r33;
-        r32 = 1;
-        r0 = r37;
-        r0 = r0.mDBItem;
-        r33 = r0;
-        r33 = r33.getFileName();
-        r31[r32] = r33;
-        r32 = 2;
-        r34 = java.lang.System.currentTimeMillis();
-        r34 = r34 - r22;
-        r33 = java.lang.Long.valueOf(r34);
-        r31[r32] = r33;
-        r32 = 3;
-        r33 = r10.getAbsolutePath();
-        r33 = com.miui.gallery.util.FileUtils.isFileExist(r33);
-        r33 = java.lang.Boolean.valueOf(r33);
-        r31[r32] = r33;
-        com.miui.gallery.util.Log.d(r29, r30, r31);
-        r6 = r6 + 1;
-        throw r28;
-    L_0x0657:
-        r28 = move-exception;
-        r16 = r17;
-        goto L_0x05fe;
-    L_0x065b:
-        r24 = move-exception;
-        goto L_0x055c;
-    L_0x065e:
-        r11 = move-exception;
-        goto L_0x04b8;
-    L_0x0661:
-        r11 = move-exception;
-        r16 = r17;
-        goto L_0x0388;
-    L_0x0666:
-        r16 = r17;
-        goto L_0x04a6;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.sdk.download.downloader.AbsThumbnailDownloader.downloadFile(com.miui.gallery.sdk.download.assist.RequestItem, java.lang.String):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private String downloadFile(RequestItem item, String url) {
+        long start;
+        OutputStream outputStream;
+        ConnectTimeoutException e;
+        SocketTimeoutException e2;
+        Throwable t;
+        Throwable th;
+        HttpURLConnection connection = null;
+        InputStream in = null;
+        ParcelFileDescriptor pfd = null;
+        File downloadTempFile = new File(DownloadUtil.getDownloadTempFilePath(item.mDBItem, item.mDownloadItem.getType()));
+        int count = 0;
+        boolean needRetry = true;
+        OutputStream out = null;
+        while (needRetry && count < MAX_TRY_COUNT) {
+            needRetry = false;
+            start = System.currentTimeMillis();
+            try {
+                connection = NetworkUtils.getHttpConn(url, RequestType.GET);
+                int requestTimeOut = FileDownload.getConnTimeout(item.mDownloadItem.getType());
+                if (item.mDBItem.isVideoType()) {
+                    requestTimeOut = FileDownload.clampConnTimeout(requestTimeOut * 2);
+                }
+                connection.setConnectTimeout(requestTimeOut);
+                connection.setReadTimeout(requestTimeOut);
+                connection.connect();
+                int statusCode = connection.getResponseCode();
+                if (statusCode < 200 || statusCode >= 300) {
+                    if (CheckResult.checkKSSThumbnailResult(statusCode) == GallerySyncResult.NotRetryError) {
+                        ThumbnailPreference.putThumbnailKey(item.mDBItem.getSha1());
+                        Log.e(getTag(), "thumbnail can't be download forever, just add sha1 to preference %d, %s", Integer.valueOf(statusCode), item.mDBItem.getSha1());
+                        HashMap<String, String> params = new HashMap();
+                        params.put("statusCode", String.valueOf(statusCode));
+                        params.put("downloadType", String.valueOf(item.mDownloadItem.getType()));
+                        GallerySamplingStatHelper.recordErrorEvent("Sync", "sync_thumbnail_build_error", params);
+                        fireFailEvent(item, url, new DownloadFailReason(ErrorCode.THUMBNAIL_BUILD_ERROR, String.format("thumbnail can't build: %s", new Object[]{item.mDBItem.getFileName()}), null));
+                        MiscUtil.closeSilently(in);
+                        MiscUtil.closeSilently(out);
+                        MiscUtil.closeSilently(pfd);
+                        if (connection != null) {
+                            connection.disconnect();
+                        }
+                        Log.d(getTag(), "download %s, origin file %s, cost %d, success %s", item.mDownloadItem, item.mDBItem.getFileName(), Long.valueOf(System.currentTimeMillis() - start), Boolean.valueOf(FileUtils.isFileExist(downloadTempFile.getAbsolutePath())));
+                        count++;
+                        outputStream = out;
+                        return null;
+                    } else if (CheckResult.isNotRetryCode(statusCode)) {
+                        fireFailEvent(item, url, new DownloadFailReason(ErrorCode.SERVER_ERROR, String.format("server ret: %s", new Object[]{Integer.valueOf(statusCode)}), null));
+                        MiscUtil.closeSilently(in);
+                        MiscUtil.closeSilently(out);
+                        MiscUtil.closeSilently(pfd);
+                        if (connection != null) {
+                            connection.disconnect();
+                        }
+                        Log.d(getTag(), "download %s, origin file %s, cost %d, success %s", item.mDownloadItem, item.mDBItem.getFileName(), Long.valueOf(System.currentTimeMillis() - start), Boolean.valueOf(FileUtils.isFileExist(downloadTempFile.getAbsolutePath())));
+                        count++;
+                        outputStream = out;
+                        return null;
+                    }
+                }
+                long totalSize = (long) connection.getContentLength();
+                if (totalSize <= 0) {
+                    totalSize = item.mDBItem.getSize();
+                }
+                try {
+                    in = connection.getInputStream();
+                    OutputStream fileOutputStream;
+                    if (DocumentProviderUtils.needUseDocumentProvider(downloadTempFile.getAbsolutePath())) {
+                        DocumentFile downloadTempDocumentFile = DocumentProviderUtils.getDocumentFile(GalleryApp.sGetAndroidContext(), downloadTempFile);
+                        if (downloadTempDocumentFile == null) {
+                            MiscUtil.closeSilently(in);
+                            MiscUtil.closeSilently(out);
+                            MiscUtil.closeSilently(pfd);
+                            if (connection != null) {
+                                connection.disconnect();
+                            }
+                            Log.d(getTag(), "download %s, origin file %s, cost %d, success %s", item.mDownloadItem, item.mDBItem.getFileName(), Long.valueOf(System.currentTimeMillis() - start), Boolean.valueOf(FileUtils.isFileExist(downloadTempFile.getAbsolutePath())));
+                            count++;
+                            outputStream = out;
+                            return null;
+                        }
+                        pfd = GalleryApp.sGetAndroidContext().getContentResolver().openFileDescriptor(downloadTempDocumentFile.getUri(), "w");
+                        fileOutputStream = new FileOutputStream(pfd.getFileDescriptor());
+                    } else {
+                        fileOutputStream = new FileOutputStream(downloadTempFile, false);
+                    }
+                } catch (FileNotFoundException e3) {
+                    ThumbnailPreference.putThumbnailKey(item.mDBItem.getSha1());
+                    fireFailEvent(item, url, new DownloadFailReason(ErrorCode.THUMBNAIL_BUILD_ERROR, String.format(Locale.US, "thumbnail build error, ret %s", new Object[]{Integer.valueOf(statusCode)}), e3));
+                    MiscUtil.closeSilently(in);
+                    MiscUtil.closeSilently(out);
+                    MiscUtil.closeSilently(pfd);
+                    if (connection != null) {
+                        connection.disconnect();
+                    }
+                    Log.d(getTag(), "download %s, origin file %s, cost %d, success %s", item.mDownloadItem, item.mDBItem.getFileName(), Long.valueOf(System.currentTimeMillis() - start), Boolean.valueOf(FileUtils.isFileExist(downloadTempFile.getAbsolutePath())));
+                    count++;
+                    outputStream = out;
+                    return null;
+                }
+                try {
+                    byte[] m_dataBuffer = new byte[8192];
+                    long currentSize = 0;
+                    while (true) {
+                        int len = in.read(m_dataBuffer, 0, 8192);
+                        if (len < 0) {
+                            break;
+                        }
+                        outputStream.write(m_dataBuffer, 0, len);
+                        currentSize += (long) len;
+                        DownloadItem.callbackProgress(item.mDownloadItem, currentSize, totalSize);
+                    }
+                    outputStream.flush();
+                    decreaseConnTimeout(item.mDownloadItem.getType());
+                    DownloadUtil.statDownloadSuccess(item);
+                    MiscUtil.closeSilently(in);
+                    MiscUtil.closeSilently(outputStream);
+                    MiscUtil.closeSilently(pfd);
+                    if (connection != null) {
+                        connection.disconnect();
+                    }
+                    Log.d(getTag(), "download %s, origin file %s, cost %d, success %s", item.mDownloadItem, item.mDBItem.getFileName(), Long.valueOf(System.currentTimeMillis() - start), Boolean.valueOf(FileUtils.isFileExist(downloadTempFile.getAbsolutePath())));
+                    count++;
+                    DownloadUtil.statDownloadRetryTimes(item, count, MAX_TRY_COUNT);
+                    return downloadTempFile.getAbsolutePath();
+                } catch (ConnectTimeoutException e4) {
+                    e = e4;
+                } catch (SocketTimeoutException e5) {
+                    e2 = e5;
+                    needRetry = true;
+                    increaseConnTimeout(item.mDownloadItem.getType());
+                    if (count + 1 >= MAX_TRY_COUNT) {
+                    }
+                    MiscUtil.closeSilently(in);
+                    MiscUtil.closeSilently(outputStream);
+                    MiscUtil.closeSilently(pfd);
+                    if (connection != null) {
+                    }
+                    Log.d(getTag(), "download %s, origin file %s, cost %d, success %s", item.mDownloadItem, item.mDBItem.getFileName(), Long.valueOf(System.currentTimeMillis() - start), Boolean.valueOf(FileUtils.isFileExist(downloadTempFile.getAbsolutePath())));
+                    count++;
+                    out = outputStream;
+                } catch (Throwable th2) {
+                    t = th2;
+                    if (checkConditionPermitted(item.mDownloadItem)) {
+                    }
+                    MiscUtil.closeSilently(in);
+                    MiscUtil.closeSilently(outputStream);
+                    MiscUtil.closeSilently(pfd);
+                    if (connection != null) {
+                    }
+                    Log.d(getTag(), "download %s, origin file %s, cost %d, success %s", item.mDownloadItem, item.mDBItem.getFileName(), Long.valueOf(System.currentTimeMillis() - start), Boolean.valueOf(FileUtils.isFileExist(downloadTempFile.getAbsolutePath())));
+                    count++;
+                    out = outputStream;
+                }
+            } catch (ConnectTimeoutException e6) {
+                e = e6;
+                outputStream = out;
+            } catch (SocketTimeoutException e7) {
+                e2 = e7;
+                outputStream = out;
+                needRetry = true;
+                increaseConnTimeout(item.mDownloadItem.getType());
+                if (count + 1 >= MAX_TRY_COUNT) {
+                    fireFailEvent(item, url, new DownloadFailReason(ErrorCode.SOCKET_TIMEOUT, String.format("socket timeout: %s", new Object[]{url}), e2));
+                }
+                MiscUtil.closeSilently(in);
+                MiscUtil.closeSilently(outputStream);
+                MiscUtil.closeSilently(pfd);
+                if (connection != null) {
+                    connection.disconnect();
+                    connection = null;
+                }
+                Log.d(getTag(), "download %s, origin file %s, cost %d, success %s", item.mDownloadItem, item.mDBItem.getFileName(), Long.valueOf(System.currentTimeMillis() - start), Boolean.valueOf(FileUtils.isFileExist(downloadTempFile.getAbsolutePath())));
+                count++;
+                out = outputStream;
+            } catch (Throwable th3) {
+                th = th3;
+                outputStream = out;
+            }
+        }
+        DownloadUtil.statDownloadRetryTimes(item, count, MAX_TRY_COUNT);
+        return downloadTempFile.getAbsolutePath();
+        needRetry = true;
+        try {
+            increaseConnTimeout(item.mDownloadItem.getType());
+            if (count + 1 >= MAX_TRY_COUNT) {
+                fireFailEvent(item, url, new DownloadFailReason(ErrorCode.CONNECT_TIMEOUT, String.format("connect timeout: %s", new Object[]{url}), e));
+            }
+            MiscUtil.closeSilently(in);
+            MiscUtil.closeSilently(outputStream);
+            MiscUtil.closeSilently(pfd);
+            if (connection != null) {
+                connection.disconnect();
+                connection = null;
+            }
+            Log.d(getTag(), "download %s, origin file %s, cost %d, success %s", item.mDownloadItem, item.mDBItem.getFileName(), Long.valueOf(System.currentTimeMillis() - start), Boolean.valueOf(FileUtils.isFileExist(downloadTempFile.getAbsolutePath())));
+            count++;
+            out = outputStream;
+        } catch (Throwable th4) {
+            th = th4;
+        }
+        MiscUtil.closeSilently(in);
+        MiscUtil.closeSilently(outputStream);
+        MiscUtil.closeSilently(pfd);
+        if (connection != null) {
+            connection.disconnect();
+        }
+        Log.d(getTag(), "download %s, origin file %s, cost %d, success %s", item.mDownloadItem, item.mDBItem.getFileName(), Long.valueOf(System.currentTimeMillis() - start), Boolean.valueOf(FileUtils.isFileExist(downloadTempFile.getAbsolutePath())));
+        count++;
+        throw th;
     }
 
     private void increaseConnTimeout(DownloadType type) {

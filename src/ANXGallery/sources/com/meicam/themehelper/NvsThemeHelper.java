@@ -1,6 +1,7 @@
 package com.meicam.themehelper;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
@@ -245,222 +246,102 @@ public class NvsThemeHelper {
     /* JADX WARNING: Removed duplicated region for block: B:28:0x009d  */
     /* JADX WARNING: Removed duplicated region for block: B:38:0x00e7  */
     /* JADX WARNING: Removed duplicated region for block: B:35:0x00d8  */
-    public boolean changeMusic(java.lang.String r20, int r21) {
-        /*
-        r19 = this;
-        r18 = com.meicam.sdk.NvsStreamingContext.getInstance();
-        if (r18 == 0) goto L_0x0009;
-    L_0x0006:
-        r18.stop();
-    L_0x0009:
-        if (r20 != 0) goto L_0x003e;
-    L_0x000b:
-        r2 = 0;
-        r0 = r19;
-        r0.m_musicVolumeGain = r2;
-        r0 = r19;
-        r2 = r0.m_selectedMusicType;
-        if (r2 != 0) goto L_0x0027;
-    L_0x0016:
-        r0 = r19;
-        r2 = r0.m_timeline;
-        r0 = r19;
-        r3 = r0.m_musicVolumeGain;
-        r0 = r19;
-        r4 = r0.m_musicVolumeGain;
-        r2.setThemeMusicVolumeGain(r3, r4);
-    L_0x0025:
-        r2 = 1;
-    L_0x0026:
-        return r2;
-    L_0x0027:
-        r0 = r19;
-        r2 = r0.m_timeline;
-        r3 = 0;
-        r8 = r2.getAudioTrackByIndex(r3);
-        if (r8 == 0) goto L_0x0025;
-    L_0x0032:
-        r0 = r19;
-        r2 = r0.m_musicVolumeGain;
-        r0 = r19;
-        r3 = r0.m_musicVolumeGain;
-        r8.setVolumeGain(r2, r3);
-        goto L_0x0025;
-    L_0x003e:
-        r0 = r21;
-        r1 = r19;
-        r1.m_selectedMusicType = r0;
-        r2 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r0 = r19;
-        r0.m_musicVolumeGain = r2;
-        switch(r21) {
-            case 1: goto L_0x004f;
-            case 2: goto L_0x0072;
-            default: goto L_0x004d;
-        };
-    L_0x004d:
-        r2 = 0;
-        goto L_0x0026;
-    L_0x004f:
-        r0 = r18;
-        r1 = r20;
-        r14 = r0.getAVFileInfo(r1);
-        if (r14 != 0) goto L_0x0062;
-    L_0x0059:
-        r2 = "NvsThemeHelper";
-        r3 = "loacl music format is not suported!";
-        android.util.Log.d(r2, r3);
-        r2 = 0;
-        goto L_0x0026;
-    L_0x0062:
-        r4 = 0;
-        r2 = 0;
-        r6 = r14.getAudioStreamDuration(r2);
-        r2 = r19;
-        r3 = r20;
-        r2.changeLocalMusic(r3, r4, r6);
-        r2 = 1;
-        goto L_0x0026;
-    L_0x0072:
-        r9 = 0;
-        r13 = 0;
-    L_0x0074:
-        r0 = r19;
-        r2 = r0.mMusicFileList;
-        r2 = r2.size();
-        if (r13 >= r2) goto L_0x0097;
-    L_0x007e:
-        r0 = r19;
-        r2 = r0.mMusicFileList;
-        r11 = r2.get(r13);
-        r11 = (com.meicam.themehelper.NvsMusicFileDesc) r11;
-        r2 = r11.id;
-        r0 = r20;
-        r2 = r2.equals(r0);
-        if (r2 == 0) goto L_0x00c3;
-    L_0x0092:
-        r9 = r11;
-        r0 = r19;
-        r0.m_selectedExtMusicIdx = r13;
-    L_0x0097:
-        r15 = 0;
-        if (r9 != 0) goto L_0x009b;
-    L_0x009a:
-        r15 = 1;
-    L_0x009b:
-        if (r15 == 0) goto L_0x00d6;
-    L_0x009d:
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r0 = r20;
-        r2 = r2.append(r0);
-        r3 = "/info.json";
-        r2 = r2.append(r3);
-        r2 = r2.toString();
-        r3 = 0;
-        r16 = com.meicam.themehelper.Utils.readFile(r2, r3);
-        if (r16 != 0) goto L_0x00c6;
-    L_0x00b9:
-        r2 = "NvsThemeHelper";
-        r3 = "read music info json error!";
-        android.util.Log.d(r2, r3);
-        r2 = 0;
-        goto L_0x0026;
-    L_0x00c3:
-        r13 = r13 + 1;
-        goto L_0x0074;
-    L_0x00c6:
-        r12 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x00e2 }
-        r0 = r16;
-        r12.<init>(r0);	 Catch:{ JSONException -> 0x00e2 }
-        r0 = r20;
-        r9 = com.meicam.themehelper.NvsParseHelper.GetMusicFileFromJsonObject(r12, r0);	 Catch:{ JSONException -> 0x00e2 }
-        r2 = 1;
-        r9.isDownloadFile = r2;	 Catch:{ JSONException -> 0x00e2 }
-    L_0x00d6:
-        if (r9 != 0) goto L_0x00e7;
-    L_0x00d8:
-        r2 = "NvsThemeHelper";
-        r3 = "currentSelected music item is null!";
-        android.util.Log.d(r2, r3);
-        r2 = 0;
-        goto L_0x0026;
-    L_0x00e2:
-        r10 = move-exception;
-        r10.printStackTrace();
-        goto L_0x00d6;
-    L_0x00e7:
-        r2 = r9.pointsDesc;
-        r2 = r2.size();
-        if (r2 > 0) goto L_0x011c;
-    L_0x00ef:
-        r3 = r9.jsonFile;
-        if (r15 == 0) goto L_0x014f;
-    L_0x00f3:
-        r2 = 0;
-    L_0x00f4:
-        r17 = com.meicam.themehelper.Utils.readFile(r3, r2);
-        if (r17 == 0) goto L_0x0106;
-    L_0x00fa:
-        r2 = r9.pointsDesc;
-        r3 = r9.transDesc;
-        r0 = r17;
-        r2 = com.meicam.themehelper.NvsParseHelper.readMusicPoint(r0, r2, r3);
-        r9.musicLen = r2;
-    L_0x0106:
-        r3 = r9.jsonFile10s;
-        if (r15 == 0) goto L_0x0158;
-    L_0x010a:
-        r2 = 0;
-    L_0x010b:
-        r17 = com.meicam.themehelper.Utils.readFile(r3, r2);
-        if (r17 == 0) goto L_0x011c;
-    L_0x0111:
-        r2 = r9.pointsDesc10s;
-        r3 = 0;
-        r0 = r17;
-        r2 = com.meicam.themehelper.NvsParseHelper.readMusicPoint(r0, r2, r3);
-        r9.musicLen10s = r2;
-    L_0x011c:
-        if (r15 == 0) goto L_0x0133;
-    L_0x011e:
-        r0 = r19;
-        r2 = r0.mMusicFileList;
-        r2.add(r9);
-        r0 = r19;
-        r2 = r0.mMusicFileList;
-        r2 = r2.size();
-        r2 = r2 + -1;
-        r0 = r19;
-        r0.m_selectedExtMusicIdx = r2;
-    L_0x0133:
-        r2 = 0;
-        r0 = r19;
-        r0.m_selectedLocalMusic = r2;
-        r2 = -1;
-        r0 = r19;
-        r0.m_selectedLocalMusicStart = r2;
-        r2 = -1;
-        r0 = r19;
-        r0.m_selectedLocalMusicEnd = r2;
-        r2 = -1;
-        r4 = 1;
-        r0 = r19;
-        r0.reBuildTimeLineExt(r2, r4);
-        r2 = 1;
-        goto L_0x0026;
-    L_0x014f:
-        r0 = r19;
-        r2 = r0.m_context;
-        r2 = r2.getAssets();
-        goto L_0x00f4;
-    L_0x0158:
-        r0 = r19;
-        r2 = r0.m_context;
-        r2 = r2.getAssets();
-        goto L_0x010b;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.meicam.themehelper.NvsThemeHelper.changeMusic(java.lang.String, int):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean changeMusic(String musicId, int musicType) {
+        NvsStreamingContext streamingContext = NvsStreamingContext.getInstance();
+        if (streamingContext != null) {
+            streamingContext.stop();
+        }
+        if (musicId == null) {
+            this.m_musicVolumeGain = 0.0f;
+            if (this.m_selectedMusicType == 0) {
+                this.m_timeline.setThemeMusicVolumeGain(this.m_musicVolumeGain, this.m_musicVolumeGain);
+            } else {
+                NvsAudioTrack audioTrack = this.m_timeline.getAudioTrackByIndex(0);
+                if (audioTrack != null) {
+                    audioTrack.setVolumeGain(this.m_musicVolumeGain, this.m_musicVolumeGain);
+                }
+            }
+            return true;
+        }
+        this.m_selectedMusicType = musicType;
+        this.m_musicVolumeGain = 1.0f;
+        switch (musicType) {
+            case 1:
+                NvsAVFileInfo info = streamingContext.getAVFileInfo(musicId);
+                if (info == null) {
+                    Log.d(TAG, "loacl music format is not suported!");
+                    return false;
+                }
+                changeLocalMusic(musicId, 0, info.getAudioStreamDuration(0));
+                return true;
+            case 2:
+                boolean isDownloadFile;
+                NvsMusicFileDesc currentSelected = null;
+                for (int i = 0; i < this.mMusicFileList.size(); i++) {
+                    NvsMusicFileDesc entry = (NvsMusicFileDesc) this.mMusicFileList.get(i);
+                    if (entry.id.equals(musicId)) {
+                        currentSelected = entry;
+                        this.m_selectedExtMusicIdx = i;
+                        isDownloadFile = false;
+                        if (currentSelected == null) {
+                            isDownloadFile = true;
+                        }
+                        if (isDownloadFile) {
+                            String musicInfo = Utils.readFile(musicId + "/info.json", null);
+                            if (musicInfo == null) {
+                                Log.d(TAG, "read music info json error!");
+                                return false;
+                            }
+                            try {
+                                currentSelected = NvsParseHelper.GetMusicFileFromJsonObject(new JSONObject(musicInfo), musicId);
+                                currentSelected.isDownloadFile = true;
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (currentSelected != null) {
+                            Log.d(TAG, "currentSelected music item is null!");
+                            return false;
+                        }
+                        if (currentSelected.pointsDesc.size() <= 0) {
+                            AssetManager assetManager;
+                            String musicjson = Utils.readFile(currentSelected.jsonFile, isDownloadFile ? null : this.m_context.getAssets());
+                            if (musicjson != null) {
+                                currentSelected.musicLen = NvsParseHelper.readMusicPoint(musicjson, currentSelected.pointsDesc, currentSelected.transDesc);
+                            }
+                            String str = currentSelected.jsonFile10s;
+                            if (isDownloadFile) {
+                                assetManager = null;
+                            } else {
+                                assetManager = this.m_context.getAssets();
+                            }
+                            musicjson = Utils.readFile(str, assetManager);
+                            if (musicjson != null) {
+                                currentSelected.musicLen10s = NvsParseHelper.readMusicPoint(musicjson, currentSelected.pointsDesc10s, null);
+                            }
+                        }
+                        if (isDownloadFile) {
+                            this.mMusicFileList.add(currentSelected);
+                            this.m_selectedExtMusicIdx = this.mMusicFileList.size() - 1;
+                        }
+                        this.m_selectedLocalMusic = null;
+                        this.m_selectedLocalMusicStart = -1;
+                        this.m_selectedLocalMusicEnd = -1;
+                        reBuildTimeLineExt(-1, true);
+                        return true;
+                    }
+                }
+                isDownloadFile = false;
+                if (currentSelected == null) {
+                }
+                if (isDownloadFile) {
+                }
+                if (currentSelected != null) {
+                }
+            default:
+                return false;
+        }
     }
 
     public boolean moveClip(int clipIndex, int destClipIndex) {
@@ -1111,88 +992,37 @@ public class NvsThemeHelper {
 
     /* JADX WARNING: Removed duplicated region for block: B:19:0x0092  */
     /* JADX WARNING: Removed duplicated region for block: B:16:0x006f  */
-    private java.lang.String manageStringLength(java.lang.String r16, int r17) {
-        /*
-        r15 = this;
-        if (r16 == 0) goto L_0x0008;
-    L_0x0002:
-        r13 = r16.isEmpty();
-        if (r13 == 0) goto L_0x000a;
-    L_0x0008:
-        r13 = 0;
-    L_0x0009:
-        return r13;
-    L_0x000a:
-        r16 = r16.trim();
-        r12 = new android.graphics.Paint;
-        r12.<init>();
-        r0 = r17;
-        r13 = (float) r0;
-        r12.setTextSize(r13);
-        r13 = "北京美摄网络科技公司";
-        r8 = r12.measureText(r13);
-        r2 = "😀";
-        r6 = r12.measureText(r2);
-        r13 = 0;
-        r14 = 1;
-        r13 = r2.substring(r13, r14);
-        r7 = r12.measureText(r13);
-        r3 = r6 - r7;
-        r10 = 0;
-        r5 = 0;
-    L_0x0035:
-        r13 = r16.length();
-        if (r5 >= r13) goto L_0x0069;
-    L_0x003b:
-        r10 = r5 + 1;
-        r13 = 0;
-        r0 = r16;
-        r11 = r0.substring(r13, r10);
-        r1 = r12.measureText(r11);
-        r13 = (r1 > r8 ? 1 : (r1 == r8 ? 0 : -1));
-        if (r13 < 0) goto L_0x008f;
-    L_0x004c:
-        r13 = r16.length();
-        r13 = r13 + -1;
-        if (r5 >= r13) goto L_0x008a;
-    L_0x0054:
-        r13 = 0;
-        r14 = r5 + 2;
-        r0 = r16;
-        r9 = r0.substring(r13, r14);
-        r13 = r12.measureText(r9);
-        r4 = r13 - r1;
-        r13 = (r4 > r3 ? 1 : (r4 == r3 ? 0 : -1));
-        if (r13 > 0) goto L_0x0069;
-    L_0x0067:
-        r10 = r5 + 2;
-    L_0x0069:
-        r13 = r16.length();
-        if (r10 == r13) goto L_0x0092;
-    L_0x006f:
-        r13 = new java.lang.StringBuilder;
-        r13.<init>();
-        r14 = 0;
-        r0 = r16;
-        r14 = r0.substring(r14, r10);
-        r13 = r13.append(r14);
-        r14 = "...";
-        r13 = r13.append(r14);
-        r13 = r13.toString();
-        goto L_0x0009;
-    L_0x008a:
-        r10 = r16.length();
-        goto L_0x0069;
-    L_0x008f:
-        r5 = r5 + 1;
-        goto L_0x0035;
-    L_0x0092:
-        r13 = 0;
-        r0 = r16;
-        r13 = r0.substring(r13, r10);
-        goto L_0x0009;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.meicam.themehelper.NvsThemeHelper.manageStringLength(java.lang.String, int):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private String manageStringLength(String source_text, int fontSize) {
+        if (source_text == null || source_text.isEmpty()) {
+            return null;
+        }
+        source_text = source_text.trim();
+        Paint textPaint = new Paint();
+        textPaint.setTextSize((float) fontSize);
+        float max_length = textPaint.measureText(FONT_MAX_LENGTH);
+        String emoji = "😀";
+        float emojiMinLength = textPaint.measureText(emoji) - textPaint.measureText(emoji.substring(0, 1));
+        int sub_index = 0;
+        for (int i = 0; i < source_text.length(); i++) {
+            sub_index = i + 1;
+            float cur_length = textPaint.measureText(source_text.substring(0, sub_index));
+            if (cur_length >= max_length) {
+                if (i < source_text.length() - 1) {
+                    if (textPaint.measureText(source_text.substring(0, i + 2)) - cur_length <= emojiMinLength) {
+                        sub_index = i + 2;
+                    }
+                } else {
+                    sub_index = source_text.length();
+                }
+                if (sub_index == source_text.length()) {
+                    return source_text.substring(0, sub_index) + "...";
+                }
+                return source_text.substring(0, sub_index);
+            }
+        }
+        if (sub_index == source_text.length()) {
+        }
     }
 
     private String manageString2Length(String source_text, int fontSize) {

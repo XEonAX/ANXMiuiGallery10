@@ -37,6 +37,9 @@ import com.xiaomi.xmpush.thrift.PushMetaInfo;
 import com.xiaomi.xmpush.thrift.XmPushActionContainer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -47,6 +50,8 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import org.jcodec.containers.mp4.boxes.Box;
 import org.json.JSONObject;
 
@@ -554,234 +559,79 @@ public class MIPushNotificationHelper {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:15:0x0037  */
-    private static android.content.Intent getPendingIntentFromExtra(android.content.Context r17, java.lang.String r18, int r19, java.util.Map<java.lang.String, java.lang.String> r20) {
-        /*
-        r15 = 2;
-        r0 = r19;
-        if (r0 >= r15) goto L_0x0017;
-    L_0x0005:
-        r15 = "notification_style_button_left_notify_effect";
-    L_0x0007:
-        r0 = r20;
-        r11 = r0.get(r15);
-        r11 = (java.lang.String) r11;
-        r15 = android.text.TextUtils.isEmpty(r11);
-        if (r15 == 0) goto L_0x0022;
-    L_0x0015:
-        r3 = 0;
-    L_0x0016:
-        return r3;
-    L_0x0017:
-        r15 = 3;
-        r0 = r19;
-        if (r0 >= r15) goto L_0x001f;
-    L_0x001c:
-        r15 = "notification_style_button_mid_notify_effect";
-        goto L_0x0007;
-    L_0x001f:
-        r15 = "notification_style_button_right_notify_effect";
-        goto L_0x0007;
-    L_0x0022:
-        r3 = 0;
-        r15 = com.xiaomi.push.service.PushConstants.NOTIFICATION_CLICK_DEFAULT;
-        r15 = r15.equals(r11);
-        if (r15 == 0) goto L_0x0068;
-    L_0x002b:
-        r15 = r17.getPackageManager();	 Catch:{ Exception -> 0x004c }
-        r0 = r18;
-        r3 = r15.getLaunchIntentForPackage(r0);	 Catch:{ Exception -> 0x004c }
-    L_0x0035:
-        if (r3 == 0) goto L_0x004a;
-    L_0x0037:
-        r15 = 268435456; // 0x10000000 float:2.5243549E-29 double:1.32624737E-315;
-        r3.addFlags(r15);
-        r15 = r17.getPackageManager();	 Catch:{ Exception -> 0x018a }
-        r16 = 65536; // 0x10000 float:9.18355E-41 double:3.2379E-319;
-        r0 = r16;
-        r9 = r15.resolveActivity(r3, r0);	 Catch:{ Exception -> 0x018a }
-        if (r9 != 0) goto L_0x0016;
-    L_0x004a:
-        r3 = 0;
-        goto L_0x0016;
-    L_0x004c:
-        r2 = move-exception;
-        r15 = new java.lang.StringBuilder;
-        r15.<init>();
-        r16 = "Cause: ";
-        r15 = r15.append(r16);
-        r16 = r2.getMessage();
-        r15 = r15.append(r16);
-        r15 = r15.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r15);
-        goto L_0x0035;
-    L_0x0068:
-        r15 = com.xiaomi.push.service.PushConstants.NOTIFICATION_CLICK_INTENT;
-        r15 = r15.equals(r11);
-        if (r15 == 0) goto L_0x00ef;
-    L_0x0070:
-        r15 = 2;
-        r0 = r19;
-        if (r0 >= r15) goto L_0x00b8;
-    L_0x0075:
-        r7 = "notification_style_button_left_intent_uri";
-    L_0x0077:
-        r15 = 2;
-        r0 = r19;
-        if (r0 >= r15) goto L_0x00c3;
-    L_0x007c:
-        r5 = "notification_style_button_left_intent_class";
-    L_0x007e:
-        r0 = r20;
-        r15 = r0.containsKey(r7);
-        if (r15 == 0) goto L_0x00ce;
-    L_0x0086:
-        r0 = r20;
-        r6 = r0.get(r7);
-        r6 = (java.lang.String) r6;
-        if (r6 == 0) goto L_0x0035;
-    L_0x0090:
-        r15 = 1;
-        r3 = android.content.Intent.parseUri(r6, r15);	 Catch:{ URISyntaxException -> 0x009b }
-        r0 = r18;
-        r3.setPackage(r0);	 Catch:{ URISyntaxException -> 0x009b }
-        goto L_0x0035;
-    L_0x009b:
-        r2 = move-exception;
-        r15 = new java.lang.StringBuilder;
-        r15.<init>();
-        r16 = "Cause: ";
-        r15 = r15.append(r16);
-        r16 = r2.getMessage();
-        r15 = r15.append(r16);
-        r15 = r15.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r15);
-        goto L_0x0035;
-    L_0x00b8:
-        r15 = 3;
-        r0 = r19;
-        if (r0 >= r15) goto L_0x00c0;
-    L_0x00bd:
-        r7 = "notification_style_button_mid_intent_uri";
-        goto L_0x0077;
-    L_0x00c0:
-        r7 = "notification_style_button_right_intent_uri";
-        goto L_0x0077;
-    L_0x00c3:
-        r15 = 3;
-        r0 = r19;
-        if (r0 >= r15) goto L_0x00cb;
-    L_0x00c8:
-        r5 = "notification_style_button_mid_intent_class";
-        goto L_0x007e;
-    L_0x00cb:
-        r5 = "notification_style_button_right_intent_class";
-        goto L_0x007e;
-    L_0x00ce:
-        r0 = r20;
-        r15 = r0.containsKey(r5);
-        if (r15 == 0) goto L_0x0035;
-    L_0x00d6:
-        r0 = r20;
-        r1 = r0.get(r5);
-        r1 = (java.lang.String) r1;
-        r3 = new android.content.Intent;
-        r3.<init>();
-        r15 = new android.content.ComponentName;
-        r0 = r18;
-        r15.<init>(r0, r1);
-        r3.setComponent(r15);
-        goto L_0x0035;
-    L_0x00ef:
-        r15 = com.xiaomi.push.service.PushConstants.NOTIFICATION_CLICK_WEB_PAGE;
-        r15 = r15.equals(r11);
-        if (r15 == 0) goto L_0x0035;
-    L_0x00f7:
-        r15 = 2;
-        r0 = r19;
-        if (r0 >= r15) goto L_0x0162;
-    L_0x00fc:
-        r14 = "notification_style_button_left_web_uri";
-    L_0x00fe:
-        r0 = r20;
-        r12 = r0.get(r14);
-        r12 = (java.lang.String) r12;
-        r15 = android.text.TextUtils.isEmpty(r12);
-        if (r15 != 0) goto L_0x0035;
-    L_0x010c:
-        r10 = r12.trim();
-        r15 = "http://";
-        r15 = r10.startsWith(r15);
-        if (r15 != 0) goto L_0x0133;
-    L_0x0118:
-        r15 = "https://";
-        r15 = r10.startsWith(r15);
-        if (r15 != 0) goto L_0x0133;
-    L_0x0120:
-        r15 = new java.lang.StringBuilder;
-        r15.<init>();
-        r16 = "http://";
-        r15 = r15.append(r16);
-        r15 = r15.append(r10);
-        r10 = r15.toString();
-    L_0x0133:
-        r13 = new java.net.URL;	 Catch:{ MalformedURLException -> 0x016d }
-        r13.<init>(r10);	 Catch:{ MalformedURLException -> 0x016d }
-        r8 = r13.getProtocol();	 Catch:{ MalformedURLException -> 0x016d }
-        r15 = "http";
-        r15 = r15.equals(r8);	 Catch:{ MalformedURLException -> 0x016d }
-        if (r15 != 0) goto L_0x014c;
-    L_0x0144:
-        r15 = "https";
-        r15 = r15.equals(r8);	 Catch:{ MalformedURLException -> 0x016d }
-        if (r15 == 0) goto L_0x0035;
-    L_0x014c:
-        r4 = new android.content.Intent;	 Catch:{ MalformedURLException -> 0x016d }
-        r15 = "android.intent.action.VIEW";
-        r4.<init>(r15);	 Catch:{ MalformedURLException -> 0x016d }
-        r15 = android.net.Uri.parse(r10);	 Catch:{ MalformedURLException -> 0x01a7 }
-        r4.setData(r15);	 Catch:{ MalformedURLException -> 0x01a7 }
-        r0 = r17;
-        r3 = setXiaomiBrowserDefault(r0, r4);	 Catch:{ MalformedURLException -> 0x01a7 }
-        goto L_0x0035;
-    L_0x0162:
-        r15 = 3;
-        r0 = r19;
-        if (r0 >= r15) goto L_0x016a;
-    L_0x0167:
-        r14 = "notification_style_button_mid_web_uri";
-        goto L_0x00fe;
-    L_0x016a:
-        r14 = "notification_style_button_right_web_uri";
-        goto L_0x00fe;
-    L_0x016d:
-        r2 = move-exception;
-    L_0x016e:
-        r15 = new java.lang.StringBuilder;
-        r15.<init>();
-        r16 = "Cause: ";
-        r15 = r15.append(r16);
-        r16 = r2.getMessage();
-        r15 = r15.append(r16);
-        r15 = r15.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r15);
-        goto L_0x0035;
-    L_0x018a:
-        r2 = move-exception;
-        r15 = new java.lang.StringBuilder;
-        r15.<init>();
-        r16 = "Cause: ";
-        r15 = r15.append(r16);
-        r16 = r2.getMessage();
-        r15 = r15.append(r16);
-        r15 = r15.toString();
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r15);
-        goto L_0x004a;
-    L_0x01a7:
-        r2 = move-exception;
-        r3 = r4;
-        goto L_0x016e;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.push.service.MIPushNotificationHelper.getPendingIntentFromExtra(android.content.Context, java.lang.String, int, java.util.Map):android.content.Intent");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static Intent getPendingIntentFromExtra(Context context, String pkgName, int place, Map<String, String> extra) {
+        MalformedURLException e;
+        Object obj = place < 2 ? "notification_style_button_left_notify_effect" : place < 3 ? "notification_style_button_mid_notify_effect" : "notification_style_button_right_notify_effect";
+        String typeId = (String) extra.get(obj);
+        if (TextUtils.isEmpty(typeId)) {
+            return null;
+        }
+        Intent intent = null;
+        if (PushConstants.NOTIFICATION_CLICK_DEFAULT.equals(typeId)) {
+            try {
+                intent = context.getPackageManager().getLaunchIntentForPackage(pkgName);
+            } catch (Exception e2) {
+                MyLog.e("Cause: " + e2.getMessage());
+            }
+        } else if (PushConstants.NOTIFICATION_CLICK_INTENT.equals(typeId)) {
+            String intentUriKey = place < 2 ? "notification_style_button_left_intent_uri" : place < 3 ? "notification_style_button_mid_intent_uri" : "notification_style_button_right_intent_uri";
+            String intentClassKey = place < 2 ? "notification_style_button_left_intent_class" : place < 3 ? "notification_style_button_mid_intent_class" : "notification_style_button_right_intent_class";
+            if (extra.containsKey(intentUriKey)) {
+                String intentStr = (String) extra.get(intentUriKey);
+                if (intentStr != null) {
+                    try {
+                        intent = Intent.parseUri(intentStr, 1);
+                        intent.setPackage(pkgName);
+                    } catch (URISyntaxException e3) {
+                        MyLog.e("Cause: " + e3.getMessage());
+                    }
+                }
+            } else if (extra.containsKey(intentClassKey)) {
+                String className = (String) extra.get(intentClassKey);
+                intent = new Intent();
+                intent.setComponent(new ComponentName(pkgName, className));
+            }
+        } else if (PushConstants.NOTIFICATION_CLICK_WEB_PAGE.equals(typeId)) {
+            String webUriKey = place < 2 ? "notification_style_button_left_web_uri" : place < 3 ? "notification_style_button_mid_web_uri" : "notification_style_button_right_web_uri";
+            String uri = (String) extra.get(webUriKey);
+            if (!TextUtils.isEmpty(uri)) {
+                String tmp = uri.trim();
+                if (!(tmp.startsWith("http://") || tmp.startsWith("https://"))) {
+                    tmp = "http://" + tmp;
+                }
+                try {
+                    String protocol = new URL(tmp).getProtocol();
+                    if ("http".equals(protocol) || "https".equals(protocol)) {
+                        Intent intent2 = new Intent("android.intent.action.VIEW");
+                        try {
+                            intent2.setData(Uri.parse(tmp));
+                            intent = setXiaomiBrowserDefault(context, intent2);
+                        } catch (MalformedURLException e4) {
+                            e = e4;
+                            intent = intent2;
+                        }
+                    }
+                } catch (MalformedURLException e5) {
+                    e = e5;
+                    MyLog.e("Cause: " + e.getMessage());
+                    if (intent != null) {
+                    }
+                    return null;
+                }
+            }
+        }
+        if (intent != null) {
+            intent.addFlags(268435456);
+            try {
+                if (context.getPackageManager().resolveActivity(intent, 65536) != null) {
+                    return intent;
+                }
+            } catch (Exception e22) {
+                MyLog.e("Cause: " + e22.getMessage());
+            }
+        }
+        return null;
     }
 
     private static Intent setXiaomiBrowserDefault(Context context, Intent intent) {
@@ -1149,51 +999,22 @@ public class MIPushNotificationHelper {
     /* JADX WARNING: Missing block: B:15:0x0031, code:
             if (r4 != null) goto L_0x001e;
      */
-    private static android.graphics.Bitmap getOnlinePictureResource(android.content.Context r9, java.lang.String r10, boolean r11) {
-        /*
-        r8 = 1;
-        r4 = 0;
-        r5 = sThreadPool;
-        r6 = new com.xiaomi.push.service.MIPushNotificationHelper$DownloadOnlinePicTask;
-        r6.<init>(r10, r9, r11);
-        r3 = r5.submit(r6);
-        r6 = 180; // 0xb4 float:2.52E-43 double:8.9E-322;
-        r5 = java.util.concurrent.TimeUnit.SECONDS;	 Catch:{ InterruptedException -> 0x001f, ExecutionException -> 0x0026, TimeoutException -> 0x002d }
-        r5 = r3.get(r6, r5);	 Catch:{ InterruptedException -> 0x001f, ExecutionException -> 0x0026, TimeoutException -> 0x002d }
-        r0 = r5;
-        r0 = (android.graphics.Bitmap) r0;	 Catch:{ InterruptedException -> 0x001f, ExecutionException -> 0x0026, TimeoutException -> 0x002d }
-        r4 = r0;
-        if (r4 != 0) goto L_0x001e;
-    L_0x001b:
-        r3.cancel(r8);
-    L_0x001e:
-        return r4;
-    L_0x001f:
-        r2 = move-exception;
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r2);	 Catch:{ all -> 0x0034 }
-        if (r4 != 0) goto L_0x001e;
-    L_0x0025:
-        goto L_0x001b;
-    L_0x0026:
-        r2 = move-exception;
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r2);	 Catch:{ all -> 0x0034 }
-        if (r4 != 0) goto L_0x001e;
-    L_0x002c:
-        goto L_0x001b;
-    L_0x002d:
-        r2 = move-exception;
-        com.xiaomi.channel.commonutils.logger.MyLog.e(r2);	 Catch:{ all -> 0x0034 }
-        if (r4 != 0) goto L_0x001e;
-    L_0x0033:
-        goto L_0x001b;
-    L_0x0034:
-        r5 = move-exception;
-        if (r4 != 0) goto L_0x003a;
-    L_0x0037:
-        r3.cancel(r8);
-    L_0x003a:
-        throw r5;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.push.service.MIPushNotificationHelper.getOnlinePictureResource(android.content.Context, java.lang.String, boolean):android.graphics.Bitmap");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static Bitmap getOnlinePictureResource(Context context, String picUrl, boolean isSizeLimited) {
+        Bitmap futureResult = null;
+        Future<Bitmap> future = sThreadPool.submit(new DownloadOnlinePicTask(picUrl, context, isSizeLimited));
+        try {
+            futureResult = (Bitmap) future.get(180, TimeUnit.SECONDS);
+        } catch (Throwable e) {
+            MyLog.e(e);
+        } catch (Throwable e2) {
+            MyLog.e(e2);
+        } catch (Throwable e22) {
+            MyLog.e(e22);
+        } catch (Throwable th) {
+            if (futureResult == null) {
+                future.cancel(true);
+            }
+        }
     }
 }

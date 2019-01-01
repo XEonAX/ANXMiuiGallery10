@@ -6,7 +6,10 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import com.miui.gallery.util.Log;
 import com.miui.gallery.util.MiscUtil;
+import com.miui.gallery.util.uil.CryptUtil;
 import com.nostra13.universalimageloader.utils.ImageSizeUtils;
+import java.io.ByteArrayOutputStream;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -153,102 +156,78 @@ public class NSGifDecode implements Runnable {
 
     /* JADX WARNING: Removed duplicated region for block: B:17:0x003c  */
     /* JADX WARNING: Removed duplicated region for block: B:16:0x0037  */
-    public static com.miui.gallery.util.gifdecoder.NSGifDecode create(java.io.FileDescriptor r13, byte[] r14) {
-        /*
-        r9 = 0;
-        r4 = 0;
-        r10 = 2;
-        r8 = new int[r10];
-        r5 = new java.io.FileInputStream;	 Catch:{ Exception -> 0x004d }
-        r5.<init>(r13);	 Catch:{ Exception -> 0x004d }
-        r10 = r5.available();	 Catch:{ Exception -> 0x0080, all -> 0x007d }
-        r11 = 5242880; // 0x500000 float:7.34684E-39 double:2.590327E-317;
-        if (r10 <= r11) goto L_0x001f;
-    L_0x0012:
-        r10 = "NSGifDecode";
-        r11 = "file is too large";
-        com.miui.gallery.util.Log.d(r10, r11);	 Catch:{ Exception -> 0x0080, all -> 0x007d }
-        com.miui.gallery.util.MiscUtil.closeSilently(r5);
-        r4 = r5;
-        r6 = r9;
-    L_0x001e:
-        return r6;
-    L_0x001f:
-        if (r14 == 0) goto L_0x0085;
-    L_0x0021:
-        r10 = r14.length;	 Catch:{ Exception -> 0x0080, all -> 0x007d }
-        if (r10 <= 0) goto L_0x0085;
-    L_0x0024:
-        r4 = com.miui.gallery.util.uil.CryptUtil.getDecryptCipherInputStream(r5, r14);	 Catch:{ Exception -> 0x0080, all -> 0x007d }
-    L_0x0028:
-        r0 = new java.io.ByteArrayOutputStream;	 Catch:{ Exception -> 0x004d }
-        r0.<init>();	 Catch:{ Exception -> 0x004d }
-        r10 = 4096; // 0x1000 float:5.74E-42 double:2.0237E-320;
-        r1 = new byte[r10];	 Catch:{ Exception -> 0x004d }
-        r10 = checkGif(r4, r1, r8);	 Catch:{ Exception -> 0x004d }
-        if (r10 != 0) goto L_0x003c;
-    L_0x0037:
-        com.miui.gallery.util.MiscUtil.closeSilently(r4);
-        r6 = r9;
-        goto L_0x001e;
-    L_0x003c:
-        r10 = 0;
-        r11 = 10;
-        r0.write(r1, r10, r11);	 Catch:{ Exception -> 0x004d }
-    L_0x0042:
-        r7 = r4.read(r1);	 Catch:{ Exception -> 0x004d }
-        if (r7 < 0) goto L_0x005a;
-    L_0x0048:
-        r10 = 0;
-        r0.write(r1, r10, r7);	 Catch:{ Exception -> 0x004d }
-        goto L_0x0042;
-    L_0x004d:
-        r3 = move-exception;
-    L_0x004e:
-        r10 = "NSGifDecode";
-        r11 = "load gif data";
-        com.miui.gallery.util.Log.d(r10, r11, r3);	 Catch:{ all -> 0x0078 }
-        com.miui.gallery.util.MiscUtil.closeSilently(r4);
-        r6 = r9;
-        goto L_0x001e;
-    L_0x005a:
-        r2 = r0.toByteArray();	 Catch:{ Exception -> 0x004d }
-        r10 = 0;
-        r11 = r2.length;	 Catch:{ Exception -> 0x004d }
-        r6 = create(r2, r10, r11);	 Catch:{ Exception -> 0x004d }
-        if (r6 == 0) goto L_0x0074;
-    L_0x0066:
-        r10 = 0;
-        r10 = r8[r10];	 Catch:{ OutOfMemoryError -> 0x0083 }
-        r11 = 1;
-        r11 = r8[r11];	 Catch:{ OutOfMemoryError -> 0x0083 }
-        r12 = android.graphics.Bitmap.Config.ARGB_8888;	 Catch:{ OutOfMemoryError -> 0x0083 }
-        r10 = android.graphics.Bitmap.createBitmap(r10, r11, r12);	 Catch:{ OutOfMemoryError -> 0x0083 }
-        r6.mFrame = r10;	 Catch:{ OutOfMemoryError -> 0x0083 }
-    L_0x0074:
-        com.miui.gallery.util.MiscUtil.closeSilently(r4);
-        goto L_0x001e;
-    L_0x0078:
-        r9 = move-exception;
-    L_0x0079:
-        com.miui.gallery.util.MiscUtil.closeSilently(r4);
-        throw r9;
-    L_0x007d:
-        r9 = move-exception;
-        r4 = r5;
-        goto L_0x0079;
-    L_0x0080:
-        r3 = move-exception;
-        r4 = r5;
-        goto L_0x004e;
-    L_0x0083:
-        r9 = move-exception;
-        goto L_0x0074;
-    L_0x0085:
-        r4 = r5;
-        goto L_0x0028;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.gallery.util.gifdecoder.NSGifDecode.create(java.io.FileDescriptor, byte[]):com.miui.gallery.util.gifdecoder.NSGifDecode");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static NSGifDecode create(FileDescriptor fd, byte[] secretKey) {
+        Object e;
+        Throwable th;
+        InputStream inputStream = null;
+        int[] wh = new int[2];
+        try {
+            InputStream inputStream2 = new FileInputStream(fd);
+            try {
+                if (inputStream2.available() > 5242880) {
+                    Log.d("NSGifDecode", "file is too large");
+                    MiscUtil.closeSilently(inputStream2);
+                    inputStream = inputStream2;
+                    return null;
+                }
+                ByteArrayOutputStream bos;
+                byte[] buffer;
+                if (secretKey != null) {
+                    if (secretKey.length > 0) {
+                        inputStream = CryptUtil.getDecryptCipherInputStream(inputStream2, secretKey);
+                        bos = new ByteArrayOutputStream();
+                        buffer = new byte[4096];
+                        if (checkGif(inputStream, buffer, wh)) {
+                            MiscUtil.closeSilently(inputStream);
+                            return null;
+                        }
+                        bos.write(buffer, 0, 10);
+                        while (true) {
+                            int ret = inputStream.read(buffer);
+                            if (ret < 0) {
+                                break;
+                            }
+                            bos.write(buffer, 0, ret);
+                        }
+                        byte[] data = bos.toByteArray();
+                        NSGifDecode nsgif = create(data, 0, data.length);
+                        if (nsgif != null) {
+                            try {
+                                nsgif.mFrame = Bitmap.createBitmap(wh[0], wh[1], Config.ARGB_8888);
+                            } catch (OutOfMemoryError e2) {
+                            }
+                        }
+                        MiscUtil.closeSilently(inputStream);
+                        return nsgif;
+                    }
+                }
+                inputStream = inputStream2;
+                bos = new ByteArrayOutputStream();
+                buffer = new byte[4096];
+                if (checkGif(inputStream, buffer, wh)) {
+                }
+            } catch (Exception e3) {
+                e = e3;
+                inputStream = inputStream2;
+                try {
+                    Log.d("NSGifDecode", "load gif data", e);
+                    MiscUtil.closeSilently(inputStream);
+                    return null;
+                } catch (Throwable th2) {
+                    th = th2;
+                    MiscUtil.closeSilently(inputStream);
+                    throw th;
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                inputStream = inputStream2;
+                MiscUtil.closeSilently(inputStream);
+                throw th;
+            }
+        } catch (Exception e4) {
+            e = e4;
+        }
     }
 
     private static NSGifDecode create(final byte[] data, final int offset, final int length) {
