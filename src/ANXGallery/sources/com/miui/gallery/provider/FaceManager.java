@@ -22,6 +22,7 @@ import com.miui.os.Rom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import miui.widget.SimpleDialogFragment;
 
 public class FaceManager {
     private static final String[] BASIC_PEOPLE_INFO_PROJECTION = new String[]{"_id", "serverId", "peopleName", "relationType"};
@@ -560,7 +561,7 @@ public class FaceManager {
         contentValues.put("dateModified", Long.valueOf(cursor.getLong(cursor.getColumnIndex("dateModified"))));
         contentValues.put("size", Long.valueOf(cursor.getLong(cursor.getColumnIndex("size"))));
         contentValues.put("mimeType", cursor.getString(cursor.getColumnIndex("mimeType")));
-        contentValues.put("title", cursor.getString(cursor.getColumnIndex("title")));
+        contentValues.put(SimpleDialogFragment.ARG_TITLE, cursor.getString(cursor.getColumnIndex(SimpleDialogFragment.ARG_TITLE)));
         contentValues.put("sha1", cursor.getString(cursor.getColumnIndex("sha1")));
         contentValues.put("ubiSubImageCount", Integer.valueOf(cursor.getInt(cursor.getColumnIndex("ubiSubImageCount"))));
         contentValues.put("ubiSubIndex", Integer.valueOf(cursor.getInt(cursor.getColumnIndex("ubiSubIndex"))));

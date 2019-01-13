@@ -1,7 +1,6 @@
 package com.xiaomi.smack.util;
 
 import android.text.TextUtils;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import com.xiaomi.channel.commonutils.logger.MyLog;
 import com.xiaomi.push.service.CommonPacketExtensionProvider;
 import com.xiaomi.push.service.PushClientsManager;
@@ -42,7 +41,7 @@ public class PacketParserUtils {
             String pktId = parser.getAttributeValue("", "id");
             String from = parser.getAttributeValue("", "from");
             String to = parser.getAttributeValue("", "to");
-            String type = parser.getAttributeValue("", nexExportFormat.TAG_FORMAT_TYPE);
+            String type = parser.getAttributeValue("", "type");
             ClientLoginInfo info = PushClientsManager.getInstance().getClientLoginInfoByChidAndUserId(chid, to);
             if (info == null) {
                 info = PushClientsManager.getInstance().getClientLoginInfoByChidAndUserId(chid, from);
@@ -133,7 +132,7 @@ public class PacketParserUtils {
         }
         boolean z = !TextUtils.isEmpty(isTransient) && isTransient.equalsIgnoreCase("true");
         message.setIsTransient(z);
-        message.setType(parser.getAttributeValue("", nexExportFormat.TAG_FORMAT_TYPE));
+        message.setType(parser.getAttributeValue("", "type"));
         String language = getLanguageAttribute(parser);
         if (language == null || "".equals(language.trim())) {
             defaultLanguage = Packet.getDefaultLanguage();
@@ -206,7 +205,7 @@ public class PacketParserUtils {
 
     public static Presence parsePresence(XmlPullParser parser) throws Exception {
         Type type = Type.available;
-        String typeString = parser.getAttributeValue("", nexExportFormat.TAG_FORMAT_TYPE);
+        String typeString = parser.getAttributeValue("", "type");
         if (!(typeString == null || typeString.equals(""))) {
             try {
                 type = Type.valueOf(typeString);
@@ -263,7 +262,7 @@ public class PacketParserUtils {
         String to = parser.getAttributeValue("", "to");
         String from = parser.getAttributeValue("", "from");
         String channelId = parser.getAttributeValue("", "chid");
-        IQ.Type type = IQ.Type.fromString(parser.getAttributeValue("", nexExportFormat.TAG_FORMAT_TYPE));
+        IQ.Type type = IQ.Type.fromString(parser.getAttributeValue("", "type"));
         HashMap<String, String> attributes = new HashMap();
         for (int i = 0; i < parser.getAttributeCount(); i++) {
             String key = parser.getAttributeName(i);
@@ -346,8 +345,8 @@ public class PacketParserUtils {
             if (parser.getAttributeName(i).equals("code")) {
                 errorCode = parser.getAttributeValue("", "code");
             }
-            if (parser.getAttributeName(i).equals(nexExportFormat.TAG_FORMAT_TYPE)) {
-                type = parser.getAttributeValue("", nexExportFormat.TAG_FORMAT_TYPE);
+            if (parser.getAttributeName(i).equals("type")) {
+                type = parser.getAttributeValue("", "type");
             }
             if (parser.getAttributeName(i).equals("reason")) {
                 reason = parser.getAttributeValue("", "reason");

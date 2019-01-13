@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import miui.reflect.Field;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -291,7 +292,7 @@ public class HostManager {
             if (!TextUtils.isEmpty(result)) {
                 JSONObject jSONObject = new JSONObject(result);
                 MyLog.i(result);
-                if ("OK".equalsIgnoreCase(jSONObject.getString("S"))) {
+                if ("OK".equalsIgnoreCase(jSONObject.getString(Field.SHORT_SIGNATURE_PRIMITIVE))) {
                     String host;
                     int j;
                     String fallbackHost;
@@ -390,7 +391,7 @@ public class HostManager {
         Iterator it;
         ArrayList<String> urls = new ArrayList();
         List<NameValuePair> params = new ArrayList();
-        params.add(new BasicNameValuePair(nexExportFormat.TAG_FORMAT_TYPE, networkType));
+        params.add(new BasicNameValuePair("type", networkType));
         if (networkType.equals("wap")) {
             params.add(new BasicNameValuePair("conpt", obfuscate(Network.getActiveConnPoint(sAppContext))));
         }

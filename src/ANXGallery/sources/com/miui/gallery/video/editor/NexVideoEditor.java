@@ -26,6 +26,7 @@ import com.miui.gallery.video.editor.manager.NexAssetTemplateManager;
 import com.miui.gallery.video.editor.util.FileHelper;
 import com.miui.gallery.video.editor.util.IntentUtil;
 import com.miui.gallery.video.editor.util.ToolsUtil;
+import com.miui.internal.widget.ActionBarMovableLayout;
 import com.nexstreaming.nexeditorsdk.exception.ExpiredTimeException;
 import com.nexstreaming.nexeditorsdk.nexAnimate;
 import com.nexstreaming.nexeditorsdk.nexApplicationConfig;
@@ -555,9 +556,9 @@ public class NexVideoEditor extends VideoEditor implements nexEngineListener {
                     this.mWaterMarkOverlayItem = new nexOverlayItem(this.mWaterMarkOverlay, this.anchorPoint, false, (float) this.x, (float) this.y, this.mStartTime, this.mEndTime);
                 } else if (this.timeType == 1) {
                     this.mWaterMarkOverlay = nexOverlayPreset.getOverlayPreset(NexVideoEditor.this.mContext.getApplicationContext()).getOverlayImage(this.mTemplateId);
-                    this.mStartTime = ((this.mEndTime - 800) - this.mWaterMarkOverlay.getDefaultDuration()) - 1000;
+                    this.mStartTime = ((this.mEndTime - ActionBarMovableLayout.DEFAULT_SPRING_BACK_DURATION) - this.mWaterMarkOverlay.getDefaultDuration()) - 1000;
                     this.mWaterMarkOverlayItem = new nexOverlayItem(this.mWaterMarkOverlay, this.anchorPoint, false, (float) this.x, (float) this.y, this.mStartTime, this.mEndTime);
-                    this.mWaterMarkOverlayItem.addAnimate(nexAnimate.getAlpha(this.mWaterMarkOverlay.getDefaultDuration() + 500, 800, 1.0f, 0.0f));
+                    this.mWaterMarkOverlayItem.addAnimate(nexAnimate.getAlpha(this.mWaterMarkOverlay.getDefaultDuration() + 500, ActionBarMovableLayout.DEFAULT_SPRING_BACK_DURATION, 1.0f, 0.0f));
                 }
                 this.mWaterMarkOverlayItem.setScale(this.scale, this.scale);
             }

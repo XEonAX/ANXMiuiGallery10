@@ -307,7 +307,7 @@
 
     .prologue
     .line 141
-    iget-object v1, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v1, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     invoke-virtual {p0}, Lcom/miui/gallery/activity/HomePageActivity;->getFragmentManager()Landroid/app/FragmentManager;
 
@@ -315,19 +315,19 @@
 
     const/4 v3, 0x0
 
-    invoke-virtual {v1, p0, v2, v3}, Landroid/app/ActionBar;->setFragmentViewPagerMode(Landroid/content/Context;Landroid/app/FragmentManager;Z)V
+    invoke-virtual {v1, p0, v2, v3}, Lmiui/app/ActionBar;->setFragmentViewPagerMode(Landroid/content/Context;Landroid/app/FragmentManager;Z)V
 
     .line 142
-    iget-object v1, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v1, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     const v2, 0x7f040002
 
-    invoke-virtual {v1, v2}, Landroid/app/ActionBar;->setCustomView(I)V
+    invoke-virtual {v1, v2}, Lmiui/app/ActionBar;->setCustomView(I)V
 
     .line 143
-    iget-object v1, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v1, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
-    invoke-virtual {v1}, Landroid/app/ActionBar;->getCustomView()Landroid/view/View;
+    invoke-virtual {v1}, Lmiui/app/ActionBar;->getCustomView()Landroid/view/View;
 
     move-result-object v0
 
@@ -382,56 +382,56 @@
     const/4 v5, 0x0
 
     .line 198
-    invoke-virtual {p0}, Lcom/miui/gallery/activity/HomePageActivity;->getActionBar()Landroid/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/activity/HomePageActivity;->getActionBar()Lmiui/app/ActionBar;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iput-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     const-string v1, "HomePageFragment"
 
-    iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     .line 199
-    invoke-virtual {v2}, Landroid/app/ActionBar;->newTab()Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2}, Lmiui/app/ActionBar;->newTab()Lmiui/app/ActionBar$Tab;
 
     move-result-object v2
 
     const v3, 0x7f0e023c
 
-    invoke-virtual {v2, v3}, Landroid/app/ActionBar$Tab;->setText(I)Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2, v3}, Lmiui/app/ActionBar$Tab;->setText(I)Lmiui/app/ActionBar$Tab;
 
     move-result-object v2
 
     const-class v3, Lcom/miui/gallery/ui/HomePageFragment;
 
     .line 198
-    invoke-virtual/range {v0 .. v5}, Landroid/app/ActionBar;->addFragmentTab(Ljava/lang/String;Landroid/app/ActionBar$Tab;Ljava/lang/Class;Landroid/os/Bundle;Z)I
+    invoke-virtual/range {v0 .. v5}, Lmiui/app/ActionBar;->addFragmentTab(Ljava/lang/String;Lmiui/app/ActionBar$Tab;Ljava/lang/Class;Landroid/os/Bundle;Z)I
 
     .line 201
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     const-string v1, "Empty"
 
-    iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     .line 202
-    invoke-virtual {v2}, Landroid/app/ActionBar;->newTab()Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2}, Lmiui/app/ActionBar;->newTab()Lmiui/app/ActionBar$Tab;
 
     move-result-object v2
 
     const v3, 0x7f0e003c
 
-    invoke-virtual {v2, v3}, Landroid/app/ActionBar$Tab;->setText(I)Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2, v3}, Lmiui/app/ActionBar$Tab;->setText(I)Lmiui/app/ActionBar$Tab;
 
     move-result-object v2
 
     const-class v3, Landroid/app/Fragment;
 
     .line 201
-    invoke-virtual/range {v0 .. v5}, Landroid/app/ActionBar;->addFragmentTab(Ljava/lang/String;Landroid/app/ActionBar$Tab;Ljava/lang/Class;Landroid/os/Bundle;Z)I
+    invoke-virtual/range {v0 .. v5}, Lmiui/app/ActionBar;->addFragmentTab(Ljava/lang/String;Lmiui/app/ActionBar$Tab;Ljava/lang/Class;Landroid/os/Bundle;Z)I
 
     .line 204
     invoke-static {}, Lcom/miui/gallery/card/CardManager;->isStoryFunctionEnable()Z
@@ -441,37 +441,37 @@
     if-eqz v0, :cond_0
 
     .line 205
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     const-string v1, "StoryStub"
 
-    iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     .line 206
-    invoke-virtual {v2}, Landroid/app/ActionBar;->newTab()Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2}, Lmiui/app/ActionBar;->newTab()Lmiui/app/ActionBar$Tab;
 
     move-result-object v2
 
     const v3, 0x7f0e0560
 
-    invoke-virtual {v2, v3}, Landroid/app/ActionBar$Tab;->setText(I)Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2, v3}, Lmiui/app/ActionBar$Tab;->setText(I)Lmiui/app/ActionBar$Tab;
 
     move-result-object v2
 
     const-class v3, Landroid/app/Fragment;
 
     .line 205
-    invoke-virtual/range {v0 .. v5}, Landroid/app/ActionBar;->addFragmentTab(Ljava/lang/String;Landroid/app/ActionBar$Tab;Ljava/lang/Class;Landroid/os/Bundle;Z)I
+    invoke-virtual/range {v0 .. v5}, Lmiui/app/ActionBar;->addFragmentTab(Ljava/lang/String;Lmiui/app/ActionBar$Tab;Ljava/lang/Class;Landroid/os/Bundle;Z)I
 
     .line 209
     :cond_0
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     new-instance v1, Lcom/miui/gallery/activity/HomePageActivity$3;
 
     invoke-direct {v1, p0}, Lcom/miui/gallery/activity/HomePageActivity$3;-><init>(Lcom/miui/gallery/activity/HomePageActivity;)V
 
-    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->addOnFragmentViewPagerChangeListener(Landroid/app/ActionBar$FragmentViewPagerChangeListener;)V
+    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->addOnFragmentViewPagerChangeListener(Lmiui/app/ActionBar$FragmentViewPagerChangeListener;)V
 
     .line 233
     return-void
@@ -510,20 +510,20 @@
 
     .line 241
     .local v7, "position":I
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     const-string v1, "AlbumPageFragment"
 
-    iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     .line 242
-    invoke-virtual {v2}, Landroid/app/ActionBar;->newTab()Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2}, Lmiui/app/ActionBar;->newTab()Lmiui/app/ActionBar$Tab;
 
     move-result-object v2
 
     const v3, 0x7f0e003c
 
-    invoke-virtual {v2, v3}, Landroid/app/ActionBar$Tab;->setText(I)Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2, v3}, Lmiui/app/ActionBar$Tab;->setText(I)Lmiui/app/ActionBar$Tab;
 
     move-result-object v2
 
@@ -532,23 +532,23 @@
     const-class v4, Lcom/miui/gallery/ui/AlbumPageFragment;
 
     .line 241
-    invoke-virtual/range {v0 .. v6}, Landroid/app/ActionBar;->addFragmentTab(Ljava/lang/String;Landroid/app/ActionBar$Tab;ILjava/lang/Class;Landroid/os/Bundle;Z)I
+    invoke-virtual/range {v0 .. v6}, Lmiui/app/ActionBar;->addFragmentTab(Ljava/lang/String;Lmiui/app/ActionBar$Tab;ILjava/lang/Class;Landroid/os/Bundle;Z)I
 
     .line 245
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
-    iget-object v1, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v1, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
-    invoke-virtual {v1, v7}, Landroid/app/ActionBar;->getTabAt(I)Landroid/app/ActionBar$Tab;
+    invoke-virtual {v1, v7}, Lmiui/app/ActionBar;->getTabAt(I)Lmiui/app/ActionBar$Tab;
 
     move-result-object v1
 
-    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->selectTab(Landroid/app/ActionBar$Tab;)V
+    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->selectTab(Lmiui/app/ActionBar$Tab;)V
 
     .line 246
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
-    invoke-virtual {v0, v8}, Landroid/app/ActionBar;->removeFragmentTabAt(I)V
+    invoke-virtual {v0, v8}, Lmiui/app/ActionBar;->removeFragmentTabAt(I)V
 
     .line 248
     invoke-static {}, Lcom/miui/gallery/card/CardManager;->isStoryFunctionEnable()Z
@@ -558,20 +558,20 @@
     if-eqz v0, :cond_0
 
     .line 249
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     const-string v1, "AssistantPageFragment"
 
-    iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     .line 250
-    invoke-virtual {v2}, Landroid/app/ActionBar;->newTab()Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2}, Lmiui/app/ActionBar;->newTab()Lmiui/app/ActionBar$Tab;
 
     move-result-object v2
 
     const v3, 0x7f0e0560
 
-    invoke-virtual {v2, v3}, Landroid/app/ActionBar$Tab;->setText(I)Landroid/app/ActionBar$Tab;
+    invoke-virtual {v2, v3}, Lmiui/app/ActionBar$Tab;->setText(I)Lmiui/app/ActionBar$Tab;
 
     move-result-object v2
 
@@ -580,14 +580,14 @@
     move v3, v8
 
     .line 249
-    invoke-virtual/range {v0 .. v6}, Landroid/app/ActionBar;->addFragmentTab(Ljava/lang/String;Landroid/app/ActionBar$Tab;ILjava/lang/Class;Landroid/os/Bundle;Z)I
+    invoke-virtual/range {v0 .. v6}, Lmiui/app/ActionBar;->addFragmentTab(Ljava/lang/String;Lmiui/app/ActionBar$Tab;ILjava/lang/Class;Landroid/os/Bundle;Z)I
 
     .line 253
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     const/4 v1, 0x3
 
-    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->removeFragmentTabAt(I)V
+    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->removeFragmentTabAt(I)V
 
     goto :goto_0
 .end method
@@ -621,9 +621,9 @@
     if-ne p1, v1, :cond_0
 
     .line 165
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
-    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
+    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
 
     .line 171
     :goto_0
@@ -634,17 +634,17 @@
     if-nez p1, :cond_1
 
     .line 167
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
-    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
+    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
 
     goto :goto_0
 
     .line 169
     :cond_1
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
-    invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
+    invoke-virtual {v0, v1}, Lmiui/app/ActionBar;->setDisplayShowCustomEnabled(Z)V
 
     goto :goto_0
 .end method
@@ -656,11 +656,11 @@
 
     .prologue
     .line 98
-    iget-object v1, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v1, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     iget v2, p0, Lcom/miui/gallery/activity/HomePageActivity;->mCurrentPagePosition:I
 
-    invoke-virtual {v1, v2}, Landroid/app/ActionBar;->getFragmentAt(I)Landroid/app/Fragment;
+    invoke-virtual {v1, v2}, Lmiui/app/ActionBar;->getFragmentAt(I)Landroid/app/Fragment;
 
     move-result-object v0
 
@@ -777,19 +777,19 @@
     invoke-super {p0, p1}, Lcom/miui/gallery/activity/BaseActivity;->onCreate(Landroid/os/Bundle;)V
 
     .line 60
-    invoke-virtual {p0}, Lcom/miui/gallery/activity/HomePageActivity;->getActionBar()Landroid/app/ActionBar;
+    invoke-virtual {p0}, Lcom/miui/gallery/activity/HomePageActivity;->getActionBar()Lmiui/app/ActionBar;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iput-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
-    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Landroid/app/ActionBar;
+    iget-object v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mActionBar:Lmiui/app/ActionBar;
 
     invoke-virtual {p0}, Lcom/miui/gallery/activity/HomePageActivity;->getFragmentManager()Landroid/app/FragmentManager;
 
     move-result-object v1
 
-    invoke-virtual {v0, p0, v1}, Landroid/app/ActionBar;->setFragmentViewPagerMode(Landroid/content/Context;Landroid/app/FragmentManager;)V
+    invoke-virtual {v0, p0, v1}, Lmiui/app/ActionBar;->setFragmentViewPagerMode(Landroid/content/Context;Landroid/app/FragmentManager;)V
 
     .line 61
     invoke-direct {p0}, Lcom/miui/gallery/activity/HomePageActivity;->setupHomePageFragment()V
@@ -828,7 +828,7 @@
     if-eqz v0, :cond_0
 
     .line 129
-    invoke-static {p0}, Lcom/miui/gallery/util/DocumentProviderUtils;->startFirstEntrancyPermissionActivityForResult(Landroid/app/Activity;)V
+    invoke-static {p0}, Lcom/miui/gallery/util/DocumentProviderUtils;->startFirstEntrancyPermissionActivityForResult(Lmiui/app/Activity;)V
 
     .line 131
     :cond_0
@@ -894,7 +894,7 @@
 
     move-result-object v0
 
-    invoke-static {p0, v0}, Lcom/miui/gallery/util/GallerySamplingStatHelper;->recordPageEnd(Landroid/app/Activity;Ljava/lang/String;)V
+    invoke-static {p0, v0}, Lcom/miui/gallery/util/GallerySamplingStatHelper;->recordPageEnd(Lmiui/app/Activity;Ljava/lang/String;)V
 
     .line 123
     return-void
@@ -914,7 +914,7 @@
 
     move-result-object v0
 
-    invoke-static {p0, v0}, Lcom/miui/gallery/util/GallerySamplingStatHelper;->recordPageStart(Landroid/app/Activity;Ljava/lang/String;)V
+    invoke-static {p0, v0}, Lcom/miui/gallery/util/GallerySamplingStatHelper;->recordPageStart(Lmiui/app/Activity;Ljava/lang/String;)V
 
     .line 137
     iget v0, p0, Lcom/miui/gallery/activity/HomePageActivity;->mCurrentPagePosition:I

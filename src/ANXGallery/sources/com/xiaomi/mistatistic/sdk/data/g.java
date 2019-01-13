@@ -1,7 +1,6 @@
 package com.xiaomi.mistatistic.sdk.data;
 
 import android.text.TextUtils;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import com.xiaomi.mistatistic.sdk.BuildSetting;
 import com.xiaomi.mistatistic.sdk.controller.t;
 import org.json.JSONException;
@@ -33,7 +32,7 @@ public class g extends AbstractEvent {
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("category", this.a);
         jSONObject.put("key", this.b);
-        jSONObject.put(nexExportFormat.TAG_FORMAT_TYPE, "property");
+        jSONObject.put("type", "property");
         jSONObject.put("value", this.c);
         return jSONObject;
     }

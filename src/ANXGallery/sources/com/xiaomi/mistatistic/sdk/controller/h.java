@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.IBinder;
 import android.text.TextUtils;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import com.xiaomi.mistatistic.sdk.MiStatInterface;
 import com.xiaomi.mistatistic.sdk.data.StatEventPojo;
 import java.util.ArrayList;
@@ -155,7 +154,7 @@ public class h {
         if (a) {
             try {
                 Intent intent = new Intent(d.a(), Class.forName(b));
-                intent.putExtra(nexExportFormat.TAG_FORMAT_TYPE, 1);
+                intent.putExtra("type", 1);
                 intent.putExtra("StatEventPojo", statEventPojo);
                 d.a().startService(intent);
                 return;
@@ -172,7 +171,7 @@ public class h {
         contentValues.put("category", statEventPojo.mCategory);
         contentValues.put("key", TextUtils.isEmpty(statEventPojo.mKey) ? "" : statEventPojo.mKey);
         contentValues.put("ts", Long.valueOf(statEventPojo.mTimeStamp));
-        contentValues.put(nexExportFormat.TAG_FORMAT_TYPE, TextUtils.isEmpty(statEventPojo.mType) ? "" : statEventPojo.mType);
+        contentValues.put("type", TextUtils.isEmpty(statEventPojo.mType) ? "" : statEventPojo.mType);
         contentValues.put("value", TextUtils.isEmpty(statEventPojo.mValue) ? "" : statEventPojo.mValue);
         contentValues.put("extra", TextUtils.isEmpty(statEventPojo.mExtra) ? "" : statEventPojo.mExtra);
         contentValues.put("anonymous", Integer.valueOf(statEventPojo.mAnonymous));
@@ -199,7 +198,7 @@ public class h {
         if (a) {
             try {
                 Intent intent = new Intent(d.a(), Class.forName(b));
-                intent.putExtra(nexExportFormat.TAG_FORMAT_TYPE, 2);
+                intent.putExtra("type", 2);
                 intent.putExtra("key", str);
                 intent.putExtra("category", str2);
                 intent.putExtra("newValue", str3);
@@ -558,7 +557,7 @@ public class h {
         if (a) {
             try {
                 Intent intent = new Intent(d.a(), Class.forName(b));
-                intent.putExtra(nexExportFormat.TAG_FORMAT_TYPE, 3);
+                intent.putExtra("type", 3);
                 intent.putExtra("timeStamp", j);
                 d.a().startService(intent);
                 return;
@@ -712,7 +711,7 @@ public class h {
             try {
                 Context a = d.a();
                 Intent intent = new Intent(a, Class.forName(b));
-                intent.putExtra(nexExportFormat.TAG_FORMAT_TYPE, 5);
+                intent.putExtra("type", 5);
                 intent.putExtra("startTime", j);
                 intent.putExtra("endTime", j2);
                 intent.putExtra("eventType", i);

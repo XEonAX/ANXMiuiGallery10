@@ -3,7 +3,6 @@ package com.miui.gallery.cloud.peopleface;
 import android.content.ContentValues;
 import com.miui.gallery.cloud.baby.BabyAlbumUtils;
 import com.miui.gallery.model.PeopleContactInfo;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,8 +18,8 @@ public class FaceAlbumUtil {
         if (schemaJson.has("status")) {
             values.put("serverStatus", schemaJson.getString("status"));
         }
-        if (schemaJson.has(nexExportFormat.TAG_FORMAT_TYPE)) {
-            values.put(nexExportFormat.TAG_FORMAT_TYPE, schemaJson.getString(nexExportFormat.TAG_FORMAT_TYPE));
+        if (schemaJson.has("type")) {
+            values.put("type", schemaJson.getString("type"));
         }
         if (schemaJson.has("eTag")) {
             values.put("eTag", schemaJson.getString("eTag"));

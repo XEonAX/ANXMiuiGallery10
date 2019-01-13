@@ -231,7 +231,7 @@ public class i {
         String name = xmlPullParser.getName();
         if (xmlPullParser.getEventType() == 2 && (name.equalsIgnoreCase("effect") || name.equalsIgnoreCase("renderitem") || name.equalsIgnoreCase("overlay"))) {
             if (name.equalsIgnoreCase("effect")) {
-                if ("transition".equalsIgnoreCase(xmlPullParser.getAttributeValue(null, nexExportFormat.TAG_FORMAT_TYPE))) {
+                if ("transition".equalsIgnoreCase(xmlPullParser.getAttributeValue(null, "type"))) {
                     cVar.a = a(xmlPullParser.getAttributeValue(null, "effectoffset"), 100);
                     name = xmlPullParser.getAttributeValue(null, "effectoverlap");
                     if (name == null) {
@@ -240,7 +240,7 @@ public class i {
                     cVar.b = a(name, 100);
                 }
             } else if (name.equalsIgnoreCase("renderitem")) {
-                if ("transition".equalsIgnoreCase(xmlPullParser.getAttributeValue(null, nexExportFormat.TAG_FORMAT_TYPE))) {
+                if ("transition".equalsIgnoreCase(xmlPullParser.getAttributeValue(null, "type"))) {
                     cVar.a = a(xmlPullParser.getAttributeValue(null, "transitionoffset"), 100);
                     cVar.b = a(xmlPullParser.getAttributeValue(null, "transitionoverlap"), 100);
                 }
@@ -286,7 +286,7 @@ public class i {
             aVar.m.put("label", new HashMap());
             ((Map) aVar.m.get("label")).put("", attributeValue);
         }
-        String attributeValue2 = xmlPullParser.getAttributeValue(null, nexExportFormat.TAG_FORMAT_TYPE);
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "type");
         if ("selection".equalsIgnoreCase(attributeValue2)) {
             aVar.a = ItemParameterType.CHOICE;
         } else if ("color".equalsIgnoreCase(attributeValue2)) {
@@ -388,7 +388,7 @@ public class i {
         aVar.j = a(xmlPullParser.getAttributeValue(null, "maxvalue"), 100);
         aVar.k = a(xmlPullParser.getAttributeValue(null, "step"), 1);
         aVar.l = a(xmlPullParser.getAttributeValue(null, "bounds"), null);
-        String attributeValue = xmlPullParser.getAttributeValue(null, nexExportFormat.TAG_FORMAT_TYPE);
+        String attributeValue = xmlPullParser.getAttributeValue(null, "type");
         if ("choice".equalsIgnoreCase(attributeValue)) {
             aVar.a = ItemParameterType.CHOICE;
         } else if ("point".equalsIgnoreCase(attributeValue)) {

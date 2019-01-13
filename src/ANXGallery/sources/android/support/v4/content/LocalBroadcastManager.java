@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -181,7 +180,7 @@ public final class LocalBroadcastManager {
                                     reason = "data";
                                     break;
                                 case -1:
-                                    reason = nexExportFormat.TAG_FORMAT_TYPE;
+                                    reason = "type";
                                     break;
                                 default:
                                     reason = "unknown reason";

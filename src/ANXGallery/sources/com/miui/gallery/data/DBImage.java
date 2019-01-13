@@ -18,6 +18,7 @@ import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import miui.os.ExtraFileUtils;
+import miui.widget.SimpleDialogFragment;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -263,7 +264,7 @@ public abstract class DBImage implements DBItem {
         }
         switch (getServerType()) {
             case 0:
-                cloudJson.put(nexExportFormat.TAG_FORMAT_TYPE, "group");
+                cloudJson.put("type", "group");
                 if (ApplicationHelper.isAutoUploadFeatureOpen() && !TextUtils.isEmpty(getAppKey())) {
                     cloudJson.put("appKey", getAppKey());
                 }
@@ -278,17 +279,17 @@ public abstract class DBImage implements DBItem {
                     break;
                 }
             case 1:
-                cloudJson.put(nexExportFormat.TAG_FORMAT_TYPE, "image");
+                cloudJson.put("type", "image");
                 cloudJson.put("size", getSize());
                 cloudJson.put("mimeType", getMimeType());
-                cloudJson.put("title", getTitle());
+                cloudJson.put(SimpleDialogFragment.ARG_TITLE, getTitle());
                 cloudJson.put("sha1", getSha1());
                 break;
             case 2:
-                cloudJson.put(nexExportFormat.TAG_FORMAT_TYPE, "video");
+                cloudJson.put("type", "video");
                 cloudJson.put("size", getSize());
                 cloudJson.put("mimeType", getMimeType());
-                cloudJson.put("title", getTitle());
+                cloudJson.put(SimpleDialogFragment.ARG_TITLE, getTitle());
                 cloudJson.put("sha1", getSha1());
                 cloudJson.put("duration", getDuration());
                 break;
@@ -306,20 +307,20 @@ public abstract class DBImage implements DBItem {
         try {
             getBasicValues(cloudJson);
             try {
-                cloudJson.put(nexExportFormat.TAG_FORMAT_TYPE, null);
+                cloudJson.put("type", null);
             } catch (JSONException e) {
                 Log.e("DBCloud", "put null JSON_TAG_TYPE failed");
             }
         } catch (JSONException e2) {
             Log.e("DBCloud", "toJsonObjectForSubUbi: get JSON error");
             try {
-                cloudJson.put(nexExportFormat.TAG_FORMAT_TYPE, null);
+                cloudJson.put("type", null);
             } catch (JSONException e3) {
                 Log.e("DBCloud", "put null JSON_TAG_TYPE failed");
             }
         } catch (Throwable th) {
             try {
-                cloudJson.put(nexExportFormat.TAG_FORMAT_TYPE, null);
+                cloudJson.put("type", null);
             } catch (JSONException e4) {
                 Log.e("DBCloud", "put null JSON_TAG_TYPE failed");
             }

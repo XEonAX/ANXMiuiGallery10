@@ -1575,7 +1575,7 @@ public final class nexEngine implements Callback {
     }
 
     public nexErrorCode export(nexExportFormat nexexportformat, nexExportListener nexexportlistener) {
-        String string = nexexportformat.getString(nexExportFormat.TAG_FORMAT_TYPE);
+        String string = nexexportformat.getString("type");
         if (string == null) {
             return nexErrorCode.ARGUMENT_FAILED;
         }

@@ -4,7 +4,6 @@ import com.google.gson.JsonParseException;
 import com.miui.gallery.net.BaseGalleryRequest;
 import com.miui.gallery.net.base.ErrorCode;
 import com.miui.gallery.video.editor.model.LocalResource;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
@@ -45,7 +44,7 @@ public abstract class VideoEditorBaseResourceRequest extends BaseGalleryRequest 
                     resource.icon = object.optString("icon");
                     resource.label = object.optString("text");
                     resource.extra = object.optString("extraInfo");
-                    resource.type = object.optString(nexExportFormat.TAG_FORMAT_TYPE);
+                    resource.type = object.optString("type");
                     resource.nameKey = new JSONObject(resource.extra).optString("nameKey");
                     setResult(resource);
                     list.add(resource);

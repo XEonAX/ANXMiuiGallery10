@@ -80,7 +80,7 @@ public class DBShareAlbum implements DBItem {
         values.put("serverId", Long.valueOf(CloudUtils.getLongAttributeFromJson(contentJson, "id")));
         values.put("serverStatus", contentJson.getString("status"));
         values.put("serverTag", contentJson.getString(nexExportFormat.TAG_FORMAT_TAG));
-        values.put("serverType", contentJson.getString(nexExportFormat.TAG_FORMAT_TYPE));
+        values.put("serverType", contentJson.getString("type"));
         values.put("fileName", contentJson.getString("fileName"));
         if (contentJson.has("dateModified")) {
             values.put("dateModified", contentJson.getString("dateModified"));
@@ -102,7 +102,7 @@ public class DBShareAlbum implements DBItem {
                 int i = 0;
                 while (i < array.length()) {
                     JSONObject obj = array.getJSONObject(i);
-                    if (obj.has(nexExportFormat.TAG_FORMAT_TYPE) && obj.getString(nexExportFormat.TAG_FORMAT_TYPE).equalsIgnoreCase(BabyAlbumUtils.BABY_BABY)) {
+                    if (obj.has("type") && obj.getString("type").equalsIgnoreCase(BabyAlbumUtils.BABY_BABY)) {
                         String babyInfoJson = obj.toString();
                         String peopleId = null;
                         if (old != null) {

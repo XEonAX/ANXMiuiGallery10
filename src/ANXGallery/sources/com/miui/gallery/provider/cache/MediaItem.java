@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import miui.widget.SimpleDialogFragment;
 
 class MediaItem implements CacheItem {
     private static final HashMap<String, Integer> PROJECTION = new HashMap();
@@ -79,7 +80,7 @@ class MediaItem implements CacheItem {
                 return -1;
             }
         };
-        private static final String[] PROJECTION = new String[]{"_id", "sha1", "microthumbfile", "thumbnailFile", "localFile", "serverType", "title", "duration", "description", "location", "size", "localGroupId", "mimeType", "exifGPSLatitude", "exifGPSLatitudeRef", "exifGPSLongitude", "exifGPSLongitudeRef", "secretKey", "localFlag", "mixedDateTime", "exifImageWidth", "exifImageLength", "serverStatus", "dateModified", "creatorId", "serverTag", "serverId", "groupId", "specialTypeFlags", "exifOrientation"};
+        private static final String[] PROJECTION = new String[]{"_id", "sha1", "microthumbfile", "thumbnailFile", "localFile", "serverType", SimpleDialogFragment.ARG_TITLE, "duration", "description", "location", "size", "localGroupId", "mimeType", "exifGPSLatitude", "exifGPSLatitudeRef", "exifGPSLongitude", "exifGPSLongitudeRef", "secretKey", "localFlag", "mixedDateTime", "exifImageWidth", "exifImageLength", "serverStatus", "dateModified", "creatorId", "serverTag", "serverId", "groupId", "specialTypeFlags", "exifOrientation"};
         private AlbumDelegate mAlbumDelegate;
         private FavoritesDelegate mFavoritesDelegate;
 
@@ -340,7 +341,7 @@ class MediaItem implements CacheItem {
             COLUMN_MAP.put("thumbnailFile", Integer.valueOf(3));
             COLUMN_MAP.put("localFile", Integer.valueOf(4));
             COLUMN_MAP.put("serverType", Integer.valueOf(5));
-            COLUMN_MAP.put("title", Integer.valueOf(6));
+            COLUMN_MAP.put(SimpleDialogFragment.ARG_TITLE, Integer.valueOf(6));
             COLUMN_MAP.put("duration", Integer.valueOf(7));
             COLUMN_MAP.put("description", Integer.valueOf(8));
             COLUMN_MAP.put("location", Integer.valueOf(9));
@@ -1487,7 +1488,7 @@ class MediaItem implements CacheItem {
         PROJECTION.put("thumbnailFile", Integer.valueOf(4));
         PROJECTION.put("localFile", Integer.valueOf(5));
         PROJECTION.put("serverType", Integer.valueOf(6));
-        PROJECTION.put("title", Integer.valueOf(7));
+        PROJECTION.put(SimpleDialogFragment.ARG_TITLE, Integer.valueOf(7));
         PROJECTION.put("duration", Integer.valueOf(8));
         PROJECTION.put("description", Integer.valueOf(9));
         PROJECTION.put("size", Integer.valueOf(10));

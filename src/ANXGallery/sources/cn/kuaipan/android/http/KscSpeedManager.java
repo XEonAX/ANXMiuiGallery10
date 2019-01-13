@@ -2,6 +2,7 @@ package cn.kuaipan.android.http;
 
 import android.os.SystemClock;
 import android.util.SparseArray;
+import com.miui.internal.widget.ActionModeView;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -16,7 +17,7 @@ public class KscSpeedManager {
         if (recodeDuration < 0) {
             recodeDuration = 600;
         }
-        this.mRecodeDuration = Math.min(3600, Math.max(300, recodeDuration));
+        this.mRecodeDuration = Math.min(3600, Math.max(ActionModeView.ANIMATION_DURATION, recodeDuration));
     }
 
     public KscSpeedMonitor getMoniter(String host) {

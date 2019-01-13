@@ -3,6 +3,7 @@ package com.miui.gallery.data;
 import android.content.Context;
 import android.text.TextUtils;
 import com.miui.gallery.util.Log;
+import miui.reflect.Field;
 
 public class LocationUtil {
     private static int INT_COORDINATE_FACTOR = 1000000;
@@ -24,7 +25,7 @@ public class LocationUtil {
             pair = parts[2].split("/");
             double result = ((minutes / 60.0d) + degrees) + ((Double.parseDouble(pair[0].trim()) / Double.parseDouble(pair[1].trim())) / 3600.0d);
             if (!TextUtils.isEmpty(ref)) {
-                if (!ref.equals("S")) {
+                if (!ref.equals(Field.SHORT_SIGNATURE_PRIMITIVE)) {
                 }
                 return (float) (-result);
             }

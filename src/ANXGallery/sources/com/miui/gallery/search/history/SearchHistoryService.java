@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import com.miui.gallery.search.SearchContract.History;
 import com.miui.gallery.search.core.suggestion.Suggestion;
 import com.miui.gallery.search.utils.SearchLog;
+import miui.widget.SimpleDialogFragment;
 
 public class SearchHistoryService extends IntentService {
     public static String EXTRA_HISTORY_ITEM = "history_item";
@@ -29,12 +30,12 @@ public class SearchHistoryService extends IntentService {
         String actionUri = suggestion.getIntentActionURI();
         if (title != null) {
             if (actionUri != null) {
-                String uriTitle = Uri.parse(actionUri).getQueryParameter("title");
+                String uriTitle = Uri.parse(actionUri).getQueryParameter(SimpleDialogFragment.ARG_TITLE);
                 if (!TextUtils.isEmpty(uriTitle)) {
                     title = uriTitle;
                 }
             }
-            contentValues.put("title", title);
+            contentValues.put(SimpleDialogFragment.ARG_TITLE, title);
         }
         if (suggestion.getSuggestionSubTitle() != null) {
             contentValues.put("subTitle", suggestion.getSuggestionSubTitle());

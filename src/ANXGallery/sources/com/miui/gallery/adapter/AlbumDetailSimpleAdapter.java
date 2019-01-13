@@ -17,10 +17,11 @@ import com.miui.gallery.util.TalkBackUtil;
 import com.miui.gallery.widget.SortByHeader.SortBy;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
+import miui.widget.SimpleDialogFragment;
 
 public class AlbumDetailSimpleAdapter extends PreloadMediaAdapter implements CheckableAdapter {
     public static final String[] PROJECTION = MiscUtil.copyStringArray(PROJECTION_INTERNAL);
-    protected static final String[] PROJECTION_INTERNAL = new String[]{"_id", "alias_micro_thumbnail", "localFile", "title", "alias_create_date", "alias_create_time", "location", "sha1", "serverType", "duration", "mimeType", "size", "alias_sync_state", "secretKey", "thumbnailFile", "localFile", "creatorId", "alias_sort_time", "alias_clear_thumbnail", "alias_is_favorite", "specialTypeFlags"};
+    protected static final String[] PROJECTION_INTERNAL = new String[]{"_id", "alias_micro_thumbnail", "localFile", SimpleDialogFragment.ARG_TITLE, "alias_create_date", "alias_create_time", "location", "sha1", "serverType", "duration", "mimeType", "size", "alias_sync_state", "secretKey", "thumbnailFile", "localFile", "creatorId", "alias_sort_time", "alias_clear_thumbnail", "alias_is_favorite", "specialTypeFlags"};
     private AlbumType mAlbumType = AlbumType.NORMAL;
     private SortBy mSortBy;
 

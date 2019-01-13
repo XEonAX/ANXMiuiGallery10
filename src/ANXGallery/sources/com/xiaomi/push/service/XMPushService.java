@@ -31,6 +31,7 @@ import android.os.Process;
 import android.os.SystemClock;
 import android.provider.Settings.Secure;
 import android.text.TextUtils;
+import com.miui.internal.view.menu.MenuBuilder;
 import com.xiaomi.channel.commonutils.android.MIUIUtils;
 import com.xiaomi.channel.commonutils.android.Region;
 import com.xiaomi.channel.commonutils.android.SystemUtils;
@@ -305,7 +306,7 @@ public class XMPushService extends Service implements ConnectionListener {
 
     class InitJob extends Job {
         InitJob() {
-            super(65535);
+            super(MenuBuilder.USER_MASK);
         }
 
         public void process() {

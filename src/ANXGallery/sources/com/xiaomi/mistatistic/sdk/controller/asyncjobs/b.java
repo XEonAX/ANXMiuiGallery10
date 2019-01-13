@@ -1,7 +1,6 @@
 package com.xiaomi.mistatistic.sdk.controller.asyncjobs;
 
 import android.text.TextUtils;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import com.xiaomi.mistatistic.sdk.controller.h;
 import com.xiaomi.mistatistic.sdk.controller.j;
 import com.xiaomi.mistatistic.sdk.controller.o;
@@ -375,7 +374,7 @@ public class b implements com.xiaomi.mistatistic.sdk.controller.e.a {
             if (jSONObject2 == null || obj != null) {
                 jSONObject2 = new JSONObject();
                 jSONObject2.put("key", statEventPojo.mKey);
-                jSONObject2.put(nexExportFormat.TAG_FORMAT_TYPE, statEventPojo.mType);
+                jSONObject2.put("type", statEventPojo.mType);
                 jSONObject2.put("value", Long.parseLong(statEventPojo.mValue));
                 jSONObject.getJSONArray("values").put(jSONObject2);
                 this.e.put(statEventPojo.mKey, jSONObject2);
@@ -387,7 +386,7 @@ public class b implements com.xiaomi.mistatistic.sdk.controller.e.a {
         } else {
             jSONObject2 = new JSONObject();
             jSONObject2.put("key", statEventPojo.mKey);
-            jSONObject2.put(nexExportFormat.TAG_FORMAT_TYPE, statEventPojo.mType);
+            jSONObject2.put("type", statEventPojo.mType);
             if ("count".equals(statEventPojo.mType) || "numeric".equals(statEventPojo.mType)) {
                 jSONObject2.put("value", Long.parseLong(statEventPojo.mValue));
             } else {

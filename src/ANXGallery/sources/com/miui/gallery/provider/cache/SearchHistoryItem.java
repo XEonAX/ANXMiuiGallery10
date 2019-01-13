@@ -11,6 +11,7 @@ import com.miui.gallery.provider.cache.CacheItem.Merger;
 import com.miui.gallery.provider.cache.Filter.Comparator;
 import com.miui.gallery.provider.cache.Filter.CompareFilter;
 import java.util.Map;
+import miui.widget.SimpleDialogFragment;
 
 class SearchHistoryItem implements CacheItem {
     private static final Map<String, Integer> COLUMN_MAP = new ArrayMap(PROJECTION.length);
@@ -23,7 +24,7 @@ class SearchHistoryItem implements CacheItem {
             return index.intValue();
         }
     };
-    protected static final String[] PROJECTION = new String[]{"title", "subTitle", "actionUri", "icon", "timestamp"};
+    protected static final String[] PROJECTION = new String[]{SimpleDialogFragment.ARG_TITLE, "subTitle", "actionUri", "icon", "timestamp"};
     @SerializedName("icon")
     public String icon;
     @SerializedName("url")
@@ -205,7 +206,7 @@ class SearchHistoryItem implements CacheItem {
     }
 
     static {
-        COLUMN_MAP.put("title", Integer.valueOf(0));
+        COLUMN_MAP.put(SimpleDialogFragment.ARG_TITLE, Integer.valueOf(0));
         COLUMN_MAP.put("subTitle", Integer.valueOf(1));
         COLUMN_MAP.put("actionUri", Integer.valueOf(2));
         COLUMN_MAP.put("icon", Integer.valueOf(3));

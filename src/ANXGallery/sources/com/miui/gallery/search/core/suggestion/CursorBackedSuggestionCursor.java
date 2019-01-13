@@ -10,6 +10,7 @@ import com.miui.gallery.search.core.source.Source;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import miui.widget.SimpleDialogFragment;
 
 public class CursorBackedSuggestionCursor<C extends Cursor> extends CursorWrapper implements SuggestionCursor {
     private static final SuggestionExtras EMPTY_EXTRA = new SuggestionExtras() {
@@ -115,7 +116,7 @@ public class CursorBackedSuggestionCursor<C extends Cursor> extends CursorWrappe
     }
 
     protected void updateIndexes() {
-        this.mTitleIdx = getColumnIndex("title");
+        this.mTitleIdx = getColumnIndex(SimpleDialogFragment.ARG_TITLE);
         this.mSubTitleIdx = getColumnIndex("subTitle");
         this.mIconIdx = getColumnIndex("icon");
         this.mActionURIIdx = getColumnIndex("actionUri");

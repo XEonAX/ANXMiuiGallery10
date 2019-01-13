@@ -9,6 +9,7 @@ import com.miui.gallery.search.core.suggestion.Suggestion;
 import com.miui.gallery.search.core.suggestion.SuggestionSection;
 import java.util.ArrayList;
 import java.util.List;
+import miui.widget.SimpleDialogFragment;
 
 class ImageResultSuggestionCursor extends GroupedSuggestionCursor<SuggestionSection> implements ExpandableGroupList<SuggestionSection, Suggestion> {
     private SparseArray<Integer[]> mGroupCollapsedItemArray;
@@ -29,7 +30,7 @@ class ImageResultSuggestionCursor extends GroupedSuggestionCursor<SuggestionSect
         if (this.mSupportExpand && getGroupExpandState(groupIndex)) {
             return getGroupExtra(groupIndex, "expand_title");
         }
-        return getGroupExtra(groupIndex, "title");
+        return getGroupExtra(groupIndex, SimpleDialogFragment.ARG_TITLE);
     }
 
     public long getGroupCreateTime(int groupIndex) {

@@ -20,6 +20,7 @@ import com.miui.gallery.util.SafeDBUtil.QueryHandler;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import miui.widget.SimpleDialogFragment;
 
 public abstract class BaseEchoListener extends Stub {
     private static final String[] UPDATE_PROJECTION = new String[]{"*"};
@@ -118,7 +119,7 @@ public abstract class BaseEchoListener extends Stub {
                     values.putNull("serverStatus");
                     values.putNull("serverTag");
                     values.put("fileName", newName);
-                    values.put("title", FileUtils.getFileTitle(newName));
+                    values.put(SimpleDialogFragment.ARG_TITLE, FileUtils.getFileTitle(newName));
                     values.put("localFile", newPath);
                     uri = SafeDBUtil.safeInsert(GalleryApp.sGetAndroidContext(), Cloud.CLOUD_URI, values);
                     boolean insertSuccess = false;

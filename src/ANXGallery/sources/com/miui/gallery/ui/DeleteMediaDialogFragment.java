@@ -310,7 +310,7 @@ public class DeleteMediaDialogFragment extends GalleryDialogFragment {
         if (info.checkBoxInfo != null) {
             builder.setCheckBox(info.checkBoxInfo.defaultValue, info.checkBoxInfo.message);
         }
-        return builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+        return builder.setPositiveButton((int) R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 DeleteMediaDialogFragment.this.mParam.mDeleteOptions = 0;
                 if (info.checkBoxInfo != null) {

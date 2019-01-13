@@ -8,7 +8,7 @@ public final class nexExportFormatBuilder {
     Map<String, String> formats = new HashMap();
 
     public nexExportFormatBuilder setType(String str) {
-        this.formats.put(nexExportFormat.TAG_FORMAT_TYPE, str);
+        this.formats.put("type", str);
         return this;
     }
 

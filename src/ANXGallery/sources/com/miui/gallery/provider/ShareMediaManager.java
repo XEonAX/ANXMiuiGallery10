@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import miui.widget.SimpleDialogFragment;
 
 public class ShareMediaManager {
     private static Map<String, String> sShareMediaMap = new HashMap();
@@ -29,7 +30,7 @@ public class ShareMediaManager {
         sShareMediaMap.put("thumbnailFile", "thumbnailFile");
         sShareMediaMap.put("localFile", "localFile");
         sShareMediaMap.put("serverType", "serverType");
-        sShareMediaMap.put("title", "title");
+        sShareMediaMap.put(SimpleDialogFragment.ARG_TITLE, SimpleDialogFragment.ARG_TITLE);
         sShareMediaMap.put("duration", "duration");
         sShareMediaMap.put("description", "description");
         sShareMediaMap.put("size", "size");

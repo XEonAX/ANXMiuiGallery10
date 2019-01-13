@@ -28,6 +28,7 @@ import com.miui.gallery.search.utils.SearchLog;
 import com.miui.gallery.search.utils.SearchUtils;
 import com.miui.gallery.ui.AIAlbumStatusHelper;
 import com.miui.gallery.ui.BaseMediaFragment;
+import miui.widget.SimpleDialogFragment;
 
 public abstract class SearchResultFragmentBase extends BaseMediaFragment implements RequestLoadMoreListener {
     protected LoaderCallbacks<SuggestionResult> mFilterLoaderCallback = new LoaderCallbacks<SuggestionResult>() {
@@ -208,7 +209,7 @@ public abstract class SearchResultFragmentBase extends BaseMediaFragment impleme
         Uri uri = this.mActivity.getIntent().getData();
         this.mResultSectionQueryInfo = initResultQueryInfoBuilder(uri).build();
         onInflateView(view, savedInstanceState, uri);
-        updateTitle(uri.getQueryParameter("title"));
+        updateTitle(uri.getQueryParameter(SimpleDialogFragment.ARG_TITLE));
         initStatusHandlerHelper(view);
         return view;
     }
@@ -265,7 +266,7 @@ public abstract class SearchResultFragmentBase extends BaseMediaFragment impleme
     protected Builder initResultQueryInfoBuilder(Uri uri) {
         Builder builder = new Builder(SearchType.SEARCH_TYPE_RESULT);
         for (String param : uri.getQueryParameterNames()) {
-            if (param.equals("title")) {
+            if (param.equals(SimpleDialogFragment.ARG_TITLE)) {
                 this.mQueryText = uri.getQueryParameter(param);
             } else if (param.equals("inFeedbackTaskMode")) {
                 this.mInFeedbackTaskMode = uri.getBooleanQueryParameter(param, false);

@@ -2652,7 +2652,7 @@ public class PhotoPageFragment extends PhotoPageFragmentBase {
             if (this.mGuidanceWindow == null) {
                 this.mGuidanceWindow = new GuidePopupWindow(this.this$0.mActivity);
                 this.mGuidanceWindow.setArrowMode(1);
-                this.mGuidanceWindow.setGuideText(R.string.feature_guidance_photo_effects);
+                this.mGuidanceWindow.setGuideText((int) R.string.feature_guidance_photo_effects);
                 this.mGuidanceWindow.setOnDismissListener(new OnDismissListener() {
                     public void onDismiss() {
                         RefocusManager.this.mShouldShowGuidance = Boolean.valueOf(false);
@@ -2748,7 +2748,7 @@ public class PhotoPageFragment extends PhotoPageFragmentBase {
         private void doShowGuidance() {
             this.mGuideView = new GuidePopupWindow(PhotoPageFragment.this.mActivity);
             this.mGuideView.setArrowMode(0);
-            this.mGuideView.setGuideText(R.string.feature_guidance_video_editor_smart_effects);
+            this.mGuideView.setGuideText((int) R.string.feature_guidance_video_editor_smart_effects);
             View root = PhotoPageFragment.this.getView();
             if (root != null) {
                 View anchor = root.findViewWithTag(Integer.valueOf(R.id.action_edit));

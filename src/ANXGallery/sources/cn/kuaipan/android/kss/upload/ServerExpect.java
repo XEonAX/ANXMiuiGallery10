@@ -3,6 +3,7 @@ package cn.kuaipan.android.kss.upload;
 import android.util.Log;
 import cn.kuaipan.android.http.KscHttpResponse;
 import cn.kuaipan.android.kss.KssDef;
+import com.miui.internal.widget.ActionModeView;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 
@@ -50,7 +51,7 @@ public class ServerExpect implements KssDef {
             this.nextChunkSize = Math.max(this.nextChunkSize, 65536);
         }
         if (this.uploadDelay > 0 && !this.factoryMode) {
-            this.uploadDelay = Math.min(this.uploadDelay, 300);
+            this.uploadDelay = Math.min(this.uploadDelay, ActionModeView.ANIMATION_DURATION);
         }
     }
 

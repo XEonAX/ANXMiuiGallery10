@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import com.xiaomi.channel.commonutils.logger.MyLog;
 import com.xiaomi.channel.commonutils.misc.ThreadUtils;
 import com.xiaomi.xmpush.thrift.CoordinateProvider;
@@ -165,7 +164,7 @@ public class GeoFenceDao {
             geoValues.put("name", geoFencing.getName());
             geoValues.put("package_name", geoFencing.getPackageName());
             geoValues.put("create_time", Long.valueOf(geoFencing.getCreateTime()));
-            geoValues.put(nexExportFormat.TAG_FORMAT_TYPE, geoFencing.getType().name());
+            geoValues.put("type", geoFencing.getType().name());
             geoValues.put("center_longtitude", String.valueOf(geoFencing.getCircleCenter().getLongitude()));
             geoValues.put("center_lantitude", String.valueOf(geoFencing.getCircleCenter().getLatitude()));
             geoValues.put("circle_radius", Double.valueOf(geoFencing.getCircleRadius()));
@@ -228,7 +227,7 @@ public class GeoFenceDao {
         GeoType type;
         try {
             for (GeoType type2 : GeoType.values()) {
-                if (TextUtils.equals(c.getString(c.getColumnIndex(nexExportFormat.TAG_FORMAT_TYPE)), type2.name())) {
+                if (TextUtils.equals(c.getString(c.getColumnIndex("type")), type2.name())) {
                     break;
                 }
             }

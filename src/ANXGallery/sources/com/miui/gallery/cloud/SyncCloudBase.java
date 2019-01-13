@@ -58,7 +58,7 @@ public abstract class SyncCloudBase extends SyncFromServer {
 
     protected final boolean handleItem(JSONObject schemaJson) throws JSONException {
         boolean z = false;
-        String type = schemaJson.getString(nexExportFormat.TAG_FORMAT_TYPE);
+        String type = schemaJson.getString("type");
         String status = schemaJson.getString("status");
         String serverId = schemaJson.getString("id");
         synchronized (getBaseUri()) {
@@ -357,7 +357,7 @@ public abstract class SyncCloudBase extends SyncFromServer {
             if (handleItem(schemaJson)) {
                 hasNewItem = true;
             }
-            String type = schemaJson.getString(nexExportFormat.TAG_FORMAT_TYPE);
+            String type = schemaJson.getString("type");
             String status = schemaJson.getString("status");
             if (type.equals("group") && status.equals("custom") && schemaJson.has("isPublic") && schemaJson.getBoolean("isPublic")) {
                 AlbumShareOperations.requestPublicUrl(schemaJson.getString("id"), false);

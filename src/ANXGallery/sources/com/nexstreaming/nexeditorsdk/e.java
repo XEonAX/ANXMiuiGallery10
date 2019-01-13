@@ -63,7 +63,7 @@ final class e {
     }
 
     public static e a(JSONObject jSONObject, int i) {
-        String a = a(jSONObject, nexExportFormat.TAG_FORMAT_TYPE);
+        String a = a(jSONObject, "type");
         if (!a.equals("scene")) {
             return null;
         }

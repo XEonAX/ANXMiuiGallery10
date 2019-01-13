@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import miui.widget.SimpleDialogFragment;
 
 public class ListSuggestionCursor<S extends Suggestion> extends AbstractCursor implements SuggestionCursor {
-    protected static final String[] COLUMNS = new String[]{"title", "subTitle", "actionUri", "icon"};
+    protected static final String[] COLUMNS = new String[]{SimpleDialogFragment.ARG_TITLE, "subTitle", "actionUri", "icon"};
     private ArrayList<String> EMPTY_COLUMNS;
     private ArrayList<String> mExtraColumns;
     private Bundle mExtras;
@@ -82,7 +83,7 @@ public class ListSuggestionCursor<S extends Suggestion> extends AbstractCursor i
     }
 
     public int getColumnIndex(String columnName) {
-        if ("title".equals(columnName)) {
+        if (SimpleDialogFragment.ARG_TITLE.equals(columnName)) {
             return 0;
         }
         if ("subTitle".equals(columnName)) {

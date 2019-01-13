@@ -62,6 +62,7 @@ import java.util.Locale;
 import java.util.Map;
 import miui.graphics.BitmapFactory;
 import miui.telephony.TelephonyHelper;
+import miui.widget.SimpleDialogFragment;
 import org.json.JSONObject;
 import org.keyczar.Keyczar;
 
@@ -644,7 +645,7 @@ public class SaveToCloudUtil {
         map.put("size", Long.valueOf(saveToCloud.mSize));
         map.put("dateModified", Long.valueOf(saveToCloud.mLastModify));
         map.put("mimeType", saveToCloud.mMimeType);
-        map.put("title", saveToCloud.mTitle);
+        map.put(SimpleDialogFragment.ARG_TITLE, saveToCloud.mTitle);
         map.put("fileName", saveToCloud.mName);
         map.put("localFlag", Integer.valueOf(localFlag));
         if (saveToCloud.mIsExifSha1) {
@@ -784,7 +785,7 @@ public class SaveToCloudUtil {
     private static void putValuesForVideo(Context context, String path, long size, ContentValues values) {
         try {
             VideoAttrsReader reader = VideoAttrsReader.read(path);
-            values.put("title", reader.getTitle());
+            values.put(SimpleDialogFragment.ARG_TITLE, reader.getTitle());
             long duration = reader.getDuration() / 1000;
             values.put("duration", Long.valueOf(duration));
             values.put("exifImageWidth", Integer.valueOf(reader.getVideoWidth()));

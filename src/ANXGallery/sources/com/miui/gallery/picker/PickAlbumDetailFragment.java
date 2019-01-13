@@ -25,6 +25,7 @@ import com.miui.gallery.provider.InternalContract.Cloud;
 import com.miui.gallery.widget.SortByHeader;
 import com.miui.gallery.widget.SortByHeader.SortBy;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView;
+import miui.widget.SimpleDialogFragment;
 
 public class PickAlbumDetailFragment extends PickAlbumDetailFragmentBase {
     private static final String SELECTION_ONLY_LOCAL = (" AND " + Cloud.ALIAS_LOCAL_MEDIA);
@@ -270,7 +271,7 @@ public class PickAlbumDetailFragment extends PickAlbumDetailFragmentBase {
     private String getSortByString(SortBy sortBy) {
         switch (sortBy) {
             case NAME:
-                return "title";
+                return SimpleDialogFragment.ARG_TITLE;
             case SIZE:
                 return "size";
             default:

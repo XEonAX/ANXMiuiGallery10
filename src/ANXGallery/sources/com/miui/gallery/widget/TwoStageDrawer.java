@@ -21,6 +21,7 @@ import android.widget.ScrollView;
 import android.widget.Scroller;
 import com.miui.gallery.R;
 import com.miui.gallery.util.Log;
+import com.miui.internal.widget.ActionBarMovableLayout;
 
 public class TwoStageDrawer extends RelativeLayout {
     private int mActionPointerId;
@@ -686,8 +687,8 @@ public class TwoStageDrawer extends RelativeLayout {
         } else {
             ret = Math.round(1000.0f * Math.abs(((float) distance) / velocity)) * 4;
         }
-        if (ret > 800) {
-            return 800;
+        if (ret > ActionBarMovableLayout.DEFAULT_SPRING_BACK_DURATION) {
+            return ActionBarMovableLayout.DEFAULT_SPRING_BACK_DURATION;
         }
         return ret;
     }
@@ -836,7 +837,7 @@ public class TwoStageDrawer extends RelativeLayout {
         this.mAnimEndListener = listener;
         if (withAnimation) {
             int translationY = (int) this.mTargetView.getTranslationY();
-            startScroll(translationY, (this.mPrimaryContentHeight + this.mSecondaryContentHeight) - translationY, 800);
+            startScroll(translationY, (this.mPrimaryContentHeight + this.mSecondaryContentHeight) - translationY, (int) ActionBarMovableLayout.DEFAULT_SPRING_BACK_DURATION);
             return;
         }
         this.mScroller.forceFinished(true);
@@ -854,7 +855,7 @@ public class TwoStageDrawer extends RelativeLayout {
             getViewTreeObserver().dispatchOnGlobalLayout();
             if (withAnimation) {
                 int translationY = (int) this.mTargetView.getTranslationY();
-                startScroll(translationY, this.mPrimaryContentHeight - translationY, 800);
+                startScroll(translationY, this.mPrimaryContentHeight - translationY, (int) ActionBarMovableLayout.DEFAULT_SPRING_BACK_DURATION);
                 return;
             }
             updateTranslationAnimation(this.mPrimaryContentHeight);

@@ -13,6 +13,7 @@ import com.miui.gallery.threadpool.ThreadManager;
 import com.miui.gallery.threadpool.ThreadPool.Job;
 import com.miui.gallery.threadpool.ThreadPool.JobContext;
 import java.util.ArrayList;
+import miui.widget.SimpleDialogFragment;
 
 public class BabyAlbumRecommendationFinder {
     private volatile Future<RecommendationDatas> mFuture;
@@ -59,7 +60,7 @@ public class BabyAlbumRecommendationFinder {
                     datas.peopleLocalId = String.valueOf(FaceManager.getPeopleLocalIdByServerId(BabyAlbumRecommendationFinder.this.mPeopleId));
                     Cursor cursor = null;
                     try {
-                        cursor = GalleryApp.sGetAndroidContext().getContentResolver().query(PeopleFace.ONE_PERSON_URI, new String[]{"_id", "title", "mixedDateTime"}, null, new String[]{datas.peopleServerId, datas.peopleLocalId}, null);
+                        cursor = GalleryApp.sGetAndroidContext().getContentResolver().query(PeopleFace.ONE_PERSON_URI, new String[]{"_id", SimpleDialogFragment.ARG_TITLE, "mixedDateTime"}, null, new String[]{datas.peopleServerId, datas.peopleLocalId}, null);
                         while (cursor != null && cursor.moveToNext()) {
                             if (!TextUtils.isEmpty(cursor.getString(1)) && babyAlbum.get(cursor.getString(1).hashCode()) == null && cursor.getLong(2) > Baby.getLastClickBabyPhotosRecommandationTime(babyAlbumLocalId)) {
                                 if (datas.ids == null) {

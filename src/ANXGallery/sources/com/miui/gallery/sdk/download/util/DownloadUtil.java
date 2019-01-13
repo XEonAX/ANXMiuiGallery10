@@ -34,7 +34,6 @@ import com.miui.gallery.util.SafeDBUtil;
 import com.miui.gallery.util.SafeDBUtil.QueryHandler;
 import com.miui.gallery.util.StorageUtils;
 import com.miui.gallery.util.uil.CloudUriAdapter;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -471,6 +470,6 @@ public class DownloadUtil {
         if (uri == null || type == null) {
             return null;
         }
-        return uri.buildUpon().appendQueryParameter(nexExportFormat.TAG_FORMAT_TYPE, type.name()).build().toString();
+        return uri.buildUpon().appendQueryParameter("type", type.name()).build().toString();
     }
 }

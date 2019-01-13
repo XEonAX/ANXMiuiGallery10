@@ -8,6 +8,7 @@ import com.miui.gallery.GalleryApp;
 import com.miui.gallery.util.DocumentProviderUtils;
 import com.miui.gallery.util.GallerySamplingStatHelper;
 import com.miui.gallery.util.Log;
+import com.miui.internal.view.menu.MenuBuilder;
 import com.nexstreaming.nexeditorsdk.nexClip;
 import com.nexstreaming.nexeditorsdk.nexEngine;
 import java.io.BufferedInputStream;
@@ -35,6 +36,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import miui.reflect.Field;
 
 public class ExifInterface {
     public static final ByteOrder DEFAULT_BYTE_ORDER = ByteOrder.BIG_ENDIAN;
@@ -182,7 +184,7 @@ public class ExifInterface {
     }
 
     public static int defineTag(int ifdId, short tagId) {
-        return (65535 & tagId) | (ifdId << 16);
+        return (MenuBuilder.USER_MASK & tagId) | (ifdId << 16);
     }
 
     public static short getTrueTagKey(int tag) {
@@ -545,7 +547,7 @@ public class ExifInterface {
 
     public ExifTag setTag(ExifTag tag) {
         if (tag != null) {
-            if (tag.getDataSize() < 65535) {
+            if (tag.getDataSize() < MenuBuilder.USER_MASK) {
                 return this.mData.addTag(tag);
             }
             HashMap<String, String> params = new HashMap();
@@ -599,7 +601,7 @@ public class ExifInterface {
     public static double convertLatOrLongToDouble(Rational[] coordinate, String reference) {
         try {
             double result = ((coordinate[1].toDouble() / 60.0d) + coordinate[0].toDouble()) + (coordinate[2].toDouble() / 3600.0d);
-            if (reference.equals("S") || reference.equals("W")) {
+            if (reference.equals(Field.SHORT_SIGNATURE_PRIMITIVE) || reference.equals("W")) {
                 return -result;
             }
             return result;
@@ -926,7 +928,7 @@ public class ExifInterface {
     }
 
     protected static int getComponentCountFromInfo(int info) {
-        return 65535 & info;
+        return MenuBuilder.USER_MASK & info;
     }
 
     public static float convertRationalLatLonToFloat(String rationalString, String ref) {
@@ -941,7 +943,7 @@ public class ExifInterface {
             double minutes = Double.parseDouble(pair[0].trim()) / Double.parseDouble(pair[1].trim());
             pair = parts[2].split("/");
             double result = ((minutes / 60.0d) + degrees) + ((Double.parseDouble(pair[0].trim()) / Double.parseDouble(pair[1].trim())) / 3600.0d);
-            if (!ref.equals("S")) {
+            if (!ref.equals(Field.SHORT_SIGNATURE_PRIMITIVE)) {
                 if (!ref.equals("W")) {
                     return (float) result;
                 }

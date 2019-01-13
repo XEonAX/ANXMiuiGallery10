@@ -3,6 +3,7 @@ package com.nexstreaming.nexeditorsdk;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.Log;
+import com.miui.internal.widget.ActionBarMovableLayout;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -368,7 +369,7 @@ final class c {
         if (this.B.isEmpty() || (!(clone.getTotalClipCount(true) == 1 && clone.getClip(0, true).getClipType() == 1) && (clone.getTotalTime() >= d() || a(clone)))) {
             if (this.m != 1) {
                 int totalClipCount = clone.getTotalClipCount(true) - 1;
-                while (totalClipCount >= 0 && c >= 800 && e > 0) {
+                while (totalClipCount >= 0 && c >= ActionBarMovableLayout.DEFAULT_SPRING_BACK_DURATION && e > 0) {
                     int i;
                     nexClip clip = clone.getClip(totalClipCount, true);
                     if (clip.getClipType() == 1) {

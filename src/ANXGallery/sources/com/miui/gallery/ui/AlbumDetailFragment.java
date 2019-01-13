@@ -31,6 +31,7 @@ import com.miui.gallery.widget.ScrollableViewDrawer;
 import com.miui.gallery.widget.SortByHeader;
 import com.miui.gallery.widget.SortByHeader.SortBy;
 import com.miui.privacy.LockSettingsHelper;
+import miui.widget.SimpleDialogFragment;
 
 public class AlbumDetailFragment extends AlbumDetailFragmentBase {
     private AlbumDetailSimpleAdapter mAlbumDetailSimpleAdapter;
@@ -383,7 +384,7 @@ public class AlbumDetailFragment extends AlbumDetailFragmentBase {
     private String getSortByString(SortBy sortBy) {
         switch (sortBy) {
             case NAME:
-                return "title";
+                return SimpleDialogFragment.ARG_TITLE;
             case SIZE:
                 return "size";
             default:

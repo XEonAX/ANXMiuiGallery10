@@ -9,6 +9,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.text.TextUtils;
 import com.miui.gallery.widget.GalleryDialogFragment;
+import miui.widget.SimpleDialogFragment;
 
 public class ConfirmDialog extends GalleryDialogFragment {
     private ConfirmDialogInterface mConfirmDialogInterface;
@@ -22,7 +23,7 @@ public class ConfirmDialog extends GalleryDialogFragment {
     public static void showConfirmDialog(FragmentManager fragmentManager, String title, String message, String negativeButtonText, String positiveButtonText, ConfirmDialogInterface confirmDialogInterface) {
         Bundle data = new Bundle();
         if (!TextUtils.isEmpty(title)) {
-            data.putString("title", title);
+            data.putString(SimpleDialogFragment.ARG_TITLE, title);
         }
         data.putString("msg", message);
         data.putString("negativeButton", negativeButtonText);
@@ -54,7 +55,7 @@ public class ConfirmDialog extends GalleryDialogFragment {
                 ConfirmDialog.this.dismissAllowingStateLoss();
             }
         });
-        String title = data.getString("title");
+        String title = data.getString(SimpleDialogFragment.ARG_TITLE);
         if (!TextUtils.isEmpty(title)) {
             builder.setTitle(title);
         }

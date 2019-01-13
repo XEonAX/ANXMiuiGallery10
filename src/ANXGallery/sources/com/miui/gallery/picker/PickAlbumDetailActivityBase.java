@@ -17,6 +17,7 @@ import com.miui.gallery.picker.helper.Picker.Mode;
 import com.miui.gallery.picker.helper.Picker.ResultType;
 import com.miui.gallery.util.BuildUtil;
 import java.util.ArrayList;
+import miui.view.EditActionMode;
 
 public class PickAlbumDetailActivityBase extends PickerActivity {
     protected PickAlbumDetailFragmentBase mAlbumDetailFragment;
@@ -50,8 +51,8 @@ public class PickAlbumDetailActivityBase extends PickerActivity {
             } else {
                 this.mPickerTitle.setTypeface(Typeface.MONOSPACE);
             }
-            this.mCancelButton = (Button) titleView.findViewById(16908313);
-            this.mDoneButton = titleView.findViewById(16908314);
+            this.mCancelButton = (Button) titleView.findViewById(EditActionMode.BUTTON1);
+            this.mDoneButton = titleView.findViewById(EditActionMode.BUTTON2);
             updateDoneButtonVisibility();
             this.mSelectAllButton = (Button) titleView.findViewById(16908315);
             setup();

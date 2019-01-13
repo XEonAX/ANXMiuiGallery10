@@ -35,6 +35,7 @@ import com.miui.gallery.util.MiscUtil;
 import com.miui.gallery.widget.recyclerview.GalleryRecyclerView;
 import com.miui.gallery.widget.recyclerview.ItemClickSupport.OnItemClickListener;
 import com.miui.gallery.widget.recyclerview.ItemClickSupport.OnItemLongClickListener;
+import com.miui.internal.widget.ActionModeView;
 import java.util.List;
 import java.util.Stack;
 import miui.view.EditActionMode;
@@ -410,9 +411,9 @@ public class EditableListViewWrapper2 {
 
         public void startScaleItemImageViewAnimation(ImageView imageView, int position) {
             if (imageView.getTag(R.id.tag_matrix) == null) {
-                startScaleItemImageViewAnimationInternal(imageView, true, position, 100, 300);
+                startScaleItemImageViewAnimationInternal(imageView, true, position, 100, ActionModeView.ANIMATION_DURATION);
             } else {
-                startScaleItemImageViewAnimationInternal(imageView, false, position, 100, 300);
+                startScaleItemImageViewAnimationInternal(imageView, false, position, 100, ActionModeView.ANIMATION_DURATION);
             }
         }
 
@@ -421,7 +422,7 @@ public class EditableListViewWrapper2 {
         }
 
         public void startScaleItemImageViewAnimation(ImageView imageView, int position, boolean checked, int delay) {
-            startScaleItemImageViewAnimation(imageView, position, checked, delay, 300);
+            startScaleItemImageViewAnimation(imageView, position, checked, delay, ActionModeView.ANIMATION_DURATION);
         }
 
         public void startScaleItemImageViewAnimation(ImageView imageView, int position, boolean checked, int delay, int duration) {
@@ -483,7 +484,7 @@ public class EditableListViewWrapper2 {
                     if (enlarge && (view instanceof BackgroundImageViewable)) {
                         ImageView imageView = ((BackgroundImageViewable) view).getBackgroundImageView();
                         if (imageView.getTag(R.id.tag_matrix) != null) {
-                            startScaleItemImageViewAnimationInternal(imageView, false, listView.getChildAdapterPosition(view), 0, 300);
+                            startScaleItemImageViewAnimationInternal(imageView, false, listView.getChildAdapterPosition(view), 0, ActionModeView.ANIMATION_DURATION);
                         }
                     }
                 }
@@ -735,10 +736,10 @@ public class EditableListViewWrapper2 {
                 return true;
             }
             switch (item.getItemId()) {
-                case 16908313:
+                case EditActionMode.BUTTON1 /*16908313*/:
                     mode.finish();
                     return true;
-                case 16908314:
+                case EditActionMode.BUTTON2 /*16908314*/:
                     EditableListViewWrapper2 editableListViewWrapper2 = EditableListViewWrapper2.this;
                     if (!EditableListViewWrapper2.this.isAllItemsChecked()) {
                         z = true;
@@ -1001,9 +1002,9 @@ public class EditableListViewWrapper2 {
                 return;
             }
             if (isAllItemsChecked()) {
-                this.mEditActionMode.setButton(16908314, miui.R.string.deselect_all);
+                this.mEditActionMode.setButton((int) EditActionMode.BUTTON2, miui.R.string.deselect_all);
             } else {
-                this.mEditActionMode.setButton(16908314, miui.R.string.select_all);
+                this.mEditActionMode.setButton((int) EditActionMode.BUTTON2, miui.R.string.select_all);
             }
         }
     }

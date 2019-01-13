@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import miui.os.ExtraFileUtils;
+import miui.widget.SimpleDialogFragment;
 
 public class GalleryCloudUtils {
     public static final Uri BASE_URI = Uri.parse("content://com.miui.gallery.cloud.provider");
@@ -109,7 +110,7 @@ public class GalleryCloudUtils {
     public static boolean putValuesForVideo(String path, ContentValues values) throws IOException {
         try {
             VideoAttrsReader reader = VideoAttrsReader.read(path);
-            values.put("title", reader.getTitle());
+            values.put(SimpleDialogFragment.ARG_TITLE, reader.getTitle());
             values.put("duration", Long.valueOf(reader.getDuration() / 1000));
             values.put("dateTaken", Long.valueOf(reader.getDateTaken()));
             values.put("exifImageWidth", Integer.valueOf(reader.getVideoWidth()));
@@ -126,7 +127,7 @@ public class GalleryCloudUtils {
 
     public static void putValuesForImage(String path, ContentValues values) throws IOException {
         ExifInterface exifInterface = new ExifInterface(path);
-        values.put("title", ExtraFileUtils.getFileTitle(ExtraFileUtils.getFileName(path)));
+        values.put(SimpleDialogFragment.ARG_TITLE, ExtraFileUtils.getFileTitle(ExtraFileUtils.getFileName(path)));
         int width = exifInterface.getAttributeInt("ImageWidth", 0);
         int height = exifInterface.getAttributeInt("ImageLength", 0);
         if (width <= 0 || height <= 0) {

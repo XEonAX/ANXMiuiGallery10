@@ -3,7 +3,7 @@
     android:compileSdkVersion="28" 
     android:compileSdkVersionCodename="9" 
     android:versionCode="1" 
-    android:versionName="AlarmingQuaintCockatiel"
+    android:versionName="FunctionalEagerLonghorn"
     package="com.miui.extraphoto" 
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">

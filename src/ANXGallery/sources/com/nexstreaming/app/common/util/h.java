@@ -1,9 +1,9 @@
 package com.nexstreaming.app.common.util;
 
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import miui.widget.SimpleDialogFragment;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
@@ -54,8 +54,8 @@ public class h {
                                 } else {
                                     obj3 = null;
                                 }
-                                if (newPullParser.getAttributeName(i2).compareToIgnoreCase(nexExportFormat.TAG_FORMAT_TYPE) == 0 && newPullParser.getName().compareToIgnoreCase("effect") == 0) {
-                                    newSerializer.attribute(newPullParser.getAttributeNamespace(i2), newPullParser.getAttributeName(i2), "title");
+                                if (newPullParser.getAttributeName(i2).compareToIgnoreCase("type") == 0 && newPullParser.getName().compareToIgnoreCase("effect") == 0) {
+                                    newSerializer.attribute(newPullParser.getAttributeNamespace(i2), newPullParser.getAttributeName(i2), SimpleDialogFragment.ARG_TITLE);
                                     obj3 = 1;
                                 }
                                 if (newPullParser.getAttributeName(i2).compareToIgnoreCase("id") == 0 && newPullParser.getName().compareToIgnoreCase("effect") == 0 && str2 != null && str2.length() > 0) {

@@ -25,6 +25,7 @@ import com.miui.gallery.util.Log;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import miui.view.EditActionMode;
 
 public abstract class PickerActivity extends PickerCompatActivity {
     protected static final String[] PICKABLE_PROJECTION = new String[]{"_id", "sha1", "microthumbfile", "thumbnailFile", "localFile", "serverType", "size", "exifImageLength", "exifImageWidth"};
@@ -58,12 +59,12 @@ public abstract class PickerActivity extends PickerCompatActivity {
                 } else {
                     this.mTitle.setTypeface(Typeface.MONOSPACE);
                 }
-                titleView.findViewById(16908313).setOnClickListener(new OnClickListener() {
+                titleView.findViewById(EditActionMode.BUTTON1).setOnClickListener(new OnClickListener() {
                     public void onClick(View v) {
                         Multiple.this.mActivity.mPicker.cancel();
                     }
                 });
-                this.mDoneButton = titleView.findViewById(16908314);
+                this.mDoneButton = titleView.findViewById(EditActionMode.BUTTON2);
                 this.mDoneButton.setOnClickListener(new SingleClickListener() {
                     protected void onSingleClick(View v) {
                         Multiple.this.mActivity.mPicker.done();

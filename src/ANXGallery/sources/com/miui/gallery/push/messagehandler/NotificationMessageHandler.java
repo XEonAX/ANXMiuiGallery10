@@ -17,6 +17,7 @@ import com.miui.gallery.util.NotificationHelper;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
+import miui.widget.SimpleDialogFragment;
 import org.jcodec.containers.mp4.boxes.Box;
 import org.json.JSONObject;
 
@@ -84,7 +85,7 @@ public class NotificationMessageHandler extends MessageHandler {
                         return;
                     }
                 }
-                JSONObject titleJSON = jSONObject.optJSONObject("title");
+                JSONObject titleJSON = jSONObject.optJSONObject(SimpleDialogFragment.ARG_TITLE);
                 JSONObject descriptionJSON = jSONObject.optJSONObject("description");
                 String title = null;
                 String description = null;

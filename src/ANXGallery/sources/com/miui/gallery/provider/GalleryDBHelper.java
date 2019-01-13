@@ -42,6 +42,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TimeZone;
+import miui.widget.SimpleDialogFragment;
 
 public class GalleryDBHelper extends SQLiteOpenHelper {
     private static final String[] sCloudControlTables = new String[]{"cloudControl"};
@@ -162,7 +163,7 @@ public class GalleryDBHelper extends SQLiteOpenHelper {
             this.mCloudColumns.add(new TableColumn("size", "integer"));
             this.mCloudColumns.add(new TableColumn("dateModified", "integer"));
             this.mCloudColumns.add(new TableColumn("mimeType", "text"));
-            this.mCloudColumns.add(new TableColumn("title", "text"));
+            this.mCloudColumns.add(new TableColumn(SimpleDialogFragment.ARG_TITLE, "text"));
             this.mCloudColumns.add(new TableColumn("description", "text"));
             this.mCloudColumns.add(new TableColumn("fileName", "text"));
             this.mCloudColumns.add(new TableColumn("dateTaken", "integer"));
@@ -313,7 +314,7 @@ public class GalleryDBHelper extends SQLiteOpenHelper {
         this.mShareImageColumns.add(new TableColumn("size", "integer"));
         this.mShareImageColumns.add(new TableColumn("dateModified", "integer"));
         this.mShareImageColumns.add(new TableColumn("mimeType", "text"));
-        this.mShareImageColumns.add(new TableColumn("title", "text"));
+        this.mShareImageColumns.add(new TableColumn(SimpleDialogFragment.ARG_TITLE, "text"));
         this.mShareImageColumns.add(new TableColumn("description", "text"));
         this.mShareImageColumns.add(new TableColumn("fileName", "text"));
         this.mShareImageColumns.add(new TableColumn("dateTaken", "integer"));
@@ -412,7 +413,7 @@ public class GalleryDBHelper extends SQLiteOpenHelper {
         this.mOwnerSubUbiImageColumns.add(new TableColumn("size", "integer"));
         this.mOwnerSubUbiImageColumns.add(new TableColumn("dateModified", "integer"));
         this.mOwnerSubUbiImageColumns.add(new TableColumn("mimeType", "text"));
-        this.mOwnerSubUbiImageColumns.add(new TableColumn("title", "text"));
+        this.mOwnerSubUbiImageColumns.add(new TableColumn(SimpleDialogFragment.ARG_TITLE, "text"));
         this.mOwnerSubUbiImageColumns.add(new TableColumn("description", "text"));
         this.mOwnerSubUbiImageColumns.add(new TableColumn("fileName", "text"));
         this.mOwnerSubUbiImageColumns.add(new TableColumn("dateTaken", "integer"));
@@ -464,7 +465,7 @@ public class GalleryDBHelper extends SQLiteOpenHelper {
         this.mShareSubUbiImageColumns.add(new TableColumn("size", "integer"));
         this.mShareSubUbiImageColumns.add(new TableColumn("dateModified", "integer"));
         this.mShareSubUbiImageColumns.add(new TableColumn("mimeType", "text"));
-        this.mShareSubUbiImageColumns.add(new TableColumn("title", "text"));
+        this.mShareSubUbiImageColumns.add(new TableColumn(SimpleDialogFragment.ARG_TITLE, "text"));
         this.mShareSubUbiImageColumns.add(new TableColumn("description", "text"));
         this.mShareSubUbiImageColumns.add(new TableColumn("fileName", "text"));
         this.mShareSubUbiImageColumns.add(new TableColumn("dateTaken", "integer"));
@@ -515,7 +516,7 @@ public class GalleryDBHelper extends SQLiteOpenHelper {
         this.mShareSubUbiImageColumns.add(new TableColumn("secretKey", "blob"));
         this.mPeopleFaceColumns.add(new TableColumn("_id", "integer"));
         this.mPeopleFaceColumns.add(new TableColumn("serverId", "text"));
-        this.mPeopleFaceColumns.add(new TableColumn(nexExportFormat.TAG_FORMAT_TYPE, "text"));
+        this.mPeopleFaceColumns.add(new TableColumn("type", "text"));
         this.mPeopleFaceColumns.add(new TableColumn("groupId", "text"));
         this.mPeopleFaceColumns.add(new TableColumn("localGroupId", "text"));
         this.mPeopleFaceColumns.add(new TableColumn("localFlag", "integer"));
@@ -555,9 +556,9 @@ public class GalleryDBHelper extends SQLiteOpenHelper {
         this.mAlbumCoverKeyColumns.add(new TableColumn("key", "blob"));
         this.mDiscoveryMessageColumns.add(new TableColumn("_id", "integer"));
         this.mDiscoveryMessageColumns.add(new TableColumn("message", "text"));
-        this.mDiscoveryMessageColumns.add(new TableColumn("title", "text"));
+        this.mDiscoveryMessageColumns.add(new TableColumn(SimpleDialogFragment.ARG_TITLE, "text"));
         this.mDiscoveryMessageColumns.add(new TableColumn("subTitle", "text"));
-        this.mDiscoveryMessageColumns.add(new TableColumn(nexExportFormat.TAG_FORMAT_TYPE, "integer"));
+        this.mDiscoveryMessageColumns.add(new TableColumn("type", "integer"));
         this.mDiscoveryMessageColumns.add(new TableColumn("priority", "integer"));
         this.mDiscoveryMessageColumns.add(new TableColumn("receiveTime", "integer"));
         this.mDiscoveryMessageColumns.add(new TableColumn("updateTime", "integer"));

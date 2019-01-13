@@ -70,7 +70,6 @@ import com.miui.gallery.util.photoview.TileReusedBitCache;
 import com.miui.gallery.util.uil.CloudImageLoader;
 import com.miui.gallery.view.animation.AnimationListenerAdapter;
 import com.miui.gallery.widget.CircleStrokeProgressBar;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import com.nexstreaming.nexeditorsdk.nexProject;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.DisplayImageOptions.Builder;
@@ -976,7 +975,7 @@ public class PhotoPageImageItem extends PhotoPageItem {
                 ImageLoader.getInstance().cancelDisplayTask(PhotoPageImageItem.this.mPhotoView);
                 PhotoPageImageItem.this.displayImage(PhotoPageImageItem.this.mDataItem);
                 HashMap<String, String> params = new HashMap();
-                params.put(nexExportFormat.TAG_FORMAT_TYPE, MediaFile.getMimeTypeForFile(originPath));
+                params.put("type", MediaFile.getMimeTypeForFile(originPath));
                 GallerySamplingStatHelper.recordCountEvent("photo", "photo_not_support_region", params);
             }
         }

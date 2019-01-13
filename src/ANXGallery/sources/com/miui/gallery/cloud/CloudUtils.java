@@ -87,6 +87,7 @@ import java.util.Map;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import miui.os.ExtraFileUtils;
+import miui.widget.SimpleDialogFragment;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.message.BasicNameValuePair;
@@ -352,8 +353,8 @@ public class CloudUtils {
         if (schemaJson.has("mimeType")) {
             values.put("mimeType", schemaJson.getString("mimeType"));
         }
-        if (schemaJson.has("title")) {
-            values.put("title", schemaJson.getString("title"));
+        if (schemaJson.has(SimpleDialogFragment.ARG_TITLE)) {
+            values.put(SimpleDialogFragment.ARG_TITLE, schemaJson.getString(SimpleDialogFragment.ARG_TITLE));
         }
         if (schemaJson.has("description")) {
             String description = schemaJson.getString("description");
@@ -471,7 +472,7 @@ public class CloudUtils {
             JSONArray array = schemaJson.getJSONArray("renderInfos");
             for (int i = 0; i < array.length(); i++) {
                 JSONObject obj = array.getJSONObject(i);
-                if (obj.has(nexExportFormat.TAG_FORMAT_TYPE) && obj.getString(nexExportFormat.TAG_FORMAT_TYPE).equalsIgnoreCase(BabyAlbumUtils.BABY_BABY)) {
+                if (obj.has("type") && obj.getString("type").equalsIgnoreCase(BabyAlbumUtils.BABY_BABY)) {
                     values.put("babyInfoJson", obj.toString());
                     if (obj.has("peopleId")) {
                         values.put("peopleId", obj.getString("peopleId"));
@@ -818,8 +819,8 @@ public class CloudUtils {
         if (schemaJson.has(nexExportFormat.TAG_FORMAT_TAG)) {
             values.put("serverTag", Long.valueOf(getLongAttributeFromJson(schemaJson, nexExportFormat.TAG_FORMAT_TAG)));
         }
-        if (schemaJson.has(nexExportFormat.TAG_FORMAT_TYPE)) {
-            String serverType = schemaJson.getString(nexExportFormat.TAG_FORMAT_TYPE);
+        if (schemaJson.has("type")) {
+            String serverType = schemaJson.getString("type");
             int type = 0;
             if (serverType.equals("image")) {
                 type = 1;
@@ -1958,7 +1959,7 @@ public class CloudUtils {
         }
         ContentValues valuesWithNewName = new ContentValues();
         valuesWithNewName.put("fileName", newFileName);
-        valuesWithNewName.put("title", FileUtils.getFileNameWithoutExtension(newFileName));
+        valuesWithNewName.put(SimpleDialogFragment.ARG_TITLE, FileUtils.getFileNameWithoutExtension(newFileName));
         valuesWithNewName.put("localFile", newLocalFile);
         valuesWithNewName.put("thumbnailFile", newThumbnailFile);
         GalleryUtils.safeUpdate(dbImage.getBaseUri(), valuesWithNewName, String.format(Locale.US, "%s=?", new Object[]{"_id"}), new String[]{String.valueOf(dbImage.getId())});

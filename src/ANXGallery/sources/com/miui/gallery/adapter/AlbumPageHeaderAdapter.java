@@ -35,6 +35,7 @@ import com.nostra13.universalimageloader.core.download.ImageDownloader.Scheme;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import miui.widget.SimpleDialogFragment;
 
 public class AlbumPageHeaderAdapter extends BaseAdapter {
     private Album[] mAlbums;
@@ -254,8 +255,8 @@ public class AlbumPageHeaderAdapter extends BaseAdapter {
         initDisplayImageOptions();
         this.mAlbums = new Album[3];
         this.mAlbums[0] = new LocalAlbum(0, R.string.album_name_people, R.drawable.album_cover_people, Common.URI_PEOPLE_LIST_PAGE);
-        this.mAlbums[1] = new SearchAlbum(1, R.string.album_name_locations, R.drawable.album_cover_locations, Search.URI_LOCATION_LIST_PAGE.buildUpon().appendQueryParameter("title", resources.getString(R.string.album_name_locations)).build());
-        this.mAlbums[2] = new SearchAlbum(2, R.string.album_name_tags, R.drawable.album_cover_objects, Search.URI_TAG_LIST_PAGE.buildUpon().appendQueryParameter("title", resources.getString(R.string.album_name_tags)).build());
+        this.mAlbums[1] = new SearchAlbum(1, R.string.album_name_locations, R.drawable.album_cover_locations, Search.URI_LOCATION_LIST_PAGE.buildUpon().appendQueryParameter(SimpleDialogFragment.ARG_TITLE, resources.getString(R.string.album_name_locations)).build());
+        this.mAlbums[2] = new SearchAlbum(2, R.string.album_name_tags, R.drawable.album_cover_objects, Search.URI_TAG_LIST_PAGE.buildUpon().appendQueryParameter(SimpleDialogFragment.ARG_TITLE, resources.getString(R.string.album_name_tags)).build());
     }
 
     private void initDisplayImageOptions() {

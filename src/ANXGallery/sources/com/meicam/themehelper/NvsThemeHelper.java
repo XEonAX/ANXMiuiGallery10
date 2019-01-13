@@ -860,7 +860,7 @@ public class NvsThemeHelper {
                     usedFileList.add(desc);
                 }
             }
-        } else if (nNewCount == NVS_USE_ALL_PHOTO) {
+        } else if (nNewCount == -2) {
             for (i = 0; i < files.size(); i++) {
                 desc = (NvsImageFileDesc) files.get(i);
                 desc.show = true;

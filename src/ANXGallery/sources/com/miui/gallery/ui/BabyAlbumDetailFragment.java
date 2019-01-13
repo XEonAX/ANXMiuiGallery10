@@ -56,6 +56,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import java.util.ArrayList;
 import miui.R;
+import miui.widget.SimpleDialogFragment;
 
 public class BabyAlbumDetailFragment extends AlbumDetailFragmentBase {
     private boolean isStickyGridViewAtBottom = false;
@@ -194,7 +195,7 @@ public class BabyAlbumDetailFragment extends AlbumDetailFragmentBase {
                     this.mAllBabyAlbumPhoto = new SparseArray();
                     all.moveToFirst();
                     while (!all.isAfterLast()) {
-                        String title = all.getString(all.getColumnIndex("title"));
+                        String title = all.getString(all.getColumnIndex(SimpleDialogFragment.ARG_TITLE));
                         if (!TextUtils.isEmpty(title)) {
                             this.mAllBabyAlbumPhoto.append(title.hashCode(), Boolean.valueOf(true));
                         }

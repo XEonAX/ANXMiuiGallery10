@@ -18,13 +18,13 @@ import com.miui.gallery.dao.base.TableColumn;
 import com.miui.gallery.util.GsonUtils;
 import com.miui.gallery.util.Log;
 import com.miui.gallery.util.MiscUtil;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import miui.widget.SimpleDialogFragment;
 import org.json.JSONException;
 
 public class Card extends Entity implements Comparable<Card> {
@@ -396,7 +396,7 @@ public class Card extends Entity implements Comparable<Card> {
     protected List<TableColumn> getTableColumns() {
         ArrayList<TableColumn> columns = new ArrayList();
         Entity.addColumn(columns, "cardId", "INTEGER");
-        Entity.addColumn(columns, "title", "TEXT");
+        Entity.addColumn(columns, SimpleDialogFragment.ARG_TITLE, "TEXT");
         Entity.addColumn(columns, "description", "TEXT");
         Entity.addColumn(columns, "actionText", "TEXT");
         Entity.addColumn(columns, "actionUrl", "TEXT");
@@ -404,7 +404,7 @@ public class Card extends Entity implements Comparable<Card> {
         Entity.addColumn(columns, "imageUri", "TEXT");
         Entity.addColumn(columns, "createTime", "INTEGER");
         Entity.addColumn(columns, "deletable", "INTEGER");
-        Entity.addColumn(columns, nexExportFormat.TAG_FORMAT_TYPE, "INTEGER");
+        Entity.addColumn(columns, "type", "INTEGER");
         Entity.addColumn(columns, "styles", "TEXT");
         Entity.addColumn(columns, "extras", "TEXT");
         Entity.addColumn(columns, "scenarioId", "INTEGER");
@@ -419,7 +419,7 @@ public class Card extends Entity implements Comparable<Card> {
 
     protected void onInitFromCursor(Cursor cursor) {
         boolean z = true;
-        this.mTitle = Entity.getString(cursor, "title");
+        this.mTitle = Entity.getString(cursor, SimpleDialogFragment.ARG_TITLE);
         this.mDescription = Entity.getString(cursor, "description");
         this.mDetailUrl = Entity.getString(cursor, "detailUrl");
         String imageUri = Entity.getString(cursor, "imageUri");
@@ -428,7 +428,7 @@ public class Card extends Entity implements Comparable<Card> {
         }
         this.mCreateTime = Entity.getLong(cursor, "createTime");
         this.mDeletable = Entity.getInt(cursor, "deletable") == 1;
-        setType(Entity.getInt(cursor, nexExportFormat.TAG_FORMAT_TYPE));
+        setType(Entity.getInt(cursor, "type"));
         parseStyles(Entity.getString(cursor, "styles"));
         this.mExtras = stringToMap(Entity.getString(cursor, "extras"));
         this.mUniqueKey = (UniqueKey) GsonUtils.fromJson(getExtra("unique_key"), UniqueKey.class);
@@ -463,7 +463,7 @@ public class Card extends Entity implements Comparable<Card> {
     protected void onConvertToContents(ContentValues values) {
         int i;
         int i2 = 1;
-        values.put("title", this.mTitle);
+        values.put(SimpleDialogFragment.ARG_TITLE, this.mTitle);
         values.put("description", this.mDescription);
         values.putNull("actionText");
         values.putNull("actionUrl");
@@ -481,7 +481,7 @@ public class Card extends Entity implements Comparable<Card> {
             i = 0;
         }
         values.put(str, Integer.valueOf(i));
-        values.put(nexExportFormat.TAG_FORMAT_TYPE, Integer.valueOf(getType()));
+        values.put("type", Integer.valueOf(getType()));
         values.put("styles", wrapStyles());
         putExtra("unique_key", GsonUtils.toString(this.mUniqueKey));
         putExtra("all_images", GsonUtils.toString(this.mAllMediaSha1s));

@@ -8,6 +8,7 @@ import java.util.Locale;
 import miui.cloud.sync.MiCloudStatusInfo;
 import miui.cloud.sync.MiCloudStatusInfo.ItemInfo;
 import miui.cloud.sync.MiCloudStatusInfo.QuotaInfo;
+import miui.reflect.Field;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -32,9 +33,9 @@ public class CloudInfoUtils {
             if (miui.os.Build.IS_ALPHA_BUILD) {
                 sb.append("A");
             } else if (miui.os.Build.IS_DEVELOPMENT_VERSION) {
-                sb.append("D");
+                sb.append(Field.DOUBLE_SIGNATURE_PRIMITIVE);
             } else if (miui.os.Build.IS_STABLE_VERSION) {
-                sb.append("S");
+                sb.append(Field.SHORT_SIGNATURE_PRIMITIVE);
             } else {
                 sb.append("null");
             }

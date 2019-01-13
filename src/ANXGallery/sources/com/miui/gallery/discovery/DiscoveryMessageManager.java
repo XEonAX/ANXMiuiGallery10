@@ -13,7 +13,6 @@ import com.miui.gallery.threadpool.ThreadPool.Job;
 import com.miui.gallery.threadpool.ThreadPool.JobContext;
 import com.miui.gallery.util.Log;
 import com.miui.gallery.util.MiscUtil;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,9 +20,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import miui.widget.SimpleDialogFragment;
 
 public class DiscoveryMessageManager {
-    public static final String[] PROJECTION = new String[]{"_id", nexExportFormat.TAG_FORMAT_TYPE, "actionUri", "messageSource", "message", "title", "subTitle", "priority", "expireTime", "receiveTime", "updateTime", "triggerTime", "isConsumed", "extraData"};
+    public static final String[] PROJECTION = new String[]{"_id", "type", "actionUri", "messageSource", "message", SimpleDialogFragment.ARG_TITLE, "subTitle", "priority", "expireTime", "receiveTime", "updateTime", "triggerTime", "isConsumed", "extraData"};
     private static ArrayList<ForceLoadContentObserver> sContentObserverList;
     private static LoaderFactory sFactory;
     private static SparseArray<BaseMessageOperator> sMessageOperators;

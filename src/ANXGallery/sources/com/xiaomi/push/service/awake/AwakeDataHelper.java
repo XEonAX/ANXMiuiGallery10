@@ -6,6 +6,7 @@ import android.util.Base64;
 import com.xiaomi.channel.commonutils.logger.MyLog;
 import com.xiaomi.channel.commonutils.string.XMStringUtils;
 import java.util.HashMap;
+import miui.reflect.Field;
 import org.json.JSONObject;
 
 public class AwakeDataHelper {
@@ -38,7 +39,7 @@ public class AwakeDataHelper {
                     hashMaps.put("jobkey", String.valueOf(jsonObject.opt("jobkey")));
                     hashMaps.put("msg_id", String.valueOf(jsonObject.opt("msg_id")));
                     hashMaps.put("A", String.valueOf(jsonObject.opt("awake_app")));
-                    hashMaps.put("B", String.valueOf(jsonObject.opt("awakened_app")));
+                    hashMaps.put(Field.BYTE_SIGNATURE_PRIMITIVE, String.valueOf(jsonObject.opt("awakened_app")));
                     hashMaps.put("module", String.valueOf(jsonObject.opt("awake_type")));
                 } catch (Throwable e) {
                     MyLog.e(e);

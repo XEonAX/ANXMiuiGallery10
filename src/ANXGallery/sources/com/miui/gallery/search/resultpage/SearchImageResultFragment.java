@@ -55,6 +55,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import miui.widget.SimpleDialogFragment;
 
 public class SearchImageResultFragment extends SearchImageResultFragmentBase {
     private ChoiceModeListener mChoiceModeListener = new ChoiceModeListener(this, null);
@@ -235,7 +236,7 @@ public class SearchImageResultFragment extends SearchImageResultFragmentBase {
                     this.mLikelyGuide = this.mLikelyGuideStub.inflate();
                     this.mLikelyGuide.findViewById(R.id.click_view).setOnClickListener(new OnClickListener() {
                         public void onClick(View v) {
-                            Builder uriBuilder = Search.URI_LIKELY_RESULT_PAGE.buildUpon().appendQueryParameter("title", SearchImageResultFragment.this.mQueryText).appendQueryParameter("tagName", SearchImageResultFragment.this.mQueryText);
+                            Builder uriBuilder = Search.URI_LIKELY_RESULT_PAGE.buildUpon().appendQueryParameter(SimpleDialogFragment.ARG_TITLE, SearchImageResultFragment.this.mQueryText).appendQueryParameter("tagName", SearchImageResultFragment.this.mQueryText);
                             Bundle extras = new Bundle(3);
                             extras.putBoolean("start_activity_for_result", true);
                             extras.putInt("request_code", 1);

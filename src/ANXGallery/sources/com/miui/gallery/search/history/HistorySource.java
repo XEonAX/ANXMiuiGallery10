@@ -16,9 +16,10 @@ import com.miui.gallery.search.core.suggestion.BaseSuggestionSection;
 import com.miui.gallery.search.core.suggestion.CursorBackedSuggestionCursor;
 import com.miui.gallery.search.core.suggestion.SuggestionCursor;
 import com.miui.gallery.util.Log;
+import miui.widget.SimpleDialogFragment;
 
 public class HistorySource extends InterceptableSource {
-    private static final String[] PROJECTION = new String[]{"title", "subTitle", "actionUri", "icon"};
+    private static final String[] PROJECTION = new String[]{SimpleDialogFragment.ARG_TITLE, "subTitle", "actionUri", "icon"};
     private static final SearchType[] SUPPORT_SEARCH_TYPE = new SearchType[]{SearchType.SEARCH_TYPE_HISTORY, SearchType.SEARCH_TYPE_NAVIGATION};
 
     public HistorySource(Context context) {

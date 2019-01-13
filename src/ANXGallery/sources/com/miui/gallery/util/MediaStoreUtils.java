@@ -19,6 +19,7 @@ import com.miui.gallery3d.exif.ExifInterface;
 import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.io.File;
 import java.util.Locale;
+import miui.widget.SimpleDialogFragment;
 
 public class MediaStoreUtils {
     private static final Uri BASE_URI = Files.getContentUri("external");
@@ -61,7 +62,7 @@ public class MediaStoreUtils {
 
     private static void fillByFile(ContentValues values, File file) {
         values.put("_data", file.getAbsolutePath());
-        values.put("title", FileUtils.getFileTitle(file.getName()));
+        values.put(SimpleDialogFragment.ARG_TITLE, FileUtils.getFileTitle(file.getName()));
         values.put("date_modified", Long.valueOf(file.lastModified() / 1000));
         values.put("_size", Long.valueOf(file.length()));
     }

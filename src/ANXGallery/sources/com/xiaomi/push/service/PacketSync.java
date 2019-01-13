@@ -2,7 +2,6 @@ package com.xiaomi.push.service;
 
 import android.text.TextUtils;
 import com.google.protobuf.micro.InvalidProtocolBufferMicroException;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import com.xiaomi.channel.commonutils.logger.MyLog;
 import com.xiaomi.network.Fallback;
 import com.xiaomi.network.HostManager;
@@ -50,7 +49,7 @@ public class PacketSync {
             CommonPacketExtension ext = packet.getExtension("kick");
             if (ext != null) {
                 String userId = packet.getTo();
-                String type = ext.getAttributeValue(nexExportFormat.TAG_FORMAT_TYPE);
+                String type = ext.getAttributeValue("type");
                 String reason = ext.getAttributeValue("reason");
                 MyLog.w("kicked by server, chid=" + chid + " res=" + ClientLoginInfo.getResource(userId) + " type=" + type + " reason=" + reason);
                 if ("wait".equals(type)) {

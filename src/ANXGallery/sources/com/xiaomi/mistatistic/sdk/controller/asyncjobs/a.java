@@ -21,6 +21,7 @@ import com.xiaomi.mistatistic.sdk.controller.t;
 import com.xiaomi.mistatistic.sdk.data.AbstractEvent;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import miui.reflect.Field;
 
 /* compiled from: BasicInfoRecordJob */
 public class a implements com.xiaomi.mistatistic.sdk.controller.e.a {
@@ -128,7 +129,7 @@ public class a implements com.xiaomi.mistatistic.sdk.controller.e.a {
             }
             try {
                 Class cls = Class.forName("miui.os.Build");
-                str = cls.getField("IS_ALPHA_BUILD").getBoolean(null) ? "A" : cls.getField("IS_DEVELOPMENT_VERSION").getBoolean(null) ? "D" : "S";
+                str = cls.getField("IS_ALPHA_BUILD").getBoolean(null) ? "A" : cls.getField("IS_DEVELOPMENT_VERSION").getBoolean(null) ? Field.DOUBLE_SIGNATURE_PRIMITIVE : Field.SHORT_SIGNATURE_PRIMITIVE;
                 a("bc", str);
             } catch (Throwable e2) {
                 j.a("get build version exception", e2);

@@ -18,7 +18,6 @@ import com.miui.gallery.provider.GalleryDBHelper;
 import com.miui.gallery.util.GalleryUtils;
 import com.miui.gallery.util.Log2File;
 import com.miui.gallery.util.SyncLog;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -311,7 +310,7 @@ public class SyncPeopleFaceFromServer {
         if (schemaJson == null) {
             return false;
         }
-        String type = schemaJson.getString(nexExportFormat.TAG_FORMAT_TYPE);
+        String type = schemaJson.getString("type");
         String serverId = schemaJson.getString("id");
         String status = schemaJson.getString("status");
         PeopleFace cloud = FaceDataManager.getItem(serverId);

@@ -1,6 +1,7 @@
 package com.nexstreaming.app.common.localprotocol;
 
 import com.miui.gallery.assistant.jni.filter.BaiduSceneResult;
+import com.miui.internal.widget.ActionBarMovableLayout;
 
 public enum nexProtoErrorCode {
     OK(0),
@@ -8,7 +9,7 @@ public enum nexProtoErrorCode {
     InvalidRQ(BaiduSceneResult.TAEKWONDO),
     InvalidRS(BaiduSceneResult.MOUNTAINEERING),
     InvalidSSID(BaiduSceneResult.SPORTS_OTHER),
-    Unrecognized(800);
+    Unrecognized(ActionBarMovableLayout.DEFAULT_SPRING_BACK_DURATION);
     
     private final int mValue;
 

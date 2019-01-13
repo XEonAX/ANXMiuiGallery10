@@ -67,6 +67,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import miui.app.AlertDialog;
+import miui.widget.SimpleDialogFragment;
 
 public abstract class AlbumDetailFragmentBase extends PhotoListFragmentBase implements OnAppFocusedListener {
     private static final String SELECTION_ONLY_LOCAL = (" AND " + Cloud.ALIAS_LOCAL_MEDIA);
@@ -401,7 +402,7 @@ public abstract class AlbumDetailFragmentBase extends PhotoListFragmentBase impl
             builder.append("localGroupId != ?");
         } else if (this.mIsScreenshotAlbum) {
             if (!TextUtils.isEmpty(this.mScreenshotAppName)) {
-                builder.append("location").append(" = ? AND ").append("title").append(" like '").append("Screenshot").append("%' AND ");
+                builder.append("location").append(" = ? AND ").append(SimpleDialogFragment.ARG_TITLE).append(" like '").append("Screenshot").append("%' AND ");
             }
             builder.append("localGroupId = ?");
         } else {
@@ -527,7 +528,7 @@ public abstract class AlbumDetailFragmentBase extends PhotoListFragmentBase impl
     }
 
     protected void removeFromOtherAlbums() {
-        new AlertDialog.Builder(getActivity()).setTitle(R.string.operation_remove_from_other_albums).setMessage(R.string.remove_from_other_albums_tip).setPositiveButton(17039370, new OnClickListener() {
+        new AlertDialog.Builder(getActivity()).setTitle((int) R.string.operation_remove_from_other_albums).setMessage((int) R.string.remove_from_other_albums_tip).setPositiveButton(17039370, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 AlbumDetailFragmentBase.this.doChangeShowInOtherAlbums(false);
             }
@@ -569,7 +570,7 @@ public abstract class AlbumDetailFragmentBase extends PhotoListFragmentBase impl
     }
 
     protected void moveToOtherAlbums() {
-        new AlertDialog.Builder(getActivity()).setTitle(R.string.operation_move_to_other_albums).setMessage(R.string.move_to_other_albums_tip).setPositiveButton(17039370, new OnClickListener() {
+        new AlertDialog.Builder(getActivity()).setTitle((int) R.string.operation_move_to_other_albums).setMessage((int) R.string.move_to_other_albums_tip).setPositiveButton(17039370, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 AlbumDetailFragmentBase.this.doChangeShowInOtherAlbums(true);
             }

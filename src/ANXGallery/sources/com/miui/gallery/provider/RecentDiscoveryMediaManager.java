@@ -34,6 +34,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 import miui.date.DateUtils;
+import miui.widget.SimpleDialogFragment;
 
 public class RecentDiscoveryMediaManager {
     private static final String ALIAS_MICRO_VALID = String.format(Locale.US, "(%s NOT NULL and %s != '')", new Object[]{"microthumbfile", "microthumbfile"});
@@ -93,7 +94,7 @@ public class RecentDiscoveryMediaManager {
         sRecentDiscoveryMediaMap.put("thumbnailFile", "thumbnailFile");
         sRecentDiscoveryMediaMap.put("localFile", "localFile");
         sRecentDiscoveryMediaMap.put("serverType", "serverType");
-        sRecentDiscoveryMediaMap.put("title", "title");
+        sRecentDiscoveryMediaMap.put(SimpleDialogFragment.ARG_TITLE, SimpleDialogFragment.ARG_TITLE);
         sRecentDiscoveryMediaMap.put("duration", "duration");
         sRecentDiscoveryMediaMap.put("description", "description");
         sRecentDiscoveryMediaMap.put("size", "size");

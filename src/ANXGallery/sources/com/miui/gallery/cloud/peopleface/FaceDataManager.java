@@ -15,7 +15,6 @@ import com.miui.gallery.provider.GalleryDBHelper;
 import com.miui.gallery.util.GalleryUtils;
 import com.miui.gallery.util.GalleryUtils.QueryHandler;
 import com.miui.gallery.util.UriUtil;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Locale;
@@ -23,15 +22,15 @@ import java.util.Locale;
 public class FaceDataManager {
     public static final Uri BASE_URI = Uri.parse("content://com.miui.gallery.cloud.provider");
     public static final Uri FACE_TO_IMAGES_URI = BASE_URI.buildUpon().appendPath("faceToImages").build();
-    public static final String IS_VALID_GROUP = String.format(Locale.US, "(%s = \"%s\" AND (%s = %d OR %s = %d OR %s = %d OR (%s = %d AND %s = \"%s\")) AND ( %s is null OR %s = '' OR %s = %s) AND (%s IS NULL OR %s != %d))", new Object[]{nexExportFormat.TAG_FORMAT_TYPE, "PEOPLE", "localFlag", Integer.valueOf(8), "localFlag", Integer.valueOf(10), "localFlag", Integer.valueOf(14), "localFlag", Integer.valueOf(0), "serverStatus", "normal", "groupId", "groupId", "groupId", "serverId", "visibilityType", "visibilityType", Integer.valueOf(2)});
+    public static final String IS_VALID_GROUP = String.format(Locale.US, "(%s = \"%s\" AND (%s = %d OR %s = %d OR %s = %d OR (%s = %d AND %s = \"%s\")) AND ( %s is null OR %s = '' OR %s = %s) AND (%s IS NULL OR %s != %d))", new Object[]{"type", "PEOPLE", "localFlag", Integer.valueOf(8), "localFlag", Integer.valueOf(10), "localFlag", Integer.valueOf(14), "localFlag", Integer.valueOf(0), "serverStatus", "normal", "groupId", "groupId", "groupId", "serverId", "visibilityType", "visibilityType", Integer.valueOf(2)});
     public static final Uri PEOPLE_FACE_DELAY_NOTIFY_URI = BASE_URI.buildUpon().appendPath("peopleFace").appendQueryParameter("delay_notify", "true").build();
     public static final Uri PEOPLE_FACE_JOIN_FACE_TO_IMAGES_JOIN_CLOUD_URI = BASE_URI.buildUpon().appendPath("peopleFaceJoinFaceToImagesJoinCloud").build();
     public static final Uri PEOPLE_FACE_JOIN_FACE_TO_IMAGES_URI = BASE_URI.buildUpon().appendPath("peopleFaceJoinFaceToImages").build();
     public static final Uri PEOPLE_FACE_URI = BASE_URI.buildUpon().appendPath("peopleFace").build();
     public static final Uri PEOPLE_RECOMMOND_URI = BASE_URI.buildUpon().appendPath("peopleRecommend").build();
-    private static final String[] PROJECTION_BASIC_PEOPLE_INFO = new String[]{"serverId", nexExportFormat.TAG_FORMAT_TYPE, "groupId", "eTag"};
-    private static final String itemIsGroup = String.format(Locale.US, "(%s = \"%s\")", new Object[]{nexExportFormat.TAG_FORMAT_TYPE, "PEOPLE"});
-    public static final String itemIsNotGroup = String.format(Locale.US, "(%s.%s = \"%s\")", new Object[]{"peopleFace", nexExportFormat.TAG_FORMAT_TYPE, "FACE"});
+    private static final String[] PROJECTION_BASIC_PEOPLE_INFO = new String[]{"serverId", "type", "groupId", "eTag"};
+    private static final String itemIsGroup = String.format(Locale.US, "(%s = \"%s\")", new Object[]{"type", "PEOPLE"});
+    public static final String itemIsNotGroup = String.format(Locale.US, "(%s.%s = \"%s\")", new Object[]{"peopleFace", "type", "FACE"});
 
     public static Cursor queryFaceTableToCursor(String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         try {
@@ -403,7 +402,7 @@ public class FaceDataManager {
         if (!TextUtils.isEmpty(contactJson)) {
             values.put("peopleContactJsonInfo", contactJson);
         }
-        values.put(nexExportFormat.TAG_FORMAT_TYPE, "PEOPLE");
+        values.put("type", "PEOPLE");
         values.put("visibilityType", Integer.valueOf(1));
         return Long.parseLong(safeInsertFace(values).getLastPathSegment());
     }

@@ -16,7 +16,6 @@ import com.miui.gallery.pendingtask.base.PendingTaskInfo;
 import com.miui.gallery.pendingtask.base.PendingTaskService;
 import com.miui.gallery.util.GallerySamplingStatHelper;
 import com.miui.gallery.util.Log;
-import com.nexstreaming.nexeditorsdk.nexExportFormat;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -258,7 +257,7 @@ public class PendingTaskManager {
     private static void recordProcessDuration(int taskType, long cost) {
         if (cost >= 600000) {
             HashMap<String, String> params = new HashMap();
-            params.put(nexExportFormat.TAG_FORMAT_TYPE, String.valueOf(taskType));
+            params.put("type", String.valueOf(taskType));
             params.put("cost", String.valueOf(cost));
             GallerySamplingStatHelper.recordCountEvent("pending_task", "pending_task_process_cost", params);
         }
@@ -275,7 +274,7 @@ public class PendingTaskManager {
 
     private static void recordDropReason(int taskType, String reason) {
         HashMap<String, String> params = new HashMap();
-        params.put(nexExportFormat.TAG_FORMAT_TYPE, String.valueOf(taskType));
+        params.put("type", String.valueOf(taskType));
         params.put("reason", reason);
         GallerySamplingStatHelper.recordCountEvent("pending_task", "pending_task_drop_reason", params);
     }

@@ -37,6 +37,7 @@ import com.miui.gallery.util.photoview.ItemViewInfo;
 import com.miui.gallery.util.photoview.TileBitProvider;
 import com.miui.gallery.util.photoview.TileView;
 import com.miui.gallery.util.photoview.TrimMemoryCallback;
+import com.miui.internal.widget.ActionModeView;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -559,11 +560,11 @@ public class PhotoViewAttacher implements OnTouchListener, OnGlobalLayoutListene
         }
 
         private int calculateRotateDuration(float degreesDelta, float velocity) {
-            return 300;
+            return ActionModeView.ANIMATION_DURATION;
         }
 
         private int calculateScaleDuration(float scaleDelta, float velocity) {
-            return 300;
+            return ActionModeView.ANIMATION_DURATION;
         }
 
         public void onRotateEnd(RotateGestureDetector detector, boolean clockwise, float velocity) {
