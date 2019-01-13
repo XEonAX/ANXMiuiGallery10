@@ -22,7 +22,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import com.miui.gallery.assistant.jni.filter.BaiduSceneResult;
 import com.miui.internal.R;
-import com.miui.internal.util.PackageConstants;
+import miui.util.AppConstants;
 
 public class Rotation3DLayout extends FrameLayout {
     private static final int LAYOUT_DIRECTION_LTR = 0;
@@ -379,7 +379,7 @@ public class Rotation3DLayout extends FrameLayout {
     }
 
     private static float d(float f) {
-        return f / (((float) PackageConstants.getCurrentApplication().getResources().getDisplayMetrics().widthPixels) / 2.0f);
+        return f / (((float) AppConstants.getCurrentApplication().getResources().getDisplayMetrics().widthPixels) / 2.0f);
     }
 
     protected android.widget.FrameLayout.LayoutParams generateDefaultLayoutParams() {

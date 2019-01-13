@@ -24,6 +24,7 @@ import com.miui.internal.widget.ActionBarView;
 import miui.app.ActionBar;
 import miui.app.OnStatusBarChangeListener;
 import miui.extension.ExtensionManager;
+import miui.extension.target.ActivityTarget;
 import miui.reflect.Method;
 import miui.util.AppConstants;
 import miui.util.AttributeResolver;
@@ -83,7 +84,7 @@ public class ActivityDelegate extends ActionBarDelegateImpl implements Callback,
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         installSubDecor();
-        ExtensionManager.getInstance().invoke("Activity", "onCreate", new Object[]{this.mActivity, bundle});
+        ExtensionManager.getInstance().invoke(ActivityTarget.TARGET, ActivityTarget.ACTION_ON_CREATE, this.mActivity, bundle);
     }
 
     public ActionBar createActionBar() {
@@ -173,7 +174,6 @@ public class ActivityDelegate extends ActionBarDelegateImpl implements Callback,
                 return;
             }
             obtainStyledAttributes.recycle();
-            throw new IllegalStateException("You need to use a miui theme (or descendant) with this activity.");
         }
     }
 

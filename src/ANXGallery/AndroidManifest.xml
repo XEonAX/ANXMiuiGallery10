@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
     package="com.miui.gallery" 
     android:versionCode="1" 
-    android:versionName="FunctionalEagerLonghorn"
+    android:versionName="TotalRedDeermouse"
     platformBuildVersionCode="26" 
     platformBuildVersionName="8.0.0">
     <uses-feature android:glEsVersion="0x00020000"/>

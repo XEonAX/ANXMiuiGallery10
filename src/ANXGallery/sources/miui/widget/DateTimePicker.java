@@ -15,10 +15,10 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.LinearLayout;
 import com.miui.internal.R;
-import com.miui.internal.util.PackageConstants;
 import java.util.Locale;
 import miui.date.Calendar;
 import miui.date.DateUtils;
+import miui.util.AppConstants;
 import miui.widget.NumberPicker.OnValueChangeListener;
 
 public class DateTimePicker extends LinearLayout {
@@ -77,7 +77,7 @@ public class DateTimePicker extends LinearLayout {
             calendar.set(1, i);
             calendar.set(5, i2);
             calendar.set(9, i3);
-            return calendar.format(PackageConstants.getCurrentApplication().getString(R.string.fmt_chinese_date));
+            return calendar.format(AppConstants.getCurrentApplication().getString(R.string.fmt_chinese_date));
         }
     }
 

@@ -4,13 +4,14 @@ import android.content.Context;
 import android.os.Build.VERSION;
 import com.android.internal.SystemPropertiesCompat;
 import com.miui.core.ModuleLevel;
+import com.miui.internal.util.PackageConstants;
 import com.miui.os.FeatureHelper;
 import com.miui.os.Rom;
 import com.miui.settings.Settings;
 
 public class BuildUtil {
     public static final boolean IS_M_OR_LATER = (VERSION.SDK_INT >= 23);
-    private static final ModuleLevel MIUI_SDK_LEVEL = new ModuleLevel("com.miui.core");
+    private static final ModuleLevel MIUI_SDK_LEVEL = new ModuleLevel(PackageConstants.PACKAGE_NAME);
     private static Boolean sIsOLED;
     private static Boolean sIsTablet;
     private static Integer sMiuiVersionCode;

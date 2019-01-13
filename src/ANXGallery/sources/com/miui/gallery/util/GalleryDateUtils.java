@@ -8,13 +8,13 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import miui.date.DateUtils;
-import miui.util.Pools;
-import miui.util.Pools.Manager;
-import miui.util.Pools.Pool;
+import miui.util.C0010Pools;
+import miui.util.Pools.C0000Manager;
+import miui.util.Pools.C0003Pool;
 import miui.util.cache.LruCache;
 
 public class GalleryDateUtils {
-    private static final Pool<Calendar> CALENDAR_POOL = Pools.createSoftReferencePool(new Manager<Calendar>() {
+    private static final C0003Pool<Calendar> CALENDAR_POOL = C0010Pools.createSoftReferencePool(new C0000Manager<Calendar>() {
         public Calendar createInstance() {
             return Calendar.getInstance();
         }
@@ -83,7 +83,7 @@ public class GalleryDateUtils {
         if (cacheDate != null) {
             return cacheDate;
         }
-        StringBuilder stringBuilder = (StringBuilder) Pools.getStringBuilderPool().acquire();
+        StringBuilder stringBuilder = (StringBuilder) C0010Pools.getStringBuilderPool().acquire();
         Calendar cal = (Calendar) CALENDAR_POOL.acquire();
         long now = System.currentTimeMillis();
         cal.setTimeInMillis(now);
@@ -102,7 +102,7 @@ public class GalleryDateUtils {
         }
         CALENDAR_POOL.release(cal);
         String result = stringBuilder.toString();
-        Pools.getStringBuilderPool().release(stringBuilder);
+        C0010Pools.getStringBuilderPool().release(stringBuilder);
         sDateCache.put(Long.valueOf(time), result, 1);
         return result;
     }

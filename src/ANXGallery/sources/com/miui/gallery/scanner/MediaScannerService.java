@@ -18,6 +18,7 @@ import com.miui.gallery.util.StorageUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import miui.extension.target.ActivityTarget;
 
 public class MediaScannerService extends Service {
     private ScanTaskManager mManager;
@@ -257,7 +258,7 @@ public class MediaScannerService extends Service {
         filter.addAction("android.intent.action.MEDIA_UNMOUNTED");
         filter.addDataScheme("file");
         registerReceiver(this.mMediaUnmountedReceiver, filter);
-        Log.i("MediaScannerService", "onCreate");
+        Log.i("MediaScannerService", ActivityTarget.ACTION_ON_CREATE);
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {

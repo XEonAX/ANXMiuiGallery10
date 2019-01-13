@@ -19,7 +19,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.miui.internal.R;
-import com.miui.internal.util.PackageConstants;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +27,7 @@ import java.util.Locale;
 import miui.date.Calendar;
 import miui.date.CalendarFormatSymbols;
 import miui.date.DateUtils;
+import miui.util.AppConstants;
 import miui.widget.NumberPicker.OnValueChangeListener;
 
 public class DatePicker extends FrameLayout {
@@ -118,7 +118,7 @@ public class DatePicker extends FrameLayout {
     }
 
     static {
-        Resources resources = PackageConstants.getCurrentApplication().getResources();
+        Resources resources = AppConstants.getCurrentApplication().getResources();
         for (int i = 0; i < Qo.length; i++) {
             StringBuilder stringBuilder = new StringBuilder();
             String[] strArr = Qo;

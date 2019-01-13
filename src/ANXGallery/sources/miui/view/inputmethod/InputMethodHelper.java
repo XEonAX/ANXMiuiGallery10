@@ -2,7 +2,7 @@ package miui.view.inputmethod;
 
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import com.miui.internal.util.PackageConstants;
+import miui.util.AppConstants;
 import miui.util.SoftReferenceSingleton;
 
 public class InputMethodHelper {
@@ -19,7 +19,7 @@ public class InputMethodHelper {
     }
 
     private InputMethodHelper() {
-        this.NW = (InputMethodManager) PackageConstants.getCurrentApplication().getSystemService("input_method");
+        this.NW = (InputMethodManager) AppConstants.getCurrentApplication().getSystemService("input_method");
     }
 
     public static InputMethodHelper getInstance() {
