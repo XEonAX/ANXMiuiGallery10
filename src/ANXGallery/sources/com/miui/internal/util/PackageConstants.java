@@ -41,7 +41,7 @@ public class PackageConstants extends AppConstants {
         if (i != 0) {
             return i;
         }
-        throw new IllegalStateException("cannot retrieve sdk level");
+        return i;
     }
 
     public static File getSdkBaseFolder(Context context) {

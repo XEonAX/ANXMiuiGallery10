@@ -147,13 +147,15 @@
 
     .line 56
     :cond_3b
-    new-instance v0, Ljava/lang/IllegalStateException;
+    
+    return v2
+    # new-instance v0, Ljava/lang/IllegalStateException;
 
-    const-string v1, "cannot retrieve sdk level"
+    # const-string v1, "cannot retrieve sdk level"
 
-    invoke-direct {v0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+    # invoke-direct {v0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
 
-    throw v0
+    # throw v0
 .end method
 
 .method public static getSdkBaseFolder(Landroid/content/Context;)Ljava/io/File;

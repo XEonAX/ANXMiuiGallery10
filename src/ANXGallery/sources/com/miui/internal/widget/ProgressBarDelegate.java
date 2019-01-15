@@ -69,7 +69,7 @@ public class ProgressBarDelegate {
         Context context = this.uQ.getContext();
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ProgressBar, i, 0);
         Drawable drawable = this.uW;
-        if (drawable != null && drawable.getClass().getName().equals("android.graphics.drawable.AnimatedRotateDrawable")) {
+        if (drawable != null && drawable.getClass().getName().equals(Android_Graphics_Drawable_AnimatedRotateDrawable_class.NAME)) {
             uN.setFramesCount(drawable, obtainStyledAttributes.getInt(com.miui.internal.R.styleable.ProgressBar_indeterminateFramesCount, 48));
             uN.setFramesDuration(drawable, obtainStyledAttributes.getInt(com.miui.internal.R.styleable.ProgressBar_indeterminateFramesDuration, 25));
         }

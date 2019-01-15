@@ -28,7 +28,7 @@ public class AnimatedImageView extends ImageView {
             stop();
         }
         Drawable drawable = getDrawable();
-        if (drawable.getClass().getName().equals("android.graphics.drawable.AnimatedRotateDrawable")) {
+        if (drawable.getClass().getName().equals(Android_Graphics_Drawable_AnimatedRotateDrawable_class.NAME)) {
             this.OH = drawable;
             uN.setFramesCount(drawable, 56);
             uN.setFramesDuration(drawable, 32);
@@ -80,13 +80,13 @@ public class AnimatedImageView extends ImageView {
     }
 
     private void start() {
-        if (this.OH != null && this.OH.getClass().getName().equals("android.graphics.drawable.AnimatedRotateDrawable")) {
+        if (this.OH != null && this.OH.getClass().getName().equals(Android_Graphics_Drawable_AnimatedRotateDrawable_class.NAME)) {
             uN.start(this.OH);
         }
     }
 
     private void stop() {
-        if (this.OH != null && this.OH.getClass().getName().equals("android.graphics.drawable.AnimatedRotateDrawable")) {
+        if (this.OH != null && this.OH.getClass().getName().equals(Android_Graphics_Drawable_AnimatedRotateDrawable_class.NAME)) {
             uN.stop(this.OH);
         }
     }
