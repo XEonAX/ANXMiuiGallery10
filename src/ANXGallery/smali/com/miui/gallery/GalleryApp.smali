@@ -177,7 +177,7 @@
 
     .prologue
     .line 58
-    invoke-direct {p0}, Lcom/miui/gallery/GalleryApp;->doInitInSubThreadDelay()V
+    # invoke-direct {p0}, Lcom/miui/gallery/GalleryApp;->doInitInSubThreadDelay()V
 
     return-void
 .end method

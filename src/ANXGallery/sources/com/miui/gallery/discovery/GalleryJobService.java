@@ -6,7 +6,6 @@ import android.app.job.JobScheduler;
 import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
-import com.miui.gallery.cloudcontrol.FetchCloudControlDataJob;
 import com.miui.gallery.provider.peoplecover.PeopleCoverJob;
 import com.miui.gallery.search.statistics.SearchStatReportJob;
 import com.miui.gallery.util.GallerySamplingStatHelper;
@@ -74,8 +73,6 @@ public class GalleryJobService extends JobService {
         sJobs.put(Integer.valueOf(0), ScanMediaJob.class);
         sJobs.put(Integer.valueOf(3), RecentMediaCleanupJob.class);
         sJobs.put(Integer.valueOf(4), CollectLocationJob.class);
-        sJobs.put(Integer.valueOf(5), FetchCloudControlDataJob.class);
-        sJobs.put(Integer.valueOf(6), StatisticsJob.class);
         sJobs.put(Integer.valueOf(7), SearchStatReportJob.class);
         sJobs.put(Integer.valueOf(8), RequestSyncJob.class);
         sJobs.put(Integer.valueOf(10), DailyCheckJob.class);

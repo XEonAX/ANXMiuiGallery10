@@ -76,31 +76,31 @@
 
     invoke-interface {v0, v1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 62
-    sget-object v0, Lcom/miui/gallery/discovery/GalleryJobService;->sJobs:Ljava/util/Map;
+    # .line 62
+    # sget-object v0, Lcom/miui/gallery/discovery/GalleryJobService;->sJobs:Ljava/util/Map;
 
-    const/4 v1, 0x5
+    # const/4 v1, 0x5
 
-    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    # invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v1
+    # move-result-object v1
 
-    const-class v2, Lcom/miui/gallery/cloudcontrol/FetchCloudControlDataJob;
+    # const-class v2, Lcom/miui/gallery/cloudcontrol/FetchCloudControlDataJob;
 
-    invoke-interface {v0, v1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    # invoke-interface {v0, v1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 63
-    sget-object v0, Lcom/miui/gallery/discovery/GalleryJobService;->sJobs:Ljava/util/Map;
+    # .line 63
+    # sget-object v0, Lcom/miui/gallery/discovery/GalleryJobService;->sJobs:Ljava/util/Map;
 
-    const/4 v1, 0x6
+    # const/4 v1, 0x6
 
-    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    # invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v1
+    # move-result-object v1
 
-    const-class v2, Lcom/miui/gallery/discovery/StatisticsJob;
+    # const-class v2, Lcom/miui/gallery/discovery/StatisticsJob;
 
-    invoke-interface {v0, v1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    # invoke-interface {v0, v1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 64
     sget-object v0, Lcom/miui/gallery/discovery/GalleryJobService;->sJobs:Ljava/util/Map;

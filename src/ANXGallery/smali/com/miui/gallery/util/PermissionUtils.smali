@@ -12,9 +12,9 @@
 
 
 # direct methods
-.method public static checkPermission(Landroid/app/Activity;Ljava/lang/String;)Z
+.method public static checkPermission(Lmiui/app/Activity;Ljava/lang/String;)Z
     .locals 2
-    .param p0, "activity"    # Landroid/app/Activity;
+    .param p0, "activity"    # Lmiui/app/Activity;
     .param p1, "permission"    # Ljava/lang/String;
 
     .prologue
@@ -80,9 +80,9 @@
     goto :goto_0
 .end method
 
-.method public static getUngrantedPermissions(Landroid/app/Activity;[Ljava/lang/String;)[Ljava/lang/String;
+.method public static getUngrantedPermissions(Lmiui/app/Activity;[Ljava/lang/String;)[Ljava/lang/String;
     .locals 7
-    .param p0, "activity"    # Landroid/app/Activity;
+    .param p0, "activity"    # Lmiui/app/Activity;
     .param p1, "permissions"    # [Ljava/lang/String;
 
     .prologue
@@ -134,7 +134,7 @@
 
     if-nez v6, :cond_2
 
-    invoke-static {p0, v0}, Lcom/miui/gallery/util/PermissionUtils;->checkPermission(Landroid/app/Activity;Ljava/lang/String;)Z
+    invoke-static {p0, v0}, Lcom/miui/gallery/util/PermissionUtils;->checkPermission(Lmiui/app/Activity;Ljava/lang/String;)Z
 
     move-result v6
 
@@ -178,9 +178,9 @@
     goto :goto_0
 .end method
 
-.method public static requestPermissions(Landroid/app/Activity;[Ljava/lang/String;I)V
+.method public static requestPermissions(Lmiui/app/Activity;[Ljava/lang/String;I)V
     .locals 1
-    .param p0, "activity"    # Landroid/app/Activity;
+    .param p0, "activity"    # Lmiui/app/Activity;
     .param p1, "permissions"    # [Ljava/lang/String;
     .param p2, "requestCode"    # I
 
@@ -193,7 +193,7 @@
     if-eqz v0, :cond_0
 
     .line 36
-    invoke-static {p0, p1, p2}, Landroid/support/v4/app/ActivityCompat;->requestPermissions(Landroid/app/Activity;[Ljava/lang/String;I)V
+    invoke-static {p0, p1, p2}, Landroid/support/v4/app/ActivityCompat;->requestPermissions(Lmiui/app/Activity;[Ljava/lang/String;I)V
 
     .line 38
     :cond_0

@@ -74,6 +74,9 @@ public class GalleryApp extends Application {
         }
     }
 
+    static /* synthetic */ void access$600(GalleryApp x0) {
+    }
+
     static {
         boolean z = SdkHelper.IS_MIUI && Rom.IS_ALPHA && Log.isLoggable("BLOCK_MONITOR", 3);
         BLOCK_MONITOR = z;
@@ -123,7 +126,7 @@ public class GalleryApp extends Application {
                 GalleryApp.this.doInitInSubThreadAtOnce();
                 Process.setThreadPriority(10);
                 ThreadManager.sleepThread(500);
-                GalleryApp.this.doInitInSubThreadDelay();
+                GalleryApp.access$600(GalleryApp.this);
             }
         }).start();
     }

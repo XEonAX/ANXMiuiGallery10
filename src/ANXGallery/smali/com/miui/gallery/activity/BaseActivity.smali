@@ -19,7 +19,7 @@
 
 
 # instance fields
-.field protected mActionBar:Lmiui/app/ActionBar;
+.field public mActionBar:Lmiui/app/ActionBar;
 
 .field private mCtaAgreedListener:Landroid/content/DialogInterface$OnClickListener;
 

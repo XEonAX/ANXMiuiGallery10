@@ -12,7 +12,7 @@
 
 
 # instance fields
-.field private mActivity:Landroid/app/Activity;
+.field private mActivity:Lmiui/app/Activity;
 
 .field private mCallback:Lcom/miui/gallery/util/PermissionCheckHelper$PermissionCheckCallback;
 
@@ -20,9 +20,9 @@
 
 
 # direct methods
-.method public constructor <init>(Landroid/app/Activity;ZLcom/miui/gallery/util/PermissionCheckHelper$PermissionCheckCallback;)V
+.method public constructor <init>(Lmiui/app/Activity;ZLcom/miui/gallery/util/PermissionCheckHelper$PermissionCheckCallback;)V
     .locals 2
-    .param p1, "activity"    # Landroid/app/Activity;
+    .param p1, "activity"    # Lmiui/app/Activity;
     .param p2, "isShowWhenLocked"    # Z
     .param p3, "callback"    # Lcom/miui/gallery/util/PermissionCheckHelper$PermissionCheckCallback;
 
@@ -47,7 +47,7 @@
 
     .line 31
     :cond_1
-    iput-object p1, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Landroid/app/Activity;
+    iput-object p1, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Lmiui/app/Activity;
 
     .line 32
     iput-boolean p2, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mIsShowWhenLocked:Z
@@ -73,13 +73,13 @@
     return v0
 .end method
 
-.method static synthetic access$100(Lcom/miui/gallery/util/PermissionCheckHelper;)Landroid/app/Activity;
+.method static synthetic access$100(Lcom/miui/gallery/util/PermissionCheckHelper;)Lmiui/app/Activity;
     .locals 1
     .param p0, "x0"    # Lcom/miui/gallery/util/PermissionCheckHelper;
 
     .prologue
     .line 13
-    iget-object v0, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Landroid/app/Activity;
+    iget-object v0, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Lmiui/app/Activity;
 
     return-object v0
 .end method
@@ -171,9 +171,9 @@
 
     .line 109
     .local v8, "dialogTag":Ljava/lang/String;
-    iget-object v0, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Landroid/app/Activity;
+    iget-object v0, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Lmiui/app/Activity;
 
-    invoke-virtual {v0}, Landroid/app/Activity;->getFragmentManager()Landroid/app/FragmentManager;
+    invoke-virtual {v0}, Lmiui/app/Activity;->getFragmentManager()Landroid/app/FragmentManager;
 
     move-result-object v0
 
@@ -219,9 +219,9 @@
     if-nez v0, :cond_0
 
     .line 136
-    iget-object v0, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Landroid/app/Activity;
+    iget-object v0, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Lmiui/app/Activity;
 
-    invoke-virtual {v0}, Landroid/app/Activity;->getFragmentManager()Landroid/app/FragmentManager;
+    invoke-virtual {v0}, Lmiui/app/Activity;->getFragmentManager()Landroid/app/FragmentManager;
 
     move-result-object v0
 
@@ -272,9 +272,9 @@
     if-eqz v1, :cond_1
 
     .line 78
-    iget-object v1, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Landroid/app/Activity;
+    iget-object v1, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Lmiui/app/Activity;
 
-    invoke-static {v1, p1}, Lcom/miui/gallery/util/PermissionUtils;->getUngrantedPermissions(Landroid/app/Activity;[Ljava/lang/String;)[Ljava/lang/String;
+    invoke-static {v1, p1}, Lcom/miui/gallery/util/PermissionUtils;->getUngrantedPermissions(Lmiui/app/Activity;[Ljava/lang/String;)[Ljava/lang/String;
 
     move-result-object v0
 
@@ -292,7 +292,7 @@
     if-eqz v1, :cond_3
 
     .line 81
-    iget-object v1, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Landroid/app/Activity;
+    iget-object v1, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Lmiui/app/Activity;
 
     invoke-static {v0}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
 
@@ -300,22 +300,22 @@
 
     const/4 v3, 0x1
 
-    invoke-static {v1, v2, v3}, Lcom/miui/gallery/activity/PermissionDeniedActivity;->startActivity(Landroid/app/Activity;Ljava/util/List;Z)V
+    invoke-static {v1, v2, v3}, Lcom/miui/gallery/activity/PermissionDeniedActivity;->startActivity(Lmiui/app/Activity;Ljava/util/List;Z)V
 
     .line 82
-    iget-object v1, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Landroid/app/Activity;
+    iget-object v1, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Lmiui/app/Activity;
 
-    invoke-virtual {v1}, Landroid/app/Activity;->finish()V
+    invoke-virtual {v1}, Lmiui/app/Activity;->finish()V
 
     goto :goto_0
 
     .line 84
     :cond_3
-    iget-object v1, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Landroid/app/Activity;
+    iget-object v1, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Lmiui/app/Activity;
 
     const/16 v2, 0x2e
 
-    invoke-static {v1, v0, v2}, Lcom/miui/gallery/util/PermissionUtils;->requestPermissions(Landroid/app/Activity;[Ljava/lang/String;I)V
+    invoke-static {v1, v0, v2}, Lcom/miui/gallery/util/PermissionUtils;->requestPermissions(Lmiui/app/Activity;[Ljava/lang/String;I)V
 
     goto :goto_0
 
@@ -526,16 +526,16 @@
     .restart local v1    # "succeed":Z
     .restart local v2    # "unGrantedPermissions":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
     :cond_3
-    iget-object v3, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Landroid/app/Activity;
+    iget-object v3, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Lmiui/app/Activity;
 
     iget-boolean v4, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mIsShowWhenLocked:Z
 
-    invoke-static {v3, v2, v4}, Lcom/miui/gallery/activity/PermissionDeniedActivity;->startActivity(Landroid/app/Activity;Ljava/util/List;Z)V
+    invoke-static {v3, v2, v4}, Lcom/miui/gallery/activity/PermissionDeniedActivity;->startActivity(Lmiui/app/Activity;Ljava/util/List;Z)V
 
     .line 64
-    iget-object v3, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Landroid/app/Activity;
+    iget-object v3, p0, Lcom/miui/gallery/util/PermissionCheckHelper;->mActivity:Lmiui/app/Activity;
 
-    invoke-virtual {v3}, Landroid/app/Activity;->finish()V
+    invoke-virtual {v3}, Lmiui/app/Activity;->finish()V
 
     goto :goto_1
 .end method

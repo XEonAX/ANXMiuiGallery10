@@ -27,7 +27,7 @@ import miui.app.Activity;
 
 public class BaseActivity extends Activity implements PermissionCheckCallback {
     private static final String[] REQUIRED_RUNTIME_PERMISSIONS = new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"};
-    protected ActionBar mActionBar;
+    public ActionBar mActionBar;
     private OnClickListener mCtaAgreedListener;
     private CtaNoticeFragment mCtaNoticeDialog;
     private boolean mIsResumed;

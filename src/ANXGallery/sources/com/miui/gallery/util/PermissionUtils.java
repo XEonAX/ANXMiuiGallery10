@@ -1,6 +1,5 @@
 package com.miui.gallery.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Build.VERSION;
 import android.support.v4.app.ActivityCompat;
@@ -8,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import com.miui.gallery.preference.GalleryPreferences.CTA;
 import java.util.ArrayList;
+import miui.app.Activity;
 
 public class PermissionUtils {
 

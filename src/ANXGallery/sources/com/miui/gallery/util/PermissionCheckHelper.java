@@ -1,11 +1,11 @@
 package com.miui.gallery.util;
 
-import android.app.Activity;
 import android.text.TextUtils;
 import com.miui.gallery.activity.PermissionDeniedActivity;
 import com.miui.gallery.util.PermissionUtils.CtaPrivacyPermissions;
 import java.util.ArrayList;
 import java.util.Arrays;
+import miui.app.Activity;
 
 public class PermissionCheckHelper {
     private Activity mActivity;

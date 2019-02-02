@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
     package="com.miui.gallery" 
-    android:versionCode="1" 
-    android:versionName="HelplessChubbyCollie"
+    android:versionCode="9" 
+    android:versionName="9.CornsilkInconsequentialBluebreastedkookaburra"
     platformBuildVersionCode="26" 
     platformBuildVersionName="8.0.0">
     <uses-feature android:glEsVersion="0x00020000"/>
