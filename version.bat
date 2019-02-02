@@ -1,5 +1,5 @@
-call .\tools\ANXAppPortVersion\bin\Debug\ANXAppPortVersion.exe v=".\VERSION" incrementversionname=true
+call ..\ANXMiuiPortTools\versionizer.exe v=".\VERSION" incrementversionname=true incrementversion=true
 
-call .\tools\ANXAppPortVersion\bin\Debug\ANXAppPortVersion.exe v=".\VERSION" am=".\src\ANXGallery\AndroidManifest.xml"
-call .\tools\ANXAppPortVersion\bin\Debug\ANXAppPortVersion.exe v=".\VERSION" am=".\src\ANXExtraPhoto\AndroidManifest.xml"
-call .\tools\ANXAppPortVersion\bin\Debug\ANXAppPortVersion.exe v=".\VERSION" mm=".\src\ANXExtraGalleryMagisk\module.prop"
+..\ANXMiuiPortTools\versionizer.exe v=".\VERSION" am=".\src\ANXGallery\AndroidManifest.xml"
+..\ANXMiuiPortTools\versionizer.exe v=".\VERSION" am=".\src\ANXExtraPhoto\AndroidManifest.xml"
+..\ANXMiuiPortTools\versionizer.exe v=".\VERSION" mm=".\src\ANXExtraGalleryMagisk\module.prop"
